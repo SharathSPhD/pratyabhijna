@@ -35,7 +35,8 @@ ARM_COLOR = {
 
 
 def _load(results_dir: Path, domain: str) -> dict[str, Any]:
-    return json.loads((results_dir / f"{domain}.json").read_text(encoding="utf-8"))
+    loaded: dict[str, Any] = json.loads((results_dir / f"{domain}.json").read_text(encoding="utf-8"))
+    return loaded
 
 
 def _composites_per_arm(rows: dict[str, dict[str, Any]]) -> dict[str, list[float]]:

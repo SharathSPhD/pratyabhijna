@@ -75,7 +75,7 @@ class HypothesisResult:
     control: str
 
 
-def _hedges_g_paired(d: np.ndarray) -> float:
+def _hedges_g_paired(d: np.ndarray[Any, Any]) -> float:
     """Hedges' g for paired differences with small-sample correction."""
     n = len(d)
     if n < 2:
@@ -89,7 +89,7 @@ def _hedges_g_paired(d: np.ndarray) -> float:
     return float(g * j)
 
 
-def _paired_permutation_p_one_sided(d: np.ndarray, *, rng: np.random.Generator,
+def _paired_permutation_p_one_sided(d: np.ndarray[Any, Any], *, rng: np.random.Generator,
                                      alternative: str = "greater",
                                      n_permutations: int = 50_000) -> float:
     """Exact sign-flip permutation if 2**n <= n_permutations, else Monte Carlo.
@@ -119,7 +119,7 @@ def _paired_permutation_p_one_sided(d: np.ndarray, *, rng: np.random.Generator,
     return float((count + 1) / (n_permutations + 1))
 
 
-def _bca_ci_paired_mean(d: np.ndarray, *, rng: np.random.Generator,
+def _bca_ci_paired_mean(d: np.ndarray[Any, Any], *, rng: np.random.Generator,
                          n_boot: int = 10_000, alpha: float = 0.05) -> tuple[float, float]:
     n = len(d)
     if n < 2:
@@ -181,10 +181,16 @@ def _load_domain(results_dir: Path, domain: str) -> dict[str, Any]:
     p = results_dir / f"{domain}.json"
     if not p.exists():
         raise SystemExit(f"missing results file: {p}")
-    return json.loads(p.read_text(encoding="utf-8"))
+    loaded: dict[str, Any] = json.loads(p.read_text(encoding="utf-8"))
+    return loaded
 
 
-def _paired_arrays(rows: dict[str, dict[str, Any]], *, treatment: str, control: str) -> tuple[np.ndarray, np.ndarray, list[str]]:
+def _paired_arrays(
+    rows: dict[str, dict[str, Any]],
+    *,
+    treatment: str,
+    control: str,
+) -> tuple[np.ndarray[Any, Any], np.ndarray[Any, Any], list[str]]:
     ids: list[str] = []
     t_vals: list[float] = []
     c_vals: list[float] = []
@@ -214,7 +220,7 @@ def _compute_hypothesis(
     n_permutations: int,
     n_boot: int,
     holm_p: float | None = None,
-) -> tuple[HypothesisResult, np.ndarray]:
+) -> tuple[HypothesisResult, np.ndarray[Any, Any]]:
     t_arr, c_arr, ids = _paired_arrays(rows, treatment=treatment, control=control)
     d = t_arr - c_arr
     if len(d) == 0:
@@ -341,7 +347,7 @@ def main() -> int:
 
     raw_p_directional: dict[str, float] = {}
     primary_results: dict[str, HypothesisResult] = {}
-    deltas: dict[str, np.ndarray] = {}
+    deltas: dict[str, np.ndarray[Any, Any]] = {}
 
     for h_name, dom in HYPOTHESIS_DOMAIN.items():
         data = _load_domain(args.results_dir, dom)
@@ -363,13 +369,14 @@ def main() -> int:
     # H5: composite z across H1..H4 with weights
     weights = {"H1": 0.5, "H2": 1.0 / 6.0, "H3": 1.0 / 6.0, "H4": 1.0 / 6.0}
 
-    def _zscore(arr: np.ndarray) -> np.ndarray:
+    def _zscore(arr: np.ndarray[Any, Any]) -> np.ndarray[Any, Any]:
         sd = float(np.std(arr, ddof=1))
         if sd == 0.0:
-            return np.zeros_like(arr)
+            zeros: np.ndarray[Any, Any] = np.zeros_like(arr)
+            return zeros
         return (arr - float(np.mean(arr))) / sd
 
-    z_blend_terms: list[np.ndarray] = []
+    z_blend_terms: list[np.ndarray[Any, Any]] = []
     for h_name, w in weights.items():
         z_blend_terms.append(w * _zscore(deltas[h_name]))
     # Stack by item-position; we treat domains as independent paired samples
