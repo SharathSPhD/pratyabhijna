@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Pratyabhijna x Active Inference creative-cognition plugin (PCE) - Claude Code plugin operationalizing the 5-shakti cascade with a recursive vimarsa self-reflexivity layer."
 authors = [{name = "Sharath Sathish", email = "sharath@users.noreply.github.com"}]
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.11,<3.14"
 license = {text = "MIT"}
 keywords = ["pratyabhijna", "active-inference", "creativity", "claude-code", "mcp", "bayesian-model-reduction", "vimarsa"]
 
@@ -20,8 +20,8 @@ dependencies = [
   "torch>=2.2",
   "accelerate>=0.30",
   "huggingface-hub>=0.24",
-  # Active inference
-  "pymdp>=0.0.7.1",
+  # Active inference (pypi name is `inferactively-pymdp`; v1.0 introduces JAX backend, legacy numpy still available)
+  "inferactively-pymdp>=0.0.7.1",
   # MCP
   "mcp>=1.0",
   "pydantic>=2.7",
