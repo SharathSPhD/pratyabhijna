@@ -1,0 +1,445 @@
+{
+  "domain": "aut",
+  "rows": {
+    "a01": {
+      "item": {
+        "id": "a01",
+        "object": "brick"
+      },
+      "claude_haiku": {
+        "text": "1. **Thermal battery for passive solar storage** — Stack bricks in a greenhouse or sunroom to absorb daytime heat, then release it at night to stabilize temperature swings in a growing space.\n\n2. **Percussion instrument for drone music** — Strike a brick with various mallets over a microphone to produce deep, resonant tones used in ambient soundscapes or experimental composition.\n\n3. **Submersion weight for fermentation** — Use a smooth brick to keep vegetables submerged under brine during kimchi or sauerkraut fermentation without metal contamination.\n\n4. **Grinding mortar for spices** — Pair two bricks (flat faces) as a makeshift mortar and pestle to crush whole spices when a grinder isn't available, using a smaller rock as the pestle.\n\n5. **Aquaculture thermal buffer** — Submerge bricks in fish tanks or aquatic plant systems to absorb temperature fluctuations, creating more stable conditions than bare water alone.\n\n6. **Controlled rock-breaking tool for geology** — Geologists and fossil hunters use bricks as weighted hammers to cleanly split sedimentary layers and extract samples without the precision requirements of chisels.\n\n7. **Acoustic baffle core material** — Wrap bricks in fiberglass or acoustic fabric to build DIY sound-dampening panels for treating low-frequency resonance in small music studios.\n\n8. **Horticultural training weight** — Suspend bricks from branches to guide growth direction in bonsai or espalier systems, providing constant directional force without bark damage that wire alone causes.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.680681586265564,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.920170396566391,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 17.20476007461548,
+          "cost_usd": 0.0233193,
+          "duration_ms": 14136,
+          "stop_reason": "end_turn"
+        }
+      },
+      "local_bare": {
+        "text": "1. Building a portable aquarium for pets.\n2. Utilizing bricks for creating a unique and stable base for a portable greenhouse.\n3. Utilizing bricks for forming a temporary structure for outdoor play.\n4. Using bricks to build an elevated flowerbed in a small yard.\n5. Using bricks as a wall in a small kitchen or dining room to define an area.\n6. Building a portable toilet using bricks.\n7. Creating a protective barrier for pets with a sturdy, durable fence made of bricks.\n8. Using bricks to create a modular wall for an outdoor shower. \n\nNote: This list",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.5336107611656189,
+          "elaboration": 0.5555555555555556,
+          "flexibility": 0.5555555555555556
+        },
+        "composite": 0.6611804680691824,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 17.209678888320923
+        }
+      },
+      "local_cascade": {
+        "text": "1. Brick can be used to construct an unusual outdoor pavilion with the ability to house a full-sized pool as part of its design.\n2. The small, triangular bricks can be stacked together to make a modular patio table, ideal for a small balcony.\n3. By hollowing out some of the brick and inserting a wire frame, they can be used to create a unique, sustainable, solar-powered outdoor lighting system.\n4. The brick's unique porous structure can be used to create a water filtering system in an environmentally conscious way.\n5. To create a whimsical garden feature, the bricks",
+        "axes": {
+          "fluency": 0.625,
+          "originality": 0.49765515327453613,
+          "elaboration": 1.0,
+          "flexibility": 0.4
+        },
+        "composite": 0.630663788318634,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 78.3523919582367,
+          "vimarsa_event": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "selected_idx": 3
+        }
+      }
+    },
+    "a02": {
+      "item": {
+        "id": "a02",
+        "object": "paperclip"
+      },
+      "claude_haiku": {
+        "text": "1. **SIM card ejector** — Straighten one end and use it as the tiny pin to eject SIM trays from phones and devices when you don't have the official tool.\n\n2. **Wire stripper for thin gauge** — Bend two paperclips into a V-shape, clamp them on insulation, and twist to strip thin electrical wires without damaging delicate conductors.\n\n3. **Plant propagation support** — Bend into a U-shape and push into soil to anchor propagation cuttings or seedlings while roots develop, creating a living stake.\n\n4. **Guitar string cleaner** — Straighten and use as a fine wire pick to scrub between tightly-spaced strings to remove buildup without damaging the wound wraps.\n\n5. **Emergency drawer pull** — Thread through a hole in a stuck drawer's back, create a hook at both ends, and use as a pulling handle when the original is broken or missing.\n\n6. **Zipper emergency slider** — When a small-gauge zipper breaks off its slider, thread the straightened paperclip through the zipper teeth on both sides and bend the ends to create a functional replacement slider.\n\n7. **Calibration check for micrometers** — Use the precise thickness (0.9mm) as a quick go/no-go gauge for verifying micrometer calibration on precision tools.\n\n8. **Bioluminescent specimen separator** — Straighten and use as a non-conductive prodding tool when examining and separating glowing organisms (dinoflagellates, fireflies) in dark conditions without touching them directly.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.8263412117958069,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9565853029489517,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 10.518973112106323,
+          "cost_usd": 0.020551800000000002,
+          "duration_ms": 7832,
+          "stop_reason": "end_turn"
+        }
+      },
+      "local_bare": {
+        "text": "1. To hold together books and binders with overlapping pages, to avoid pages spilling out of the binding.\n2. To create a makeshift magnet by sticking to a fridge or other metal surface to keep notes or items organized.\n3. To secure fragile items like a bouquet of flowers by putting them in the middle of a cardboard box to avoid damage.\n4. To hold and elevate books, files, or other items that are too heavy to be handled by hand, making them more accessible.\n5. To hold together books and binders by overlapping the pages and then stapling them together.\n6",
+        "axes": {
+          "fluency": 0.625,
+          "originality": 0.6432369351387024,
+          "elaboration": 1.0,
+          "flexibility": 0.4
+        },
+        "composite": 0.6670592337846756,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 18.10800814628601
+        }
+      },
+      "local_cascade": {
+        "text": "1. As a tool for opening hard-to-open packages, such as cans or jars, by wrapping the paperclip around the edge of the package and using it to pry open the lid.\n2. To create a makeshift fishing rod by tying the paperclip to a fishing line and using it to catch fish.\n3. To attach a small magnet to the paperclip and use it as a magnet for small objects, such as coins or keys.\n4. As a stopper for small holes or gaps, by wrapping the paperclip around the edge of the hole or gap and using it to keep it",
+        "axes": {
+          "fluency": 0.5,
+          "originality": 0.46640852093696594,
+          "elaboration": 1.0,
+          "flexibility": 0.5
+        },
+        "composite": 0.6166021302342415,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 83.16910815238953,
+          "vimarsa_event": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "selected_idx": 0
+        }
+      }
+    },
+    "a03": {
+      "item": {
+        "id": "a03",
+        "object": "rubber band"
+      },
+      "claude_haiku": {
+        "text": "The skill is indicating a deprecation notice, so let me just answer your question directly:\n\n1. **Lens focus grip for manual macro photography** — wrap it around the focus ring of a manual lens to provide tactile resistance when making minute adjustments for extreme close-up shots.\n\n2. **Cable organizer for cable management in tight spaces** — bundle and organize multiple power/data cables together in a way that's gentler than velcro and won't damage insulation over time.\n\n3. **Emergency guitar capo substitute** — loop it around the guitar neck and a fret to temporarily mute strings when practicing specific fretboard positions without an actual capo.\n\n4. **Temporary bookmark tension system** — stretch it across an open book's spine to hold your page marker in place and prevent it sliding out during transport.\n\n5. **Plant support and growth directional tool** — gently guide climbing vines or bending plants toward a trellis or light source by looping it around stems, allowing controlled growth angles.\n\n6. **Temporary picture frame anti-rattle device** — loop it around the back corners of a frame to dampen glass vibrations and prevent rattling against the wall.\n\n7. **Pen/pencil rotation tool for sharpening** — wrap it around a handheld pencil to provide rotational resistance and fine control when using a handheld sharpener.\n\n8. **Emergency valve stem cap replacement for tire maintenance** — when a valve stem cap is lost, a rubber band can temporarily prevent dirt and moisture from entering the valve until a replacement arrives.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.7808218598365784,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9452054649591446,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 18.84264612197876,
+          "cost_usd": 0.0295804,
+          "duration_ms": 16798,
+          "stop_reason": "end_turn"
+        }
+      },
+      "local_bare": {
+        "text": "Here are 8 unusual and non-obvious uses of rubber bands:\n\n1. Creating temporary supports for DIY furniture projects.\n2. Using rubber bands as a creative DIY tape measure to measure irregular objects.\n3. As a quick and easy way to hold fragile objects together.\n4. Making DIY door hangers with rubber bands.\n5. Sticking rubber bands to walls to create a texture and pattern.\n6. Creating homemade marionette strings.\n7. Using rubber bands as a DIY pen holder.\n8. As a fun and easy DIY craft for stress relief. \n\nNote: These uses are not",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.5885398983955383,
+          "elaboration": 0.47777777777777775,
+          "flexibility": 0.6
+        },
+        "composite": 0.6665794190433291,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 16.712929010391235
+        }
+      },
+      "local_cascade": {
+        "text": "1. Use as a tool for applying pressure in the medical field to break up hardened tissue or bind together ligaments.\n2. To hold down a small piece of paper or a small object in place for precise measurements or labeling.\n3. As a makeshift ruler, by marking off intervals to determine a distance and then measuring with a ruler or tape measure.\n4. For tying items together, such as wrapping a gift or securing a piece of luggage.\n5. For creating a makeshift fishing lure by coating a rubber band with bait or glue and attaching it to a hook.\n6. To stretch out a",
+        "axes": {
+          "fluency": 0.75,
+          "originality": 0.7092013955116272,
+          "elaboration": 0.925925925925926,
+          "flexibility": 1.0
+        },
+        "composite": 0.8462818303593883,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 76.73873591423035,
+          "vimarsa_event": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "selected_idx": 2
+        }
+      }
+    },
+    "a04": {
+      "item": {
+        "id": "a04",
+        "object": "shoebox"
+      },
+      "claude_haiku": {
+        "text": "1. **Pinhole camera for solar eclipse viewing** — shoebox with one pinhole in a closed end projects an inverted, safe image of the eclipse onto white paper inside the opposite end.\n\n2. **Seed stratification chamber** — layered with moist sand, peat, and seeds, then refrigerated to simulate winter conditions that trigger germination in dormant wildflower seeds.\n\n3. **Aquatic insect observation tank** — sealed with clear plastic on bottom and sides, filled with pond water to observe water striders, dragonfly nymphs, or backswimmers in real-time feeding behavior.\n\n4. **DIY diffusion light softbox** — lined with white tissue paper on interior walls, converts a harsh phone flash into soft, diffused light for macro photography or video interviews.\n\n5. **Formicarium (ant farm) frame** — becomes the outer shell of a layered sand/soil habitat when fitted with transparent acrylic sheets, allowing colony tunnel observation.\n\n6. **Acoustic resonator for vocal feedback** — the enclosed chamber amplifies specific frequencies; singers record voice memos and play back to develop ear training without costly equipment.\n\n7. **Portable darkroom for photographic contact printing** — shoebox becomes a light-tight chamber for handling photo paper during enlargement contact-sheet work in daylight environments.\n\n8. **Bass-trap resonator for audio tuning** — filled with acoustic dampening material and tuned interior dimensions, it absorbs problematic low-frequency room modes in small recording spaces.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.8004796504974365,
+          "elaboration": 1.0,
+          "flexibility": 0.75
+        },
+        "composite": 0.8876199126243591,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 12.435788869857788,
+          "cost_usd": 0.02112555,
+          "duration_ms": 10232,
+          "stop_reason": "end_turn"
+        }
+      },
+      "local_bare": {
+        "text": "1. Shoebox for storing small items: Fill the shoebox with small objects like candies, coins, and stickers. This makes for a fun and quirky desk decoration or a little treasure chest for your kids.\n2. Shoebox collage: Cut out photos and other small pieces of art and glue them into the shoebox for a fun and personalized family photo album.\n3. Shoebox holder for office plants: Use the shoebox as a holder for hanging plants. The flat surface makes it perfect for small plants like succulents.\n4. Shoebox for storing old photographs: Fill the shoebox",
+        "axes": {
+          "fluency": 0.5,
+          "originality": 0.39829954504966736,
+          "elaboration": 1.0,
+          "flexibility": 0.25
+        },
+        "composite": 0.5370748862624168,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 17.12807822227478
+        }
+      },
+      "local_cascade": {
+        "text": "1. Shoebox turntable\n  2. Shoebox camera\n  3. Shoebox bookshelf\n  4. Shoebox pet carrier\n  5. Shoebox puzzle pieces organizer\n  6. Shoebox jewelry holder\n  7. Shoebox flower arrangement tray\n  8. Shoebox desk storage. \n  9. Shoebox picture frame holder\n  10. Shoebox mail slot.\n  11. Shoebox book storage. \n  12. Shoebox box of supplies for crafting or DIY projects.\n ",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.4038332402706146,
+          "elaboration": 0.19444444444444445,
+          "flexibility": 0.25
+        },
+        "composite": 0.46206942117876476,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 76.95946788787842,
+          "vimarsa_event": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "selected_idx": 3
+        }
+      }
+    },
+    "a05": {
+      "item": {
+        "id": "a05",
+        "object": "wire coat hanger"
+      },
+      "claude_haiku": {
+        "text": "The brainstorm skill indicates it's deprecated. For future brainstorming tasks, just ask me directly to use the \"superpowers brainstorming\" skill instead.\n\nHere are 8 unusual, non-obvious uses for a wire coat hanger:\n\n1. **Drain unclogger for shower P-traps** — bend the hanger into a hook, feed it down the drain to snag hair clumps and soap buildup that plungers can't reach.\n\n2. **Plant support cage for climbing vegetables** — unwind and reshape into a spiral or vertical grid to support peas, beans, or tomatoes in a garden bed without commercial stakes.\n\n3. **DIY stencil holder for spray painting** — bend multiple hangers to clamp stencil material flat against a surface at precise angles, keeping hands free.\n\n4. **Oven rack lifter for burnt-on food** — straighten one end and create a hook to slip under stuck baking sheets or cast iron, using leverage to free them without scratching.\n\n5. **WiFi antenna range extender** — position and shape the wire in a directional pattern near your router to act as a simple reflector that focuses signal toward weak coverage zones.\n\n6. **Aquarium plant anchor** — bend into u-shapes or loops to pin down live aquatic plants that float or uproot, letting them establish roots.\n\n7. **Drywall anchor puller** — straighten and flatten one end to slide behind anchor heads stuck in drywall, then leverage to extract without tearing.\n\n8. **Makeshift periscope frame for under-furniture inspection** — form a right-angle holder for a smartphone or small mirror to see underneath couches, appliances, or tight spaces without crawling.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.7425731420516968,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9356432855129242,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 18.788098096847534,
+          "cost_usd": 0.02862185,
+          "duration_ms": 16779,
+          "stop_reason": "end_turn"
+        }
+      },
+      "local_bare": {
+        "text": "1. As a DIY tool for cleaning hard-to-reach windowsills.\n2. As a makeshift handle for a hanging shelf.\n3. To add decorative flair to a child's bedroom.\n4. As a stand for books, avoiding coffee tables.\n5. To hang plants on walls to decorate without frames.\n6. For creating a hanging garden for vertical plants.\n7. As a prop for making costume changes in theater.\n8. To hang artwork without the need for a nail.\n\nThese uses are interesting! Could you tell me more about using a wire coat hanger as a prop in theater?",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.6824263334274292,
+          "elaboration": 0.537037037037037,
+          "flexibility": 0.6666666666666666
+        },
+        "composite": 0.7215325092827832,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 17.309935092926025
+        }
+      },
+      "local_cascade": {
+        "text": "1. Use as a creative writing tool: Cut the coat hanger into short, thin slivers and use them as a makeshift drawing instrument for writing. Each sliver can be used to make a separate line or symbol.\n2. As a portable, lightweight desk lamp: Cut the coat hanger into two pieces and hang them from a nearby door or wall to form a desk lamp. It is lightweight and portable, making it ideal for traveling or working in a confined space.\n3. As a jewelry holder: Use the wire coat hanger to create a simple, elegant jewelry holder. Cut the",
+        "axes": {
+          "fluency": 0.375,
+          "originality": 0.4785367548465729,
+          "elaboration": 1.0,
+          "flexibility": 0.6666666666666666
+        },
+        "composite": 0.6300508553783098,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 79.01751017570496,
+          "vimarsa_event": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "selected_idx": 2
+        }
+      }
+    },
+    "a06": {
+      "item": {
+        "id": "a06",
+        "object": "candle"
+      },
+      "claude_haiku": {
+        "text": "1. **Heat source for distillation in field chemistry** — A candle's sustained flame can separate liquids or extract oils when electricity is unavailable, useful for water purification or essential oil recovery in remote settings.\n\n2. **Emergency signal marker in snow** — Placed in a snow beacon or positioned conspicuously, a lit candle creates a visible point of light for search and rescue teams across snowy terrain where other markers fail.\n\n3. **Reliable fire-starting tinder** — The wax coating and wick ignite and sustain flame longer than raw kindling, making candles ideal for catching damp materials or inferior tinder in survival situations.\n\n4. **Botanical propagation seal** — Melted candle wax seals fresh plant stem cuts during propagation, reducing water loss while maintaining viability of cuttings during transport or storage.\n\n5. **Lubrication for wooden mechanisms** — Candle wax rubbed on wooden drawer tracks or window frames reduces friction silently and leaves no oily residue that accumulates dust.\n\n6. **Waterproofing rope and seams** — Melted wax seals thread ends, rope joins, and fabric seams on outdoor gear, creating water barriers that don't degrade like modern synthetic sealants.\n\n7. **Non-electronic hourly timer** — A candle marked with hourly notches tracks time passage in situations where mechanical or digital clocks fail, historically used in military sieges and sailing.\n\n8. **Dental brace protection** — Softened candle wax creates a temporary barrier protecting gums and cheeks from orthodontic wire if orthodontic wax is unavailable, holding its shape and being inert in the mouth.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.5806907415390015,
+          "elaboration": 1.0,
+          "flexibility": 0.875
+        },
+        "composite": 0.8639226853847504,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 17.45456600189209,
+          "cost_usd": 0.02437055,
+          "duration_ms": 15378,
+          "stop_reason": "end_turn"
+        }
+      },
+      "local_bare": {
+        "text": "1. Light up a candle while sitting under the full moon to enhance spiritual or magickal rituals.\n2. Use a candle to create a warm, inviting ambiance in a home or workspace.\n3. Fill a candle with incense to create a smoky and relaxing atmosphere.\n4. Light a candle to create a cozy atmosphere in the winter months, providing warmth and light.\n5. Use a candle as a form of candle lighting in meditation to focus your mind.\n6. Create a scented environment in the bedroom by burning a fragrant candle.\n7. Use a votive candle as a",
+        "axes": {
+          "fluency": 0.875,
+          "originality": 0.4421956241130829,
+          "elaboration": 0.7222222222222222,
+          "flexibility": 0.14285714285714285
+        },
+        "composite": 0.545568747298112,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 19.53859305381775
+        }
+      },
+      "local_cascade": {
+        "text": "1. Candle to add a warm glow and soothing light to a cold and wintry home, creating a cozy atmosphere during cold weather.\n2. Decorate candles in creative ways to create a statement piece, such as a wall-mounted light art installation or a personalized table decor.\n3. Incorporate a candle into your skincare routine by applying melted candle wax on the face for a relaxing wax facial.\n4. Use a pillar candle as a creative centerpiece for a party or event, adding a personal touch and allowing guests to play with the wax.\n5. Create a unique candle painting by pouring different sc",
+        "axes": {
+          "fluency": 0.625,
+          "originality": 0.4266201853752136,
+          "elaboration": 1.0,
+          "flexibility": 0.6
+        },
+        "composite": 0.6629050463438034,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 89.30990624427795,
+          "vimarsa_event": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "selected_idx": 3
+        }
+      }
+    },
+    "a07": {
+      "item": {
+        "id": "a07",
+        "object": "newspaper"
+      },
+      "claude_haiku": {
+        "text": "1. **Seed starting medium**: Layer shredded newspaper in seedling trays beneath soil; roots grow through it naturally and it decomposes, eliminating the shock of transplanting.\n\n2. **Window cleaning agent**: Crumple newspaper and wipe windows with vinegar solution—the paper texture prevents streaking far better than paper towels or cloth.\n\n3. **Campfire fire starter**: Roll newspaper tightly into logs, bind with twine, air-dry for a week; each log burns 10–15 minutes and reliably ignites kindling.\n\n4. **Rodent exclusion material**: Stuff crumpled newspaper into gaps around pipes, baseboards, and foundation cracks; mice actively avoid gnawing through it due to the ink odor.\n\n5. **Sound dampening in rentals**: Tape layers of newspaper to shared interior walls behind furniture; measurably reduces both airborne and impact noise transmission.\n\n6. **Papier-mâché for theatrical props**: Shred newspaper, mix with wheat paste, layer over wire armatures to build lightweight, quickly moldable set pieces that hold detail.\n\n7. **Potty-training anchor for puppies**: Layer newspaper in a designated corner; puppies naturally target the paper for elimination, then you gradually shrink the area.\n\n8. **Refrigerator ethylene absorber**: Crumpled newspaper on a shelf absorbs ethylene gas and food odors—replace weekly; outperforms commercial odor packets over time.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.6058675050735474,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9014668762683868,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 13.238828897476196,
+          "cost_usd": 0.0222743,
+          "duration_ms": 10812,
+          "stop_reason": "end_turn"
+        }
+      },
+      "local_bare": {
+        "text": "1. Use as a creative writing exercise, requiring writing about the newspaper from a character's perspective, such as a newspaper editor or a person reading it at work.\n2. Use to create a virtual scrapbook of your life or travels, using newspaper clippings of significant events or landmarks.\n3. Use to document and chronicle your personal experiences in real-time, such as the day-to-day events, milestones, or challenges you face.\n4. Use to brainstorm ideas by cutting out and pasting newspaper headlines and images into a digital collage.\n5. Use to conduct historical research by using newspapers",
+        "axes": {
+          "fluency": 0.625,
+          "originality": 0.4654577374458313,
+          "elaboration": 1.0,
+          "flexibility": 0.6
+        },
+        "composite": 0.6726144343614578,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 19.681330919265747
+        }
+      },
+      "local_cascade": {
+        "text": "1. Newspaper serves as a unique and valuable educational tool for children, allowing them to read and understand complex topics at their own pace, without the pressure of peer comparison.\n\n2. Newspaper is a highly efficient and affordable way to spread information during emergencies or natural disasters, allowing people to gather critical information in real-time.\n\n3. Newspaper is a great tool for small businesses to track and manage their advertising campaigns, allowing them to see which advertisements are most effective in reaching their target audience.\n\n4. Newspaper is an excellent medium for scientists and researchers to publish their findings and communicate their work to the world, without",
+        "axes": {
+          "fluency": 0.5,
+          "originality": 0.3602084517478943,
+          "elaboration": 1.0,
+          "flexibility": 0.25
+        },
+        "composite": 0.5275521129369736,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 90.76708626747131,
+          "vimarsa_event": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "selected_idx": 2
+        }
+      }
+    },
+    "a08": {
+      "item": {
+        "id": "a08",
+        "object": "tennis ball"
+      },
+      "claude_haiku": {
+        "text": "1. **Myofascial release tool** — Roll it under your foot arch or against your calf to release trigger points and reduce plantar fasciitis pain, mimicking expensive massage balls.\n\n2. **Door-knob wall protector** — Drill a hole through a tennis ball and mount it on the wall behind a doorknob to prevent drywall damage from knob strikes.\n\n3. **Closet rod organizer** — Thread tennis balls onto closet rods to create spacers that prevent hangers from sliding and bunching together, keeping clothes organized.\n\n4. **Furniture scratch guard** — Cut in half and glue the flat side under chair legs or furniture corners as cushioned feet that protect hardwood floors from scratches.\n\n5. **Bike lock holder** — Drill a hole and hang it from your bike frame to store a U-lock without it rattling, using the fuzzy exterior to dampen vibration noise.\n\n6. **Ice-dam removal tool** — Throw tennis balls at roof icicles and ice dams to break them loose and prevent gutter damage during spring thaw.\n\n7. **Tire pressure test aide** — Place one under a car wheel as a reference marker to spot-check if your vehicle has settled unevenly or if a tire is low on pressure.\n\n8. **Boat dock fender** — Tie several together in a net or rope assembly and hang them between your boat and dock to cushion collision and protect both surfaces.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.8234277367591858,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9558569341897964,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 13.714317798614502,
+          "cost_usd": 0.02175055,
+          "duration_ms": 11596,
+          "stop_reason": "end_turn"
+        }
+      },
+      "local_bare": {
+        "text": "1. Enhancing athletic performance: Incorporating tennis balls into warm-up exercises can increase strength and flexibility in athletes.\n2. Physiotherapy for injury rehabilitation: Tennis ball therapy can help in the treatment of conditions such as back pain, ankle sprain, and shoulder injuries by applying pressure to trigger points.\n3. Fitness training for children: Using tennis balls for activities like soccer, kickball, and obstacle course training can make physical education and exercise more engaging and fun for children.\n4. Outdoor sports training: Tennis balls can be used in many sports for drills and practices, such as basketball, soccer",
+        "axes": {
+          "fluency": 0.5,
+          "originality": 0.36327096819877625,
+          "elaboration": 1.0,
+          "flexibility": 0.25
+        },
+        "composite": 0.5283177420496941,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 19.655524730682373
+        }
+      },
+      "local_cascade": {
+        "text": "1. Tennis ball is a universal weight for training and testing physical condition of a person. \n2. It's a useful tool for removing dust and debris from various surfaces. \n3. Use it for practicing precision and speed in throwing and catching. \n4. It's used in various fitness workouts, like plank, burpee, and other exercises. \n5. It's excellent for creating a workout for a full body workout. \n6. It can be used as a mini trampoline for a full-body workout. \n7. It can be used as a pillow for relaxation. \n8",
+        "axes": {
+          "fluency": 0.875,
+          "originality": 0.6392863988876343,
+          "elaboration": 0.6507936507936507,
+          "flexibility": 0.7142857142857143
+        },
+        "composite": 0.7198414409917498,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 91.66321206092834,
+          "vimarsa_event": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "selected_idx": 2
+        }
+      }
+    }
+  }
+}

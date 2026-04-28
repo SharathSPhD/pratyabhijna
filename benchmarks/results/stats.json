@@ -1,0 +1,197 @@
+{
+  "config": {
+    "treatment_arm": "local_cascade",
+    "control_arm_primary": "claude_haiku",
+    "control_arm_sensitivity": "local_bare",
+    "seed": 4242,
+    "n_permutations": 50000,
+    "n_bootstrap": 10000,
+    "alpha": 0.05
+  },
+  "primary": {
+    "H1": {
+      "name": "H1",
+      "domain": "aut",
+      "n": 8,
+      "estimate": -0.2838130290891049,
+      "hedges_g": -2.4341023604382137,
+      "bca_ci_95": [
+        -0.34401791613102156,
+        -0.20861078089191798
+      ],
+      "permutation_p_one_sided": 1.0,
+      "wilcoxon_p_one_sided": 1.0,
+      "holm_p": 1.0,
+      "power_apriori": 0.35674210235958936,
+      "power_retrospective": 4.440892098500626e-16,
+      "supported": false,
+      "treatment": "local_cascade",
+      "control": "claude_haiku"
+    },
+    "H2": {
+      "name": "H2",
+      "domain": "poetry_interp",
+      "n": 10,
+      "estimate": -0.16101326793432236,
+      "hedges_g": -1.1203666341355576,
+      "bca_ci_95": [
+        -0.2559446699291916,
+        -0.09689977596488411
+      ],
+      "permutation_p_one_sided": 1.0,
+      "wilcoxon_p_one_sided": 1.0,
+      "holm_p": 1.0,
+      "power_apriori": 0.42728982677117866,
+      "power_retrospective": 3.550133246266185e-07,
+      "supported": false,
+      "treatment": "local_cascade",
+      "control": "claude_haiku"
+    },
+    "H3": {
+      "name": "H3",
+      "domain": "poetry_gen",
+      "n": 12,
+      "estimate": -0.030537809203571496,
+      "hedges_g": -0.30793003390817036,
+      "bca_ci_95": [
+        -0.08636641261203339,
+        0.014973251904283945
+      ],
+      "permutation_p_one_sided": 0.8623046875,
+      "wilcoxon_p_one_sided": 0.866943359375,
+      "holm_p": 1.0,
+      "power_apriori": 0.49188448958351627,
+      "power_retrospective": 0.0040280639724992184,
+      "supported": false,
+      "treatment": "local_cascade",
+      "control": "claude_haiku"
+    },
+    "H4": {
+      "name": "H4",
+      "domain": "sci_creativity",
+      "n": 8,
+      "estimate": -0.05300917398805421,
+      "hedges_g": -1.6313862898134373,
+      "bca_ci_95": [
+        -0.07166621491933158,
+        -0.034423604607582106
+      ],
+      "permutation_p_one_sided": 1.0,
+      "wilcoxon_p_one_sided": 1.0,
+      "holm_p": 1.0,
+      "power_apriori": 0.35674210235958936,
+      "power_retrospective": 1.7389730766481648e-09,
+      "supported": false,
+      "treatment": "local_cascade",
+      "control": "claude_haiku"
+    }
+  },
+  "H5": {
+    "name": "H5",
+    "n": 38,
+    "estimate_pooled_z": -4.656363014464061e-18,
+    "hedges_g": -1.7547806872903433e-17,
+    "bca_ci_95": [
+      -0.07705490933514675,
+      0.08692135505007895
+    ],
+    "permutation_p_one_sided": 0.501769964600708,
+    "power_apriori": 0.9162419727773973,
+    "power_retrospective": 0.050000000000000044,
+    "supported": false,
+    "note": "pooled z-blend across H1..H4 with weights H1:0.5, H2/H3/H4:1/6 each",
+    "weights": {
+      "H1": 0.5,
+      "H2": 0.16666666666666666,
+      "H3": 0.16666666666666666,
+      "H4": 0.16666666666666666
+    }
+  },
+  "H6": {
+    "name": "H6",
+    "n_fired": 0,
+    "n_not_fired": 30,
+    "estimate": NaN,
+    "p_one_sided": NaN,
+    "supported": false,
+    "note": "insufficient data: one of the groups is empty"
+  },
+  "sensitivity_vs_local_bare": {
+    "H1": {
+      "name": "H1_sensitivity_local_bare",
+      "domain": "aut",
+      "n": 8,
+      "estimate": 0.01200489819877678,
+      "hedges_g": 0.08146592879934976,
+      "bca_ci_95": [
+        -0.06593063230842525,
+        0.10405491115847952
+      ],
+      "permutation_p_one_sided": 0.40234375,
+      "wilcoxon_p_one_sided": 0.421875,
+      "holm_p": 0.40234375,
+      "power_apriori": 0.35674210235958936,
+      "power_retrospective": 0.0755410612655173,
+      "supported": false,
+      "treatment": "local_cascade",
+      "control": "local_bare"
+    },
+    "H2": {
+      "name": "H2_sensitivity_local_bare",
+      "domain": "poetry_interp",
+      "n": 10,
+      "estimate": -0.01816733032464981,
+      "hedges_g": -0.38474846898317766,
+      "bca_ci_95": [
+        -0.04463846457099082,
+        0.006037496592923867
+      ],
+      "permutation_p_one_sided": 0.916015625,
+      "wilcoxon_p_one_sided": 0.947265625,
+      "holm_p": 0.916015625,
+      "power_apriori": 0.42728982677117866,
+      "power_retrospective": 0.0027439799056218073,
+      "supported": false,
+      "treatment": "local_cascade",
+      "control": "local_bare"
+    },
+    "H3": {
+      "name": "H3_sensitivity_local_bare",
+      "domain": "poetry_gen",
+      "n": 12,
+      "estimate": -0.02594099528585603,
+      "hedges_g": -0.3015620041465677,
+      "bca_ci_95": [
+        -0.07603385916251369,
+        0.011225935669757277
+      ],
+      "permutation_p_one_sided": 0.855712890625,
+      "wilcoxon_p_one_sided": 0.830322265625,
+      "holm_p": 0.855712890625,
+      "power_apriori": 0.49188448958351627,
+      "power_retrospective": 0.004283150232122224,
+      "supported": false,
+      "treatment": "local_cascade",
+      "control": "local_bare"
+    },
+    "H4": {
+      "name": "H4_sensitivity_local_bare",
+      "domain": "sci_creativity",
+      "n": 8,
+      "estimate": -0.009525156673043975,
+      "hedges_g": -0.31769135844350244,
+      "bca_ci_95": [
+        -0.024139071193834162,
+        0.011032788229306055
+      ],
+      "permutation_p_one_sided": 0.83984375,
+      "wilcoxon_p_one_sided": 0.84375,
+      "holm_p": 0.83984375,
+      "power_apriori": 0.35674210235958936,
+      "power_retrospective": 0.006870667904256278,
+      "supported": false,
+      "treatment": "local_cascade",
+      "control": "local_bare"
+    }
+  }
+}
