@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pratyabhijñā × Active Inference Creative Engine</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .serif { font-family: 'Source Serif 4', Georgia, serif; }
+    .iast { font-style: italic; }
+    .anchor:before { content: '#'; opacity: .3; padding-right: 0.4em; }
+    .grad-bg {
+      background: linear-gradient(135deg, #f5f7fb 0%, #eef1f7 70%, #e6ecf6 100%);
+    }
+    .glass {
+      background: rgba(255,255,255,0.65);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    .ink { color: #16213b; }
+    .accent { color: #3b6ea8; }
+    .accent-bg { background: #3b6ea8; }
+    .pill {
+      display: inline-block;
+      padding: 0.15rem 0.55rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: rgba(59,110,168,0.14);
+      color: #2a517d;
+      border-radius: 9999px;
+    }
+    pre.code {
+      background: #0f172a; color: #e2e8f0; padding: 0.85rem 1rem;
+      font-size: 0.79rem; line-height: 1.45; border-radius: 0.6rem; overflow-x: auto;
+    }
+    table.bench { font-size: 0.86rem; }
+    table.bench th, table.bench td { padding: 0.4rem 0.7rem; border-bottom: 1px solid #e2e8f0; }
+  </style>
+</head>
+<body class="grad-bg ink">
+<header class="max-w-6xl mx-auto px-6 py-10">
+  <div class="flex items-center gap-3 mb-3">
+    <span class="pill">Claude Code plugin</span>
+    <span class="pill">Pratyabhijñā × Active Inference</span>
+    <span class="pill">Pre-registered, n_paired=<span data-bind="n_paired">—</span></span>
+  </div>
+  <h1 class="text-4xl md:text-5xl serif font-semibold leading-tight">Pratyabhijñā Creative Engine</h1>
+  <p class="serif text-lg md:text-xl mt-3 opacity-80">
+    A recursive self-reflexivity layer for LLM creative cognition: the five-<span class="iast">śakti</span> cascade as an executable Claude Code plugin, gated by Bayesian Model Reduction.
+  </p>
+  <div class="mt-6 flex flex-wrap gap-2 text-sm">
+    <a href="#motivation" class="px-3 py-1 rounded-full bg-white border">Motivation</a>
+    <a href="#research" class="px-3 py-1 rounded-full bg-white border">Research</a>
+    <a href="#operators" class="px-3 py-1 rounded-full bg-white border">Operators</a>
+    <a href="#architecture" class="px-3 py-1 rounded-full bg-white border">Architecture</a>
+    <a href="#plugin" class="px-3 py-1 rounded-full bg-white border">Plugin surface</a>
+    <a href="#benchmarks" class="px-3 py-1 rounded-full bg-white border">Benchmarks</a>
+    <a href="#results" class="px-3 py-1 rounded-full bg-white border">Results</a>
+    <a href="#discussion" class="px-3 py-1 rounded-full bg-white border">Discussion</a>
+    <a href="#repro" class="px-3 py-1 rounded-full bg-white border">Reproducibility</a>
+  </div>
+</header>
+
+<section id="motivation" class="max-w-6xl mx-auto px-6 py-8">
+  <h2 class="text-2xl serif font-semibold anchor">Motivation</h2>
+  <p class="mt-3 max-w-3xl">
+    Large language models routinely produce <em>competent</em> text but rarely produce text whose <em>interpretive multiplicity</em> is deliberately authored. Where a single line of poetry can sustain two simultaneously-coexisting readings (Wittgenstein's <em>aspect-shift</em>), LLMs typically collapse onto the dominant reading. We argue that the missing structural element is a <em>recursive self-reflexivity layer</em>: an explicit operator that re-examines its own surface against the same constraint manifold that produced it.
+  </p>
+  <p class="mt-3 max-w-3xl">
+    Abhinavagupta's Pratyabhijñā school developed an unusually fine-grained taxonomy of exactly this layer (the five <span class="iast">śakti</span>s and the recursive <span class="iast">vimarśa</span> loop). <span class="iast">Apohana-śakti</span> (contrastive exclusion) is precisely the geometric move that <strong>Bayesian Model Reduction</strong> (Friston &amp; Penny, 2011) formalises as posterior switching under a parameter-pruning prior. We make this isomorphism concrete and testable.
+  </p>
+</section>
+
+<section id="research" class="max-w-6xl mx-auto px-6 py-8">
+  <h2 class="text-2xl serif font-semibold anchor">Research grounding</h2>
+  <div class="grid md:grid-cols-3 gap-5 mt-4">
+    <div class="glass rounded-xl p-5">
+      <h3 class="font-semibold">Pratyabhijñā</h3>
+      <p class="text-sm mt-1 opacity-80">
+        The five-<span class="iast">śakti</span> cascade
+        (<span class="iast">cit</span>, <span class="iast">ānanda</span>, <span class="iast">icchā</span>, <span class="iast">jñāna</span>, <span class="iast">kriyā</span>),
+        <span class="iast">apohana-śakti</span>, <span class="iast">vimarśa</span>, <span class="iast">prakāśa</span>, the 36 <span class="iast">tattvas</span>.
+      </p>
+    </div>
+    <div class="glass rounded-xl p-5">
+      <h3 class="font-semibold">Active Inference</h3>
+      <p class="text-sm mt-1 opacity-80">
+        Free-energy minimisation; Bayesian Model Reduction (Friston &amp; Penny, 2011; Friston et al., 2018);
+        active inference, curiosity and insight (Friston et al., 2017); <span class="font-mono">pymdp</span> (Heins et al., 2022).
+      </p>
+    </div>
+    <div class="glass rounded-xl p-5">
+      <h3 class="font-semibold">Creativity benchmarks</h3>
+      <p class="text-sm mt-1 opacity-80">
+        POEMetric (Ye et al., 2025); CreativityPrism — AUT, TTCT (2025);
+        Wittgenstein aspect-shift (custom); BIG-Bench Hard (Suzgun et al., 2022); MacGyverBench (Tian et al., 2024).
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="operators" class="max-w-6xl mx-auto px-6 py-8">
+  <h2 class="text-2xl serif font-semibold anchor">The seven operators</h2>
+  <div class="grid md:grid-cols-2 gap-4 mt-4">
+    <div class="glass rounded-xl p-5">
+      <h3 class="font-semibold serif">1. <span class="iast">Cit</span> &middot; <span class="font-mono text-sm">cit(prompt, τ, seed)</span></h3>
+      <p class="text-sm mt-1 opacity-80">Single-sample LLM generation; the luminous ground.</p>
+    </div>
+    <div class="glass rounded-xl p-5">
+      <h3 class="font-semibold serif">2. <span class="iast">Ānanda</span> &middot; <span class="font-mono text-sm">ananda(c, κ, R)</span></h3>
+      <p class="text-sm mt-1 opacity-80">Aesthetic-coherence reward over (constraint-fit, retrieval diversity, form fidelity).</p>
+    </div>
+    <div class="glass rounded-xl p-5">
+      <h3 class="font-semibold serif">3. <span class="iast">Icchā</span> &middot; <span class="font-mono text-sm">iccha(prompt, K, κ)</span></h3>
+      <p class="text-sm mt-1 opacity-80">K candidate generations under a constraint-injected prompt.</p>
+    </div>
+    <div class="glass rounded-xl p-5">
+      <h3 class="font-semibold serif">4. <span class="iast">Apohana</span> &middot; <span class="font-mono text-sm">apohana({c}, must_avoid)</span></h3>
+      <p class="text-sm mt-1 opacity-80">Contrastive exclusion: <code>1 − max_j cos(φ(c_i), φ(m_j))</code>.</p>
+    </div>
+    <div class="glass rounded-xl p-5">
+      <h3 class="font-semibold serif">5. <span class="iast">Jñāna</span> &middot; <span class="font-mono text-sm">jnana(c, a) → (i*, ΔF)</span></h3>
+      <p class="text-sm mt-1 opacity-80">Posterior selection via Bayesian Model Reduction over Dirichlet-multinomial pseudo-counts.</p>
+    </div>
+    <div class="glass rounded-xl p-5">
+      <h3 class="font-semibold serif">6. <span class="iast">Kriyā</span> &middot; <span class="font-mono text-sm">kriya(c, mode)</span></h3>
+      <p class="text-sm mt-1 opacity-80">Surface enaction (verbatim / polish / claude_polish).</p>
+    </div>
+    <div class="glass rounded-xl p-5 md:col-span-2 border-2 border-blue-300">
+      <h3 class="font-semibold serif">7. <span class="iast">Vimarśa</span> &middot; <span class="font-mono text-sm">vimarsa(surface, aspects, R) → (event, novelty)</span></h3>
+      <p class="text-sm mt-1 opacity-80">
+        Recursive aspect-shift detector. Fires if any of: aspect-multiplicity (≥ 2 aspect-targets each cosine ≥ 0.40), low novelty (max retrieval-cosine ≥ 0.85), or non-negative residual ΔF. <strong>This is the layer the paper measures.</strong>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="architecture" class="max-w-6xl mx-auto px-6 py-8">
+  <h2 class="text-2xl serif font-semibold anchor">Architecture</h2>
+  <div class="glass rounded-xl p-5 mt-4">
+    <pre class="text-xs leading-relaxed">
+[Claude Code agent]
+       │  (skill / slash command)
+       ▼
+[Plugin Skills + Agents]
+       │
+       ▼
+[FastMCP server: 15 tools]
+       │
+       ▼
+┌──────────────────── PCE engine (src/pce) ────────────────────┐
+│  cit  →  iccha (×K)  →  apohana  →  jnana (BMR)  →  kriya  →  surface
+│                                                  │
+│                                              vimarsa
+│                                                  │
+│                              (re-enter cascade if event)
+│
+│  HopfieldStore (alayavijñana)  ⇄  consolidate_sws / consolidate_rem
+└──────────────────────────────────────────────────────────────┘
+       │
+       ▼
+[Substrate]
+  ├ Embedder  (sentence-transformers/all-MiniLM-L6-v2)
+  └ LocalLM   (Qwen/Qwen2-1.5B-Instruct, MPS/CUDA/CPU autodetect)
+    </pre>
+  </div>
+</section>
+
+<section id="plugin" class="max-w-6xl mx-auto px-6 py-8">
+  <h2 class="text-2xl serif font-semibold anchor">Plugin surface</h2>
+  <div class="grid md:grid-cols-4 gap-4 mt-4">
+    <div class="glass rounded-xl p-5">
+      <p class="text-3xl serif font-semibold">15</p>
+      <p class="text-xs opacity-70">MCP tools</p>
+    </div>
+    <div class="glass rounded-xl p-5">
+      <p class="text-3xl serif font-semibold">5</p>
+      <p class="text-xs opacity-70">Skills</p>
+    </div>
+    <div class="glass rounded-xl p-5">
+      <p class="text-3xl serif font-semibold">5</p>
+      <p class="text-xs opacity-70">Agents</p>
+    </div>
+    <div class="glass rounded-xl p-5">
+      <p class="text-3xl serif font-semibold">5 / 3</p>
+      <p class="text-xs opacity-70">Slash commands / Hooks</p>
+    </div>
+  </div>
+  <div class="grid md:grid-cols-3 gap-4 mt-4 text-sm">
+    <div class="glass rounded-xl p-4">
+      <p class="font-semibold mb-1">Slash commands</p>
+      <ul class="list-disc list-inside opacity-80">
+        <li><code>/pce-compose</code></li>
+        <li><code>/pce-interpret</code></li>
+        <li><code>/pce-aut</code></li>
+        <li><code>/pce-bbh</code></li>
+        <li><code>/pce-trace</code></li>
+      </ul>
+    </div>
+    <div class="glass rounded-xl p-4">
+      <p class="font-semibold mb-1">Agents</p>
+      <ul class="list-disc list-inside opacity-80">
+        <li><code>pce-poet</code></li>
+        <li><code>pce-interpreter</code></li>
+        <li><code>pce-ideator</code></li>
+        <li><code>pce-scientist</code></li>
+        <li><code>pce-vimarsa-auditor</code></li>
+      </ul>
+    </div>
+    <div class="glass rounded-xl p-4">
+      <p class="font-semibold mb-1">MCP tools (selected)</p>
+      <ul class="list-disc list-inside opacity-80">
+        <li><code>pce.cascade</code></li>
+        <li><code>pce.cit / iccha / jnana / vimarsa / kriya</code></li>
+        <li><code>pce.store.add / recall / consolidate_sws / consolidate_rem</code></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="benchmarks" class="max-w-6xl mx-auto px-6 py-8">
+  <h2 class="text-2xl serif font-semibold anchor">Benchmark protocol</h2>
+  <p class="mt-3 max-w-3xl">
+    Three arms per item: <strong>claude_haiku</strong> (no PCE, headline control), <strong>local_bare</strong> (no PCE, sensitivity control on the same substrate PCE wraps), <strong>local_cascade</strong> (PCE with K=4 candidates, max_tokens=120). Items are pre-registered in <code>benchmarks/items.py</code>; scoring is deterministic in <code>benchmarks/scoring.py</code>.
+  </p>
+  <table class="bench mt-4 w-full glass rounded-xl overflow-hidden">
+    <thead><tr><th>Domain</th><th>n</th><th>Scoring</th><th>Hypothesis</th></tr></thead>
+    <tbody>
+      <tr><td>poetry_gen</td><td data-bind="poetry_gen_n">—</td><td>POEMetric 6-axis</td><td>H3</td></tr>
+      <tr><td>poetry_interp</td><td data-bind="poetry_interp_n">—</td><td>aspect-multiplicity + novelty + coverage</td><td>H2</td></tr>
+      <tr><td>aut</td><td data-bind="aut_n">—</td><td>creativity·diversity·feasibility blend</td><td>H1</td></tr>
+      <tr><td>sci_creativity</td><td data-bind="sci_n">—</td><td>non-textbook novelty + framing-coverage + depth</td><td>H4</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="results" class="max-w-6xl mx-auto px-6 py-8">
+  <h2 class="text-2xl serif font-semibold anchor">Results</h2>
+  <p class="mt-3 max-w-3xl serif text-lg" id="headline-result">Loading from <code>benchmarks/results/stats.json</code>…</p>
+
+  <div class="grid md:grid-cols-2 gap-4 mt-6">
+    <div class="glass rounded-xl p-4">
+      <h3 class="font-semibold mb-2">Pre-registered effects (forest plot)</h3>
+      <canvas id="chart-forest" height="300"></canvas>
+    </div>
+    <div class="glass rounded-xl p-4">
+      <h3 class="font-semibold mb-2">Statistical power (a-priori vs retrospective)</h3>
+      <canvas id="chart-power" height="300"></canvas>
+    </div>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-4 mt-4">
+    <div class="glass rounded-xl p-4">
+      <h3 class="font-semibold mb-2">Per-domain composite means</h3>
+      <canvas id="chart-domains" height="320"></canvas>
+    </div>
+    <div class="glass rounded-xl p-4">
+      <h3 class="font-semibold mb-2">H6: within-PCE vimarśa-event vs no-event</h3>
+      <canvas id="chart-h6" height="320"></canvas>
+    </div>
+  </div>
+
+  <div class="glass rounded-xl p-5 mt-6">
+    <h3 class="font-semibold mb-2">Hypothesis table</h3>
+    <div id="hyp-table" class="overflow-x-auto text-sm"></div>
+  </div>
+
+  <div class="glass rounded-xl p-5 mt-6">
+    <h3 class="font-semibold mb-2">Recorded engine-trace demo</h3>
+    <p class="text-sm opacity-80 mb-2">Example PCE run on a Wittgenstein-style aspect-shift item (loaded from <code>benchmarks/results/poetry_interp.json</code>):</p>
+    <div class="grid md:grid-cols-2 gap-3">
+      <div>
+        <p class="text-xs uppercase tracking-wide opacity-70 mb-1">Surface</p>
+        <pre class="code" id="demo-surface">—</pre>
+      </div>
+      <div>
+        <p class="text-xs uppercase tracking-wide opacity-70 mb-1">Audit (vimarśa, ΔF, novelty, selected_idx)</p>
+        <pre class="code" id="demo-meta">—</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="discussion" class="max-w-6xl mx-auto px-6 py-8">
+  <h2 class="text-2xl serif font-semibold anchor">Discussion</h2>
+  <p class="mt-3 max-w-3xl">
+    The pre-registered design forces us to resist post-hoc storytelling. Where the headline H1–H4 contrasts are directional, the cascade contributes structural diversity rather than fluency. Where they are not, this is registered as a negative result &mdash; the SPEC's negative-result obligation makes this a deliverable, not a failure mode. The within-PCE H6 test (vimarśa-event vs no-event) is the internal-validity contrast: if the recursive layer is causally responsible for any lift, fired trials should score higher.
+  </p>
+</section>
+
+<section id="repro" class="max-w-6xl mx-auto px-6 py-8 mb-12">
+  <h2 class="text-2xl serif font-semibold anchor">Reproducibility</h2>
+  <pre class="code mt-3 max-w-3xl">git clone https://github.com/SharathSPhD/pratyabhijna.git
+cd pratyabhijna
+uv venv && uv sync --extra dev
+uv run python scripts/verify_real_model.py
+uv run pytest -m "not slow"
+uv run python benchmarks/driver.py --n-poetry-gen 12 --n-poetry-interp 10 \
+       --n-aut 8 --n-sci-creativity 8 --max-tokens 120 --K 4 \
+       --out-dir benchmarks/results
+uv run python benchmarks/stats.py
+uv run python benchmarks/figures.py
+uv run python benchmarks/autoreport.py</pre>
+  <p class="text-sm opacity-70 mt-2">Every numerical claim on this page is derived from <code>benchmarks/results/stats.json</code> and the per-domain JSON files; the audit log is under <code>audit/phase8</code> and <code>audit/phase9</code>.</p>
+</section>
+
+<footer class="max-w-6xl mx-auto px-6 py-6 border-t opacity-70 text-xs">
+  Pratyabhijñā Creative Engine · plugin manifest <code>plugin/.claude-plugin/plugin.json</code> · MIT.
+</footer>
+
+<script>
+  async function loadJSON(p){ try { const r = await fetch(p); if(!r.ok) return null; return await r.json(); } catch(e){ return null; } }
+
+  function bind(key, val){
+    document.querySelectorAll(`[data-bind="${key}"]`).forEach(n => n.textContent = val);
+  }
+
+  function fmt(x, d=3){ if(x==null||Number.isNaN(x)) return '—'; return x.toFixed(d); }
+
+  function fmtCI(c){ if(!c||c.length<2) return '—'; return `[${fmt(c[0])}, ${fmt(c[1])}]`; }
+
+  const COLORS = { claude_haiku:'#7c8aa8', local_bare:'#bbbbbb', local_cascade:'#3b6ea8' };
+
+  async function main(){
+    const stats = await loadJSON('../benchmarks/results/stats.json');
+    const domains = ['poetry_gen','poetry_interp','aut','sci_creativity'];
+    const dom = {};
+    for (const d of domains){ dom[d] = await loadJSON(`../benchmarks/results/${d}.json`); }
+    if (!stats) {
+      document.getElementById('headline-result').innerHTML = '<em>Run the benchmark + stats pipeline first; this page wires up automatically.</em>';
+      return;
+    }
+    const primary = stats.primary;
+    bind('n_paired', ['H1','H2','H3','H4'].reduce((a,k)=>a+(primary[k]?.n||0),0));
+    for (const [k, ds] of [['poetry_gen','H3'],['poetry_interp','H2'],['aut','H1'],['sci_n','H4']]) {
+      const key = k==='sci_n'?'sci_creativity':k;
+      const n = dom[key] ? Object.keys(dom[key].rows).length : (primary[ds]?.n || '—');
+      bind(`${k.replace('_n','')}_n`, n);
+    }
+    bind('sci_n', dom['sci_creativity']? Object.keys(dom['sci_creativity'].rows).length : '—');
+    bind('aut_n', dom['aut']? Object.keys(dom['aut'].rows).length : '—');
+    bind('poetry_gen_n', dom['poetry_gen']? Object.keys(dom['poetry_gen'].rows).length : '—');
+    bind('poetry_interp_n', dom['poetry_interp']? Object.keys(dom['poetry_interp'].rows).length : '—');
+
+    // Headline summary
+    const sup = ['H1','H2','H3','H4'].filter(k => primary[k].supported);
+    let headline = '';
+    if (sup.length){ headline = `PCE materially shifts the contrast against no-PCE Haiku on ${sup.join(', ')} (Holm-adjusted p<0.05, BCa CI strictly positive).`; }
+    else { headline = `No primary hypothesis (H1–H4) crosses the pre-registered Holm-adjusted p<0.05 threshold against no-PCE Haiku — a negative result reported in compliance with the SPEC.`; }
+    if (stats.H5?.supported) headline += ' The aggregate composite (H5) is positive and significant.';
+    if (stats.H6?.supported) headline += ' The within-PCE H6 internal-validity test is supported.';
+    document.getElementById('headline-result').textContent = headline;
+
+    // Forest plot (horizontal effect with CIs)
+    const fctx = document.getElementById('chart-forest').getContext('2d');
+    const labels = ['H1 (AUT)','H2 (Interp)','H3 (Poetry-gen)','H4 (Sci-creat)'];
+    const ests = ['H1','H2','H3','H4'].map(k => primary[k].estimate);
+    const ciLo = ['H1','H2','H3','H4'].map(k => primary[k].bca_ci_95[0]);
+    const ciHi = ['H1','H2','H3','H4'].map(k => primary[k].bca_ci_95[1]);
+    new Chart(fctx, {
+      type: 'bar',
+      data: { labels, datasets: [
+        { label: 'Δ (PCE − Haiku)', data: ests, backgroundColor:'#3b6ea8', borderColor:'#234366', borderWidth:1 },
+      ]},
+      options: { indexAxis:'y',
+        plugins:{
+          legend:{display:false},
+          tooltip:{callbacks:{footer:(items)=>{
+            const i = items[0].dataIndex; const k = ['H1','H2','H3','H4'][i];
+            return `g=${fmt(primary[k].hedges_g,2)}  Holm p=${fmt(primary[k].holm_p,4)}  CI=${fmtCI(primary[k].bca_ci_95)}`;
+          }}}
+        },
+        scales:{ x:{ title:{display:true, text:'paired Δ composite'}, grid:{color:'#e2e8f0'}}, y:{grid:{display:false}}} ,
+      },
+      plugins: [{ id:'errorBars', afterDatasetsDraw(chart){
+        const {ctx, scales:{x,y}} = chart;
+        ctx.save(); ctx.strokeStyle = '#234366'; ctx.lineWidth = 2;
+        ests.forEach((_,i) => {
+          const yy = y.getPixelForValue(i);
+          ctx.beginPath(); ctx.moveTo(x.getPixelForValue(ciLo[i]), yy);
+          ctx.lineTo(x.getPixelForValue(ciHi[i]), yy); ctx.stroke();
+          [ciLo[i], ciHi[i]].forEach(v => { const xx=x.getPixelForValue(v); ctx.beginPath(); ctx.moveTo(xx, yy-5); ctx.lineTo(xx, yy+5); ctx.stroke(); });
+        });
+        ctx.restore();
+      }}]
+    });
+
+    // Power chart
+    const pctx = document.getElementById('chart-power').getContext('2d');
+    const pa = ['H1','H2','H3','H4'].map(k => primary[k].power_apriori);
+    const pr = ['H1','H2','H3','H4'].map(k => primary[k].power_retrospective);
+    new Chart(pctx, {
+      type:'bar',
+      data:{ labels:['H1','H2','H3','H4'],
+        datasets:[
+          { label:'a-priori (g=0.5)', data:pa, backgroundColor:'#bccdf0' },
+          { label:'retrospective', data:pr, backgroundColor:'#3b6ea8' },
+        ]},
+      options:{ scales:{ y:{ beginAtZero:true, max:1.05, title:{display:true,text:'power'} } } }
+    });
+
+    // Per-domain mean composite per arm
+    const dctx = document.getElementById('chart-domains').getContext('2d');
+    const armOrder = ['claude_haiku','local_bare','local_cascade'];
+    const meansByArm = {};
+    armOrder.forEach(a => meansByArm[a] = []);
+    domains.forEach(d => {
+      const rows = dom[d]?.rows || {};
+      armOrder.forEach(a => {
+        const xs = Object.values(rows).map(r => r[a]?.composite).filter(v => v!=null && Number.isFinite(v));
+        meansByArm[a].push(xs.length? xs.reduce((s,v)=>s+v,0)/xs.length : 0);
+      });
+    });
+    new Chart(dctx, {
+      type:'bar',
+      data:{ labels:domains,
+        datasets: armOrder.map(a => ({
+          label: a==='claude_haiku'?'Haiku (no PCE)' : a==='local_bare'?'Local-Qwen (no PCE)' : 'Local-Qwen + PCE',
+          data: meansByArm[a],
+          backgroundColor: COLORS[a]
+        }))
+      },
+      options: { scales: { y: { beginAtZero:true, title:{display:true,text:'mean composite'} } } }
+    });
+
+    // H6
+    const h6 = stats.H6 || {};
+    const h6ctx = document.getElementById('chart-h6').getContext('2d');
+    new Chart(h6ctx, {
+      type:'bar',
+      data:{ labels:[`vimarśa fired (n=${h6.n_fired ?? 0})`, `no event (n=${h6.n_not_fired ?? 0})`],
+        datasets:[{ label:'mean composite delta', data:[h6.estimate ?? 0, 0], backgroundColor:['#3b6ea8','#bbbbbb'] }]
+      },
+      options:{ plugins:{ legend:{ display:false } }, scales:{ y:{ title:{display:true, text:'fired − no-event mean'} } } }
+    });
+
+    // Hypothesis table
+    const tbl = document.getElementById('hyp-table');
+    const thead = `<tr><th class="text-left p-2">Hyp.</th><th>n</th><th>Δ</th><th>g</th><th>95% BCa CI</th><th>perm p</th><th>Wilcoxon p</th><th>Holm p</th><th>power a/r</th><th>supported</th></tr>`;
+    const rows = ['H1','H2','H3','H4'].map(k => {
+      const r = primary[k];
+      return `<tr class="border-t"><td class="p-2 font-semibold">${k}</td><td class="text-center">${r.n}</td><td>${fmt(r.estimate)}</td><td>${fmt(r.hedges_g,2)}</td><td>${fmtCI(r.bca_ci_95)}</td><td>${fmt(r.permutation_p_one_sided,4)}</td><td>${fmt(r.wilcoxon_p_one_sided,4)}</td><td>${fmt(r.holm_p,4)}</td><td>${fmt(r.power_apriori,2)} / ${fmt(r.power_retrospective,2)}</td><td>${r.supported?'<strong>yes</strong>':'no'}</td></tr>`;
+    }).join('');
+    const h5 = stats.H5; const h6r = stats.H6;
+    const h5row = `<tr class="border-t"><td class="p-2 font-semibold">H5</td><td class="text-center">${h5.n}</td><td>${fmt(h5.estimate_pooled_z)}</td><td>${fmt(h5.hedges_g,2)}</td><td>${fmtCI(h5.bca_ci_95)}</td><td>${fmt(h5.permutation_p_one_sided,4)}</td><td>—</td><td>—</td><td>${fmt(h5.power_apriori,2)} / ${fmt(h5.power_retrospective,2)}</td><td>${h5.supported?'<strong>yes</strong>':'no'}</td></tr>`;
+    const h6row = `<tr class="border-t"><td class="p-2 font-semibold">H6</td><td class="text-center">${h6r.n_fired ?? 0}/${h6r.n_not_fired ?? 0}</td><td>${fmt(h6r.estimate)}</td><td>—</td><td>${fmtCI(h6r.ci_95)}</td><td>${fmt(h6r.mannwhitney_u_p_one_sided,4)}</td><td>—</td><td>—</td><td>—</td><td>${h6r.supported?'<strong>yes</strong>':'no'}</td></tr>`;
+    tbl.innerHTML = `<table class="w-full">${thead}${rows}${h5row}${h6row}</table>`;
+
+    // Demo: pick first poetry_interp item with cascade output
+    const interp = dom['poetry_interp']?.rows || {};
+    const first = Object.values(interp).find(r => r.local_cascade?.text);
+    if (first) {
+      document.getElementById('demo-surface').textContent = first.local_cascade.text.slice(0, 800);
+      document.getElementById('demo-meta').textContent = JSON.stringify(first.local_cascade.meta, null, 2);
+    }
+  }
+  main();
+</script>
+</body>
+</html>

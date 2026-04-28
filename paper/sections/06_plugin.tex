@@ -1,0 +1,15 @@
+\section{Plugin Surface}\label{sec:plugin}
+
+PCE is delivered as a Claude Code plugin (manifest at \texttt{plugin/.claude-plugin/plugin.json}). Its four user-visible surfaces are:
+
+\paragraph{Skills (5).} Workflow-level guidance read by an agent before acting: \texttt{pce-poetry-generation}, \texttt{pce-poetry-interpretation}, \texttt{pce-divergent-thinking}, \texttt{pce-scientific-creativity}, \texttt{pce-vimarsa-self-reflection}.
+
+\paragraph{Agents (5).} Specialised personas: \texttt{pce-poet}, \texttt{pce-interpreter}, \texttt{pce-ideator}, \texttt{pce-scientist}, \texttt{pce-vimarsa-auditor}.
+
+\paragraph{Slash commands (5).} \texttt{/pce-compose}, \texttt{/pce-interpret}, \texttt{/pce-aut}, \texttt{/pce-bbh}, \texttt{/pce-trace} (the last surfaces the audit trail of a recent run).
+
+\paragraph{Hooks (3).} \texttt{SessionStart} (initialises the engine and HF auth), \texttt{PreToolUse} (audit-stamps every PCE MCP call), \texttt{PostToolUse} (writes the consolidation tick).
+
+\paragraph{MCP tools (15).} The plugin exposes 15 FastMCP tools wrapping the engine: \texttt{pce.cit}, \texttt{pce.ananda}, \texttt{pce.iccha}, \texttt{pce.apohana}, \texttt{pce.jnana}, \texttt{pce.kriya}, \texttt{pce.vimarsa}, \texttt{pce.cascade}, \texttt{pce.embed}, \texttt{pce.lm.generate}, \texttt{pce.lm.entropy}, \texttt{pce.store.add}, \texttt{pce.store.recall}, \texttt{pce.store.consolidate\_sws}, \texttt{pce.store.consolidate\_rem}.
+
+A smoke-test harness in \texttt{scripts/verify\_plugin.py} validates the manifest, the component counts, and exercises every MCP tool in-process; the Phase~8 audit log (\texttt{audit/phase8/verify\_artifact.json}) is published alongside the paper.

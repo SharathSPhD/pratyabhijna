@@ -53,6 +53,7 @@ packages = ["src/pce"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = [".", "src"]
 addopts = "-ra -q --strict-markers"
 markers = [
   "slow: marks tests as slow (deselect with '-m \"not slow\"')",

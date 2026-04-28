@@ -1,0 +1,13 @@
+\section{Limitations and Threats to Validity}\label{sec:limitations}
+
+\paragraph{Sample size.} Per-domain $n$ is bounded above by the wall-clock budget of running the cascade on a single MPS device against the Claude Code CLI's quota. The a-priori power table (Figure~\ref{fig:power}) shows the smaller-$n$ domains are under-powered for $g=0.5$, and we flag every conclusion that rests on under-powered evidence as ``provisional''.
+
+\paragraph{Scoring functions are local proxies, not gold standards.} We deliberately use local deterministic scorers to keep the contrast fair across arms. They are, however, proxies: POEMetric is a more nuanced rubric than what our \texttt{score\_poetry\_gen} function captures, and the Wittgenstein aspect-multiplicity score is constructed from cosine to author-supplied aspect targets rather than from human raters. A follow-up with human raters (or a frontier-model judge) is necessary before the absolute scores can be interpreted as POEMetric scores in the original sense; our \emph{contrasts} between arms remain valid because the same scorer is applied uniformly to all arms.
+
+\paragraph{Prompt-engineering confound.} The Claude Code CLI surrounds every prompt with a Claude Code system context (visible in the cache-creation token count). This system context could in principle help or hurt the Haiku arm in domain-specific ways. We held the user prompt constant across arms and used Claude Code's own \texttt{-p} non-interactive mode (the most LLM-API-like surface), but we cannot prove the system prompt does not bias the Haiku arm's outputs.
+
+\paragraph{Model substrate confound.} Qwen2-1.5B-Instruct is the only local LLM we tested. The PCE design is substrate-agnostic, but a wider sweep (Qwen2-7B, Llama-3-8B, Mistral-Nemo) is needed to confirm the cascade contributes consistently across substrate scales.
+
+\paragraph{Internal-validity vs external-validity.} The H6 test (within-PCE event vs no-event) is a within-condition test and does not establish that the recursive layer would help under a different scoring function or a different prompt distribution. We report it as an \emph{internal} validity check, not as a generalisable claim.
+
+\paragraph{Single-author authorship of the benchmark items.} The Wittgenstein aspect-shift items are author-constructed. We avoided cherry-picking by stratifying across canonical poetic devices (metaphor, synecdoche, allegory, etc.), but the items have not been reviewed by independent literary scholars. We publish them in Appendix~\ref{app:benchmark_items} so the community can replace or augment them.
