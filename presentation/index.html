@@ -45,14 +45,15 @@
 </head>
 <body class="grad-bg ink">
 <header class="max-w-6xl mx-auto px-6 py-10">
-  <div class="flex items-center gap-3 mb-3">
+  <div class="flex items-center gap-3 mb-3 flex-wrap">
     <span class="pill">Claude Code plugin</span>
     <span class="pill">Pratyabhijñā × Active Inference</span>
-    <span class="pill">Pre-registered, n_paired=<span data-bind="n_paired">—</span></span>
+    <span class="pill">v0.2 pilot · n_paired=<span data-bind="n_paired">—</span></span>
+    <span class="pill">apples-to-apples Haiku</span>
   </div>
   <h1 class="text-4xl md:text-5xl serif font-semibold leading-tight">Pratyabhijñā Creative Engine</h1>
   <p class="serif text-lg md:text-xl mt-3 opacity-80">
-    A recursive self-reflexivity layer for LLM creative cognition: the five-<span class="iast">śakti</span> cascade as an executable Claude Code plugin, gated by Bayesian Model Reduction.
+    A recursive self-reflexivity layer for LLM creative cognition: the five-<span class="iast">śakti</span> cascade as an executable Claude Code plugin, gated by Bayesian Model Reduction. <strong>v0.2</strong> makes <span class="iast">vimarśa</span> causal (two-pass-always) and adds Anthropic Claude Haiku as a first-class substrate for the apples-to-apples ablation the v0.1 paper lacked.
   </p>
   <div class="mt-6 flex flex-wrap gap-2 text-sm">
     <a href="#motivation" class="px-3 py-1 rounded-full bg-white border">Motivation</a>
@@ -63,6 +64,7 @@
     <a href="#benchmarks" class="px-3 py-1 rounded-full bg-white border">Benchmarks</a>
     <a href="#results" class="px-3 py-1 rounded-full bg-white border">Results</a>
     <a href="#discussion" class="px-3 py-1 rounded-full bg-white border">Discussion</a>
+    <a href="#v01-vs-v02" class="px-3 py-1 rounded-full bg-white border">v0.1 → v0.2</a>
     <a href="#repro" class="px-3 py-1 rounded-full bg-white border">Reproducibility</a>
   </div>
 </header>
@@ -151,7 +153,7 @@
 [Plugin Skills + Agents]
        │
        ▼
-[FastMCP server: 15 tools]
+[FastMCP server: 17 tools (v0.2)]
        │
        ▼
 ┌──────────────────── PCE engine (src/pce) ────────────────────┐
@@ -167,7 +169,9 @@
        ▼
 [Substrate]
   ├ Embedder  (sentence-transformers/all-MiniLM-L6-v2)
-  └ LocalLM   (Qwen/Qwen2-1.5B-Instruct, MPS/CUDA/CPU autodetect)
+  ├ LocalLM   (Qwen/Qwen2-1.5B-Instruct, MPS/CUDA/CPU autodetect)
+  └ HaikuLM   (Anthropic Claude Haiku via claude CLI, v0.2)
+                ↑ both behind a single LMProtocol (ADR-001, ADR-004)
     </pre>
   </div>
 </section>
@@ -176,8 +180,8 @@
   <h2 class="text-2xl serif font-semibold anchor">Plugin surface</h2>
   <div class="grid md:grid-cols-4 gap-4 mt-4">
     <div class="glass rounded-xl p-5">
-      <p class="text-3xl serif font-semibold">15</p>
-      <p class="text-xs opacity-70">MCP tools</p>
+      <p class="text-3xl serif font-semibold">17</p>
+      <p class="text-xs opacity-70">MCP tools (v0.2 +2)</p>
     </div>
     <div class="glass rounded-xl p-5">
       <p class="text-3xl serif font-semibold">5</p>
@@ -216,7 +220,8 @@
     <div class="glass rounded-xl p-4">
       <p class="font-semibold mb-1">MCP tools (selected)</p>
       <ul class="list-disc list-inside opacity-80">
-        <li><code>pce.cascade</code></li>
+        <li><code>pce.cascade</code> (default arm) · <code>pce.pce_cascade(arm=…)</code> <span class="pill">v0.2</span></li>
+        <li><code>pce.haiku_bare</code> <span class="pill">v0.2</span></li>
         <li><code>pce.cit / iccha / jnana / vimarsa / kriya</code></li>
         <li><code>pce.store.add / recall / consolidate_sws / consolidate_rem</code></li>
       </ul>
@@ -225,9 +230,9 @@
 </section>
 
 <section id="benchmarks" class="max-w-6xl mx-auto px-6 py-8">
-  <h2 class="text-2xl serif font-semibold anchor">Benchmark protocol</h2>
+  <h2 class="text-2xl serif font-semibold anchor">Benchmark protocol (v0.2 four-arm matrix)</h2>
   <p class="mt-3 max-w-3xl">
-    Three arms per item: <strong>claude_haiku</strong> (no PCE, headline control), <strong>local_bare</strong> (no PCE, sensitivity control on the same substrate PCE wraps), <strong>local_cascade</strong> (PCE with K=4 candidates, max_tokens=120). Items are pre-registered in <code>benchmarks/items.py</code>; scoring is deterministic in <code>benchmarks/scoring.py</code>.
+    Up to four arms per item: <strong>haiku_bare</strong> (no PCE, primary control), <strong>haiku_cascade</strong> (PCE on Haiku, primary treatment), <strong>local_bare</strong> (substrate baseline), <strong>local_cascade</strong> (within-substrate ablation). The pilot reports the three arms run inside the $18 Haiku envelope; the local-cascade ablation was deferred to v0.3 due to wall-clock on the pilot host. Items are pre-registered in <code>benchmarks/items.py</code>; scoring is deterministic in <code>benchmarks/scoring.py</code>; the v0.2 stats / per-domain JSON live under <code>benchmarks/results_v2/</code>.
   </p>
   <table class="bench mt-4 w-full glass rounded-xl overflow-hidden">
     <thead><tr><th>Domain</th><th>n</th><th>Scoring</th><th>Hypothesis</th></tr></thead>
@@ -288,13 +293,30 @@
 </section>
 
 <section id="discussion" class="max-w-6xl mx-auto px-6 py-8">
-  <h2 class="text-2xl serif font-semibold anchor">Discussion</h2>
+  <h2 class="text-2xl serif font-semibold anchor">Discussion (v0.2)</h2>
   <p class="mt-3 max-w-3xl">
-    The pre-registered design forces us to resist post-hoc storytelling. The empirical record of this run is a directional null: H1–H5 are not significant, all point estimates are negative against Haiku, and the substrate-matched sensitivity contrasts (cascade vs Local-Qwen) are small (|g|≤0.4) and non-directional. Most consequentially, <span class="iast">vimarśa</span> fired on 0/30 cascade trials, so H6 is undefined: the recursive layer was effectively dormant. The contribution of this paper is therefore not a SOTA claim but a fully pre-registered, fully reproducible measurement protocol coupling Pratyabhijñā operators to active inference primitives, plus a clearly-identified set of knobs (substrate scale, K, max_tokens, BMR ΔF threshold) whose re-tuning is the obvious next experiment.
+    The v0.2 pilot reverses the v0.1 sign on every primary hypothesis: H1–H4 all show <strong>directionally positive</strong> effects (g∈[+0.30, +2.12]) on the apples-to-apples <code>haiku_cascade</code> vs <code>haiku_bare</code> contrast, with three of four BCa CIs strictly above zero (H1, H2, H4). <em>None</em> of the four crossed the pre-registered Holm-adjusted p&lt;0.05 threshold — this is a power constraint of the pilot (with n=5/domain the exact sign-flip permutation floor is p=0.0312, and Holm with m=4 floors the smallest possible adjusted p at 0.125). A properly powered run at n∼20/domain is the v0.3 next step.
   </p>
   <p class="mt-3 max-w-3xl text-sm opacity-80">
-    Read together with the architectural observation that the cascade <em>without</em> a firing <span class="iast">vimarśa</span> is geometrically close to a temperature-sampler at K=4, the null is informative: it falsifies the cascade-without-recursion hypothesis at this substrate, and isolates <span class="iast">vimarśa</span> firing rate as the single most consequential next intervention.
+    The TRIZ-resolved operator changes are causally specific and traceable: signed <span class="iast">apohana</span> (ADR-002), prompt/sampler parity with bare baselines (ADR-005), causal two-pass-always <span class="iast">vimarśa</span> (ADR-003), pluggable <code>LMProtocol</code> (ADR-001 / ADR-004). <span class="iast">Vimarśa</span> now fires on 9/14 <code>haiku_cascade</code> trials (vs 0/30 in v0.1), and the within-cascade H6 fired-vs-not contrast is directionally positive (Δ=+0.031, ns at pilot n).
   </p>
+</section>
+
+<section id="v01-vs-v02" class="max-w-6xl mx-auto px-6 py-8">
+  <h2 class="text-2xl serif font-semibold anchor">v0.1 vs v0.2</h2>
+  <div class="overflow-x-auto">
+    <table class="bench mt-4 w-full glass rounded-xl overflow-hidden">
+      <thead><tr><th>Metric</th><th>v0.1 (n=38)</th><th>v0.2 pilot (n=19)</th><th>Direction</th></tr></thead>
+      <tbody>
+        <tr><td>Primary contrast</td><td><code>local_cascade</code> − <code>haiku_bare</code></td><td><code>haiku_cascade</code> − <code>haiku_bare</code></td><td>substrate-matched</td></tr>
+        <tr><td>H1 (AUT)</td><td>negative</td><td><strong>+1.26 g</strong></td><td>reversed</td></tr>
+        <tr><td>H2 (poetry_interp)</td><td>negative</td><td><strong>+2.12 g</strong></td><td>reversed</td></tr>
+        <tr><td>H3 (poetry_gen)</td><td>negative</td><td>+0.30 g</td><td>reversed</td></tr>
+        <tr><td>H4 (sci_creativity)</td><td>negative</td><td><strong>+0.76 g</strong></td><td>reversed</td></tr>
+        <tr><td>H6 <span class="iast">vimarśa</span> fired</td><td>0 / 30</td><td>9 / 14 (haiku_cascade)</td><td>operator now causal</td></tr>
+      </tbody>
+    </table>
+  </div>
 </section>
 
 <section id="repro" class="max-w-6xl mx-auto px-6 py-8 mb-12">
@@ -304,13 +326,16 @@ cd pratyabhijna
 uv venv && uv sync --extra dev
 uv run python scripts/verify_real_model.py
 uv run pytest -m "not slow"
-uv run python benchmarks/driver.py --n-poetry-gen 12 --n-poetry-interp 10 \
-       --n-aut 8 --n-sci-creativity 8 --max-tokens 120 --K 4 \
-       --out-dir benchmarks/results
-uv run python benchmarks/stats.py
-uv run python benchmarks/figures.py
-uv run python benchmarks/autoreport.py</pre>
-  <p class="text-sm opacity-70 mt-2">Every numerical claim on this page is derived from <code>benchmarks/results/stats.json</code> and the per-domain JSON files; the audit log is under <code>audit/phase8</code> and <code>audit/phase9</code>.</p>
+
+# v0.2 prove-gate (single-case validation before pilot):
+uv run python scripts/prove_gate.py --strict
+
+# v0.2 pilot (~$15 Haiku envelope):
+make benchmark.pilot
+make stats.pilot
+uv run python benchmarks/figures.py --results-dir benchmarks/results_v2
+uv run python benchmarks/autoreport.py --stats benchmarks/results_v2/stats.json --paper-dir paper</pre>
+  <p class="text-sm opacity-70 mt-2">Every numerical claim on this page is derived from <code>benchmarks/results_v2/stats.json</code> and the per-domain JSON files; the v0.2 audit log lives under <code>audit/</code> with per-Haiku-call records in <code>audit/haiku/</code> and the persistent cost ledger at <code>audit/cost_ledger.json</code>. The v0.1 audit lives under <code>audit/phase8</code> / <code>audit/phase9</code>.</p>
 </section>
 
 <footer class="max-w-6xl mx-auto px-6 py-6 border-t opacity-70 text-xs">
@@ -328,18 +353,36 @@ uv run python benchmarks/autoreport.py</pre>
 
   function fmtCI(c){ if(!c||c.length<2) return '—'; return `[${fmt(c[0])}, ${fmt(c[1])}]`; }
 
-  const COLORS = { claude_haiku:'#7c8aa8', local_bare:'#bbbbbb', local_cascade:'#3b6ea8' };
+  const COLORS = {
+    claude_haiku:'#7c8aa8',
+    haiku_bare:'#7c8aa8',
+    haiku_cascade:'#3b6ea8',
+    local_bare:'#bbbbbb',
+    local_cascade:'#cf7c4a'
+  };
+  const ARM_LABEL = {
+    haiku_bare: 'Haiku (no PCE)',
+    haiku_cascade: 'Haiku + PCE',
+    local_bare: 'Local-Qwen (no PCE)',
+    local_cascade: 'Local-Qwen + PCE',
+    claude_haiku: 'Haiku (no PCE, v0.1 alias)'
+  };
 
   async function main(){
-    const stats = await loadJSON('../benchmarks/results/stats.json');
+    const stats = (await loadJSON('../benchmarks/results_v2/stats.json'))
+              || (await loadJSON('../benchmarks/results/stats.json'));
+    const v2 = stats && stats.config && stats.config.version === 'v0.2';
+    const resultsDir = v2 ? 'results_v2' : 'results';
     const domains = ['poetry_gen','poetry_interp','aut','sci_creativity'];
     const dom = {};
-    for (const d of domains){ dom[d] = await loadJSON(`../benchmarks/results/${d}.json`); }
+    for (const d of domains){ dom[d] = await loadJSON(`../benchmarks/${resultsDir}/${d}.json`); }
     if (!stats) {
       document.getElementById('headline-result').innerHTML = '<em>Run the benchmark + stats pipeline first; this page wires up automatically.</em>';
       return;
     }
     const primary = stats.primary;
+    const treatment = (stats.config && stats.config.treatment_arm) || 'local_cascade';
+    const control = (stats.config && stats.config.control_arm_primary) || 'claude_haiku';
     bind('n_paired', ['H1','H2','H3','H4'].reduce((a,k)=>a+(primary[k]?.n||0),0));
     for (const [k, ds] of [['poetry_gen','H3'],['poetry_interp','H2'],['aut','H1'],['sci_n','H4']]) {
       const key = k==='sci_n'?'sci_creativity':k;
@@ -351,14 +394,21 @@ uv run python benchmarks/autoreport.py</pre>
     bind('poetry_gen_n', dom['poetry_gen']? Object.keys(dom['poetry_gen'].rows).length : '—');
     bind('poetry_interp_n', dom['poetry_interp']? Object.keys(dom['poetry_interp'].rows).length : '—');
 
-    // Headline summary
+    // Headline summary (mirrors benchmarks/autoreport.py logic)
     const sup = ['H1','H2','H3','H4'].filter(k => primary[k].supported);
-    let headline = '';
-    if (sup.length){ headline = `PCE materially shifts the contrast against no-PCE Haiku on ${sup.join(', ')} (Holm-adjusted p<0.05, BCa CI strictly positive).`; }
-    else { headline = `No primary hypothesis (H1–H4) crosses the pre-registered Holm-adjusted p<0.05 threshold against no-PCE Haiku — a negative result reported in compliance with the SPEC.`; }
-    if (stats.H5?.supported) headline += ' The aggregate composite (H5) is positive and significant.';
-    if (stats.H6?.supported) headline += ' The within-PCE H6 internal-validity test is supported.';
-    document.getElementById('headline-result').textContent = headline;
+    const bcaPos = ['H1','H2','H3','H4'].filter(k => {
+      const r = primary[k];
+      return (r.estimate || 0) > 0 && (r.bca_ci_95?.[0] ?? 0) > 0 && !sup.includes(k);
+    });
+    const contrastTxt = `${treatment} vs ${control}`;
+    let parts = [];
+    if (sup.length) parts.push(`PCE v0.2 materially shifts the paired apples-to-apples contrast ${contrastTxt} on ${sup.join(', ')} (Holm-adjusted p<0.05, BCa CI strictly positive).`);
+    if (bcaPos.length) parts.push(`Effect sizes for ${bcaPos.join(', ')} are positive with 95% BCa CIs strictly above zero in the ${contrastTxt} contrast, but the pre-registered Holm-adjusted p<0.05 threshold is not crossed at the pilot's n (the exact sign-flip permutation floor is 1/2^5=0.0312 and Holm with m=4 floors the smallest possible adjusted p at 0.125).`);
+    if (!sup.length && !bcaPos.length) parts.push(`No primary hypothesis (H1–H4) shows a directional-positive BCa CI for the ${contrastTxt} contrast.`);
+    if (stats.H5?.supported) parts.push('The aggregate composite (H5) is positive and significant.');
+    const h6Payload = stats.H6_haiku_cascade || stats.H6_local_cascade || stats.H6 || {};
+    if (h6Payload.supported) parts.push('The within-cascade H6 internal-validity test is supported.');
+    document.getElementById('headline-result').textContent = parts.join(' ');
 
     // Forest plot (horizontal effect with CIs)
     const fctx = document.getElementById('chart-forest').getContext('2d');
@@ -369,7 +419,7 @@ uv run python benchmarks/autoreport.py</pre>
     new Chart(fctx, {
       type: 'bar',
       data: { labels, datasets: [
-        { label: 'Δ (PCE − Haiku)', data: ests, backgroundColor:'#3b6ea8', borderColor:'#234366', borderWidth:1 },
+        { label: `Δ (${treatment} − ${control})`, data: ests, backgroundColor:'#3b6ea8', borderColor:'#234366', borderWidth:1 },
       ]},
       options: { indexAxis:'y',
         plugins:{
@@ -410,7 +460,12 @@ uv run python benchmarks/autoreport.py</pre>
 
     // Per-domain mean composite per arm
     const dctx = document.getElementById('chart-domains').getContext('2d');
-    const armOrder = ['claude_haiku','local_bare','local_cascade'];
+    const allArms = ['haiku_bare','haiku_cascade','local_bare','local_cascade','claude_haiku'];
+    // Only render arms that actually have data on at least one domain
+    const armOrder = allArms.filter(a => domains.some(d => {
+      const rows = dom[d]?.rows || {};
+      return Object.values(rows).some(r => r[a]?.composite != null);
+    }));
     const meansByArm = {};
     armOrder.forEach(a => meansByArm[a] = []);
     domains.forEach(d => {
@@ -424,7 +479,7 @@ uv run python benchmarks/autoreport.py</pre>
       type:'bar',
       data:{ labels:domains,
         datasets: armOrder.map(a => ({
-          label: a==='claude_haiku'?'Haiku (no PCE)' : a==='local_bare'?'Local-Qwen (no PCE)' : 'Local-Qwen + PCE',
+          label: ARM_LABEL[a] || a,
           data: meansByArm[a],
           backgroundColor: COLORS[a]
         }))
@@ -432,8 +487,8 @@ uv run python benchmarks/autoreport.py</pre>
       options: { scales: { y: { beginAtZero:true, title:{display:true,text:'mean composite'} } } }
     });
 
-    // H6
-    const h6 = stats.H6 || {};
+    // H6 (use the cascade-specific payload if present)
+    const h6 = stats.H6_haiku_cascade || stats.H6_local_cascade || stats.H6 || {};
     const h6ctx = document.getElementById('chart-h6').getContext('2d');
     new Chart(h6ctx, {
       type:'bar',
@@ -450,17 +505,22 @@ uv run python benchmarks/autoreport.py</pre>
       const r = primary[k];
       return `<tr class="border-t"><td class="p-2 font-semibold">${k}</td><td class="text-center">${r.n}</td><td>${fmt(r.estimate)}</td><td>${fmt(r.hedges_g,2)}</td><td>${fmtCI(r.bca_ci_95)}</td><td>${fmt(r.permutation_p_one_sided,4)}</td><td>${fmt(r.wilcoxon_p_one_sided,4)}</td><td>${fmt(r.holm_p,4)}</td><td>${fmt(r.power_apriori,2)} / ${fmt(r.power_retrospective,2)}</td><td>${r.supported?'<strong>yes</strong>':'no'}</td></tr>`;
     }).join('');
-    const h5 = stats.H5; const h6r = stats.H6;
+    const h5 = stats.H5; const h6r = stats.H6_haiku_cascade || stats.H6_local_cascade || stats.H6 || {};
     const h5row = `<tr class="border-t"><td class="p-2 font-semibold">H5</td><td class="text-center">${h5.n}</td><td>${fmt(h5.estimate_pooled_z)}</td><td>${fmt(h5.hedges_g,2)}</td><td>${fmtCI(h5.bca_ci_95)}</td><td>${fmt(h5.permutation_p_one_sided,4)}</td><td>—</td><td>—</td><td>${fmt(h5.power_apriori,2)} / ${fmt(h5.power_retrospective,2)}</td><td>${h5.supported?'<strong>yes</strong>':'no'}</td></tr>`;
     const h6row = `<tr class="border-t"><td class="p-2 font-semibold">H6</td><td class="text-center">${h6r.n_fired ?? 0}/${h6r.n_not_fired ?? 0}</td><td>${fmt(h6r.estimate)}</td><td>—</td><td>${fmtCI(h6r.ci_95)}</td><td>${fmt(h6r.mannwhitney_u_p_one_sided,4)}</td><td>—</td><td>—</td><td>—</td><td>${h6r.supported?'<strong>yes</strong>':'no'}</td></tr>`;
     tbl.innerHTML = `<table class="w-full">${thead}${rows}${h5row}${h6row}</table>`;
 
-    // Demo: pick first poetry_interp item with cascade output
+    // Demo: pick first poetry_interp item with cascade output (treatment arm preferred)
     const interp = dom['poetry_interp']?.rows || {};
-    const first = Object.values(interp).find(r => r.local_cascade?.text);
-    if (first) {
-      document.getElementById('demo-surface').textContent = first.local_cascade.text.slice(0, 800);
-      document.getElementById('demo-meta').textContent = JSON.stringify(first.local_cascade.meta, null, 2);
+    const armPref = [treatment, 'haiku_cascade', 'local_cascade'];
+    let demo = null; let demoArm = null;
+    for (const a of armPref) {
+      const hit = Object.values(interp).find(r => r[a]?.text);
+      if (hit) { demo = hit; demoArm = a; break; }
+    }
+    if (demo) {
+      document.getElementById('demo-surface').textContent = `[${ARM_LABEL[demoArm] || demoArm}]\n` + demo[demoArm].text.slice(0, 800);
+      document.getElementById('demo-meta').textContent = JSON.stringify(demo[demoArm].meta, null, 2);
     }
   }
   main();

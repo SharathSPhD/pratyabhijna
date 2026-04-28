@@ -18,7 +18,10 @@ import numpy as np
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
 DOMAINS_NS = {"poetry_gen": 12, "poetry_interp": 10, "aut": 8, "sci_creativity": 8}
-ARMS = ("claude_haiku", "local_bare", "local_cascade")
+# v0.1 arms preserved for backward compatibility; v0.2 arms added so the
+# synthesised payload exercises the v0.2 stats pipeline (primary contrast =
+# haiku_cascade vs haiku_bare).
+ARMS = ("claude_haiku", "local_bare", "local_cascade", "haiku_bare", "haiku_cascade")
 AXES_PER_DOMAIN = {
     "poetry_gen": ("creativity", "lexical_diversity", "idiosyncrasy",
                     "emotional_resonance", "literary_devices", "imagery"),
@@ -41,15 +44,22 @@ def synthesize(out_dir: Path, *, seed: int = 4242,
             base = float(rng.uniform(0.30, 0.65))
             arm_data: dict[str, dict[str, object]] = {}
             for arm in ARMS:
-                shift = 0.0
                 if arm == "local_cascade":
                     shift = float(eff[dom]) + float(rng.normal(0.0, 0.05))
                 elif arm == "local_bare":
                     shift = float(eff[dom]) * 0.4 + float(rng.normal(0.0, 0.07))
+                elif arm == "haiku_bare":
+                    # haiku_bare sits above local_bare (cloud-grade substrate)
+                    shift = 0.10 + float(rng.normal(0.0, 0.04))
+                elif arm == "haiku_cascade":
+                    # haiku_cascade adds the cascade contribution on top of haiku_bare
+                    shift = 0.10 + float(eff[dom]) + float(rng.normal(0.0, 0.04))
+                else:  # claude_haiku (v0.1 alias of haiku_bare; mirror its distribution)
+                    shift = 0.10 + float(rng.normal(0.0, 0.04))
                 comp = float(np.clip(base + shift, 0.0, 1.0))
                 axes = {a: float(np.clip(comp + rng.normal(0, 0.05), 0.0, 1.0)) for a in AXES_PER_DOMAIN[dom]}
                 meta = {"ok": True, "elapsed_s": float(rng.uniform(2.0, 90.0))}
-                if arm == "local_cascade":
+                if arm in ("local_cascade", "haiku_cascade"):
                     fired = bool(rng.random() < vimarsa_fired_rate)
                     meta.update({
                         "vimarsa_event": fired,
