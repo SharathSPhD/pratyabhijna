@@ -1,0 +1,7 @@
+{
+  "ok": true,
+  "files_scanned": 10,
+  "violations": [],
+  "operators_seen": [],
+  "operators_missing_tests": []
+}

@@ -1,4 +1,9 @@
-"""Sleep / consolidation: SWS-like schema abstraction and REM-like cross-basin replay.
+"""Sleep / consolidation routines for the Hopfield storehouse."""
+from pce.consolidation.sleep import (
+    is_consolidated,
+    run_rem,
+    run_sleep_cycle,
+    run_sws,
+)
 
-Implementations land in Phase 5.
-"""
+__all__ = ["is_consolidated", "run_rem", "run_sleep_cycle", "run_sws"]
