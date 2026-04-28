@@ -31,11 +31,48 @@ from pce.types import Candidate
 DEFAULT_LM_ID = "Qwen/Qwen2-1.5B-Instruct"
 
 
+def _autodetect_device() -> str:
+    """Pick the fastest available torch backend.
+
+    Order: CUDA -> MPS (Apple Silicon) -> CPU. Honour PCE_DEVICE if set so tests
+    can pin a specific backend.
+    """
+    import os
+
+    forced = os.environ.get("PCE_DEVICE", "").strip().lower()
+    if forced:
+        return forced
+    if torch.cuda.is_available():
+        return "cuda"
+    if hasattr(torch.backends, "mps") and torch.backends.mps.is_available():
+        return "mps"
+    return "cpu"
+
+
+def _autodetect_dtype(device: str) -> str:
+    forced = __import__("os").environ.get("PCE_DTYPE", "").strip().lower()
+    if forced:
+        return forced
+    # On MPS, fp16 is meaningfully faster and numerically fine for inference.
+    if device == "mps":
+        return "float16"
+    if device == "cuda":
+        return "float16"
+    return "float32"
+
+
 @dataclass(frozen=True)
 class LMConfig:
     model_id: str = DEFAULT_LM_ID
-    dtype: str = "float32"
-    device: str = "cpu"
+    dtype: str = ""
+    device: str = ""
+
+    def resolved_device(self) -> str:
+        return self.device or _autodetect_device()
+
+    def resolved_dtype(self) -> str:
+        dev = self.resolved_device()
+        return self.dtype or _autodetect_dtype(dev)
 
 
 @lru_cache(maxsize=2)
@@ -54,8 +91,11 @@ class LocalLM:
     """The cit-substrate. Holds the tokenizer + model + the embedder used to embed candidates."""
 
     def __init__(self, config: LMConfig | None = None, embedder: Embedder | None = None) -> None:
-        self.config = config or LMConfig()
-        self.tok, self.model = _load_lm(self.config.model_id, self.config.dtype, self.config.device)
+        cfg = config or LMConfig()
+        device = cfg.resolved_device()
+        dtype = cfg.resolved_dtype()
+        self.config = LMConfig(model_id=cfg.model_id, dtype=dtype, device=device)
+        self.tok, self.model = _load_lm(self.config.model_id, dtype, device)
         self._embedder = embedder or Embedder()
         self.eos_id: int = int(self.tok.eos_token_id) if self.tok.eos_token_id is not None else -1
         self.vocab_size: int = int(self.model.config.vocab_size)
@@ -106,7 +146,9 @@ class LocalLM:
         top_p = float(sampler.get("top_p", 0.95))
         top_k = int(sampler.get("top_k", 50))
 
-        gen_rng = torch.Generator(device=self.config.device).manual_seed(int(seed))
+        # MPS does not support per-device torch.Generator; run sampling on CPU
+        # for determinism while keeping the model graph on the configured device.
+        gen_rng = torch.Generator(device="cpu").manual_seed(int(seed))
 
         input_ids = self.tok(prompt, return_tensors="pt").input_ids.to(self.config.device)
         generated: list[int] = []
@@ -115,8 +157,9 @@ class LocalLM:
         for _ in range(int(max_tokens)):
             logits = self._next_logits(input_ids)
             probs = self._apply_sampler(logits, tau=tau, top_p=top_p, top_k=top_k)
-            # Sample one token per active beam (we run beam=1 here).
-            sampled = torch.multinomial(probs, num_samples=1, generator=gen_rng)
+            probs_cpu = probs.detach().to("cpu").float()
+            sampled_cpu = torch.multinomial(probs_cpu, num_samples=1, generator=gen_rng)
+            sampled = sampled_cpu.to(self.config.device)
             next_id = int(sampled.item())
             chosen_p = float(probs[0, next_id].item())
             if chosen_p > 0:
