@@ -1,0 +1,45 @@
+{
+  "domain": "sci_creativity",
+  "rows": {
+    "s01": {
+      "item": {
+        "id": "s01",
+        "question": "Why do mass extinctions sometimes accelerate evolutionary innovation?",
+        "framings": [
+          "niche-vacuum dynamics",
+          "regulatory-network release"
+        ]
+      },
+      "local_bare": {
+        "text": "The accelerating evolutionary innovation hypothesis suggests that sudden changes in predator abundance can cause a rapid increase in the evolutionary rate of a population due to sudden increases in genetic diversity. This can lead to the evolution of new traits that are better suited to the new environment, and therefore can increase the likelihood of survival and reproduction. The hypothesis also",
+        "axes": {
+          "frame_coverage": 0.142695352435112,
+          "novelty": 0.34683310985565186,
+          "specificity": 0.7625
+        },
+        "composite": 0.4173428207635879,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 17.302809715270996
+        }
+      },
+      "local_cascade": {
+        "text": "Mass extinctions, such as the Cretaceous-Paleogene (K-Pg) extinction at about 65 million years ago, were not the sole drivers of evolutionary innovation. These events can sometimes trigger a shift in evolutionary pressures, allowing for rapid evolutionary innovation in response to new challenges. This sudden surge in innovation",
+        "axes": {
+          "frame_coverage": 0.15794223546981812,
+          "novelty": 0.2733588218688965,
+          "specificity": 0.5875
+        },
+        "composite": 0.33960035244623815,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 79.43219184875488,
+          "vimarsa_event": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "selected_idx": 2
+        }
+      }
+    }
+  }
+}

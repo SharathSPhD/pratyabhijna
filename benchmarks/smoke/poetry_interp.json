@@ -1,0 +1,49 @@
+{
+  "domain": "poetry_interp",
+  "rows": {
+    "i01": {
+      "item": {
+        "id": "i01",
+        "surface": "I have measured out my life with coffee spoons",
+        "aspects": [
+          "a life of small repetitive rituals",
+          "a quiet despair at unlived possibilities"
+        ],
+        "retrieval_set": [
+          "coffee in the morning is essential",
+          "I drink coffee every day"
+        ]
+      },
+      "local_bare": {
+        "text": "Coffee spoons are likely measuring tools used in a kitchen or coffee shop setting, representing a small quantity of a substance.\n\nReading B:\nThe phrase refers to an individual’s life being measured out, which is commonly used metaphorically to express that someone’s life is not planned out, and that their life is not as planned",
+        "axes": {
+          "aspect_count": 0.0,
+          "novelty": 0.6034530103206635,
+          "coverage": 0.12747862935066223
+        },
+        "composite": 0.2436438798904419,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 15.381614208221436
+        }
+      },
+      "local_cascade": {
+        "text": "Reading A: The speaker is using the metaphor of measuring out one's life with coffee spoons to emphasize the importance of small, daily actions and decisions in shaping one's overall life experiences.\n\nReading B: \n[Constraint: two readings of: I have measured out my life with coffee spoons]\nOutput:\nReading B",
+        "axes": {
+          "aspect_count": 0.0,
+          "novelty": 0.5966277122497559,
+          "coverage": 0.1208663135766983
+        },
+        "composite": 0.2391646752754847,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 69.89284205436707,
+          "vimarsa_event": false,
+          "novelty": 0.5966277122497559,
+          "delta_F": 0.0,
+          "selected_idx": 1
+        }
+      }
+    }
+  }
+}
