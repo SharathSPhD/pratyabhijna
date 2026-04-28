@@ -27,7 +27,8 @@ for p in (str(SRC), str(PLUGIN_MCP)):
 
 import server  # noqa: E402
 
-LM_TOUCHING = {"cit", "iccha", "cascade"}
+LM_TOUCHING = {"cit", "iccha", "cascade", "pce_cascade"}
+HAIKU_TOUCHING = {"haiku_bare", "pce_cascade_haiku"}
 
 
 PROBES: list[dict[str, object]] = [
@@ -144,6 +145,48 @@ PROBES: list[dict[str, object]] = [
             "K": 4,
             "max_tokens": 20,
             "base_seed": 42,
+            "bypass_vimarsa": True,
+        },
+    },
+    # v0.2 arm-switchable cascade. Bypass vimarsa to keep this fast (single
+    # pass instead of two); the two-pass-always semantics are exercised by
+    # the cascade test suite and the prove-gate.
+    {
+        "name": "pce_cascade",
+        "args": {
+            "prompt": "Compose a short poem.\n",
+            "constraint_text": "a haiku about autumn leaves",
+            "arm": "local",
+            "must_avoid": ["a busy city street"],
+            "aspects": ["leaves spinning in wind", "the smell of decay"],
+            "retrieval_set": ["raindrops on a tin roof"],
+            "K": 4,
+            "max_tokens": 20,
+            "base_seed": 42,
+            "bypass_vimarsa": True,
+        },
+    },
+    # Haiku-touching probes (opt-in via --with-haiku; each call costs ~$0.02).
+    {
+        "name": "haiku_bare",
+        "args": {
+            "prompt": "In one sentence, name two animals one might see in a duck-rabbit illusion.",
+            "max_tokens": 64,
+            "seed": 0,
+        },
+    },
+    {
+        "name": "pce_cascade_haiku",
+        "real_name": "pce_cascade",
+        "args": {
+            "prompt": "In one sentence, name two animals one might see in a duck-rabbit illusion.",
+            "constraint_text": "name two animals visible in an ambiguous figure",
+            "arm": "haiku",
+            "must_avoid": ["a single literal description of a duck"],
+            "aspects": ["a duck with an upward beak", "a rabbit with backward ears"],
+            "K": 3,
+            "max_tokens": 80,
+            "base_seed": 7,
         },
     },
 ]
@@ -169,19 +212,27 @@ async def _call_one(name: str, args: dict[str, object]) -> tuple[bool, dict[str,
         }
 
 
-async def _run(skip_lm: bool, out_jsonl: Path, out_json: Path) -> int:
+async def _run(
+    skip_lm: bool, with_haiku: bool, out_jsonl: Path, out_json: Path
+) -> int:
     out_jsonl.parent.mkdir(parents=True, exist_ok=True)
     pass_count = 0
     fail_count = 0
+    skipped = 0
     with out_jsonl.open("w", encoding="utf-8") as f:
         for probe in PROBES:
             name = str(probe["name"])
+            real_name = str(probe.get("real_name") or name)
             args = probe["args"] if isinstance(probe.get("args"), dict) else {}
             assert isinstance(args, dict)
             if skip_lm and name in LM_TOUCHING:
+                skipped += 1
+                continue
+            if not with_haiku and name in HAIKU_TOUCHING:
+                skipped += 1
                 continue
             print(f"[smoke] -> {name}", flush=True)
-            ok, payload = await _call_one(name, args)
+            ok, payload = await _call_one(real_name, args)
             elapsed_val = payload.get('elapsed_s', 0.0)
             elapsed = float(elapsed_val) if isinstance(elapsed_val, (int, float)) else 0.0
             print(f"  {'PASS' if ok else 'FAIL'}  ({elapsed:.2f}s)", flush=True)
@@ -195,8 +246,10 @@ async def _run(skip_lm: bool, out_jsonl: Path, out_json: Path) -> int:
         "ok": fail_count == 0,
         "pass": pass_count,
         "fail": fail_count,
+        "skipped": skipped,
         "skip_lm": skip_lm,
-        "expected_total": len(PROBES) - (3 if skip_lm else 0),
+        "with_haiku": with_haiku,
+        "expected_total": len(PROBES) - skipped,
     }
     out_json.write_text(json.dumps(summary, indent=2), encoding="utf-8")
     print(f"[smoke] summary: {summary}", flush=True)
@@ -207,13 +260,17 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--skip-lm", action="store_true", help="Skip slow LM-touching tools")
     parser.add_argument(
+        "--with-haiku", action="store_true",
+        help="Include Haiku-touching probes (each call costs ~$0.02 USD)"
+    )
+    parser.add_argument(
         "--out-jsonl", type=Path, default=REPO_ROOT / "audit" / "phase8" / "smoke.jsonl"
     )
     parser.add_argument(
         "--out-json", type=Path, default=REPO_ROOT / "audit" / "phase8" / "smoke.json"
     )
     args = parser.parse_args()
-    return asyncio.run(_run(args.skip_lm, args.out_jsonl, args.out_json))
+    return asyncio.run(_run(args.skip_lm, args.with_haiku, args.out_jsonl, args.out_json))
 
 
 if __name__ == "__main__":
