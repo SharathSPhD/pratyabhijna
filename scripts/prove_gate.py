@@ -335,18 +335,19 @@ def main() -> int:
         )
         summaries.append(summary)
         all_passed = all_passed and passed
-    overall = {
+    cost_report = haiku_lm.report()
+    overall: dict[str, Any] = {
         "passed": bool(all_passed),
         "case_summaries": summaries,
-        "haiku_cost_report": haiku_lm.report(),
+        "haiku_cost_report": cost_report,
     }
     overall_path = AUDIT_DIR / "overall.json"
     overall_path.write_text(
         json.dumps(overall, indent=2, ensure_ascii=False), encoding="utf-8"
     )
     print(f"\n[gate] overall passed={all_passed}  haiku_cost="
-          f"{overall['haiku_cost_report']['ledger_total_usd']:.4f} USD over "
-          f"{overall['haiku_cost_report']['ledger_n_calls']} calls",
+          f"{float(cost_report['ledger_total_usd']):.4f} USD over "
+          f"{int(cost_report['ledger_n_calls'])} calls",
           flush=True)
     if not all_passed:
         print("[gate] failures by case:", file=sys.stderr)

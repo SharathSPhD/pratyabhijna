@@ -27,7 +27,10 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 EXPECTED = {
-    "tools": 15,
+    # v0.2 adds two arm-aware tools: `pce_cascade` (arm-switchable cascade)
+    # and `haiku_bare` (single Haiku call). The original 15 v0.1 tools are
+    # all preserved for backward compatibility.
+    "tools": 17,
     "skills": 5,
     "agents": 5,
     "commands": 5,
