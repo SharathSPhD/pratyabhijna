@@ -1,0 +1,395 @@
+{
+  "config": {
+    "treatment_arm": "haiku_cascade",
+    "control_arm_primary": "haiku_bare",
+    "seed": 4242,
+    "n_permutations": 50000,
+    "n_bootstrap": 10000,
+    "alpha": 0.05,
+    "version": "v0.2"
+  },
+  "primary": {
+    "H1": {
+      "name": "H1",
+      "domain": "aut",
+      "n": 5,
+      "estimate": 0.0160568505525589,
+      "hedges_g": 1.2610058104599133,
+      "bca_ci_95": [
+        0.008645689487457276,
+        0.02360234558582306
+      ],
+      "permutation_p_one_sided": 0.03125,
+      "wilcoxon_p_one_sided": 0.03125,
+      "holm_p": 0.125,
+      "power_apriori": 0.23899517090352962,
+      "power_retrospective": 0.7477400505328289,
+      "supported": false,
+      "treatment": "haiku_cascade",
+      "control": "haiku_bare"
+    },
+    "H2": {
+      "name": "H2",
+      "domain": "poetry_interp",
+      "n": 5,
+      "estimate": 0.16460851728916168,
+      "hedges_g": 2.122958477562191,
+      "bca_ci_95": [
+        0.10603165030479426,
+        0.20730114976565045
+      ],
+      "permutation_p_one_sided": 0.03125,
+      "wilcoxon_p_one_sided": 0.03125,
+      "holm_p": 0.125,
+      "power_apriori": 0.23899517090352962,
+      "power_retrospective": 0.9849153302647076,
+      "supported": false,
+      "treatment": "haiku_cascade",
+      "control": "haiku_bare"
+    },
+    "H3": {
+      "name": "H3",
+      "domain": "poetry_gen",
+      "n": 5,
+      "estimate": 0.024388181600501678,
+      "hedges_g": 0.2982347116298514,
+      "bca_ci_95": [
+        -0.035228279471870405,
+        0.06835479936684496
+      ],
+      "permutation_p_one_sided": 0.25,
+      "wilcoxon_p_one_sided": 0.21875,
+      "holm_p": 0.25,
+      "power_apriori": 0.23899517090352962,
+      "power_retrospective": 0.13918774105193843,
+      "supported": false,
+      "treatment": "haiku_cascade",
+      "control": "haiku_bare"
+    },
+    "H4": {
+      "name": "H4",
+      "domain": "sci_creativity",
+      "n": 4,
+      "estimate": 0.05292131503423056,
+      "hedges_g": 0.7626373328517894,
+      "bca_ci_95": [
+        0.017496851583321926,
+        0.10413530593117074
+      ],
+      "permutation_p_one_sided": 0.125,
+      "wilcoxon_p_one_sided": 0.125,
+      "holm_p": 0.25,
+      "power_apriori": 0.19613361551857056,
+      "power_retrospective": 0.3249412443218289,
+      "supported": false,
+      "treatment": "haiku_cascade",
+      "control": "haiku_bare"
+    }
+  },
+  "H5": {
+    "name": "H5",
+    "n": 19,
+    "estimate_pooled_z": 7.304098846218135e-18,
+    "hedges_g": 2.5975013372819153e-17,
+    "bca_ci_95": [
+      -0.114180663084535,
+      0.12113601346131922
+    ],
+    "permutation_p_one_sided": 0.501629967400652,
+    "power_apriori": 0.674210136383701,
+    "power_retrospective": 0.050000000000000044,
+    "supported": false,
+    "note": "pooled z-blend across H1..H4 with weights H1:0.5, H2/H3/H4:1/6 each",
+    "weights": {
+      "H1": 0.5,
+      "H2": 0.16666666666666666,
+      "H3": 0.16666666666666666,
+      "H4": 0.16666666666666666
+    }
+  },
+  "H6_local_cascade": {
+    "name": "H6",
+    "n_fired": 0,
+    "n_not_fired": 0,
+    "estimate": NaN,
+    "p_one_sided": NaN,
+    "supported": false,
+    "note": "insufficient data: one of the groups is empty"
+  },
+  "H6_haiku_cascade": {
+    "name": "H6",
+    "cascade_arm": "haiku_cascade",
+    "n_fired": 9,
+    "n_not_fired": 5,
+    "estimate": 0.03126930704459918,
+    "hedges_g_independent": 0.3926334112018911,
+    "ci_95": [
+      -0.037821924236929164,
+      0.09922411491167973
+    ],
+    "mannwhitney_u_p_one_sided": 0.3031968031968032,
+    "supported": false,
+    "note": "haiku_cascade: fired vs not-fired vimarsa_event, pooled poetry_interp+poetry_gen+sci_creativity"
+  },
+  "local_ablation": {
+    "treatment": "local_cascade",
+    "control": "local_bare",
+    "primary": {
+      "H1": {
+        "name": "H1",
+        "domain": "aut",
+        "n": 0,
+        "estimate": NaN,
+        "hedges_g": NaN,
+        "bca_ci_95": [
+          NaN,
+          NaN
+        ],
+        "permutation_p_one_sided": NaN,
+        "wilcoxon_p_one_sided": NaN,
+        "holm_p": NaN,
+        "power_apriori": NaN,
+        "power_retrospective": NaN,
+        "supported": false,
+        "treatment": "local_cascade",
+        "control": "local_bare"
+      },
+      "H2": {
+        "name": "H2",
+        "domain": "poetry_interp",
+        "n": 0,
+        "estimate": NaN,
+        "hedges_g": NaN,
+        "bca_ci_95": [
+          NaN,
+          NaN
+        ],
+        "permutation_p_one_sided": NaN,
+        "wilcoxon_p_one_sided": NaN,
+        "holm_p": NaN,
+        "power_apriori": NaN,
+        "power_retrospective": NaN,
+        "supported": false,
+        "treatment": "local_cascade",
+        "control": "local_bare"
+      },
+      "H3": {
+        "name": "H3",
+        "domain": "poetry_gen",
+        "n": 0,
+        "estimate": NaN,
+        "hedges_g": NaN,
+        "bca_ci_95": [
+          NaN,
+          NaN
+        ],
+        "permutation_p_one_sided": NaN,
+        "wilcoxon_p_one_sided": NaN,
+        "holm_p": NaN,
+        "power_apriori": NaN,
+        "power_retrospective": NaN,
+        "supported": false,
+        "treatment": "local_cascade",
+        "control": "local_bare"
+      },
+      "H4": {
+        "name": "H4",
+        "domain": "sci_creativity",
+        "n": 0,
+        "estimate": NaN,
+        "hedges_g": NaN,
+        "bca_ci_95": [
+          NaN,
+          NaN
+        ],
+        "permutation_p_one_sided": NaN,
+        "wilcoxon_p_one_sided": NaN,
+        "holm_p": NaN,
+        "power_apriori": NaN,
+        "power_retrospective": NaN,
+        "supported": false,
+        "treatment": "local_cascade",
+        "control": "local_bare"
+      }
+    },
+    "H5": {
+      "name": "H5",
+      "n": 0,
+      "supported": false,
+      "note": "no data"
+    }
+  },
+  "substrate_baseline": {
+    "treatment": "haiku_bare",
+    "control": "local_bare",
+    "primary": {
+      "H1": {
+        "name": "H1",
+        "domain": "aut",
+        "n": 5,
+        "estimate": 0.2713321254592934,
+        "hedges_g": 2.9014951041128256,
+        "bca_ci_95": [
+          0.22895832531771748,
+          0.36223360842182517
+        ],
+        "permutation_p_one_sided": 0.03125,
+        "wilcoxon_p_one_sided": 0.03125,
+        "holm_p": 0.125,
+        "power_apriori": 0.23899517090352962,
+        "power_retrospective": 0.9997515456933183,
+        "supported": false,
+        "treatment": "haiku_bare",
+        "control": "local_bare"
+      },
+      "H2": {
+        "name": "H2",
+        "domain": "poetry_interp",
+        "n": 5,
+        "estimate": 0.14733569224675497,
+        "hedges_g": 1.412851463189768,
+        "bca_ci_95": [
+          0.08061761458714803,
+          0.20785267949104308
+        ],
+        "permutation_p_one_sided": 0.03125,
+        "wilcoxon_p_one_sided": 0.03125,
+        "holm_p": 0.125,
+        "power_apriori": 0.23899517090352962,
+        "power_retrospective": 0.8253320079325037,
+        "supported": false,
+        "treatment": "haiku_bare",
+        "control": "local_bare"
+      },
+      "H3": {
+        "name": "H3",
+        "domain": "poetry_gen",
+        "n": 5,
+        "estimate": -0.0014977389480361647,
+        "hedges_g": -0.029576791269935176,
+        "bca_ci_95": [
+          -0.053078737017283106,
+          0.020413760362560984
+        ],
+        "permutation_p_one_sided": 0.53125,
+        "wilcoxon_p_one_sided": 0.3125,
+        "holm_p": 0.53125,
+        "power_apriori": 0.23899517090352962,
+        "power_retrospective": 0.04447552536191468,
+        "supported": false,
+        "treatment": "haiku_bare",
+        "control": "local_bare"
+      },
+      "H4": {
+        "name": "H4",
+        "domain": "sci_creativity",
+        "n": 5,
+        "estimate": 0.061204418043295516,
+        "hedges_g": 1.2344610252708763,
+        "bca_ci_95": [
+          0.029535949230194057,
+          0.09502236793438588
+        ],
+        "permutation_p_one_sided": 0.03125,
+        "wilcoxon_p_one_sided": 0.03125,
+        "holm_p": 0.125,
+        "power_apriori": 0.23899517090352962,
+        "power_retrospective": 0.7324563737263794,
+        "supported": false,
+        "treatment": "haiku_bare",
+        "control": "local_bare"
+      }
+    },
+    "H5": {
+      "name": "H5",
+      "n": 20,
+      "estimate_pooled_z": -5.117434254131581e-17,
+      "hedges_g": -1.854517504899681e-16,
+      "bca_ci_95": [
+        -0.09099987687230188,
+        0.14321012854185297
+      ],
+      "permutation_p_one_sided": 0.497730045399092,
+      "power_apriori": 0.695149338244341,
+      "power_retrospective": 0.050000000000000044,
+      "supported": false,
+      "note": "pooled z-blend across H1..H4 with weights H1:0.5, H2/H3/H4:1/6 each",
+      "weights": {
+        "H1": 0.5,
+        "H2": 0.16666666666666666,
+        "H3": 0.16666666666666666,
+        "H4": 0.16666666666666666
+      }
+    }
+  },
+  "arm_means_per_domain": {
+    "poetry_gen": {
+      "haiku_bare": {
+        "n": 5,
+        "mean": 0.5789846787451565,
+        "std": 0.061019016727039785
+      },
+      "haiku_cascade": {
+        "n": 5,
+        "mean": 0.6033728603456582,
+        "std": 0.08686250884996981
+      },
+      "local_bare": {
+        "n": 5,
+        "mean": 0.5804824176931926,
+        "std": 0.09470628555806158
+      }
+    },
+    "poetry_interp": {
+      "haiku_bare": {
+        "n": 5,
+        "mean": 0.501307554046313,
+        "std": 0.11209808019751198
+      },
+      "haiku_cascade": {
+        "n": 5,
+        "mean": 0.6659160713354747,
+        "std": 0.08395903154597482
+      },
+      "local_bare": {
+        "n": 5,
+        "mean": 0.35397186179955803,
+        "std": 0.1437302649214955
+      }
+    },
+    "aut": {
+      "haiku_bare": {
+        "n": 5,
+        "mean": 0.934956294298172,
+        "std": 0.01726050516473058
+      },
+      "haiku_cascade": {
+        "n": 5,
+        "mean": 0.9510131448507309,
+        "std": 0.01685500441887082
+      },
+      "local_bare": {
+        "n": 5,
+        "mean": 0.6636241688388786,
+        "std": 0.06955780159855006
+      }
+    },
+    "sci_creativity": {
+      "haiku_bare": {
+        "n": 5,
+        "mean": 0.5288940906524658,
+        "std": 0.04102033178968322
+      },
+      "haiku_cascade": {
+        "n": 4,
+        "mean": 0.5846629242102305,
+        "std": 0.036329621002105454
+      },
+      "local_bare": {
+        "n": 5,
+        "mean": 0.46768967260917027,
+        "std": 0.020236837721925572
+      }
+    }
+  }
+}

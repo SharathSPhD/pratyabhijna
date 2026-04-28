@@ -42,7 +42,7 @@ stats:
 
 benchmark.pilot:
 	uv run python benchmarks/driver.py --pilot \
-	    --K 4 --max-tokens 200 \
+	    --K 3 --max-tokens 150 \
 	    --cost-cap-usd 18.0 \
 	    --out-dir benchmarks/results_v2
 

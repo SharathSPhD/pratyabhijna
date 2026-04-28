@@ -74,7 +74,10 @@ def _build_autoreport(stats: dict[str, Any]) -> str:
         _row_for(h, primary[h]) for h in ("H1", "H2", "H3", "H4")
     ]
     rows.append(_h5_row(stats["H5"]))
-    rows.append(_h6_row(stats["H6"]))
+    # v0.2 splits H6 by cascade arm; prefer the primary haiku_cascade arm
+    # but fall back to the local arm or the legacy single-key layout.
+    h6 = stats.get("H6_haiku_cascade") or stats.get("H6_local_cascade") or stats.get("H6") or {}
+    rows.append(_h6_row(h6))
     body = "\n".join(rows)
     return (
         "\\begin{tabular}{l r r r c c c c c c}\n"
@@ -90,33 +93,38 @@ def _build_autoreport(stats: dict[str, Any]) -> str:
 
 def _headline(stats: dict[str, Any]) -> str:
     primary = stats["primary"]
+    cfg = stats.get("config", {})
+    treatment = cfg.get("treatment_arm", "haiku_cascade")
+    control = cfg.get("control_arm_primary", "haiku_bare")
     supported = [h for h in ("H1", "H2", "H3", "H4") if primary[h]["supported"]]
-    h6 = stats["H6"].get("supported", False)
-    h5 = stats["H5"].get("supported", False)
+    h6_payload = stats.get("H6_haiku_cascade") or stats.get("H6_local_cascade") or stats.get("H6") or {}
+    h6 = bool(h6_payload.get("supported", False))
+    h5 = bool(stats["H5"].get("supported", False))
     parts: list[str] = []
+    contrast = f"{treatment} vs.\\ {control}"
     if supported:
         parts.append(
-            "PCE materially shifts the paired contrast against no-PCE Haiku on "
+            f"PCE v0.2 materially shifts the paired apples-to-apples contrast {contrast} on "
             + ", ".join(supported)
             + " (Holm-adjusted $p<0.05$, BCa CI strictly positive)."
         )
     else:
         parts.append(
-            "No primary hypothesis (H1--H4) crosses the pre-registered Holm-adjusted "
-            "$p<0.05$ threshold against no-PCE Haiku --- a negative result we report "
-            "in compliance with the SPEC's negative-result obligation."
+            f"No primary hypothesis (H1--H4) crosses the pre-registered Holm-adjusted "
+            f"$p<0.05$ threshold for the {contrast} contrast --- a negative result we "
+            "report in compliance with the SPEC's negative-result obligation."
         )
     if h5:
         parts.append("The aggregate composite (H5) is positive and significant.")
     if h6:
         parts.append(
-            "The within-PCE H6 internal-validity test is supported: trials in which "
+            "The within-cascade H6 internal-validity test is supported: trials in which "
             "the \\iast{vimar\\'sa} layer fired score higher than trials in which "
             "it did not."
         )
-    elif stats["H6"].get("n_fired", 0) > 0:
+    elif h6_payload.get("n_fired", 0) > 0:
         parts.append(
-            "The within-PCE H6 test is reported but does not reach the threshold "
+            "The within-cascade H6 test is reported but does not reach the threshold "
             "at the calibrated aspect-cosine-hit value."
         )
     return " ".join(parts)
@@ -134,7 +142,9 @@ def _replace_placeholders(text: str, mapping: dict[str, str]) -> str:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--stats", type=Path, default=REPO_ROOT / "benchmarks" / "results" / "stats.json")
+    parser.add_argument(
+        "--stats", type=Path, default=REPO_ROOT / "benchmarks" / "results_v2" / "stats.json",
+    )
     parser.add_argument("--paper-dir", type=Path, default=REPO_ROOT / "paper")
     parser.add_argument("--items", type=Path, default=REPO_ROOT / "benchmarks" / "items.py")
     args = parser.parse_args()

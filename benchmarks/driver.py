@@ -375,7 +375,10 @@ def main() -> int:
         "sci_creativity": args.n_sci_creativity,
     }
     if args.pilot:
-        n_map = {"poetry_gen": 8, "poetry_interp": 8, "aut": 6, "sci_creativity": 6}
+        # Pilot scope: n=20 paired total (5 per domain), K=3, max_tokens=150.
+        # This sits inside the SPEC_v0.2 "n=20-30" envelope and finishes
+        # within the ~$15 / ~75-min budget on a laptop CPU/MPS substrate.
+        n_map = {"poetry_gen": 5, "poetry_interp": 5, "aut": 5, "sci_creativity": 5}
         arms = ARMS_V2
 
     embed = Embedder()
