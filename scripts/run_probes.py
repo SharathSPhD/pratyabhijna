@@ -17,8 +17,10 @@ import argparse
 import json
 import sys
 import time
+from collections.abc import Mapping
 from dataclasses import asdict, dataclass
 from pathlib import Path
+from typing import Any
 
 import numpy as np
 
@@ -123,7 +125,7 @@ class ProbeResult:
 
 def _score_probe(
     *,
-    probe: dict,
+    probe: Mapping[str, Any],
     kind: str,
     lm: LocalLM,
     embed: Embedder,
@@ -133,37 +135,43 @@ def _score_probe(
 ) -> ProbeResult:
     from pce.operators.vimarsa import vimarsa as vimarsa_op
 
+    constraint_text = str(probe["constraint_text"])
+    must_avoid = tuple(str(x) for x in (probe.get("must_avoid") or ()))  
+    retrieval = [str(x) for x in (probe.get("retrieval_set") or [])]  
+    aspects = [str(x) for x in (probe.get("aspects") or [])]  
     constraint = Constraint(
-        text=probe["constraint_text"],
-        embedding=embed.encode(probe["constraint_text"]),
-        must_avoid=tuple(probe.get("must_avoid", ())),
+        text=constraint_text,
+        embedding=embed.encode(constraint_text),
+        must_avoid=must_avoid,
     )
     t0 = time.time()
     state = run_cascade(
-        prompt=probe["prompt"],
+        prompt=str(probe["prompt"]),
         constraint=constraint,
         lm=lm,
         embed=embed,
         K=K,
         max_tokens=48,
         base_seed=base_seed,
-        retrieval_set=list(probe.get("retrieval_set", [])),
-        aspects=list(probe.get("aspects", [])),
+        retrieval_set=retrieval,
+        aspects=aspects,
     )
     # Re-run vimarsa with the tuned aspect_cosine_hit threshold.
     surface = state.surface or ""
+    retrieval_list = [str(x) for x in (probe.get("retrieval_set") or [])]  
+    aspects_list = [str(x) for x in (probe.get("aspects") or [])]  
     event, novelty, _diag = vimarsa_op(
-        prompt=probe["prompt"],
+        prompt=str(probe["prompt"]),
         surface=surface,
         embed=embed,
-        retrieval_set=list(probe.get("retrieval_set", [])),
-        aspects=list(probe.get("aspects", [])),
+        retrieval_set=retrieval_list,
+        aspects=aspects_list,
         ananda_score=float(state.audit.get("ananda_scores", [0.0])[state.audit.get("selected_idx", 0)]),
         iccha_apoha_trajectory=None,
         aspect_cosine_hit=aspect_cosine_hit,
     )
     return ProbeResult(
-        probe_id=probe["id"],
+        probe_id=str(probe["id"]),
         kind=kind,
         surface=surface,
         vimarsa_event=bool(event),
@@ -177,12 +185,12 @@ def _score_probe(
 
 
 def _bypass_probe(
-    *, probe: dict, lm: LocalLM, base_seed: int
+    *, probe: Mapping[str, Any], lm: LocalLM, base_seed: int
 ) -> ProbeResult:
     t0 = time.time()
-    out = lm.generate(probe["prompt"], max_tokens=48, sampler={"tau": 0.7}, seed=base_seed)
+    out = lm.generate(str(probe["prompt"]), max_tokens=48, sampler={"tau": 0.7}, seed=base_seed)
     return ProbeResult(
-        probe_id=probe["id"],
+        probe_id=str(probe["id"]),
         kind="bypass",
         surface=out.text,
         vimarsa_event=False,

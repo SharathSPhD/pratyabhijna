@@ -162,6 +162,246 @@
           "ok": true,
           "elapsed_s": 16.302967071533203
         }
+      },
+      "local_cascade": {
+        "text": "Reading A:\nDo not go gentle into that good night\n\nReading B:\nDo not go gently into that good night\n\nReading A: The line \"Do not go gentle into that good night\" is a powerful expression of defiance and resistance against an inevitable end. It encourages the speaker not to succumb to a peaceful, passive resignation to life's end, but to actively engage with the world around them, to fight against their situation, and to live fully to the end.\n\nReading B: The line \"Do not go gently into that good night\" is a declaration of defiance and resistance against the idea",
+        "axes": {
+          "aspect_count": 0.0,
+          "novelty": 0.6361890137195587,
+          "coverage": 0.16060972213745117
+        },
+        "composite": 0.2655995786190033,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 77.4852819442749,
+          "vimarsa_event": false,
+          "novelty": 0.6361890137195587,
+          "delta_F": 0.0,
+          "selected_idx": 2
+        }
+      }
+    },
+    "i04": {
+      "item": {
+        "id": "i04",
+        "surface": "Hope is the thing with feathers that perches in the soul",
+        "aspects": [
+          "hope as a delicate persistent bird",
+          "the soul as a place where wild things live"
+        ],
+        "retrieval_set": [
+          "I saw a sparrow today",
+          "feathers are light"
+        ]
+      },
+      "claude_haiku": {
+        "text": "**Reading A: Hope as Living Presence**\n\nHere, hope is presented as an actual creature—a bird with feathers—that inhabits the soul as its natural dwelling place. This reading treats the metaphor literally within the poem's logic: hope is alive, real, and embodied. The bird is delicate and requires care; it can fly away if mistreated. This emphasizes hope's fragility and the responsibility we have to nurture it, suggesting that hope is not merely an abstract emotion but a tangible companion within us that must be valued and protected.\n\n**Reading B: Hope as Transcendent Abstraction**\n\nThis reading sees the bird as a symbol of hope's otherworldly nature—something ethereal, eternal, and beyond material reach. The \"feathers\" suggest lightness and freedom from earthly constraints; the bird's perch in the soul indicates that hope dwells in our highest, most spiritual self. This interpretation emphasizes hope's sublime quality and its power to lift us above circumstances, positioning it as an eternal principle rather than a temporary feeling that might be lost.",
+        "axes": {
+          "aspect_count": 1.0,
+          "novelty": 0.5049472153186798,
+          "coverage": 0.5789242386817932
+        },
+        "composite": 0.6946238180001577,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 9.819768190383911,
+          "cost_usd": 0.019920550000000002,
+          "duration_ms": 7649,
+          "stop_reason": "end_turn"
+        }
+      },
+      "local_bare": {
+        "text": "\"The souls in the poem are like feathers floating in the air\" and the 'feathers' can stand for the dreams, ambitions, or hopes in one's life. So, the line means that hope is an important component of one's being and can inspire or motivate us to pursue our goals and aspirations.\n\nReading B:\n\"Feathers can symbolize the idea of being high in the air without being grounded\" which refers to the feeling of being optimistic and full of life, but also can mean that one is detached from reality or their surroundings, as their hopes and dreams may be too idealistic",
+        "axes": {
+          "aspect_count": 1.0,
+          "novelty": 0.33527684211730957,
+          "coverage": 0.42264342308044434
+        },
+        "composite": 0.5859734217325846,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 17.125256061553955
+        }
+      },
+      "local_cascade": {
+        "text": "Reading A:\nHope is the thing with feathers that perches in the soul.\n\nReading B:\nFeathers that perches in the soul is hope.\n\nBoth readings describe the idea that hope, as a concept, can take form in the form of feathers, which then settle on the soul, creating a sense of hope and positivity within it.\n\nRe-write the passage in a less poetic way by using 2 sentences.\nWrite a response that is two sentences of the passage in which the feathers that perch in the soul represent hope:\n\nReading A:\nHope is the thing with feathers that perches in the soul",
+        "axes": {
+          "aspect_count": 0.5,
+          "novelty": 0.5348993539810181,
+          "coverage": 0.4300800561904907
+        },
+        "composite": 0.4883264700571696,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 82.47445702552795,
+          "vimarsa_event": false,
+          "novelty": 0.5348993539810181,
+          "delta_F": 0.0,
+          "selected_idx": 3
+        }
+      }
+    },
+    "i05": {
+      "item": {
+        "id": "i05",
+        "surface": "Because I could not stop for Death, He kindly stopped for me",
+        "aspects": [
+          "death as a courteous gentleman caller",
+          "an inversion of who has agency in the encounter"
+        ],
+        "retrieval_set": [
+          "traffic stops at red lights",
+          "everyone dies eventually"
+        ]
+      },
+      "claude_haiku": {
+        "text": "**Reading A: The Irony of Courtesy**\n\nDeath appears as an unexpected suitor who courteously \"stops\" for the speaker when she is too preoccupied with life to acknowledge her own mortality. The gentleness of \"kindly\" masks the inevitability beneath—Death doesn't ask permission or announce himself with fanfare, but arrives with the courtesy of a caller, transforming the speaker's inability to pause into an inescapable appointment. Here, the line emphasizes how death comes not as violation but as an unwelcome politeness we cannot refuse.\n\n**Reading B: The Surrender to Surrender**\n\nThe speaker acknowledges a paradox: she couldn't stop her own motion through life, so Death must stop her. Rather than violence, this is relief—Death performs a function she cannot accomplish herself, halting the relentless forward momentum of existence. The \"kindly\" stopping becomes an act of mercy, a response to her helplessness. This reading frames death not as interruption but as the only pause that mortal life cannot generate on its own.",
+        "axes": {
+          "aspect_count": 0.5,
+          "novelty": 0.7688405513763428,
+          "coverage": 0.35144269466400146
+        },
+        "composite": 0.5400944153467814,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 10.203341007232666,
+          "cost_usd": 0.01971055,
+          "duration_ms": 7761,
+          "stop_reason": "end_turn"
+        }
+      },
+      "local_bare": {
+        "text": "Because I cannot afford the time to wait for death, death kindly stopped for me.\n\nReading B:\nI cannot afford the time to wait for death, and as a result, death kindly stopped for me.\n\nReading A is correct, as it indicates that the speaker is unable to stop and wait for death, and therefore, death voluntarily stops to assist the speaker in their situation.\n\nReading B is a grammatically correct variation that conveys the same meaning, but the word order is reversed. It emphasizes the speaker's inability to wait for death and the sudden kindness shown by death in assisting the speaker. The",
+        "axes": {
+          "aspect_count": 0.5,
+          "novelty": 0.8018583655357361,
+          "coverage": 0.23507775366306305
+        },
+        "composite": 0.512312039732933,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 18.290754795074463
+        }
+      },
+      "local_cascade": {
+        "text": "Reading A:\nI could not stop for Death, He kindly stopped for me.\n\nReading B:\nDeath kindly stopped for me, despite my inability to stop for him.\n\nBoth readings interpret this line as a metaphorical representation of a moment of grace or mercy, where Death stopped to listen or engage with the speaker in some manner. The first reading emphasizes the speaker's inability to stop for Death, suggesting a sense of urgency or distress. The second reading shifts the emphasis to the unexpected kindness of Death, emphasizing the speaker's gratitude for the interruption in their journey. Both readings use the line to explore themes of",
+        "axes": {
+          "aspect_count": 0.5,
+          "novelty": 0.8314958363771439,
+          "coverage": 0.20721806585788727
+        },
+        "composite": 0.5129046340783437,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 86.68957018852234,
+          "vimarsa_event": false,
+          "novelty": 0.8314958363771439,
+          "delta_F": 0.0,
+          "selected_idx": 2
+        }
+      }
+    },
+    "i06": {
+      "item": {
+        "id": "i06",
+        "surface": "April is the cruellest month, breeding lilacs out of the dead land",
+        "aspects": [
+          "spring's renewal as violence against winter's rest",
+          "memory's intrusion on dormancy"
+        ],
+        "retrieval_set": [
+          "April has 30 days",
+          "lilacs bloom in spring"
+        ]
+      },
+      "claude_haiku": {
+        "text": "**Reading A: Cruel renewal / The pain of awakening**\n\nIn this reading, April is cruel *because* it brings spring—the season of renewal, growth, and rebirth. The line captures the tension between natural cycles and human suffering: while the earth stirs with lilacs and new life, the speaker (or civilization, or consciousness) remains trapped in spiritual \"death land.\" The cruelty lies in being forced to witness regeneration when you're incapable of participating in it, when grief or despair still dominates. Spring's inevitable beauty becomes a torment precisely because it won't let you stay numb.\n\n**Reading B: Deceptive false hope / Beauty as mask**\n\nHere, April is cruel because its lilacs *lie*—they seduce us into believing in renewal and fertility when nothing is actually healed. The \"dead land\" is fundamental and unchanged; the lilacs are a seductive illusion that obscures the wasteland beneath. The cruelty is in April's false promise: it tricks us into hope, only to reveal that the waste persists. Beauty becomes complicit in deception, a veil that makes suffering worse by momentarily suggesting escape that isn't real.",
+        "axes": {
+          "aspect_count": 0.5,
+          "novelty": 0.600246250629425,
+          "coverage": 0.31887054443359375
+        },
+        "composite": 0.4730389316876729,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 13.26199722290039,
+          "cost_usd": 0.026911599999999997,
+          "duration_ms": 10819,
+          "stop_reason": "end_turn"
+        }
+      },
+      "local_bare": {
+        "text": "I am reading this line in a literary context. April is the start of spring. Lilacs are a type of flower that blooms at this time of year. Therefore, the line refers to the beauty and fragility of nature at this time of year.\n\nReading B:\nI am reading this line from a literary perspective. This is a metaphorical statement, comparing the cruelty of the month April to the cruelty of nature. The speaker describes the month as \"cruel\" and \"out of the dead land,\" implying that nature is unkind and indifferent to the well-being of its inhabitants during this",
+        "axes": {
+          "aspect_count": 0.5,
+          "novelty": 0.5447020828723907,
+          "coverage": 0.2626878023147583
+        },
+        "composite": 0.43579662839571637,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 17.998857021331787
+        }
+      },
+      "local_cascade": {
+        "text": "Reading A:\nApril is the cruellest month, breeding lilacs out of the dead land. The line describes the harsh and unforgiving nature of April, which is often associated with the death and decay of winter. The phrase \"breeding lilacs out of the dead land\" suggests that despite the bleakness of the season, there is still life and vitality present. The image of lilacs, a symbol of spring and renewal, contrasts with the overall tone of the line, creating a sense of hope and optimism amidst the bleakness of winter. Overall, the line is a powerful and ev",
+        "axes": {
+          "aspect_count": 0.5,
+          "novelty": 0.49532169103622437,
+          "coverage": 0.2770256996154785
+        },
+        "composite": 0.42411579688390094,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 84.59938788414001,
+          "vimarsa_event": false,
+          "novelty": 0.49532169103622437,
+          "delta_F": 0.0,
+          "selected_idx": 0
+        }
+      }
+    },
+    "i07": {
+      "item": {
+        "id": "i07",
+        "surface": "The river is a clock and a clock is a river",
+        "aspects": [
+          "time flowing as water",
+          "a clock face that ripples"
+        ],
+        "retrieval_set": [
+          "clocks tell time",
+          "rivers flow downhill"
+        ]
+      },
+      "claude_haiku": {
+        "text": "**Reading A: Temporal Flux**\nBoth river and clock are instruments of time's passage. The river's movement—water flowing downward, never returning to the same place—mirrors a clock's unidirectional march. Each moment measured, unrepeatable, flowing toward an inevitable end. Time is not static but actively moving through us, just as the river carries all things forward.\n\n**Reading B: Cyclical Return**\nBoth river and clock operate in loops: the river through evaporation, rainfall, and flow; the clock through its repeating hands and daily cycles. What appears linear is actually circular—water returns to the sky, seconds become hours become days. Time is not a line but a spiral, and both river and clock reveal that all things that depart must eventually circle back.",
+        "axes": {
+          "aspect_count": 1.0,
+          "novelty": 0.5181072354316711,
+          "coverage": 0.5308251976966858
+        },
+        "composite": 0.6829774777094523,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 10.56464695930481,
+          "cost_usd": 0.0200518,
+          "duration_ms": 7962,
+          "stop_reason": "end_turn"
+        }
+      },
+      "local_bare": {
+        "text": "The river is a clock\n\nReading B:\nA clock is a river\n\nBoth are grammatically correct and both read as a declarative sentence. Reading A is using the metaphor of the river as a clock, suggesting that a river can be likened to a clock in terms of its function as a timekeeper. Similarly, Reading B is using the metaphor of a clock as a river, suggesting that a clock is also a representation of water or a moving body of water.\n\nBoth readings are metaphorical and use the river as a general term to represent a body of water in general, not a specific",
+        "axes": {
+          "aspect_count": 1.0,
+          "novelty": 0.48335790634155273,
+          "coverage": 0.44254255294799805
+        },
+        "composite": 0.6419668197631836,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 17.21735978126526
+        }
       }
     }
   }
