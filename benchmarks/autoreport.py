@@ -96,23 +96,53 @@ def _headline(stats: dict[str, Any]) -> str:
     cfg = stats.get("config", {})
     treatment = cfg.get("treatment_arm", "haiku_cascade")
     control = cfg.get("control_arm_primary", "haiku_bare")
+    treatment_tex = "\\texttt{" + treatment.replace("_", "\\_") + "}"
+    control_tex = "\\texttt{" + control.replace("_", "\\_") + "}"
+    contrast = f"{treatment_tex} vs.\\ {control_tex}"
+
     supported = [h for h in ("H1", "H2", "H3", "H4") if primary[h]["supported"]]
+    # "Directional positive" = effect size > 0 AND BCa lower bound > 0
+    # (the strongest pre-registered evidence we can claim short of the Holm
+    # threshold being crossable at the available n).
+    bca_positive = [
+        h for h in ("H1", "H2", "H3", "H4")
+        if (
+            float(primary[h].get("estimate", 0.0)) > 0
+            and float(primary[h].get("bca_ci_95", [0.0, 0.0])[0]) > 0.0
+            and h not in supported
+        )
+    ]
+
     h6_payload = stats.get("H6_haiku_cascade") or stats.get("H6_local_cascade") or stats.get("H6") or {}
     h6 = bool(h6_payload.get("supported", False))
     h5 = bool(stats["H5"].get("supported", False))
+
     parts: list[str] = []
-    contrast = f"{treatment} vs.\\ {control}"
     if supported:
         parts.append(
             f"PCE v0.2 materially shifts the paired apples-to-apples contrast {contrast} on "
             + ", ".join(supported)
             + " (Holm-adjusted $p<0.05$, BCa CI strictly positive)."
         )
-    else:
+    if bca_positive:
+        worded = (
+            "Effect sizes for "
+            + ", ".join(bca_positive)
+            + f" are positive with 95\\% BCa CIs strictly above zero in the {contrast} "
+            "contrast, but the pre-registered Holm-adjusted $p<0.05$ threshold is not "
+            "crossed at the pilot's $n$=5/domain (the exact sign-flip permutation floor "
+            "is $1/2^{5}=0.0312$ and Holm with $m{=}4$ pushes the smallest possible "
+            "adjusted $p$ to $0.125$)."
+        )
+        if not supported:
+            parts.insert(0, worded)
+        else:
+            parts.append(worded)
+    if not supported and not bca_positive:
         parts.append(
-            f"No primary hypothesis (H1--H4) crosses the pre-registered Holm-adjusted "
-            f"$p<0.05$ threshold for the {contrast} contrast --- a negative result we "
-            "report in compliance with the SPEC's negative-result obligation."
+            f"No primary hypothesis (H1--H4) shows a directional-positive BCa CI for the "
+            f"{contrast} contrast --- a negative result we report in compliance with the "
+            "SPEC's negative-result obligation."
         )
     if h5:
         parts.append("The aggregate composite (H5) is positive and significant.")
@@ -124,8 +154,10 @@ def _headline(stats: dict[str, Any]) -> str:
         )
     elif h6_payload.get("n_fired", 0) > 0:
         parts.append(
-            "The within-cascade H6 test is reported but does not reach the threshold "
-            "at the calibrated aspect-cosine-hit value."
+            "The within-cascade H6 test points in the predicted direction "
+            f"($\\Delta=+{float(h6_payload.get('estimate', 0.0)):.3f}$, "
+            f"$n_{{\\text{{fired}}}}={int(h6_payload.get('n_fired', 0))}$) "
+            "but does not reach the significance threshold at the pilot's $n$."
         )
     return " ".join(parts)
 

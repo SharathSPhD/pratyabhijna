@@ -50,8 +50,10 @@ def test_stats_runs_and_produces_six_hypotheses(synth_results: Path, tmp_path: P
                     "holm_p", "power_apriori", "power_retrospective", "supported"):
             assert key in primary[h], f"{h} missing {key}"
     assert "H5" in data
-    assert "H6" in data
-    assert "sensitivity_vs_local_bare" in data
+    # v0.2 splits H6 by cascade arm; either reading must be present.
+    assert "H6_haiku_cascade" in data or "H6_local_cascade" in data or "H6" in data
+    # v0.2 named contrasts replace the v0.1 sensitivity_vs_local_bare key.
+    assert "local_ablation" in data or "substrate_baseline" in data or "sensitivity_vs_local_bare" in data
 
 
 def test_figures_produces_six_pngs(synth_results: Path, tmp_path: Path) -> None:
