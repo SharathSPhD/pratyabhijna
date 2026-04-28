@@ -61,3 +61,6 @@ wt-*/
 # Environment
 .env
 .envrc
+
+# Runtime audit logs (haiku call records, cost ledger, prove-gate, etc.)
+audit/

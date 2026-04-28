@@ -90,7 +90,13 @@ def _load_lm(model_id: str, dtype: str, device: str) -> tuple[PreTrainedTokenize
 
 
 class LocalLM:
-    """The cit-substrate. Holds the tokenizer + model + the embedder used to embed candidates."""
+    """The cit-substrate. Holds the tokenizer + model + the embedder used to embed candidates.
+
+    Implements `pce.substrate.lm_protocol.LMProtocol`; see ADR-004 for the
+    pluggable-substrate contract.
+    """
+
+    name = "qwen2-1.5b"
 
     def __init__(self, config: LMConfig | None = None, embedder: Embedder | None = None) -> None:
         cfg = config or LMConfig()
