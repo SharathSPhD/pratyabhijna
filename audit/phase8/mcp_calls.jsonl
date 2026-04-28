@@ -46,3 +46,4 @@
 {"ts": 1777398767.864914, "tool": "cit", "args": {"prompt": "Write one English sentence about rain:\n", "temperature": 1.0, "seed": 7}, "result": {"text": "Rain is a natural phenomenon, often resulting in the water cycle", "logp": -18.175300711244503, "n_tokens": 12, "sampler": {"tau": 1.0, "top_p": 0.95, "top_k": 50.0}}}
 {"ts": 1777398780.639095, "tool": "iccha", "args": {"prompt": "Compose a short poem.\n", "K": 3, "base_seed": 11}, "result": {"K": 3}}
 {"ts": 1777398797.940247, "tool": "cascade", "args": {"prompt": "Compose a short poem.\n", "K": 4}, "result": {"vimarsa_event": false, "novelty": 0.8164178729057312, "selected_idx": 0}}
+{"ts": 1777401774.713399, "tool": "vimarsa", "args": {"prompt": "Interpret the duck-rabbit figure"}, "result": {"event": true, "novelty": 0.5115566849708557, "diagnostics": {"novelty": 0.5115566849708557, "max_retrieval_cosine": 0.4884433150291443, "aspect_count": 2.0, "switching": 0.0, "ananda": 0.9}}}

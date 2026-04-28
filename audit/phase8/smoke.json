@@ -1,7 +1,44 @@
 {
-  "ok": true,
-  "pass": 15,
-  "fail": 0,
-  "skip_lm": false,
-  "expected_total": 15
+  "plugin_root": "/Users/sharath/Library/CloudStorage/OneDrive-Personal/wsl_projects/pratyabhijna/plugin",
+  "checks": {
+    "plugin.json": {
+      "ok": true,
+      "size": 762
+    },
+    "marketplace.json": {
+      "ok": true,
+      "size": 855
+    },
+    ".mcp.json": {
+      "ok": true,
+      "size": 329
+    },
+    "skills": {
+      "ok": true,
+      "expected": 5,
+      "actual": 5
+    },
+    "agents": {
+      "ok": true,
+      "expected": 5,
+      "actual": 5
+    },
+    "commands": {
+      "ok": true,
+      "expected": 5,
+      "actual": 5
+    },
+    "hooks": {
+      "ok": true,
+      "expected": 3,
+      "actual": 3
+    },
+    "tools": {
+      "ok": true,
+      "expected": 15,
+      "actual": 15
+    }
+  },
+  "issues": [],
+  "ok": true
 }
