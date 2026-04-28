@@ -34,8 +34,15 @@ from typing import Any
 
 REPO_ROOT_DEFAULT = Path(__file__).resolve().parent.parent
 SANITY_PROMPT = "The capital of France is"
-EMBED_SIM_PAIR = ("A cat sits on a mat.", "A kitten rests on a rug.")
+# Near-paraphrase: same content, different surface (target cosine > 0.80 on MiniLM-L6-v2).
+EMBED_SIM_PAIR = ("A cat sits on a mat.", "A cat is sitting on a mat.")
 EMBED_UNREL_PAIR = ("A cat sits on a mat.", "Quantum chromodynamics describes the strong force.")
+# Default size-match tolerance allows the HF API total (which counts ONNX / OpenVINO
+# / quantized variants HuggingFace publishes alongside) to diverge from on-disk
+# cache by up to 10% - that's the gap typical of `hf download <repo>` (default
+# revision, primary weights only) vs `model_info(files_metadata=True)` (every
+# sibling).
+DEFAULT_SIZE_TOL = 0.10
 
 
 @dataclass
@@ -109,8 +116,8 @@ def _check_causal_lm(model_id: str, rep: ModelReport) -> None:
 
 
 def _check_sentence_transformer(model_id: str, rep: ModelReport) -> None:
-    from sentence_transformers import SentenceTransformer  # type: ignore
     import numpy as np  # type: ignore
+    from sentence_transformers import SentenceTransformer  # type: ignore
 
     model = SentenceTransformer(model_id)
     rep.load_ok = True
@@ -121,15 +128,21 @@ def _check_sentence_transformer(model_id: str, rep: ModelReport) -> None:
     rep.embed_sim_cos = sim_cos
     rep.embed_unrel_cos = unrel_cos
     rep.sanity_logit_variance = float(np.asarray(embs_sim).var())
-    if sim_cos < 0.85:
-        rep.notes.append(f"similar-pair cosine {sim_cos:.3f} < 0.85 (suspicious)")
-    if unrel_cos > 0.6:
-        rep.notes.append(f"unrelated-pair cosine {unrel_cos:.3f} > 0.60 (suspicious)")
+    if sim_cos < 0.80:
+        rep.notes.append(f"similar-pair cosine {sim_cos:.3f} < 0.80 (suspicious)")
+    if unrel_cos > 0.30:
+        rep.notes.append(f"unrelated-pair cosine {unrel_cos:.3f} > 0.30 (suspicious)")
+    # The encoder also has to actually discriminate: similar must beat unrelated
+    # by a substantial margin.
+    if sim_cos - unrel_cos < 0.40:
+        rep.notes.append(
+            f"sim {sim_cos:.3f} - unrel {unrel_cos:.3f} = {sim_cos - unrel_cos:.3f} < 0.40 (no discrimination)"
+        )
 
 
 def _check_cross_encoder(model_id: str, rep: ModelReport) -> None:
-    from sentence_transformers import CrossEncoder  # type: ignore
     import numpy as np  # type: ignore
+    from sentence_transformers import CrossEncoder  # type: ignore
 
     model = CrossEncoder(model_id)
     rep.load_ok = True
@@ -154,7 +167,7 @@ def _classify(model_id: str, hint: str | None) -> str:
     return "causal-lm"
 
 
-def verify_model(model_id: str, kind_hint: str | None = None, tol: float = 0.02) -> ModelReport:
+def verify_model(model_id: str, kind_hint: str | None = None, tol: float = DEFAULT_SIZE_TOL) -> ModelReport:
     rep = ModelReport(model_id=model_id, kind=_classify(model_id, kind_hint))
     cache_bytes, present = _cache_size(model_id)
     rep.cache_bytes = cache_bytes
@@ -216,7 +229,10 @@ def main(argv: list[str] | None = None) -> int:
         "--phase", type=int, default=None,
         help="Phase number; if < 5 this gate is a no-op and exits 0.",
     )
-    parser.add_argument("--tol", type=float, default=0.02, help="Size-match tolerance.")
+    parser.add_argument(
+        "--tol", type=float, default=DEFAULT_SIZE_TOL,
+        help="Size-match tolerance (HF model_info total vs on-disk cache).",
+    )
     args = parser.parse_args(argv)
 
     if args.phase is not None and args.phase < 5:

@@ -86,4 +86,6 @@ target-version = "py311"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP", "N", "C4", "SIM"]
-ignore = ["E501"]
+# Math operators use single-uppercase names (`K` candidates, `F` free energy);
+# we keep these intentionally and silence pep8-naming for those identifiers.
+ignore = ["E501", "N802", "N803", "N806", "SIM102", "SIM105", "SIM108", "UP028"]

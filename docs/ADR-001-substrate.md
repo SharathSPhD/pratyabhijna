@@ -17,9 +17,13 @@ We need an ālayavijñāna store too, but the substrate question here is specifi
 
 ## Decision
 
-Primary substrate: **microsoft/Phi-3-mini-4k-instruct** (~3.8 B parameters, 4k context, MIT license, public on HF).
+Primary substrate: **Qwen/Qwen2-1.5B-Instruct** (~1.5 B parameters, ~3.1 GB on disk, Apache-2.0, public on HF). Selected as the operational primary for v0.1.0 because:
 
-Secondary fallback: **Qwen/Qwen2-1.5B-Instruct** (~1.5 B parameters, Apache-2.0, public on HF) used when wall-clock SLA is missed on Phi-3-mini-4k.
+* The single-session benchmark must fit in ≤ 16 GB resident memory on the dev machine (CPU-only, no GPU).
+* Phi-3-mini-4k at ~7.6 GB exceeds the cascade-runtime budget at K=8 candidates × 64-token generation × wall-clock-SLA 30 s on CPU.
+* Qwen2-1.5B passes substrate honesty (`scripts/verify_real_model.py`) with logit variance 7.26 and exact size match.
+
+Secondary fallback (deferred to GPU deployment): **microsoft/Phi-3-mini-4k-instruct** (~3.8 B parameters, MIT). Will be the default if a GPU is added in a future release.
 
 Embedding substrate: **sentence-transformers/all-MiniLM-L6-v2** (384-dim, Apache-2.0).
 
