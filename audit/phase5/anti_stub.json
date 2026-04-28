@@ -1,0 +1,38 @@
+{
+  "ok": false,
+  "files_scanned": 35,
+  "violations": [
+    {
+      "file": "src/pce/operators/cit.py",
+      "line": 0,
+      "kind": "operator_missing_test",
+      "detail": "no tests/operators/test_cit.py paired"
+    },
+    {
+      "file": "src/pce/operators/iccha.py",
+      "line": 0,
+      "kind": "operator_missing_test",
+      "detail": "no tests/operators/test_iccha.py paired"
+    },
+    {
+      "file": "src/pce/operators/kriya.py",
+      "line": 0,
+      "kind": "operator_missing_test",
+      "detail": "no tests/operators/test_kriya.py paired"
+    }
+  ],
+  "operators_seen": [
+    "ananda",
+    "apohana",
+    "cit",
+    "iccha",
+    "jnana",
+    "kriya",
+    "vimarsa"
+  ],
+  "operators_missing_tests": [
+    "cit",
+    "iccha",
+    "kriya"
+  ]
+}
