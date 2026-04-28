@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "pratyabhijna": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "${CLAUDE_PLUGIN_ROOT}/..",
+        "run",
+        "python",
+        "${CLAUDE_PLUGIN_ROOT}/mcp/server.py"
+      ],
+      "env": {
+        "PCE_LM_DEVICE": "cpu",
+        "PCE_LM_DTYPE": "float32"
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "pratyabhijna-creative-engine",
+  "description": "Pratyabhijna x Active Inference creative-cognition engine. 7-operator cit -> ananda -> iccha -> apohana -> jnana -> kriya -> vimarsa cascade with BMR insight detection, exposed as 15 MCP tools, 5 skills, 5 agents, 5 slash commands, and 3 lifecycle hooks.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Sharath Phaneendra",
+    "email": "sharath@users.noreply.github.com"
+  },
+  "homepage": "https://github.com/SharathSPhD/pratyabhijna",
+  "repository": "https://github.com/SharathSPhD/pratyabhijna",
+  "license": "MIT",
+  "keywords": [
+    "creative-cognition",
+    "active-inference",
+    "pratyabhijna",
+    "bayesian-model-reduction",
+    "vimarsa",
+    "poetry",
+    "research-tooling"
+  ]
+}

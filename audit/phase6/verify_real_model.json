@@ -1,0 +1,33 @@
+{
+  "ok": true,
+  "models": [
+    {
+      "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+      "kind": "sentence-transformer",
+      "cache_present": true,
+      "cache_bytes": 930896602,
+      "hf_bytes": 976948668,
+      "size_match": true,
+      "load_ok": true,
+      "sanity_logit_variance": 0.002604162320494652,
+      "embed_sim_cos": 0.9888964295387268,
+      "embed_unrel_cos": 6.650015711784363e-05,
+      "notes": [],
+      "ok": true
+    },
+    {
+      "model_id": "Qwen/Qwen2-1.5B-Instruct",
+      "kind": "causal-lm",
+      "cache_present": true,
+      "cache_bytes": 3098962460,
+      "hf_bytes": 3098962420,
+      "size_match": true,
+      "load_ok": true,
+      "sanity_logit_variance": 7.258357524871826,
+      "embed_sim_cos": null,
+      "embed_unrel_cos": null,
+      "notes": [],
+      "ok": true
+    }
+  ]
+}
