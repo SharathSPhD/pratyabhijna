@@ -69,6 +69,21 @@ The Hopfield-attractor *ālayavijñāna* (storehouse) supports SWS abstraction (
 
 Statistical protocol: paired permutation (sign-flip; exact for n ≤ 18, MC otherwise), Hedges' *g* with small-sample correction, BCa bootstrap 95% CI (10k resamples), Wilcoxon signed-rank (one-sided), Holm-Bonferroni across {H1..H4}, a-priori (g=0.5) + retrospective (observed g) power. Negative-result obligation: any rejected hypothesis is reported in the abstract.
 
+### Headline result (this run, n_paired = 38)
+
+The pre-registered design returned a **directional null**:
+
+| H | n | Δ (PCE − Haiku) | g | Holm p | supported |
+|---|---|---|---|---|---|
+| H1 (AUT) | 8 | −0.284 | −2.43 | 1.000 | no |
+| H2 (poetry_interp) | 10 | −0.161 | −1.12 | 1.000 | no |
+| H3 (poetry_gen) | 12 | −0.031 | −0.31 | 1.000 | no |
+| H4 (sci_creativity) | 8 | −0.053 | −1.63 | 1.000 | no |
+| H5 (z-blend) | 38 | 0.000 | 0.00 | — | no |
+| H6 (vimarśa fired vs not) | 0/30 | n/a | — | — | n/a |
+
+Notable: **vimarśa fired on 0/30 cascade trials** in this run, so H6 is undefined and the cascade reduces to a temperature-sampler at K=4. Substrate-matched sensitivity contrasts (cascade vs Local-Qwen) are all small (\|g\|≤0.4) and non-directional. The paper's §Limitations and §Discussion identify the two specific knobs (predicted-token-on-top criterion, BMR ΔF threshold) whose re-tuning is the obvious next experiment. All numbers above are auto-generated from `benchmarks/results/stats.json`.
+
 ## Reproducibility
 
 Every numerical claim in the paper / presentation traces back to JSON artefacts under `audit/` and `benchmarks/results/`. The driver writes a checkpoint after every call and the audit log records the model checksum, git SHA, seed, and wall-clock per call. `PCE_DEVICE` and `PCE_DTYPE` env vars override the device autodetection (CUDA → MPS → CPU).
