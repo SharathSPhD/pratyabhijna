@@ -290,7 +290,10 @@
 <section id="discussion" class="max-w-6xl mx-auto px-6 py-8">
   <h2 class="text-2xl serif font-semibold anchor">Discussion</h2>
   <p class="mt-3 max-w-3xl">
-    The pre-registered design forces us to resist post-hoc storytelling. Where the headline H1–H4 contrasts are directional, the cascade contributes structural diversity rather than fluency. Where they are not, this is registered as a negative result &mdash; the SPEC's negative-result obligation makes this a deliverable, not a failure mode. The within-PCE H6 test (vimarśa-event vs no-event) is the internal-validity contrast: if the recursive layer is causally responsible for any lift, fired trials should score higher.
+    The pre-registered design forces us to resist post-hoc storytelling. The empirical record of this run is a directional null: H1–H5 are not significant, all point estimates are negative against Haiku, and the substrate-matched sensitivity contrasts (cascade vs Local-Qwen) are small (|g|≤0.4) and non-directional. Most consequentially, <span class="iast">vimarśa</span> fired on 0/30 cascade trials, so H6 is undefined: the recursive layer was effectively dormant. The contribution of this paper is therefore not a SOTA claim but a fully pre-registered, fully reproducible measurement protocol coupling Pratyabhijñā operators to active inference primitives, plus a clearly-identified set of knobs (substrate scale, K, max_tokens, BMR ΔF threshold) whose re-tuning is the obvious next experiment.
+  </p>
+  <p class="mt-3 max-w-3xl text-sm opacity-80">
+    Read together with the architectural observation that the cascade <em>without</em> a firing <span class="iast">vimarśa</span> is geometrically close to a temperature-sampler at K=4, the null is informative: it falsifies the cascade-without-recursion hypothesis at this substrate, and isolates <span class="iast">vimarśa</span> firing rate as the single most consequential next intervention.
   </p>
 </section>
 

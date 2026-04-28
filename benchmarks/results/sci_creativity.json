@@ -1,0 +1,454 @@
+{
+  "domain": "sci_creativity",
+  "rows": {
+    "s01": {
+      "item": {
+        "id": "s01",
+        "question": "Why do mass extinctions sometimes accelerate evolutionary innovation?",
+        "framings": [
+          "niche-vacuum dynamics",
+          "regulatory-network release"
+        ]
+      },
+      "claude_haiku": {
+        "text": "Mass extinctions sometimes accelerate innovation because they eliminate not just individual competitors but entire **regulatory hierarchies and ecological hierarchies** that constrain phenotypic exploration. A surviving lineage under the old regime was locked into a narrow niche by active predation pressure, resource monopolization, or competitive exclusion by dominants—constraints that were *ecological*, not genetic. When those regulators vanish, the survivors inherit latent developmental variability that was previously silent (cryptic). \n\nA second framing: extinctions create a transient **decoupling of niche structure from phylogenetic availability**. Before the extinction, speciation and morphological innovation were mostly independent—new species formed through geographic isolation but remained morphologically conservative. After the extinction, the sudden availability of empty ecological space means that *speciation itself becomes the engine of morphological change*—each new species exploration of a new niche also explores new morphology, generating innovation-per-divergence rather than innovation-free branching.\n\nThe non-obvious part is that innovation isn't driven by *selection pressure for novelty*—it's driven by the *removal of suppression*, combined with the chaotic, non-optimized way survivors fill the void. This is closer to tapping a shaken bottle of soda than it is to pointed evolutionary problem-solving.",
+        "axes": {
+          "frame_coverage": 0.2441585212945938,
+          "novelty": 0.2960614562034607,
+          "specificity": 1.0
+        },
+        "composite": 0.5134066591660181,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 13.38767123222351,
+          "cost_usd": 0.021720549999999998,
+          "duration_ms": 11743,
+          "stop_reason": "end_turn"
+        }
+      },
+      "local_bare": {
+        "text": "The accelerating evolutionary innovation hypothesis suggests that sudden changes in predator abundance can cause a rapid increase in the evolutionary rate of a population due to sudden increases in genetic diversity. This can lead to the evolution of new traits that are better suited to the new environment, and therefore can increase the likelihood of survival and reproduction. The hypothesis also posits that the increased genetic diversity could lead to the accumulation of genetic mutations and genetic variation, which can contribute to the evolution of new species. Additionally, sudden changes in predator abundance can cause the evolution of new predator-prey interactions, which can also accelerate the evolutionary process by driving",
+        "axes": {
+          "frame_coverage": 0.13118013739585876,
+          "novelty": 0.3737484812736511,
+          "specificity": 1.0
+        },
+        "composite": 0.5016428728898367,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 20.92642378807068
+        }
+      },
+      "local_cascade": {
+        "text": "There is a complex interplay between environmental change, evolution, and human involvement. One non-obvious explanation is that mass extinction events can be catalytic, accelerating the rate at which evolution occurs. In this scenario, a series of mass extinctions might lead to a higher rate of speciation by creating more opportunities for natural selection to occur due to a drop in competition pressures. This could result in an increase in genetic variation and complexity, which could in turn lead to faster innovation through processes such as genetic drift and divergence of traits.\n\nAnother framing could be that mass extinctions may act as a clearinghouse",
+        "axes": {
+          "frame_coverage": 0.1500110626220703,
+          "novelty": 0.2587404251098633,
+          "specificity": 1.0
+        },
+        "composite": 0.46958382924397785,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 101.75771307945251,
+          "vimarsa_event": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "selected_idx": 3
+        }
+      }
+    },
+    "s02": {
+      "item": {
+        "id": "s02",
+        "question": "Why does ice float on water?",
+        "framings": [
+          "hydrogen-bond geometry",
+          "thermodynamic stability"
+        ]
+      },
+      "claude_haiku": {
+        "text": "Ice floats because water's hydrogen bond geometry **privileges ordering over density optimization**. When molecules lock into ice's crystalline structure, they arrange in a tetrahedral pattern that maximizes hydrogen bonding satisfaction—but this geometry demands more space per molecule than the liquid's chaotic, denser packing allows.\n\nFrom a **thermodynamic framing**: ice is the lower-free-energy phase at 0°C despite having higher volume. The entropy penalty of crystallization is more than compensated by the enthalpy gain of stable hydrogen bonds, so the system accepts a less-dense solid as the price of molecular order.\n\nA **kinetic framing** reveals why ice doesn't just rearrange: water molecules in the solid are trapped in positions by the hydrogen bond network—they can't relax downward the way atoms in most freezing substances do. The solid phase commits to a hydrogen-bond geometry first; volume is whatever that geometry requires, not a minimized quantity.\n\nThis anomaly exists because water's hydrogen bonding is **unusually directional and stiff** compared to van der Waals forces in most liquids. Nearly all other substances freeze denser precisely because their intermolecular forces don't enforce the kind of open, spacious crystalline cage that water's bonds insist upon.",
+        "axes": {
+          "frame_coverage": 0.20638488233089447,
+          "novelty": 0.37719833850860596,
+          "specificity": 1.0
+        },
+        "composite": 0.5278610736131668,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 12.363445043563843,
+          "cost_usd": 0.0215468,
+          "duration_ms": 9978,
+          "stop_reason": "end_turn"
+        }
+      },
+      "local_bare": {
+        "text": " The weight of the ice is balanced by the weight of the water displaced by the ice, so the ice floats.\n\n*\n\n*There is a buoyant force on the ice, equal to the mass of the displaced water (the density of water is greater than that of the ice)\n\n*Because the net force on the ice is zero (the buoyant force is balanced by the weight of the ice), the ice floats.\n\n*In the image on the right, the density of water is greater than that of the ice. Therefore, a greater volume of water will be displaced by the ice, and the",
+        "axes": {
+          "frame_coverage": 0.07634592056274414,
+          "novelty": 0.3458854556083679,
+          "specificity": 1.0
+        },
+        "composite": 0.47407712539037067,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 20.985931158065796
+        }
+      },
+      "local_cascade": {
+        "text": "  1. From a physics perspective, the buoyancy force is what causes ice to float on water. When an object is submerged in a fluid (like water), the fluid exerts a force on the object, called the buoyancy force. This force is equal to the weight of the fluid displaced by the object. Since ice is less dense than water, it displaces more fluid than it weighs, causing the buoyancy force to be greater than the weight of the ice, resulting in the ice floating on top of the water.\n  2. Another framing is that ice floats on water",
+        "axes": {
+          "frame_coverage": 0.050521764904260635,
+          "novelty": 0.2505451440811157,
+          "specificity": 1.0
+        },
+        "composite": 0.4336889696617921,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 95.65975713729858,
+          "vimarsa_event": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "selected_idx": 0
+        }
+      }
+    },
+    "s03": {
+      "item": {
+        "id": "s03",
+        "question": "Why are leaves green and not black?",
+        "framings": [
+          "photon-absorption efficiency",
+          "evolutionary path-dependence"
+        ]
+      },
+      "claude_haiku": {
+        "text": "Leaves are green because chlorophyll absorbs most strongly in the red and blue wavelengths—but here's the subtlety: they're *not* black because that would be catastrophic for heat management. A black leaf would absorb nearly all incident light, converting it to heat faster than the plant could dissipate it, especially in full sun. The reflected green light is actually doing thermodynamic work, preventing thermal stress while still capturing the photons most useful for driving the electron transport chain.\n\nFrom a quantum efficiency angle, there's an even stranger framing: green light is *harder* to use than red or blue because chlorophyll's electronic transitions align poorly with green photon energies. So reflecting green light is partly the plant saying \"that wavelength isn't worth the molecular machinery to capture.\" Yet some plants do capture it via accessory pigments like xanthophyll—a trade-off between capturing more total energy versus the cost of building those extra pigments.\n\nThe evolutionary framing adds a final twist: early photosynthesizers originated in water, where red and blue light penetrate deepest, so they optimized for those colors. By the time plants colonized land, where green light is abundant in our atmosphere, the pigmentation was locked in by deep biochemical constraints. What's green on land might have been an optimal-enough solution inherited from a different selective environment, now impossible to rewire without dismantling most of terrestrial photosynthesis.",
+        "axes": {
+          "frame_coverage": 0.190820574760437,
+          "novelty": 0.35416924953460693,
+          "specificity": 1.0
+        },
+        "composite": 0.514996608098348,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 13.368001937866211,
+          "cost_usd": 0.02175805,
+          "duration_ms": 10793,
+          "stop_reason": "end_turn"
+        }
+      },
+      "local_bare": {
+        "text": " 1)   The framer's explanation: Since chlorophyll reflects red and blue, and absorbs green, leaves have this color. \n 2)   The framer's explanation: Leaves are green for the same reason that leaves are green. If a green leaf had any pigment at all, it would reflect more green and absorb less, making it appear black. \n 3)   The physicist's explanation: Leaveshave chlorophyll, which is green. There is no known pigment that would make them black.\n 4)   The framer's explanation: Leaves are",
+        "axes": {
+          "frame_coverage": 0.07185175269842148,
+          "novelty": 0.24797147512435913,
+          "specificity": 0.975
+        },
+        "composite": 0.43160774260759355,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 20.442475080490112
+        }
+      },
+      "local_cascade": {
+        "text": "  1. A common explanation is that chlorophyll, a green pigment, is the primary reason leaves appear green. However, this explanation is not obvious as it relies on the assumption that chlorophyll is the only green pigment in plants and leaves are made up of only those cells.\n  2. Another possible explanation is that leaves are not black at all but rather a complex mixture of pigments. This idea is not as widely accepted as the chlorophyll explanation, but it is a more non-obvious explanation that acknowledges the complexity of leaves.\n  3. A more nuanced",
+        "axes": {
+          "frame_coverage": 0.06436923891305923,
+          "novelty": 0.21381700038909912,
+          "specificity": 1.0
+        },
+        "composite": 0.42606207976738614,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 97.91553616523743,
+          "vimarsa_event": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "selected_idx": 2
+        }
+      }
+    },
+    "s04": {
+      "item": {
+        "id": "s04",
+        "question": "Why does sleep exist if it makes us vulnerable?",
+        "framings": [
+          "synaptic homeostasis",
+          "memory consolidation",
+          "energy metabolism"
+        ]
+      },
+      "claude_haiku": {
+        "text": "Sleep's vulnerability isn't a bug—it's a **compression trade-off**. Wakefulness floods your brain with noisy sensory data that you can't fully integrate; memories solidify as tangled, overfitted patterns. Sleep consolidates these into abstract models by replaying and pruning spurious connections, trading momentary defenselessness for cognitive coherence. A brain that never sleeps doesn't stay sharper—it becomes increasingly incoherent, less able to predict threats because its internal model of the world degrades into noise.\n\nFrom a **metabolic** angle, sleep is a controlled shutdown to prevent cascading failure. Neurons accumulate synaptic damage, neuromodulators deplete, and waste products build up during waking. If you skip sleep long enough, your system doesn't just get tired—it begins failing in unpredictable, catastrophic ways (seizures, microsleeps, cognitive collapse). Sleep trades hours of vulnerability for the stability needed to *remain functional* for months. Constant wakefulness is slower-motion death by a thousand cuts.\n\nThe evolutionary puzzle dissolves once you ask: vulnerable *to what?* A prey animal's sleep window wasn't random—it was shaped to align with low-predation hours (dusk for diurnal herbivores, daytime for nocturnal carnivores). Sleep exists because consciousness itself is metabolically expensive; organisms that sleep during *their* safe hours survive longer than those burning energy to stay alert when there's nothing to see and no predator awake.",
+        "axes": {
+          "frame_coverage": 0.20619817078113556,
+          "novelty": 0.2825204133987427,
+          "specificity": 1.0
+        },
+        "composite": 0.4962395280599594,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 13.312049150466919,
+          "cost_usd": 0.02179555,
+          "duration_ms": 10992,
+          "stop_reason": "end_turn"
+        }
+      },
+      "local_bare": {
+        "text": "There's a debate between those that say sleep makes you vulnerable to attacks while those that say sleep prevents attacks from happening. \n\nSleep helps you fight off viruses, fungi, bacteria, and other pathogens that attack your body. \n\nSleep is beneficial to the immune system and it helps fight off bacteria, viruses, fungi and many other pathogens that can damage your body. The purpose of sleep is to get your immune system to start up and functioning properly. This makes you more resistant to attack, even those that come from your body. The body's natural immune system is strengthened during sleep. This means that when",
+        "axes": {
+          "frame_coverage": 0.08663582801818848,
+          "novelty": 0.28838688135147095,
+          "specificity": 1.0
+        },
+        "composite": 0.4583409031232198,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 20.953826665878296
+        }
+      },
+      "local_cascade": {
+        "text": "It's not just about avoiding getting injured; sleep provides crucial opportunities for our bodies and minds to repair and rejuvenate. During sleep, our cells undergo processes that are essential for health and longevity. Our brains also undergo active consolidation of information, learning new things, and reinforcing neural connections. Sleep helps to integrate sensory information from the day, create memories, and prepare the brain for the next day. Additionally, it is also considered the period of sleep during which the immune system can respond more effectively to potential infections. So, while it's true that some people may experience challenges when they're not getting enough",
+        "axes": {
+          "frame_coverage": 0.13394641876220703,
+          "novelty": 0.3358527421951294,
+          "specificity": 1.0
+        },
+        "composite": 0.4899330536524455,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 100.10786986351013,
+          "vimarsa_event": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "selected_idx": 3
+        }
+      }
+    },
+    "s05": {
+      "item": {
+        "id": "s05",
+        "question": "Why do galaxies have spiral arms?",
+        "framings": [
+          "density-wave theory",
+          "self-propagating star formation"
+        ]
+      },
+      "claude_haiku": {
+        "text": "Spiral arms aren't density waves locked in place—they're *transient* structures that dissolve and reform. Think of them as gravitational wakes: when stars moving faster than the arm pattern catch up, they pile density on the leading edge, amplifying the spiral, until shear eventually dissipates it. A second framing treats arms as *swing amplification zones*—the curved geometry itself converts radial velocity perturbations into tangential ones, boosting small asymmetries into visible spirals without requiring a fixed potential. Third, consider angular momentum: infalling gas hits the spiral pattern and transfers momentum, losing energy as it spirals inward, which actually feeds back into sustaining the arm structure (contrary to the idea that spirals should wind up and disappear). So spiral arms persist not because they're locked in a quasi-static potential, but because the galaxy's streaming motions, gravity, and gas dynamics co-evolve—they're the visible outcome of instability acting on a rotating disk, continuously regenerating themselves rather than frozen in place.",
+        "axes": {
+          "frame_coverage": 0.17557649314403534,
+          "novelty": 0.26916706562042236,
+          "specificity": 1.0
+        },
+        "composite": 0.4815811862548192,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 12.430304050445557,
+          "cost_usd": 0.020893049999999996,
+          "duration_ms": 9630,
+          "stop_reason": "end_turn"
+        }
+      },
+      "local_bare": {
+        "text": "I'm wondering if the answer is, \"Because that's what a spiral galaxy looks like.\" I think this is the textbook one-liner but I want to know why it is.\n\nIn a more general sense, the spiral arms are not an inevitable feature of a galaxy. We can also have a \"spiral galaxy with no spiral arms\". The reason spiral arms are in most spiral galaxies is because they are caused by a certain kind of mass distribution. If we were to have no central mass and a bunch of smaller masses spread out in random directions, then we would not get the kind of pattern",
+        "axes": {
+          "frame_coverage": 0.13450762629508972,
+          "novelty": 0.24365508556365967,
+          "specificity": 1.0
+        },
+        "composite": 0.45938757061958313,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 20.64801573753357
+        }
+      },
+      "local_cascade": {
+        "text": "  1. A non-obvious explanation could be that spiral arms are not actually arms of the galaxy, but rather the result of gravitational interactions between the galaxy and its own dark matter halo. The dark matter halo is thought to be a collection of particles that are not visible to telescopes, but are believed to exist in the universe. These particles are thought to be responsible for the gravitational forces that shape the galaxy's shape and structure.\n  2. Another non-obvious explanation could be that spiral arms are actually the result of the galaxy's own rotation. The galaxy's rotation is thought to",
+        "axes": {
+          "frame_coverage": 0.0954667255282402,
+          "novelty": 0.21076130867004395,
+          "specificity": 1.0
+        },
+        "composite": 0.4354093447327614,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 96.23204827308655,
+          "vimarsa_event": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "selected_idx": 0
+        }
+      }
+    },
+    "s06": {
+      "item": {
+        "id": "s06",
+        "question": "Why is mathematics unreasonably effective in physics?",
+        "framings": [
+          "selection bias on what we call 'physics'",
+          "an unexplained ontological alignment"
+        ]
+      },
+      "claude_haiku": {
+        "text": "The question isn't *why* mathematics describes reality—it's why we keep discovering phenomena that yield to mathematical description in the first place. One framing: **observer selection bias**. We systematically study the regime of physical phenomena where mathematical description becomes tractable (large scales, controlled conditions, symmetric systems) while treating exceptions as \"noise\" or \"breakdown of theory.\" We don't write down the failed mathematical models for the parts that resist compression.\n\nA second framing: **mathematics as recursive decomposition**. The universe exhibits hierarchical structure—quarks → nucleons → atoms → molecules → bulk matter. Each level has local symmetries and conservation laws that permit factorization. Physics works not because the universe is \"fundamentally mathematical,\" but because it's modular enough that we can describe component interactions without tracking the full microscopic state. This is contingent on physical causation being *local* and *compositional*, which appears empirically true but isn't logically necessary.\n\nA third angle: **information density in abstract structure**. Mathematics is maximally efficient at capturing relational and symmetry structure—the very thing physical laws encode. A conservation law *is* a statement about invariance under transformations; a field equation *is* a statement about local constraints on rate of change. Mathematics doesn't merely describe these; it *is* the language of constraints and transformations. The mystery inverts: it's surprising we can describe physics *without* losing information by translating to English or diagrams.\n\nThe deepest insight may be that \"unreasonable effectiveness\" conflates three separate observations: (1) *some* math works *sometimes*, (2) we've built selection mechanisms to study only those cases, and (3) each success produces the illusion of necessity rather than contingency.",
+        "axes": {
+          "frame_coverage": 0.24544574320316315,
+          "novelty": 0.4356452226638794,
+          "specificity": 1.0
+        },
+        "composite": 0.5603636552890142,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 16.401350259780884,
+          "cost_usd": 0.02211055,
+          "duration_ms": 14161,
+          "stop_reason": "end_turn"
+        }
+      },
+      "local_bare": {
+        "text": "I was reading a recent physics paper [1] that compared the mathematics used to describe physics to the mathematics that humans are able to compute. The conclusion was that humans are far superior at computing physical phenomena and that in fact the mathematics used to describe physics is not particularly good because it is too simple. This seems like a very counterintuitive statement and I was wondering what is the basis for this surprising conclusion. I am aware of the difference between mathematics as a general tool and mathematics used to describe physical phenomena, but I was wondering what could make these two formulations so different.\n[1] J.",
+        "axes": {
+          "frame_coverage": 0.2564639449119568,
+          "novelty": 0.37795209884643555,
+          "specificity": 1.0
+        },
+        "composite": 0.5448053479194641,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 21.87918210029602
+        }
+      },
+      "local_cascade": {
+        "text": "Mathematics is an indispensable tool for describing and solving problems in physics. By combining algebra, geometry, calculus, and other mathematical techniques, physicists are able to formulate and understand the fundamental laws of nature. This effectiveness is due to the innate structure of mathematics and its ability to simplify and model complex systems. However, this effectiveness does not necessarily mean that mathematics is without limits or that it always provides the best solution to a given problem. For example, the use of mathematics in physics often requires compromises and simplifications, and sometimes leads to insights that go beyond the realm of mathematical proof. This underscores the importance",
+        "axes": {
+          "frame_coverage": 0.25814318656921387,
+          "novelty": 0.33155393600463867,
+          "specificity": 1.0
+        },
+        "composite": 0.5298990408579508,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 100.83154892921448,
+          "vimarsa_event": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "selected_idx": 2
+        }
+      }
+    },
+    "s07": {
+      "item": {
+        "id": "s07",
+        "question": "Why do crows recognize individual human faces?",
+        "framings": [
+          "co-evolutionary pressure with humans",
+          "general object-individuation cognition"
+        ]
+      },
+      "claude_haiku": {
+        "text": "Crows recognize individual humans not primarily through facial-feature learning, but as **social targets in an anti-predator calculus**. A crow that remembers a specific person who's fed them or posed no threat faces lower costs for approaching food or nesting sites controlled by that human; one that remembers a person who trapped them can avoid that high-cost interaction. This framing flips the usual \"intelligence + memory\" story into one about **resource-allocation under risk**: face recognition is really a targeted reputation system for economic and survival decisions, not a byproduct of general intelligence.\n\nAn alternative framing emerges from recent work on corvid *metacognition*: crows appear to track not just \"which human did X,\" but **whether I can rely on my own judgment about this human**. This suggests they don't just file faces away—they construct epistemic confidence levels tied to individuals. A crow that's learned something true from one person but been fooled by another is doing something closer to source evaluation than simple memory. They're treating humans as information sources with individual reliability scores, which parallels how humans navigate social trust.\n\nHuman-centric intuition assumes recognition requires the crow to care about human faces per se. The deeper inference is that crows are optimizing against a landscape of human variation—some humans punish, some reward, some are unpredictable—and faces are just the input index for that learned landscape, not the point of interest.",
+        "axes": {
+          "frame_coverage": 0.32406389713287354,
+          "novelty": 0.2881755232810974,
+          "specificity": 1.0
+        },
+        "composite": 0.5374131401379904,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 15.038359642028809,
+          "cost_usd": 0.0217693,
+          "duration_ms": 12453,
+          "stop_reason": "end_turn"
+        }
+      },
+      "local_bare": {
+        "text": "It's unclear how crows recognize human faces, since they are relatively simple birds with very limited visual acuity. Crows are primates and have a brain that is similar to primates. They can recognize human faces because they have evolved complex social relationships that involve recognizing individual people. Crows may have developed some form of facial recognition through their social interactions with humans. Additionally, the social interactions that they have with humans are likely to be more frequent and consistent than with other species of birds, which could potentially improve their ability to recognize individual human faces. These interactions may have led to the development of",
+        "axes": {
+          "frame_coverage": 0.21955490112304688,
+          "novelty": 0.13671404123306274,
+          "specificity": 1.0
+        },
+        "composite": 0.45208964745203656,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 21.261072874069214
+        }
+      },
+      "local_cascade": {
+        "text": "Crows are remarkable for their intelligence and problem-solving skills, but they fail to recognize human faces. This phenomenon is a result of how crows and humans perceive faces. In humans, we are often exposed to repeated patterns and cues in faces that help us recognize them. In crows, by contrast, these patterns are not present, leading to the perception of faces as being static, uniform, and less diverse. This makes it difficult for crows to distinguish individual human faces and understand the complex emotions and behaviors behind them.\n\nA non-obvious explanation framing could be:\n\nThe differences in pattern recognition between",
+        "axes": {
+          "frame_coverage": 0.2927488088607788,
+          "novelty": 0.14975476264953613,
+          "specificity": 1.0
+        },
+        "composite": 0.48083452383677167,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 98.7355546951294,
+          "vimarsa_event": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "selected_idx": 3
+        }
+      }
+    },
+    "s08": {
+      "item": {
+        "id": "s08",
+        "question": "Why does the placebo effect work even when patients know it's a placebo?",
+        "framings": [
+          "expectation conditioning",
+          "ritual and meaning-making"
+        ]
+      },
+      "claude_haiku": {
+        "text": "Open-label placebos work through at least two mechanisms independent of conscious belief. **From a conditioning angle**: the body's procedural memory system doesn't care what your conscious mind knows—taking a pill has been paired with relief thousands of times in your life, so the ritual alone triggers genuine autonomic and immunological cascades (altered cortisol, changed heart rate) regardless of what the label says. **From a narrative/meaning angle**: receiving any treatment, even a transparent one, shifts your interpretive lens; instead of \"I'm stuck with this symptom,\" you now have \"something is being done,\" which reduces the catastrophizing and anxiety-driven amplification that often *is* the symptom (especially for pain, nausea, and fatigue).\n\nA third wrinkle is that your brain's prediction systems operate at multiple timescales. You can consciously *know* it's a placebo while your interoceptive predictions (what your brain expects your body to be doing) shift downward toward recovery—and your body chases those predictions through top-down neural signals, independent of your explicit beliefs. The gap between what you *believe* and what your *body predicts* is where the effect lives.",
+        "axes": {
+          "frame_coverage": 0.09846577048301697,
+          "novelty": 0.44370096921920776,
+          "specificity": 1.0
+        },
+        "composite": 0.5140555799007416,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 14.283432960510254,
+          "cost_usd": 0.0220143,
+          "duration_ms": 11837,
+          "stop_reason": "end_turn"
+        }
+      },
+      "local_bare": {
+        "text": "The \"paradox\" of the placebo effect, sometimes called the \"paradox of the zero probability effect,\" explains the ability of a treatment that is not effective to work at all when a patient knows it's a placebo. In this paradox, even though patients know they are receiving a placebo, the placebo effect still occurs, leading to improvements in symptoms. This paradox explains that, despite knowing the treatment is a placebo, patients perceive a change in their symptoms, leading to an effect. It also explains that people may feel a sense of improvement, despite there being no scientific evidence or reason to believe the",
+        "axes": {
+          "frame_coverage": 0.13443993031978607,
+          "novelty": 0.2938423156738281,
+          "specificity": 1.0
+        },
+        "composite": 0.4760940819978714,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 20.76472020149231
+        }
+      },
+      "local_cascade": {
+        "text": "The placebo effect works even when patients know it's a placebo because of the psychological mechanisms at play. The brain's reward system plays a crucial role in the placebo effect. When a person receives a treatment, their brain anticipates a positive outcome, which can lead to a physiological response, including a reduction in pain or inflammation. However, this anticipation is only possible because the person believes in the treatment's effectiveness.\n\nAdditionally, the placebo effect can also be influenced by social factors. Patients who believe in the placebo effect are more likely to experience its effects, as their belief in the treatment's efficacy can boost",
+        "axes": {
+          "frame_coverage": 0.1439329981803894,
+          "novelty": 0.22536659240722656,
+          "specificity": 1.0
+        },
+        "composite": 0.45643319686253864,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 92.11224102973938,
+          "vimarsa_event": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "selected_idx": 2
+        }
+      }
+    }
+  }
+}

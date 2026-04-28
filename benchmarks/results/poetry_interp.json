@@ -402,6 +402,203 @@
           "ok": true,
           "elapsed_s": 17.21735978126526
         }
+      },
+      "local_cascade": {
+        "text": "Reading A. 1: The river is a clock, but the clock is a river.\n\nIn this interpretation, the river is given the role of a timekeeper, suggesting that the river's flow represents the passage of time. This can be seen through the imagery of the clock, which is often associated with time. Therefore, when it is said that \"the river is a clock,\" it means that the river's flow is the equivalent of time itself, marking the passage of time.\n\nReading A. 2: The clock is a river, but the river is a clock.\n\nHowever, in",
+        "axes": {
+          "aspect_count": 1.0,
+          "novelty": 0.4191035032272339,
+          "coverage": 0.46932005882263184
+        },
+        "composite": 0.6294745206832886,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 81.37341022491455,
+          "vimarsa_event": false,
+          "novelty": 0.4191035032272339,
+          "delta_F": 0.0,
+          "selected_idx": 3
+        }
+      }
+    },
+    "i08": {
+      "item": {
+        "id": "i08",
+        "surface": "We are such stuff as dreams are made on, and our little life is rounded with a sleep",
+        "aspects": [
+          "life as a dream interrupted by waking",
+          "a meta-theatrical farewell from Prospero"
+        ],
+        "retrieval_set": [
+          "sleep is essential for health",
+          "dreams happen during REM"
+        ]
+      },
+      "claude_haiku": {
+        "text": "**Reading A: The Existential Dream**\n\nThis reading treats the line as a meditation on the insubstantial nature of human existence itself. We are composed of dreams—our consciousness, our sense of self, our desires—and life itself is a brief interval between two unconscious states. Sleep bookends our existence, suggesting that what we call waking life is merely another kind of dreaming. The line dissolves the boundary between illusion and reality, implying that both are equally ephemeral and that there's no privileged \"real\" state underlying our experience.\n\n**Reading B: The Theatrical Illusion**\n\nThis reading emphasizes how the line comments on The Tempest's own artificiality and the act of theater itself. We—the characters and audience alike—are \"made\" of dreams in the sense that we're constructions of art and imagination. Our \"little life\" refers to the play's duration or to the human drama we witness on stage, \"rounded\" by the sleep of darkness that contains each performance. Prospero is reminding us that we've been watching an illusion, that the boundaries between stage and reality are permeable, and that all human drama is, fundamentally, performance.",
+        "axes": {
+          "aspect_count": 1.0,
+          "novelty": 0.625838577747345,
+          "coverage": 0.4420963525772095
+        },
+        "composite": 0.6893116434415182,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 16.86533784866333,
+          "cost_usd": 0.0282604,
+          "duration_ms": 14877,
+          "stop_reason": "end_turn"
+        }
+      },
+      "local_bare": {
+        "text": "The speaker dreams of something so beautiful and magical, they could never quite recreate it with their own life. Reading B:\nThis line suggests that life can be filled with the most beautiful things, like dreams, and then one day we'll rest. Then, we'll look back on our lives and remember the beauty we had, but we'll also feel satisfied because we've had such a dream-filled life.You have a limited number of dollars to spend on a vacation. You can either go on a short cruise or go on a longer road trip. Write a paragraph comparing the benefits and drawbacks of",
+        "axes": {
+          "aspect_count": 0.5,
+          "novelty": 0.6860886216163635,
+          "coverage": 0.3123517334461212
+        },
+        "composite": 0.49948011835416156,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 17.595728874206543
+        }
+      },
+      "local_cascade": {
+        "text": "Reading A: Dreams are made of stuff that is often compared to our own lives. This line is a metaphor that suggests that our dreams and aspirations are the building blocks of our own lives. It implies that our thoughts and imagination are what create the world we live in.\n\nReading B: Our little life is rounded with a sleep. This line suggests that our lives are not perfect and that they are incomplete without the completion of our dreams. It implies that our dreams are what give meaning to our lives and make them complete. The use of the word \"little\" in this context emphasizes the importance of dreams",
+        "axes": {
+          "aspect_count": 0.5,
+          "novelty": 0.5808535218238831,
+          "coverage": 0.25516632199287415
+        },
+        "composite": 0.44533994793891907,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 85.37504625320435,
+          "vimarsa_event": false,
+          "novelty": 0.5808535218238831,
+          "delta_F": 0.0,
+          "selected_idx": 1
+        }
+      }
+    },
+    "i09": {
+      "item": {
+        "id": "i09",
+        "surface": "And miles to go before I sleep, and miles to go before I sleep",
+        "aspects": [
+          "the literal weariness of a long journey",
+          "the obligations that keep one alive"
+        ],
+        "retrieval_set": [
+          "sleep regulates mood",
+          "highway distances are measured in miles"
+        ]
+      },
+      "claude_haiku": {
+        "text": "**Reading A: The Traveler's Obligation**\n\nThe speaker acknowledges miles of actual distance remaining on a winter journey—a commitment to reach a distant destination before nightfall. The repetition emphasizes the weariness of continued travel and the simple, literal burden of miles yet to cover before finding rest.\n\n**Reading B: Life's Unfinished Work**\n\n\"Sleep\" becomes a metaphor for death or final rest, and \"miles\" represent unfulfilled responsibilities, promises, and life's work. The haunting repetition transforms the line into a meditation on mortality and duty—the weight of all we must accomplish before life ends, suggesting we are always too busy, too committed, too far from peace.",
+        "axes": {
+          "aspect_count": 1.0,
+          "novelty": 0.6268476843833923,
+          "coverage": 0.45217400789260864
+        },
+        "composite": 0.693007230758667,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 9.048941135406494,
+          "cost_usd": 0.0198243,
+          "duration_ms": 6826,
+          "stop_reason": "end_turn"
+        }
+      },
+      "local_bare": {
+        "text": "This reading is the first part of the famous nursery rhyme \"Twinkle Twinkle Little Star\". The poem is written in the form of a limerick, which means it has a regular rhyme scheme (AAABBBCCDD) and two parts. In the first two lines, the speaker reflects on the time remaining before sleep. They mention \"miles\" which represents the distance they have to travel before they fall asleep, suggesting that they have a long way to go. The poem's structure helps to establish the speaker's emotional state and the theme of the poem - exhaustion and restlessness.\n\n",
+        "axes": {
+          "aspect_count": 0.0,
+          "novelty": 0.7468883693218231,
+          "coverage": 0.2023927867412567
+        },
+        "composite": 0.3164270520210266,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 17.124908924102783
+        }
+      },
+      "local_cascade": {
+        "text": "Reading A: And miles to go before I sleep, and miles to go before I sleep. The first reading is a line from the song \"And miles to go before I sleep\" by the Beatles. It is a part of the chorus of the song, and it is repeated throughout the song. The second reading is also a line from the song, this time it is the second line of the chorus. Both readings are referring to the idea of traveling a long distance and the idea of not being able to stop or slow down. The song is a popular song from the 1960",
+        "axes": {
+          "aspect_count": 0.0,
+          "novelty": 0.5681807994842529,
+          "coverage": 0.2014458328485489
+        },
+        "composite": 0.2565422107776006,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 81.83165001869202,
+          "vimarsa_event": false,
+          "novelty": 0.5681807994842529,
+          "delta_F": 0.0,
+          "selected_idx": 0
+        }
+      }
+    },
+    "i10": {
+      "item": {
+        "id": "i10",
+        "surface": "Shall I compare thee to a summer's day? Thou art more lovely and more temperate",
+        "aspects": [
+          "the beloved exceeds nature in beauty",
+          "an ironic acknowledgment that no comparison works"
+        ],
+        "retrieval_set": [
+          "summer days are warm",
+          "weather varies"
+        ]
+      },
+      "claude_haiku": {
+        "text": "**Reading A: The Courtly Compliment**\n\nIn this reading, the speaker employs hyperbole to elevate the beloved through comparison. The \"summer's day\" is a conventional symbol of beauty and life, yet the speaker insists the beloved exceeds it—not just in loveliness, but in \"temperance\" (moderation, constancy). This frames love as rational appreciation rather than mere infatuation. The comparison sets up a rhetorical game where no natural reference point can match the person being praised.\n\n**Reading B: The Philosophical Paradox**\n\nHere, the speaker actually *refuses* the comparison even as he articulates it. By claiming the beloved is \"more lovely and more temperate\" than summer itself, he reveals that no seasonal analogy—however perfect—can capture human beauty. The line hints at the hidden purpose of the sonnet: to claim that only poetry and the beloved's procreation can preserve beauty against time's decay. Summer is temporary and cyclical, but the beloved's essence (preserved through verse or offspring) transcends nature's mutability.",
+        "axes": {
+          "aspect_count": 1.0,
+          "novelty": 0.533547043800354,
+          "coverage": 0.4974563717842102
+        },
+        "composite": 0.6770011385281881,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 11.277073860168457,
+          "cost_usd": 0.020635550000000003,
+          "duration_ms": 8563,
+          "stop_reason": "end_turn"
+        }
+      },
+      "local_bare": {
+        "text": "In the line, Shakespeare is comparing the beauty of his beloved to the radiant and serene summer day. He uses a metaphor to emphasize how special his lover is and how they are different from each other in every aspect.\n\nReading B:\nThe second reading points out that this line is a metaphor, not a direct comparison. It implies that the beauty of his beloved is unmatched and more beautiful than anything else that could be compared to it. The line is often used in poetry to express a sense of awe or admiration for someone or something. It's used in literature and poetry to express romantic or philosophical ideas.",
+        "axes": {
+          "aspect_count": 0.5,
+          "novelty": 0.7293954491615295,
+          "coverage": 0.41689956188201904
+        },
+        "composite": 0.5487650036811829,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 17.87517809867859
+        }
+      },
+      "local_cascade": {
+        "text": "Reading A:\n\nHere is an interpretation of the first reading: \"Shall I compare thee to a summer's day? Thou art more lovely and more temperate.\" This line is a metaphorical comparison being made between a person and a summer's day. It suggests that the person is as delightful and comfortable as the warmth and beauty of a summer day, and that their beauty is unmatched. This line highlights the person's natural charm, beauty, and the warmth of their disposition.\n\nReading B:\n\nHere is an interpretation of the second reading: \"Shall I compare thee to a summer's day?",
+        "axes": {
+          "aspect_count": 1.0,
+          "novelty": 0.45433247089385986,
+          "coverage": 0.3736075758934021
+        },
+        "composite": 0.6093133489290873,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 88.35906410217285,
+          "vimarsa_event": false,
+          "novelty": 0.45433247089385986,
+          "delta_F": 0.0,
+          "selected_idx": 2
+        }
       }
     }
   }
