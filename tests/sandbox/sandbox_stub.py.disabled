@@ -1,0 +1,14 @@
+"""Sandbox file used by the Phase 0 self-test.
+
+This file is renamed to `.py` only when running the sandbox suite; it is
+kept disabled by default so the gates pass cleanly. The Phase 0 done-criteria
+exercise (a) the anti-stub gate against this file and (b) restoration to a
+green state once it is removed.
+"""
+
+def stub_function():
+    pass
+
+
+def todo_function():
+    pass

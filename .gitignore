@@ -1,0 +1,63 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+*.egg-info/
+*.egg
+
+# uv
+.uv-cache/
+
+# Tooling
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+coverage.xml
+.tox/
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# OS / cache
+Thumbs.db
+
+# Project artifacts (kept out of remote unless explicitly committed)
+data/corpus/raw/
+data/hf_cache/
+.ralph-loop.local.md
+.claude/ralph-loop.local.md
+
+# Latex build
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.toc
+paper/*.bbl
+paper/*.blg
+paper/*.synctex.gz
+paper/_minted-*
+
+# Worktrees (not committed; created on demand)
+wt-*/
+.worktrees/
+
+# Environment
+.env
+.envrc
