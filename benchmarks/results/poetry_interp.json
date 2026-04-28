@@ -1,0 +1,35 @@
+{
+  "domain": "poetry_interp",
+  "rows": {
+    "i01": {
+      "item": {
+        "id": "i01",
+        "surface": "I have measured out my life with coffee spoons",
+        "aspects": [
+          "a life of small repetitive rituals",
+          "a quiet despair at unlived possibilities"
+        ],
+        "retrieval_set": [
+          "coffee in the morning is essential",
+          "I drink coffee every day"
+        ]
+      },
+      "claude_haiku": {
+        "text": "**Reading A: The Tyranny of the Mundane**\n\nThe speaker measures his entire existence—his life's arc from youth to old age—in incremental, trivial units: coffee spoons. This reading emphasizes how quotidian routine has colonized meaning itself. Rather than life being marked by grand achievements or romantic passion, it's been carved into small domestic moments, repetitive and interchangeable. The precision of \"measured out\" suggests a kind of inventory-taking, but the units are laughably inadequate to the task, revealing a life diminished to comfort and habit rather than consequence.\n\n**Reading A: The Paralysis of Endless Analysis**\n\nHere, the spoon represents not just routine but the obsessive cataloging of time itself—a defense against living. The speaker quantifies each moment, converting experience into countable units, which paradoxically freezes him in inaction. Like using a tiny spoon to move an ocean, the method is perfectly suited to avoid the real task. This reading emphasizes Prufrock's paralysis: his life hasn't happened *to* him but has been methodically measured *away* by his own hesitation and introspection.",
+        "axes": {
+          "aspect_count": 0.5,
+          "novelty": 0.7351814210414886,
+          "coverage": 0.31703802943229675
+        },
+        "composite": 0.5174064834912618,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 10.995491981506348,
+          "cost_usd": 0.0204818,
+          "duration_ms": 8780,
+          "stop_reason": "end_turn"
+        }
+      }
+    }
+  }
+}
