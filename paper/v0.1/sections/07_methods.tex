@@ -1,0 +1,32 @@
+\section{Methods}\label{sec:methods}
+
+\subsection{Arms}
+
+For each item across the four task domains we run three arms:
+\begin{enumerate}[leftmargin=1.4em]
+\item \textbf{\texttt{claude\_haiku} (no PCE).} Claude Haiku 4.5 invoked through the Claude Code CLI in \texttt{-p} non-interactive mode with \texttt{--output-format json}. This is the headline control: it represents what Claude Code produces without the plugin.
+\item \textbf{\texttt{local\_bare} (no PCE).} The same local LLM that PCE wraps (Qwen2-1.5B-Instruct) invoked with $\textsc{Cit}$ alone (single sample, no cascade). This is the sensitivity control: it isolates the PCE contribution from the LLM substrate's contribution.
+\item \textbf{\texttt{local\_cascade} (with PCE).} The same local LLM through the full cascade with $K=4$ candidates and \texttt{max\_tokens}$=120$.
+\end{enumerate}
+All three arms are scored by the \emph{identical} domain-specific scoring function (\S\ref{sec:benchmarks}) so the contrasts are between observable outputs, not between subjective evaluation policies.
+
+\subsection{Pre-registered hypotheses}
+
+Six hypotheses are pre-registered in \texttt{docs/SPEC.md} \S2 \emph{before} any benchmark is run:
+
+\begin{itemize}[leftmargin=1.4em]
+\item \textbf{H1.} PCE achieves higher CreativityPrism aggregate (Quality$\cdot$Novelty$\cdot$Diversity blend) than no-PCE Haiku on the AUT slice.
+\item \textbf{H2.} PCE achieves higher aspect-multiplicity score than no-PCE Haiku on the Wittgenstein aspect-shift poetry-interpretation probe.
+\item \textbf{H3.} PCE achieves higher POEMetric advanced-creative-abilities composite than no-PCE Haiku on the poetry-generation slice.
+\item \textbf{H4.} PCE achieves higher creative-novelty score than no-PCE Haiku on the BBH-style scientific-creativity probes.
+\item \textbf{H5.} The aggregate composite $C_0 = \tfrac{1}{2} z(H_1) + \tfrac{1}{6} z(H_2) + \tfrac{1}{6} z(H_3) + \tfrac{1}{6} z(H_4)$ (z-scaled per domain) is positive.
+\item \textbf{H6.} Within-PCE, the trials in which the \iast{vimar\'sa} layer fired score higher (on the H2/H3/H4 dimensions) than the trials in which it did not. This is the internal-validity test that the recursive layer is the \emph{causal} contributor to any observed lift.
+\end{itemize}
+
+\subsection{Statistical protocol}
+
+For each hypothesis we report: paired mean $\Delta$, Hedges' $g$ with small-sample correction, paired permutation $p$ (one-sided directional, exact for $n\le 18$, Monte-Carlo with $50000$ permutations otherwise), Wilcoxon signed-rank $p$ (one-sided), 95\% BCa bootstrap CI of the paired mean ($10000$ resamples), Holm--Bonferroni adjusted $p$ across $\{H_1, H_2, H_3, H_4\}$, and a-priori (assumed $g=0.5$) and retrospective (observed $g$) statistical power. A hypothesis is \emph{supported} iff its Holm-adjusted $p<0.05$ \emph{and} its BCa CI is strictly positive. H5 is reported as a single test on the pooled z-blend; H6 is an independent-samples Mann--Whitney $U$ on within-PCE event-vs-no-event trials. Sensitivity analyses repeat every primary contrast against the \texttt{local\_bare} arm.
+
+\subsection{Reproducibility}
+
+All seeds are recorded; bootstrap and permutation RNGs are seeded by \texttt{--seed} (default 4242). The benchmark driver (\texttt{benchmarks/driver.py}) writes a checkpoint after every call so a re-run resumes exactly from the failure point. The audit log under \texttt{audit/phase9/} contains the driver invocation, the model checksum, the git SHA, and the wall-clock per call.

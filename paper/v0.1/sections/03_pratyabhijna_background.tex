@@ -1,0 +1,23 @@
+\section{Pratyabhij\~n\=a Architecture}\label{sec:pratyabhijna_background}
+
+We restate the Pratyabhij\~n\=a primitives we operationalise. We take the canonical \emph{\=I\'svarapratyabhij\~n\=ak\=arik\=a} formulation and preserve its phenomenological commitments while assigning each primitive an explicit computational role. Diacritics follow IAST.
+
+\subsection{The luminous ground}
+
+\iast{Prak\=a\'sa} (``self-luminosity'') is the undifferentiated ground of cognition. It is not a state of the network; it is the property that any state at all is presentable. In our engine \iast{prak\=a\'sa} is the LLM's native distribution at temperature $\tau$, which is what makes any candidate token visible at all.
+
+\subsection{The five \iast{\'sakti}s and the recursive layer}
+
+\begin{itemize}[leftmargin=1.2em]
+\item \textbf{\iast{Cit}} (consciousness/illumination): the bare presentation of token-distributions; the substrate on which the cascade operates.
+\item \textbf{\iast{\=Ananda}} (bliss/coherence): an aesthetic-coherence reward that scores a candidate against constraint-fit, novelty, and form-fidelity.
+\item \textbf{\iast{Icch\=a}} (will/directional intent): the pre-cognitive directional sampling that produces $K$ candidate continuations under a constraint vector.
+\item \textbf{\iast{J\~n\=ana}} (knowing/discrimination): posterior selection across candidates via Bayesian Model Reduction; the formal seat of \iast{apohana}.
+\item \textbf{\iast{Apohana-\'sakti}} (the contrastive exclusion): not a separate stage but a \emph{geometric} operator on the embedding space that scores ``how much is this not-the-other-readings''. We instantiate it as a contrastive embedding contrast.
+\item \textbf{\iast{Kriy\=a}} (action/enaction): surface enaction --- the moment a candidate is materialised as concrete tokens.
+\item \textbf{\iast{Vimar\'sa}} (self-reflexivity): the recursive layer. After \iast{kriy\=a} produces a surface, the engine asks: \emph{does the surface witness aspect-multiplicity}? If not (or if the free-energy gradient is still negative), we re-enter the cascade with the surface itself as additional context, expanding the constraint manifold.
+\end{itemize}
+
+\subsection{The \iast{\=alayavij\~n\=ana} (storehouse)}
+
+The Yog\=ac\=ara--\=alayavij\~n\=ana ``storehouse consciousness'' provides associative memory for the cascade. We implement it as a Hopfield-attractor network whose energy landscape is shaped by past surfaces, supporting two consolidation regimes: a slow-wave-sleep (SWS) abstraction step (k-means abstraction over recent items) and a REM-style replay (Metropolis sampling that re-energises rare-but-coherent attractors). Both cycles are explicit and inspectable.
