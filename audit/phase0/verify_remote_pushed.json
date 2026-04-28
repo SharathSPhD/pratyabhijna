@@ -1,11 +1,11 @@
 {
   "branch": "main",
-  "local_head": "53af0f7e3048236a4ddd9248ff3028f512c8789c",
-  "remote_head": "53af0f7e3048236a4ddd9248ff3028f512c8789c",
+  "local_head": "d807117a06d981c0be57d6fc8fe5b493cf0c1144",
+  "remote_head": "d807117a06d981c0be57d6fc8fe5b493cf0c1144",
   "branch_exists_remote": true,
   "dirty_files": [
-    "M scripts/ralph_promise_gate.sh",
-    "?? audit/"
+    "M audit/phase0/verify_remote_pushed.json",
+    " M audit/phase0/verify_remote_pushed.stderr"
   ],
   "ok": false,
   "failures": [

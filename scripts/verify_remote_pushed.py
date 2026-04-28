@@ -50,6 +50,10 @@ def main(argv: list[str] | None = None) -> int:
         "--allow-dirty", action="store_true",
         help="Skip the clean-tree check (use only for in-flight diagnostic runs).",
     )
+    parser.add_argument(
+        "--strict-dirty", action="store_true",
+        help="Include audit/ and .ralph-loop entries in the dirty-tree check.",
+    )
     args = parser.parse_args(argv)
 
     repo = Path(args.repo).resolve()
@@ -76,7 +80,21 @@ def main(argv: list[str] | None = None) -> int:
     if rc != 0:
         print(json.dumps({"ok": False, "error": "git status failed"}))
         return 2
-    dirty_lines = [ln for ln in status_out.splitlines() if ln.strip()]
+    # The gate itself writes to audit/<phase>/, so audit/ entries are
+    # excluded from the dirty-tree check by default. Use --strict-dirty to
+    # include them. Other automation logs in similar paths are also excluded.
+    EXCLUDED_PREFIXES = ("audit/", ".ralph-loop")
+    raw_lines = [ln for ln in status_out.splitlines() if ln.strip()]
+    if args.strict_dirty:
+        dirty_lines = raw_lines
+    else:
+        dirty_lines = []
+        for ln in raw_lines:
+            # Lines look like "?? audit/" or " M scripts/foo.py" - the path
+            # starts at column 3.
+            path_part = ln[3:] if len(ln) >= 3 else ln
+            if not any(path_part.startswith(pref) for pref in EXCLUDED_PREFIXES):
+                dirty_lines.append(ln)
 
     rc, gh_out, gh_err = _run(
         ["gh", "api", f"repos/{args.remote}/branches/{branch}"], repo,
