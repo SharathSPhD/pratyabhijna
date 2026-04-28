@@ -5,9 +5,16 @@ Implements the categorical-Dirichlet BMR equations from
 in log-space using `scipy.special.gammaln`.
 
 The full prior is constructed from a uniform Dirichlet `Dir(1,1,...,1)` of
-length K updated with pseudo-counts `α_k = 1 + λ_a · ananda_k + λ_p · max(0, apoha_k)`
-to give the *full-model posterior* `a_post`. K reduced priors are then
+length K updated with pseudo-counts
+`α_k = 1 + λ_a · ananda_k + λ_p · shift(apoha_k)` (v0.2: ADR-002), where
+`shift` is a min-max normalization into `[0, 1]`. K reduced priors are then
 enumerated; ΔF for each is computed via the log-Beta form.
+
+v0.2 change: the v0.1 `np.clip(apoha, 0., None)` discarded negative apoha
+evidence (P1-4 in the adversarial review). The min-max shift in `apohana`
+preserves the relative ordering of must-avoid penalties so candidates close
+to the avoid set lose posterior mass instead of tying with neutral
+candidates.
 """
 from __future__ import annotations
 
@@ -16,6 +23,8 @@ from typing import Literal
 import numpy as np
 import numpy.typing as npt
 from scipy.special import gammaln
+
+from pce.operators.apohana import _shift_apoha
 
 EPS = 1e-7
 ReductionTarget = Literal["halve", "single", "custom"]
@@ -101,9 +110,10 @@ def jnana(
         raise ValueError(
             f"jnana: score shapes must be ({K},), got apoha={apoha_scores.shape} ananda={ananda_scores.shape}"
         )
-    apoha = apoha_scores.astype(np.float64)
+    apoha = apoha_scores.astype(np.float32)
     anan = ananda_scores.astype(np.float64)
-    pseudo = 1.0 + float(lambda_a) * anan + float(lambda_p) * np.clip(apoha, 0.0, None)
+    apoha_shift = _shift_apoha(apoha).astype(np.float64)
+    pseudo = 1.0 + float(lambda_a) * anan + float(lambda_p) * apoha_shift
 
     full_prior = np.ones((K,), dtype=np.float64)
     a_post = full_prior + pseudo - 1.0  # i.e. = pseudo

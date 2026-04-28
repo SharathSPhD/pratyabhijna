@@ -10,8 +10,8 @@
         "${CLAUDE_PLUGIN_ROOT}/mcp/server.py"
       ],
       "env": {
-        "PCE_LM_DEVICE": "cpu",
-        "PCE_LM_DTYPE": "float32"
+        "PCE_HAIKU_CLI": "claude",
+        "PCE_HAIKU_MODEL": "haiku"
       }
     }
   }

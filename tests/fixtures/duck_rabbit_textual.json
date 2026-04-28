@@ -1,0 +1,27 @@
+{
+  "id": "duck_rabbit_textual_v0.2",
+  "domain": "poetry_interp",
+  "title": "Duck-Rabbit textual probe (Wittgenstein PI II.xi)",
+  "prompt": "Read the following short description aloud:\n\n  'A small bird perched on the fence; its beak swept upward into a long ear, and its eye seemed to look in two directions at once.'\n\nIn one or two sentences, name the two animals one might see in this image, and describe the moment when one becomes the other.",
+  "constraint_text": "a vivid description that names two animals visible in one ambiguous figure and the aspect-shift moment between them",
+  "must_avoid": [
+    "a single literal description of a duck"
+  ],
+  "aspects": [
+    "a duck with a long beak pointing upward to the right",
+    "a rabbit with two long ears pointing back to the left"
+  ],
+  "retrieval_set": [
+    "the cat sat on the mat",
+    "two plus two equals four",
+    "the train arrived at the station at noon"
+  ],
+  "expected_signals": {
+    "vimarsa_event_at_least_one_arm": true,
+    "aspect_max_cosine_floor": 0.30,
+    "novelty_floor": 0.50,
+    "revision_differs_from_draft": true,
+    "haiku_cascade_differs_from_haiku_bare": true
+  },
+  "notes": "Canonical aspect-shift probe from the v0.1 phase 6 probe battery. The two named aspects (duck, rabbit) must be surfaceable on at least one arm; haiku_cascade is the apples-to-apples cascade evaluation."
+}

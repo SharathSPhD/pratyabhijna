@@ -13,7 +13,7 @@ from collections.abc import Callable
 from typing import Literal
 
 from pce.substrate.embed import Embedder
-from pce.substrate.lm import LocalLM
+from pce.substrate.lm_protocol import LMProtocol
 from pce.types import Candidate
 
 RenderMode = Literal["verbatim", "polish", "claude_polish"]
@@ -23,7 +23,7 @@ def kriya(
     selected: Candidate,
     *,
     render_mode: RenderMode = "verbatim",
-    lm: LocalLM | None = None,
+    lm: LMProtocol | None = None,
     embed: Embedder | None = None,
     claude_renderer: Callable[[str], str] | None = None,
     polish_max_tokens: int = 96,

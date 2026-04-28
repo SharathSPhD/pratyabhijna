@@ -1,4 +1,4 @@
-.PHONY: help install test lint type smoke bench stats figures autoreport paper present clean all
+.PHONY: help install test lint type smoke bench stats figures autoreport paper present clean all benchmark.pilot stats.pilot
 
 help:
 	@echo "Pratyabhijna Creative Engine — Make targets"
@@ -39,6 +39,18 @@ bench:
 
 stats:
 	uv run python benchmarks/stats.py
+
+benchmark.pilot:
+	uv run python benchmarks/driver.py --pilot \
+	    --K 3 --max-tokens 150 \
+	    --cost-cap-usd 18.0 \
+	    --out-dir benchmarks/results_v2
+
+stats.pilot:
+	uv run python benchmarks/stats.py \
+	    --results-dir benchmarks/results_v2 \
+	    --out benchmarks/results_v2/stats.json \
+	    --treatment haiku_cascade --control haiku_bare
 
 figures:
 	uv run python benchmarks/figures.py

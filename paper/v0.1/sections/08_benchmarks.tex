@@ -1,0 +1,20 @@
+\section{Benchmarks}\label{sec:benchmarks}
+
+\subsection{Items}
+
+We use four task domains, items listed in Appendix~\ref{app:benchmark_items}:
+
+\begin{itemize}[leftmargin=1.4em]
+\item \textbf{poetry\_gen} ($n_{\text{12}}$ items): paired (form, topic, must-avoid) targets across haiku, tanka, sonnet, free verse and a small ghazal slice. POEMetric six-axis scoring~\citep{Ye2025POEMetric}: creativity, lexical diversity, idiosyncrasy, emotional resonance, literary devices, imagery.
+\item \textbf{poetry\_interp} ($n_{\text{10}}$ items): a stratified Wittgenstein aspect-shift slice. Each item is a single line of poetry with two pre-registered candidate readings; the model must produce both and the scorer measures aspect-coverage (cosine to each aspect target), aspect-multiplicity (count of aspects $\geq$ 0.40 cosine), novelty (1$-$ retrieval-set similarity).
+\item \textbf{aut} ($n_{\text{8}}$ items): the alternative-uses-task component of CreativityPrism~\citep{CreativityPrism2025}. The composite is creativity (cosine novelty against the standard use), lexical-diversity, and feasibility-style heuristics.
+\item \textbf{sci\_creativity} ($n_{\text{8}}$ items): scientific-creativity items drawn from BIG-Bench Hard / MacGyverBench style probes~\citep{Suzgun2022BBH,Tian2024MacGyverBench}; each carries 2--3 ``framings'' (analogical, mechanistic, mathematical) the model is asked to produce. The composite weights non-textbook novelty, framing-coverage, and depth-via-length.
+\end{itemize}
+
+\subsection{Scoring}
+
+All four scoring functions live in \texttt{benchmarks/scoring.py} and are deterministic: they use \texttt{sentence-transformers/all-MiniLM-L6-v2} (the same embedder PCE uses internally) for cosine-based novelty and aspect-coverage, plus light token-level statistics (lexical diversity, length, presence of imagery cues). We deliberately avoid LLM-as-judge so the contrasts are between observable outputs and not between an evaluator's preference distribution.
+
+\subsection{Why this design is sufficient for the headline test}
+
+The pre-registered claim is that PCE materially raises creative-cognition outputs over no-PCE Haiku on the four domains. The three-arm contrast tests two distinct things at once: (a) does PCE on a much smaller local model close any of the gap to Haiku (\texttt{local\_cascade} vs \texttt{claude\_haiku}); (b) does PCE add something on top of the same local model (\texttt{local\_cascade} vs \texttt{local\_bare}). The latter contrast is the \emph{internal validity} of the PCE design and is the contrast on which the H6 within-PCE test depends.
