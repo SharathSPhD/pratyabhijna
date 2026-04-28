@@ -89,4 +89,4 @@ target-version = "py311"
 select = ["E", "F", "I", "B", "UP", "N", "C4", "SIM"]
 # Math operators use single-uppercase names (`K` candidates, `F` free energy);
 # we keep these intentionally and silence pep8-naming for those identifiers.
-ignore = ["E501", "N802", "N803", "N806", "SIM102", "SIM105", "SIM108", "UP028"]
+ignore = ["E501", "N802", "N803", "N806", "N815", "SIM102", "SIM105", "SIM108", "UP028"]

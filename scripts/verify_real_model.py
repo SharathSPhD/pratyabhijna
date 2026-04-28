@@ -64,7 +64,7 @@ class ModelReport:
 def _huggingface_size(model_id: str) -> int:
     """Sum of file sizes from the HF API for the main revision."""
     try:
-        from huggingface_hub import HfApi  # type: ignore
+        from huggingface_hub import HfApi
     except Exception as e:  # pragma: no cover - dependency must be present at runtime
         raise RuntimeError(f"huggingface_hub import failed: {e}") from e
     api = HfApi()
@@ -78,7 +78,7 @@ def _huggingface_size(model_id: str) -> int:
 
 def _cache_size(model_id: str) -> tuple[int, bool]:
     """Walk the HF hub cache and sum the on-disk size for `model_id`."""
-    from huggingface_hub import constants  # type: ignore
+    from huggingface_hub import constants
     cache = Path(constants.HF_HUB_CACHE)
     safe = "models--" + model_id.replace("/", "--")
     target = cache / safe
@@ -95,12 +95,12 @@ def _cache_size(model_id: str) -> tuple[int, bool]:
 
 
 def _check_causal_lm(model_id: str, rep: ModelReport) -> None:
-    import torch  # type: ignore
-    from transformers import AutoModelForCausalLM, AutoTokenizer  # type: ignore
+    import torch
+    from transformers import AutoModelForCausalLM, AutoTokenizer
 
     tok = AutoTokenizer.from_pretrained(model_id, trust_remote_code=False)
     model = AutoModelForCausalLM.from_pretrained(model_id, torch_dtype=torch.float32)
-    model.eval()
+    model.eval()  # type: ignore[no-untyped-call]
     inputs = tok(SANITY_PROMPT, return_tensors="pt")
     with torch.no_grad():
         out = model(**inputs)
@@ -116,8 +116,8 @@ def _check_causal_lm(model_id: str, rep: ModelReport) -> None:
 
 
 def _check_sentence_transformer(model_id: str, rep: ModelReport) -> None:
-    import numpy as np  # type: ignore
-    from sentence_transformers import SentenceTransformer  # type: ignore
+    import numpy as np
+    from sentence_transformers import SentenceTransformer
 
     model = SentenceTransformer(model_id)
     rep.load_ok = True
@@ -141,8 +141,8 @@ def _check_sentence_transformer(model_id: str, rep: ModelReport) -> None:
 
 
 def _check_cross_encoder(model_id: str, rep: ModelReport) -> None:
-    import numpy as np  # type: ignore
-    from sentence_transformers import CrossEncoder  # type: ignore
+    import numpy as np
+    from sentence_transformers import CrossEncoder
 
     model = CrossEncoder(model_id)
     rep.load_ok = True

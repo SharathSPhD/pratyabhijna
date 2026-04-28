@@ -25,12 +25,12 @@ for p in (str(SRC), str(PLUGIN_MCP)):
     if p not in sys.path:
         sys.path.insert(0, p)
 
-import server  # type: ignore[import-not-found]  # noqa: E402
+import server  # noqa: E402
 
 LM_TOUCHING = {"cit", "iccha", "cascade"}
 
 
-PROBES: list[dict] = [
+PROBES: list[dict[str, object]] = [
     # Pure-numpy / embedding-only tools first.
     {
         "name": "report",
@@ -149,7 +149,7 @@ PROBES: list[dict] = [
 ]
 
 
-async def _call_one(name: str, args: dict) -> tuple[bool, dict]:
+async def _call_one(name: str, args: dict[str, object]) -> tuple[bool, dict[str, object]]:
     t0 = time.time()
     try:
         result = await server.mcp._tool_manager.call_tool(name, args, convert_result=False)
@@ -175,13 +175,17 @@ async def _run(skip_lm: bool, out_jsonl: Path, out_json: Path) -> int:
     fail_count = 0
     with out_jsonl.open("w", encoding="utf-8") as f:
         for probe in PROBES:
-            name = probe["name"]
+            name = str(probe["name"])
+            args = probe["args"] if isinstance(probe.get("args"), dict) else {}
+            assert isinstance(args, dict)
             if skip_lm and name in LM_TOUCHING:
                 continue
             print(f"[smoke] -> {name}", flush=True)
-            ok, payload = await _call_one(name, probe["args"])
-            print(f"  {'PASS' if ok else 'FAIL'}  ({payload['elapsed_s']:.2f}s)", flush=True)
-            f.write(json.dumps({"tool": name, "args": probe["args"], **payload}, ensure_ascii=False) + "\n")
+            ok, payload = await _call_one(name, args)
+            elapsed_val = payload.get('elapsed_s', 0.0)
+            elapsed = float(elapsed_val) if isinstance(elapsed_val, (int, float)) else 0.0
+            print(f"  {'PASS' if ok else 'FAIL'}  ({elapsed:.2f}s)", flush=True)
+            f.write(json.dumps({"tool": name, "args": args, **payload}, ensure_ascii=False) + "\n")
             if ok:
                 pass_count += 1
             else:

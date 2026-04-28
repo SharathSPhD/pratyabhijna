@@ -54,7 +54,7 @@ def _count_tools_in_server() -> int:
     server_dir = str(PLUGIN_ROOT / "mcp")
     if server_dir not in sys.path:
         sys.path.insert(0, server_dir)
-    import server as plugin_server  # type: ignore[import-not-found]
+    import server as plugin_server
     tools = plugin_server.mcp._tool_manager.list_tools() if hasattr(plugin_server.mcp, "_tool_manager") else []
     return len(tools)
 
@@ -64,9 +64,10 @@ def main() -> int:
     parser.add_argument("--out", type=Path, default=REPO_ROOT / "audit" / "phase8" / "smoke.json")
     args = parser.parse_args()
 
+    checks: dict[str, dict[str, object]] = {}
     report: dict[str, object] = {
         "plugin_root": str(PLUGIN_ROOT),
-        "checks": {},
+        "checks": checks,
         "issues": [],
     }
     issues: list[str] = []
@@ -82,14 +83,14 @@ def main() -> int:
     ):
         try:
             data = json.loads(p.read_text(encoding="utf-8"))
-            report["checks"][label] = {"ok": True, "size": p.stat().st_size}
+            checks[label] = {"ok": True, "size": p.stat().st_size}
             if label == "plugin.json" and data.get("name") != "pratyabhijna-creative-engine":
                 issues.append(f"{label}: name != pratyabhijna-creative-engine")
         except FileNotFoundError:
-            report["checks"][label] = {"ok": False, "error": "missing"}
+            checks[label] = {"ok": False, "error": "missing"}
             issues.append(f"{label}: missing")
         except json.JSONDecodeError as e:
-            report["checks"][label] = {"ok": False, "error": f"json: {e}"}
+            checks[label] = {"ok": False, "error": f"json: {e}"}
             issues.append(f"{label}: json parse error")
 
     skill_dirs = sorted([d for d in (PLUGIN_ROOT / "skills").iterdir() if d.is_dir()]) if (PLUGIN_ROOT / "skills").exists() else []
@@ -108,7 +109,7 @@ def main() -> int:
         if kind == "tools":
             continue
         actual = counts.get(kind, -1)
-        report["checks"][kind] = {"ok": actual == expected, "expected": expected, "actual": actual}
+        checks[kind] = {"ok": actual == expected, "expected": expected, "actual": actual}
         if actual != expected:
             issues.append(f"{kind}: expected {expected}, got {actual}")
 
@@ -120,11 +121,11 @@ def main() -> int:
 
     try:
         n_tools = _count_tools_in_server()
-        report["checks"]["tools"] = {"ok": n_tools == EXPECTED["tools"], "expected": EXPECTED["tools"], "actual": n_tools}
+        checks["tools"] = {"ok": n_tools == EXPECTED["tools"], "expected": EXPECTED["tools"], "actual": n_tools}
         if n_tools != EXPECTED["tools"]:
             issues.append(f"tools: expected {EXPECTED['tools']}, got {n_tools}")
     except Exception as e:
-        report["checks"]["tools"] = {"ok": False, "error": str(e)}
+        checks["tools"] = {"ok": False, "error": str(e)}
         issues.append(f"tools: import failed: {e}")
 
     report["issues"] = issues

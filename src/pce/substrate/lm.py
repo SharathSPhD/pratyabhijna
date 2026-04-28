@@ -50,9 +50,11 @@ def _autodetect_device() -> str:
 
 
 def _autodetect_dtype(device: str) -> str:
-    forced = __import__("os").environ.get("PCE_DTYPE", "").strip().lower()
+    import os
+
+    forced = os.environ.get("PCE_DTYPE", "").strip().lower()
     if forced:
-        return forced
+        return str(forced)
     # On MPS, fp16 is meaningfully faster and numerically fine for inference.
     if device == "mps":
         return "float16"

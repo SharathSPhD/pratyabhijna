@@ -25,7 +25,6 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 import numpy as np  # noqa: E402
-
 from mcp.server.fastmcp import FastMCP  # noqa: E402
 
 from pce.cascade import run_cascade  # noqa: E402
@@ -168,7 +167,7 @@ def apohana(
         Candidate(
             seed=i,
             sampler={"tau": 1.0},
-            tokens=tuple(),
+            tokens=(),
             text=t,
             logp=0.0,
             embedding=embed.encode(t),
@@ -196,7 +195,7 @@ def ananda(
     cand = Candidate(
         seed=0,
         sampler={"tau": 1.0},
-        tokens=tuple(),
+        tokens=(),
         text=candidate_text,
         logp=0.0,
         embedding=embed.encode(candidate_text),
@@ -256,7 +255,7 @@ def kriya(
     cand = Candidate(
         seed=0,
         sampler={"tau": 1.0},
-        tokens=tuple(),
+        tokens=(),
         text=selected_text,
         logp=0.0,
         embedding=embed.encode(selected_text),
