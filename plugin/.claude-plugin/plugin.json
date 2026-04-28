@@ -1,7 +1,7 @@
 {
   "name": "pratyabhijna-creative-engine",
-  "description": "Pratyabhijna x Active Inference creative-cognition engine. 7-operator cit -> ananda -> iccha -> apohana -> jnana -> kriya -> vimarsa cascade with BMR insight detection, exposed as 15 MCP tools, 5 skills, 5 agents, 5 slash commands, and 3 lifecycle hooks.",
-  "version": "0.1.0",
+  "description": "Pratyabhijna x Active Inference creative-cognition engine v0.2. Adds Haiku as a first-class generative substrate (apples-to-apples ablation with Claude Haiku), a causal two-pass-always vimarsa revision loop, signed apohana, prompt/sampler parity with bare baseline, and four benchmark arms (local_bare, local_cascade, haiku_bare, haiku_cascade). Ships 17 MCP tools (15 v0.1 + arm-switchable pce_cascade + haiku_bare), 5 skills, 5 agents, 5 slash commands, and 3 lifecycle hooks.",
+  "version": "0.2.0",
   "author": {
     "name": "Sharath Phaneendra",
     "email": "sharath@users.noreply.github.com"

@@ -49,6 +49,28 @@ def test_apohana_with_must_avoid_punishes_overlap(embed: Embedder) -> None:
     assert with_avoid[0] < no_avoid[0]
 
 
+def test_apohana_normalize_clamps_to_unit_interval() -> None:
+    """ADR-002 normalize=True min-max-shifts apoha into [0, 1]."""
+    from pce.operators.apohana import _shift_apoha
+
+    raw = np.array([-2.0, 0.0, 1.0, 0.5], dtype=np.float32)
+    shifted = _shift_apoha(raw)
+    assert float(shifted.min()) == 0.0
+    assert float(shifted.max()) == 1.0
+    # idempotent on already-shifted input
+    twice = _shift_apoha(shifted)
+    assert np.allclose(shifted, twice)
+
+
+def test_apohana_normalize_constant_returns_half() -> None:
+    """All-equal apoha collapses to 0.5 so pseudo-counts stay symmetric."""
+    from pce.operators.apohana import _shift_apoha
+
+    raw = np.array([0.3, 0.3, 0.3], dtype=np.float32)
+    shifted = _shift_apoha(raw)
+    assert np.allclose(shifted, 0.5)
+
+
 def test_apohana_empty_returns_empty() -> None:
     q = np.zeros(8, dtype=np.float32)
     q[0] = 1.0

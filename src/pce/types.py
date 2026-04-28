@@ -65,7 +65,15 @@ class Candidate:
 
 @dataclass(frozen=True)
 class CascadeState:
-    """The full state of one cascade run; the audit-of-record."""
+    """The full state of one cascade run; the audit-of-record.
+
+    v0.2 (ADR-003): the cascade is two-pass-always, so ``surface`` carries
+    the *revision* output by default and the additional ``surface_draft`` /
+    ``surface_revision`` fields preserve both passes for the H8.v2
+    revision-vs-draft contribution test. When ``bypass_vimarsa=True`` is
+    passed to ``run_cascade`` the cascade collapses to a single pass and
+    ``surface == surface_draft`` with ``surface_revision is None``.
+    """
 
     prompt: str
     constraint: Constraint
@@ -77,6 +85,10 @@ class CascadeState:
     vimarsa_event: bool
     vimarsa_novelty: float
     aspects: tuple[str, ...]
+    surface_draft: str | None = None
+    surface_revision: str | None = None
+    vimarsa_event_draft: bool = False
+    vimarsa_brief: str | None = None
     audit: dict[str, Any] = field(default_factory=dict)
 
     def to_audit(self) -> dict[str, Any]:
@@ -91,8 +103,12 @@ class CascadeState:
                 self.candidates.index(self.selected) if self.selected is not None else -1
             ),
             "surface": self.surface,
+            "surface_draft": self.surface_draft,
+            "surface_revision": self.surface_revision,
             "vimarsa_event": self.vimarsa_event,
+            "vimarsa_event_draft": self.vimarsa_event_draft,
             "vimarsa_novelty": float(self.vimarsa_novelty),
+            "vimarsa_brief": self.vimarsa_brief,
             "aspects": list(self.aspects),
             "audit": dict(self.audit),
         }

@@ -1,7 +1,7 @@
 [project]
 name = "pratyabhijna-creative-engine"
-version = "0.1.0"
-description = "Pratyabhijna x Active Inference creative-cognition plugin (PCE) - Claude Code plugin operationalizing the 5-shakti cascade with a recursive vimarsa self-reflexivity layer."
+version = "0.2.0"
+description = "Pratyabhijna x Active Inference creative-cognition plugin (PCE) v0.2 - Haiku-substrate cascade with causal two-pass vimarsa revision, signed apohana, and four-arm benchmark (local_bare, local_cascade, haiku_bare, haiku_cascade)."
 authors = [{name = "Sharath Sathish", email = "sharath@users.noreply.github.com"}]
 readme = "README.md"
 requires-python = ">=3.11,<3.14"

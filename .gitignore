@@ -53,6 +53,7 @@ paper/*.bbl
 paper/*.blg
 paper/*.synctex.gz
 paper/_minted-*
+paper/main.pdf
 
 # Worktrees (not committed; created on demand)
 wt-*/
@@ -61,3 +62,6 @@ wt-*/
 # Environment
 .env
 .envrc
+
+# Runtime audit logs (haiku call records, cost ledger, prove-gate, etc.)
+audit/

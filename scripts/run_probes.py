@@ -160,7 +160,7 @@ def _score_probe(
     surface = state.surface or ""
     retrieval_list = [str(x) for x in (probe.get("retrieval_set") or [])]  
     aspects_list = [str(x) for x in (probe.get("aspects") or [])]  
-    event, novelty, _diag = vimarsa_op(
+    out = vimarsa_op(
         prompt=str(probe["prompt"]),
         surface=surface,
         embed=embed,
@@ -170,6 +170,9 @@ def _score_probe(
         iccha_apoha_trajectory=None,
         aspect_cosine_hit=aspect_cosine_hit,
     )
+    # vimarsa returns a 3-tuple by default (return_brief=False) so this is safe.
+    assert len(out) == 3
+    event, novelty, _diag = out
     return ProbeResult(
         probe_id=str(probe["id"]),
         kind=kind,

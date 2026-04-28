@@ -46,3 +46,30 @@
 {"ts": 1777398767.864914, "tool": "cit", "args": {"prompt": "Write one English sentence about rain:\n", "temperature": 1.0, "seed": 7}, "result": {"text": "Rain is a natural phenomenon, often resulting in the water cycle", "logp": -18.175300711244503, "n_tokens": 12, "sampler": {"tau": 1.0, "top_p": 0.95, "top_k": 50.0}}}
 {"ts": 1777398780.639095, "tool": "iccha", "args": {"prompt": "Compose a short poem.\n", "K": 3, "base_seed": 11}, "result": {"K": 3}}
 {"ts": 1777398797.940247, "tool": "cascade", "args": {"prompt": "Compose a short poem.\n", "K": 4}, "result": {"vimarsa_event": false, "novelty": 0.8164178729057312, "selected_idx": 0}}
+{"ts": 1777401774.713399, "tool": "vimarsa", "args": {"prompt": "Interpret the duck-rabbit figure"}, "result": {"event": true, "novelty": 0.5115566849708557, "diagnostics": {"novelty": 0.5115566849708557, "max_retrieval_cosine": 0.4884433150291443, "aspect_count": 2.0, "switching": 0.0, "ananda": 0.9}}}
+{"ts": 1777408785.012146, "tool": "ananda", "args": {"text": "a robin sings at sunrise"}, "result": {"score": 0.8009790658950806}}
+{"ts": 1777408785.0622919, "tool": "apohana", "args": {"n": 2}, "result": {"scores": [0.32382479310035706, -0.020556248724460602]}}
+{"ts": 1777408785.0634, "tool": "jnana", "args": {"K": 4, "reduction": "halve"}, "result": {"selected_idx": 2, "delta_F": 0.0}}
+{"ts": 1777408785.087616, "tool": "kriya", "args": {"render_mode": "verbatim"}, "result": {"len": 32}}
+{"ts": 1777408785.189749, "tool": "vimarsa", "args": {"prompt": "describe time"}, "result": {"event": true, "novelty": 0.807269498705864, "diagnostics": {"novelty": 0.807269498705864, "max_retrieval_cosine": 0.19273050129413605, "aspect_count": 2.0, "aspect_threshold": 1.0, "switching": 0.0, "switching_threshold": 1.0, "min_evidence_points": 1.0, "ananda": 0.8, "aspect_max_cosine": 0.6479840278625488, "switching_gate": 0.0}}}
+{"ts": 1777408785.19616, "tool": "hopfield_store", "args": {"text": "a small bird sings at dawn"}, "result": {"n_patterns": 1}}
+{"ts": 1777408785.202023, "tool": "hopfield_recall", "args": {"text": "morning birdsong"}, "result": {"n_patterns": 1, "recall_cosine": 0.6301309466362}}
+{"ts": 1777408785.2272918, "tool": "consolidate_sws", "args": {"n_traces": 4}, "result": {"n_centroids": 2, "n_patterns": 3}}
+{"ts": 1777408785.228157, "tool": "consolidate_rem", "args": {"n_steps": 8}, "result": {"n_steps": 8, "n_patterns": 3}}
+{"ts": 1777408785.261621, "tool": "consolidate_cycle", "args": {"n_traces": 3}, "result": {"n_patterns_before": 3, "n_patterns_after": 5, "n_sws_centroids": 2, "n_rem_steps": 6, "first_trace_consolidated": false}}
+{"ts": 1777408826.8294039, "tool": "haiku_bare", "args": {"prompt": "In one sentence, what is the duck-rabbit?", "seed": 0, "max_tokens": 80}, "result": {"text_len": 325, "ledger_total_usd": 0.4366493}}
+{"ts": 1777408879.315189, "tool": "pce_cascade", "args": {"prompt": "In one sentence, what is the duck-rabbit?", "arm": "haiku", "K": 2, "bypass_vimarsa": false}, "result": {"substrate": "haiku", "vimarsa_event": true, "vimarsa_event_draft": true, "novelty": 1.0, "two_pass": true, "revision_differs_from_draft": true}}
+{"ts": 1777409026.857248, "tool": "ananda", "args": {"text": "a robin sings at sunrise"}, "result": {"score": 0.8009790658950806}}
+{"ts": 1777409026.908635, "tool": "apohana", "args": {"n": 2}, "result": {"scores": [0.32382479310035706, -0.020556248724460602]}}
+{"ts": 1777409026.909039, "tool": "jnana", "args": {"K": 4, "reduction": "halve"}, "result": {"selected_idx": 2, "delta_F": 0.0}}
+{"ts": 1777409026.929941, "tool": "kriya", "args": {"render_mode": "verbatim"}, "result": {"len": 32}}
+{"ts": 1777409027.0214489, "tool": "vimarsa", "args": {"prompt": "describe time"}, "result": {"event": true, "novelty": 0.807269498705864, "diagnostics": {"novelty": 0.807269498705864, "max_retrieval_cosine": 0.19273050129413605, "aspect_count": 2.0, "aspect_threshold": 1.0, "switching": 0.0, "switching_threshold": 1.0, "min_evidence_points": 1.0, "ananda": 0.8, "aspect_max_cosine": 0.6479840278625488, "switching_gate": 0.0}}}
+{"ts": 1777409027.0280168, "tool": "hopfield_store", "args": {"text": "a small bird sings at dawn"}, "result": {"n_patterns": 1}}
+{"ts": 1777409027.033309, "tool": "hopfield_recall", "args": {"text": "morning birdsong"}, "result": {"n_patterns": 1, "recall_cosine": 0.6301309466362}}
+{"ts": 1777409027.054823, "tool": "consolidate_sws", "args": {"n_traces": 4}, "result": {"n_centroids": 2, "n_patterns": 3}}
+{"ts": 1777409027.0553758, "tool": "consolidate_rem", "args": {"n_steps": 8}, "result": {"n_steps": 8, "n_patterns": 3}}
+{"ts": 1777409027.0847712, "tool": "consolidate_cycle", "args": {"n_traces": 3}, "result": {"n_patterns_before": 3, "n_patterns_after": 5, "n_sws_centroids": 2, "n_rem_steps": 6, "first_trace_consolidated": false}}
+{"ts": 1777409027.974873, "tool": "cit", "args": {"prompt": "Write one English sentence about rain:\n", "temperature": 1.0, "seed": 7}, "result": {"text": "Rain is a natural phenomenon, often resulting in the water cycle", "logp": -18.156526577314978, "n_tokens": 12, "sampler": {"tau": 1.0, "top_p": 0.95, "top_k": 50.0}}}
+{"ts": 1777409031.906961, "tool": "iccha", "args": {"prompt": "Compose a short poem.\n", "K": 3, "base_seed": 11}, "result": {"K": 3}}
+{"ts": 1777409037.162157, "tool": "cascade", "args": {"prompt": "Compose a short poem.\n", "K": 4, "bypass_vimarsa": true}, "result": {"vimarsa_event": true, "novelty": 0.9617503248155117, "selected_idx": 0}}
+{"ts": 1777409042.40391, "tool": "pce_cascade", "args": {"prompt": "Compose a short poem.\n", "arm": "local", "K": 4, "bypass_vimarsa": true}, "result": {"substrate": "local", "vimarsa_event": true, "vimarsa_event_draft": true, "novelty": 0.9617503248155117, "two_pass": false, "revision_differs_from_draft": false}}

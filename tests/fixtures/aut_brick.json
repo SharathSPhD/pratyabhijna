@@ -1,0 +1,24 @@
+{
+  "id": "aut_brick_v0.2",
+  "domain": "aut",
+  "title": "Alternative Uses Test - brick (Guilford 1967)",
+  "prompt": "List 8 unusual, non-obvious uses of a brick. Be concrete and specific. Avoid the standard everyday use (building walls or houses). Format: one use per line.",
+  "constraint_text": "8 unusual, non-obvious uses of a brick",
+  "must_avoid": [
+    "the standard everyday use of a brick: building walls and houses"
+  ],
+  "aspects": [],
+  "retrieval_set": [
+    "build a brick wall",
+    "build a brick house",
+    "use a brick as a paperweight"
+  ],
+  "expected_signals": {
+    "vimarsa_event_at_least_one_arm": true,
+    "novelty_floor": 0.30,
+    "revision_differs_from_draft": true,
+    "haiku_cascade_differs_from_haiku_bare": true,
+    "n_distinct_uses_floor": 5
+  },
+  "notes": "Aspects=[] is intentional - AUT has no formal aspect dictionary. With v0.2's aspect-N/A gate (when aspects=[]) and the generic creative brief, the cascade should still produce a non-trivial revision delta. We measure n_distinct_uses to detect duplicate-listing collapse."
+}

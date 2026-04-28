@@ -9,14 +9,14 @@ Semantics (see [docs/operator-spec.md §1](../../../docs/operator-spec.md#1-cit-
 """
 from __future__ import annotations
 
-from pce.substrate.lm import LocalLM
+from pce.substrate.lm_protocol import LMProtocol
 from pce.types import Candidate
 
 
 def cit(
     prompt: str,
     *,
-    lm: LocalLM,
+    lm: LMProtocol,
     temperature: float = 1.0,
     max_tokens: int = 64,
     top_p: float = 0.95,
