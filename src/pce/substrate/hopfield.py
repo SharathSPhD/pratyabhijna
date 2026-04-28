@@ -99,10 +99,21 @@ class HopfieldStore:
         # k-means++ init.
         idx = [int(rng.integers(0, len(traces)))]
         for _ in range(1, k):
-            dists = np.min(
-                1.0 - X @ X[idx].T, axis=1
-            )  # cosine distance to nearest centroid so far
-            probs = dists / (dists.sum() + 1e-30)
+            # Cosine distance to nearest centroid so far. Clip to [0, 2] to absorb
+            # the tiny negative-cosine drift that arises when rounded unit vectors
+            # produce dot-products slightly above 1.
+            dists = np.clip(
+                np.min(1.0 - X @ X[idx].T, axis=1).astype(np.float64),
+                0.0,
+                2.0,
+            )
+            total = float(dists.sum())
+            if total <= 1e-12:
+                # All remaining traces are degenerate copies of the seeds; fall
+                # back to uniform sampling so we still draw k distinct indices.
+                probs = np.ones(len(traces), dtype=np.float64) / float(len(traces))
+            else:
+                probs = (dists / total).astype(np.float64)
             idx.append(int(rng.choice(len(traces), p=probs)))
         centroids = X[idx].copy()
         for _ in range(int(n_iter)):

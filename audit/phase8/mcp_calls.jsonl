@@ -1,0 +1,35 @@
+{"ts": 1777391215.488929, "tool": "ananda", "args": {"text": "a robin sings at sunrise"}, "result": {"score": 0.8009790658950806}}
+{"ts": 1777391215.534275, "tool": "apohana", "args": {"n": 2}, "result": {"scores": [0.32382479310035706, -0.020556248724460602]}}
+{"ts": 1777391215.534632, "tool": "jnana", "args": {"K": 4, "reduction": "halve"}, "result": {"selected_idx": 2, "delta_F": 0.0}}
+{"ts": 1777391215.554417, "tool": "kriya", "args": {"render_mode": "verbatim"}, "result": {"len": 32}}
+{"ts": 1777391215.6558158, "tool": "vimarsa", "args": {"prompt": "describe time"}, "result": {"event": true, "novelty": 0.807269498705864, "diagnostics": {"novelty": 0.807269498705864, "max_retrieval_cosine": 0.19273050129413605, "aspect_count": 2.0, "switching": 0.0, "ananda": 0.8}}}
+{"ts": 1777391215.661719, "tool": "hopfield_store", "args": {"text": "a small bird sings at dawn"}, "result": {"n_patterns": 1}}
+{"ts": 1777391215.6672409, "tool": "hopfield_recall", "args": {"text": "morning birdsong"}, "result": {"n_patterns": 1, "recall_cosine": 0.6301309466362}}
+{"ts": 1777391215.691608, "tool": "consolidate_rem", "args": {"n_steps": 8}, "result": {"n_steps": 8, "n_patterns": 1}}
+{"ts": 1777391215.7216, "tool": "consolidate_cycle", "args": {"n_traces": 3}, "result": {"n_patterns_before": 1, "n_patterns_after": 3, "n_sws_centroids": 2, "n_rem_steps": 6, "first_trace_consolidated": false}}
+{"ts": 1777391218.700802, "tool": "cit", "args": {"prompt": "Write one English sentence about rain:\n", "temperature": 1.0, "seed": 7}, "result": {"text": "Rain is a natural phenomenon, often resulting in the water cycle", "logp": -18.175300711244503, "n_tokens": 12, "sampler": {"tau": 1.0, "top_p": 0.95, "top_k": 50.0}}}
+{"ts": 1777391230.12131, "tool": "iccha", "args": {"prompt": "Compose a short poem.\n", "K": 3, "base_seed": 11}, "result": {"K": 3}}
+{"ts": 1777391245.32811, "tool": "cascade", "args": {"prompt": "Compose a short poem.\n", "K": 4}, "result": {"vimarsa_event": false, "novelty": 0.7613721340894699, "selected_idx": 3}}
+{"ts": 1777391300.680531, "tool": "ananda", "args": {"text": "a robin sings at sunrise"}, "result": {"score": 0.8009790658950806}}
+{"ts": 1777391300.726319, "tool": "apohana", "args": {"n": 2}, "result": {"scores": [0.32382479310035706, -0.020556248724460602]}}
+{"ts": 1777391300.726774, "tool": "jnana", "args": {"K": 4, "reduction": "halve"}, "result": {"selected_idx": 2, "delta_F": 0.0}}
+{"ts": 1777391300.7457962, "tool": "kriya", "args": {"render_mode": "verbatim"}, "result": {"len": 32}}
+{"ts": 1777391300.839735, "tool": "vimarsa", "args": {"prompt": "describe time"}, "result": {"event": true, "novelty": 0.807269498705864, "diagnostics": {"novelty": 0.807269498705864, "max_retrieval_cosine": 0.19273050129413605, "aspect_count": 2.0, "switching": 0.0, "ananda": 0.8}}}
+{"ts": 1777391300.845206, "tool": "hopfield_store", "args": {"text": "a small bird sings at dawn"}, "result": {"n_patterns": 1}}
+{"ts": 1777391300.8503418, "tool": "hopfield_recall", "args": {"text": "morning birdsong"}, "result": {"n_patterns": 1, "recall_cosine": 0.6301309466362}}
+{"ts": 1777391300.870045, "tool": "consolidate_sws", "args": {"n_traces": 4}, "result": {"n_centroids": 2, "n_patterns": 3}}
+{"ts": 1777391300.8706439, "tool": "consolidate_rem", "args": {"n_steps": 8}, "result": {"n_steps": 8, "n_patterns": 3}}
+{"ts": 1777391300.899756, "tool": "consolidate_cycle", "args": {"n_traces": 3}, "result": {"n_patterns_before": 3, "n_patterns_after": 5, "n_sws_centroids": 2, "n_rem_steps": 6, "first_trace_consolidated": false}}
+{"ts": 1777391314.822981, "tool": "ananda", "args": {"text": "a robin sings at sunrise"}, "result": {"score": 0.8009790658950806}}
+{"ts": 1777391314.8713238, "tool": "apohana", "args": {"n": 2}, "result": {"scores": [0.32382479310035706, -0.020556248724460602]}}
+{"ts": 1777391314.871708, "tool": "jnana", "args": {"K": 4, "reduction": "halve"}, "result": {"selected_idx": 2, "delta_F": 0.0}}
+{"ts": 1777391314.890387, "tool": "kriya", "args": {"render_mode": "verbatim"}, "result": {"len": 32}}
+{"ts": 1777391314.983397, "tool": "vimarsa", "args": {"prompt": "describe time"}, "result": {"event": true, "novelty": 0.807269498705864, "diagnostics": {"novelty": 0.807269498705864, "max_retrieval_cosine": 0.19273050129413605, "aspect_count": 2.0, "switching": 0.0, "ananda": 0.8}}}
+{"ts": 1777391314.992846, "tool": "hopfield_store", "args": {"text": "a small bird sings at dawn"}, "result": {"n_patterns": 1}}
+{"ts": 1777391314.998338, "tool": "hopfield_recall", "args": {"text": "morning birdsong"}, "result": {"n_patterns": 1, "recall_cosine": 0.6301309466362}}
+{"ts": 1777391315.019685, "tool": "consolidate_sws", "args": {"n_traces": 4}, "result": {"n_centroids": 2, "n_patterns": 3}}
+{"ts": 1777391315.02026, "tool": "consolidate_rem", "args": {"n_steps": 8}, "result": {"n_steps": 8, "n_patterns": 3}}
+{"ts": 1777391315.048522, "tool": "consolidate_cycle", "args": {"n_traces": 3}, "result": {"n_patterns_before": 3, "n_patterns_after": 5, "n_sws_centroids": 2, "n_rem_steps": 6, "first_trace_consolidated": false}}
+{"ts": 1777391318.2032, "tool": "cit", "args": {"prompt": "Write one English sentence about rain:\n", "temperature": 1.0, "seed": 7}, "result": {"text": "Rain is a natural phenomenon, often resulting in the water cycle", "logp": -18.175300711244503, "n_tokens": 12, "sampler": {"tau": 1.0, "top_p": 0.95, "top_k": 50.0}}}
+{"ts": 1777391329.645816, "tool": "iccha", "args": {"prompt": "Compose a short poem.\n", "K": 3, "base_seed": 11}, "result": {"K": 3}}
+{"ts": 1777391344.7883399, "tool": "cascade", "args": {"prompt": "Compose a short poem.\n", "K": 4}, "result": {"vimarsa_event": false, "novelty": 0.7613721340894699, "selected_idx": 3}}
