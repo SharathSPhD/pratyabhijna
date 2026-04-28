@@ -1,13 +1,9 @@
 {
   "branch": "main",
-  "local_head": "3531ee7372d9a57268f0fae34b853d6f23495490",
-  "remote_head": "3531ee7372d9a57268f0fae34b853d6f23495490",
+  "local_head": "b126b3db1c83bdcf2ad83627b7a3855f211e1f95",
+  "remote_head": "b126b3db1c83bdcf2ad83627b7a3855f211e1f95",
   "branch_exists_remote": true,
-  "dirty_files": [
-    "M audit/phase0/verify_remote_pushed.json"
-  ],
-  "ok": false,
-  "failures": [
-    "working tree has 1 dirty entries"
-  ]
+  "dirty_files": [],
+  "ok": true,
+  "failures": []
 }
