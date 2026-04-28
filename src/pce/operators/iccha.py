@@ -26,14 +26,15 @@ DEFAULT_SAMPLER_GRID: tuple[dict[str, float], ...] = (
 
 
 def _build_prompt(prompt: str, constraint: Constraint) -> str:
-    """Wrap user prompt with constraint cue. The local LM is small, so we keep this short."""
+    """Wrap user prompt with the constraint cue inlined as natural prose.
+
+    Earlier we used a `[Constraint: ...]` bracket annotation, but small models
+    (Qwen2-1.5B in particular) sometimes echo the literal bracket back into
+    their output. The natural-prose form avoids that without losing the cue.
+    """
     if not prompt.strip():
         raise ValueError("icchā: prompt must be non-empty")
-    return (
-        f"{prompt}\n"
-        f"[Constraint: {constraint.text}]\n"
-        f"Output:\n"
-    )
+    return f"{prompt.rstrip()}\nWrite a response that is {constraint.text}.\n\n"
 
 
 def iccha(
