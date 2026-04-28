@@ -1,0 +1,15 @@
+{
+  "ok": true,
+  "files_scanned": 40,
+  "violations": [],
+  "operators_seen": [
+    "ananda",
+    "apohana",
+    "cit",
+    "iccha",
+    "jnana",
+    "kriya",
+    "vimarsa"
+  ],
+  "operators_missing_tests": []
+}
