@@ -22,6 +22,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import shutil
 import subprocess
 import sys
@@ -31,11 +32,35 @@ REPO_ROOT_DEFAULT = Path(__file__).resolve().parent.parent
 DEFAULT_REMOTE = "SharathSPhD/pratyabhijna"
 
 
-def _run(cmd: list[str], cwd: Path) -> tuple[int, str, str]:
+def _run(cmd: list[str], cwd: Path, strip: bool = True) -> tuple[int, str, str]:
     p = subprocess.run(
         cmd, cwd=str(cwd), check=False, capture_output=True, text=True, timeout=30,
     )
-    return p.returncode, p.stdout.strip(), p.stderr.strip()
+    if strip:
+        return p.returncode, p.stdout.strip(), p.stderr.strip()
+    return p.returncode, p.stdout, p.stderr.strip()
+
+
+_PORCELAIN_LINE = re.compile(r"^(?P<status>..)\s(?P<path>.+)$")
+
+
+def _parse_porcelain(output: str) -> list[tuple[str, str]]:
+    """Parse `git status --porcelain=v1` output into (status_code, path) pairs.
+
+    The two-character status field at the start can include leading spaces
+    (e.g. ' M file' for a tracked-but-modified-in-worktree file). Naive
+    string splitting that calls `.strip()` on the whole output eats the
+    leading space of the first line, so we always parse via a regex over the
+    raw output.
+    """
+    pairs: list[tuple[str, str]] = []
+    for line in output.splitlines():
+        if not line:
+            continue
+        m = _PORCELAIN_LINE.match(line)
+        if m:
+            pairs.append((m.group("status"), m.group("path")))
+    return pairs
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -76,25 +101,22 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps({"ok": False, "error": "could not resolve HEAD"}))
         return 2
 
-    rc, status_out, _ = _run(["git", "status", "--porcelain=v1"], repo)
+    rc, status_out, _ = _run(["git", "status", "--porcelain=v1"], repo, strip=False)
     if rc != 0:
         print(json.dumps({"ok": False, "error": "git status failed"}))
         return 2
     # The gate itself writes to audit/<phase>/, so audit/ entries are
     # excluded from the dirty-tree check by default. Use --strict-dirty to
-    # include them. Other automation logs in similar paths are also excluded.
+    # include them.
     EXCLUDED_PREFIXES = ("audit/", ".ralph-loop")
-    raw_lines = [ln for ln in status_out.splitlines() if ln.strip()]
+    pairs = _parse_porcelain(status_out)
     if args.strict_dirty:
-        dirty_lines = raw_lines
+        dirty_lines = [f"{st} {pth}" for st, pth in pairs]
     else:
-        dirty_lines = []
-        for ln in raw_lines:
-            # Lines look like "?? audit/" or " M scripts/foo.py" - the path
-            # starts at column 3.
-            path_part = ln[3:] if len(ln) >= 3 else ln
-            if not any(path_part.startswith(pref) for pref in EXCLUDED_PREFIXES):
-                dirty_lines.append(ln)
+        dirty_lines = [
+            f"{st} {pth}" for st, pth in pairs
+            if not any(pth.startswith(pref) for pref in EXCLUDED_PREFIXES)
+        ]
 
     rc, gh_out, gh_err = _run(
         ["gh", "api", f"repos/{args.remote}/branches/{branch}"], repo,
