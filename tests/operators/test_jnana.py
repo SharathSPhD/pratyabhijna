@@ -56,6 +56,24 @@ def test_jnana_K_lt_2_raises() -> None:
     raise AssertionError("expected ValueError for K<2")
 
 
+def test_jnana_negative_apoha_penalizes_posterior() -> None:
+    """ADR-002: candidates with negative apoha (close to must_avoid) lose mass."""
+    K = 2
+    cands = _stub_candidates(K)
+    anan = np.array([0.5, 0.5], dtype=np.float32)
+    # baseline: both candidates equally good on the apoha axis
+    _, _, post_neutral = jnana(
+        cands, np.array([0.0, 0.0], dtype=np.float32), anan
+    )
+    # treatment: candidate 0 is much closer to must_avoid (very negative apoha)
+    _, _, post_penalized = jnana(
+        cands, np.array([-10.0, 0.0], dtype=np.float32), anan
+    )
+    # post_penalized should give candidate 0 less mass than the neutral case
+    assert post_penalized[0] < post_neutral[0]
+    assert post_penalized[1] > post_neutral[1]
+
+
 def test_jnana_shape_mismatch_raises() -> None:
     cands = _stub_candidates(3)
     bad_apoha = np.array([0.0, 0.0], dtype=np.float32)
