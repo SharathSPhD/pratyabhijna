@@ -88,12 +88,13 @@ def _build_prompt(domain: str, item: dict[str, Any]) -> tuple[str, str, list[str
     raise ValueError(f"unknown domain: {domain}")
 
 
-def _call_claude_haiku(prompt: str, *, timeout_s: int = 90) -> tuple[str, dict[str, Any]]:
+def _call_claude_haiku(prompt: str, *, timeout_s: int = 120) -> tuple[str, dict[str, Any]]:
     cmd = ["claude", "-p", "--model", "haiku", "--output-format", "json", prompt]
     started = time.time()
     try:
         proc = subprocess.run(
             cmd,
+            stdin=subprocess.DEVNULL,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             check=False,
