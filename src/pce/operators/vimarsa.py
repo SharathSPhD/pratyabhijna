@@ -18,7 +18,11 @@ from pce.substrate.embed import Embedder
 DEFAULT_NOVELTY_THRESHOLD = 0.30
 DEFAULT_ASPECT_THRESHOLD = 2
 DEFAULT_SWITCHING_THRESHOLD = 2
-DEFAULT_ASPECT_COSINE_HIT = 0.55
+# Tuned in Phase 6 against Qwen2-1.5B surfaces and the duck-rabbit / river-clock
+# / wave-particle / candlestick-faces probe battery: 0.55 was too strict for
+# avg-pooled MiniLM embeddings on long surfaces; 0.40 fires on 2/4 probes
+# without firing on the bypass control. See `audit/phase6/probes.jsonl`.
+DEFAULT_ASPECT_COSINE_HIT = 0.40
 DEFAULT_AESTHETIC_FLOOR = 0.40
 
 

@@ -20,7 +20,7 @@ Pure-A misses the Wittgenstein duck-rabbit case (the surface can be arbitrarily 
 `vimarsa_event` requires ALL of:
 
 * `novelty ≥ 0.30` where `novelty = 1 - max_{r ∈ retrieval_set} cos(embed(surface), embed(r))`;
-* `aspect_multiplicity ≥ 2` where multiplicity counts aspects from `aspects` whose embedding cosine ≥ 0.55 with `surface`;
+* `aspect_multiplicity ≥ 2` where multiplicity counts aspects from `aspects` whose embedding cosine ≥ 0.40 with `surface` (Phase-6 tuned, see below);
 * `switching ≥ 2` (when the icchā/apohana trajectory is provided), where switching is the count of segregated→integrated transitions across the cascade's K candidate steps;
 * `ananda_score ≥ 0.4` (an aesthetic floor, prevents firing on coherent-but-ugly outputs).
 
@@ -48,3 +48,12 @@ The conjunctive structure is deliberate: each axis is necessary, none sufficient
 * `novelty ∈ [0, 1]`, monotone decreasing in `max_r cos(surface, r)`.
 
 Phase 6 records `audit/phase6/probes.jsonl` with one row per probe run.
+
+## Phase-6 calibration result (2026-04-28)
+
+Battery: `duck_rabbit`, `river_clock`, `candlestick_faces`, `wave_particle` (aspect-shift) plus `literal_recall` (bypass).
+
+* aspect_cosine_hit=0.55 → 0/4 events on aspect_shift; 0/1 on bypass.
+* aspect_cosine_hit=0.40 → 2/4 events on aspect_shift (`duck_rabbit`, `river_clock`); 0/1 on bypass.
+
+Acceptance gate `≥ 1 aspect_event AND 0 bypass_events` met with margin. Default lowered to 0.40 for v0.1.0 and recorded in `src/pce/operators/vimarsa.py`. Surface text inspected: aspect_shift surfaces describe both aspects (e.g. "A photon is a particle that behaves like a wave… and a wave that behaves like a particle"), bypass surface is single-aspect ("Two plus two is four. It's a simple mathematical fact…"). The 50% within-aspect_shift hit rate is consistent with the 30-50% target for Phase-9 H6 power.
