@@ -2,15 +2,17 @@
 
 A Claude Code plugin that operationalises Abhinavagupta's Pratyabhijñā five-*śakti* generative cascade as typed operators over an active-inference / Bayesian Model Reduction substrate, with a recursive *vimarśa* self-reflexivity layer.
 
+> **v0.2 in flight.** v0.1 shipped a directional null (see [docs/AS_SHIPPED_v0.1.md](docs/AS_SHIPPED_v0.1.md) and [docs/reviews/2026-04-28-adversarial-plugin-review.md](docs/reviews/2026-04-28-adversarial-plugin-review.md)). v0.2 makes `vimarśa` causal (two-pass-always revision), adds Haiku as a first-class generative substrate (apples-to-apples ablation), and runs a four-arm pilot. Frozen scope: [docs/SPEC_v0.2.md](docs/SPEC_v0.2.md), [docs/PRD_v0.2.md](docs/PRD_v0.2.md). v0.1 paper preserved at `paper/v0.1/`.
+
 > **Research vector.** Pairing Pratyabhijñā's architecture with active-inference mathematics, with an explicit *vimarśa* meta-module that detects aspect-shifts (Wittgenstein). The gap that visible repositories in the space (`attractor-flow`, `pramana`) imply but do not yet contain.
 
 This repository holds the engine, the plugin wrapper (**15 MCP tools, 5 skills, 5 agents, 5 slash commands, 3 hooks**), the benchmark harness with paired statistics, the HTML presentation, and the arxiv preprint.
 
-* Formal operator specification: [`docs/SPEC.md`](docs/SPEC.md)
-* Completion contracts: [`docs/COMPLETION_PROMISES.md`](docs/COMPLETION_PROMISES.md)
-* Architecture decision records: [`docs/`](docs/)
-* Plugin manifest: [`plugin/.claude-plugin/plugin.json`](plugin/.claude-plugin/plugin.json)
-* Pre-registered hypotheses (H1–H6): [`docs/SPEC.md#2-hypotheses-pre-registered`](docs/SPEC.md)
+* Formal operator specification (v0.1): [`docs/SPEC.md`](docs/SPEC.md). v0.2 contract: [`docs/SPEC_v0.2.md`](docs/SPEC_v0.2.md).
+* Completion contracts (v0.1): [`docs/COMPLETION_PROMISES.md`](docs/COMPLETION_PROMISES.md). v0.2: [`docs/COMPLETION_PROMISES_v0.2.md`](docs/COMPLETION_PROMISES_v0.2.md).
+* Architecture decision records: [`docs/`](docs/) (v0.1) + [`docs/adr/v0.2/`](docs/adr/v0.2/) (v0.2).
+* Plugin manifest: [`plugin/.claude-plugin/plugin.json`](plugin/.claude-plugin/plugin.json) (v0.2.0).
+* Pre-registered hypotheses (H1–H6 v0.1, H1.v2–H8.v2 v0.2): [`docs/SPEC.md#2-hypotheses-pre-registered`](docs/SPEC.md), [`docs/SPEC_v0.2.md#2-hypotheses-pre-registered-for-v02`](docs/SPEC_v0.2.md).
 
 ## Quickstart
 
