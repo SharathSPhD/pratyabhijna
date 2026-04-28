@@ -20,7 +20,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 import subprocess
 import sys
 import time
@@ -95,8 +94,7 @@ def _call_claude_haiku(prompt: str, *, timeout_s: int = 120) -> tuple[str, dict[
         proc = subprocess.run(
             cmd,
             stdin=subprocess.DEVNULL,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
+            capture_output=True,
             check=False,
             timeout=timeout_s,
         )

@@ -56,7 +56,7 @@ def _figure_per_domain_box(results_dir: Path, out_dir: Path) -> None:
         comps = _composites_per_arm(data["rows"])
         labels = ["Haiku\n(no PCE)", "Local-Qwen\n(no PCE)", "Local-Qwen\n+PCE"]
         vals = [comps["claude_haiku"], comps["local_bare"], comps["local_cascade"]]
-        ax.boxplot(vals, labels=labels, patch_artist=True,
+        ax.boxplot(vals, tick_labels=labels, patch_artist=True,
                     boxprops={"facecolor": "#eef1f7", "edgecolor": "#345"},
                     medianprops={"color": "#3b6ea8", "linewidth": 2})
         rng = np.random.default_rng(0)
@@ -163,7 +163,7 @@ def _figure_power(stats_path: Path, out_dir: Path) -> None:
     x = np.arange(len(keys))
     w = 0.36
     ax.bar(x - w / 2, pa, width=w, label="a-priori (g=0.5)", color="#bccdf0", edgecolor="#345")
-    ax.bar(x + w / 2, pr, width=w, label=f"retrospective (observed g)", color="#3b6ea8", edgecolor="#345")
+    ax.bar(x + w / 2, pr, width=w, label="retrospective (observed g)", color="#3b6ea8", edgecolor="#345")
     ax.set_xticks(x, keys)
     ax.set_ylim(0, 1.05)
     ax.axhline(0.80, color="red", linestyle=":", linewidth=1, label="0.80 threshold")
