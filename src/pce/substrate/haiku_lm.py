@@ -47,6 +47,8 @@ class HaikuConfig:
     timeout_s: int = 120
     use_sdk: bool = False
     cost_cap_usd: float = 18.0  # graceful abort threshold (10% under $20 hard ceiling)
+    cli_retry: int = 2  # extra attempts on empty CLI response (0 = no retry)
+    cli_backoff_s: float = 1.0  # base backoff multiplier between retries
 
     @classmethod
     def from_env(cls) -> HaikuConfig:
@@ -56,6 +58,8 @@ class HaikuConfig:
             timeout_s=int(os.environ.get("PCE_HAIKU_TIMEOUT_S", "120")),
             use_sdk=os.environ.get("PCE_USE_SDK", "").strip() == "1",
             cost_cap_usd=float(os.environ.get("PCE_HAIKU_COST_CAP_USD", "18.0")),
+            cli_retry=int(os.environ.get("PCE_HAIKU_CLI_RETRY", "2")),
+            cli_backoff_s=float(os.environ.get("PCE_HAIKU_CLI_BACKOFF_S", "1.0")),
         )
 
 
@@ -141,7 +145,7 @@ class HaikuLM:
         ledger["by_model"] = by_model
         _save_ledger(ledger)
 
-    def _call_cli(self, prompt: str) -> tuple[str, dict[str, Any]]:
+    def _call_cli_once(self, prompt: str) -> tuple[str, dict[str, Any]]:
         cmd = [
             self.config.cli_bin,
             "-p",
@@ -184,6 +188,35 @@ class HaikuLM:
             "output_tokens": int((payload.get("usage") or {}).get("output_tokens", 0)),
         }
         return text, meta
+
+    def _call_cli(self, prompt: str) -> tuple[str, dict[str, Any]]:
+        """Wrapper around _call_cli_once with retry-on-empty.
+
+        The Anthropic CLI sporadically returns an empty `result` field even
+        when the API succeeds (rc=0, is_error=False). We retry up to
+        ``cli_retry`` times with a small backoff, varying the seed prefix
+        per attempt to avoid hitting the same bad path twice. Cost still
+        accrues per attempt (the API was billed).
+        """
+        last_text = ""
+        last_meta: dict[str, Any] = {}
+        for attempt in range(self.config.cli_retry + 1):
+            text, meta = self._call_cli_once(prompt)
+            last_text, last_meta = text, meta
+            if text.strip():
+                meta["attempt"] = attempt
+                return text, meta
+            # Empty result: bill it (we'll still record_cost upstream) and retry.
+            if attempt < self.config.cli_retry:
+                time.sleep(self.config.cli_backoff_s * (attempt + 1))
+                # Mutate prompt slightly for the next try so we don't hit the
+                # same empty-response path; this keeps the seed semantics
+                # honest (caller already added _seed_prefix; we add an extra
+                # whitespace nonce here).
+                prompt = " " + prompt
+        last_meta["attempt"] = self.config.cli_retry
+        last_meta["empty_after_retry"] = True
+        return last_text, last_meta
 
     def _call_sdk(self, prompt: str, max_tokens: int, sampler: dict[str, float]) -> tuple[str, dict[str, Any]]:
         # Imported lazily because anthropic is an optional dependency.
