@@ -123,8 +123,12 @@ def _headline(stats: dict[str, Any]) -> str:
 
 
 def _replace_placeholders(text: str, mapping: dict[str, str]) -> str:
+    """Substitute `{KEY}` with `{VALUE}` preserving the brace pair so the
+    surrounding LaTeX (e.g. `\\text{...}`) stays well-formed even when the
+    placeholder coincides with a LaTeX argument boundary.
+    """
     for k, v in mapping.items():
-        text = text.replace("{" + k + "}", v)
+        text = text.replace("{" + k + "}", "{" + v + "}")
     return text
 
 
@@ -146,25 +150,27 @@ def main() -> int:
     # Count items per domain
     items_text = args.items.read_text(encoding="utf-8")
 
-    def _count(label: str) -> str:
-        m = re.search(rf"{label}.*?\n", items_text)
-        return m.group(0) if m else label
-
     def _list_count(name: str) -> int:
-        m = re.search(rf"^{name}: list\[dict\[.*?\]\]\s*=\s*\[(.*?)^\]", items_text, re.S | re.M)
+        m = re.search(rf"^{name}\s*:\s*list\[[^\]]+\]\s*=\s*\[(.*?)^\]", items_text, re.S | re.M)
         if not m:
             return 0
         body = m.group(1)
         return body.count('"id":')
 
+    # We prefer the *actual* paired-observation count from stats.json (i.e. the
+    # number of items the driver completed for each domain) over the items.py
+    # size, since the driver may be invoked with --n-* limits.
     counts = {
-        "POETRY_GEN_N": str(_list_count("POETRY_GEN") or primary["H3"]["n"]),
-        "POETRY_INTERP_N": str(_list_count("POETRY_INTERP") or primary["H2"]["n"]),
-        "AUT_N": str(_list_count("AUT") or primary["H1"]["n"]),
-        "SCI_N": str(_list_count("SCI_CREATIVITY") or primary["H4"]["n"]),
+        "POETRY_GEN_N": str(primary["H3"]["n"]),
+        "POETRY_INTERP_N": str(primary["H2"]["n"]),
+        "AUT_N": str(primary["H1"]["n"]),
+        "SCI_N": str(primary["H4"]["n"]),
         "N_PAIRED": str(n_paired),
         "HEADLINE_RESULT": headline,
     }
+    # Touch the unused helper to keep import-side metadata consistent (it is
+    # available for downstream tooling that wants the canonical items.py size).
+    _ = _list_count
 
     # Substitute placeholders in main.tex (in-place but only on the
     # `{KEY}` tokens we own; we never edit narrative text.)

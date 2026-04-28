@@ -37,7 +37,7 @@ def _make_candidate(text: str, embed: Embedder) -> Candidate:
     return Candidate(
         seed=0,
         sampler={"tau": 1.0},
-        tokens=tuple(),
+        tokens=(),
         text=text,
         logp=0.0,
         embedding=embed.encode(text or " "),

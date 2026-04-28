@@ -1,0 +1,86 @@
+#!/usr/bin/env python3
+"""Synthesise realistic-looking results JSONs for pipeline testing.
+
+Writes to a target directory (default benchmarks/_synth/) so it cannot collide
+with real benchmark output. Used by Phase 9 smoke to verify the stats →
+figures → autoreport pipeline end-to-end before the live benchmark finishes.
+
+The synthesiser preserves the exact schema of `benchmarks/driver.py` outputs.
+"""
+from __future__ import annotations
+
+import argparse
+import json
+from pathlib import Path
+
+import numpy as np
+
+REPO_ROOT = Path(__file__).resolve().parent.parent
+
+DOMAINS_NS = {"poetry_gen": 12, "poetry_interp": 10, "aut": 8, "sci_creativity": 8}
+ARMS = ("claude_haiku", "local_bare", "local_cascade")
+AXES_PER_DOMAIN = {
+    "poetry_gen": ("creativity", "lexical_diversity", "idiosyncrasy",
+                    "emotional_resonance", "literary_devices", "imagery"),
+    "poetry_interp": ("aspect_count", "novelty", "coverage"),
+    "aut": ("creativity", "lexical_diversity", "feasibility"),
+    "sci_creativity": ("non_textbook_novelty", "framing_coverage", "depth", "multi_framing"),
+}
+
+
+def synthesize(out_dir: Path, *, seed: int = 4242,
+                effect_sizes: dict[str, float] | None = None) -> None:
+    rng = np.random.default_rng(seed)
+    eff = effect_sizes or {"aut": 0.30, "poetry_interp": 0.20, "poetry_gen": -0.10, "sci_creativity": 0.05}
+    out_dir.mkdir(parents=True, exist_ok=True)
+    vimarsa_fired_rate = 0.45
+    for dom, n in DOMAINS_NS.items():
+        rows: dict[str, dict[str, object]] = {}
+        for i in range(1, n + 1):
+            item_id = {"poetry_gen": "p", "poetry_interp": "i", "aut": "a", "sci_creativity": "s"}[dom] + f"{i:02d}"
+            base = float(rng.uniform(0.30, 0.65))
+            arm_data: dict[str, dict[str, object]] = {}
+            for arm in ARMS:
+                shift = 0.0
+                if arm == "local_cascade":
+                    shift = float(eff[dom]) + float(rng.normal(0.0, 0.05))
+                elif arm == "local_bare":
+                    shift = float(eff[dom]) * 0.4 + float(rng.normal(0.0, 0.07))
+                comp = float(np.clip(base + shift, 0.0, 1.0))
+                axes = {a: float(np.clip(comp + rng.normal(0, 0.05), 0.0, 1.0)) for a in AXES_PER_DOMAIN[dom]}
+                meta = {"ok": True, "elapsed_s": float(rng.uniform(2.0, 90.0))}
+                if arm == "local_cascade":
+                    fired = bool(rng.random() < vimarsa_fired_rate)
+                    meta.update({
+                        "vimarsa_event": fired,
+                        "novelty": float(rng.uniform(0.4, 0.95)),
+                        "delta_F": float(rng.normal(-0.1 if fired else 0.05, 0.2)),
+                        "selected_idx": int(rng.integers(0, 4)),
+                    })
+                arm_data[arm] = {
+                    "text": f"[synthetic-{arm}-{item_id}] " + ("aspect-shift content" if dom == "poetry_interp" else "creative content"),
+                    "axes": axes,
+                    "composite": comp,
+                    "meta": meta,
+                }
+            rows[item_id] = {
+                "item": {"id": item_id, "topic": f"synthetic topic for {item_id}"},
+                **arm_data,
+            }
+        (out_dir / f"{dom}.json").write_text(
+            json.dumps({"domain": dom, "rows": rows}, indent=2, ensure_ascii=False), encoding="utf-8")
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--out-dir", type=Path, default=REPO_ROOT / "benchmarks" / "_synth")
+    parser.add_argument("--seed", type=int, default=4242)
+    args = parser.parse_args()
+    synthesize(args.out_dir, seed=args.seed)
+    print(f"synthetic results -> {args.out_dir}")
+    return 0
+
+
+if __name__ == "__main__":
+    import sys
+    sys.exit(main())

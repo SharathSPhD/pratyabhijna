@@ -29,6 +29,139 @@
           "duration_ms": 8780,
           "stop_reason": "end_turn"
         }
+      },
+      "local_bare": {
+        "text": "Coffee spoons are likely measuring tools used in a kitchen or coffee shop setting, representing a small quantity of a substance.\n\nReading B:\nThe phrase refers to an individual’s life being measured out, which is commonly used metaphorically to express that someone’s life is not planned out, and that their life is not as planned as they would like.\n\nIn this context, the individual uses coffee spoons as a metaphor to represent the small portions of their life that they have already experienced and consumed, suggesting that they have limited control or influence over the outcomes of their life experiences. The statement highlights their limited capacity",
+        "axes": {
+          "aspect_count": 0.0,
+          "novelty": 0.5891295969486237,
+          "coverage": 0.18357118964195251
+        },
+        "composite": 0.2575669288635254,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 18.687312841415405
+        }
+      },
+      "local_cascade": {
+        "text": "Reading A:\nI have measured out my life with coffee spoons.\n\nReading B:\nWith each sip, I've sipped through life's challenges, each cup representing a milestone or a moment of reflection. My life, once measured by the size of my coffee spoons, has become a complex tapestry, each spoonful a thread that weaves together the fabric of my existence.\n\nThe speaker is reflecting on their life as though they were measuring it out with coffee spoons, indicating a sense of precision and organization. The metaphor of measuring out one's life with coffee spoons suggests that the speaker",
+        "axes": {
+          "aspect_count": 0.0,
+          "novelty": 0.5727060437202454,
+          "coverage": 0.20836150646209717
+        },
+        "composite": 0.2603558500607808,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 82.6824791431427,
+          "vimarsa_event": false,
+          "novelty": 0.5727060437202454,
+          "delta_F": 0.0,
+          "selected_idx": 1
+        }
+      }
+    },
+    "i02": {
+      "item": {
+        "id": "i02",
+        "surface": "Two roads diverged in a wood, and I— / I took the one less traveled by",
+        "aspects": [
+          "a celebration of nonconformity",
+          "an ironic shrug at how memory rewrites choice"
+        ],
+        "retrieval_set": [
+          "I went hiking in a forest",
+          "trails are well-marked"
+        ]
+      },
+      "claude_haiku": {
+        "text": "**Reading A: The Romantic Individualist**\n\nThis reading celebrates personal agency and bold nonconformity. The speaker chose the unconventional path—the one fewer people take—suggesting courage, authenticity, and a willingness to diverge from the crowd. The pause before \"I took\" emphasizes the decisive moment of choice, positioning the speaker as someone who courageously forges their own way despite social pressure to follow the well-worn route. This is the reading that dominates popular culture: the speaker as a celebrated rebel charting an original course.\n\n**Reading B: The Ironic/Ambiguous**\n\nThis reading questions whether the choice was genuinely \"less traveled.\" Looking back at the poem's earlier stanza, Frost notes both paths \"equally lay / In leaves no step had trodden black\"—they're actually quite similar. The speaker's claim about taking the road \"less traveled by\" may be self-deception or false retrospective mythology-making. Rather than celebrating bold individuality, the poem becomes ironic commentary on how we construct narratives of significance around arbitrary choices, inflating ordinary decisions into grand acts of defiance. The roads were similar all along; we simply tell ourselves we chose the exceptional one.",
+        "axes": {
+          "aspect_count": 0.0,
+          "novelty": 0.79216168820858,
+          "coverage": 0.23140937089920044
+        },
+        "composite": 0.3411903530359268,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 13.526909828186035,
+          "cost_usd": 0.02160805,
+          "duration_ms": 11633,
+          "stop_reason": "end_turn"
+        }
+      },
+      "local_bare": {
+        "text": "Reading B:\nIn this line from the poem \"Two Roads Diverged in a Wood\" by Robert Frost, the speaker takes a metaphorical journey through the woods, each road representing a possible course of action. The road chosen, \"I took the one less traveled by,\" is an act of personal choice, a decision that signifies courage and willingness to venture into the unknown. In this instance, the speaker's choice may indicate a journey of self-discovery, embracing unconventional paths, or a commitment to a unique direction. The decision to take this less traveled path often involves overcoming challenges, facing adversity,",
+        "axes": {
+          "aspect_count": 0.0,
+          "novelty": 0.6853214502334595,
+          "coverage": 0.1588459014892578
+        },
+        "composite": 0.28138911724090576,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 20.09736204147339
+        }
+      },
+      "local_cascade": {
+        "text": "Reading A:\nTwo roads diverged in a wood, and I— / I took the one less traveled by. This line is from the poem \"Two Roads Diverted in a Wood\" by Robert Frost. It's a metaphor for life's choices and the idea that we should choose the path that is less traveled, which is a path of less risk and less expectation.\n\nReading B:\nI took the one less traveled by. This line is a direct statement from the poem. It means that I have decided to take the less traveled path, which is the one that is less predictable and less",
+        "axes": {
+          "aspect_count": 0.0,
+          "novelty": 0.6724235415458679,
+          "coverage": 0.15117160975933075
+        },
+        "composite": 0.2745317171017329,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 93.54370498657227,
+          "vimarsa_event": false,
+          "novelty": 0.6724235415458679,
+          "delta_F": 0.0,
+          "selected_idx": 1
+        }
+      }
+    },
+    "i03": {
+      "item": {
+        "id": "i03",
+        "surface": "Do not go gentle into that good night",
+        "aspects": [
+          "a cry against death",
+          "advice given by a son to a dying father"
+        ],
+        "retrieval_set": [
+          "bedtime is at 9pm",
+          "good night messages"
+        ]
+      },
+      "claude_haiku": {
+        "text": "**Reading A—Defiance Against Mortality:** This reading treats \"that good night\" as death itself, and the imperative urges fierce resistance against mortality's seduction. Rather than accept the quiet passing that death offers as a kind of mercy (\"good night\"), the speaker demands rage, struggle, and refusal. It's a command to fight the inevitable with full consciousness and dignity, rejecting resignation.\n\n**Reading B—Against Complacency in Hardship:** Here, \"good night\" becomes a metaphor for surrendering to despair, failure, or the slow dimming of ambition in the face of life's difficulties. The speaker rejects the temptation to go gently—to accept mediocrity, to stop fighting for what matters, to let circumstances defeat you without resistance. It's a call to remain awake, engaged, and defiant against all forces that would diminish you, not just death.",
+        "axes": {
+          "aspect_count": 0.5,
+          "novelty": 0.5836791098117828,
+          "coverage": 0.32027667760849
+        },
+        "composite": 0.46798526247342426,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 12.04681396484375,
+          "cost_usd": 0.020048049999999998,
+          "duration_ms": 9946,
+          "stop_reason": "end_turn"
+        }
+      },
+      "local_bare": {
+        "text": "The speaker wants us to understand the following:\n\n* the significance of the phrase \"good night\"\n* the importance of not going gentle\n* the meaning of \"do not go\"\n* the importance of \"into that good night\"\n* the tone of the poem\n* the overall message of the poem\n\nReading B:\nThe speaker wants us to understand the following:\n\n* the difference between going gently and going hard\n* the importance of facing death and death in a brave way\n* the significance of \"into that good night\"\n* the overall tone of the poem\n* the overall message of the",
+        "axes": {
+          "aspect_count": 0.0,
+          "novelty": 0.5899702310562134,
+          "coverage": 0.21553051471710205
+        },
+        "composite": 0.26850024859110516,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 16.302967071533203
+        }
       }
     }
   }

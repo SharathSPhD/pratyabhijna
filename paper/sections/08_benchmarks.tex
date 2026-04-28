@@ -5,7 +5,7 @@
 We use four task domains, items listed in Appendix~\ref{app:benchmark_items}:
 
 \begin{itemize}[leftmargin=1.4em]
-\item \textbf{poetry\_gen} ($n_{\text{POETRY\_GEN_N}}$ items): paired (form, topic, must-avoid) targets across haiku, tanka, sonnet, free verse and a small ghazal slice. POEMetric six-axis scoring~\citep{Ye2025POEMetric}: creativity, lexical diversity, idiosyncrasy, emotional resonance, literary devices, imagery.
+\item \textbf{poetry\_gen} ($n_{\text{POETRY_GEN_N}}$ items): paired (form, topic, must-avoid) targets across haiku, tanka, sonnet, free verse and a small ghazal slice. POEMetric six-axis scoring~\citep{Ye2025POEMetric}: creativity, lexical diversity, idiosyncrasy, emotional resonance, literary devices, imagery.
 \item \textbf{poetry\_interp} ($n_{\text{POETRY_INTERP_N}}$ items): a stratified Wittgenstein aspect-shift slice. Each item is a single line of poetry with two pre-registered candidate readings; the model must produce both and the scorer measures aspect-coverage (cosine to each aspect target), aspect-multiplicity (count of aspects $\geq$ 0.40 cosine), novelty (1$-$ retrieval-set similarity).
 \item \textbf{aut} ($n_{\text{AUT_N}}$ items): the alternative-uses-task component of CreativityPrism~\citep{CreativityPrism2025}. The composite is creativity (cosine novelty against the standard use), lexical-diversity, and feasibility-style heuristics.
 \item \textbf{sci\_creativity} ($n_{\text{SCI_N}}$ items): scientific-creativity items drawn from BIG-Bench Hard / MacGyverBench style probes~\citep{Suzgun2022BBH,Tian2024MacGyverBench}; each carries 2--3 ``framings'' (analogical, mechanistic, mathematical) the model is asked to produce. The composite weights non-textbook novelty, framing-coverage, and depth-via-length.
