@@ -31,9 +31,12 @@ v0.2 changes vs v0.1:
 """
 from __future__ import annotations
 
+from typing import Literal
+
 import numpy as np
 import numpy.typing as npt
 
+from pce.active_inference.hopfield import HopfieldStore, WriteMode
 from pce.substrate.embed import Embedder
 
 DEFAULT_NOVELTY_THRESHOLD = 0.30
@@ -196,3 +199,59 @@ def vimarsa(
         )
         return event, novelty, diag, brief
     return event, novelty, diag
+
+
+def consolidate(
+    *,
+    surface: str,
+    aspects: list[str],
+    embed: Embedder,
+    hopfield: HopfieldStore,
+    mode: WriteMode = "rem",
+    label_strategy: Literal["best_aspect", "first_aspect", "domain_only"] = "best_aspect",
+) -> dict[str, object]:
+    """Write the committed surface back to the per-domain storehouse.
+
+    v0.3 ADR-004: this is the cascade-end hook that closes the
+    iccha-apoha-jnana-kriya-vimarsa loop. The cascade calls ``consolidate``
+    after committing a surface; the storehouse then carries warm-start mass
+    for the next prompt in the same domain.
+
+    ``mode="rem"`` (default) appends the surface as a new pattern (fast,
+    REM-style). ``mode="sws"`` consolidates against the nearest existing
+    pattern when cosine ≥ threshold (slow-wave-style merge).
+
+    ``label_strategy``:
+
+    * ``"best_aspect"``: label = the aspect with the highest cosine to the
+      surface (or ``""`` if no aspects supplied).
+    * ``"first_aspect"``: label = ``aspects[0]`` (or ``""``).
+    * ``"domain_only"``: label = ``hopfield.domain``.
+
+    Returns a small audit dict (label, mode, n_patterns_after) for inclusion
+    on :class:`pce.types.CascadeState.audit`.
+    """
+    if not surface.strip():
+        return {"written": False, "reason": "empty_surface"}
+    surf_emb = embed.encode(surface)
+    if surf_emb.ndim != 1:
+        surf_emb = np.asarray(surf_emb).reshape(-1)
+    label: str
+    if label_strategy == "domain_only" or not aspects:
+        label = hopfield.domain if label_strategy == "domain_only" else ""
+    elif label_strategy == "first_aspect":
+        label = str(aspects[0])
+    else:  # best_aspect
+        asp_embs = embed.encode(list(aspects))
+        if asp_embs.ndim == 1:
+            asp_embs = asp_embs[None, :]
+        sims = np.asarray(asp_embs @ surf_emb, dtype=np.float32)
+        label = str(aspects[int(np.argmax(sims))]) if sims.size else ""
+    hopfield.write(surf_emb.astype(np.float32), label=label, mode=mode)
+    return {
+        "written": True,
+        "label": label,
+        "mode": mode,
+        "n_patterns_after": int(hopfield.n_patterns),
+        "domain": hopfield.domain,
+    }
