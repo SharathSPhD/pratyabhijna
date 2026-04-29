@@ -48,12 +48,15 @@
   <div class="flex items-center gap-3 mb-3 flex-wrap">
     <span class="pill">Claude Code plugin</span>
     <span class="pill">Pratyabhijñā × Active Inference</span>
-    <span class="pill">v0.2 pilot · n_paired=<span data-bind="n_paired">—</span></span>
-    <span class="pill">apples-to-apples Haiku</span>
+    <span class="pill">v0.3 pilot · n_paired=<span data-bind="n_paired">—</span></span>
+    <span class="pill">clean Haiku CLI</span>
+    <span class="pill">event-gated vimarśa</span>
+    <span class="pill">+K compute control</span>
+    <span class="pill">generic-revise control</span>
   </div>
   <h1 class="text-4xl md:text-5xl serif font-semibold leading-tight">Pratyabhijñā Creative Engine</h1>
   <p class="serif text-lg md:text-xl mt-3 opacity-80">
-    A recursive self-reflexivity layer for LLM creative cognition: the five-<span class="iast">śakti</span> cascade as an executable Claude Code plugin, gated by Bayesian Model Reduction. <strong>v0.2</strong> makes <span class="iast">vimarśa</span> causal (two-pass-always) and adds Anthropic Claude Haiku as a first-class substrate for the apples-to-apples ablation the v0.1 paper lacked.
+    A recursive self-reflexivity layer for LLM creative cognition: the five-<span class="iast">śakti</span> cascade as an executable Claude Code plugin, gated by Bayesian Model Reduction. <strong>v0.3</strong> directly addresses the four falsifiable findings of the v0.2 adversarial review: (i) clean Haiku CLI substrate (subprocess flag isolation + scrubbed <code>HOME</code> + per-item integrity probe); (ii) event-gated commit on jñāna ΔF with always-shadow revision; (iii) full active-inference uplift on the cascade causal path; (iv) two new control arms isolating the architecture from the compute and protocol confounds.
   </p>
   <div class="mt-6 flex flex-wrap gap-2 text-sm">
     <a href="#motivation" class="px-3 py-1 rounded-full bg-white border">Motivation</a>
@@ -64,7 +67,7 @@
     <a href="#benchmarks" class="px-3 py-1 rounded-full bg-white border">Benchmarks</a>
     <a href="#results" class="px-3 py-1 rounded-full bg-white border">Results</a>
     <a href="#discussion" class="px-3 py-1 rounded-full bg-white border">Discussion</a>
-    <a href="#v01-vs-v02" class="px-3 py-1 rounded-full bg-white border">v0.1 → v0.2</a>
+    <a href="#v02-vs-v03" class="px-3 py-1 rounded-full bg-white border">v0.2 → v0.3</a>
     <a href="#repro" class="px-3 py-1 rounded-full bg-white border">Reproducibility</a>
   </div>
 </header>
@@ -153,7 +156,7 @@
 [Plugin Skills + Agents]
        │
        ▼
-[FastMCP server: 17 tools (v0.2)]
+[FastMCP server: 19 tools (v0.3)]
        │
        ▼
 ┌──────────────────── PCE engine (src/pce) ────────────────────┐
@@ -170,8 +173,10 @@
 [Substrate]
   ├ Embedder  (sentence-transformers/all-MiniLM-L6-v2)
   ├ LocalLM   (Qwen/Qwen2-1.5B-Instruct, MPS/CUDA/CPU autodetect)
-  └ HaikuLM   (Anthropic Claude Haiku via claude CLI, v0.2)
-                ↑ both behind a single LMProtocol (ADR-001, ADR-004)
+  └ HaikuLM   (Anthropic Claude Haiku via claude CLI; v0.3 clean substrate
+                = subprocess flag isolation + scrubbed HOME + IntegrityProbe;
+                outer-host plugins remain loaded — only the inner subprocess is clean)
+                ↑ all behind a single GeneratorProtocol (ADR-001 v0.3)
     </pre>
   </div>
 </section>
@@ -180,8 +185,8 @@
   <h2 class="text-2xl serif font-semibold anchor">Plugin surface</h2>
   <div class="grid md:grid-cols-4 gap-4 mt-4">
     <div class="glass rounded-xl p-5">
-      <p class="text-3xl serif font-semibold">17</p>
-      <p class="text-xs opacity-70">MCP tools (v0.2 +2)</p>
+      <p class="text-3xl serif font-semibold">19</p>
+      <p class="text-xs opacity-70">MCP tools (v0.3 +2)</p>
     </div>
     <div class="glass rounded-xl p-5">
       <p class="text-3xl serif font-semibold">5</p>
@@ -218,11 +223,12 @@
       </ul>
     </div>
     <div class="glass rounded-xl p-4">
-      <p class="font-semibold mb-1">MCP tools (selected)</p>
+      <p class="font-semibold mb-1">MCP tools (19 in v0.3)</p>
       <ul class="list-disc list-inside opacity-80">
-        <li><code>pce.cascade</code> (default arm) · <code>pce.pce_cascade(arm=…)</code> <span class="pill">v0.2</span></li>
+        <li><code>pce.pce_cascade(arm=…, commit_policy=…, cit_temperature=…)</code> <span class="pill">v0.3</span></li>
+        <li><code>pce.haiku_clean_substrate_probe</code> · <code>pce.hopfield_state</code> <span class="pill">v0.3</span></li>
         <li><code>pce.haiku_bare</code> <span class="pill">v0.2</span></li>
-        <li><code>pce.cit / iccha / jnana / vimarsa / kriya</code></li>
+        <li><code>pce.cit / iccha / jnana / vimarsa / kriya / cascade</code></li>
         <li><code>pce.store.add / recall / consolidate_sws / consolidate_rem</code></li>
       </ul>
     </div>
@@ -230,17 +236,17 @@
 </section>
 
 <section id="benchmarks" class="max-w-6xl mx-auto px-6 py-8">
-  <h2 class="text-2xl serif font-semibold anchor">Benchmark protocol (v0.2 four-arm matrix)</h2>
+  <h2 class="text-2xl serif font-semibold anchor">Benchmark protocol (v0.3 four-arm matrix)</h2>
   <p class="mt-3 max-w-3xl">
-    Up to four arms per item: <strong>haiku_bare</strong> (no PCE, primary control), <strong>haiku_cascade</strong> (PCE on Haiku, primary treatment), <strong>local_bare</strong> (substrate baseline), <strong>local_cascade</strong> (within-substrate ablation). The pilot reports the three arms run inside the $18 Haiku envelope; the local-cascade ablation was deferred to v0.3 due to wall-clock on the pilot host. Items are pre-registered in <code>benchmarks/items.py</code>; scoring is deterministic in <code>benchmarks/scoring.py</code>; the v0.2 stats / per-domain JSON live under <code>benchmarks/results_v2/</code>.
+    Four Haiku arms per item, all routed through the v0.3 clean CLI substrate (subprocess flag isolation + scrubbed <code>HOME</code> + per-item <code>IntegrityProbe</code>): <strong>haiku_bare</strong> (no PCE, primary control), <strong>haiku_cascade</strong> (PCE event-gated cascade, primary treatment), <strong>haiku_bare_2K_scorer</strong> (1 pass with K'=2K candidates fanned out by icchā + jñāna BMR scorer; <em>extra-compute control</em>, H6.v3), <strong>haiku_generic_revise_2pass</strong> (2 passes with a fixed generic revise brief replacing the vimarśa brief; <em>revision-protocol control</em>, H7.v3). Items are pre-registered in <code>benchmarks/items.py</code> (same v0.2 sample); scoring is deterministic in <code>benchmarks/scoring.py</code>; the v0.3 stats / per-domain JSON live under <code>benchmarks/results_v0.3/</code>.
   </p>
   <table class="bench mt-4 w-full glass rounded-xl overflow-hidden">
     <thead><tr><th>Domain</th><th>n</th><th>Scoring</th><th>Hypothesis</th></tr></thead>
     <tbody>
-      <tr><td>poetry_gen</td><td data-bind="poetry_gen_n">—</td><td>POEMetric 6-axis</td><td>H3</td></tr>
-      <tr><td>poetry_interp</td><td data-bind="poetry_interp_n">—</td><td>aspect-multiplicity + novelty + coverage</td><td>H2</td></tr>
-      <tr><td>aut</td><td data-bind="aut_n">—</td><td>creativity·diversity·feasibility blend</td><td>H1</td></tr>
-      <tr><td>sci_creativity</td><td data-bind="sci_n">—</td><td>non-textbook novelty + framing-coverage + depth</td><td>H4</td></tr>
+      <tr><td>poetry_gen</td><td data-bind="poetry_gen_n">—</td><td>POEMetric 6-axis</td><td>H3.v3</td></tr>
+      <tr><td>poetry_interp</td><td data-bind="poetry_interp_n">—</td><td>aspect-multiplicity + novelty + coverage</td><td>H2.v3</td></tr>
+      <tr><td>aut</td><td data-bind="aut_n">—</td><td>creativity·diversity·feasibility blend</td><td>H1.v3</td></tr>
+      <tr><td>sci_creativity</td><td data-bind="sci_n">—</td><td>non-textbook novelty + framing-coverage + depth</td><td>H4.v3</td></tr>
     </tbody>
   </table>
 </section>
@@ -266,7 +272,7 @@
       <canvas id="chart-domains" height="320"></canvas>
     </div>
     <div class="glass rounded-xl p-4">
-      <h3 class="font-semibold mb-2">H6: within-PCE vimarśa-event vs no-event</h3>
+      <h3 class="font-semibold mb-2">H6.v3: cascade vs +K compute control (per-domain)</h3>
       <canvas id="chart-h6" height="320"></canvas>
     </div>
   </div>
@@ -293,27 +299,27 @@
 </section>
 
 <section id="discussion" class="max-w-6xl mx-auto px-6 py-8">
-  <h2 class="text-2xl serif font-semibold anchor">Discussion (v0.2)</h2>
+  <h2 class="text-2xl serif font-semibold anchor">Discussion (v0.3)</h2>
   <p class="mt-3 max-w-3xl">
-    The v0.2 pilot reverses the v0.1 sign on every primary hypothesis: H1–H4 all show <strong>directionally positive</strong> effects (g∈[+0.30, +2.12]) on the apples-to-apples <code>haiku_cascade</code> vs <code>haiku_bare</code> contrast, with three of four BCa CIs strictly above zero (H1, H2, H4). <em>None</em> of the four crossed the pre-registered Holm-adjusted p&lt;0.05 threshold — this is a power constraint of the pilot (with n=5/domain the exact sign-flip permutation floor is p=0.0312, and Holm with m=4 floors the smallest possible adjusted p at 0.125). A properly powered run at n∼20/domain is the v0.3 next step.
+    v0.3 directly addresses the four falsifiable findings of the v0.2 adversarial review. The headline contrast shifts from "did the cascade beat bare?" (H1.v3–H4.v3, primary) to "did the cascade beat <em>more compute</em> on the same substrate?" (H6.v3, the headline fairness test). H7.v3 isolates the <em>content</em> of the <span class="iast">vimarśa</span> brief from the <em>existence</em> of a 2-pass revision protocol, and H8.v3 verifies the cascade's revision pass actually outscores its own draft on items where the event-gated commit chose revision. Length-controlled scoring addresses the v0.2 review's worry that the cascade's longer surfaces alone might explain the win.
   </p>
   <p class="mt-3 max-w-3xl text-sm opacity-80">
-    The TRIZ-resolved operator changes are causally specific and traceable: signed <span class="iast">apohana</span> (ADR-002), prompt/sampler parity with bare baselines (ADR-005), causal two-pass-always <span class="iast">vimarśa</span> (ADR-003), pluggable <code>LMProtocol</code> (ADR-001 / ADR-004). <span class="iast">Vimarśa</span> now fires on 9/14 <code>haiku_cascade</code> trials (vs 0/30 in v0.1), and the within-cascade H6 fired-vs-not contrast is directionally positive (Δ=+0.031, ns at pilot n).
+    The v0.3 architectural changes are causally specific and traceable to the v0.2 review findings: clean Haiku CLI substrate (ADR-001) eliminates context-leakage of the bare control; event-gated commit + always-shadow revision (ADR-002) lifts <span class="iast">vimarśa</span> from prompting to a causal step on the jñāna ΔF signal; aspect-conditioned BMR (ADR-003), Hopfield warm-start in apohana (ADR-004), and per-item free-energy budget (ADR-005) bring active inference onto the causal path that v0.2 left as prompting.
   </p>
 </section>
 
-<section id="v01-vs-v02" class="max-w-6xl mx-auto px-6 py-8">
-  <h2 class="text-2xl serif font-semibold anchor">v0.1 vs v0.2</h2>
+<section id="v02-vs-v03" class="max-w-6xl mx-auto px-6 py-8">
+  <h2 class="text-2xl serif font-semibold anchor">v0.2 vs v0.3</h2>
   <div class="overflow-x-auto">
     <table class="bench mt-4 w-full glass rounded-xl overflow-hidden">
-      <thead><tr><th>Metric</th><th>v0.1 (n=38)</th><th>v0.2 pilot (n=19)</th><th>Direction</th></tr></thead>
+      <thead><tr><th>Aspect</th><th>v0.2</th><th>v0.3</th></tr></thead>
       <tbody>
-        <tr><td>Primary contrast</td><td><code>local_cascade</code> − <code>haiku_bare</code></td><td><code>haiku_cascade</code> − <code>haiku_bare</code></td><td>substrate-matched</td></tr>
-        <tr><td>H1 (AUT)</td><td>negative</td><td><strong>+1.26 g</strong></td><td>reversed</td></tr>
-        <tr><td>H2 (poetry_interp)</td><td>negative</td><td><strong>+2.12 g</strong></td><td>reversed</td></tr>
-        <tr><td>H3 (poetry_gen)</td><td>negative</td><td>+0.30 g</td><td>reversed</td></tr>
-        <tr><td>H4 (sci_creativity)</td><td>negative</td><td><strong>+0.76 g</strong></td><td>reversed</td></tr>
-        <tr><td>H6 <span class="iast">vimarśa</span> fired</td><td>0 / 30</td><td>9 / 14 (haiku_cascade)</td><td>operator now causal</td></tr>
+        <tr><td>Substrate isolation</td><td>inherits Claude Code skills + env</td><td>clean CLI: subprocess flag isolation + scrubbed <code>HOME</code> + per-item <code>IntegrityProbe</code></td></tr>
+        <tr><td><span class="iast">Vimarśa</span> commit</td><td>two-pass-always (revision committed unconditionally)</td><td>event-gated on jñāna ΔF + always-shadow revision (H8.v3 always measurable)</td></tr>
+        <tr><td>Active inference</td><td>primarily prompting; constant prior; Hopfield only at consolidation</td><td>aspect-conditioned BMR, Hopfield warm-start in apohana, plumbed cit-temperature, free-energy budget</td></tr>
+        <tr><td>Compute fairness</td><td>single primary contrast (cascade vs bare); no compute control</td><td><strong>H6.v3</strong> (cascade vs +K compute) and <strong>H7.v3</strong> (cascade vs generic 2-pass) explicit controls</td></tr>
+        <tr><td>H5 aggregate</td><td>z-blend over per-domain z-scores</td><td>random-effects DerSimonian–Laird Hedges' g pool with τ² heterogeneity</td></tr>
+        <tr><td>JSON output</td><td>bare <code>NaN</code> literals (RFC-non-compliant)</td><td>strict JSON via <code>_clean_json</code> + <code>allow_nan=False</code></td></tr>
       </tbody>
     </table>
   </div>
@@ -327,15 +333,18 @@ uv venv && uv sync --extra dev
 uv run python scripts/verify_real_model.py
 uv run pytest -m "not slow"
 
-# v0.2 prove-gate (single-case validation before pilot):
+# v0.3 outer-host smoke (must pass before any inner-substrate hardening):
+uv run python scripts/verify_outer_host_loads_pce.py
+
+# v0.3 prove-gate (single-case validation; per-item integrity probe + leakage scan):
 uv run python scripts/prove_gate.py --strict
 
-# v0.2 pilot (~$15 Haiku envelope):
-make benchmark.pilot
-make stats.pilot
-uv run python benchmarks/figures.py --results-dir benchmarks/results_v2
-uv run python benchmarks/autoreport.py --stats benchmarks/results_v2/stats.json --paper-dir paper</pre>
-  <p class="text-sm opacity-70 mt-2">Every numerical claim on this page is derived from <code>benchmarks/results_v2/stats.json</code> and the per-domain JSON files; the v0.2 audit log lives under <code>audit/</code> with per-Haiku-call records in <code>audit/haiku/</code> and the persistent cost ledger at <code>audit/cost_ledger.json</code>. The v0.1 audit lives under <code>audit/phase8</code> / <code>audit/phase9</code>.</p>
+# v0.3 pilot (~$8-10 Haiku envelope under the locked $20 cap):
+uv run python benchmarks/driver.py --pilot --out-dir benchmarks/results_v0.3 --cost-cap-usd 20
+uv run python benchmarks/stats.py --results-dir benchmarks/results_v0.3 --out benchmarks/results_v0.3/stats.json
+uv run python benchmarks/figures.py --results-dir benchmarks/results_v0.3 --stats benchmarks/results_v0.3/stats.json --out-dirs paper/figures
+uv run python benchmarks/autoreport.py --stats benchmarks/results_v0.3/stats.json --paper-dir paper</pre>
+  <p class="text-sm opacity-70 mt-2">Every numerical claim on this page is derived from <code>benchmarks/results_v0.3/stats.json</code> and the per-domain JSON files; the v0.3 audit lives under <code>audit/v0.3/</code> with per-item integrity probes in <code>audit/v0.3/integrity_probes.jsonl</code>, per-run cost snapshots in <code>audit/v0.3/cost_snapshot.json</code>, and the pilot run log at <code>audit/v0.3/pilot_run.log</code>. The persistent Haiku cost ledger is at <code>audit/cost_ledger.json</code> (cumulative across all runs).</p>
 </section>
 
 <footer class="max-w-6xl mx-auto px-6 py-6 border-t opacity-70 text-xs">
@@ -369,10 +378,12 @@ uv run python benchmarks/autoreport.py --stats benchmarks/results_v2/stats.json 
   };
 
   async function main(){
-    const stats = (await loadJSON('../benchmarks/results_v2/stats.json'))
+    const stats = (await loadJSON('../benchmarks/results_v0.3/stats.json'))
+              || (await loadJSON('../benchmarks/results_v2/stats.json'))
               || (await loadJSON('../benchmarks/results/stats.json'));
+    const v3 = stats && stats.config && stats.config.version === 'v0.3';
     const v2 = stats && stats.config && stats.config.version === 'v0.2';
-    const resultsDir = v2 ? 'results_v2' : 'results';
+    const resultsDir = v3 ? 'results_v0.3' : (v2 ? 'results_v2' : 'results');
     const domains = ['poetry_gen','poetry_interp','aut','sci_creativity'];
     const dom = {};
     for (const d of domains){ dom[d] = await loadJSON(`../benchmarks/${resultsDir}/${d}.json`); }
@@ -381,8 +392,8 @@ uv run python benchmarks/autoreport.py --stats benchmarks/results_v2/stats.json 
       return;
     }
     const primary = stats.primary;
-    const treatment = (stats.config && stats.config.treatment_arm) || 'local_cascade';
-    const control = (stats.config && stats.config.control_arm_primary) || 'claude_haiku';
+    const treatment = (stats.config && stats.config.treatment_arm) || 'haiku_cascade';
+    const control = (stats.config && stats.config.control_arm_primary) || 'haiku_bare';
     bind('n_paired', ['H1','H2','H3','H4'].reduce((a,k)=>a+(primary[k]?.n||0),0));
     for (const [k, ds] of [['poetry_gen','H3'],['poetry_interp','H2'],['aut','H1'],['sci_n','H4']]) {
       const key = k==='sci_n'?'sci_creativity':k;
@@ -402,12 +413,28 @@ uv run python benchmarks/autoreport.py --stats benchmarks/results_v2/stats.json 
     });
     const contrastTxt = `${treatment} vs ${control}`;
     let parts = [];
-    if (sup.length) parts.push(`PCE v0.2 materially shifts the paired apples-to-apples contrast ${contrastTxt} on ${sup.join(', ')} (Holm-adjusted p<0.05, BCa CI strictly positive).`);
+    const versionLabel = v3 ? 'v0.3' : (v2 ? 'v0.2' : 'v0.1');
+    if (sup.length) parts.push(`PCE ${versionLabel} materially shifts the paired apples-to-apples contrast ${contrastTxt} on ${sup.join(', ')} (Holm-adjusted p<0.05, BCa CI strictly positive).`);
     if (bcaPos.length) parts.push(`Effect sizes for ${bcaPos.join(', ')} are positive with 95% BCa CIs strictly above zero in the ${contrastTxt} contrast, but the pre-registered Holm-adjusted p<0.05 threshold is not crossed at the pilot's n (the exact sign-flip permutation floor is 1/2^5=0.0312 and Holm with m=4 floors the smallest possible adjusted p at 0.125).`);
     if (!sup.length && !bcaPos.length) parts.push(`No primary hypothesis (H1–H4) shows a directional-positive BCa CI for the ${contrastTxt} contrast.`);
-    if (stats.H5?.supported) parts.push('The aggregate composite (H5) is positive and significant.');
-    const h6Payload = stats.H6_haiku_cascade || stats.H6_local_cascade || stats.H6 || {};
-    if (h6Payload.supported) parts.push('The within-cascade H6 internal-validity test is supported.');
+    if (v3) {
+      const h5 = stats.H5 || {};
+      if (h5.pooled_g != null && h5.ci_95 && h5.ci_95.length === 2) {
+        parts.push(`Random-effects pooled effect across the four domains (H5.v3) is g=${fmt(h5.pooled_g, 2)} (95% CI ${fmtCI(h5.ci_95)}).`);
+      }
+      const h6v3 = stats.H6_v3_extra_compute || {};
+      const h6sup = Object.entries(h6v3).filter(([k,v]) => v && typeof v === 'object' && v.supported).map(([k]) => k);
+      if (h6sup.length) parts.push(`H6.v3 (vs +K-compute control) is supported on ${h6sup.join(', ')} — the cascade beats more-compute-on-the-same-substrate.`);
+      const h7v3 = stats.H7_v3_generic_revise || {};
+      const h7sup = Object.entries(h7v3).filter(([k,v]) => v && typeof v === 'object' && v.supported).map(([k]) => k);
+      if (h7sup.length) parts.push(`H7.v3 (vs generic 2-pass) is supported on ${h7sup.join(', ')} — the vimarśa brief content (not just any 2-pass revise) carries the win.`);
+      const h8 = stats.H8_v3_revision_vs_draft || {};
+      if (h8.supported) parts.push('H8.v3 (within-cascade revision vs draft) is supported: the revision pass actually outscores the shadow draft on items the event-gated commit chose to revise.');
+    } else {
+      if (stats.H5?.supported) parts.push('The aggregate composite (H5) is positive and significant.');
+      const h6Payload = stats.H6_haiku_cascade || stats.H6_local_cascade || stats.H6 || {};
+      if (h6Payload.supported) parts.push('The within-cascade H6 internal-validity test is supported.');
+    }
     document.getElementById('headline-result').textContent = parts.join(' ');
 
     // Forest plot (horizontal effect with CIs)
@@ -487,16 +514,28 @@ uv run python benchmarks/autoreport.py --stats benchmarks/results_v2/stats.json 
       options: { scales: { y: { beginAtZero:true, title:{display:true,text:'mean composite'} } } }
     });
 
-    // H6 (use the cascade-specific payload if present)
-    const h6 = stats.H6_haiku_cascade || stats.H6_local_cascade || stats.H6 || {};
+    // H6: v0.3 = per-domain cascade vs +K compute control; v0.2 = within-PCE event vs no-event
     const h6ctx = document.getElementById('chart-h6').getContext('2d');
-    new Chart(h6ctx, {
-      type:'bar',
-      data:{ labels:[`vimarśa fired (n=${h6.n_fired ?? 0})`, `no event (n=${h6.n_not_fired ?? 0})`],
-        datasets:[{ label:'mean composite delta', data:[h6.estimate ?? 0, 0], backgroundColor:['#3b6ea8','#bbbbbb'] }]
-      },
-      options:{ plugins:{ legend:{ display:false } }, scales:{ y:{ title:{display:true, text:'fired − no-event mean'} } } }
-    });
+    if (v3) {
+      const h6v3 = stats.H6_v3_extra_compute || {};
+      const h6Labels = ['H1 (AUT)', 'H2 (Interp)', 'H3 (Poetry-gen)', 'H4 (Sci-creat)'];
+      const h6Ests = ['H1','H2','H3','H4'].map(k => (h6v3[k]?.estimate) ?? 0);
+      const h6Colors = ['H1','H2','H3','H4'].map(k => (h6v3[k]?.supported) ? '#3b6ea8' : '#bccdf0');
+      new Chart(h6ctx, {
+        type: 'bar',
+        data: { labels: h6Labels, datasets: [{ label: 'paired Δ (cascade − +K-scorer)', data: h6Ests, backgroundColor: h6Colors }] },
+        options: { plugins: { legend: { display: false } }, scales: { y: { title: { display: true, text: 'paired Δ composite' } } } }
+      });
+    } else {
+      const h6 = stats.H6_haiku_cascade || stats.H6_local_cascade || stats.H6 || {};
+      new Chart(h6ctx, {
+        type:'bar',
+        data:{ labels:[`vimarśa fired (n=${h6.n_fired ?? 0})`, `no event (n=${h6.n_not_fired ?? 0})`],
+          datasets:[{ label:'mean composite delta', data:[h6.estimate ?? 0, 0], backgroundColor:['#3b6ea8','#bbbbbb'] }]
+        },
+        options:{ plugins:{ legend:{ display:false } }, scales:{ y:{ title:{display:true, text:'fired − no-event mean'} } } }
+      });
+    }
 
     // Hypothesis table
     const tbl = document.getElementById('hyp-table');
@@ -505,10 +544,28 @@ uv run python benchmarks/autoreport.py --stats benchmarks/results_v2/stats.json 
       const r = primary[k];
       return `<tr class="border-t"><td class="p-2 font-semibold">${k}</td><td class="text-center">${r.n}</td><td>${fmt(r.estimate)}</td><td>${fmt(r.hedges_g,2)}</td><td>${fmtCI(r.bca_ci_95)}</td><td>${fmt(r.permutation_p_one_sided,4)}</td><td>${fmt(r.wilcoxon_p_one_sided,4)}</td><td>${fmt(r.holm_p,4)}</td><td>${fmt(r.power_apriori,2)} / ${fmt(r.power_retrospective,2)}</td><td>${r.supported?'<strong>yes</strong>':'no'}</td></tr>`;
     }).join('');
-    const h5 = stats.H5; const h6r = stats.H6_haiku_cascade || stats.H6_local_cascade || stats.H6 || {};
-    const h5row = `<tr class="border-t"><td class="p-2 font-semibold">H5</td><td class="text-center">${h5.n}</td><td>${fmt(h5.estimate_pooled_z)}</td><td>${fmt(h5.hedges_g,2)}</td><td>${fmtCI(h5.bca_ci_95)}</td><td>${fmt(h5.permutation_p_one_sided,4)}</td><td>—</td><td>—</td><td>${fmt(h5.power_apriori,2)} / ${fmt(h5.power_retrospective,2)}</td><td>${h5.supported?'<strong>yes</strong>':'no'}</td></tr>`;
-    const h6row = `<tr class="border-t"><td class="p-2 font-semibold">H6</td><td class="text-center">${h6r.n_fired ?? 0}/${h6r.n_not_fired ?? 0}</td><td>${fmt(h6r.estimate)}</td><td>—</td><td>${fmtCI(h6r.ci_95)}</td><td>${fmt(h6r.mannwhitney_u_p_one_sided,4)}</td><td>—</td><td>—</td><td>—</td><td>${h6r.supported?'<strong>yes</strong>':'no'}</td></tr>`;
-    tbl.innerHTML = `<table class="w-full">${thead}${rows}${h5row}${h6row}</table>`;
+    if (v3) {
+      const h5 = stats.H5 || {};
+      const h5row = `<tr class="border-t"><td class="p-2 font-semibold">H5.v3 (RE pool)</td><td class="text-center">${h5.n_studies ?? '—'}</td><td>—</td><td>${fmt(h5.pooled_g,2)}</td><td>${fmtCI(h5.ci_95)}</td><td>—</td><td>—</td><td>—</td><td>τ²=${fmt(h5.tau2,2)}</td><td>${h5.supported?'<strong>yes</strong>':'no'}</td></tr>`;
+      const h6v3 = stats.H6_v3_extra_compute || {};
+      const h6Sup = Object.values(h6v3).filter(v => v && typeof v === 'object' && v.supported).length;
+      const h6Total = Object.values(h6v3).filter(v => v && typeof v === 'object' && 'n' in v).length;
+      const h6gMean = (() => { const gs = Object.values(h6v3).map(v => v?.hedges_g).filter(g => typeof g === 'number' && g === g); return gs.length ? gs.reduce((s,v)=>s+v,0)/gs.length : null; })();
+      const h6row = `<tr class="border-t"><td class="p-2 font-semibold">H6.v3 (vs +K)</td><td class="text-center">${h6Total}</td><td>—</td><td>${fmt(h6gMean,2)}</td><td>—</td><td>—</td><td>—</td><td>—</td><td>${h6Sup}/${h6Total} domains</td><td>${h6Sup>0?'<strong>yes</strong>':'no'}</td></tr>`;
+      const h7v3 = stats.H7_v3_generic_revise || {};
+      const h7Sup = Object.values(h7v3).filter(v => v && typeof v === 'object' && v.supported).length;
+      const h7Total = Object.values(h7v3).filter(v => v && typeof v === 'object' && 'n' in v).length;
+      const h7gMean = (() => { const gs = Object.values(h7v3).map(v => v?.hedges_g).filter(g => typeof g === 'number' && g === g); return gs.length ? gs.reduce((s,v)=>s+v,0)/gs.length : null; })();
+      const h7row = `<tr class="border-t"><td class="p-2 font-semibold">H7.v3 (vs gen 2-pass)</td><td class="text-center">${h7Total}</td><td>—</td><td>${fmt(h7gMean,2)}</td><td>—</td><td>—</td><td>—</td><td>—</td><td>${h7Sup}/${h7Total} domains</td><td>${h7Sup>0?'<strong>yes</strong>':'no'}</td></tr>`;
+      const h8 = stats.H8_v3_revision_vs_draft || {};
+      const h8row = `<tr class="border-t"><td class="p-2 font-semibold">H8.v3 (rev vs draft)</td><td class="text-center">${h8.n ?? 0}</td><td>${fmt(h8.estimate)}</td><td>${fmt(h8.hedges_g,2)}</td><td>${fmtCI(h8.bca_ci_95)}</td><td>${fmt(h8.permutation_p_one_sided,4)}</td><td>—</td><td>—</td><td>—</td><td>${h8.supported?'<strong>yes</strong>':'no'}</td></tr>`;
+      tbl.innerHTML = `<table class="w-full">${thead}${rows}${h5row}${h6row}${h7row}${h8row}</table>`;
+    } else {
+      const h5 = stats.H5 || {}; const h6r = stats.H6_haiku_cascade || stats.H6_local_cascade || stats.H6 || {};
+      const h5row = `<tr class="border-t"><td class="p-2 font-semibold">H5</td><td class="text-center">${h5.n}</td><td>${fmt(h5.estimate_pooled_z)}</td><td>${fmt(h5.hedges_g,2)}</td><td>${fmtCI(h5.bca_ci_95)}</td><td>${fmt(h5.permutation_p_one_sided,4)}</td><td>—</td><td>—</td><td>${fmt(h5.power_apriori,2)} / ${fmt(h5.power_retrospective,2)}</td><td>${h5.supported?'<strong>yes</strong>':'no'}</td></tr>`;
+      const h6row = `<tr class="border-t"><td class="p-2 font-semibold">H6</td><td class="text-center">${h6r.n_fired ?? 0}/${h6r.n_not_fired ?? 0}</td><td>${fmt(h6r.estimate)}</td><td>—</td><td>${fmtCI(h6r.ci_95)}</td><td>${fmt(h6r.mannwhitney_u_p_one_sided,4)}</td><td>—</td><td>—</td><td>—</td><td>${h6r.supported?'<strong>yes</strong>':'no'}</td></tr>`;
+      tbl.innerHTML = `<table class="w-full">${thead}${rows}${h5row}${h6row}</table>`;
+    }
 
     // Demo: pick first poetry_interp item with cascade output (treatment arm preferred)
     const interp = dom['poetry_interp']?.rows || {};
