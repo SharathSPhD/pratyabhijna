@@ -18,9 +18,9 @@ from pathlib import Path
 import pytest
 
 from pce.policies.commit import (
+    DEFAULT_LEARNED_GATE_PATH,
     AlwaysDraft,
     AlwaysRevise,
-    DEFAULT_LEARNED_GATE_PATH,
     EventGated,
     LearnedGate,
     OracleCommit,

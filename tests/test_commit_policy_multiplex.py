@@ -71,7 +71,7 @@ def cascade_meta() -> dict[str, Any]:
 
 
 def test_multiplex_populates_all_policy_arms(cascade_meta: dict[str, Any]) -> None:
-    item_rows = {
+    item_rows: dict[str, dict[str, Any]] = {
         "item": {"id": "x"},
         "haiku_cascade": {"text": "REV", "composite": 1.2, "meta": cascade_meta},
     }
@@ -107,7 +107,7 @@ def test_multiplex_oracle_dominates_other_policies(
     cascade_meta: dict[str, Any],
 ) -> None:
     """ADR-002 sanity check: oracle composite ≥ every committed-policy composite."""
-    item_rows = {
+    item_rows: dict[str, dict[str, Any]] = {
         "item": {"id": "x"},
         "haiku_cascade": {"text": "REV", "composite": 1.2, "meta": cascade_meta},
     }
@@ -134,7 +134,7 @@ def test_multiplex_oracle_picks_draft_when_draft_better(
     cascade_meta: dict[str, Any],
 ) -> None:
     """When draft scores higher, oracle commits draft and beats always_revise."""
-    item_rows = {
+    item_rows: dict[str, dict[str, Any]] = {
         "item": {"id": "x"},
         "haiku_cascade": {"text": "REV", "composite": 0.4, "meta": cascade_meta},
     }
@@ -163,7 +163,7 @@ def test_multiplex_skips_when_no_revision(cascade_meta: dict[str, Any]) -> None:
     """If revision is empty, multiplex still emits all four arms by reusing draft."""
     cascade_meta = dict(cascade_meta)
     cascade_meta["surface_revision"] = ""
-    item_rows = {
+    item_rows: dict[str, dict[str, Any]] = {
         "item": {"id": "x"},
         "haiku_cascade": {"text": "DRA", "composite": 0.5, "meta": cascade_meta},
     }
@@ -188,7 +188,7 @@ def test_multiplex_skips_when_no_revision(cascade_meta: dict[str, Any]) -> None:
 
 def test_multiplex_idempotent(cascade_meta: dict[str, Any]) -> None:
     """Calling the multiplexer twice does not duplicate or overwrite arms."""
-    item_rows = {
+    item_rows: dict[str, dict[str, Any]] = {
         "item": {"id": "x"},
         "haiku_cascade": {"text": "REV", "composite": 1.2, "meta": cascade_meta},
     }
@@ -224,7 +224,7 @@ def test_multiplex_idempotent(cascade_meta: dict[str, Any]) -> None:
 
 
 def test_multiplex_emits_finite_composites(cascade_meta: dict[str, Any]) -> None:
-    item_rows = {
+    item_rows: dict[str, dict[str, Any]] = {
         "item": {"id": "x"},
         "haiku_cascade": {"text": "REV", "composite": 1.2, "meta": cascade_meta},
     }
