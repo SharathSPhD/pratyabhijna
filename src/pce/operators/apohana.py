@@ -9,12 +9,21 @@ contrastive score into `[0, 1]` over the K candidates of the current call.
 The shift is idempotent on inputs already in `[0, 1]`. Default
 `normalize=False` preserves backward compatibility for direct callers; the
 two-pass cascade in `pce.cascade.run_cascade` passes `normalize=True`.
+
+v0.3 (ADR-004): adds an opt-in ``hopfield`` warm-start. When the cascade
+threads in a per-domain :class:`pce.active_inference.HopfieldStore`, each
+candidate's apoha score is augmented by ``hopfield_weight * att_k`` where
+``att_k`` is the Hopfield softmax mass of the candidate against the stored
+patterns. This biases jñāna toward candidates that resemble previously
+consolidated successful surfaces in the same domain. Default
+``hopfield=None`` reproduces v0.2 exactly.
 """
 from __future__ import annotations
 
 import numpy as np
 import numpy.typing as npt
 
+from pce.active_inference.hopfield import HopfieldStore
 from pce.substrate.embed import Embedder
 from pce.types import Candidate, Constraint
 
@@ -43,6 +52,8 @@ def apohana(
     *,
     embed: Embedder,
     normalize: bool = False,
+    hopfield: HopfieldStore | None = None,
+    hopfield_weight: float = 0.25,
 ) -> npt.NDArray[np.float32]:
     if not candidates:
         return np.zeros((0,), dtype=np.float32)
@@ -60,6 +71,22 @@ def apohana(
         neg = cand_emb @ avoid_mat.T  # shape (K, n_avoid)
         neg_max = neg.max(axis=1)
         raw = (pos - neg_max).astype(np.float32)
+    if hopfield is not None and hopfield.n_patterns > 0:
+        # Warm-start: per-candidate softmax mass under the Hopfield query.
+        # We query the storehouse with each candidate's embedding and use the
+        # MAX of stored-pattern cosine as the per-candidate retrieval signal,
+        # then min-max normalize across K so the warm-start is on a comparable
+        # scale to apoha. This stays bounded and never erases the apoha signal.
+        bonus = np.zeros((cand_emb.shape[0],), dtype=np.float32)
+        for k in range(cand_emb.shape[0]):
+            res = hopfield.query(cand_emb[k])
+            # Use the max cosine to any stored pattern, derived from energy =
+            # -1/beta * logsumexp(beta * sims). We approximate by the softmax-
+            # weighted retrieval norm: ||retrieved|| since patterns are unit norm.
+            norm = float(np.linalg.norm(res.retrieved))
+            bonus[k] = min(1.0, max(0.0, norm))
+        bonus_norm = _shift_apoha(bonus)
+        raw = (raw + np.float32(hopfield_weight) * bonus_norm).astype(np.float32)
     if normalize:
         return _shift_apoha(raw)
     return raw
