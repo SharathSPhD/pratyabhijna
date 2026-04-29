@@ -90,6 +90,34 @@ def _entropy_of(scores: np.ndarray) -> float:  # type: ignore[type-arg]
     return float(-np.sum(p * np.log(p)))
 
 
+def _per_candidate_apoha_iccha_trajectory(
+    apoha: npt.NDArray[np.float32],
+    ananda: npt.NDArray[np.float32],
+) -> list[tuple[float, float]]:
+    """v0.4 (FR-4.v4 / ADR-005 in PRD): per-candidate (e_iccha, e_apoha) trajectory.
+
+    `vimarsa.switching_ok` was always trivially True in v0.3 because the
+    cascade passed `iccha_apoha_trajectory=None`. v0.4 supplies a real
+    trajectory: each candidate contributes one point
+    ``(softplus(ananda_i), softplus(apoha_i))``. The trajectory has length K
+    so vimarsa's switching gate is exercised on the same evidence the
+    cascade just consumed.
+
+    Using softplus rather than raw scores keeps both axes positive (so the
+    ratio test in :func:`vimarsa._count_switching` is well-defined) without
+    losing relative ordering between candidates.
+    """
+    a = np.asarray(ananda, dtype=np.float64)
+    b = np.asarray(apoha, dtype=np.float64)
+    n = int(min(a.size, b.size))
+    out: list[tuple[float, float]] = []
+    for i in range(n):
+        e_i = float(np.log1p(np.exp(np.clip(a[i], -50.0, 50.0))))
+        e_a = float(np.log1p(np.exp(np.clip(b[i], -50.0, 50.0))))
+        out.append((e_i, e_a))
+    return out
+
+
 def _aspect_membership_matrix(
     candidates: tuple[Candidate, ...],
     aspects: list[str],
@@ -307,6 +335,10 @@ def run_cascade(
     ledger.earn_tokens(len(cands_d[sel_d].text.split()), note="draft tokens")
 
     # ---- vimarsa (always run; ΔF-gated event) ---------------------------
+    # v0.4 (FR-4.v4): supply a real per-candidate trajectory so vimarsa's
+    # switching gate is exercised. v0.3 always passed None, which made
+    # ``switching_ok`` trivially True for every cascade item.
+    apoha_iccha_trajectory_d = _per_candidate_apoha_iccha_trajectory(apoha_d, anan_d)
     vim_out_d = vimarsa(
         prompt,
         draft,
@@ -314,7 +346,7 @@ def run_cascade(
         retrieval_set=retrieval_list,
         aspects=aspects_list,
         ananda_score=float(anan_d[sel_d]),
-        iccha_apoha_trajectory=None,
+        iccha_apoha_trajectory=apoha_iccha_trajectory_d,
         delta_F=float(dF_d),
         delta_F_threshold=float(delta_F_threshold),
         aspect_cosine_hit=float(aspect_cosine_hit),
@@ -328,10 +360,16 @@ def run_cascade(
         max_asp = float(asp_mem_d[sel_d].max())
         ledger.earn_aspect(max(0.0, 1.0 - max_asp), note="draft aspect distance")
 
-    # ---- Pass 2: shadow revision (skip only under always_draft) ---------
-    if policy == "always_draft":
-        committed = "draft"
-        state = CascadeState(
+    # ---- v0.4 (ADR-003): FE budget hard gate before shadow revision pass.
+    # The cascade still always commits the draft when the budget is
+    # underwater; ``commit_policy`` never overrides a budget abort. The two
+    # tier hierarchy is:
+    #     1. budget gate (generation-level) -> generate revision at all?
+    #     2. commit policy (selection-level) -> commit revision over draft?
+    fe_budget_underwater = not ledger.should_continue_revision()
+
+    def _draft_only_state(reason: str) -> CascadeState:
+        return CascadeState(
             prompt=prompt,
             constraint=constraint,
             cit_temperature=float(cit_temperature),
@@ -346,7 +384,7 @@ def run_cascade(
             surface_revision=None,
             vimarsa_event_draft=bool(event_d),
             vimarsa_brief=brief,
-            committed=committed,
+            committed="draft",
             commit_policy=policy,
             audit={
                 "elapsed_s": float(time.time() - t0),
@@ -363,15 +401,20 @@ def run_cascade(
                 "entropy_iccha_draft": e_iccha_d,
                 "entropy_apoha_draft": e_apoha_d,
                 "two_pass": False,
-                "bypassed": True,
+                "bypassed": reason == "commit_policy=always_draft",
                 "revision_skipped": True,
-                "revision_skipped_reason": "commit_policy=always_draft",
+                "revision_skipped_reason": reason,
+                "fe_budget_underwater": bool(fe_budget_underwater),
                 "budget_ledger": ledger.to_audit(),
                 "storehouse_aspect_attention": storehouse_aspect_attention,
                 "n_storehouse_patterns": int(hopfield.n_patterns) if hopfield else 0,
             },
         )
-        return state
+
+    if policy == "always_draft":
+        return _draft_only_state("commit_policy=always_draft")
+    if fe_budget_underwater:
+        return _draft_only_state("fe_budget_underwater")
 
     effective_brief = brief_override if brief_override is not None else brief
     revision_prompt = (
@@ -407,6 +450,7 @@ def run_cascade(
         max_asp_r = float(asp_mem_r[sel_r].max())
         ledger.earn_aspect(max(0.0, 1.0 - max_asp_r), note="revision aspect distance")
 
+    apoha_iccha_trajectory_r = _per_candidate_apoha_iccha_trajectory(apoha_r, anan_r)
     vim_out_r = vimarsa(
         prompt,
         revision,
@@ -414,7 +458,7 @@ def run_cascade(
         retrieval_set=retrieval_list,
         aspects=aspects_list,
         ananda_score=float(anan_r[sel_r]),
-        iccha_apoha_trajectory=None,
+        iccha_apoha_trajectory=apoha_iccha_trajectory_r,
         delta_F=float(dF_r),
         delta_F_threshold=float(delta_F_threshold),
         aspect_cosine_hit=float(aspect_cosine_hit),
@@ -498,6 +542,7 @@ def run_cascade(
             "entropy_apoha": e_apoha_r,
             "revision_differs_from_draft": bool(revision.strip() != draft.strip()),
             "delta_F_threshold": float(delta_F_threshold),
+            "fe_budget_underwater": False,
             "budget_ledger": ledger.to_audit(),
             "storehouse_aspect_attention": storehouse_aspect_attention,
             "n_storehouse_patterns": int(hopfield.n_patterns) if hopfield else 0,

@@ -49,7 +49,24 @@ from typing import Any
 import numpy as np
 
 from pce.substrate.embed import Embedder
+from pce.substrate.errors import (
+    HaikuApiError,
+    HaikuCLIError,
+    HaikuError,
+    HaikuRateLimitError,
+)
 from pce.types import Candidate
+
+__all__ = [
+    "HaikuLM",
+    "HaikuConfig",
+    "HaikuBudgetExceededError",
+    "CleanSubstrateAuthError",
+    "HaikuError",
+    "HaikuRateLimitError",
+    "HaikuApiError",
+    "HaikuCLIError",
+]
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 AUDIT_DIR = REPO_ROOT / "audit" / "haiku"
@@ -413,10 +430,41 @@ class HaikuLM:
         started = time.time()
         proc = subprocess.run(cmd, **run_kwargs)  # noqa: S603 — CLI is trusted user-installed binary
         latency_ms = int((time.time() - started) * 1000)
+
+        # v0.4 (ADR-006): parse stdout JSON even when rc != 0. Claude CLI returns
+        # the useful error body on stdout (e.g. is_error=True, api_error_status=429
+        # for quota exhaustion) while still exiting non-zero. The v0.3 path
+        # discarded that body via `stderr_tail` and raised a generic RuntimeError;
+        # v0.4 raises a typed HaikuRateLimitError / HaikuApiError so the driver
+        # and smoke harness can distinguish externally-caused failures from
+        # implementation bugs.
+        stdout_text = proc.stdout.decode("utf-8", errors="replace")
+        stderr_tail = proc.stderr.decode("utf-8", errors="replace")[-500:]
+        payload: dict[str, Any] | None
+        try:
+            payload = json.loads(stdout_text) if stdout_text.strip() else None
+        except json.JSONDecodeError:
+            payload = None
+
+        if payload is not None and payload.get("is_error", False):
+            api_status = payload.get("api_error_status")
+            if api_status == 429:
+                raise HaikuRateLimitError(
+                    payload.get("result", "rate-limited") or "rate-limited",
+                    parsed=payload,
+                )
+            raise HaikuApiError(
+                payload.get("result", f"api error (status={api_status})") or
+                f"api error (status={api_status})",
+                parsed=payload,
+            )
         if proc.returncode != 0:
-            stderr_tail = proc.stderr.decode("utf-8", errors="replace")[-500:]
             # Heuristic: detect 401/auth failures up front so we surface the right error.
-            if "401" in stderr_tail or "auth" in stderr_tail.lower() or "credential" in stderr_tail.lower():
+            if (
+                "401" in stderr_tail
+                or "auth" in stderr_tail.lower()
+                or "credential" in stderr_tail.lower()
+            ):
                 raise CleanSubstrateAuthError(
                     f"Clean inner subprocess failed to authenticate (rc={proc.returncode}). "
                     f"OAuth credential may not be reachable from the scrubbed HOME. "
@@ -424,16 +472,14 @@ class HaikuLM:
                     f"Remedy: run `claude /login` to refresh, or set "
                     f"PCE_HAIKU_CLEAN_SUBSTRATE=0 to disable isolation (leaks Claude Code context)."
                 )
-            raise RuntimeError(
-                f"HaikuLM CLI rc={proc.returncode}: {stderr_tail}"
+            raise HaikuCLIError(
+                f"rc={proc.returncode}: {stderr_tail}",
+                parsed={"stderr": stderr_tail, "stdout": stdout_text[:1000]},
             )
-        try:
-            payload = json.loads(proc.stdout.decode("utf-8", errors="replace"))
-        except json.JSONDecodeError as exc:
-            raise RuntimeError(f"HaikuLM CLI returned non-JSON: {exc}") from exc
-        if payload.get("is_error", False):
-            raise RuntimeError(
-                f"HaikuLM CLI is_error=True: {payload.get('result', '')[:500]}"
+        if payload is None:
+            raise HaikuCLIError(
+                "CLI returned no parseable JSON body on stdout",
+                parsed={"stderr": stderr_tail, "stdout": stdout_text[:1000]},
             )
         text = str(payload.get("result", "") or "")
         meta = {
@@ -450,11 +496,25 @@ class HaikuLM:
         return text, meta
 
     def _call_cli(self, prompt: str) -> tuple[str, dict[str, Any]]:
-        """Wrapper around _call_cli_once with retry-on-empty."""
+        """Wrapper around _call_cli_once with retry-on-empty.
+
+        v0.4: ``HaikuRateLimitError`` and ``HaikuApiError`` propagate immediately
+        without retry — those are externally caused and retrying inside the
+        same call burns more quota / cost. Only ``HaikuCLIError`` (generic
+        non-zero rc with no JSON body) and empty-but-OK responses are retried.
+        """
         last_text = ""
         last_meta: dict[str, Any] = {}
         for attempt in range(self.config.cli_retry + 1):
-            text, meta = self._call_cli_once(prompt)
+            try:
+                text, meta = self._call_cli_once(prompt)
+            except (HaikuRateLimitError, HaikuApiError):
+                raise
+            except HaikuCLIError:
+                if attempt >= self.config.cli_retry:
+                    raise
+                time.sleep(self.config.cli_backoff_s * (attempt + 1))
+                continue
             last_text, last_meta = text, meta
             if text.strip():
                 meta["attempt"] = attempt
