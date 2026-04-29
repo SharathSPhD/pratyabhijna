@@ -1,0 +1,711 @@
+{
+  "domain": "poetry_interp",
+  "version": "v0.3",
+  "rows": {
+    "i01": {
+      "item": {
+        "id": "i01",
+        "surface": "I have measured out my life with coffee spoons",
+        "aspects": [
+          "a life of small repetitive rituals",
+          "a quiet despair at unlived possibilities"
+        ],
+        "retrieval_set": [
+          "coffee in the morning is essential",
+          "I drink coffee every day"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        },
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "# \"I have measured out my life with coffee spoons\"\n\n**Reading A: The Mundanity of Existence**\n\nThis reading interprets the line as a lament about the ordinary, repetitive nature of human existence. The speaker has defined his life through small, incremental domestic moments\u2014coffee spoons represent the humble, everyday rituals that fill our days rather than grand achievements or passionate experiences. The measurement suggests that life has been reduced to accumulating these insignificant moments, implying a quiet despair over having lived a conventional, unremarkable existence rather than pursuing something larger or more meaningful.\n\n**Reading B: Paralysis and Missed Opportunities**\n\nThis reading focuses on hesitation and indecision as the speaker's defining characteristic. Each coffee spoon represents a moment of contemplation or hesitation\u2014small pauses where decisions might have been made but weren't. The speaker has measured out his life not through bold action but through countless quiet moments of delay, procrastination, and second-guessing. The line suggests a life constrained by timidity, where potential has been left unrealized because of the speaker's inability to move beyond these reflective, inactive moments.",
+        "axes": {
+          "aspect_count": 0.5,
+          "novelty": 0.573647677898407,
+          "coverage": 0.345038503408432
+        },
+        "composite": 0.47289539376894635,
+        "n_chars": 1240,
+        "n_words": 176,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 8.038469791412354,
+          "haiku_total_usd": 1.725898,
+          "haiku_n_calls": 140
+        }
+      },
+      "haiku_cascade": {
+        "text": "# Two Readings of \"I have measured out my life with coffee spoons\"\n\n**Reading A: The Poetry of the Everyday**\n\nThis reading celebrates the quiet accumulation of ordinary moments as the true substance of existence. Each coffee spoon represents a small, familiar ritual\u2014a morning routine, a pause for reflection, a social gesture\u2014and the speaker finds meaning in recognizing that life is actually composed of these countless modest acts rather than grand gestures. It's an affirmation that the everyday rituals that structure our days are the authentic measure of a life lived.\n\n**Reading B: A Life of Hesitation and Regret**\n\nThis reading interprets the image as a lament about wasted potential and timidity. The coffee spoon\u2014tiny and inadequate\u2014symbolizes how the speaker has let their years slip away in small, safe gestures and trivial concerns rather than pursuing bold action or deep passion. The measurement is not generous or adequate; it suggests a life defined by avoidance, paralysis, and the erosion of meaning through indecision and social anxiety.",
+        "axes": {
+          "aspect_count": 0.5,
+          "novelty": 0.5110970735549927,
+          "coverage": 0.3097569942474365
+        },
+        "composite": 0.4402846892674764,
+        "n_chars": 1059,
+        "n_words": 166,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 69.13242387771606,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 0.5596255660057068,
+          "delta_F": 1.200777130588829,
+          "delta_F_draft": 1.200777130588829,
+          "delta_F_revision": 1.3698122390732053,
+          "selected_idx": 0,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# Two Readings of \"I have measured out my life with coffee spoons\"\n\n**Reading A: The Poetry of the Everyday**\n\nThis reading celebrates the quiet accumulation of ordinary moments as the true substance of existence. Each coffee spoon represents a small, familiar ritual\u2014a morning routine, a pause for reflection, a social gesture\u2014and the speaker finds meaning in recognizing that life is actually composed of these countless modest acts rather than grand gestures. It's an affirmation that the everyday rituals that structure our days are the authentic measure of a life lived.\n\n**Reading B: A Life of Hesitation and Regret**\n\nThis reading interprets the image as a lament about wasted potential and timidity. The coffee spoon\u2014tiny and inadequate\u2014symbolizes how the speaker has let their years slip away in small, safe gestures and trivial concerns rather than pursuing bold action or deep passion. The measurement is not generous or adequate; it suggests a life defined by avoidance, paralysis, and the erosion of meaning through indecision and social anxiety.",
+          "surface_revision": "# Two Readings of \"I have measured out my life with coffee spoons\"\n\n**Reading A: The Poetry of the Everyday, Tinged with Resignation**\n\nThis reading recognizes that life is indeed measured in small, repetitive rituals\u2014the daily coffee, the familiar routines that structure our days\u2014and that these moments carry a quiet authenticity. Yet the measurement itself contains a melancholy undertone: in measuring life by coffee spoons, the speaker acknowledges not just the beauty of the everyday, but also an acceptance of modest limits, a gentle settling into small gestures rather than grand ambitions. There is meaning in these rituals, but also a kind of resignation\u2014a recognition of possibilities unlived, of larger things never attempted.\n\n**Reading B: A Life of Quiet Despair and Avoidance**\n\nThis reading interprets the image as a lament about a life spent in repetitive, minor rituals that distract from deeper meaning. The coffee spoon becomes a symbol of how the speaker has measured out their years in trivial, safe, incremental moments\u2014each one small enough to avoid risk, yet collectively representing the erasure of bolder possibilities. The despair is quiet rather than dramatic precisely because it's buried beneath the comfortable numbness of routine; the speaker measures their life not in achievements or passions, but in the accumulated small gestures that allowed them to avoid truly living.",
+          "haiku_total_usd": 1.760816,
+          "haiku_n_calls": 148
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "# Interpretations of \"I have measured out my life with coffee spoons\"\n\n**Reading A: The Quantification of Insignificance**\n\nIn this reading, the speaker laments how life has been reduced to small, incremental, meaningless units. \"Coffee spoons\" represent trivial domestic routines and minor pleasures that, while marking the passage of time, fail to constitute a life of significance or fulfillment. Rather than living boldly or pursuing grand ambitions, the speaker has merely accumulated ordinary moments, \"measuring out\" existence in diminishing, forgettable increments. This reflects regret over a life of quiet desperation\u2014where time passes but nothing truly accumulates into meaning or achievement.\n\n**Reading B: The Poetry of Modest Pleasure**\n\nConversely, this line might celebrate finding sufficiency and even subtle joy in life's small, repeated rituals. \"Measuring out\" life with coffee spoons suggests that meaning need not come from dramatic events but from daily rituals\u2014the warmth of a cup, a moment of pause and reflection, gentle routines that structure our days. The spoon becomes a measure not of emptiness but of contentment; life is \"measured out\" as something valuable precisely in its simplicity, intimacy, and repetition. This reading finds grace in the ordinary.",
+        "axes": {
+          "aspect_count": 0.5,
+          "novelty": 0.5381870269775391,
+          "coverage": 0.3015143871307373
+        },
+        "composite": 0.4465671380360921,
+        "n_chars": 1287,
+        "n_words": 190,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 58.13585710525513,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 0.5381870269775391,
+          "delta_F": 2.334763591523327,
+          "delta_F_draft": 2.334763591523327,
+          "delta_F_revision": null,
+          "selected_idx": 4,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "# Interpretations of \"I have measured out my life with coffee spoons\"\n\n**Reading A: The Quantification of Insignificance**\n\nIn this reading, the speaker laments how life has been reduced to small, incremental, meaningless units. \"Coffee spoons\" represent trivial domestic routines and minor pleasures that, while marking the passage of time, fail to constitute a life of significance or fulfillment. Rather than living boldly or pursuing grand ambitions, the speaker has merely accumulated ordinary moments, \"measuring out\" existence in diminishing, forgettable increments. This reflects regret over a life of quiet desperation\u2014where time passes but nothing truly accumulates into meaning or achievement.\n\n**Reading B: The Poetry of Modest Pleasure**\n\nConversely, this line might celebrate finding sufficiency and even subtle joy in life's small, repeated rituals. \"Measuring out\" life with coffee spoons suggests that meaning need not come from dramatic events but from daily rituals\u2014the warmth of a cup, a moment of pause and reflection, gentle routines that structure our days. The spoon becomes a measure not of emptiness but of contentment; life is \"measured out\" as something valuable precisely in its simplicity, intimacy, and repetition. This reading finds grace in the ordinary.",
+          "surface_revision": "",
+          "haiku_total_usd": 1.78548,
+          "haiku_n_calls": 156
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "# \"I have measured out my life with coffee spoons\" \u2014 REVISED\n\n**Reading A: The Arithmetic of Tepid Routine**\n\nThis reading finds in the line a strange acceptance of life measured not by significance but by repetition. The coffee spoon becomes a unit of time like any other\u2014not more noble or meaningful than seconds, but more honest. We don't actually experience our lives as grand narratives; we experience them as the clink of ceramic against porcelain, the bitter familiar warmth spreading across the tongue, the same gesture performed thousands of times until it becomes invisible. The speaker isn't mourning this\u2014they're admitting it: life accumulates in these small, mechanical rituals, each spoon-full another moment. There's something almost defiant in accepting the coffee spoon as the true measure, rather than pretending to live by some imagined heroic metric.\n\n**Reading B: The Consumption of Hours**\n\nThis reading emphasizes the passivity hidden in the image: a spoon doesn't measure; it's used. Coffee spoons are instruments of consumption, and a life measured by them is one consumed\u2014slowly, incrementally, completely\u2014by small satisfactions and postponements. Each spoonful represents not an action taken but a moment deferred, a modest taste when life demanded appetite. To measure with spoons is to have already surrendered the scale: it isn't that the speaker lived boldly and then measured it modestly, but that spoon-sized thinking *has been* the life itself, each shallow scoop another betrayal of ambition to the gravitational pull of the habitual and safe.",
+        "axes": {
+          "aspect_count": 0.5,
+          "novelty": 0.545149028301239,
+          "coverage": 0.34085580706596375
+        },
+        "composite": 0.46200161178906757,
+        "n_chars": 1578,
+        "n_words": 244,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 106.63406491279602,
+          "K_effective": 4,
+          "commit_policy_effective": "always_revise",
+          "brief_override_used": true,
+          "committed": "revision",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 0.545149028301239,
+          "delta_F": 0.20833757373100426,
+          "delta_F_draft": 0.34546574442338596,
+          "delta_F_revision": 0.20833757373100426,
+          "selected_idx": 1,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# \"I have measured out my life with coffee spoons\"\n\n**Reading A: The Domestic Routine**\n\nThis reading interprets the line as a meditation on how daily rituals and small domestic moments accumulate to constitute a life. Coffee spoons\u2014intimate, ordinary objects of routine\u2014become the units by which the speaker quantifies existence. Rather than measuring life by grand achievements or dramatic events, the speaker recognizes that their days have been defined by repetitive, comforting rituals: morning coffee, quiet moments at home, the familiar and unchanged. It's an acknowledgment that most of life is lived in these small, overlooked gestures rather than in moments of significance.\n\n**Reading B: The Existential Lament**\n\nThis reading emphasizes the speaker's sense of wasted potential and missed opportunities. The coffee spoon becomes a symbol of timidity and hesitation\u2014tiny, inadequate measures of a life that could have been lived boldly. By measuring with spoons rather than more substantial or meaningful metrics, the speaker confesses to having squandered existence on inconsequential details while failing to act decisively or pursue passion. It's a regretful acknowledgment that life has slipped away through inaction and the avoidance of risk, leaving only small, insignificant moments in its wake.",
+          "surface_revision": "# \"I have measured out my life with coffee spoons\" \u2014 REVISED\n\n**Reading A: The Arithmetic of Tepid Routine**\n\nThis reading finds in the line a strange acceptance of life measured not by significance but by repetition. The coffee spoon becomes a unit of time like any other\u2014not more noble or meaningful than seconds, but more honest. We don't actually experience our lives as grand narratives; we experience them as the clink of ceramic against porcelain, the bitter familiar warmth spreading across the tongue, the same gesture performed thousands of times until it becomes invisible. The speaker isn't mourning this\u2014they're admitting it: life accumulates in these small, mechanical rituals, each spoon-full another moment. There's something almost defiant in accepting the coffee spoon as the true measure, rather than pretending to live by some imagined heroic metric.\n\n**Reading B: The Consumption of Hours**\n\nThis reading emphasizes the passivity hidden in the image: a spoon doesn't measure; it's used. Coffee spoons are instruments of consumption, and a life measured by them is one consumed\u2014slowly, incrementally, completely\u2014by small satisfactions and postponements. Each spoonful represents not an action taken but a moment deferred, a modest taste when life demanded appetite. To measure with spoons is to have already surrendered the scale: it isn't that the speaker lived boldly and then measured it modestly, but that spoon-sized thinking *has been* the life itself, each shallow scoop another betrayal of ambition to the gravitational pull of the habitual and safe.",
+          "haiku_total_usd": 1.841101,
+          "haiku_n_calls": 164
+        }
+      }
+    },
+    "i02": {
+      "item": {
+        "id": "i02",
+        "surface": "Two roads diverged in a wood, and I\u2014 / I took the one less traveled by",
+        "aspects": [
+          "a celebration of nonconformity",
+          "an ironic shrug at how memory rewrites choice"
+        ],
+        "retrieval_set": [
+          "I went hiking in a forest",
+          "trails are well-marked"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        },
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "# Reading A: The Romantic Individualist\n\nThis reading celebrates the speaker as a brave nonconformist who deliberately chose the unconventional path. \"The road less traveled by\" represents a courageous decision to break from society's expectations and forge an independent way forward. The emphasis on personal choice\u2014\"I took\"\u2014emphasizes individual agency and self-determination. This interpretation views the speaker as someone willing to embrace risk and uncertainty in pursuit of authenticity and a unique destiny.\n\n# Reading B: The Ironic Self-Deceiver\n\nThis reading suggests the speaker is engaging in self-romantic myth-making. The two roads were actually \"really about the same,\" yet the speaker has chosen to narrativize their decision as daring and exceptional. By later telling this story and claiming they \"took the one less traveled by,\" they construct a flattering fiction about themselves. This interpretation reveals how people rationalize their ordinary choices as boldly individualistic, finding meaning in decisions that may be arbitrary or inconsequential.",
+        "axes": {
+          "aspect_count": 0.0,
+          "novelty": 0.8277099430561066,
+          "coverage": 0.19751983880996704
+        },
+        "composite": 0.34174326062202454,
+        "n_chars": 1075,
+        "n_words": 153,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 5.687756061553955,
+          "haiku_total_usd": 1.8438340000000002,
+          "haiku_n_calls": 165
+        }
+      },
+      "haiku_cascade": {
+        "text": "# \"Two roads diverged in a wood, and I\u2014 / I took the one less traveled by\"\n\n**Reading A: The Individualist Interpretation**\n\nThis reading celebrates the speaker's courageous nonconformity and self-determination. The \"road less traveled by\" symbolizes choosing an unconventional, daring path despite social pressure to follow the crowd. The hesitation marked by the dash emphasizes the weight of the decision, suggesting a conscious, deliberate choice to embrace individuality and forge one's own destiny. This interpretation has made the lines an anthem for independent thinking and personal boldness.\n\n**Reading B: The Ironic Interpretation**\n\nThis reading suggests the speaker is engaging in self-mythologizing or self-deception. Looking at the poem's fuller context, Frost indicates the roads are actually quite similar (\"really about the same\"), implying the choice was somewhat arbitrary or random. The speaker later constructs a grand narrative of bold individualism around what was essentially a casual decision. This reading reveals how we unconsciously rewrite our choices retrospectively, convincing ourselves we were more intentional and unique than we actually were.",
+        "axes": {
+          "aspect_count": 0.0,
+          "novelty": 0.7788802981376648,
+          "coverage": 0.23544704914093018
+        },
+        "composite": 0.3381091157595317,
+        "n_chars": 1178,
+        "n_words": 169,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 71.62129259109497,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 0.780955582857132,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 1.1828538540545281,
+          "selected_idx": 3,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# \"Two roads diverged in a wood, and I\u2014 / I took the one less traveled by\"\n\n**Reading A: The Individualist Interpretation**\n\nThis reading celebrates the speaker's courageous nonconformity and self-determination. The \"road less traveled by\" symbolizes choosing an unconventional, daring path despite social pressure to follow the crowd. The hesitation marked by the dash emphasizes the weight of the decision, suggesting a conscious, deliberate choice to embrace individuality and forge one's own destiny. This interpretation has made the lines an anthem for independent thinking and personal boldness.\n\n**Reading B: The Ironic Interpretation**\n\nThis reading suggests the speaker is engaging in self-mythologizing or self-deception. Looking at the poem's fuller context, Frost indicates the roads are actually quite similar (\"really about the same\"), implying the choice was somewhat arbitrary or random. The speaker later constructs a grand narrative of bold individualism around what was essentially a casual decision. This reading reveals how we unconsciously rewrite our choices retrospectively, convincing ourselves we were more intentional and unique than we actually were.",
+          "surface_revision": "# \"Two roads diverged in a wood, and I\u2014 / I took the one less traveled by\"\n\n**Reading A: The Individualist Interpretation**\n\nThis reading celebrates the speaker's courageous nonconformity\u2014a bold assertion of taking the unconventional path despite pressure to follow the crowd. The dash-marked hesitation underscores the weight of deliberate self-determination, framing the moment as an authentic act of defiance and personal courage. The lines have rightly become an anthem for those who value independence and unconventional living.\n\n**Reading B: The Ironic Interpretation**\n\nThis reading offers an ironic shrug at how memory mythologizes our choices. Frost's fuller context reveals the roads were \"really about the same,\" yet the speaker constructs a grand narrative of bold individuality around what was essentially an arbitrary decision. The poem gently exposes how we unconsciously rewrite our past, transforming casual choices into defining moments of nonconformity\u2014convincing ourselves we were far more intentional and unique than we actually were.",
+          "haiku_total_usd": 1.8765700000000003,
+          "haiku_n_calls": 173
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "# \"Two roads diverged in a wood, and I\u2014 / I took the one less traveled by\"\n\n**Reading A: The Individualist Interpretation**\n\nThis reading celebrates courageous nonconformity and self-determination. The speaker deliberately chooses the unconventional path, rejecting the crowd-pleasing option in favor of authentic self-expression. The \"road less traveled by\" becomes a metaphor for bold individualism\u2014the speaker embraces risk and difference as markers of a meaningful, authentic life. This is an empowering vision of personal agency and the rewards of having the courage to be different.\n\n**Reading B: The Ironic Interpretation**\n\nThis reading suggests the speaker may be deceiving themselves. Both roads are likely equally traveled, but the speaker narrates their ordinary choice as distinctly bold. Rather than celebrating real nonconformity, Frost captures how we construct self-aggrandizing stories about our decisions to feel significant. The speaker convinces themselves\u2014and us\u2014that they've chosen something special, when they may have simply taken a road identical to many others. It's a subtle critique of self-deception and the human need to feel exceptional.",
+        "axes": {
+          "aspect_count": 0.0,
+          "novelty": 0.780366525053978,
+          "coverage": 0.24612556397914886
+        },
+        "composite": 0.3421640296777089,
+        "n_chars": 1169,
+        "n_words": 168,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 60.298038721084595,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 0.780366525053978,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": null,
+          "selected_idx": 1,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "# \"Two roads diverged in a wood, and I\u2014 / I took the one less traveled by\"\n\n**Reading A: The Individualist Interpretation**\n\nThis reading celebrates courageous nonconformity and self-determination. The speaker deliberately chooses the unconventional path, rejecting the crowd-pleasing option in favor of authentic self-expression. The \"road less traveled by\" becomes a metaphor for bold individualism\u2014the speaker embraces risk and difference as markers of a meaningful, authentic life. This is an empowering vision of personal agency and the rewards of having the courage to be different.\n\n**Reading B: The Ironic Interpretation**\n\nThis reading suggests the speaker may be deceiving themselves. Both roads are likely equally traveled, but the speaker narrates their ordinary choice as distinctly bold. Rather than celebrating real nonconformity, Frost captures how we construct self-aggrandizing stories about our decisions to feel significant. The speaker convinces themselves\u2014and us\u2014that they've chosen something special, when they may have simply taken a road identical to many others. It's a subtle critique of self-deception and the human need to feel exceptional.",
+          "surface_revision": "",
+          "haiku_total_usd": 1.902117,
+          "haiku_n_calls": 181
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "# Reading A: The Romantic Individualist\n\nThe speaker's hesitation\u2014\"I\u2014 / I took\"\u2014captures the actual moment of choice, not confident defiance but a tremor before stepping into real isolation. The path less traveled is physical: fewer footprints mean sharper sound in the wood, light filtering differently through neglected branches, perhaps earth uncleared by prior passage. The speaker chooses not from ideology but from appetite for this particular solitude\u2014craving the genuine discomfort of unmade ground over the worn comfort of the crowded path. This reading finds power not in noble independence but in the raw thrill of actual divergence, where the less-traveled road feels unreadable, and the speaker's choice reveals not certainty but willingness to embrace that not-knowing, that rawness beneath the eventual narrative of boldness.\n\n# Reading B: The Self-Deceptive Narrator\n\nThis reading suggests irony and self-delusion rather than heroism. Though the speaker claims the roads \"diverged,\" earlier in the poem they're described as \"really about the same.\" The speaker may be unconsciously constructing an after-the-fact narrative of bold uniqueness to justify an arbitrary choice. Rather than genuinely choosing the unconventional path, the speaker romanticizes an essentially random decision, revealing how we humans retrospectively reframe our lives as more intentional and exceptional than they actually were.",
+        "axes": {
+          "aspect_count": 0.5,
+          "novelty": 0.772014707326889,
+          "coverage": 0.2627178430557251
+        },
+        "composite": 0.5115775167942047,
+        "n_chars": 1421,
+        "n_words": 205,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 111.7637848854065,
+          "K_effective": 4,
+          "commit_policy_effective": "always_revise",
+          "brief_override_used": true,
+          "committed": "revision",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 0.772014707326889,
+          "delta_F": 0.9208271885211836,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.9208271885211836,
+          "selected_idx": 1,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# Reading A: The Romantic Individualist\n\nThis reading celebrates personal autonomy and nonconformity. The speaker encounters a choice and boldly selects the unconventional path, valuing independence over following the crowd. The \"less traveled\" road represents the courage to reject societal expectations and forge one's own destiny. This interpretation frames the decision as noble and self-aware\u2014the speaker confidently embraces individualism and accepts the consequences of taking the harder route, making it an inspiring statement about authentic living.\n\n# Reading B: The Self-Deceptive Narrator\n\nThis reading suggests irony and self-delusion rather than heroism. Though the speaker claims the roads \"diverged,\" earlier in the poem they're described as \"really about the same.\" The speaker may be unconsciously constructing an after-the-fact narrative of bold uniqueness to justify an arbitrary choice. Rather than genuinely choosing the unconventional path, the speaker romanticizes an essentially random decision, revealing how we humans retrospectively reframe our lives as more intentional and exceptional than they actually were.",
+          "surface_revision": "# Reading A: The Romantic Individualist\n\nThe speaker's hesitation\u2014\"I\u2014 / I took\"\u2014captures the actual moment of choice, not confident defiance but a tremor before stepping into real isolation. The path less traveled is physical: fewer footprints mean sharper sound in the wood, light filtering differently through neglected branches, perhaps earth uncleared by prior passage. The speaker chooses not from ideology but from appetite for this particular solitude\u2014craving the genuine discomfort of unmade ground over the worn comfort of the crowded path. This reading finds power not in noble independence but in the raw thrill of actual divergence, where the less-traveled road feels unreadable, and the speaker's choice reveals not certainty but willingness to embrace that not-knowing, that rawness beneath the eventual narrative of boldness.\n\n# Reading B: The Self-Deceptive Narrator\n\nThis reading suggests irony and self-delusion rather than heroism. Though the speaker claims the roads \"diverged,\" earlier in the poem they're described as \"really about the same.\" The speaker may be unconsciously constructing an after-the-fact narrative of bold uniqueness to justify an arbitrary choice. Rather than genuinely choosing the unconventional path, the speaker romanticizes an essentially random decision, revealing how we humans retrospectively reframe our lives as more intentional and exceptional than they actually were.",
+          "haiku_total_usd": 1.9598090000000004,
+          "haiku_n_calls": 189
+        }
+      }
+    },
+    "i03": {
+      "item": {
+        "id": "i03",
+        "surface": "Do not go gentle into that good night",
+        "aspects": [
+          "a cry against death",
+          "advice given by a son to a dying father"
+        ],
+        "retrieval_set": [
+          "bedtime is at 9pm",
+          "good night messages"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        },
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "# Reading A: Defiant Resistance to Mortality\n\nThis reading interprets the line as a literal command to struggle against death itself. \"That good night\" represents the finality of mortality, and the speaker urges us\u2014particularly the elderly or dying\u2014not to accept death passively or gracefully. Instead, we should \"rage against the dying of the light,\" fighting with all our remaining strength and spirit. This is an existential rebellion: death may be inevitable, but surrendering to it without resistance is a betrayal of our vitality.\n\n# Reading B: Resistance to Complacency and Decline\n\nThis reading takes the line as metaphorical guidance for living fully rather than literally about death. \"That good night\" represents any surrender to passivity, apathy, mediocrity, or stagnation\u2014the slow extinguishing of one's potential and passion. The command urges us to resist complacency in life, to remain engaged, purposeful, and vigorous rather than drifting into resignation or accepting diminishment. It's a call to live deliberately and intensely, refusing to let circumstances or weariness rob us of our agency.",
+        "axes": {
+          "aspect_count": 0.5,
+          "novelty": 0.6605755984783173,
+          "coverage": 0.30306148529052734
+        },
+        "composite": 0.4878790279229482,
+        "n_chars": 1114,
+        "n_words": 168,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 7.783055305480957,
+          "haiku_total_usd": 1.9632350000000003,
+          "haiku_n_calls": 190
+        }
+      },
+      "haiku_cascade": {
+        "text": "# Interpretations of \"Do not go gentle into that good night\"\n\n**Reading A: The Struggle Against Mortality**\nThis reading interprets the line as a literal defiance of death itself. \"That good night\" represents the final darkness and peace of mortality, which the speaker rejects as a tempting but false comfort. The line commands resistance against death's approach\u2014a refusal to accept it passively or with resignation. Here, \"gentleness\" becomes a kind of weakness, a surrender to the inevitable that must be fought with rage and energy instead.\n\n**Reading B: The Rejection of Complacency**\nThis reading expands the line metaphorically to encompass any form of surrender or resignation\u2014to despair, injustice, failure, or the dimming of one's potential. \"That good night\" becomes the seductive ease of giving up on one's goals or values, and the speaker urges active resistance against passive acceptance. In this reading, \"gentleness\" is the dangerous comfort of not struggling, and we are called to approach life with vigilance and passion rather than drift into quiet defeat.\n\nBoth readings share the poem's core message: a refusal to go quietly, whether facing literal death or metaphorical surrender.",
+        "axes": {
+          "aspect_count": 0.5,
+          "novelty": 0.6438303291797638,
+          "coverage": 0.2877804636955261
+        },
+        "composite": 0.4772035976250966,
+        "n_chars": 1204,
+        "n_words": 186,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 88.25256681442261,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 0.6880401968955994,
+          "delta_F": 1.3442249899313623,
+          "delta_F_draft": 1.3442249899313623,
+          "delta_F_revision": 1.4201965441976654,
+          "selected_idx": 3,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# Interpretations of \"Do not go gentle into that good night\"\n\n**Reading A: The Struggle Against Mortality**\nThis reading interprets the line as a literal defiance of death itself. \"That good night\" represents the final darkness and peace of mortality, which the speaker rejects as a tempting but false comfort. The line commands resistance against death's approach\u2014a refusal to accept it passively or with resignation. Here, \"gentleness\" becomes a kind of weakness, a surrender to the inevitable that must be fought with rage and energy instead.\n\n**Reading B: The Rejection of Complacency**\nThis reading expands the line metaphorically to encompass any form of surrender or resignation\u2014to despair, injustice, failure, or the dimming of one's potential. \"That good night\" becomes the seductive ease of giving up on one's goals or values, and the speaker urges active resistance against passive acceptance. In this reading, \"gentleness\" is the dangerous comfort of not struggling, and we are called to approach life with vigilance and passion rather than drift into quiet defeat.\n\nBoth readings share the poem's core message: a refusal to go quietly, whether facing literal death or metaphorical surrender.",
+          "surface_revision": "# Interpretations of \"Do not go gentle into that good night\"\n\n**Reading A: A Son's Desperate Plea Against Death**\nThis reading interprets the line as an anguished cry of defiance\u2014not a calm rejection but an emotional, urgent plea. The speaker, a son watching his father approach death, commands resistance against mortality itself. \"That good night\" represents the final darkness and peace of death, and the son urges his dying father to refuse it, to rage against it rather than surrender peacefully. The repeated command \"Do not go gentle\" becomes a desperate attempt to keep his father fighting, to prevent the quiet acceptance of the inevitable. Here, \"gentleness\" is not merely weakness but a kind of betrayal of life itself.\n\n**Reading B: The Rejection of Complacency**\nThis reading expands the line metaphorically to encompass any form of surrender or resignation\u2014to despair, injustice, failure, or the dimming of one's potential. \"That good night\" becomes the seductive ease of giving up on one's goals or values, and the speaker urges active resistance against passive acceptance. In this reading, \"gentleness\" is the dangerous comfort of not struggling, and we are called to approach life with vigilance and passion rather than drift into quiet defeat.",
+          "haiku_total_usd": 2.0030110000000003,
+          "haiku_n_calls": 198
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "# Two Readings of \"Do not go gentle into that good night\"\n\n**Reading A: Mortality as the Enemy**\n\nThis reading interprets the line as a direct command to resist death itself. \"That good night\" is literal death, and the speaker urges against a passive, peaceful surrender to mortality. Instead, one should fight against the dying of the light\u2014raging against the inevitable end with defiance and struggle. This reflects Thomas's biographical context, written as his own father lay dying, and expresses the deeply human impulse to resist death with every ounce of will and strength.\n\n**Reading B: Surrender as the True Enemy**\n\nThis reading takes \"that good night\" as a metaphor for any kind of resignation\u2014to failure, mediocrity, despair, or complacency in life. The poem becomes a broader call against passive acceptance of defeat in any form. \"Going gentle\" represents giving up on one's hopes, struggles, or convictions, and the speaker demands that we maintain our vigor and determination even in our darkest moments, fighting to preserve our dignity and purpose throughout life's difficulties.",
+        "axes": {
+          "aspect_count": 0.5,
+          "novelty": 0.6535958647727966,
+          "coverage": 0.3492031395435333
+        },
+        "composite": 0.5009330014387766,
+        "n_chars": 1096,
+        "n_words": 173,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 61.54057598114014,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": true,
+          "vimarsa_event_draft": true,
+          "novelty": 0.6535958647727966,
+          "delta_F": 3.1647888250643774,
+          "delta_F_draft": 3.1647888250643774,
+          "delta_F_revision": null,
+          "selected_idx": 1,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "# Two Readings of \"Do not go gentle into that good night\"\n\n**Reading A: Mortality as the Enemy**\n\nThis reading interprets the line as a direct command to resist death itself. \"That good night\" is literal death, and the speaker urges against a passive, peaceful surrender to mortality. Instead, one should fight against the dying of the light\u2014raging against the inevitable end with defiance and struggle. This reflects Thomas's biographical context, written as his own father lay dying, and expresses the deeply human impulse to resist death with every ounce of will and strength.\n\n**Reading B: Surrender as the True Enemy**\n\nThis reading takes \"that good night\" as a metaphor for any kind of resignation\u2014to failure, mediocrity, despair, or complacency in life. The poem becomes a broader call against passive acceptance of defeat in any form. \"Going gentle\" represents giving up on one's hopes, struggles, or convictions, and the speaker demands that we maintain our vigor and determination even in our darkest moments, fighting to preserve our dignity and purpose throughout life's difficulties.",
+          "surface_revision": "",
+          "haiku_total_usd": 2.0284620000000007,
+          "haiku_n_calls": 206
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "# Reading A: The Last Defiance\n\nThis reading interprets the line as an urgent plea to someone\u2014Dylan Thomas's dying father\u2014not to slip away quietly into unconsciousness but to burn with final intensity. \"Good night\" is the darkness of oblivion, and the speaker's command rings like a challenge: *rage, curse, insist on your presence even as your body fails*. The \"going gentle\" the speaker warns against isn't quiet dignity but capitulation, a fading of self into nothing. The line celebrates a last flare of resistance\u2014not because it will change the outcome (death is inevitable), but because the act of resistance itself is what makes a life fully lived, down to its final breath.\n\n# Reading B: The Refusal to Drift\n\nThis reading sees \"that good night\" as the seductive pull of surrendering to whatever's comfortable and convenient\u2014not death but intellectual laziness, moral compromise, the quiet drift into accepting things \"as they are.\" The speaker warns against the specific vulnerability of gradual surrender: accepting a bad job because it pays, staying silent when you could speak, believing criticism is pointless so why bother. \"Going gentle\" means the slow cooling of your convictions into indifference. Rather than grand rebellion, the speaker demands a constant, granular resistance\u2014staying alert to small compromises that add up, refusing the relief of numbness. It's a call not for heroics but for vigilance in everyday life.",
+        "axes": {
+          "aspect_count": 0.5,
+          "novelty": 0.7016348242759705,
+          "coverage": 0.29056891798973083
+        },
+        "composite": 0.49740124742190045,
+        "n_chars": 1440,
+        "n_words": 227,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 90.2282292842865,
+          "K_effective": 4,
+          "commit_policy_effective": "always_revise",
+          "brief_override_used": true,
+          "committed": "revision",
+          "vimarsa_event": true,
+          "vimarsa_event_draft": true,
+          "novelty": 0.7016348242759705,
+          "delta_F": 1.2757710220198497,
+          "delta_F_draft": 1.270577525970758,
+          "delta_F_revision": 1.2757710220198497,
+          "selected_idx": 1,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# Reading A: The Mortal Struggle\n\nThis reading interprets the line as a direct exhortation to resist death itself. \"Good night\" represents the finality of death and the approach of one's end. The speaker urges the listener\u2014particularly an aging parent\u2014not to accept death passively or gracefully, but to fight against it with fierce energy and defiance. This interpretation emphasizes the poem's existential rage against mortality and the human desire to cling to life, celebrating struggle and resistance as noble acts even in the face of inevitable defeat.\n\n# Reading B: Resistance to Complacency\n\nThis reading views the line metaphorically, interpreting \"that good night\" not as death but as any form of passive acceptance, inaction, or surrender to injustice. The speaker urges us not to accept the comfortable numbness of complacency, apathy, or submission to oppressive systems. Here, \"going gentle\" means accepting things as they are without question or resistance. This reading emphasizes social and moral agency\u2014the call to remain vigilant, active, and engaged in fighting against whatever threatens human dignity and purpose.",
+          "surface_revision": "# Reading A: The Last Defiance\n\nThis reading interprets the line as an urgent plea to someone\u2014Dylan Thomas's dying father\u2014not to slip away quietly into unconsciousness but to burn with final intensity. \"Good night\" is the darkness of oblivion, and the speaker's command rings like a challenge: *rage, curse, insist on your presence even as your body fails*. The \"going gentle\" the speaker warns against isn't quiet dignity but capitulation, a fading of self into nothing. The line celebrates a last flare of resistance\u2014not because it will change the outcome (death is inevitable), but because the act of resistance itself is what makes a life fully lived, down to its final breath.\n\n# Reading B: The Refusal to Drift\n\nThis reading sees \"that good night\" as the seductive pull of surrendering to whatever's comfortable and convenient\u2014not death but intellectual laziness, moral compromise, the quiet drift into accepting things \"as they are.\" The speaker warns against the specific vulnerability of gradual surrender: accepting a bad job because it pays, staying silent when you could speak, believing criticism is pointless so why bother. \"Going gentle\" means the slow cooling of your convictions into indifference. Rather than grand rebellion, the speaker demands a constant, granular resistance\u2014staying alert to small compromises that add up, refusing the relief of numbness. It's a call not for heroics but for vigilance in everyday life.",
+          "haiku_total_usd": 2.0777240000000012,
+          "haiku_n_calls": 214
+        }
+      }
+    },
+    "i04": {
+      "item": {
+        "id": "i04",
+        "surface": "Hope is the thing with feathers that perches in the soul",
+        "aspects": [
+          "hope as a delicate persistent bird",
+          "the soul as a place where wild things live"
+        ],
+        "retrieval_set": [
+          "I saw a sparrow today",
+          "feathers are light"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        },
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "# Reading A: The Metaphor of Ethereal Permanence\n\nThis reading interprets the line as celebrating hope's transcendent, almost supernatural quality. By comparing hope to a bird with feathers\u2014lightweight, graceful, and free\u2014Dickinson suggests that hope exists beyond the material world, dwelling in an immaterial spiritual realm (the soul). The image suggests hope is something beautiful and animate that cannot be fully grasped or controlled, yet somehow remains present within us, perched and permanent. This reading emphasizes hope's mysterious power to uplift us and its ability to exist independently of external circumstances.\n\n# Reading B: The Fragility of Comfort\n\nThis reading emphasizes the delicate, precarious nature of hope. A bird is a living thing that could fly away at any moment; feathers are light and easily disturbed. By describing hope this way, Dickinson acknowledges that despite hope's importance to our inner lives, it is vulnerable and fleeting\u2014something we must nurture carefully or risk losing. The word \"perches\" suggests temporary rest rather than permanent residence. This reading conveys both the necessity of hope in dark times and the sobering reality that our emotional sustenance depends on something as fragile as a bird that might abandon us.",
+        "axes": {
+          "aspect_count": 1.0,
+          "novelty": 0.5699730515480042,
+          "coverage": 0.5513936877250671
+        },
+        "composite": 0.7071222464243571,
+        "n_chars": 1279,
+        "n_words": 193,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 6.941787958145142,
+          "haiku_total_usd": 2.0808600000000013,
+          "haiku_n_calls": 215
+        }
+      },
+      "haiku_cascade": {
+        "text": "# Reading A: Hope as a Wild Inhabitant of the Soul\n\nThis reading presents the soul not as a fragile, controlled space but as a wild habitat where hope naturally dwells. By emphasizing that \"wild things live\" in the soul, Dickinson reveals an inner landscape teeming with untamed life. The \"feathers\" mark hope as belonging to this natural ecosystem\u2014not as something delicate requiring our careful protection, but as an organic presence that has found its rightful home among other wild creatures. Hope is instinctive and indigenous to the soul's wilderness.\n\n# Reading B: Hope as Transcendent Power\n\nThis reading emphasizes the uplifting and liberating quality of hope. The bird imagery suggests freedom, elevation, and the ability to rise above earthly troubles\u2014hope literally lifts us beyond our circumstances. By dwelling \"in the soul,\" hope is portrayed as something fundamentally spiritual and enduring, woven into the very core of our being. The feathers here symbolize wings that allow us to transcend despair and soar toward possibility. This interpretation celebrates hope as a transformative force that gives us buoyancy and resilience even in dark times.",
+        "axes": {
+          "aspect_count": 1.0,
+          "novelty": 0.4827839732170105,
+          "coverage": 0.5709031820297241
+        },
+        "composite": 0.6845623850822449,
+        "n_chars": 1165,
+        "n_words": 182,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 86.13944602012634,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "revision",
+          "vimarsa_event": true,
+          "vimarsa_event_draft": true,
+          "novelty": 0.4827839732170105,
+          "delta_F": 1.3328713688569778,
+          "delta_F_draft": 1.3472197037692482,
+          "delta_F_revision": 1.3328713688569778,
+          "selected_idx": 2,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# Reading A: Hope as Fragile Presence\n\nThis reading emphasizes hope as a delicate, living creature that inhabits our inner world. The \"feathers\" suggest something light, soft, and vulnerable\u2014a creature that could easily be frightened away or lost. By locating hope \"in the soul,\" Dickinson suggests it is an intimate, deeply personal experience. This interpretation focuses on how precious and precarious hope is; it requires gentle care and attention, for like a bird, it might take flight and abandon us if we neglect it. Hope, in this sense, is something we must nurture and protect.\n\n# Reading B: Hope as Transcendent Power\n\nThis reading emphasizes the uplifting and liberating quality of hope. The bird imagery suggests freedom, elevation, and the ability to rise above earthly troubles\u2014hope literally lifts us beyond our circumstances. By dwelling \"in the soul,\" hope is portrayed as something fundamentally spiritual and enduring, woven into the very core of our being. The feathers here symbolize wings that allow us to transcend despair and soar toward possibility. This interpretation celebrates hope as a transformative force that gives us buoyancy and resilience even in dark times.",
+          "surface_revision": "# Reading A: Hope as a Wild Inhabitant of the Soul\n\nThis reading presents the soul not as a fragile, controlled space but as a wild habitat where hope naturally dwells. By emphasizing that \"wild things live\" in the soul, Dickinson reveals an inner landscape teeming with untamed life. The \"feathers\" mark hope as belonging to this natural ecosystem\u2014not as something delicate requiring our careful protection, but as an organic presence that has found its rightful home among other wild creatures. Hope is instinctive and indigenous to the soul's wilderness.\n\n# Reading B: Hope as Transcendent Power\n\nThis reading emphasizes the uplifting and liberating quality of hope. The bird imagery suggests freedom, elevation, and the ability to rise above earthly troubles\u2014hope literally lifts us beyond our circumstances. By dwelling \"in the soul,\" hope is portrayed as something fundamentally spiritual and enduring, woven into the very core of our being. The feathers here symbolize wings that allow us to transcend despair and soar toward possibility. This interpretation celebrates hope as a transformative force that gives us buoyancy and resilience even in dark times.",
+          "haiku_total_usd": 2.1287870000000018,
+          "haiku_n_calls": 223
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "# \"Hope is the thing with feathers that perches in the soul\"\n\n**Reading A: Hope as Delicate Visitor**\n\nThis reading emphasizes hope as something fragile and ephemeral\u2014a bird that has landed temporarily in the human soul. Like a living creature perched on a branch, hope is gentle, beautiful, and requires care to remain. The feathers suggest lightness and grace, implying that hope is not a heavy burden but a weightless presence that can lift us. However, because it merely \"perches,\" we recognize its precarious nature; it could depart at any moment, making it precious precisely because it is not permanent.\n\n**Reading B: Hope as Intrinsic Essence**\n\nThis reading interprets hope as something fundamentally woven into our being\u2014the feathers are not external decoration but integral to hope's nature, much as feathers are essential to a bird. Rather than a visitor, hope is a permanent resident of the soul, an elemental part of our inner self. The feathered quality suggests hope's capacity to elevate us spiritually and mentally, to help us soar above despair. This reading emphasizes hope's active, animating force within us\u2014it is not something we possess but something we are.",
+        "axes": {
+          "aspect_count": 1.0,
+          "novelty": 0.44898849725723267,
+          "coverage": 0.5377269983291626
+        },
+        "composite": 0.6622384985287985,
+        "n_chars": 1182,
+        "n_words": 190,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 62.563482999801636,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": true,
+          "vimarsa_event_draft": true,
+          "novelty": 0.44898849725723267,
+          "delta_F": 3.5248430953327556,
+          "delta_F_draft": 3.5248430953327556,
+          "delta_F_revision": null,
+          "selected_idx": 6,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "# \"Hope is the thing with feathers that perches in the soul\"\n\n**Reading A: Hope as Delicate Visitor**\n\nThis reading emphasizes hope as something fragile and ephemeral\u2014a bird that has landed temporarily in the human soul. Like a living creature perched on a branch, hope is gentle, beautiful, and requires care to remain. The feathers suggest lightness and grace, implying that hope is not a heavy burden but a weightless presence that can lift us. However, because it merely \"perches,\" we recognize its precarious nature; it could depart at any moment, making it precious precisely because it is not permanent.\n\n**Reading B: Hope as Intrinsic Essence**\n\nThis reading interprets hope as something fundamentally woven into our being\u2014the feathers are not external decoration but integral to hope's nature, much as feathers are essential to a bird. Rather than a visitor, hope is a permanent resident of the soul, an elemental part of our inner self. The feathered quality suggests hope's capacity to elevate us spiritually and mentally, to help us soar above despair. This reading emphasizes hope's active, animating force within us\u2014it is not something we possess but something we are.",
+          "surface_revision": "",
+          "haiku_total_usd": 2.1546230000000017,
+          "haiku_n_calls": 231
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "# Revised Interpretations of \"Hope is the thing with feathers that perches in the soul\"\n\n**Reading A - Hope as Feral Houseguest:**\nDickinson refuses to mystify: hope is an animal that lands in your soul without invitation. The feathers matter precisely because they're unglamorous, itchy, stubbornly real in a way abstract emotion never is. Hope perches like an injured bird arriving in your garden\u2014you didn't ask for it, you can't remove it, and suddenly you're restructuring your entire life around its survival. Rather than spiritualize, Dickinson keeps us in the body: you feel the scratch of talons, the weight of another creature breathing in your deepest space. Hope becomes not a philosophical virtue but a living necessity, something you end up tending against your own resistance.\n\n**Reading B - The Trembling Perch:**\nBut feathers can scatter. By choosing \"feathers\" rather than \"wings\" or \"song,\" Dickinson emphasizes fragility: feathers drop one by one, fray at the edges, fail to hold what they promise. A perch means precarity\u2014the bird shifts its weight, the grip loosens, the soul wakes to find its guest has vanished. This reading transforms hope into something you can never take for granted, something that demands constant, active tending precisely because departure remains possible. Rather than offering reassurance, Dickinson offers vigilance\u2014the strange comfort of knowing exactly what you're protecting and why you guard it so fiercely, because you know how easily it could be lost.",
+        "axes": {
+          "aspect_count": 1.0,
+          "novelty": 0.5026819109916687,
+          "coverage": 0.5341058373451233
+        },
+        "composite": 0.6789292494455973,
+        "n_chars": 1507,
+        "n_words": 236,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 132.4661738872528,
+          "K_effective": 4,
+          "commit_policy_effective": "always_revise",
+          "brief_override_used": true,
+          "committed": "revision",
+          "vimarsa_event": true,
+          "vimarsa_event_draft": true,
+          "novelty": 0.5026819109916687,
+          "delta_F": 1.4498403662900259,
+          "delta_F_draft": 1.4418337098055716,
+          "delta_F_revision": 1.4498403662900259,
+          "selected_idx": 1,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# Interpretations of \"Hope is the thing with feathers that perches in the soul\"\n\n**Reading A - The Living Metaphor:**\nThis reading celebrates hope as a living, animate presence within us. By comparing hope to a bird with feathers, Dickinson transforms an abstract emotion into something organic and tangible. The bird \"perches\" in the soul\u2014suggesting hope dwells inside us as a vital, natural inhabitant. This interpretation emphasizes hope's beauty, grace, and essential place in human experience, making it feel real and companionable rather than merely philosophical.\n\n**Reading B - The Delicate Paradox:**\nThis reading emphasizes hope's dual nature as both enduring and fragile. A bird may perch and stay, but it can also flee at any moment\u2014hope is never completely secure. The feathers evoke delicacy and vulnerability, suggesting hope requires gentleness and care to maintain. In this view, the line captures the precarious balance of keeping hope alive, acknowledging that while we harbor this precious thing within our souls, it depends on how we nurture it to prevent its departure.",
+          "surface_revision": "# Revised Interpretations of \"Hope is the thing with feathers that perches in the soul\"\n\n**Reading A - Hope as Feral Houseguest:**\nDickinson refuses to mystify: hope is an animal that lands in your soul without invitation. The feathers matter precisely because they're unglamorous, itchy, stubbornly real in a way abstract emotion never is. Hope perches like an injured bird arriving in your garden\u2014you didn't ask for it, you can't remove it, and suddenly you're restructuring your entire life around its survival. Rather than spiritualize, Dickinson keeps us in the body: you feel the scratch of talons, the weight of another creature breathing in your deepest space. Hope becomes not a philosophical virtue but a living necessity, something you end up tending against your own resistance.\n\n**Reading B - The Trembling Perch:**\nBut feathers can scatter. By choosing \"feathers\" rather than \"wings\" or \"song,\" Dickinson emphasizes fragility: feathers drop one by one, fray at the edges, fail to hold what they promise. A perch means precarity\u2014the bird shifts its weight, the grip loosens, the soul wakes to find its guest has vanished. This reading transforms hope into something you can never take for granted, something that demands constant, active tending precisely because departure remains possible. Rather than offering reassurance, Dickinson offers vigilance\u2014the strange comfort of knowing exactly what you're protecting and why you guard it so fiercely, because you know how easily it could be lost.",
+          "haiku_total_usd": 2.2216990000000014,
+          "haiku_n_calls": 239
+        }
+      }
+    },
+    "i05": {
+      "item": {
+        "id": "i05",
+        "surface": "Because I could not stop for Death, He kindly stopped for me",
+        "aspects": [
+          "death as a courteous gentleman caller",
+          "an inversion of who has agency in the encounter"
+        ],
+        "retrieval_set": [
+          "traffic stops at red lights",
+          "everyone dies eventually"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        },
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "# Reading A: Inevitability and Agency\n\nThis reading emphasizes Death as an active force that interrupts the speaker's life pursuits. The speaker is so preoccupied with living\u2014too hurried or absorbed in life's demands\u2014that they cannot willingly pause to contemplate mortality. Death, personified as a courteous but unstoppable suitor, takes matters into its own hands and forcibly halts the speaker's journey. The word \"kindly\" becomes almost ironic here: Death courteously stops the speaker not out of benevolence, but because the speaker's refusal to acknowledge mortality leaves Death no choice but to intervene directly.\n\n# Reading B: Acceptance and Gratitude\n\nThis reading interprets the line as the speaker's graceful acceptance of death's inevitability. Rather than resisting mortality, the speaker acknowledges that they lack the will or ability to \"stop\" their own life\u2014to choose the moment or manner of their death. Therefore, they welcome Death's arrival as a mercy; Death \"kindly\" takes this burden from them, sparing them the impossible task of deciding when to end their own existence. Here, \"kindly\" reflects genuine appreciation for death's gentle, decisive intervention in ending life's struggle.",
+        "axes": {
+          "aspect_count": 0.5,
+          "novelty": 0.7824780941009521,
+          "coverage": 0.29589712619781494
+        },
+        "composite": 0.5261250734329224,
+        "n_chars": 1212,
+        "n_words": 180,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 6.8756630420684814,
+          "haiku_total_usd": 2.2247470000000016,
+          "haiku_n_calls": 240
+        }
+      },
+      "haiku_cascade": {
+        "text": "# Two Readings of Dickinson's Line\n\n**Reading A: Death as Courteous Benefactor**\n\nThis reading highlights a crucial inversion: the speaker \"could not stop\"\u2014they are passive, trapped in life's endless momentum\u2014while Death \"kindly stopped for me,\" becoming the active agent with intention and power. Rather than the living speaker directing their own pause or rest, Death assumes the agency to intervene. The word \"kindly\" suggests that this reversal of control is actually merciful; Death's active stopping of the speaker becomes an act of compassionate intervention, removing them from an exhausting existence that they themselves could not escape. The speaker's passivity becomes their salvation.\n\n**Reading B: Death as Ironic Captor**\n\nThis reading emphasizes the dark inversion at the heart of the line: we expect to retain agency over our own lives and choices, yet Death reverses this fundamental power dynamic. The speaker \"could not stop\" suggests helplessness and unwillingness, while Death \"kindly stopped for me\" reveals Death as the true agent of our fate. The courtesy of the language masks the inversion of agency\u2014Death is in control, acting upon us, while we remain passive subjects. \"Kindly\" becomes bitterly ironic because it dresses up this seizure of power in gentle language, obscuring the chilling reality that we have no choice in our own stopping.",
+        "axes": {
+          "aspect_count": 0.5,
+          "novelty": 0.7075861692428589,
+          "coverage": 0.36239612102508545
+        },
+        "composite": 0.5233274300893148,
+        "n_chars": 1369,
+        "n_words": 211,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 93.10954403877258,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "revision",
+          "vimarsa_event": true,
+          "vimarsa_event_draft": true,
+          "novelty": 0.7075861692428589,
+          "delta_F": 1.2164593051358707,
+          "delta_F_draft": 1.3301275076590855,
+          "delta_F_revision": 1.2164593051358707,
+          "selected_idx": 1,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# Two Readings of Dickinson's Line\n\n**Reading A: Death as Courteous Benefactor**\n\nThis reading interprets the speaker's inability to stop as a sign of being consumed by life's demands and distractions. Death, in this view, becomes a merciful figure who gently intercedes on behalf of someone too caught up in living to pause for reflection or rest. The word \"kindly\" suggests genuine compassion\u2014Death offers a reprieve from the endless busyness of existence, functioning almost as a friend who removes us from an exhausting treadmill. This reading presents death with dignity and even gratitude.\n\n**Reading B: Death as Ironic Captor**\n\nThis reading emphasizes the irony and darkness lurking beneath the courteous language. The speaker \"could not stop\"\u2014they were unwilling or unprepared to meet death\u2014yet death \"kindly stopped for me\" suggests an inescapable force masquerading as courtesy. The civility of the language becomes a thin veil over death's inevitable seizure of us; we have no choice in the matter. \"Kindly\" here is bitterly ironic, exposing our powerlessness before mortality despite our refusal to acknowledge or accept it.",
+          "surface_revision": "# Two Readings of Dickinson's Line\n\n**Reading A: Death as Courteous Benefactor**\n\nThis reading highlights a crucial inversion: the speaker \"could not stop\"\u2014they are passive, trapped in life's endless momentum\u2014while Death \"kindly stopped for me,\" becoming the active agent with intention and power. Rather than the living speaker directing their own pause or rest, Death assumes the agency to intervene. The word \"kindly\" suggests that this reversal of control is actually merciful; Death's active stopping of the speaker becomes an act of compassionate intervention, removing them from an exhausting existence that they themselves could not escape. The speaker's passivity becomes their salvation.\n\n**Reading B: Death as Ironic Captor**\n\nThis reading emphasizes the dark inversion at the heart of the line: we expect to retain agency over our own lives and choices, yet Death reverses this fundamental power dynamic. The speaker \"could not stop\" suggests helplessness and unwillingness, while Death \"kindly stopped for me\" reveals Death as the true agent of our fate. The courtesy of the language masks the inversion of agency\u2014Death is in control, acting upon us, while we remain passive subjects. \"Kindly\" becomes bitterly ironic because it dresses up this seizure of power in gentle language, obscuring the chilling reality that we have no choice in our own stopping.",
+          "haiku_total_usd": 2.272300000000002,
+          "haiku_n_calls": 248
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "# \"Because I could not stop for Death, He kindly stopped for me\"\n\n**Reading A: The Courteous Inevitability**\n\nDeath is personified as a gentleman caller who gently intervenes when the speaker cannot pause from life's demands. The word \"kindly\" suggests that death is merciful and respectful, stopping to collect the speaker not out of violence but out of consideration. This reading presents death as a natural, even gracious conclusion to life\u2014an acceptance that we are too preoccupied with living to acknowledge our mortality, so death must tenderly interrupt our journey to guide us toward the afterlife.\n\n**Reading B: The Ironic Critique**\n\nThe \"kindness\" of Death is deeply ironic; death is only \"kind\" insofar as it forcibly ends the endless, exhausting busyness of life that keeps us from reflection. The speaker was too caught up in the pursuits and distractions of existence to stop and contemplate their own mortality, so death finally halts their frantic pace\u2014not out of courtesy, but out of necessity. This reading critiques how we ignore our own finite nature until death itself demands our attention.",
+        "axes": {
+          "aspect_count": 0.5,
+          "novelty": 0.7759157419204712,
+          "coverage": 0.3191539943218231
+        },
+        "composite": 0.5316899120807648,
+        "n_chars": 1114,
+        "n_words": 178,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 58.68334484100342,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": true,
+          "vimarsa_event_draft": true,
+          "novelty": 0.7759157419204712,
+          "delta_F": 2.9811020788414453,
+          "delta_F_draft": 2.9811020788414453,
+          "delta_F_revision": null,
+          "selected_idx": 4,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "# \"Because I could not stop for Death, He kindly stopped for me\"\n\n**Reading A: The Courteous Inevitability**\n\nDeath is personified as a gentleman caller who gently intervenes when the speaker cannot pause from life's demands. The word \"kindly\" suggests that death is merciful and respectful, stopping to collect the speaker not out of violence but out of consideration. This reading presents death as a natural, even gracious conclusion to life\u2014an acceptance that we are too preoccupied with living to acknowledge our mortality, so death must tenderly interrupt our journey to guide us toward the afterlife.\n\n**Reading B: The Ironic Critique**\n\nThe \"kindness\" of Death is deeply ironic; death is only \"kind\" insofar as it forcibly ends the endless, exhausting busyness of life that keeps us from reflection. The speaker was too caught up in the pursuits and distractions of existence to stop and contemplate their own mortality, so death finally halts their frantic pace\u2014not out of courtesy, but out of necessity. This reading critiques how we ignore our own finite nature until death itself demands our attention.",
+          "surface_revision": "",
+          "haiku_total_usd": 2.298662000000002,
+          "haiku_n_calls": 256
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "# \"Because I could not stop for Death, He kindly stopped for me\"\n\n**Reading A: Death as Merciful Deliverer**\n\nIn this reading, the speaker has been hurtling through life\u2014answering letters, tending gardens, fulfilling obligations\u2014too distracted by small necessary motions to ever deliberately pause. Death arrives as unexpected mercy, a hand that finally stops the spinning. The \"kindness\" is genuine physical relief: the body released from its own momentum, the mind permitted to halt its constant calculating. There's almost gratitude in the speaker's tone, a sigh of release as if they've been waiting all along for permission to stop.\n\n**Reading B: Death as Ironic Coercion**\n\nYet the lines whisper something crueler: the speaker refused to stop, refused to face the end, kept pushing forward through denial and distraction. So Death seized control mid-stride, halting all motion by force. The word \"kindly\" becomes a mockery\u2014a euphemism that masks an act of violence in the language of care. Death didn't persuade; it *halted*. The speaker's inability to voluntarily surrender only proves how absolute death's stopping must be.",
+        "axes": {
+          "aspect_count": 0.5,
+          "novelty": 0.7941088676452637,
+          "coverage": 0.2719689607620239
+        },
+        "composite": 0.5220259428024292,
+        "n_chars": 1131,
+        "n_words": 174,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 133.93244099617004,
+          "K_effective": 4,
+          "commit_policy_effective": "always_revise",
+          "brief_override_used": true,
+          "committed": "revision",
+          "vimarsa_event": true,
+          "vimarsa_event_draft": true,
+          "novelty": 0.7941088676452637,
+          "delta_F": 1.3442963013731841,
+          "delta_F_draft": 1.3526930569434938,
+          "delta_F_revision": 1.3442963013731841,
+          "selected_idx": 1,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# \"Because I could not stop for Death, He kindly stopped for me\"\n\n**Reading A: Death as Merciful Deliverer**\nIn this reading, the speaker acknowledges being too caught up in the busy demands of life to pause and contemplate mortality. Death becomes a compassionate figure who mercifully intervenes, making the unavoidable choice for us. The \"kindness\" is genuine\u2014death frees us from the burden of deciding when to stop and releases us from the relentless pace of living. There is an acceptance here, even gratitude, for death's gentle insistence.\n\n**Reading B: Death as Ironic Captor**\nAlternatively, the lines express grim irony: the speaker could not slow down or surrender to death voluntarily, so Death had to *force* the stopping. The \"kindness\" is bitterly sardonic\u2014death compels an unwilling surrender, stopping the speaker regardless of their desires or unfinished business. Here, death is not gentle but inevitable and absolute, arriving as a coercive necessity rather than a welcome respite.",
+          "surface_revision": "# \"Because I could not stop for Death, He kindly stopped for me\"\n\n**Reading A: Death as Merciful Deliverer**\n\nIn this reading, the speaker has been hurtling through life\u2014answering letters, tending gardens, fulfilling obligations\u2014too distracted by small necessary motions to ever deliberately pause. Death arrives as unexpected mercy, a hand that finally stops the spinning. The \"kindness\" is genuine physical relief: the body released from its own momentum, the mind permitted to halt its constant calculating. There's almost gratitude in the speaker's tone, a sigh of release as if they've been waiting all along for permission to stop.\n\n**Reading B: Death as Ironic Coercion**\n\nYet the lines whisper something crueler: the speaker refused to stop, refused to face the end, kept pushing forward through denial and distraction. So Death seized control mid-stride, halting all motion by force. The word \"kindly\" becomes a mockery\u2014a euphemism that masks an act of violence in the language of care. Death didn't persuade; it *halted*. The speaker's inability to voluntarily surrender only proves how absolute death's stopping must be.",
+          "haiku_total_usd": 2.3669790000000024,
+          "haiku_n_calls": 264
+        }
+      }
+    }
+  }
+}
