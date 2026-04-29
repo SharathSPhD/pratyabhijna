@@ -1,7 +1,7 @@
 [project]
 name = "pratyabhijna-creative-engine"
-version = "0.2.0"
-description = "Pratyabhijna x Active Inference creative-cognition plugin (PCE) v0.2 - Haiku-substrate cascade with causal two-pass vimarsa revision, signed apohana, and four-arm benchmark (local_bare, local_cascade, haiku_bare, haiku_cascade)."
+version = "0.3.0"
+description = "Pratyabhijna x Active Inference creative-cognition plugin (PCE) v0.3 - Clean Haiku CLI substrate (no API key), event-gated causal vimarsa with shadow revision (H8), full active-inference uplift (non-degenerate BMR delta_F, Hopfield in cascade, plumbed cit_temperature, free-energy budget), and budget-matched four-arm benchmark (haiku_bare, haiku_cascade, haiku_bare_2K_scorer, haiku_generic_revise_2pass)."
 authors = [{name = "Sharath Sathish", email = "sharath@users.noreply.github.com"}]
 readme = "README.md"
 requires-python = ">=3.11,<3.14"
