@@ -1,7 +1,7 @@
 {
   "name": "pratyabhijna-creative-engine",
-  "description": "Pratyabhijna x Active Inference creative-cognition engine v0.3. Adds a clean Haiku CLI substrate (no API key) via subprocess flag isolation + scrubbed HOME + IntegrityProbe, an event-gated causal vimarsa with always-shadow revision (H8 always measurable), full active-inference uplift on the cascade causal path (non-degenerate BMR delta_F via aspect-conditioned reductions, Hopfield in apohana, plumbed cit_temperature, per-item free-energy budget), and a budget-matched four-arm benchmark (haiku_bare, haiku_cascade, haiku_bare_2K_scorer, haiku_generic_revise_2pass). Ships 18 MCP tools (16 v0.2 + haiku_clean_substrate_probe + hopfield_state), 5 skills, 5 agents, 5 slash commands, and 3 lifecycle hooks.",
-  "version": "0.3.0",
+  "description": "Pratyabhijna x Active Inference creative-cognition engine v0.4 (mechanism study). Builds on v0.3's clean Haiku CLI substrate (no API key) and event-gated, always-shadow-revision cascade. v0.4 makes cit_temperature causal via best-of-K candidate width, makes the free-energy budget a hard gate inside run_cascade (HaikuRateLimitError on 429), adds a pluggable commit-policy stack (always_draft / always_revise / event_gated / learned_gate / oracle) so Experiments A/B/C from the v0.3 adversarial review run on a single cascade pass, and re-enables a stratified Sonnet LLM-judge bridge for construct validity (32-item subset, $5 cap, frozen prompt sha). Ships 19 MCP tools (18 v0.3 + judge_pair), 5 skills, 5 agents, 5 slash commands, and 3 lifecycle hooks.",
+  "version": "0.4.0",
   "author": {
     "name": "Sharath Phaneendra",
     "email": "sharath@users.noreply.github.com"

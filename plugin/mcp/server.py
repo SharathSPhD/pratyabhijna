@@ -155,7 +155,9 @@ def _resolve_arm(arm: str) -> tuple[str, LMProtocol]:
     )
 
 
-CommitPolicyLit = Literal["event_gated", "always_revise", "always_draft"]
+CommitPolicyLit = Literal[
+    "event_gated", "always_revise", "always_draft", "learned_gate"
+]
 
 
 def _v3_arm_overrides(
@@ -179,10 +181,10 @@ def _v3_arm_overrides(
     if a in {"haiku_bare"}:
         return (K, "always_draft", None)
     cp = commit_policy or "event_gated"
-    if cp not in {"event_gated", "always_revise", "always_draft"}:
+    if cp not in {"event_gated", "always_revise", "always_draft", "learned_gate"}:
         raise ValueError(
-            f"_v3_arm_overrides: commit_policy must be 'event_gated'|'always_revise'|"
-            f"'always_draft'; got {cp!r}"
+            f"_v3_arm_overrides: commit_policy must be one of "
+            f"'event_gated'|'always_revise'|'always_draft'|'learned_gate'; got {cp!r}"
         )
     return (K, cp, None)  # type: ignore[return-value]
 
@@ -552,10 +554,13 @@ def pce_cascade(
               prompt. Isolates brief content from brief existence (H7).
             * ``"local"`` / ``"local_cascade"``: legacy Qwen2-1.5B path.
 
-        commit_policy: ``"event_gated"`` (default for cascade arms),
-            ``"always_revise"``, or ``"always_draft"``. The arm dispatch
-            forces this for the control arms; explicit ``commit_policy``
-            on a cascade arm overrides the default.
+        commit_policy: one of ``"event_gated"`` (default for cascade arms),
+            ``"always_revise"``, ``"always_draft"``, or ``"learned_gate"``
+            (v0.4 logistic-regression gate trained per ADR-002; falls
+            back to ``"event_gated"`` when the trained model is missing
+            or its CV AUROC is below 0.55). The arm dispatch forces
+            ``commit_policy`` for the control arms; explicit
+            ``commit_policy`` on a cascade arm overrides the default.
 
         cit_temperature: posterior temperature for ``iccha`` exploration.
             Plumbed through ``parity_sampler`` per ADR-003.
@@ -778,7 +783,7 @@ def report() -> dict[str, Any]:
     embed = _get_embed()
     h = _get_hopfield()
     out: dict[str, Any] = {
-        "version": "0.3.0",
+        "version": "0.4.0",
         "lm": lm.report(),
         "embedder": {"model_id": embed.model_id, "dim": embed.dim},
         "hopfield": {"dim": h.dim, "beta": h.beta, "n_patterns": h.n_patterns},
@@ -893,6 +898,115 @@ def hopfield_state(last_n: int = 5) -> dict[str, Any]:
         "last_norms": last_norms,
     }
     _audit("hopfield_state", {"last_n": last_n}, {"n_patterns": out["n_patterns"]})
+    return out
+
+
+# Tool 19 (v0.4 NEW)
+@mcp.tool()
+def judge_pair(
+    prompt: str,
+    text_a: str,
+    text_b: str,
+    model: str = "sonnet",
+    cli_bin: str = "claude",
+    timeout_s: int = 120,
+    dry_run: bool = False,
+) -> dict[str, Any]:
+    """Run the v0.4 Sonnet LLM-judge on a single ad-hoc A/B pair.
+
+    Wraps :mod:`scripts.judge_subset` so any MCP caller can request a
+    single judge verdict without scheduling a full stratified subset.
+    Uses the same frozen prompt (``scripts/judge_prompt_v0_4.txt``)
+    and the same OAuth-only ``claude --print --model sonnet``
+    substrate the powered pilot uses, so single-call verdicts are
+    directly comparable to ``judge.jsonl`` rows.
+
+    Args:
+        prompt: the original user prompt the two candidates are
+            answering.
+        text_a: candidate A's response.
+        text_b: candidate B's response.
+        model: Sonnet model alias (default ``"sonnet"``).
+        cli_bin: path to the ``claude`` binary.
+        timeout_s: per-call timeout.
+        dry_run: when True, use the deterministic fake responder
+            (longer block wins) so the round-trip can be verified
+            without spending Sonnet quota. Default False.
+
+    Returns: a dict with ``winner`` (A/B/tie), ``confidence``,
+        ``rationale``, ``input_tokens``, ``output_tokens``,
+        ``cost_usd``, ``elapsed_s``, ``prompt_sha256``, and ``model``.
+        The prompt sha256 matches the one written to every
+        ``judge.jsonl`` row from the powered pilot.
+    """
+    scripts_dir = REPO_ROOT / "scripts"
+    if str(scripts_dir) not in sys.path:
+        sys.path.insert(0, str(scripts_dir))
+    import judge_subset  # noqa: PLC0415 — lazy load so the MCP server imports cheaply
+
+    template, prompt_sha = judge_subset._load_prompt_template(
+        judge_subset.DEFAULT_PROMPT_PATH
+    )
+    pair = judge_subset.JudgePair(
+        domain="adhoc",
+        item_id="adhoc",
+        item_prompt=prompt,
+        treatment_arm="A",
+        control_arm="B",
+        treatment_text=text_a,
+        control_text=text_b,
+        treatment_composite=0.0,
+        control_composite=0.0,
+        proxy_delta=0.0,
+        quartile=-1,
+    )
+    formatted = judge_subset._format_judge_prompt(template, pair=pair, swap=False)
+    if dry_run:
+        verdict = judge_subset._fake_responder(formatted)
+        model_label = "fake-responder"
+    else:
+        try:
+            verdict = judge_subset._call_sonnet_cli(
+                formatted, model=model, timeout_s=timeout_s, cli_bin=cli_bin
+            )
+            model_label = model
+        except RuntimeError as exc:
+            return {
+                "winner": "tie",
+                "confidence": 0.0,
+                "rationale": f"[error] {str(exc)[:200]}",
+                "prompt_sha256": prompt_sha,
+                "model": model,
+                "error": True,
+            }
+    in_tok = int(verdict.get("_input_tokens", judge_subset.INPUT_TOKEN_ESTIMATE))
+    out_tok = int(verdict.get("_output_tokens", judge_subset.OUTPUT_TOKEN_ESTIMATE))
+    cost = (
+        in_tok * judge_subset.SONNET_INPUT_USD_PER_TOK
+        + out_tok * judge_subset.SONNET_OUTPUT_USD_PER_TOK
+    )
+    out: dict[str, Any] = {
+        "winner": verdict.get("winner", "tie"),
+        "confidence": float(verdict.get("confidence") or 0.0),
+        "rationale": str(verdict.get("rationale", ""))[:500],
+        "input_tokens": in_tok,
+        "output_tokens": out_tok,
+        "cost_usd": float(cost),
+        "elapsed_s": float(verdict.get("_elapsed_s", 0.0) or 0.0),
+        "prompt_sha256": prompt_sha,
+        "model": model_label,
+        "error": False,
+    }
+    _audit(
+        "judge_pair",
+        {"prompt_excerpt": prompt[:200], "model": model_label, "dry_run": dry_run},
+        {
+            "winner": out["winner"],
+            "confidence": out["confidence"],
+            "cost_usd": out["cost_usd"],
+            "prompt_sha256": prompt_sha,
+        },
+    )
     return out
 
 

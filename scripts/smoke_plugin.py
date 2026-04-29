@@ -1,19 +1,27 @@
 #!/usr/bin/env python3
-"""v0.3 plugin smoke test: in-process MCP tool invocations.
+"""v0.4 plugin smoke test: in-process MCP tool invocations.
 
 Loads ``plugin/mcp/server.py``, then calls every MCP tool through the
 FastMCP ``_tool_manager.call_tool`` async API. Records each result to
-``audit/phase6_v0.3/smoke.jsonl`` and updates ``audit/phase6_v0.3/smoke.json``
-with pass/fail counts.
+``audit/phase6_v0.4/smoke.jsonl`` and updates
+``audit/phase6_v0.4/smoke.json`` with pass/fail counts.
 
-v0.3 adds two new tools (``haiku_clean_substrate_probe`` and
-``hopfield_state``) and exercises the new ``pce_cascade`` arm enum
-(``haiku_bare_2K`` and ``haiku_generic_revise``) so the smoke run covers
-the full v0.3 surface area of 19 tools.
+v0.4 prove-gate (Phase 6 of the mechanism-study plan) verifies, on top
+of the v0.3 surface area, that:
 
-Skipping live LM-touching tools is opt-in (they take ~30s to load Qwen2-1.5B).
-``--with-haiku`` opts in to the Haiku-touching probes (each call costs
-roughly $0.02 USD; the four-arm cascade probe set is roughly $0.30).
+* the ``pce_cascade`` MCP tool accepts ``commit_policy="learned_gate"``
+  end-to-end,
+* the new ``judge_pair`` MCP tool round-trips the frozen Sonnet prompt
+  against a deterministic fake responder (``dry_run=True``) and
+  surfaces the ``prompt_sha256``,
+* every ``always_*`` / ``learned_gate`` cascade variant returns a
+  draft + revision pair with no exception even when the FE budget
+  triggers a hard skip mid-run.
+
+Skipping live LM-touching tools is opt-in (they take ~30s to load
+Qwen2-1.5B). ``--with-haiku`` opts in to the Haiku-touching probes
+(each call costs roughly $0.02 USD; the v0.4 multi-policy cascade
+probe set is roughly $0.40 wall-clock).
 """
 from __future__ import annotations
 
@@ -40,6 +48,9 @@ HAIKU_TOUCHING = {
     "pce_cascade_haiku",
     "pce_cascade_haiku_bare_2k",
     "pce_cascade_haiku_generic_revise",
+    "pce_cascade_haiku_always_revise",
+    "pce_cascade_haiku_always_draft",
+    "pce_cascade_haiku_learned_gate",
     "haiku_clean_substrate_probe",
 }
 
@@ -239,6 +250,62 @@ PROBES: list[dict[str, object]] = [
             "base_seed": 7,
         },
     },
+    # v0.4 commit-policy variants: same haiku arm, different commit policies
+    # so we observe the policy multiplexer end-to-end on the live MCP path.
+    {
+        "name": "pce_cascade_haiku_always_revise",
+        "real_name": "pce_cascade",
+        "args": {
+            "prompt": "In one sentence, name two animals one might see in a duck-rabbit illusion.",
+            "constraint_text": "name two animals visible in an ambiguous figure",
+            "arm": "haiku_cascade",
+            "aspects": ["a duck with an upward beak", "a rabbit with backward ears"],
+            "K": 2,
+            "max_tokens": 80,
+            "base_seed": 7,
+            "commit_policy": "always_revise",
+        },
+    },
+    {
+        "name": "pce_cascade_haiku_always_draft",
+        "real_name": "pce_cascade",
+        "args": {
+            "prompt": "In one sentence, name two animals one might see in a duck-rabbit illusion.",
+            "constraint_text": "name two animals visible in an ambiguous figure",
+            "arm": "haiku_cascade",
+            "aspects": ["a duck with an upward beak", "a rabbit with backward ears"],
+            "K": 2,
+            "max_tokens": 80,
+            "base_seed": 7,
+            "commit_policy": "always_draft",
+        },
+    },
+    {
+        "name": "pce_cascade_haiku_learned_gate",
+        "real_name": "pce_cascade",
+        "args": {
+            "prompt": "In one sentence, name two animals one might see in a duck-rabbit illusion.",
+            "constraint_text": "name two animals visible in an ambiguous figure",
+            "arm": "haiku_cascade",
+            "aspects": ["a duck with an upward beak", "a rabbit with backward ears"],
+            "K": 2,
+            "max_tokens": 80,
+            "base_seed": 7,
+            "commit_policy": "learned_gate",
+        },
+    },
+    # v0.4 NEW: Sonnet judge probe (always dry-run in smoke; live judge runs
+    # only in Phase 7 pilot under the $5 cap).
+    {
+        "name": "judge_pair_dryrun",
+        "real_name": "judge_pair",
+        "args": {
+            "prompt": "Write one striking line of imagery about autumn.",
+            "text_a": "the maples burn slow as bronze coins falling",
+            "text_b": "leaves are red.",
+            "dry_run": True,
+        },
+    },
 ]
 
 
@@ -314,10 +381,12 @@ def main() -> int:
         help="Include Haiku-touching probes (each call costs ~$0.02 USD)"
     )
     parser.add_argument(
-        "--out-jsonl", type=Path, default=REPO_ROOT / "audit" / "phase6_v0.3" / "smoke.jsonl"
+        "--out-jsonl", type=Path,
+        default=REPO_ROOT / "audit" / "phase6_v0.4" / "smoke.jsonl",
     )
     parser.add_argument(
-        "--out-json", type=Path, default=REPO_ROOT / "audit" / "phase6_v0.3" / "smoke.json"
+        "--out-json", type=Path,
+        default=REPO_ROOT / "audit" / "phase6_v0.4" / "smoke.json",
     )
     args = parser.parse_args()
     return asyncio.run(_run(args.skip_lm, args.with_haiku, args.out_jsonl, args.out_json))

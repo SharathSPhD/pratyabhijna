@@ -150,6 +150,33 @@ def test_fake_responder_picks_longer_block() -> None:
     assert out["winner"] == "tie"
 
 
+def test_fake_responder_with_real_frozen_prompt_picks_longer_block() -> None:
+    """Regression: the real frozen prompt mentions ``<A>...</A>`` in its
+    explanatory prose; the fake responder must still find the actual
+    response blocks (last occurrence) and pick the longer one.
+    """
+    template, _ = _load_prompt_template(DEFAULT_PROMPT_PATH)
+    pair = JudgePair(
+        domain="poetry_gen",
+        item_id="x",
+        item_prompt="Write one striking line of imagery about autumn.",
+        treatment_arm="A",
+        control_arm="B",
+        treatment_text="the maples burn slow as bronze coins falling through dusk",
+        control_text="leaves are red.",
+        treatment_composite=0.0,
+        control_composite=0.0,
+        proxy_delta=0.0,
+        quartile=-1,
+    )
+    formatted = _format_judge_prompt(template, pair=pair, swap=False)
+    out = _fake_responder(formatted)
+    assert out["winner"] == "A", "long treatment text should win when not swapped"
+    formatted_swapped = _format_judge_prompt(template, pair=pair, swap=True)
+    out = _fake_responder(formatted_swapped)
+    assert out["winner"] == "B", "swapped: treatment text now occupies B"
+
+
 def test_stratify_pairs_per_domain_count(tmp_path: Path) -> None:
     """Stratifier picks exactly ``n_per_domain`` items per domain when available."""
     import random

@@ -282,8 +282,11 @@ def _fake_responder(prompt: str) -> dict[str, Any]:
     winner — useful for verifying the bridge plumbing without spending
     Sonnet quota.
     """
-    a_idx = prompt.find("<A>")
-    b_idx = prompt.find("<B>")
+    # Use the *last* `<A>` / `<B>` tag so the synthetic responder finds the
+    # actual response blocks rather than the explanatory text in the frozen
+    # prompt template (which mentions "<A>...</A>" and "<B>...</B>").
+    a_idx = prompt.rfind("<A>")
+    b_idx = prompt.rfind("<B>")
     if a_idx < 0 or b_idx < 0:
         return {
             "winner": "tie",

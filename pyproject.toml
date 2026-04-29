@@ -1,7 +1,7 @@
 [project]
 name = "pratyabhijna-creative-engine"
-version = "0.3.0"
-description = "Pratyabhijna x Active Inference creative-cognition plugin (PCE) v0.3 - Clean Haiku CLI substrate (no API key), event-gated causal vimarsa with shadow revision (H8), full active-inference uplift (non-degenerate BMR delta_F, Hopfield in cascade, plumbed cit_temperature, free-energy budget), and budget-matched four-arm benchmark (haiku_bare, haiku_cascade, haiku_bare_2K_scorer, haiku_generic_revise_2pass)."
+version = "0.4.0"
+description = "Pratyabhijna x Active Inference creative-cognition plugin (PCE) v0.4 mechanism study - causal cit_temperature via best-of-K candidate width, FreeEnergyBudget as hard gate inside run_cascade with HaikuRateLimitError on 429, pluggable commit-policy stack (always_draft / always_revise / event_gated / learned_gate / oracle) for Experiments A/B/C from the v0.3 adversarial review, and a re-enabled stratified Sonnet LLM-judge bridge under a $5 cap. Carries forward v0.3's clean Haiku CLI substrate, IntegrityProbe, four-arm benchmark, and active-inference Hopfield ālayavijñāna."
 authors = [{name = "Sharath Sathish", email = "sharath@users.noreply.github.com"}]
 readme = "README.md"
 requires-python = ">=3.11,<3.14"
