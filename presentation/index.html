@@ -253,7 +253,7 @@
 
 <section id="results" class="max-w-6xl mx-auto px-6 py-8">
   <h2 class="text-2xl serif font-semibold anchor">Results</h2>
-  <p class="mt-3 max-w-3xl serif text-lg" id="headline-result">Loading from <code>benchmarks/results/stats.json</code>…</p>
+  <p class="mt-3 max-w-3xl serif text-lg" id="headline-result">Loading from <code>benchmarks/results_v0.3/stats.json</code>…</p>
 
   <div class="grid md:grid-cols-2 gap-4 mt-6">
     <div class="glass rounded-xl p-4">
@@ -352,7 +352,8 @@ uv run python benchmarks/autoreport.py --stats benchmarks/results_v0.3/stats.jso
 </footer>
 
 <script>
-  async function loadJSON(p){ try { const r = await fetch(p); if(!r.ok) return null; return await r.json(); } catch(e){ return null; } }
+  // Cache-bust on every page load so GitHub Pages always serves the latest stats from the repo.
+  async function loadJSON(p){ try { const sep = p.includes('?') ? '&' : '?'; const r = await fetch(`${p}${sep}cb=${Date.now()}`, { cache: 'no-store' }); if(!r.ok) return null; return await r.json(); } catch(e){ return null; } }
 
   function bind(key, val){
     document.querySelectorAll(`[data-bind="${key}"]`).forEach(n => n.textContent = val);
