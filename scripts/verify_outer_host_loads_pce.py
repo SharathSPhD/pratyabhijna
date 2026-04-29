@@ -93,7 +93,7 @@ def _count_tools_in_server() -> tuple[int, list[str]]:
     if server_dir not in sys.path:
         sys.path.insert(0, server_dir)
     try:
-        import server as plugin_server  # type: ignore
+        import server as plugin_server
     except Exception as exc:
         issues.append(f"plugin server import failed: {exc!r}")
         return 0, issues

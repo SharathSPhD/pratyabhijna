@@ -1,12 +1,19 @@
 #!/usr/bin/env python3
-"""Phase 8 plugin smoke test: in-process MCP tool invocations.
+"""v0.3 plugin smoke test: in-process MCP tool invocations.
 
-Loads `plugin/mcp/server.py`, then calls every one of the 15 tools through
-the FastMCP `_tool_manager.call_tool` async API. Records each result to
-`audit/phase8/smoke.jsonl` and updates `audit/phase8/smoke.json` with
-pass/fail counts.
+Loads ``plugin/mcp/server.py``, then calls every MCP tool through the
+FastMCP ``_tool_manager.call_tool`` async API. Records each result to
+``audit/phase6_v0.3/smoke.jsonl`` and updates ``audit/phase6_v0.3/smoke.json``
+with pass/fail counts.
+
+v0.3 adds two new tools (``haiku_clean_substrate_probe`` and
+``hopfield_state``) and exercises the new ``pce_cascade`` arm enum
+(``haiku_bare_2K`` and ``haiku_generic_revise``) so the smoke run covers
+the full v0.3 surface area of 19 tools.
 
 Skipping live LM-touching tools is opt-in (they take ~30s to load Qwen2-1.5B).
+``--with-haiku`` opts in to the Haiku-touching probes (each call costs
+roughly $0.02 USD; the four-arm cascade probe set is roughly $0.30).
 """
 from __future__ import annotations
 
@@ -28,7 +35,13 @@ for p in (str(SRC), str(PLUGIN_MCP)):
 import server  # noqa: E402
 
 LM_TOUCHING = {"cit", "iccha", "cascade", "pce_cascade"}
-HAIKU_TOUCHING = {"haiku_bare", "pce_cascade_haiku"}
+HAIKU_TOUCHING = {
+    "haiku_bare",
+    "pce_cascade_haiku",
+    "pce_cascade_haiku_bare_2k",
+    "pce_cascade_haiku_generic_revise",
+    "haiku_clean_substrate_probe",
+}
 
 
 PROBES: list[dict[str, object]] = [
@@ -166,7 +179,15 @@ PROBES: list[dict[str, object]] = [
             "bypass_vimarsa": True,
         },
     },
+    {
+        "name": "hopfield_state",
+        "args": {"last_n": 3},
+    },
     # Haiku-touching probes (opt-in via --with-haiku; each call costs ~$0.02).
+    {
+        "name": "haiku_clean_substrate_probe",
+        "args": {"force": True},
+    },
     {
         "name": "haiku_bare",
         "args": {
@@ -185,6 +206,35 @@ PROBES: list[dict[str, object]] = [
             "must_avoid": ["a single literal description of a duck"],
             "aspects": ["a duck with an upward beak", "a rabbit with backward ears"],
             "K": 3,
+            "max_tokens": 80,
+            "base_seed": 7,
+            "commit_policy": "event_gated",
+        },
+    },
+    # v0.3 control arm 1: best-of-K=2K bare scorer.
+    {
+        "name": "pce_cascade_haiku_bare_2k",
+        "real_name": "pce_cascade",
+        "args": {
+            "prompt": "In one sentence, name two animals one might see in a duck-rabbit illusion.",
+            "constraint_text": "name two animals visible in an ambiguous figure",
+            "arm": "haiku_bare_2K",
+            "aspects": ["a duck with an upward beak", "a rabbit with backward ears"],
+            "K": 2,
+            "max_tokens": 80,
+            "base_seed": 7,
+        },
+    },
+    # v0.3 control arm 2: 2-pass with generic creative-revise brief.
+    {
+        "name": "pce_cascade_haiku_generic_revise",
+        "real_name": "pce_cascade",
+        "args": {
+            "prompt": "In one sentence, name two animals one might see in a duck-rabbit illusion.",
+            "constraint_text": "name two animals visible in an ambiguous figure",
+            "arm": "haiku_generic_revise",
+            "aspects": ["a duck with an upward beak", "a rabbit with backward ears"],
+            "K": 2,
             "max_tokens": 80,
             "base_seed": 7,
         },
@@ -264,10 +314,10 @@ def main() -> int:
         help="Include Haiku-touching probes (each call costs ~$0.02 USD)"
     )
     parser.add_argument(
-        "--out-jsonl", type=Path, default=REPO_ROOT / "audit" / "phase8" / "smoke.jsonl"
+        "--out-jsonl", type=Path, default=REPO_ROOT / "audit" / "phase6_v0.3" / "smoke.jsonl"
     )
     parser.add_argument(
-        "--out-json", type=Path, default=REPO_ROOT / "audit" / "phase8" / "smoke.json"
+        "--out-json", type=Path, default=REPO_ROOT / "audit" / "phase6_v0.3" / "smoke.json"
     )
     args = parser.parse_args()
     return asyncio.run(_run(args.skip_lm, args.with_haiku, args.out_jsonl, args.out_json))
