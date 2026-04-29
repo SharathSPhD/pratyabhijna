@@ -70,9 +70,16 @@ class CascadeState:
     v0.2 (ADR-003): the cascade is two-pass-always, so ``surface`` carries
     the *revision* output by default and the additional ``surface_draft`` /
     ``surface_revision`` fields preserve both passes for the H8.v2
-    revision-vs-draft contribution test. When ``bypass_vimarsa=True`` is
-    passed to ``run_cascade`` the cascade collapses to a single pass and
-    ``surface == surface_draft`` with ``surface_revision is None``.
+    revision-vs-draft contribution test.
+
+    v0.3 (ADR-002): the cascade is event-gated + always-shadow-revision.
+    ``surface`` is whichever pass the commit policy selected; ``committed``
+    records that choice (``"revision"`` or ``"draft"``). ``surface_draft``
+    and ``surface_revision`` are *both always populated* under
+    ``commit_policy="event_gated"`` and ``"always_revise"``, so H8 stays
+    measurable on every run. ``commit_policy="always_draft"`` (the explicit
+    ablation) skips the revision pass entirely and leaves
+    ``surface_revision is None``.
     """
 
     prompt: str
@@ -89,6 +96,8 @@ class CascadeState:
     surface_revision: str | None = None
     vimarsa_event_draft: bool = False
     vimarsa_brief: str | None = None
+    committed: str = "draft"
+    commit_policy: str = "event_gated"
     audit: dict[str, Any] = field(default_factory=dict)
 
     def to_audit(self) -> dict[str, Any]:
@@ -109,6 +118,8 @@ class CascadeState:
             "vimarsa_event_draft": self.vimarsa_event_draft,
             "vimarsa_novelty": float(self.vimarsa_novelty),
             "vimarsa_brief": self.vimarsa_brief,
+            "committed": str(self.committed),
+            "commit_policy": str(self.commit_policy),
             "aspects": list(self.aspects),
             "audit": dict(self.audit),
         }

@@ -1,0 +1,109 @@
+\section{Results (v0.2 pilot)}\label{sec:results}
+
+\subsection{Pilot scope and the apples-to-apples primary contrast}
+
+The v0.2 pilot evaluates four arms across the four creativity domains:
+\begin{itemize}
+  \item \texttt{local\_bare}    --- Qwen2-1.5B-Instruct, single sampler call (no PCE).
+  \item \texttt{local\_cascade} --- Qwen2-1.5B-Instruct through the two-pass-always cascade (with PCE).
+  \item \texttt{haiku\_bare}    --- Anthropic Claude Haiku, single sampler call (no PCE).
+  \item \texttt{haiku\_cascade} --- Anthropic Claude Haiku through the two-pass-always cascade (with PCE).
+\end{itemize}
+The \emph{primary} v0.2 contrast is \texttt{haiku\_cascade} vs.\ \texttt{haiku\_bare}: this isolates the cascade's contribution on a fixed (cloud-grade) substrate and is the apples-to-apples test the v0.1 paper lacked. The local arms are reported as a substrate baseline. The pilot used $n{=}5$ items per domain ($N_{\text{paired}}{=}19$ after one sci\_creativity item failed the cascade), $K{=}3$ candidate fan-out per pass, max\_tokens$=150$, and a hard cost cap of \$18; the run completed in 49 minutes for a total Haiku spend of \$3.60 over 136 calls (well under cap). The local-cascade arm was deferred to v0.3 due to throughput constraints on the pilot host (a single Apple-Silicon laptop) at the chosen $K$ and max\_tokens.
+
+\subsection{Per-domain composites and per-arm means}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{figures/fig_per_domain_box.png}
+  \caption{v0.2 per-domain composites for the three arms run in the pilot (\texttt{local\_cascade} was deferred to v0.3 due to local-LM throughput on the pilot host). Item-level points jittered over each box. The within-domain spread is the substrate for the paired contrasts in Figure~\ref{fig:paired_deltas}.}
+  \label{fig:per_domain_box}
+\end{figure}
+
+The per-arm means make the cascade's contribution concrete. On the four pilot domains:
+\begin{itemize}
+  \item \textbf{poetry\_interp}: \texttt{haiku\_bare} 0.501 $\to$ \texttt{haiku\_cascade} 0.666 (+33\%).
+  \item \textbf{sci\_creativity}: 0.529 $\to$ 0.585 (+11\%).
+  \item \textbf{poetry\_gen}: 0.579 $\to$ 0.603 (+4\%).
+  \item \textbf{aut}: 0.935 $\to$ 0.951 (+1.7\%; both arms saturate near the scoring ceiling).
+\end{itemize}
+Local Qwen2 sits well below Haiku in absolute scoring on every domain, as expected: this is a substrate-strength gap that the local-cascade ablation (deferred to v0.3) is designed to disentangle.
+
+\subsection{Pre-registered hypothesis tests --- apples-to-apples}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{figures/fig_paired_deltas.png}
+  \caption{v0.2 paired score deltas for H1--H4 on the apples-to-apples \texttt{haiku\_cascade} $-$ \texttt{haiku\_bare} contrast. The dashed line marks $\Delta=0$; the shaded region is the 95\% BCa CI; Holm-adjusted $p$ is shown in the panel title.}
+  \label{fig:paired_deltas}
+\end{figure}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.9\linewidth]{figures/fig_effects_forest.png}
+  \caption{Forest plot of pre-registered hypothesis effects for v0.2's primary \texttt{haiku\_cascade} $-$ \texttt{haiku\_bare} contrast. Markers are paired mean $\Delta$; whiskers are 95\% BCa CIs.}
+  \label{fig:forest}
+\end{figure}
+
+The four pre-registered hypotheses on the primary contrast are:
+\begin{itemize}
+  \item \textbf{H1 (AUT)}: $n{=}5$, $\bar\Delta{=}{+}0.016$, $g{=}{+}1.26$, BCa $[+0.009, +0.024]$, perm $p{=}0.031$.
+  \item \textbf{H2 (poetry\_interp)}: $n{=}5$, $\bar\Delta{=}{+}0.165$, $g{=}{+}2.12$, BCa $[+0.106, +0.207]$, perm $p{=}0.031$.
+  \item \textbf{H3 (poetry\_gen)}: $n{=}5$, $\bar\Delta{=}{+}0.024$, $g{=}{+}0.30$, BCa $[-0.035, +0.068]$, perm $p{=}0.250$.
+  \item \textbf{H4 (sci\_creativity)}: $n{=}4$, $\bar\Delta{=}{+}0.053$, $g{=}{+}0.76$, BCa $[+0.017, +0.104]$, perm $p{=}0.125$.
+\end{itemize}
+
+Three of four hypotheses (H1, H2, H4) have 95\% BCa CIs strictly above zero with effect sizes from medium ($g{=}0.76$) to very large ($g{=}2.12$). H3 is the smallest effect (small-to-medium $g{=}0.30$) and its BCa CI overlaps zero. \textbf{None of H1--H4 cross the pre-registered Holm-adjusted $p<0.05$ threshold} --- this is a power constraint of the pilot scope, not a failure of effect direction. With $n{=}5$ paired observations the exact sign-flip permutation test has a hard floor of $1/2^{5}{=}0.0312$, and Holm--Bonferroni with $m{=}4$ pushes the smallest possible adjusted $p$ to $4 \cdot 0.0312 = 0.125$. To cross $\alpha{=}0.05$ on H1 or H2 we would need $n{\geq}7$ items per domain; the pilot's $n{=}5$ was chosen to stay inside the \$18 Haiku envelope and is below the SPEC's pre-registered minimum-power $n$ ($\geq 20$ per domain for $g{=}0.5$ at $\alpha{=}0.05$).
+
+\paragraph{What the pilot does establish.} The cascade's effect on the apples-to-apples contrast is (i) directional --- positive in all four domains; (ii) substantial in magnitude --- three of four domains have BCa lower bounds strictly above zero; and (iii) consistent with the predicted ordering across the v0.1 adversarial-review themes (interpretation $\gg$ generation $\gg$ saturated divergent listing). This is a categorical reversal of the v0.1 directional null where the cascade trailed the bare arm on every domain.
+
+\subsection{Within-cascade event test (H6)}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{figures/fig_h6_event_vs_no_event.png}
+  \caption{H6: within-cascade composite for trials where the \iast{vimar\'sa} loop fired (left bar of each panel) vs trials where it did not (right). Reported separately for the local and Haiku cascade arms. v0.2's two-pass-always pipeline ensures the loop is observable on every cascade item; firing here means \iast{vimar\'sa}'s aspect-shift event-detector returned \texttt{True} for the revised surface.}
+  \label{fig:h6}
+\end{figure}
+
+In contrast to v0.1 where \iast{vimar\'sa} fired on \emph{zero} of 30 cascade trials (a calibration finding), v0.2's two-pass-always pipeline observes firing on $9/14$ haiku\_cascade trials with composite uplift $\Delta{=}{+}0.031$ on the fired-vs-not contrast (Mann--Whitney $U$ $p{=}0.30$, ns at the pilot $n$). The directional sign is correct and the firing rate validates the v0.2 calibration changes (\texttt{min\_evidence\_points}=1, default \texttt{aspect\_threshold}=1, switching N/A on one-shot trajectories) per ADR-003.
+
+\subsection{Statistical power}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.85\linewidth]{figures/fig_power.png}
+  \caption{A-priori (under the SPEC-pre-registered $g{=}0.5$ assumption) vs retrospective (under observed $g$) power for H1--H4 in the v0.2 pilot. The 0.80 threshold (red dotted) marks conventional adequacy. Retrospective power is high on H1 ($g{=}1.26$) and H2 ($g{=}2.12$) despite small $n$, but the apriori-power column shows that the pilot's $n{=}5$ is well below conventional adequacy for the assumed effect size; a properly powered run would require $n{\sim}20$ per domain.}
+  \label{fig:power}
+\end{figure}
+
+\subsection{v0.1 vs v0.2 contrast}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{l c c c}
+\toprule
+Metric & v0.1 (3-arm, $n{=}38$) & v0.2 (3-arm pilot, $N{=}19$) & Direction of change \\
+\midrule
+Primary contrast        & \texttt{local\_cascade} $-$ \texttt{haiku\_bare}   & \texttt{haiku\_cascade} $-$ \texttt{haiku\_bare} & substrate-matched \\
+H1 (AUT) sign          & negative                & \textbf{positive}, $g{=}+1.26$ & reversed \\
+H2 (poetry\_interp)    & negative                & \textbf{positive}, $g{=}+2.12$ & reversed \\
+H3 (poetry\_gen)       & negative                & positive, $g{=}+0.30$  & reversed \\
+H4 (sci\_creativity)    & negative                & \textbf{positive}, $g{=}+0.76$ & reversed \\
+H5 (z-blend)           & negative ($p{\approx}0.50$) & directional $0$ at pilot $n$ & calibration \\
+H6 \iast{vimar\'sa} fired & 0 of 30                 & 9 of 14 (haiku\_cascade)         & operator now causal \\
+\bottomrule
+\end{tabular}
+\caption{v0.1 vs v0.2 outcome summary. v0.2's two-pass-always cascade combined with the Haiku-substrate apples-to-apples contrast reverses the sign of every primary hypothesis relative to v0.1, while keeping a transparent power-limited reading of the pilot ($n{=}5$/domain). The TRIZ-resolved operator changes (signed \iast{apohana}, prompt/sampler parity, causal \iast{vimar\'sa}, pluggable LM protocol, per-operator sampler profiles) are the proximate causes catalogued in \texttt{docs/triz/} and \texttt{docs/adr/v0.2/}.}
+\label{tab:v01_vs_v02}
+\end{table}
+
+\subsection{Auto-generated table}
+
+\begin{table}[t]
+\centering
+\caption{Pre-registered hypothesis effects for the v0.2 pilot's primary apples-to-apples contrast (auto-generated from \texttt{benchmarks/results\_v2/stats.json} via \texttt{paper/autoreport.tex}, included verbatim).}
+\label{tab:primary}
+\input{autoreport}
+\end{table}

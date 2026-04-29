@@ -1,5 +1,5 @@
 {
-  "id": "duck_rabbit_textual_v0.2",
+  "id": "duck_rabbit_textual_v0.3",
   "domain": "poetry_interp",
   "title": "Duck-Rabbit textual probe (Wittgenstein PI II.xi)",
   "prompt": "Read the following short description aloud:\n\n  'A small bird perched on the fence; its beak swept upward into a long ear, and its eye seemed to look in two directions at once.'\n\nIn one or two sentences, name the two animals one might see in this image, and describe the moment when one becomes the other.",
@@ -18,10 +18,14 @@
   ],
   "expected_signals": {
     "vimarsa_event_at_least_one_arm": true,
+    "haiku_cascade_vimarsa_event_required": true,
     "aspect_max_cosine_floor": 0.30,
     "novelty_floor": 0.50,
     "revision_differs_from_draft": true,
-    "haiku_cascade_differs_from_haiku_bare": true
+    "haiku_cascade_differs_from_haiku_bare": true,
+    "delta_F_floor": 0.01,
+    "no_leakage": true,
+    "integrity_probe_must_pass": true
   },
-  "notes": "Canonical aspect-shift probe from the v0.1 phase 6 probe battery. The two named aspects (duck, rabbit) must be surfaceable on at least one arm; haiku_cascade is the apples-to-apples cascade evaluation."
+  "notes": "Canonical aspect-shift probe from the v0.1 phase 6 probe battery. The two named aspects (duck, rabbit) must be surfaceable on at least one arm; haiku_cascade is the apples-to-apples cascade evaluation. v0.3 adds delta_F floor (aspect-conditioned BMR must produce non-degenerate evidence) and integrity_probe assertions (the inner Haiku subprocess must show no Claude Code framing leakage)."
 }

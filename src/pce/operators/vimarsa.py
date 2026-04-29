@@ -31,9 +31,12 @@ v0.2 changes vs v0.1:
 """
 from __future__ import annotations
 
+from typing import Literal
+
 import numpy as np
 import numpy.typing as npt
 
+from pce.active_inference.hopfield import HopfieldStore, WriteMode
 from pce.substrate.embed import Embedder
 
 DEFAULT_NOVELTY_THRESHOLD = 0.30
@@ -46,6 +49,15 @@ DEFAULT_MIN_EVIDENCE_POINTS = 1
 # on 2/4 probes without firing on the bypass control.
 DEFAULT_ASPECT_COSINE_HIT = 0.40
 DEFAULT_AESTHETIC_FLOOR = 0.40
+# v0.3 ADR-002: vimarsa is now event-gated by ΔF as well as the v0.2 criteria.
+# When ``delta_F`` is supplied (the cascade always supplies it from jñāna's
+# draft-pass posterior), the event additionally requires
+# ``delta_F >= delta_F_threshold``. Default threshold of 0.05 bits is a
+# weak floor: any reduction with informative evidence above noise. ΔF below
+# 0.05 means jñāna couldn't pick a winner with confidence -- in that case
+# the revision pass is unlikely to help so we skip the commit-revision
+# branch and surface the draft instead.
+DEFAULT_DELTA_F_THRESHOLD = 0.05
 
 GENERIC_BRIEF = (
     "Refine the previous draft for novelty, vividness, and surprise. "
@@ -123,6 +135,8 @@ def vimarsa(
     min_evidence_points: int = DEFAULT_MIN_EVIDENCE_POINTS,
     aspect_cosine_hit: float = DEFAULT_ASPECT_COSINE_HIT,
     aesthetic_floor: float = DEFAULT_AESTHETIC_FLOOR,
+    delta_F: float | None = None,
+    delta_F_threshold: float = DEFAULT_DELTA_F_THRESHOLD,
     return_brief: bool = False,
 ) -> (
     tuple[bool, float, dict[str, float]]
@@ -185,7 +199,22 @@ def vimarsa(
     else:
         switching_ok = switching >= int(switching_threshold)
         diag["switching_gate"] = 1.0
-    event = bool(novelty_ok and aspect_ok and aesthetic_ok and switching_ok)
+    # v0.3 ADR-002: ΔF gate. When the cascade supplies a draft-pass ΔF, the
+    # event must clear `delta_F_threshold` (default 0.05 bits) on top of the
+    # v0.2 criteria. ΔF is the only signal here that comes from BMR rather
+    # than embedding heuristics, so it carries meaningful active-inference
+    # information about whether jñāna actually had evidence to commit to a
+    # winning reduction. When ``delta_F is None`` (legacy callers) the gate
+    # is N/A.
+    if delta_F is None:
+        delta_F_ok = True
+        diag["delta_F_gate"] = 0.0  # N/A
+    else:
+        delta_F_ok = float(delta_F) >= float(delta_F_threshold)
+        diag["delta_F_gate"] = 1.0
+        diag["delta_F"] = float(delta_F)
+        diag["delta_F_threshold"] = float(delta_F_threshold)
+    event = bool(novelty_ok and aspect_ok and aesthetic_ok and switching_ok and delta_F_ok)
     if return_brief:
         brief = _build_brief(
             aspects=list(aspects),
@@ -196,3 +225,59 @@ def vimarsa(
         )
         return event, novelty, diag, brief
     return event, novelty, diag
+
+
+def consolidate(
+    *,
+    surface: str,
+    aspects: list[str],
+    embed: Embedder,
+    hopfield: HopfieldStore,
+    mode: WriteMode = "rem",
+    label_strategy: Literal["best_aspect", "first_aspect", "domain_only"] = "best_aspect",
+) -> dict[str, object]:
+    """Write the committed surface back to the per-domain storehouse.
+
+    v0.3 ADR-004: this is the cascade-end hook that closes the
+    iccha-apoha-jnana-kriya-vimarsa loop. The cascade calls ``consolidate``
+    after committing a surface; the storehouse then carries warm-start mass
+    for the next prompt in the same domain.
+
+    ``mode="rem"`` (default) appends the surface as a new pattern (fast,
+    REM-style). ``mode="sws"`` consolidates against the nearest existing
+    pattern when cosine ≥ threshold (slow-wave-style merge).
+
+    ``label_strategy``:
+
+    * ``"best_aspect"``: label = the aspect with the highest cosine to the
+      surface (or ``""`` if no aspects supplied).
+    * ``"first_aspect"``: label = ``aspects[0]`` (or ``""``).
+    * ``"domain_only"``: label = ``hopfield.domain``.
+
+    Returns a small audit dict (label, mode, n_patterns_after) for inclusion
+    on :class:`pce.types.CascadeState.audit`.
+    """
+    if not surface.strip():
+        return {"written": False, "reason": "empty_surface"}
+    surf_emb = embed.encode(surface)
+    if surf_emb.ndim != 1:
+        surf_emb = np.asarray(surf_emb).reshape(-1)
+    label: str
+    if label_strategy == "domain_only" or not aspects:
+        label = hopfield.domain if label_strategy == "domain_only" else ""
+    elif label_strategy == "first_aspect":
+        label = str(aspects[0])
+    else:  # best_aspect
+        asp_embs = embed.encode(list(aspects))
+        if asp_embs.ndim == 1:
+            asp_embs = asp_embs[None, :]
+        sims = np.asarray(asp_embs @ surf_emb, dtype=np.float32)
+        label = str(aspects[int(np.argmax(sims))]) if sims.size else ""
+    hopfield.write(surf_emb.astype(np.float32), label=label, mode=mode)
+    return {
+        "written": True,
+        "label": label,
+        "mode": mode,
+        "n_patterns_after": int(hopfield.n_patterns),
+        "domain": hopfield.domain,
+    }

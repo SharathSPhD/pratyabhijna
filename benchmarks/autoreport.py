@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import re
 from pathlib import Path
 from typing import Any
@@ -36,36 +37,89 @@ def _row_for(h: str, payload: dict[str, Any]) -> str:
 
 
 def _h5_row(h5: dict[str, Any]) -> str:
-    n = h5["n"]
-    est = h5["estimate_pooled_z"]
-    g = h5["hedges_g"]
-    lo, hi = h5["bca_ci_95"]
-    perm = h5["permutation_p_one_sided"]
-    pa = h5["power_apriori"]
-    pr = h5["power_retrospective"]
-    sup = "\\textbf{yes}" if h5["supported"] else "no"
+    """v0.3 H5 = random-effects DerSimonian-Laird pool of per-domain Hedges' g."""
+    g = h5.get("pooled_g", float("nan"))
+    n_studies = h5.get("n_studies", 0)
+    ci = h5.get("ci_95", [float("nan"), float("nan")])
+    lo, hi = (ci + [float("nan"), float("nan")])[:2] if isinstance(ci, list) else (float("nan"), float("nan"))
+    tau2 = h5.get("tau2", float("nan"))
+    sup = "\\textbf{yes}" if h5.get("supported", False) else "no"
+
+    def _fmt(x: Any, w: int = 3, sign: bool = True) -> str:
+        try:
+            xv = float(x)
+        except (TypeError, ValueError):
+            return "n/a"
+        if math.isnan(xv):
+            return "n/a"
+        return (f"{xv:+.{w}f}" if sign else f"{xv:.{w}f}")
+
     return (
-        f"H5 (composite) & {n} & {est:+.3f} & {g:+.2f} & "
-        f"[{lo:+.3f},\\,{hi:+.3f}] & {perm:.4f} & --- & --- & "
-        f"{pa:.2f} / {pr:.2f} & {sup} \\\\"
+        f"H5 (RE pooled $g$) & {int(n_studies)} & --- & {_fmt(g, 2)} & "
+        f"[{_fmt(lo, 3)},\\,{_fmt(hi, 3)}] & --- & --- & --- & "
+        f"$\\tau^2$={_fmt(tau2, 2, sign=False)} & {sup} \\\\"
     )
 
 
-def _h6_row(h6: dict[str, Any]) -> str:
-    nf = h6.get("n_fired", 0)
-    nn = h6.get("n_not_fired", 0)
-    est = h6.get("estimate", float("nan"))
-    p = h6.get("mannwhitney_u_p_one_sided", float("nan"))
-    sup = "\\textbf{yes}" if h6.get("supported", False) else "no"
-    if isinstance(est, float) and est != est:  # NaN check
-        est_s = "n/a"
-    else:
-        est_s = f"{est:+.3f}"
-    if isinstance(p, float) and p != p:
-        p_s = "n/a"
-    else:
-        p_s = f"{p:.4f}"
-    return f"H6 (within-PCE) & {nf}/{nn} & {est_s} & --- & --- & {p_s} & --- & --- & --- & {sup} \\\\"
+def _v3_contrast_row(label: str, payload: dict[str, Any]) -> str:
+    """Format a v0.3 between-arm contrast (H6.v3 or H7.v3) as a single row.
+
+    These v0.3 contrasts return the *same* primary structure as H1-H4 (one row
+    per domain). For the headline table we surface a meta-aggregated row by
+    averaging Hedges' g and showing the count of supported domains.
+    """
+    if not payload:
+        return f"{label} & 0 & --- & --- & --- & --- & --- & --- & --- & no \\\\"
+    rows = [v for v in payload.values() if isinstance(v, dict) and "n" in v]
+    if not rows:
+        return f"{label} & 0 & --- & --- & --- & --- & --- & --- & --- & no \\\\"
+    n_sum = sum(int(r.get("n", 0)) for r in rows)
+    gs: list[float] = []
+    for r in rows:
+        gv = r.get("hedges_g")
+        if isinstance(gv, (int, float)) and not math.isnan(float(gv)):
+            gs.append(float(gv))
+    g_mean = sum(gs) / len(gs) if gs else float("nan")
+    n_sup = sum(1 for r in rows if r.get("supported"))
+    sup_total = len(rows)
+    sup = "\\textbf{yes}" if n_sup > 0 else "no"
+
+    def _fmt(x: float, w: int = 2) -> str:
+        if math.isnan(x):
+            return "n/a"
+        return f"{x:+.{w}f}"
+
+    return (
+        f"{label} & {n_sum} & --- & {_fmt(g_mean)} & --- & --- & --- & --- & "
+        f"{n_sup}/{sup_total} domains & {sup} \\\\"
+    )
+
+
+def _h8_row(h8: dict[str, Any]) -> str:
+    """v0.3 H8 = within-cascade revision-vs-draft pairing."""
+    if not h8:
+        return "H8 (revision vs draft) & 0 & --- & --- & --- & --- & --- & --- & --- & no \\\\"
+    n = int(h8.get("n", 0))
+    est = h8.get("estimate", float("nan"))
+    g = h8.get("hedges_g", float("nan"))
+    ci = h8.get("bca_ci_95", [float("nan"), float("nan")])
+    lo, hi = (ci + [float("nan"), float("nan")])[:2] if isinstance(ci, list) else (float("nan"), float("nan"))
+    perm = h8.get("permutation_p_one_sided", float("nan"))
+    sup = "\\textbf{yes}" if h8.get("supported", False) else "no"
+
+    def _fmt(x: Any, w: int = 3, sign: bool = True) -> str:
+        try:
+            xv = float(x)
+        except (TypeError, ValueError):
+            return "n/a"
+        if math.isnan(xv):
+            return "n/a"
+        return (f"{xv:+.{w}f}" if sign else f"{xv:.{w}f}")
+
+    return (
+        f"H8 (revision vs draft) & {n} & {_fmt(est)} & {_fmt(g, 2)} & "
+        f"[{_fmt(lo)},\\,{_fmt(hi)}] & {_fmt(perm, 4, sign=False)} & --- & --- & --- & {sup} \\\\"
+    )
 
 
 def _build_autoreport(stats: dict[str, Any]) -> str:
@@ -74,10 +128,9 @@ def _build_autoreport(stats: dict[str, Any]) -> str:
         _row_for(h, primary[h]) for h in ("H1", "H2", "H3", "H4")
     ]
     rows.append(_h5_row(stats["H5"]))
-    # v0.2 splits H6 by cascade arm; prefer the primary haiku_cascade arm
-    # but fall back to the local arm or the legacy single-key layout.
-    h6 = stats.get("H6_haiku_cascade") or stats.get("H6_local_cascade") or stats.get("H6") or {}
-    rows.append(_h6_row(h6))
+    rows.append(_v3_contrast_row("H6.v3 (vs +K compute)", stats.get("H6_v3_extra_compute", {})))
+    rows.append(_v3_contrast_row("H7.v3 (vs generic 2-pass)", stats.get("H7_v3_generic_revise", {})))
+    rows.append(_h8_row(stats.get("H8_v3_revision_vs_draft", {})))
     body = "\n".join(rows)
     return (
         "\\begin{tabular}{l r r r c c c c c c}\n"
@@ -113,14 +166,22 @@ def _headline(stats: dict[str, Any]) -> str:
         )
     ]
 
-    h6_payload = stats.get("H6_haiku_cascade") or stats.get("H6_local_cascade") or stats.get("H6") or {}
-    h6 = bool(h6_payload.get("supported", False))
-    h5 = bool(stats["H5"].get("supported", False))
+    h6_v3 = stats.get("H6_v3_extra_compute", {})
+    h7_v3 = stats.get("H7_v3_generic_revise", {})
+    h8_v3 = stats.get("H8_v3_revision_vs_draft", {})
+
+    def _supported_domains(payload: dict[str, Any]) -> list[str]:
+        return [k for k, v in payload.items()
+                if isinstance(v, dict) and v.get("supported")]
+
+    h5 = stats["H5"]
+    h5_g = h5.get("pooled_g", float("nan"))
+    h5_ci = h5.get("ci_95", [float("nan"), float("nan")])
 
     parts: list[str] = []
     if supported:
         parts.append(
-            f"PCE v0.2 materially shifts the paired apples-to-apples contrast {contrast} on "
+            f"PCE v0.3 materially shifts the paired apples-to-apples contrast {contrast} on "
             + ", ".join(supported)
             + " (Holm-adjusted $p<0.05$, BCa CI strictly positive)."
         )
@@ -144,20 +205,43 @@ def _headline(stats: dict[str, Any]) -> str:
             f"{contrast} contrast --- a negative result we report in compliance with the "
             "SPEC's negative-result obligation."
         )
-    if h5:
-        parts.append("The aggregate composite (H5) is positive and significant.")
-    if h6:
+    try:
+        g = float(h5_g)
+        lo = float(h5_ci[0])
+        hi = float(h5_ci[1])
+        if g == g and lo == lo and hi == hi:
+            parts.append(
+                "Random-effects pooled effect across the four domains (H5.v3) "
+                f"is $g={g:+.2f}$ (95\\% CI [{lo:+.2f},\\,{hi:+.2f}])."
+            )
+    except (TypeError, ValueError, IndexError):
+        pass
+
+    h6_sup = _supported_domains(h6_v3)
+    if h6_sup:
         parts.append(
-            "The within-cascade H6 internal-validity test is supported: trials in which "
-            "the \\iast{vimar\\'sa} layer fired score higher than trials in which "
-            "it did not."
+            "The fairness contrast H6.v3 (vs.\\ a budget-matched 2K-scorer "
+            "single-pass control) is supported on " + ", ".join(h6_sup) + ", isolating "
+            "architecture from the extra-compute confound flagged in the v0.2 review."
         )
-    elif h6_payload.get("n_fired", 0) > 0:
+    h7_sup = _supported_domains(h7_v3)
+    if h7_sup:
         parts.append(
-            "The within-cascade H6 test points in the predicted direction "
-            f"($\\Delta=+{float(h6_payload.get('estimate', 0.0)):.3f}$, "
-            f"$n_{{\\text{{fired}}}}={int(h6_payload.get('n_fired', 0))}$) "
-            "but does not reach the significance threshold at the pilot's $n$."
+            "H7.v3 (vs.\\ a generic 2-pass revise) is supported on " + ", ".join(h7_sup) +
+            ", showing the \\iast{vimar\\'sa} brief content -- not the mere existence "
+            "of a revision pass -- carries the win."
+        )
+    if h8_v3.get("supported"):
+        parts.append(
+            "Within-cascade H8.v3 (revision vs.\\ draft for items where the event-gated "
+            "commit chose revision) is supported, demonstrating the *causal contribution* "
+            "of the second pass on the items the cascade itself decided to revise."
+        )
+    elif int(h8_v3.get("n", 0)) > 0:
+        est = float(h8_v3.get("estimate", 0.0))
+        parts.append(
+            f"H8.v3 points in the predicted direction ($\\Delta={est:+.3f}$, "
+            f"$n={int(h8_v3.get('n', 0))}$) but does not reach $p<0.05$ at the pilot's $n$."
         )
     return " ".join(parts)
 
@@ -166,9 +250,16 @@ def _replace_placeholders(text: str, mapping: dict[str, str]) -> str:
     """Substitute `{KEY}` with `{VALUE}` preserving the brace pair so the
     surrounding LaTeX (e.g. `\\text{...}`) stays well-formed even when the
     placeholder coincides with a LaTeX argument boundary.
+
+    Also tolerates the LaTeX-escaped form `{KEY\\_WITH\\_UNDERSCORES}` because
+    underscores are LaTeX-active outside math mode and the placeholder may
+    have been authored with backslash-escapes for the typeset preview.
     """
     for k, v in mapping.items():
         text = text.replace("{" + k + "}", "{" + v + "}")
+        if "_" in k:
+            escaped = k.replace("_", "\\_")
+            text = text.replace("{" + escaped + "}", "{" + v + "}")
     return text
 
 

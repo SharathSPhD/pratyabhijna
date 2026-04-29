@@ -5,12 +5,13 @@ from pce.operators.cit import cit
 from pce.operators.iccha import iccha
 from pce.operators.jnana import jnana
 from pce.operators.kriya import kriya
-from pce.operators.vimarsa import vimarsa
+from pce.operators.vimarsa import consolidate, vimarsa
 
 __all__ = [
     "ananda",
     "apohana",
     "cit",
+    "consolidate",
     "iccha",
     "jnana",
     "kriya",

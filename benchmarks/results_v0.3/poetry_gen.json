@@ -1,0 +1,751 @@
+{
+  "domain": "poetry_gen",
+  "version": "v0.3",
+  "rows": {
+    "p01": {
+      "item": {
+        "id": "p01",
+        "topic": "rain at dusk on a tin roof",
+        "form": "haiku",
+        "must_avoid": [
+          "a busy city street"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        },
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "Gray rain on tin roof\nEach drop a note of twilight\nDusk's gentle music",
+        "axes": {
+          "creativity": 0.7536565768806374,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.8132154755294323,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.0
+        },
+        "composite": 0.5111453420683449,
+        "n_chars": 70,
+        "n_words": 14,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 10.367784976959229,
+          "haiku_total_usd": 0.20764600000000002,
+          "haiku_n_calls": 14
+        }
+      },
+      "haiku_cascade": {
+        "text": "Dusk rain taps the roof\nTin drums echo through twilight\nInto quiet night",
+        "axes": {
+          "creativity": 0.7572933803586399,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.8125378042459488,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.2
+        },
+        "composite": 0.5449718641007648,
+        "n_chars": 72,
+        "n_words": 13,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 209.89498114585876,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 1,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "Dusk rain taps the roof\nTin drums echo through twilight\nInto quiet night",
+          "surface_revision": "Dusk rain strikes the roof\nTin screams like a living bell\nTill night becomes sound",
+          "haiku_total_usd": 0.350003,
+          "haiku_n_calls": 22
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "Dusk falls, rain begins\nTin roof sings its ancient song\nRhythm of the night",
+        "axes": {
+          "creativity": 0.7436552490381634,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.7983486279845238,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.0
+        },
+        "composite": 0.5070006461704478,
+        "n_chars": 75,
+        "n_words": 14,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 91.99930810928345,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": null,
+          "selected_idx": 5,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "Dusk falls, rain begins\nTin roof sings its ancient song\nRhythm of the night",
+          "surface_revision": "",
+          "haiku_total_usd": 0.3984559999999999,
+          "haiku_n_calls": 30
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "Rain taps the tin roof\u2014\nEach drop rings bright as a star\u2014\nNight swallows the sound",
+        "axes": {
+          "creativity": 0.7609773874282837,
+          "lexical_diversity": 0.9375,
+          "idiosyncrasy": 0.8128565847873688,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.2
+        },
+        "composite": 0.5352223287026088,
+        "n_chars": 82,
+        "n_words": 16,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 121.88298535346985,
+          "K_effective": 4,
+          "commit_policy_effective": "always_revise",
+          "brief_override_used": true,
+          "committed": "revision",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 1,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "Dusk rain patters down\nTin roof sings its ancient song\nDay fades to silence",
+          "surface_revision": "Rain taps the tin roof\u2014\nEach drop rings bright as a star\u2014\nNight swallows the sound",
+          "haiku_total_usd": 0.4732559999999999,
+          "haiku_n_calls": 38
+        }
+      }
+    },
+    "p02": {
+      "item": {
+        "id": "p02",
+        "topic": "an autumn leaf settling on a still pond",
+        "form": "haiku",
+        "must_avoid": [
+          "spring blossoms"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        },
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "Red leaf descends slow\nRipples fade on mirror glass\nSilence holds it still",
+        "axes": {
+          "creativity": 0.7525709691073965,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.8583526220172644,
+          "emotional_resonance": 0.25,
+          "literary_devices": 0.5,
+          "imagery": 0.4
+        },
+        "composite": 0.6268205985207768,
+        "n_chars": 74,
+        "n_words": 13,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 5.468901872634888,
+          "haiku_total_usd": 0.4765189999999999,
+          "haiku_n_calls": 39
+        }
+      },
+      "haiku_cascade": {
+        "text": "Autumn leaf descends\nLanding on still water's face\nRipples fade to peace",
+        "axes": {
+          "creativity": 0.7690562816227183,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.8506860062479973,
+          "emotional_resonance": 0.25,
+          "literary_devices": 0.5,
+          "imagery": 0.0
+        },
+        "composite": 0.5616237146451193,
+        "n_chars": 72,
+        "n_words": 12,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 182.29326796531677,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 0,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "Autumn leaf descends\nLanding on still water's face\nRipples fade to peace",
+          "surface_revision": "Bronze leaf settles down\nOn still water's glassed surface\nDeepens into dusk",
+          "haiku_total_usd": 0.5973269999999999,
+          "haiku_n_calls": 47
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "Brown leaf floats on down\nGentle ripples break the calm\nStill pond now alive",
+        "axes": {
+          "creativity": 0.7673819209722912,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.826105423271656,
+          "emotional_resonance": 0.25,
+          "literary_devices": 0.5,
+          "imagery": 0.0
+        },
+        "composite": 0.5572478907073245,
+        "n_chars": 76,
+        "n_words": 14,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 45.89918613433838,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": null,
+          "selected_idx": 0,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "Brown leaf floats on down\nGentle ripples break the calm\nStill pond now alive",
+          "surface_revision": "",
+          "haiku_total_usd": 0.6238189999999999,
+          "haiku_n_calls": 55
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "Rust-red maple leaf\nSettles like a sigh released\nthe pond breathes it in",
+        "axes": {
+          "creativity": 0.761489453342031,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.8439925499260426,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.75,
+          "imagery": 0.2
+        },
+        "composite": 0.5925803338780123,
+        "n_chars": 72,
+        "n_words": 13,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 132.75742888450623,
+          "K_effective": 4,
+          "commit_policy_effective": "always_revise",
+          "brief_override_used": true,
+          "committed": "revision",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 1,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "Autumn leaf descends\nTouches the still pond's surface\nRipples mark its rest",
+          "surface_revision": "Rust-red maple leaf\nSettles like a sigh released\nthe pond breathes it in",
+          "haiku_total_usd": 0.699912,
+          "haiku_n_calls": 63
+        }
+      }
+    },
+    "p03": {
+      "item": {
+        "id": "p03",
+        "topic": "the silence after a long argument",
+        "form": "free verse",
+        "must_avoid": [
+          "vague metaphors"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        },
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "The silence after a long argument\n\nYou turn away, your shoulder\nblocking the doorway.\nI count the tiles on the kitchen floor\u2014\nseventeen between us.\n\nYour breath steadies.\nMine still catches.\n\nThe coffee cup sits half-full,\na ring of brown at the bottom,\nforgotten before the voices rose.\nNow it cools.\n\nI could pick it up,\nrinse the stain,\nfill the sink with water and purpose.\nInstead I stand here, watching\nthe light move across the counter,\none finger-width every few minutes.\n\nYou don't look at me.\nI don't know if this means\nyou're done,\nor if we're both just\ntoo tired to continue breaking\nthe same things over again.",
+        "axes": {
+          "creativity": 0.7247617036104202,
+          "lexical_diversity": 0.8125,
+          "idiosyncrasy": 0.8400061801075935,
+          "emotional_resonance": 0.25,
+          "literary_devices": 0.48,
+          "imagery": 0.4
+        },
+        "composite": 0.5845446472863356,
+        "n_chars": 623,
+        "n_words": 110,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 7.788679838180542,
+          "haiku_total_usd": 0.703931,
+          "haiku_n_calls": 64
+        }
+      },
+      "haiku_cascade": {
+        "text": "The silence after a long argument\n\nYou stand at the sink.\nThe tap runs water over your hands\u2014\nagain, like washing could solve this.\n\nYour jaw is still clenched.\nI can see it from where I sit,\nthe muscle working even in silence.\n\nThe radiator pipes creak.\nThey always do this, but I hear them now,\nloud, obvious, demanding attention\nlike the things we refuse to say.\n\nYour coffee, abandoned on the counter\nwhen the volume started rising,\nhas a film on it.\nA thin brown skin.\n\nI could move. Stand. Speak.\nInstead, I trace the wood grain of the table,\ncounting the days since we were easy with each other.\n\nYou turn. But not toward me.\nYou leave the room.\nYour footsteps on the stairs\nare the loudest thing in ten minutes.\n\nI remain in the kitchen we both shared,\nnow divided by what we refuse to finish.",
+        "axes": {
+          "creativity": 0.7307121454783114,
+          "lexical_diversity": 0.7114093959731543,
+          "idiosyncrasy": 0.8267482346980959,
+          "emotional_resonance": 0.25,
+          "literary_devices": 0.9393939393939394,
+          "imagery": 0.6
+        },
+        "composite": 0.6763772859239169,
+        "n_chars": 801,
+        "n_words": 149,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 343.0817139148712,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 0,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "The silence after a long argument\n\nYou stand at the sink.\nThe tap runs water over your hands\u2014\nagain, like washing could solve this.\n\nYour jaw is still clenched.\nI can see it from where I sit,\nthe muscle working even in silence.\n\nThe radiator pipes creak.\nThey always do this, but I hear them now,\nloud, obvious, demanding attention\nlike the things we refuse to say.\n\nYour coffee, abandoned on the counter\nwhen the volume started rising,\nhas a film on it.\nA thin brown skin.\n\nI could move. Stand. Speak.\nInstead, I trace the wood grain of the table,\ncounting the days since we were easy with each other.\n\nYou turn. But not toward me.\nYou leave the room.\nYour footsteps on the stairs\nare the loudest thing in ten minutes.\n\nI remain in the kitchen we both shared,\nnow divided by what we refuse to finish.",
+          "surface_revision": "The silence after a long argument\n\nYou stand at the sink.\nThe tap runs water over your hands\u2014\nagain, like you could wash away\nwhat your voice tore open.\n\nYour jaw is still clenched.\nI can see it from where I sit,\nthe muscle bunching, releasing, bunching,\nyour body still trying to speak.\n\nThe radiator pipes creak.\nThey always do, but I hear them now\u2014\nnot like unspoken words, but like\nthe house releasing pressure we won't.\n\nYour coffee, abandoned on the counter\nwhen the volume started rising,\nhas a film on it.\nA thin brown skin. I know the moment\nyou stopped trusting it.\n\nI could move. Stand. Speak.\nInstead, I trace the wood grain of the table,\nmy finger following grooves\nworn by other silences in other kitchens.\n\nYou turn. But not toward me.\nYou leave the room.\nYour footsteps on the stairs\nare the loudest thing in ten minutes\u2014\nthe only sound that's still yours.\n\nI remain in the kitchen we both shared,\nnow divided by what we refuse to finish,\nmeasured in how fast objects cool\nwhen no one tends to them.",
+          "haiku_total_usd": 0.910641,
+          "haiku_n_calls": 72
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "# Silence After Argument\n\nThe room holds\nthe last words we threw.\nThey settle on the bookshelf,\nthe lamp, your hands.\n\nYour jaw is still tight.\nI count the seconds between your breaths,\nthe hum of the refrigerator\nsuddenly louder than anything we said.\n\nI look at the door frame.\nYou look at the floor.\n\nThe couch where we sat this morning,\nmaking plans, drinking coffee from the same mug\u2014\nthree feet away now, the distance measured\nin the exact space between us.\n\nThe things we didn't say\npress against the back of my teeth.\nMy throat is dry.\nYour fingers curl, uncurl against your leg.\n\nOutside, a car passes.\nA bird calls.\nThe world keeps moving\nand we sit in this silence\nthat is not peace,\nnot yet.",
+        "axes": {
+          "creativity": 0.7479651508368845,
+          "lexical_diversity": 0.7109375,
+          "idiosyncrasy": 0.8274929336910173,
+          "emotional_resonance": 0.25,
+          "literary_devices": 0.45,
+          "imagery": 0.6
+        },
+        "composite": 0.597732597421317,
+        "n_chars": 703,
+        "n_words": 129,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 124.0026171207428,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": null,
+          "selected_idx": 2,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "# Silence After Argument\n\nThe room holds\nthe last words we threw.\nThey settle on the bookshelf,\nthe lamp, your hands.\n\nYour jaw is still tight.\nI count the seconds between your breaths,\nthe hum of the refrigerator\nsuddenly louder than anything we said.\n\nI look at the door frame.\nYou look at the floor.\n\nThe couch where we sat this morning,\nmaking plans, drinking coffee from the same mug\u2014\nthree feet away now, the distance measured\nin the exact space between us.\n\nThe things we didn't say\npress against the back of my teeth.\nMy throat is dry.\nYour fingers curl, uncurl against your leg.\n\nOutside, a car passes.\nA bird calls.\nThe world keeps moving\nand we sit in this silence\nthat is not peace,\nnot yet.",
+          "surface_revision": "",
+          "haiku_total_usd": 0.9814309999999999,
+          "haiku_n_calls": 80
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "The silence after a long argument\n\nWe sit facing different walls.\nYour breathing has the rhythm of someone holding still\u2014\nin, out, in, out\u2014\neach breath a small refusal.\n\nThe dishes from dinner sit in water gone grey.\n\nI want to say something.\nThe shape of it forms and collapses\nbehind my teeth,\ntoo sharp to swallow,\nnot clear enough to speak.\n\nYou stopped looking at me ten minutes ago.\nYour shoulders have dropped half an inch.\nYour hands rest flat on your thighs,\nyour fingers just barely moving\u2014\nspelling something I can't read yet.\n\nThe clock ticks. I count between them.\n\nOutside, a car won't start.\nWe both wait for the engine to catch.\n\nThis silence isn't empty.\nIt holds the specific things:\nyour hand reaching toward me across the table before you pulled it back,\nthe flinch that moved through my whole body when you said that word,\nwhat we both heard you almost say.\n\nI shift my weight.\nYour muscles cord tight.\n\nWe're deciding whether this breaks us clean\nor just teaches us to hold each other\ncareful as things already broken.",
+        "axes": {
+          "creativity": 0.7413957767188549,
+          "lexical_diversity": 0.7405405405405405,
+          "idiosyncrasy": 0.8332646289921325,
+          "emotional_resonance": 0.5,
+          "literary_devices": 0.4264705882352941,
+          "imagery": 0.4
+        },
+        "composite": 0.6069452557478036,
+        "n_chars": 1040,
+        "n_words": 185,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 235.44044995307922,
+          "K_effective": 4,
+          "commit_policy_effective": "always_revise",
+          "brief_override_used": true,
+          "committed": "revision",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 1,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "The silence after a long argument\n\nWe both sit facing different walls.\nYour breathing settles into a rhythm I can hear\nfrom across the room\u2014in, out, in, out\u2014\neach breath a small admission of continued existence.\n\nThe dishes from dinner sit in the sink,\nwater cooling around them.\n\nI want to say something.\nThe sentence builds behind my teeth\nbut I don't know what it is yet.\nMy throat is raw. Mine, anyway.\nI don't know about yours.\n\nYou haven't looked at me for the last ten minutes of talking.\nNow that we've stopped talking,\nI notice your shoulders have dropped an inch.\nYour hands rest flat on your thighs.\n\nThe clock on the wall ticks louder than it did this morning.\nOr maybe I'm just listening now.\n\nOutside, a neighbor's car starts.\nWe both pause at the sound.\n\nThe silence isn't empty.\nIt's full of the words we chose badly,\nthe ones we wish we could gather back up,\nthe ones still echoing in the corners\u2014\nsharp-edged, unretrievable.\n\nI move my foot. You hear it.\nYour neck tightens.\n\nThis is the part where something usually breaks.\nOr heals.\nWe are still deciding which.",
+          "surface_revision": "The silence after a long argument\n\nWe sit facing different walls.\nYour breathing has the rhythm of someone holding still\u2014\nin, out, in, out\u2014\neach breath a small refusal.\n\nThe dishes from dinner sit in water gone grey.\n\nI want to say something.\nThe shape of it forms and collapses\nbehind my teeth,\ntoo sharp to swallow,\nnot clear enough to speak.\n\nYou stopped looking at me ten minutes ago.\nYour shoulders have dropped half an inch.\nYour hands rest flat on your thighs,\nyour fingers just barely moving\u2014\nspelling something I can't read yet.\n\nThe clock ticks. I count between them.\n\nOutside, a car won't start.\nWe both wait for the engine to catch.\n\nThis silence isn't empty.\nIt holds the specific things:\nyour hand reaching toward me across the table before you pulled it back,\nthe flinch that moved through my whole body when you said that word,\nwhat we both heard you almost say.\n\nI shift my weight.\nYour muscles cord tight.\n\nWe're deciding whether this breaks us clean\nor just teaches us to hold each other\ncareful as things already broken.",
+          "haiku_total_usd": 1.1306,
+          "haiku_n_calls": 88
+        }
+      }
+    },
+    "p04": {
+      "item": {
+        "id": "p04",
+        "topic": "a child watching a candle gutter out",
+        "form": "haiku",
+        "must_avoid": [
+          "birthday cakes"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        },
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "Flame dances and fades\nChild watches the light go dark\nSmoke curls in the air",
+        "axes": {
+          "creativity": 0.7489827373886809,
+          "lexical_diversity": 0.9333333333333333,
+          "idiosyncrasy": 0.8241849131882191,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.4
+        },
+        "composite": 0.5677501639850389,
+        "n_chars": 77,
+        "n_words": 15,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 4.810389757156372,
+          "haiku_total_usd": 1.138004,
+          "haiku_n_calls": 90
+        }
+      },
+      "haiku_cascade": {
+        "text": "Small flame dances bright\nChild watches it gently fade\nDarkness whispers soft",
+        "axes": {
+          "creativity": 0.7498562997754883,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.8138459324836731,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.0
+        },
+        "composite": 0.5106170387098602,
+        "n_chars": 77,
+        "n_words": 12,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 248.60562467575073,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 1,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "Small flame dances bright\nChild watches it gently fade\nDarkness whispers soft",
+          "surface_revision": "Last light flickers low\nChild learns that burning things fade\nNothing bright lasts long",
+          "haiku_total_usd": 1.3235279999999998,
+          "haiku_n_calls": 98
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "The candle gutters\nChild's gaze fixed on fading light\nDarkens into night",
+        "axes": {
+          "creativity": 0.7459289348300766,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.8162352591753006,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.2
+        },
+        "composite": 0.5436940323342295,
+        "n_chars": 72,
+        "n_words": 12,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 65.45520877838135,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": null,
+          "selected_idx": 3,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "The candle gutters\nChild's gaze fixed on fading light\nDarkens into night",
+          "surface_revision": "",
+          "haiku_total_usd": 1.3642949999999998,
+          "haiku_n_calls": 106
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "The wick drowns, tips down\nHer small mouth opens\u2014no sound\nDarkness tastes like wax",
+        "axes": {
+          "creativity": 0.7391473046120476,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.8407356217503548,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.625,
+          "imagery": 0.2
+        },
+        "composite": 0.567480487727067,
+        "n_chars": 82,
+        "n_words": 14,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 218.67658805847168,
+          "K_effective": 4,
+          "commit_policy_effective": "always_revise",
+          "brief_override_used": true,
+          "committed": "revision",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 3,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "Small flame flickers weak\nChild's eyes watch the dying light\nDarkness falls so soft",
+          "surface_revision": "The wick drowns, tips down\nHer small mouth opens\u2014no sound\nDarkness tastes like wax",
+          "haiku_total_usd": 1.4908539999999997,
+          "haiku_n_calls": 114
+        }
+      }
+    },
+    "p05": {
+      "item": {
+        "id": "p05",
+        "topic": "the smell of old books in a closed library",
+        "form": "free verse",
+        "must_avoid": [
+          "dusty stereotypes"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        },
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "# In the Sealed Room\n\nThe air tastes like amber,\nlike wood slowly returning to what it once was.\nVanilla and leather fold into each other\u2014\nnot the sharp perfume of new binding,\nbut something deeper,\na sweetness that has turned inward.\n\nIn this shut room, the books exhale\nwhat they've held for decades:\nthe breath of hands that turned their pages,\nfingerprints becoming fragrance,\nacid-bright paper settling into itself\nlike skin that has learned to be still.\n\nThere is nothing romantic about it.\nIt is the smell of slow transformation,\nof being sealed away from weather,\nfrom the world's rough interruptions.\nEach volume a small lung,\neach shelf a closed mouth\nkeeping something precious\nor perhaps just necessary\nalive in the dark.\n\nYou notice it most when the door opens.\nThat rush of outside air disturbing\nwhat had learned to be quiet.\nThe smell scatters like it was never there,\nthough it has always been there,\nwaiting in the corners,\nin the spine-creases,\nin the binding glue\nthat turns to something like perfume\nonly when the world stops moving.",
+        "axes": {
+          "creativity": 0.7393153575499283,
+          "lexical_diversity": 0.6464088397790055,
+          "idiosyncrasy": 0.8082803135944737,
+          "emotional_resonance": 0.25,
+          "literary_devices": 1.0,
+          "imagery": 1.0
+        },
+        "composite": 0.7406674184872347,
+        "n_chars": 1054,
+        "n_words": 180,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 6.477766036987305,
+          "haiku_total_usd": 1.4937439999999997,
+          "haiku_n_calls": 115
+        }
+      },
+      "haiku_cascade": {
+        "text": "# Closed Library\n\nThe air tastes of yellowed pages\u2014\nnot decay, but transformation.\nSweet leather spines breathe their slow chemistry,\na perfume built from decades of breathing darkness.\n\nNo one here to disturb it.\nThe smell has ripened without audience,\ngrows heavier in corners,\nsettles into the spine of silence.\n\nIt is not death.\nIt is the smell of paper learning to be stone,\nink deepening into itself,\nglue becoming prayer.\n\nIn the sealed afternoon,\nthe books exhale what they've kept.\nEach shelf a confession.\nEach closed door makes it stronger\u2014\nthis particular sweetness,\nthis gold that cannot be seen,\nonly known\nin the space between forgetting and preservation.",
+        "axes": {
+          "creativity": 0.7360486455537655,
+          "lexical_diversity": 0.7777777777777778,
+          "idiosyncrasy": 0.7972839852081282,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.4772727272727273,
+          "imagery": 0.8
+        },
+        "composite": 0.5980638559687331,
+        "n_chars": 670,
+        "n_words": 109,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 189.28979873657227,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 0,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# Closed Library\n\nThe air tastes of yellowed pages\u2014\nnot decay, but transformation.\nSweet leather spines breathe their slow chemistry,\na perfume built from decades of breathing darkness.\n\nNo one here to disturb it.\nThe smell has ripened without audience,\ngrows heavier in corners,\nsettles into the spine of silence.\n\nIt is not death.\nIt is the smell of paper learning to be stone,\nink deepening into itself,\nglue becoming prayer.\n\nIn the sealed afternoon,\nthe books exhale what they've kept.\nEach shelf a confession.\nEach closed door makes it stronger\u2014\nthis particular sweetness,\nthis gold that cannot be seen,\nonly known\nin the space between forgetting and preservation.",
+          "surface_revision": "# Closed Library\n\nThe air tastes of yellowed pages\u2014\nnot decay, but fermentation.\nLeather spines breathe their slow chemistry,\na wine-dark perfume built from decades of breathing darkness.\n\nNo one here to disturb it.\nThe smell has ripened without audience,\npools in corners,\nsettles into the spine of silence.\n\nIt is not death.\nIt is the smell of paper learning to be stone,\nink crystallizing at its molecular edge,\nglue becoming quartz, becoming prayer.\n\nIn the sealed afternoon,\nthe books exhale what they've kept.\nEach shelf a confession.\nEach closed door makes it stronger\u2014\nthis particular sweetness,\nthis gold that cannot be seen,\nonly known\nin the space between forgetting and preservation.",
+          "haiku_total_usd": 1.6156349999999995,
+          "haiku_n_calls": 123
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "The library breathes in the dark\u2014\nnot forgotten, but waiting,\nits air thick with the perfume of pages\npressed closed for so long\nthey've become their own atmosphere.\n\nEach book exhales something different:\nthe metal tang of oxidized paper,\nleather turning soft as skin,\nthe ghost of printer's ink\nstill holding its black geometry.\n\nThis is not the smell of death\nbut of preservation\u2014\na chemistry of stillness,\nmolecules suspended between\nwhat was read and what remains.\n\nThe pages have forgotten fingertips\nbut not their smell\u2014\nthat paper-dry sweetness,\nvanilla undertone of lignin breaking down,\na library's slow composition.\n\nClosed, the air doesn't move,\nso the smell doesn't dissipate\u2014\nit accumulates like years,\nlike the weight of every unturned page,\nlike proof that something here\nis being held.",
+        "axes": {
+          "creativity": 0.7341488388814326,
+          "lexical_diversity": 0.7054263565891473,
+          "idiosyncrasy": 0.8066950291395187,
+          "emotional_resonance": 0.25,
+          "literary_devices": 0.9821428571428572,
+          "imagery": 1.0
+        },
+        "composite": 0.7464021802921593,
+        "n_chars": 802,
+        "n_words": 128,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 68.03794884681702,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": null,
+          "selected_idx": 7,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "The library breathes in the dark\u2014\nnot forgotten, but waiting,\nits air thick with the perfume of pages\npressed closed for so long\nthey've become their own atmosphere.\n\nEach book exhales something different:\nthe metal tang of oxidized paper,\nleather turning soft as skin,\nthe ghost of printer's ink\nstill holding its black geometry.\n\nThis is not the smell of death\nbut of preservation\u2014\na chemistry of stillness,\nmolecules suspended between\nwhat was read and what remains.\n\nThe pages have forgotten fingertips\nbut not their smell\u2014\nthat paper-dry sweetness,\nvanilla undertone of lignin breaking down,\na library's slow composition.\n\nClosed, the air doesn't move,\nso the smell doesn't dissipate\u2014\nit accumulates like years,\nlike the weight of every unturned page,\nlike proof that something here\nis being held.",
+          "surface_revision": "",
+          "haiku_total_usd": 1.6492279999999997,
+          "haiku_n_calls": 131
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "# Closed Library\n\nThe air doesn't hold its breath\u2014\nit swallows it: thick with aldehydes\nbleeding from pages that are slowly\nbecoming sugar, becoming light,\nbecoming nearly nothing. Not dust.\nThe precise exhale of cellulose.\n\nLeather sweats in the dark,\nits tannins breaking into sweetness,\nvanilla notes rising from the hide's\nslow amnesia. And the glue\u2014\nthat dark spine-blood, adhesive\nstill weeping into the compressed air,\nstill holding what refuses to separate.\n\nIn this sealed space, nothing dissolves\ninto forgetting. Each book\na small act of refusal: ink\npressed into fiber, refusing\nthe air's hunger. They don't\nsmell patient. They smell\nlike arguments no one is winning.",
+        "axes": {
+          "creativity": 0.744577044248581,
+          "lexical_diversity": 0.7850467289719626,
+          "idiosyncrasy": 0.827218696475029,
+          "emotional_resonance": 0.5,
+          "literary_devices": 0.7333333333333334,
+          "imagery": 1.0
+        },
+        "composite": 0.7650293005048177,
+        "n_chars": 679,
+        "n_words": 107,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 133.9163899421692,
+          "K_effective": 4,
+          "commit_policy_effective": "always_revise",
+          "brief_override_used": true,
+          "committed": "revision",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 0,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# Closed Library\n\nThe air holds its breath here\u2014\nnot dust, but the exhale of pages\nturning inward, spine by spine,\na thousand small exhalations\ncompressed into grammar.\n\nLeather and vanilla notes rise\nfrom leather that has forgotten\nwhat animal it was.\nThe paper yellows like old teeth,\nnot rotting but aging into something\nharder than new paper could know.\n\nThis smell is a library's heartbeat.\nNot decay\u2014preservation.\nEach volume a small act of refusal,\nink pressed into fiber, refusing\nto become nothing.\n\nIn the closed dark,\nthe books don't smell forgotten.\nThey smell patient.",
+          "surface_revision": "# Closed Library\n\nThe air doesn't hold its breath\u2014\nit swallows it: thick with aldehydes\nbleeding from pages that are slowly\nbecoming sugar, becoming light,\nbecoming nearly nothing. Not dust.\nThe precise exhale of cellulose.\n\nLeather sweats in the dark,\nits tannins breaking into sweetness,\nvanilla notes rising from the hide's\nslow amnesia. And the glue\u2014\nthat dark spine-blood, adhesive\nstill weeping into the compressed air,\nstill holding what refuses to separate.\n\nIn this sealed space, nothing dissolves\ninto forgetting. Each book\na small act of refusal: ink\npressed into fiber, refusing\nthe air's hunger. They don't\nsmell patient. They smell\nlike arguments no one is winning.",
+          "haiku_total_usd": 1.7221229999999998,
+          "haiku_n_calls": 139
+        }
+      }
+    }
+  }
+}

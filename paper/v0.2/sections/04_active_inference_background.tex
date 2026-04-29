@@ -1,0 +1,15 @@
+\section{Active Inference Primitives}\label{sec:active_inference_background}
+
+Let $q(\theta)$ denote a posterior over a candidate-discriminating parameter $\theta$ and $p(\theta\mid m)$ a model with prior $p(\theta\mid m)$. Free-energy minimisation~\citep{Friston2017ActiveInferenceCuriosity} selects models / candidates that minimise
+\begin{equation}
+F(q,m) = \mathbb{E}_{q(\theta)}\!\left[\log q(\theta) - \log p(\theta, o\mid m)\right],
+\end{equation}
+where $o$ is the observed outcome (the surface). \emph{Bayesian model reduction} \citep{FristonPenny2011,Friston2018BayesianModelReductionArxiv} reduces a rich model $m_F$ to a sparser model $m_R$ whose evidence is
+\begin{equation}
+\log p(o\mid m_R) = \log p(o\mid m_F) + \log \int q(\theta\mid o, m_F)\,\frac{p(\theta\mid m_R)}{p(\theta\mid m_F)} \,\mathrm{d}\theta.
+\end{equation}
+Practically, we use this in closed form for nested Dirichlet--multinomial models over candidate categories, computing $\Delta F = F(q\mid m_F) - F(q\mid m_R)$ via the standard log-Gamma identity. A negative $\Delta F$ indicates posterior switch is supported by the data; a positive $\Delta F$ supports the prior.
+
+\paragraph{The link to \iast{apohana}.} \iast{Apohana-\'sakti} (``contrastive exclusion'') is precisely what BMR's reduced posterior performs: it excludes the candidates that the data does not support. We thus identify the \iast{j\~n\=ana} stage of the cascade with BMR posterior selection across the $K$ candidates emitted by \iast{icch\=a}, gated by the \iast{apohana} contrastive geometry computed in embedding space.
+
+\paragraph{Insight as posterior re-organisation.} \citet{Friston2017ActiveInferenceCuriosity} formalise insight as the BMR-driven re-organisation of $q(\theta)$ that yields a sudden drop in $F$. This is the active-inference correlate of \iast{vimar\'sa}: the recursive layer fires when the post-\iast{kriy\=a} state's $F$ has not yet stabilised, indicating an unrecognised aspect of the constraint manifold. Our \iast{vimar\'sa} operator (Appendix~\ref{app:operator_specs}) therefore conditions on three signals jointly: aspect-multiplicity in the surface (cosine to multiple aspect targets), novelty against the storehouse (Hopfield retrieval similarity), and the BMR $\Delta F$.

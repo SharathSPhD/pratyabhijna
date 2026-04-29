@@ -54,6 +54,9 @@ class _FakeLM:
     """Mock LMProtocol: returns text whose content depends on prompt + seed."""
 
     name = "fake-lm"
+    supports_logprobs = True
+    supports_score = False
+    supports_entropy = False
 
     def __init__(self) -> None:
         self.calls: list[dict[str, Any]] = []
@@ -84,6 +87,9 @@ class _FakeLM:
     def report(self) -> dict[str, Any]:
         return {"name": self.name, "n_calls": len(self.calls)}
 
+    def length_proxy_logp(self, candidate: Candidate) -> float:
+        return float(candidate.logp)
+
 
 def _make_lm_protocol_compliant(lm: _FakeLM) -> LMProtocol:
     """Help mypy: assert protocol conformance at runtime."""
@@ -110,9 +116,10 @@ def _constraint(embed: Embedder) -> Constraint:
     )
 
 
-def test_two_pass_default_returns_revision_as_surface(
+def test_always_revise_returns_revision_as_surface(
     fake_lm: _FakeLM, fake_embed: Embedder
 ) -> None:
+    """v0.2-compat: ``commit_policy='always_revise'`` always commits revision."""
     state = run_cascade(
         prompt="Compose a short response.",
         constraint=_constraint(fake_embed),
@@ -123,6 +130,7 @@ def test_two_pass_default_returns_revision_as_surface(
         base_seed=0,
         retrieval_set=["unrelated retrieval entry"],
         aspects=["aspect one", "aspect two"],
+        commit_policy="always_revise",
     )
     assert state.surface is not None
     assert state.surface_draft is not None
@@ -130,8 +138,39 @@ def test_two_pass_default_returns_revision_as_surface(
     assert state.surface == state.surface_revision
     assert state.surface_revision != state.surface_draft
     assert state.vimarsa_brief is not None and len(state.vimarsa_brief) > 0
+    assert state.committed == "revision"
+    assert state.commit_policy == "always_revise"
     assert state.audit["two_pass"] is True
     assert state.audit["revision_differs_from_draft"] is True
+
+
+def test_event_gated_default_runs_both_passes_for_h8(
+    fake_lm: _FakeLM, fake_embed: Embedder
+) -> None:
+    """v0.3 default: event_gated still ALWAYS runs both passes so H8 is measurable."""
+    state = run_cascade(
+        prompt="Compose a short response.",
+        constraint=_constraint(fake_embed),
+        lm=_make_lm_protocol_compliant(fake_lm),
+        embed=fake_embed,
+        K=3,
+        max_tokens=32,
+        base_seed=0,
+        aspects=["aspect one", "aspect two"],
+    )
+    assert state.commit_policy == "event_gated"
+    # Both surfaces present so H8 (revision-vs-draft) can be measured.
+    assert state.surface_draft is not None
+    assert state.surface_revision is not None
+    # Committed surface depends on whether vimarsa fired.
+    if state.vimarsa_event:
+        assert state.committed == "revision"
+        assert state.surface == state.surface_revision
+    else:
+        assert state.committed == "draft"
+        assert state.surface == state.surface_draft
+    assert state.audit["two_pass"] is True
+    assert state.audit["revision_skipped"] is False
 
 
 def test_two_pass_uses_distinct_seeds_for_revision(
@@ -149,6 +188,7 @@ def test_two_pass_uses_distinct_seeds_for_revision(
         base_seed=base_seed,
         retrieval_set=[],
         aspects=["aspect one", "aspect two"],
+        commit_policy="always_revise",
     )
     seeds = [c["seed"] for c in fake_lm.calls]
     assert len(seeds) == 2 * K
@@ -163,6 +203,7 @@ def test_two_pass_uses_distinct_seeds_for_revision(
 def test_bypass_vimarsa_returns_draft_as_surface(
     fake_lm: _FakeLM, fake_embed: Embedder
 ) -> None:
+    """v0.2 deprecated: ``bypass_vimarsa=True`` aliases to ``commit_policy='always_draft'``."""
     state = run_cascade(
         prompt="Compose a short response.",
         constraint=_constraint(fake_embed),
@@ -176,14 +217,34 @@ def test_bypass_vimarsa_returns_draft_as_surface(
     )
     assert state.surface == state.surface_draft
     assert state.surface_revision is None
+    assert state.committed == "draft"
+    assert state.commit_policy == "always_draft"
     assert state.audit["two_pass"] is False
     assert state.audit["bypassed"] is True
 
 
-def test_two_pass_calls_lm_2K_times(
+def test_always_draft_skips_revision_pass(
     fake_lm: _FakeLM, fake_embed: Embedder
 ) -> None:
-    """Cost validation: two-pass-always doubles iccha calls."""
+    """v0.3 explicit: ``commit_policy='always_draft'`` skips the revision pass."""
+    K = 4
+    run_cascade(
+        prompt="Compose.",
+        constraint=_constraint(fake_embed),
+        lm=_make_lm_protocol_compliant(fake_lm),
+        embed=fake_embed,
+        K=K,
+        max_tokens=16,
+        base_seed=42,
+        commit_policy="always_draft",
+    )
+    assert len(fake_lm.calls) == K  # only one pass
+
+
+def test_event_gated_runs_2K_calls(
+    fake_lm: _FakeLM, fake_embed: Embedder
+) -> None:
+    """v0.3 default: event_gated still calls LM 2K times (always-shadow-revision)."""
     K = 4
     run_cascade(
         prompt="Compose.",
@@ -197,18 +258,18 @@ def test_two_pass_calls_lm_2K_times(
     assert len(fake_lm.calls) == 2 * K
 
 
-def test_bypass_calls_lm_K_times(
+def test_bypass_with_conflicting_commit_policy_raises(
     fake_lm: _FakeLM, fake_embed: Embedder
 ) -> None:
-    K = 4
-    run_cascade(
-        prompt="Compose.",
-        constraint=_constraint(fake_embed),
-        lm=_make_lm_protocol_compliant(fake_lm),
-        embed=fake_embed,
-        K=K,
-        max_tokens=16,
-        base_seed=42,
-        bypass_vimarsa=True,
-    )
-    assert len(fake_lm.calls) == K
+    with pytest.raises(ValueError, match="conflicts with commit_policy"):
+        run_cascade(
+            prompt="Compose.",
+            constraint=_constraint(fake_embed),
+            lm=_make_lm_protocol_compliant(fake_lm),
+            embed=fake_embed,
+            K=3,
+            max_tokens=16,
+            base_seed=0,
+            bypass_vimarsa=True,
+            commit_policy="always_revise",
+        )

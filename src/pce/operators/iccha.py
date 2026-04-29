@@ -44,7 +44,13 @@ DEFAULT_SAMPLER_GRID: tuple[dict[str, float], ...] = (
 # v0.2 parity grid: K copies of the bare baseline's sampler. Different *seeds*
 # across K give the candidate diversity, not different temperatures. This
 # makes (cascade - bare) a clean architectural ablation per ADR-005.
-PARITY_SAMPLER: dict[str, float] = {"tau": 0.9, "top_p": 0.95, "top_k": 50.0}
+#
+# v0.3 (ADR-003): the parity sampler's ``tau`` is multiplicatively modulated
+# by the cascade's ``cit_temperature`` so the cit operator can re-temper the
+# K-fan-out posterior. ``effective_tau = base_tau * cit_temperature``. The
+# default ``base_tau = 0.9`` matches v0.2 exactly when ``cit_temperature == 1``.
+PARITY_BASE_TAU: float = 0.9
+PARITY_SAMPLER: dict[str, float] = {"tau": PARITY_BASE_TAU, "top_p": 0.95, "top_k": 50.0}
 
 PromptMode = Literal["verbatim", "constraint_suffix"]
 SamplerGridMode = Literal["parity", "grid"]
@@ -82,17 +88,29 @@ def iccha(
     prompt_mode: PromptMode = "verbatim",
     base_seed: int = 0,
     max_tokens: int = 64,
+    cit_temperature: float = 1.0,
 ) -> tuple[Candidate, ...]:
     """Generate K candidate continuations.
 
     In ``sampler_grid_mode="parity"`` (default) all K samplers are identical
     to the bare baseline; per-K diversity comes from ``seed = base_seed + k``.
     In ``"grid"`` mode the sampler grid spans an explore-exploit ladder.
+
+    v0.3 (ADR-003): ``cit_temperature`` multiplicatively modulates the
+    parity sampler's ``tau`` (``effective_tau = PARITY_BASE_TAU * cit_temperature``).
+    The default ``cit_temperature = 1.0`` reproduces v0.2 exactly. The
+    ``cit_temperature`` value is recorded on each :class:`Candidate.sampler`
+    under the key ``"cit_temperature"`` so the audit log captures it.
     """
     if K <= 0:
         raise ValueError(f"icchā: K must be > 0, got {K}")
+    if cit_temperature <= 0:
+        raise ValueError(f"icchā: cit_temperature must be > 0, got {cit_temperature}")
     if sampler_grid_mode == "parity":
-        grid: tuple[dict[str, float], ...] = tuple(dict(PARITY_SAMPLER) for _ in range(K))
+        modulated_tau = float(PARITY_BASE_TAU) * float(cit_temperature)
+        parity = dict(PARITY_SAMPLER)
+        parity["tau"] = modulated_tau
+        grid: tuple[dict[str, float], ...] = tuple(dict(parity) for _ in range(K))
     elif sampler_grid_mode == "grid":
         grid = sampler_grid or DEFAULT_SAMPLER_GRID
         if len(grid) < K:
@@ -113,6 +131,18 @@ def iccha(
             top_k=int(spec.get("top_k", 50)),
             max_tokens=max_tokens,
             seed=int(base_seed) + k,
+        )
+        # Stamp cit_temperature onto the candidate's sampler dict so the audit
+        # log preserves it without needing a separate field on Candidate.
+        new_sampler = dict(cand.sampler)
+        new_sampler["cit_temperature"] = float(cit_temperature)
+        cand = Candidate(
+            seed=cand.seed,
+            sampler=new_sampler,
+            tokens=cand.tokens,
+            text=cand.text,
+            logp=cand.logp,
+            embedding=cand.embedding,
         )
         candidates.append(cand)
     return tuple(candidates)

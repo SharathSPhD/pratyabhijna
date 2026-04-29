@@ -1,0 +1,722 @@
+{
+  "domain": "sci_creativity",
+  "version": "v0.3",
+  "rows": {
+    "s01": {
+      "item": {
+        "id": "s01",
+        "question": "Why do mass extinctions sometimes accelerate evolutionary innovation?",
+        "framings": [
+          "niche-vacuum dynamics",
+          "regulatory-network release"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        },
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        },
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "# Non-Obvious Perspectives on Extinction-Driven Innovation\n\nMass extinctions work partly as a **constraints release mechanism**: dominant lineages don't just occupy niches—they actively suppress evolutionary exploration in competitors through predation, competition, and character displacement. When these suppressors vanish, survivors can suddenly access phenotypic regions of evolutionary space that were previously \"too costly\" to explore, even if the ecological niche itself existed unchanged.\n\nBut there's also a **fitness landscape reshuffling effect** worth considering. During stable periods, evolution fine-tunes organisms within relatively rigid selective topographies. Extinction events don't just create empty niches; they fundamentally rewire which traits are adaptive by changing abiotic conditions, community composition, and the very structure of predator-prey and symbiotic relationships. Traits that were clearly maladaptive become viable solutions because the landscape itself has become dimensionally different—old local optima no longer exist.\n\nThe combination matters: it's not simply \"more room to evolve\" but \"radically different rules for what counts as successful,\" paired with the removal of established competitors enforcing conformity to the old rules. The result isn't just faster evolution—it's evolution exploring genuinely different solution spaces, which is why extinction survivors so often evolve in directions their ancestors never approached.",
+        "axes": {
+          "frame_coverage": 0.24580299854278564,
+          "novelty": 0.3430945873260498,
+          "specificity": 1.0
+        },
+        "composite": 0.5296325286229452,
+        "n_chars": 1480,
+        "n_words": 190,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 10.511686325073242,
+          "haiku_total_usd": 4.145681000000007,
+          "haiku_n_calls": 397
+        }
+      },
+      "haiku_cascade": {
+        "text": "# Why Mass Extinctions Accelerate Innovation\n\nHere's a less obvious angle: **mass extinctions remove evolutionary brakes, not just competitors**. Before a crisis, dominant organisms constrain the morphological and genetic exploration of smaller or subordinate groups through predation, competition, and developmental \"lock-in\"—their mere presence prevents certain body plans from being viable. When they vanish, survivors experience relaxed selection on genes previously under tight control, allowing neutral genetic variation to accumulate. This stockpile of variation becomes raw material when selection pressures suddenly shift.\n\nA second framing: **ecological simplification paradoxically accelerates innovation by reducing constraint networks**. Complex ecosystems before extinction are like locked puzzle boxes—each species is tightly integrated into food webs and competitive hierarchies, leaving little room for radical experimentation. Extinction collapses these networks and creates a period of ecological ambiguity where the \"rules\" are temporarily undefined. Evolution becomes less about fine-tuning existing niches and more about rapidly exploring new phenotypic space, since there's no established competitor preventing trial-and-error morphological innovation.\n\nThe deeper insight: innovation accelerates not because opportunities are abundant, but because *the regulatory structures constraining evolution itself have failed*. Survivors inherit a destabilized genetic and ecological landscape where previously \"forbidden\" solutions become suddenly viable.",
+        "axes": {
+          "frame_coverage": 0.2007429003715515,
+          "novelty": 0.2644752860069275,
+          "specificity": 1.0
+        },
+        "composite": 0.48840606212615967,
+        "n_chars": 1571,
+        "n_words": 194,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 223.35329914093018,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 1.191421557066299,
+          "selected_idx": 2,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# Why Mass Extinctions Accelerate Innovation\n\nHere's a less obvious angle: **mass extinctions remove evolutionary brakes, not just competitors**. Before a crisis, dominant organisms constrain the morphological and genetic exploration of smaller or subordinate groups through predation, competition, and developmental \"lock-in\"—their mere presence prevents certain body plans from being viable. When they vanish, survivors experience relaxed selection on genes previously under tight control, allowing neutral genetic variation to accumulate. This stockpile of variation becomes raw material when selection pressures suddenly shift.\n\nA second framing: **ecological simplification paradoxically accelerates innovation by reducing constraint networks**. Complex ecosystems before extinction are like locked puzzle boxes—each species is tightly integrated into food webs and competitive hierarchies, leaving little room for radical experimentation. Extinction collapses these networks and creates a period of ecological ambiguity where the \"rules\" are temporarily undefined. Evolution becomes less about fine-tuning existing niches and more about rapidly exploring new phenotypic space, since there's no established competitor preventing trial-and-error morphological innovation.\n\nThe deeper insight: innovation accelerates not because opportunities are abundant, but because *the regulatory structures constraining evolution itself have failed*. Survivors inherit a destabilized genetic and ecological landscape where previously \"forbidden\" solutions become suddenly viable.",
+          "surface_revision": "# Why Mass Extinctions Accelerate Innovation (Revised)\n\nHere's a less obvious angle with two framings. **Framing 1—regulatory-network release, not just competitive relief:** Before a crisis, dominant species maintain constraint networks through predation, developmental lock-in, and competition; extinction collapses these networks and releases previously forbidden genetic and morphological possibilities. **Framing 2—niche-vacuum dynamics as active selection:** The ecological vacuum doesn't passively permit innovation; it actively selects for rapid experimentation since organisms that diversify most radically get first access to unexploited resources. The deeper insight: innovation accelerates not because opportunities abound, but because the regulatory structures that evolved to enforce stability—ecological and genetic networks—have failed simultaneously, making reckless exploration suddenly adaptive.",
+          "haiku_total_usd": 4.286841000000006,
+          "haiku_n_calls": 405
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "# Mass Extinctions and Accelerated Innovation\n\nHere are two underappreciated framings:\n\n**The developmental evolvability reframing**: Mass extinctions don't just open niches—they relax the *developmental canalization* that stabilizing selection normally maintains. When ecological pressure is intense and competition constant, developmental systems get locked into conservative pathways that suppress genetic variation's expression. Survivors emerging from a bottleneck inherit simplified regulatory networks with less stabilizing selection, allowing cryptic genetic variation to become phenotypically visible and subject to directional selection. This makes the *evolvability itself* greater, not just the available space.\n\n**The metabolic simplification angle**: Extinction events temporarily collapse ecosystem complexity and reduce total metabolic throughput. This creates an unusual regime where resource competition is temporarily *relaxed* at the biochemical level—organisms can allocate energy toward developmental exploration and physiological experimentation that would normally be selected against as inefficient. Survivors can afford \"expensive\" innovation (complex nervous systems, specialized organs, unusual locomotion strategies) because they're not being outcompeted by metabolically-optimized specialists in dense communities. The low-hanging fruit of efficient survival has temporarily disappeared.\n\nBoth explain why innovation appears not just as *opportunity* (standard answer) but as a period where the constraints on expressing and selecting novelty are fundamentally different.",
+        "axes": {
+          "frame_coverage": 0.21594621241092682,
+          "novelty": 0.3428332209587097,
+          "specificity": 1.0
+        },
+        "composite": 0.5195931444565455,
+        "n_chars": 1601,
+        "n_words": 193,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 97.04671120643616,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": null,
+          "selected_idx": 4,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "# Mass Extinctions and Accelerated Innovation\n\nHere are two underappreciated framings:\n\n**The developmental evolvability reframing**: Mass extinctions don't just open niches—they relax the *developmental canalization* that stabilizing selection normally maintains. When ecological pressure is intense and competition constant, developmental systems get locked into conservative pathways that suppress genetic variation's expression. Survivors emerging from a bottleneck inherit simplified regulatory networks with less stabilizing selection, allowing cryptic genetic variation to become phenotypically visible and subject to directional selection. This makes the *evolvability itself* greater, not just the available space.\n\n**The metabolic simplification angle**: Extinction events temporarily collapse ecosystem complexity and reduce total metabolic throughput. This creates an unusual regime where resource competition is temporarily *relaxed* at the biochemical level—organisms can allocate energy toward developmental exploration and physiological experimentation that would normally be selected against as inefficient. Survivors can afford \"expensive\" innovation (complex nervous systems, specialized organs, unusual locomotion strategies) because they're not being outcompeted by metabolically-optimized specialists in dense communities. The low-hanging fruit of efficient survival has temporarily disappeared.\n\nBoth explain why innovation appears not just as *opportunity* (standard answer) but as a period where the constraints on expressing and selecting novelty are fundamentally different.",
+          "surface_revision": "",
+          "haiku_total_usd": 4.327037000000007,
+          "haiku_n_calls": 413
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "# Mass Extinctions and Evolutionary Innovation\n\nMass extinctions accelerate innovation not simply by opening empty niches, but by **removing aesthetic gatekeepers** that had actively policed which body plans could exist. Before extinction, dominant lineages enforce a narrow visual grammar of what a \"vertebrate\" or \"arthropod\" should look like—their predation patterns, body-size hierarchies, and sensory arms-races reward refinement within a standard template and brutally eliminate deviations. A creature with proto-wing structures, an unusual limb arrangement, or a \"loose\" body plan gets outcompeted not necessarily because it's less efficient, but because it violates the reigning design consensus. When the consensus-enforcers vanish, those experimental morphologies—previously too vulnerable to survive alongside gatekeeping competitors—suddenly become selectable.\n\nSimultaneously, the **developmental openness framing** matters: survivors of extinction are typically generalists with indeterminate growth programs rather than tightly-sealed developmental scripts. Picture the difference—a specialized trilobite followed a crystalline pathway, each segment rigidly timed; a surviving arthropod, by contrast, had looser regulatory networks and more variable segmentation. This developmental \"sloppiness,\" normally selected *against* in a crowded, high-stakes world, becomes heritable variation worth exploring in a low-density aftermath. Looseness pays.\n\nUnderneath both effects lies a **shift in what evolution can afford**: when ecosystems are packed with specialists and predators, a morphological experiment is a capital-intensive bet you cannot make. Post-extinction, in a half-empty landscape, being a developmental prototype with uncertain outcomes becomes merely risky rather than fatal. Innovation accelerates because weirdness stopped being expensive.",
+        "axes": {
+          "frame_coverage": 0.18009993433952332,
+          "novelty": 0.5171014368534088,
+          "specificity": 1.0
+        },
+        "composite": 0.565733790397644,
+        "n_chars": 1868,
+        "n_words": 234,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 231.48476600646973,
+          "K_effective": 4,
+          "commit_policy_effective": "always_revise",
+          "brief_override_used": true,
+          "committed": "revision",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 1,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# Mass Extinctions and Evolutionary Innovation\n\nMass extinctions accelerate innovation not simply by opening empty niches, but by **removing suppressive constraints** on unconventional designs. Dominant lineages actively police the adaptive landscape—their predation pressure, resource monopolization, and competitive hierarchies eliminate \"weird\" morphologies that would otherwise be exploratory. Once these constraint-imposers vanish, phenotypes that were previously too vulnerable become selectable.\n\nSimultaneously, the **developmental flexibility framing** matters: organisms that survive extinction bottlenecks tend to be generalists with more plastic, less canalized developmental programs. Rather than being locked into specialized embryonic templates (like the tightly-programmed development of extinct specialists), survivors have latent developmental flexibility that evolution can now \"rewire\" rapidly under novel selection regimes—this plasticity itself becomes heritable variation for selection to act upon.\n\nThe result isn't just a filling of vacant space, but a genuine reconfiguration of which evolutionary experiments are worth running. The biosphere samples a wider region of morphological possibility space not because there's less competition for resources, but because the prior aesthetic of \"fitness\" has been erased.",
+          "surface_revision": "# Mass Extinctions and Evolutionary Innovation\n\nMass extinctions accelerate innovation not simply by opening empty niches, but by **removing aesthetic gatekeepers** that had actively policed which body plans could exist. Before extinction, dominant lineages enforce a narrow visual grammar of what a \"vertebrate\" or \"arthropod\" should look like—their predation patterns, body-size hierarchies, and sensory arms-races reward refinement within a standard template and brutally eliminate deviations. A creature with proto-wing structures, an unusual limb arrangement, or a \"loose\" body plan gets outcompeted not necessarily because it's less efficient, but because it violates the reigning design consensus. When the consensus-enforcers vanish, those experimental morphologies—previously too vulnerable to survive alongside gatekeeping competitors—suddenly become selectable.\n\nSimultaneously, the **developmental openness framing** matters: survivors of extinction are typically generalists with indeterminate growth programs rather than tightly-sealed developmental scripts. Picture the difference—a specialized trilobite followed a crystalline pathway, each segment rigidly timed; a surviving arthropod, by contrast, had looser regulatory networks and more variable segmentation. This developmental \"sloppiness,\" normally selected *against* in a crowded, high-stakes world, becomes heritable variation worth exploring in a low-density aftermath. Looseness pays.\n\nUnderneath both effects lies a **shift in what evolution can afford**: when ecosystems are packed with specialists and predators, a morphological experiment is a capital-intensive bet you cannot make. Post-extinction, in a half-empty landscape, being a developmental prototype with uncertain outcomes becomes merely risky rather than fatal. Innovation accelerates because weirdness stopped being expensive.",
+          "haiku_total_usd": 4.453283000000006,
+          "haiku_n_calls": 421
+        }
+      }
+    },
+    "s02": {
+      "item": {
+        "id": "s02",
+        "question": "Why does ice float on water?",
+        "framings": [
+          "hydrogen-bond geometry",
+          "thermodynamic stability"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        },
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        },
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "# Why Ice Floats: Beyond the Textbook\n\nIce floats because hydrogen bonding creates geometric constraints that force molecules apart rather than together when freezing occurs. **From a molecular geometry perspective**, water's hydrogen bonds have strict directional requirements, forcing each molecule into a tetrahedral arrangement with four neighbors spaced at specific angles—this crystalline lattice contains mandatory gaps that don't exist in liquid water, where molecules can briefly nestle closer together without these rigid constraints. **From an energetic perspective**, this seems counterintuitive: you'd expect freezing to make water denser, since most substances become denser solids as their molecules lose kinetic energy and pack tightly. But in water, the energy released from forming an ordered, bonded structure actually outweighs the density advantage of loose packing—the hydrogen bonds essentially \"push\" molecules into a more spread-out configuration than they prefer in liquid form.\n\nThe deeper point is that water's strong directional bonding dominates its density behavior in a way that bonding alone doesn't in other materials. This makes ice a rare anomaly: a solid that's less dense than its liquid, which only happens because the frozen structure is thermodynamically *forced* into extra space by its bonding geometry, not freed into tighter packing by cooling.",
+        "axes": {
+          "frame_coverage": 0.2142440378665924,
+          "novelty": 0.3902595043182373,
+          "specificity": 1.0
+        },
+        "composite": 0.5348345140616099,
+        "n_chars": 1389,
+        "n_words": 199,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 16.54146981239319,
+          "haiku_total_usd": 4.461069000000006,
+          "haiku_n_calls": 422
+        }
+      },
+      "haiku_cascade": {
+        "text": "# Why Ice Floats: A Deeper Look\n\nThe counterintuitive answer hinges on **hydrogen bonding geometry**. When water freezes, each H₂O molecule bonds to four neighbors in a tetrahedral arrangement—a configuration locked in place by the directionality of hydrogen bonds. This angular rigidity forces the molecules into a more spacious lattice than liquid water's flexible, constantly rearranging structure, where molecules can nestle closer together without such geometric constraints.\n\n**Framing 1 (Structural):** Solid ice is essentially a crystalline scaffold of water molecules, with predictable gaps built into its architecture. Liquid water, by contrast, is a tighter packing because its molecules have rotational freedom and can optimize space on-the-fly rather than being locked into a specific orientation.\n\n**Framing 2 (Thermodynamic):** At 0°C, the system reaches an inflection point where entropy loss (from ordering) becomes less costly than the enthalpy gain from forming the hydrogen-bond network. The lower density is actually the *price water pays* for achieving the ordered state—it's not a bug in the phase transition but a consequence of how hydrogen bonding works in three dimensions.\n\nThis anomaly is rare: most substances pack *more* densely as solids. Water's quirk exists because the hydrogen bond is unusually directional and long-range, creating an open crystal structure that liquid water's molecular mobility simply can't replicate.",
+        "axes": {
+          "frame_coverage": 0.23649342358112335,
+          "novelty": 0.4296048879623413,
+          "specificity": 1.0
+        },
+        "composite": 0.5553661038478216,
+        "n_chars": 1456,
+        "n_words": 210,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 199.19879388809204,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 1,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# Why Ice Floats: A Deeper Look\n\nThe counterintuitive answer hinges on **hydrogen bonding geometry**. When water freezes, each H₂O molecule bonds to four neighbors in a tetrahedral arrangement—a configuration locked in place by the directionality of hydrogen bonds. This angular rigidity forces the molecules into a more spacious lattice than liquid water's flexible, constantly rearranging structure, where molecules can nestle closer together without such geometric constraints.\n\n**Framing 1 (Structural):** Solid ice is essentially a crystalline scaffold of water molecules, with predictable gaps built into its architecture. Liquid water, by contrast, is a tighter packing because its molecules have rotational freedom and can optimize space on-the-fly rather than being locked into a specific orientation.\n\n**Framing 2 (Thermodynamic):** At 0°C, the system reaches an inflection point where entropy loss (from ordering) becomes less costly than the enthalpy gain from forming the hydrogen-bond network. The lower density is actually the *price water pays* for achieving the ordered state—it's not a bug in the phase transition but a consequence of how hydrogen bonding works in three dimensions.\n\nThis anomaly is rare: most substances pack *more* densely as solids. Water's quirk exists because the hydrogen bond is unusually directional and long-range, creating an open crystal structure that liquid water's molecular mobility simply can't replicate.",
+          "surface_revision": "# Why Ice Floats: A Deeper Look\n\nThe counterintuitive answer requires understanding two intertwined aspects: **hydrogen-bond geometry** and **thermodynamic stability**. When water freezes, each H₂O molecule forms hydrogen bonds at fixed tetrahedral angles to four neighbors—a geometric rigidity that locks the crystal into an inevitable lattice with void space that cannot be eliminated without breaking bonds. At 0°C, this geometry becomes thermodynamically advantageous: the system crosses a threshold where the ordered, hydrogen-bonded state has *lower free energy* than the liquid state, even though it's less dense. Ice floats, ultimately, not because it's \"puffed up,\" but because the stable solid phase at 0°C necessarily encodes its low-density geometry into its structure.\n\n**Framing 1 (Structural):** Tetrahedral hydrogen bonding is uncompromising—it locks molecules into a 3D scaffold with geometric gaps that cannot be closed. Liquid water's molecular rotational freedom, by contrast, allows each molecule to shift position and orientation, collapsing into denser packing because nothing constrains their geometry. The solid sacrifices density to maintain geometric order; the liquid exploits freedom of motion to achieve tighter packing.\n\n**Framing 2 (Thermodynamic):** At 0°C, entropy and enthalpy combine to render the ordered, low-density phase thermodynamically *more stable* than any hypothetical dense, disordered variant. Lower density isn't a regrettable consequence of freezing; it's the direct thermodynamic signature that this phase minimizes free energy. Water's directional, long-range hydrogen bonds make lower density and structural stability synonymous—achieving order requires building in spaciousness.\n\nThis anomaly is rare because most solids exploit close molecular packing for thermodynamic stability; water's hydrogen-bonding geometry inverts this relationship.",
+          "haiku_total_usd": 4.582444000000006,
+          "haiku_n_calls": 430
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "# Why Ice Floats: A Non-Obvious Take\n\n**The Structural Paradox Framing**: When water freezes, hydrogen bonds lock molecules into a tetrahedral arrangement—each water molecule bonding to four neighbors in a rigid, three-dimensional scaffold. This geometric requirement forces the molecules further apart than they sit in chaotic liquid water, where molecules can nestle more closely together despite moving freely.\n\n**The Entropic Rebellion Framing**: It's counterintuitive that *reducing* molecular disorder (freezing) would create a less dense structure, yet that's exactly what happens. Liquid water's density near 4°C actually involves water molecules vibrating within a partially hydrogen-bonded framework with built-in voids. As you cool further, hydrogen bonding increasingly takes over and \"votes\" for a fully bonded crystal—which sacrifices packing efficiency for maximum hydrogen bond satisfaction.\n\n**The Competitive Forces Perspective**: Think of it as two opposing drivers battling for control—entropy wants molecules jumbled tightly (high density), while hydrogen bonding wants them at precise angles (low density). Below freezing, the hydrogen bonding driver firmly takes the wheel, and the geometry it demands is fundamentally less space-efficient than the energetic chaos of liquid water.\n\nThis is why ice is almost unique: most substances become denser when they solidify. Water's \"anomaly\" reveals that rigidity doesn't always mean compactness.",
+        "axes": {
+          "frame_coverage": 0.27410152554512024,
+          "novelty": 0.4063425660133362,
+          "specificity": 1.0
+        },
+        "composite": 0.5601480305194855,
+        "n_chars": 1462,
+        "n_words": 201,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 104.68854093551636,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": null,
+          "selected_idx": 3,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "# Why Ice Floats: A Non-Obvious Take\n\n**The Structural Paradox Framing**: When water freezes, hydrogen bonds lock molecules into a tetrahedral arrangement—each water molecule bonding to four neighbors in a rigid, three-dimensional scaffold. This geometric requirement forces the molecules further apart than they sit in chaotic liquid water, where molecules can nestle more closely together despite moving freely.\n\n**The Entropic Rebellion Framing**: It's counterintuitive that *reducing* molecular disorder (freezing) would create a less dense structure, yet that's exactly what happens. Liquid water's density near 4°C actually involves water molecules vibrating within a partially hydrogen-bonded framework with built-in voids. As you cool further, hydrogen bonding increasingly takes over and \"votes\" for a fully bonded crystal—which sacrifices packing efficiency for maximum hydrogen bond satisfaction.\n\n**The Competitive Forces Perspective**: Think of it as two opposing drivers battling for control—entropy wants molecules jumbled tightly (high density), while hydrogen bonding wants them at precise angles (low density). Below freezing, the hydrogen bonding driver firmly takes the wheel, and the geometry it demands is fundamentally less space-efficient than the energetic chaos of liquid water.\n\nThis is why ice is almost unique: most substances become denser when they solidify. Water's \"anomaly\" reveals that rigidity doesn't always mean compactness.",
+          "surface_revision": "",
+          "haiku_total_usd": 4.621055000000006,
+          "haiku_n_calls": 438
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "# Why Ice Floats: When Order Creates Space\n\nWater molecules demand precision when they freeze. In ice, each molecule bonds at an exact 109.5-degree angle to its neighbors—this tetrahedral geometry is what hydrogen bonds prefer, and it's non-negotiable. Enforcing this geometric perfection actually spaces molecules *farther apart* than they sit in the chaotic, flexible liquid. Order created emptiness. Molecules traded compactness for the security of perfect angles.\n\n**Viewed thermodynamically**: Most substances grow denser as they cool. Water is different: its hydrogen bonds are so geometrically demanding that freezing *spreads* molecules apart instead of compacting them. The liquid crowds molecules loosely at variable angles; the solid locks them in one rigid, spacious arrangement. Cooling normally compresses. Here, it expands.\n\n**Viewed architecturally**: Picture a cage versus a dense block. Liquid water is molecules crowding at every possible angle—messy but compact through flexibility. Ice is a rigid scaffold—every molecule locked in a geometric position with mandatory gaps between. The order creates the waste.\n\nThe genuine insight: ice floats not because it's disordered, but because it's *too* ordered. Perfect geometry demands waste. Water bought structural integrity with emptiness.",
+        "axes": {
+          "frame_coverage": 0.2145623415708542,
+          "novelty": 0.4046757221221924,
+          "specificity": 1.0
+        },
+        "composite": 0.5397460212310156,
+        "n_chars": 1306,
+        "n_words": 184,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 317.75312423706055,
+          "K_effective": 4,
+          "commit_policy_effective": "always_revise",
+          "brief_override_used": true,
+          "committed": "revision",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 3,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# Why Ice Floats: Beyond the Crystal Structure Cliché\n\nIce floats because hydrogen bonds—water's preferred bonding arrangement—have strict geometric preferences. When water freezes, molecules lock into a crystal lattice that maximizes ideal tetrahedral bonding angles, but this geometry forces them farther apart than they achieve in liquid form, where molecular flexibility enables much tighter packing.\n\n**Viewed thermodynamically**: freezing normally destroys entropy and requires external cooling, yet for water, the energetic payoff from perfectly-angled hydrogen bonds justifies that entropic cost. The paradox is that this geometrically-optimal solid actually occupies more volume than the liquid.\n\n**Viewed structurally**: liquid water is like molecules crowding at variable angles, while ice forces them into fixed geometric distances. The solid simply cannot pack as tightly as the liquid, regardless of temperature.\n\nThe key non-obvious insight: ice isn't less dense *despite* forming a highly ordered, hydrogen-bonded structure—it's less dense *because* that structure requires a specific geometry. The molecules bought stability with spacing. It's a chemical tradeoff, not a crystalline quirk.",
+          "surface_revision": "# Why Ice Floats: When Order Creates Space\n\nWater molecules demand precision when they freeze. In ice, each molecule bonds at an exact 109.5-degree angle to its neighbors—this tetrahedral geometry is what hydrogen bonds prefer, and it's non-negotiable. Enforcing this geometric perfection actually spaces molecules *farther apart* than they sit in the chaotic, flexible liquid. Order created emptiness. Molecules traded compactness for the security of perfect angles.\n\n**Viewed thermodynamically**: Most substances grow denser as they cool. Water is different: its hydrogen bonds are so geometrically demanding that freezing *spreads* molecules apart instead of compacting them. The liquid crowds molecules loosely at variable angles; the solid locks them in one rigid, spacious arrangement. Cooling normally compresses. Here, it expands.\n\n**Viewed architecturally**: Picture a cage versus a dense block. Liquid water is molecules crowding at every possible angle—messy but compact through flexibility. Ice is a rigid scaffold—every molecule locked in a geometric position with mandatory gaps between. The order creates the waste.\n\nThe genuine insight: ice floats not because it's disordered, but because it's *too* ordered. Perfect geometry demands waste. Water bought structural integrity with emptiness.",
+          "haiku_total_usd": 4.815296000000006,
+          "haiku_n_calls": 446
+        }
+      }
+    },
+    "s03": {
+      "item": {
+        "id": "s03",
+        "question": "Why are leaves green and not black?",
+        "framings": [
+          "photon-absorption efficiency",
+          "evolutionary path-dependence"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        },
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        },
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "# Why Leaves Are Green (A Non-Obvious Take)\n\nThe greenness of leaves represents a hard-won safety compromise rather than a photosynthetic optimum: black leaves would absorb nearly all incident photons, overwhelming the electron transport chain and generating toxic reactive oxygen species (ROS) faster than antioxidant defenses could neutralize them. Leaves essentially cannot afford to be too efficient at light harvesting without self-destructing—the green light they reflect is a necessary metabolic pressure valve.\n\n**From an ecological perspective**, leaf color also functions as biological signaling: in active tissues, green advertises developmental vitality and resource sufficiency, while yellows and reds signal stress or senescence. This creates information asymmetries that matter to herbivores evaluating feeding choices and to neighboring plant tissues coordinating resource allocation. There's selection pressure to maintain green as the reliable signal of \"worth protecting\" in living tissue.\n\nThe irony is that what looks like photosynthetic inefficiency—all that reflected green light—is actually the safety margin between productive photosynthesis and cellular catastrophe.",
+        "axes": {
+          "frame_coverage": 0.19210128486156464,
+          "novelty": 0.3176182508468628,
+          "specificity": 1.0
+        },
+        "composite": 0.5032398452361425,
+        "n_chars": 1192,
+        "n_words": 159,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 60.234853982925415,
+          "haiku_total_usd": 4.827659000000006,
+          "haiku_n_calls": 447
+        }
+      },
+      "haiku_cascade": {
+        "text": "# Why Leaves Aren't Black: A Non-Obvious Explanation\n\n**The thermodynamic framing**: Absorbing all available light (which black surfaces do) would generate dangerous excess heat that plants must then dissipate. By selectively reflecting green wavelengths, leaves actually solve a heat-management problem—they keep themselves cool enough to survive intense sunlight while still capturing the most energetically useful wavelengths. Black leaves in high-light environments would suffer photodamage and overheating faster than they could process the energy.\n\n**The evolutionary-lock framing**: Chlorophyll, the dominant photosynthetic pigment, was locked in billions of years ago when early photosynthesizers first evolved in ancient oceans. Rather than being optimally designed for Earth's current atmosphere, it simply worked well enough to be selected for—and once entire ecosystems committed to this pigment, the costs of evolving away from it became prohibitive. We're not seeing optimal design; we're seeing the weight of deep evolutionary history.\n\nThe greenness we see is thus a kind of compromise: not between light absorption and reflection, but between surviving intense radiation, managing thermal stress, and being stuck with ancestral biochemistry that \"good enough\" became locked in place.",
+        "axes": {
+          "frame_coverage": 0.17335279285907745,
+          "novelty": 0.3029583692550659,
+          "specificity": 1.0
+        },
+        "composite": 0.4921037207047145,
+        "n_chars": 1300,
+        "n_words": 180,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 235.25744891166687,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 1.3556338234244123,
+          "selected_idx": 0,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# Why Leaves Aren't Black: A Non-Obvious Explanation\n\n**The thermodynamic framing**: Absorbing all available light (which black surfaces do) would generate dangerous excess heat that plants must then dissipate. By selectively reflecting green wavelengths, leaves actually solve a heat-management problem—they keep themselves cool enough to survive intense sunlight while still capturing the most energetically useful wavelengths. Black leaves in high-light environments would suffer photodamage and overheating faster than they could process the energy.\n\n**The evolutionary-lock framing**: Chlorophyll, the dominant photosynthetic pigment, was locked in billions of years ago when early photosynthesizers first evolved in ancient oceans. Rather than being optimally designed for Earth's current atmosphere, it simply worked well enough to be selected for—and once entire ecosystems committed to this pigment, the costs of evolving away from it became prohibitive. We're not seeing optimal design; we're seeing the weight of deep evolutionary history.\n\nThe greenness we see is thus a kind of compromise: not between light absorption and reflection, but between surviving intense radiation, managing thermal stress, and being stuck with ancestral biochemistry that \"good enough\" became locked in place.",
+          "surface_revision": "# Why Leaves Aren't Black: A Non-Obvious Explanation\n\n**The photon-efficiency framing**: Maximizing light absorption isn't actually efficient if the machinery required costs more than the captured energy yields. Chlorophyll evolved in ancient oceans where red wavelengths were filtered out by water itself, leaving only dim blue and penetrating green; evolving enzymes to capture green would cost more biochemically than that harvest would return. By reflecting green, leaves are solving an efficiency calculation: they optimize for the wavelengths worth harvesting given ancestral ocean conditions, explicitly rejecting the others.\n\n**The evolutionary-lock framing**: Once chlorophyll became universal across billions of years and countless species, abandoning it became impossible—not because it's objectively suboptimal, but because the entire biosphere locked itself into dependence. Herbivores evolved to identify green leaves; photosynthetic machinery crystallized around this pigment; the cost of change became lethal. Modern greenness isn't optimal design; it's evolutionary path-dependence incarnate—a solution so thoroughly embedded that escape became inescapable.\n\nGreen leaves are thus both a solved efficiency problem *and* an evolutionary trap—a choice so effective at the time that it froze the biosphere into one evolutionary path, making alternatives not just worse, but impossible.",
+          "haiku_total_usd": 4.961886000000005,
+          "haiku_n_calls": 455
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "# Why Leaves Aren't Black: A Thermal and Evolutionary Story\n\n**Framing 1 (Thermal Regulation):** A completely black leaf would absorb nearly all incoming light energy, converting it into dangerous heat that would damage photosynthetic machinery and cause water loss through excessive transpiration. By remaining green, leaves deliberately reflect the infrared-heavy portion of sunlight, acting as a passive cooling system that keeps them in an optimal temperature range for enzyme function. This is especially critical in intense sunlight or hot climates.\n\n**Framing 2 (Evolutionary Constraint):** Photosynthesis evolved in ancient oceans where chlorophyll's specific absorption properties—optimized for the red and blue wavelengths that penetrated seawater—became biochemically \"locked in.\" When plants later colonized land, they inherited these same pigments despite having access to a broader light spectrum. The green reflection we see is actually a mismatch between ancestral chemistry and modern environment; leaves aren't optimized for today's conditions, they're saddled with solutions from 2+ billion years ago.\n\nThe real puzzle isn't why leaves waste green light, but why nature never evolved pigments that absorbed the full spectrum on land—likely because incremental improvements to inherited systems are easier than reinventing photosynthesis from scratch.",
+        "axes": {
+          "frame_coverage": 0.17401690781116486,
+          "novelty": 0.29867780208587646,
+          "specificity": 1.0
+        },
+        "composite": 0.4908982366323471,
+        "n_chars": 1369,
+        "n_words": 189,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 114.02418684959412,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": null,
+          "selected_idx": 3,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "# Why Leaves Aren't Black: A Thermal and Evolutionary Story\n\n**Framing 1 (Thermal Regulation):** A completely black leaf would absorb nearly all incoming light energy, converting it into dangerous heat that would damage photosynthetic machinery and cause water loss through excessive transpiration. By remaining green, leaves deliberately reflect the infrared-heavy portion of sunlight, acting as a passive cooling system that keeps them in an optimal temperature range for enzyme function. This is especially critical in intense sunlight or hot climates.\n\n**Framing 2 (Evolutionary Constraint):** Photosynthesis evolved in ancient oceans where chlorophyll's specific absorption properties—optimized for the red and blue wavelengths that penetrated seawater—became biochemically \"locked in.\" When plants later colonized land, they inherited these same pigments despite having access to a broader light spectrum. The green reflection we see is actually a mismatch between ancestral chemistry and modern environment; leaves aren't optimized for today's conditions, they're saddled with solutions from 2+ billion years ago.\n\nThe real puzzle isn't why leaves waste green light, but why nature never evolved pigments that absorbed the full spectrum on land—likely because incremental improvements to inherited systems are easier than reinventing photosynthesis from scratch.",
+          "surface_revision": "",
+          "haiku_total_usd": 5.012568000000004,
+          "haiku_n_calls": 463
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "# Why Leaves Aren't Black (Revised)\n\nLeaves aren't black because a light-absorbing surface in full sun would essentially cook its own tissue—a black leaf can reach 60°C+ on a summer day even without additional absorption, and plants can't dissipate that heat the way dark animals can. **The nitrogen scarcity framing**: chlorophyll itself is a nitrogen-hoarding molecule, and completing a black photosynthetic system would demand 3-4 times the leaf biomass for only marginal energy gains—the green compromise captures 90% of photosynthetically useful wavelengths while costing a fraction of the nutrient price. **The photoprotection angle** uncovers something weirder: total light absorption triggers catastrophic oxidative stress, spawning free radicals that demand an entire parallel cellular defense system; green reflection lets plants *tune their exposure* rather than bake in excess energy. But the genuinely strange element is the **forest-floor advantage**: when green light filters through dense canopy, it creates a dim, monochromatic understorey where shade-adapted plants photosynthesize—if upper leaves were black, the forest floor would be absolutely lightless, and entire understory ecosystems would vanish. That transmitted green light functions as a secondary energy currency sustaining a shadow community of life.",
+        "axes": {
+          "frame_coverage": 0.17208394408226013,
+          "novelty": 0.36718982458114624,
+          "specificity": 1.0
+        },
+        "composite": 0.5130912562211355,
+        "n_chars": 1331,
+        "n_words": 186,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 239.9928798675537,
+          "K_effective": 4,
+          "commit_policy_effective": "always_revise",
+          "brief_override_used": true,
+          "committed": "revision",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 0,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# Why Leaves Aren't Black\n\nLeaves aren't black because absorbing all wavelengths would create catastrophic thermal problems—plants would generate so much waste heat they'd face unsustainable water loss through cooling transpiration, essentially boiling themselves in sunlight. **The metabolic economy framing**: synthesizing pigments to capture the entire visible spectrum would demand prohibitive amounts of nitrogen and other nutrients; green represents a strategic bargain that captures sufficient energy while remaining resource-efficient. From a **photoprotection angle**, reflecting green light actually prevents dangerous energy gluts that create reactive oxygen species and require expensive cellular repair systems—partial absorption is thermodynamically safer than total absorption. There's also a subtle **light-architecture advantage**: the green wavelengths that escape down through the canopy allow shade-adapted understory leaves to photosynthesize rather than creating a zero-sum competition where only the top layer could function. The color itself may even signal health and nutrient status to competing plants, making black leaves ecologically disadvantageous in mixed communities.",
+          "surface_revision": "# Why Leaves Aren't Black (Revised)\n\nLeaves aren't black because a light-absorbing surface in full sun would essentially cook its own tissue—a black leaf can reach 60°C+ on a summer day even without additional absorption, and plants can't dissipate that heat the way dark animals can. **The nitrogen scarcity framing**: chlorophyll itself is a nitrogen-hoarding molecule, and completing a black photosynthetic system would demand 3-4 times the leaf biomass for only marginal energy gains—the green compromise captures 90% of photosynthetically useful wavelengths while costing a fraction of the nutrient price. **The photoprotection angle** uncovers something weirder: total light absorption triggers catastrophic oxidative stress, spawning free radicals that demand an entire parallel cellular defense system; green reflection lets plants *tune their exposure* rather than bake in excess energy. But the genuinely strange element is the **forest-floor advantage**: when green light filters through dense canopy, it creates a dim, monochromatic understorey where shade-adapted plants photosynthesize—if upper leaves were black, the forest floor would be absolutely lightless, and entire understory ecosystems would vanish. That transmitted green light functions as a secondary energy currency sustaining a shadow community of life.",
+          "haiku_total_usd": 5.160740000000005,
+          "haiku_n_calls": 471
+        }
+      }
+    },
+    "s04": {
+      "item": {
+        "id": "s04",
+        "question": "Why does sleep exist if it makes us vulnerable?",
+        "framings": [
+          "synaptic homeostasis",
+          "memory consolidation",
+          "energy metabolism"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        },
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        },
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "# Why Sleep Persists Despite Vulnerability\n\nSleep likely exists because the nervous system requires genuine disconnection from the world to perform functions that consciousness itself prevents. From a **neural-reorganization framing**: real memory consolidation and synaptic pruning demand an \"offline\" state where the brain isn't constantly filtering incoming sensory data—consciousness and wakefulness create endless input that would corrupt these deep reorganization processes. From a **temporal-niche framing**: sleep's vulnerability might not be a bug but a specialization that makes sense *within* each species' particular rhythm. Diurnal animals sleeping during darkness actually reduce net vulnerability (nighttime predators are also constrained); nocturnal animals do the reverse. Rather than sleep being worth the vulnerability universally, it's worth it precisely *when and where* you do it. The puzzle dissolves when you stop asking \"why risk vulnerability?\" and start asking \"vulnerable to what, and when?\"",
+        "axes": {
+          "frame_coverage": 0.227104052901268,
+          "novelty": 0.31395113468170166,
+          "specificity": 1.0
+        },
+        "composite": 0.5136850625276566,
+        "n_chars": 1019,
+        "n_words": 138,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 14.025326013565063,
+          "haiku_total_usd": 5.165887000000005,
+          "haiku_n_calls": 472
+        }
+      },
+      "haiku_cascade": {
+        "text": "# Why Sleep's Vulnerability Might Be the Point\n\n**Framing 1 (Strategic Niche):** Sleep might not be a vulnerability we tolerate—it's a strategic withdrawal from a temporal niche where we're terrible competitors anyway. For diurnal creatures, the nighttime presents overwhelming sensory disadvantages (darkness favors nocturnal predators). Rather than waste metabolic resources trying to stay alert in a domain where we're outmatched, sleep consolidates your energy budget during hours when predators already have the advantage.\n\n**Framing 2 (Architectural Necessity):** The brain's consciousness and attention systems may be architecturally incompatible with 24/7 operation—not because we lack the \"software\" but because the underlying hardware requires periodic offline rebuilding. Memory consolidation, synaptic pruning, and toxic protein clearance might demand states of quiescence that wakefulness fundamentally prohibits. The vulnerability isn't a tradeoff; it's a side effect of a non-negotiable biological constraint, like how buildings need structural rest regardless of whether earthquakes exist.\n\nThe paradox dissolves once you stop framing sleep as \"costly function we do despite risks\" and start seeing it as \"the only architecture evolution could build that does what brains need to do.\"",
+        "axes": {
+          "frame_coverage": 0.23103542625904083,
+          "novelty": 0.32201439142227173,
+          "specificity": 1.0
+        },
+        "composite": 0.5176832725604376,
+        "n_chars": 1300,
+        "n_words": 179,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 201.02061200141907,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 1.3100289758689385,
+          "selected_idx": 0,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# Why Sleep's Vulnerability Might Be the Point\n\n**Framing 1 (Strategic Niche):** Sleep might not be a vulnerability we tolerate—it's a strategic withdrawal from a temporal niche where we're terrible competitors anyway. For diurnal creatures, the nighttime presents overwhelming sensory disadvantages (darkness favors nocturnal predators). Rather than waste metabolic resources trying to stay alert in a domain where we're outmatched, sleep consolidates your energy budget during hours when predators already have the advantage.\n\n**Framing 2 (Architectural Necessity):** The brain's consciousness and attention systems may be architecturally incompatible with 24/7 operation—not because we lack the \"software\" but because the underlying hardware requires periodic offline rebuilding. Memory consolidation, synaptic pruning, and toxic protein clearance might demand states of quiescence that wakefulness fundamentally prohibits. The vulnerability isn't a tradeoff; it's a side effect of a non-negotiable biological constraint, like how buildings need structural rest regardless of whether earthquakes exist.\n\nThe paradox dissolves once you stop framing sleep as \"costly function we do despite risks\" and start seeing it as \"the only architecture evolution could build that does what brains need to do.\"",
+          "surface_revision": "# Why Sleep's Vulnerability Might Be the Point (Revised)\n\n**Framing 1 (Synaptic Maintenance):** Sleep's vulnerability paradox dissolves when you examine the cost of *not* sleeping. During wakefulness, every learning experience strengthens synaptic connections; without periodic synaptic homeostasis—the nightly pruning that downscales synaptic strength—your brain would accumulate crippling metabolic costs while losing the ability to distinguish important memories from noise. Rather than evolve an \"always-on\" brain that constantly suppresses unnecessary connections, evolution outsourced this maintenance to sleep, accepting acute predation risk as the lesser evolutionary cost.\n\n**Framing 2 (Metabolic Reorganization):** Sleep also funds critical processes that consciousness prevents from occurring in parallel. Memory consolidation requires your brain to replay and compress experiences into long-term storage, while simultaneously clearing metabolic byproducts (lactate, amyloid-beta) that accumulate during waking—neither can run efficiently while you're still receiving and processing sensory input in real time. Sleep redirects your entire metabolic budget from external monitoring to internal reorganization and neurochemical recycling, making you more cognitively flexible and better equipped to handle threats when you wake.\n\nThe paradox dissolves: sleep isn't a vulnerability you endure, but the only feasible maintenance architecture for a learning brain.",
+          "haiku_total_usd": 5.2949700000000055,
+          "haiku_n_calls": 480
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "Sleep likely persists not because vulnerability is acceptable, but because the vulnerability *cost* is smaller than the cost of perpetual wakefulness. \n\n**Through a maintenance framing**: your brain accumulates toxic metabolic byproducts (amyloid, tau proteins) and cellular damage during wakefulness faster than daytime repair mechanisms can handle them. Extend this accumulation across weeks without sleep, and you face cognitive collapse far more severe than anything a nocturnal predator could inflict in a few hours. Sleep is when the brain's cleanup crew actually catches up.\n\n**Through an information-processing framing**: consolidating experiences and updating your mental models of threats and opportunities requires the brain to *go offline*—you cannot simultaneously run high-fidelity real-time threat detection and perform deep memory integration. A perpetually vigilant but increasingly incoherent brain becomes worse at detecting actual danger than one that periodically resets. The vulnerable hours buy cognitive clarity and decision precision you couldn't maintain otherwise.\n\nThe paradox dissolves when you realize vulnerability during sleep isn't a bug—it's a sign that something genuinely necessary is happening, something that couldn't occur if you remained alert. The real question isn't \"why risk sleep?\" but \"why would remaining awake be safer?\"",
+        "axes": {
+          "frame_coverage": 0.1887945979833603,
+          "novelty": 0.33633726835250854,
+          "specificity": 1.0
+        },
+        "composite": 0.508377288778623,
+        "n_chars": 1368,
+        "n_words": 189,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 121.00208401679993,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": null,
+          "selected_idx": 1,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "Sleep likely persists not because vulnerability is acceptable, but because the vulnerability *cost* is smaller than the cost of perpetual wakefulness. \n\n**Through a maintenance framing**: your brain accumulates toxic metabolic byproducts (amyloid, tau proteins) and cellular damage during wakefulness faster than daytime repair mechanisms can handle them. Extend this accumulation across weeks without sleep, and you face cognitive collapse far more severe than anything a nocturnal predator could inflict in a few hours. Sleep is when the brain's cleanup crew actually catches up.\n\n**Through an information-processing framing**: consolidating experiences and updating your mental models of threats and opportunities requires the brain to *go offline*—you cannot simultaneously run high-fidelity real-time threat detection and perform deep memory integration. A perpetually vigilant but increasingly incoherent brain becomes worse at detecting actual danger than one that periodically resets. The vulnerable hours buy cognitive clarity and decision precision you couldn't maintain otherwise.\n\nThe paradox dissolves when you realize vulnerability during sleep isn't a bug—it's a sign that something genuinely necessary is happening, something that couldn't occur if you remained alert. The real question isn't \"why risk sleep?\" but \"why would remaining awake be safer?\"",
+          "surface_revision": "",
+          "haiku_total_usd": 5.345884000000005,
+          "haiku_n_calls": 488
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "# Why Sleep Persists Despite Vulnerability (Revised)\n\nSleep persists because **staying conscious locks your brain in metabolic quicksand**—those neural systems processing real-time input consume nearly identical power whether you're building a cathedral or watching dust settle, making periodic total shutdown the only way to dip below operational cost. Vulnerability becomes preferable to infinite fuel-burn.\n\nThe more unsettling argument: **continuous wakefulness accumulates prediction errors until coherence collapses**. Each waking hour adds small betrayals—a conversation pivots unexpectedly, light refracts oddly, someone's smile doesn't match their voice—and these contradictions calcify silently in your neural model. By hour 40, the degradation shows itself: jokes become impenetrable, shadows appear subtly *wrong*, small talk becomes neurologically expensive. Your brain requires an offline window—a time cut from perception—to reconcile what it predicted against reality, to prune impossible combinations, to rescale the world itself. **You cannot perform this repair while still actively perceiving.** Vulnerability is not a weakness; it's the unavoidable cost of a brain that must remain coherent.\n\nYet here's the elegant framing: **sleep solved an ecological crowding crisis by partitioning predators in time**. When every competitor hunted 24/7, the first organisms that synchronized sleep carved out temporal niches—automatic safety during others' rest, reduced competition pressure, the hidden advantage of resting *together*. The vulnerability window becomes strategic: a creature that never slept would be both metabolically devastated and perpetually hunted.\n\nStop asking \"why does evolution tolerate this flaw?\" Start asking: **\"what aspect of consciousness makes sleeping unavoidable rather than merely useful?\"**",
+        "axes": {
+          "frame_coverage": 0.2585327923297882,
+          "novelty": 0.3720718026161194,
+          "specificity": 1.0
+        },
+        "composite": 0.5435348649819692,
+        "n_chars": 1837,
+        "n_words": 244,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 249.83484864234924,
+          "K_effective": 4,
+          "commit_policy_effective": "always_revise",
+          "brief_override_used": true,
+          "committed": "revision",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 1,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# Why Sleep Persists Despite Vulnerability\n\nSleep likely exists because **staying conscious is energetically ruinous**—your brain consumes nearly identical power whether actively problem-solving or passively waiting, making a complete shutdown the only efficient solution. From an evolution standpoint, the vulnerability window is simply cheaper than the alternative of burning fuel 24/7.\n\nAlternatively, consider that **continuous wakefulness creates information chaos**: each moment of new input slightly corrupts your brain's predictive model, degrading its ability to interpret reality. Sleep appears necessary for offline reorganization—defragging your mental model in ways that can't happen while actively perceiving. The vulnerability isn't a bug; it's an unavoidable cost of needing coherence.\n\nA third framing: **sleep solved an ecological crowding problem**. Organisms that partitioned time (sleeping during certain hours) automatically reduced predation and competition pressure compared to a world where every species hunted 24/7. The vulnerability becomes an acceptable trade-off against a deadlier alternative.\n\nThe paradox dissolves once you stop asking \"why would evolution tolerate this weakness?\" and instead ask \"what constraint made unconsciousness unavoidable?\"",
+          "surface_revision": "# Why Sleep Persists Despite Vulnerability (Revised)\n\nSleep persists because **staying conscious locks your brain in metabolic quicksand**—those neural systems processing real-time input consume nearly identical power whether you're building a cathedral or watching dust settle, making periodic total shutdown the only way to dip below operational cost. Vulnerability becomes preferable to infinite fuel-burn.\n\nThe more unsettling argument: **continuous wakefulness accumulates prediction errors until coherence collapses**. Each waking hour adds small betrayals—a conversation pivots unexpectedly, light refracts oddly, someone's smile doesn't match their voice—and these contradictions calcify silently in your neural model. By hour 40, the degradation shows itself: jokes become impenetrable, shadows appear subtly *wrong*, small talk becomes neurologically expensive. Your brain requires an offline window—a time cut from perception—to reconcile what it predicted against reality, to prune impossible combinations, to rescale the world itself. **You cannot perform this repair while still actively perceiving.** Vulnerability is not a weakness; it's the unavoidable cost of a brain that must remain coherent.\n\nYet here's the elegant framing: **sleep solved an ecological crowding crisis by partitioning predators in time**. When every competitor hunted 24/7, the first organisms that synchronized sleep carved out temporal niches—automatic safety during others' rest, reduced competition pressure, the hidden advantage of resting *together*. The vulnerability window becomes strategic: a creature that never slept would be both metabolically devastated and perpetually hunted.\n\nStop asking \"why does evolution tolerate this flaw?\" Start asking: **\"what aspect of consciousness makes sleeping unavoidable rather than merely useful?\"**",
+          "haiku_total_usd": 5.484685000000004,
+          "haiku_n_calls": 496
+        }
+      }
+    },
+    "s05": {
+      "item": {
+        "id": "s05",
+        "question": "Why do galaxies have spiral arms?",
+        "framings": [
+          "density-wave theory",
+          "self-propagating star formation"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        },
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        },
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "# Why Galaxies Spiral: Beyond the Textbook\n\nSpiral arms aren't simply rotating patterns that guide stars—they're **self-amplifying instabilities** that exploit the disk's internal dynamics. From a kinematic perspective, stars oscillate in their orbits (epicyclic motion), and when these oscillations align across many particles, small initial density fluctuations grow exponentially into spirals, a mechanism called swing amplification that's almost independent of the galaxy's overall shape. Reframing it through angular momentum: spiral arms are actually the disk's solution to a geometric problem—material gradually needs to move between radii, and gravity naturally routes this angular momentum transfer through non-axisymmetric torques, creating the very spiral structures that accomplish this task. Paradoxically, the spirals *persist* because destroying them would create a more dynamically unstable configuration, making them a kind of dynamical equilibrium rather than transient features. The pattern also exploits **resonance locking**, where spiral waves get trapped and amplified at specific radii where orbital frequencies align with the pattern's rotation. This multi-functionality—simultaneously solving kinetic instability, angular momentum transport, and orbital resonance—is likely why spirals are so geometrically beautiful and long-lived rather than chaotic.",
+        "axes": {
+          "frame_coverage": 0.2011326104402542,
+          "novelty": 0.26465755701065063,
+          "specificity": 1.0
+        },
+        "composite": 0.48859672248363495,
+        "n_chars": 1378,
+        "n_words": 178,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 13.43632984161377,
+          "haiku_total_usd": 5.490473000000004,
+          "haiku_n_calls": 497
+        }
+      },
+      "haiku_cascade": {
+        "text": "# Why Galaxies Have Spiral Arms: A Non-Obvious View\n\n**The Self-Reinforcing Selection Effect**: What we call \"spiral arms\" may partly be an observational illusion—young, massive stars are intrinsically bright and short-lived, making the pattern visually prominent precisely where recent star formation has erupted, tracing density enhancements rather than the gravitationally dominant structure itself.\n\n**The Density-Wave Mechanism**: More intriguingly, spiral arms aren't permanent material structures; they're a *propagating density wave*, like a traffic jam where vehicles pass through but congestion persists. The spiral rotates at its own velocity (pattern speed) while disk material rotates differently by radius. Where material moves through the wave more slowly than the pattern advances, gas and stars bunch up temporarily, creating the bright spirals we observe that survive for billions of years despite differential rotation that should scramble rigid structures.\n\n**The Instability/Symmetry-Breaking Frame**: From a fluid-dynamics perspective, thin rotating disks are fundamentally unstable against asymmetric patterns and naturally develop non-axisymmetric structures to redistribute angular momentum.\n\nRather than a single mechanism, spiral arms reflect the galaxy's attempt to balance competing forces where observational bias, density waves, and dynamical instability are all intertwined.",
+        "axes": {
+          "frame_coverage": 0.22306758165359497,
+          "novelty": 0.23374885320663452,
+          "specificity": 1.0
+        },
+        "composite": 0.48560547828674316,
+        "n_chars": 1406,
+        "n_words": 185,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 202.35053515434265,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "revision",
+          "vimarsa_event": true,
+          "vimarsa_event_draft": true,
+          "novelty": 1.0,
+          "delta_F": 1.3742823650986367,
+          "delta_F_draft": 1.2003543354020962,
+          "delta_F_revision": 1.3742823650986367,
+          "selected_idx": 0,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# Why Galaxies Have Spiral Arms: A Non-Obvious View\n\n**The Self-Reinforcing Selection Effect**: What we call \"spiral arms\" may partly be an observational illusion created by feedback between structure and star formation. Gas clouds naturally accumulate in slight density variations, triggering bursts of star formation in those regions. Young, massive stars are intrinsically bright and short-lived, so the spiral pattern appears visually prominent precisely where stars recently formed—which is where density was enhanced enough to trigger star formation. This creates a self-reinforcing cycle where arms seem \"real\" because they're traced by their brightest, youngest residents, not necessarily because they're the gravitationally dominant structure.\n\n**The Instability/Symmetry-Breaking Frame**: From a fluid-dynamics perspective, thin rotating disks are fundamentally unstable against developing asymmetric patterns—they're not naturally inclined to maintain perfect rotational symmetry. Spirals may be nature's preferred solution for a rotating, self-gravitating system to redistribute angular momentum and relieve internal stress, similar to how a spinning vortex spontaneously develops internal structures. The specific spiral geometry that emerges depends on the disk's thickness, rotation curve, and density profile, but some form of non-axisymmetric pattern is almost inevitable.\n\nRather than being imposed by a single mechanism, spiral arms may reflect the galaxy's ongoing attempt to balance competing forces in an inherently unstable configuration.",
+          "surface_revision": "# Why Galaxies Have Spiral Arms: A Non-Obvious View\n\n**The Self-Reinforcing Selection Effect**: What we call \"spiral arms\" may partly be an observational illusion—young, massive stars are intrinsically bright and short-lived, making the pattern visually prominent precisely where recent star formation has erupted, tracing density enhancements rather than the gravitationally dominant structure itself.\n\n**The Density-Wave Mechanism**: More intriguingly, spiral arms aren't permanent material structures; they're a *propagating density wave*, like a traffic jam where vehicles pass through but congestion persists. The spiral rotates at its own velocity (pattern speed) while disk material rotates differently by radius. Where material moves through the wave more slowly than the pattern advances, gas and stars bunch up temporarily, creating the bright spirals we observe that survive for billions of years despite differential rotation that should scramble rigid structures.\n\n**The Instability/Symmetry-Breaking Frame**: From a fluid-dynamics perspective, thin rotating disks are fundamentally unstable against asymmetric patterns and naturally develop non-axisymmetric structures to redistribute angular momentum.\n\nRather than a single mechanism, spiral arms reflect the galaxy's attempt to balance competing forces where observational bias, density waves, and dynamical instability are all intertwined.",
+          "haiku_total_usd": 5.614823000000004,
+          "haiku_n_calls": 505
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "# Why Galaxies Have Spiral Arms\n\nThe non-obvious answer involves understanding spirals not as carved structures but as *self-amplifying orbital resonances*. \n\n**First framing—orbital phase-locking:** Stars in a disk naturally oscillate vertically and radially as they orbit due to gravity's restoring force. When these oscillations become synchronized—imagine radial bulges systematically aligning with vertical waves—they constructively interfere into persistent spirals, much like ripples reinforcing each other. The pattern persists even though individual stars flow through it like traffic on a highway.\n\n**Second framing—swing amplification:** Small density perturbations in a rotating disk get stretched by differential rotation (outer regions lag behind inner regions). But here's the twist: as stretched material orbits further out, gravity pulls it back with a torque, actually *amplifying* the disturbance rather than damping it—like a beam snapping back harder than you pushed it. This mechanism naturally cascades into grand spirals.\n\nThe non-obvious insight is that spirals aren't externally imposed; they emerge from the disk's internal instability. The same physics keeping the disk stable (gravity balanced against rotation) also makes it vulnerable to runaway disturbances. Spirals are essentially the disk's way of channeling orbital energy into a coherent gravitational wave pattern, continuously recycled as new material flows through.",
+        "axes": {
+          "frame_coverage": 0.17695437371730804,
+          "novelty": 0.21983426809310913,
+          "specificity": 1.0
+        },
+        "composite": 0.4655962139368057,
+        "n_chars": 1455,
+        "n_words": 198,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 104.69748902320862,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 3.0769511731998165,
+          "delta_F_draft": 3.0769511731998165,
+          "delta_F_revision": null,
+          "selected_idx": 1,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "# Why Galaxies Have Spiral Arms\n\nThe non-obvious answer involves understanding spirals not as carved structures but as *self-amplifying orbital resonances*. \n\n**First framing—orbital phase-locking:** Stars in a disk naturally oscillate vertically and radially as they orbit due to gravity's restoring force. When these oscillations become synchronized—imagine radial bulges systematically aligning with vertical waves—they constructively interfere into persistent spirals, much like ripples reinforcing each other. The pattern persists even though individual stars flow through it like traffic on a highway.\n\n**Second framing—swing amplification:** Small density perturbations in a rotating disk get stretched by differential rotation (outer regions lag behind inner regions). But here's the twist: as stretched material orbits further out, gravity pulls it back with a torque, actually *amplifying* the disturbance rather than damping it—like a beam snapping back harder than you pushed it. This mechanism naturally cascades into grand spirals.\n\nThe non-obvious insight is that spirals aren't externally imposed; they emerge from the disk's internal instability. The same physics keeping the disk stable (gravity balanced against rotation) also makes it vulnerable to runaway disturbances. Spirals are essentially the disk's way of channeling orbital energy into a coherent gravitational wave pattern, continuously recycled as new material flows through.",
+          "surface_revision": "",
+          "haiku_total_usd": 5.658520000000004,
+          "haiku_n_calls": 513
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "# Why Galaxies Have Spiral Arms: A Deeper Look (Revised)\n\nSpiral arms aren't permanent fixtures but **ghosts endlessly collapsing and reigniting from noise**—a single out-of-sync star gets whipped by the disk's shear into a ripple that swing amplification magnifies into a dramatic spiral, only for fresh perturbations to restart the cycle.\n\n**Spirals emerge as standing waves in orbital symphony**—when billions of stars' natural frequencies lock into resonance, gravity amplifies that pattern into a visible spiral, like a wine glass rim singing when your finger draws across it, one solid structure born from many oscillations finally aligned.\n\nThird, **self-gravitating disks teeter on the knife's edge of stability**. Any perturbation triggers fragmentation, but rotation performs an elegant trick: shearing developing clumps into graceful curves rather than ragged knots, naturally expressing instability as spirals instead of collapse.\n\nYet the real puzzle inverts the question: not why spirals form, but **why they persist so stubbornly**. The answer subverts intuition—continuous stochastic regeneration means the disk endlessly births spirals that never fully settle, creating a cosmic impermanence masquerading as permanence.",
+        "axes": {
+          "frame_coverage": 0.23923133313655853,
+          "novelty": 0.3486204147338867,
+          "specificity": 1.0
+        },
+        "composite": 0.5292839159568151,
+        "n_chars": 1236,
+        "n_words": 174,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 232.21879506111145,
+          "K_effective": 4,
+          "commit_policy_effective": "always_revise",
+          "brief_override_used": true,
+          "committed": "revision",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 1.3433824289222933,
+          "delta_F_draft": 1.2375955132533605,
+          "delta_F_revision": 1.3433824289222933,
+          "selected_idx": 3,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# Why Galaxies Have Spiral Arms: A Deeper Look\n\nRather than treating spiral arms as permanent density wave fixtures, consider them as **transient structures constantly regenerated from noise**—small perturbations in the disk get amplified through swing amplification (a mechanism where orbital shear and gravitational forces conspire to magnify initially tiny density ripples into dramatic spirals) before eventually damping away, only to be renewed by fresh perturbations.\n\n**Alternative framing**: Spirals emerge as **resonance phenomena** between different orbital families in the disk. Stars and gas at certain radii naturally oscillate in ways that couple to collective patterns; rather than a single sweeping density wave, you have overlapping resonances creating a composite spiral structure that feels semi-permanent to us observers, even if it's fundamentally unstable on billion-year timescales.\n\nA third angle: **Self-gravitating disks are inherently prone to instabilities**—a thin disk of stars and gas is just barely stable, and anything that tips the balance (a satellite galaxy's tidal pull, internal bar-like modes) triggers fragmentation that naturally expresses itself as spiral patterns rather than clumps, because rotation shears developing clumps into trailing spirals.\n\nThe puzzle isn't really \"why spirals?\" but rather why they're so *persistent* and *common*—the answer likely involves continuous regeneration through stochastic driving, rather than one mechanism alone.",
+          "surface_revision": "# Why Galaxies Have Spiral Arms: A Deeper Look (Revised)\n\nSpiral arms aren't permanent fixtures but **ghosts endlessly collapsing and reigniting from noise**—a single out-of-sync star gets whipped by the disk's shear into a ripple that swing amplification magnifies into a dramatic spiral, only for fresh perturbations to restart the cycle.\n\n**Spirals emerge as standing waves in orbital symphony**—when billions of stars' natural frequencies lock into resonance, gravity amplifies that pattern into a visible spiral, like a wine glass rim singing when your finger draws across it, one solid structure born from many oscillations finally aligned.\n\nThird, **self-gravitating disks teeter on the knife's edge of stability**. Any perturbation triggers fragmentation, but rotation performs an elegant trick: shearing developing clumps into graceful curves rather than ragged knots, naturally expressing instability as spirals instead of collapse.\n\nYet the real puzzle inverts the question: not why spirals form, but **why they persist so stubbornly**. The answer subverts intuition—continuous stochastic regeneration means the disk endlessly births spirals that never fully settle, creating a cosmic impermanence masquerading as permanence.",
+          "haiku_total_usd": 5.791635000000004,
+          "haiku_n_calls": 521
+        }
+      }
+    }
+  }
+}

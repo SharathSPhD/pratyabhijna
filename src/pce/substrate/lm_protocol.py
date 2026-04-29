@@ -1,11 +1,17 @@
 """Pluggable LM substrate contract.
 
-Per [docs/adr/v0.2/ADR-004-pluggable-lm-protocol.md](../../../docs/adr/v0.2/ADR-004-pluggable-lm-protocol.md),
-the cascade and operators take an `LMProtocol`. Two implementations ship:
+Per [docs/adr/v0.3/ADR-001-clean-haiku-cli.md](../../../docs/adr/v0.3/ADR-001-clean-haiku-cli.md)
+the protocol is renamed `GeneratorProtocol` (with `LMProtocol` kept as an alias for
+backward compatibility) and gains capability flags so callers can interrogate what
+the substrate honestly exposes.
+
+Two implementations ship:
 
 * `LocalLM` (existing, see `lm.py`) — `Qwen/Qwen2-1.5B-Instruct` via `transformers`.
-* `HaikuLM` (see `haiku_lm.py`) — Anthropic Claude Haiku via the `claude` CLI
-  (and an optional Anthropic SDK code path gated by `PCE_USE_SDK=1`).
+  Advertises `supports_logprobs=True`, `supports_score=True`, `supports_entropy=False`.
+* `HaikuLM` (see `haiku_lm.py`) — Anthropic Claude Haiku via the `claude` CLI in a
+  clean-substrate inner subprocess (no API key). Advertises all capability flags as
+  `False`; exposes `length_proxy_logp` so callers cannot mistake length for real logprobs.
 
 Future substrates implement this Protocol and the cascade picks them up
 without further changes.
@@ -18,7 +24,7 @@ from pce.types import Candidate
 
 
 @runtime_checkable
-class LMProtocol(Protocol):
+class GeneratorProtocol(Protocol):
     """Substrate the cascade calls into.
 
     Implementations are responsible for:
@@ -30,10 +36,25 @@ class LMProtocol(Protocol):
       `audit/cost_ledger.json` when the substrate incurs real cost;
     * graceful failure (raise a clear `RuntimeError` rather than fall back
       silently to a different substrate or a mock).
+
+    Capability flags let callers interrogate what the substrate honestly exposes.
+    The cascade and active-inference modules (`pce.active_inference.budget`,
+    `pce.operators.jnana`) consult these flags so they never rely on a signal the
+    substrate cannot provide. See ADR-001 (clean-haiku-cli) and ADR-005
+    (free-energy-budget) for the v0.3 contract.
     """
 
     name: str
     """Stable substrate identifier, e.g. 'qwen2-1.5b' or 'claude-haiku'."""
+
+    supports_logprobs: bool
+    """True iff `Candidate.logp` is a real log-probability from the substrate."""
+
+    supports_score: bool
+    """True iff the substrate can score arbitrary completions out-of-band."""
+
+    supports_entropy: bool
+    """True iff the substrate exposes per-token entropy or top-k logits."""
 
     def generate(
         self,
@@ -55,6 +76,20 @@ class LMProtocol(Protocol):
         """
         ...
 
+    def length_proxy_logp(self, candidate: Candidate) -> float:
+        """A calibrated, *honest* fallback when `supports_logprobs` is False.
+
+        For substrates that do not expose real log-probabilities, this returns a
+        deterministic monotone proxy (typically `-output_tokens * log(2)`) so that
+        downstream code which only uses `logp` as a tie-breaker stays stable. Callers
+        must not interpret the return value as a true log-probability.
+        """
+        ...
+
     def report(self) -> dict[str, Any]:
         """Substrate diagnostic: model id, dtype, device, etc."""
         ...
+
+
+# Backward-compatible alias used throughout v0.1/v0.2 code.
+LMProtocol = GeneratorProtocol

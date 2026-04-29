@@ -92,11 +92,16 @@ def _load_lm(model_id: str, dtype: str, device: str) -> tuple[PreTrainedTokenize
 class LocalLM:
     """The cit-substrate. Holds the tokenizer + model + the embedder used to embed candidates.
 
-    Implements `pce.substrate.lm_protocol.LMProtocol`; see ADR-004 for the
-    pluggable-substrate contract.
+    Implements `pce.substrate.lm_protocol.GeneratorProtocol` (alias `LMProtocol`);
+    see ADR-004 for the pluggable-substrate contract. v0.3 (Phase 2) extended
+    the protocol with three capability flags -- LocalLM exposes real logprobs
+    so it advertises ``supports_logprobs=True``.
     """
 
-    name = "qwen2-1.5b"
+    name: str = "qwen2-1.5b"
+    supports_logprobs: bool = True
+    supports_score: bool = False
+    supports_entropy: bool = True
 
     def __init__(self, config: LMConfig | None = None, embedder: Embedder | None = None) -> None:
         cfg = config or LMConfig()
@@ -208,6 +213,15 @@ class LocalLM:
         logits = self._next_logits(input_ids)
         return int(torch.argmax(logits, dim=-1).item())
 
+    def length_proxy_logp(self, candidate: Candidate) -> float:
+        """Real log-probability is in ``candidate.logp`` for LocalLM (supports_logprobs=True).
+
+        Provided so LocalLM satisfies :class:`pce.substrate.lm_protocol.GeneratorProtocol`
+        even though the proxy is not the path callers normally take. Returns
+        ``candidate.logp`` directly.
+        """
+        return float(candidate.logp)
+
     def report(self) -> dict[str, Any]:
         return {
             "model_id": self.config.model_id,
@@ -215,4 +229,7 @@ class LocalLM:
             "device": self.config.device,
             "vocab_size": self.vocab_size,
             "eos_id": self.eos_id,
+            "supports_logprobs": self.supports_logprobs,
+            "supports_score": self.supports_score,
+            "supports_entropy": self.supports_entropy,
         }

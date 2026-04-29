@@ -49,11 +49,12 @@ def test_stats_runs_and_produces_six_hypotheses(synth_results: Path, tmp_path: P
                     "permutation_p_one_sided", "wilcoxon_p_one_sided",
                     "holm_p", "power_apriori", "power_retrospective", "supported"):
             assert key in primary[h], f"{h} missing {key}"
-    assert "H5" in data
-    # v0.2 splits H6 by cascade arm; either reading must be present.
-    assert "H6_haiku_cascade" in data or "H6_local_cascade" in data or "H6" in data
-    # v0.2 named contrasts replace the v0.1 sensitivity_vs_local_bare key.
-    assert "local_ablation" in data or "substrate_baseline" in data or "sensitivity_vs_local_bare" in data
+    # H5.v3 = pooled effect-size meta-aggregation under primary
+    assert "H5" in primary or "H5" in data
+    # v0.3 contrasts replace v0.2 names.
+    assert "H6_v3_extra_compute" in data, "H6_v3_extra_compute missing (v0.3 fairness vs +K compute)"
+    assert "H7_v3_generic_revise" in data, "H7_v3_generic_revise missing (v0.3 generic 2-pass control)"
+    assert "H8_v3_revision_vs_draft" in data, "H8_v3_revision_vs_draft missing (within-cascade)"
 
 
 def test_figures_produces_six_pngs(synth_results: Path, tmp_path: Path) -> None:
