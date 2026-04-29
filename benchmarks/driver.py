@@ -49,6 +49,7 @@ import argparse
 import json
 import sys
 import time
+from collections.abc import Callable
 from pathlib import Path
 from typing import Any, Literal
 
@@ -63,6 +64,12 @@ import numpy as np  # noqa: E402
 from benchmarks import items as bench_items  # noqa: E402
 from benchmarks import scoring as bench_scoring  # noqa: E402
 from pce.cascade import run_cascade  # noqa: E402
+from pce.policies import (  # noqa: E402
+    OracleCommit,
+    PolicyFeatures,
+    extract_features_from_audit,
+    policy_for_name,
+)
 from pce.substrate.embed import Embedder  # noqa: E402
 from pce.substrate.haiku_lm import HaikuBudgetExceededError, HaikuLM  # noqa: E402
 from pce.substrate.integrity import IntegrityProbe  # noqa: E402
@@ -77,6 +84,17 @@ ARMS_V3 = (
     "haiku_bare_2K_scorer",
     "haiku_generic_revise_2pass",
 )
+
+# v0.4 commit-policy multiplex (ADR-002): each entry is a synthetic arm
+# computed *post-hoc* from the haiku_cascade draft/revision pair, so the
+# four cascade-policy arms cost zero extra Haiku calls.
+COMMIT_POLICY_ARMS_V4 = (
+    "haiku_cascade_event_gated",
+    "haiku_cascade_always_draft",
+    "haiku_cascade_always_revise",
+    "haiku_cascade_learned_gate",
+)
+ORACLE_ANALYSIS_ARM = "haiku_cascade_oracle"  # post-hoc upper bound, never an evaluation arm
 # v0.2 / v0.1 arm aliases retained for backward compatibility.
 ARMS_LEGACY = ("local_bare", "local_cascade")
 ARM_ALIASES = {
@@ -276,6 +294,15 @@ def _call_cascade_arm(
             "elapsed_s": time.time() - started,
         }
     aud = state.audit
+    diag_draft = aud.get("vimarsa_diag_draft") or aud.get("vimarsa_diag") or {}
+    if not isinstance(diag_draft, dict):
+        diag_draft = {}
+    ledger_audit = aud.get("budget_ledger") or {}
+    if not isinstance(ledger_audit, dict):
+        ledger_audit = {}
+    policy_features_audit = aud.get("policy_features") or {}
+    if not isinstance(policy_features_audit, dict):
+        policy_features_audit = {}
     meta: dict[str, Any] = {
         "ok": True,
         "elapsed_s": time.time() - started,
@@ -296,6 +323,18 @@ def _call_cascade_arm(
         ),
         "surface_draft": str(state.surface_draft or ""),
         "surface_revision": str(state.surface_revision or ""),
+        # v0.4 feature plumbing for the commit-policy multiplex (ADR-002).
+        "aspect_count": _coerce_float_or_none(
+            aud.get("aspect_count", diag_draft.get("aspect_count"))
+        ),
+        "ananda": _coerce_float_or_none(
+            aud.get("ananda", diag_draft.get("ananda"))
+        ),
+        "budget_balance": _coerce_float_or_none(
+            aud.get("budget_balance", ledger_audit.get("balance_bits"))
+        ),
+        "policy_features": policy_features_audit,
+        "revision_skipped_reason": aud.get("revision_skipped_reason"),
     }
     if haiku_lm is not None:
         rep = haiku_lm.report()
@@ -352,11 +391,131 @@ def _load_existing(out_path: Path) -> dict[str, dict[str, Any]]:
 
 def _save(out_path: Path, rows: dict[str, dict[str, Any]], domain: str) -> None:
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    payload = {"domain": domain, "version": "v0.3", "rows": rows}
+    payload = {"domain": domain, "version": "v0.4", "rows": rows}
     out_path.write_text(
         json.dumps(payload, indent=2, ensure_ascii=False, allow_nan=False),
         encoding="utf-8",
     )
+
+
+def _features_from_cascade_meta(
+    meta: dict[str, Any],
+) -> PolicyFeatures:
+    """Extract :class:`PolicyFeatures` from a cascade arm's audit `meta`.
+
+    Falls back to the v0.3-compatible top-level fields when the explicit
+    ``policy_features`` block (added in v0.4) is missing — keeps replay over
+    older traces working.
+    """
+    return extract_features_from_audit(meta)
+
+
+def _multiplex_commit_policies(
+    *,
+    domain: str,
+    item: dict[str, Any],
+    item_rows: dict[str, Any],
+    embed: Embedder,
+    scorer: Callable[..., bench_scoring.ItemScore],
+) -> None:
+    """Synthesize per-commit-policy rows from the existing ``haiku_cascade`` row.
+
+    No extra LM calls are issued — both ``surface_draft`` and ``surface_revision``
+    are already present in the cascade audit. We re-score both surfaces, then
+    let each :class:`CommitPolicy` pick which one to commit.
+    """
+    cascade_row = item_rows.get("haiku_cascade")
+    if not isinstance(cascade_row, dict) or cascade_row.get("skipped"):
+        return
+    meta = cascade_row.get("meta") or {}
+    if not isinstance(meta, dict):
+        return
+    audit = meta.get("audit") or {}
+    if not isinstance(audit, dict):
+        audit = {}
+    surface_draft = meta.get("surface_draft") or audit.get("surface_draft")
+    surface_revision = meta.get("surface_revision") or audit.get("surface_revision")
+    if not isinstance(surface_draft, str) or not surface_draft:
+        return
+
+    score_draft = scorer(surface_draft, item=item, embed=embed)
+    score_revision = (
+        scorer(surface_revision, item=item, embed=embed)
+        if isinstance(surface_revision, str) and surface_revision
+        else None
+    )
+
+    features = _features_from_cascade_meta(meta)
+    vimarsa_event = bool(meta.get("vimarsa_event_draft", meta.get("vimarsa_event", False)))
+
+    def _commit(decision_revision: bool) -> tuple[str, bench_scoring.ItemScore]:
+        if decision_revision and score_revision is not None:
+            assert isinstance(surface_revision, str)
+            return surface_revision, score_revision
+        return surface_draft, score_draft
+
+    for arm_name in COMMIT_POLICY_ARMS_V4:
+        if arm_name in item_rows:
+            continue
+        policy_name = arm_name.removeprefix("haiku_cascade_")
+        policy = policy_for_name(policy_name)
+        decision = policy.decide(features, vimarsa_event)
+        text, score = _commit(decision)
+        composite = (
+            float(score.composite) if not np.isnan(score.composite) else None
+        )
+        item_rows[arm_name] = {
+            "text": text,
+            "axes": dict(score.axes),
+            "composite": composite,
+            "n_chars": len(text),
+            "n_words": len(text.split()) if text else 0,
+            "meta": {
+                "synthesized_from": "haiku_cascade",
+                "commit_policy": policy_name,
+                "commit_decision_revision": bool(decision),
+                "policy_features": features.to_audit(),
+                "score_draft": (
+                    float(score_draft.composite)
+                    if not np.isnan(score_draft.composite)
+                    else None
+                ),
+                "score_revision": (
+                    float(score_revision.composite)
+                    if score_revision is not None
+                    and not np.isnan(score_revision.composite)
+                    else None
+                ),
+            },
+        }
+
+    if ORACLE_ANALYSIS_ARM not in item_rows and score_revision is not None:
+        oracle = OracleCommit()
+        oracle.set_scores(
+            float(score_draft.composite),
+            float(score_revision.composite),
+        )
+        decision = oracle.decide(features, vimarsa_event)
+        text, score = _commit(decision)
+        composite = (
+            float(score.composite) if not np.isnan(score.composite) else None
+        )
+        item_rows[ORACLE_ANALYSIS_ARM] = {
+            "text": text,
+            "axes": dict(score.axes),
+            "composite": composite,
+            "n_chars": len(text),
+            "n_words": len(text.split()) if text else 0,
+            "meta": {
+                "synthesized_from": "haiku_cascade",
+                "commit_policy": "oracle",
+                "commit_decision_revision": bool(decision),
+                "policy_features": features.to_audit(),
+                "score_draft": float(score_draft.composite),
+                "score_revision": float(score_revision.composite),
+                "is_analysis_only": True,
+            },
+        }
 
 
 def _per_item_integrity_probe(
@@ -530,6 +689,18 @@ def run_domain(
                 "n_words": len(text.split()) if text else 0,
                 "meta": meta,
             }
+            _save(out_path, rows, domain)
+        if (
+            "haiku_cascade" in item_rows
+            and not item_rows["haiku_cascade"].get("skipped")
+        ):
+            _multiplex_commit_policies(
+                domain=domain,
+                item=item,
+                item_rows=item_rows,
+                embed=embed,
+                scorer=scorer,
+            )
             _save(out_path, rows, domain)
     print(f"[bench] domain={domain} complete -> {out_path}", flush=True)
     return 0

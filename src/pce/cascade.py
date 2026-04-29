@@ -66,6 +66,14 @@ from pce.operators.vimarsa import (
     consolidate,
     vimarsa,
 )
+from pce.policies import (
+    CommitPolicy as CommitPolicyBase,
+)
+from pce.policies import (
+    LearnedGate,
+    PolicyFeatures,
+    policy_for_name,
+)
 from pce.substrate.embed import Embedder
 from pce.substrate.lm import LocalLM
 from pce.substrate.lm_protocol import LMProtocol
@@ -76,7 +84,13 @@ from pce.types import Candidate, CascadeState, Constraint
 # ``base_seed``.
 _REVISION_SEED_OFFSET = 17
 
-CommitPolicy = Literal["event_gated", "always_revise", "always_draft"]
+# v0.4 (ADR-002): commit-policy literal expanded with ``learned_gate``.
+# ``oracle`` is intentionally NOT in the cascade-time literal — it is a
+# post-hoc analysis policy that requires both surfaces' scores, which the
+# cascade cannot produce on its own.
+CommitPolicy = Literal[
+    "event_gated", "always_revise", "always_draft", "learned_gate"
+]
 
 
 def _entropy_of(scores: np.ndarray) -> float:  # type: ignore[type-arg]
@@ -406,6 +420,16 @@ def run_cascade(
                 "revision_skipped_reason": reason,
                 "fe_budget_underwater": bool(fe_budget_underwater),
                 "budget_ledger": ledger.to_audit(),
+                "policy_features": PolicyFeatures(
+                    delta_F=float(dF_d),
+                    novelty=float(novelty_d),
+                    aspect_count=float(
+                        diag_d.get("aspect_count", 0.0) if isinstance(diag_d, dict) else 0.0
+                    ),
+                    ananda=float(anan_d[sel_d]),
+                    budget_balance=float(ledger.balance()),
+                ).to_audit(),
+                "learned_gate": None,
                 "storehouse_aspect_attention": storehouse_aspect_attention,
                 "n_storehouse_patterns": int(hopfield.n_patterns) if hopfield else 0,
             },
@@ -467,11 +491,29 @@ def run_cascade(
     assert len(vim_out_r) == 3
     event_r, novelty_r, diag_r = vim_out_r
 
-    # ---- Commit policy --------------------------------------------------
+    # ---- Commit policy (v0.4 ADR-002) ----------------------------------
+    # Build features once from the draft-pass audit. The features dict here
+    # is a v0.4 audit shape that ``extract_features_from_audit`` knows how
+    # to read; supplying it directly is cheaper than re-building the dict.
+    diag_d_safe = diag_d if isinstance(diag_d, dict) else {}
+    policy_features = PolicyFeatures(
+        delta_F=float(dF_d),
+        novelty=float(novelty_d),
+        aspect_count=float(diag_d_safe.get("aspect_count", 0.0)),
+        ananda=float(anan_d[sel_d]),
+        budget_balance=float(ledger.balance()),
+    )
+    learned_gate_audit: dict[str, object] | None = None
     if policy == "always_revise":
         committed = "revision"
     elif policy == "event_gated":
         committed = "revision" if bool(event_d) else "draft"
+    elif policy == "learned_gate":
+        gate: CommitPolicyBase = policy_for_name("learned_gate")
+        decision = gate.decide(policy_features, vimarsa_event=bool(event_d))
+        committed = "revision" if decision else "draft"
+        if isinstance(gate, LearnedGate):
+            learned_gate_audit = gate.to_audit()
     else:  # always_draft handled above; keep mypy exhaustive
         raise ValueError(f"run_cascade: unreachable commit_policy={policy!r}")
     final_surface = revision if committed == "revision" else draft
@@ -544,6 +586,8 @@ def run_cascade(
             "delta_F_threshold": float(delta_F_threshold),
             "fe_budget_underwater": False,
             "budget_ledger": ledger.to_audit(),
+            "policy_features": policy_features.to_audit(),
+            "learned_gate": learned_gate_audit,
             "storehouse_aspect_attention": storehouse_aspect_attention,
             "n_storehouse_patterns": int(hopfield.n_patterns) if hopfield else 0,
             "storehouse_consolidate": consolidate_audit,
