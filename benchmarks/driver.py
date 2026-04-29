@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
-"""PCE v0.3 benchmark driver: four-arm Haiku matrix with per-item integrity probe.
+"""PCE v0.4 benchmark driver: four-arm Haiku matrix with per-item integrity probe.
 
-Per the v0.3 plan ("no local LLM arm or Sonnet ... same benchmark sample as
-v0.2"), the driver now defaults to a *Haiku-only* four-arm matrix on the
-v0.2 sample (n=20-30 paired). Local arms are kept callable for backward
-compatibility with v0.2 audits but are no longer in the default arm set.
+v0.4 = v0.3 + commit-policy multiplex (ADR-002). The four base Haiku
+arms below are unchanged; on top of every ``haiku_cascade`` row we
+synthesise four extra "commit-policy arms" (always_draft /
+always_revise / event_gated / learned_gate) plus a post-hoc
+``oracle`` analysis arm — at *zero extra Haiku cost* — by re-scoring
+the draft / shadow-revision pair under each policy's decision rule
+(``_multiplex_commit_policies``).
 
-The four v0.3 arms are:
+The four v0.4 base arms are unchanged from v0.3:
 
 * ``haiku_bare``                - 1 Haiku call with the parity sampler.
                                   Architecture-free baseline.
@@ -22,20 +25,20 @@ The four v0.3 arms are:
                                   *content* of the brief from the *existence*
                                   of a revision pass (H7).
 
-Per-item integrity probe (ADR-001 / Phase 5): before processing every item
-we run :class:`pce.substrate.integrity.IntegrityProbe` and assert
+Per-item integrity probe (ADR-001 / Phase 5 v0.3): before processing every
+item we run :class:`pce.substrate.integrity.IntegrityProbe` and assert
 ``passed=True``. Probe results are cached per-(env_hash, flags_hash) so the
 real-time cost is negligible after the first call. Per-item probe rows are
-written to ``audit/v0.3/integrity_probes.jsonl`` for forensics; if any
+written to ``audit/v0.4/integrity_probes.jsonl`` for forensics; if any
 probe fails the driver halts unless ``--allow-leakage`` is set.
 
 Each call's response is scored locally with ``benchmarks.scoring.*`` and
 the raw text + axis dict + composite score is appended to a per-domain
-JSON file under ``--out-dir`` (default ``benchmarks/results_v0.3``).
+JSON file under ``--out-dir`` (default ``benchmarks/results_v0.4``).
 
 Cost telemetry: HaikuLM owns a shared cost ledger that is snapshotted to
-``audit/v0.3/cost_snapshot.json`` after every Haiku-touching call so the
-run can be budget-capped.
+``audit/v0.4/cost_snapshot.json`` after every Haiku-touching call so the
+run can be budget-capped at the $30 v0.4 envelope.
 
 Robustness:
 * Per-call timeout. If a call fails (rate limit, network), the row is recorded
@@ -105,9 +108,11 @@ ARM_ALIASES = {
 }
 
 DEFAULT_DOMAINS = ("poetry_gen", "poetry_interp", "aut", "sci_creativity")
-DEFAULT_OUT_DIR = REPO_ROOT / "benchmarks" / "results_v0.3"
-COST_SNAPSHOT_PATH = REPO_ROOT / "audit" / "v0.3" / "cost_snapshot.json"
-INTEGRITY_LOG_PATH = REPO_ROOT / "audit" / "v0.3" / "integrity_probes.jsonl"
+# v0.4 default output dir (Phase 7 powered pilot lands here). Override via
+# --out-dir for backward-compat v0.3 runs targeting benchmarks/results_v0.3.
+DEFAULT_OUT_DIR = REPO_ROOT / "benchmarks" / "results_v0.4"
+COST_SNAPSHOT_PATH = REPO_ROOT / "audit" / "v0.4" / "cost_snapshot.json"
+INTEGRITY_LOG_PATH = REPO_ROOT / "audit" / "v0.4" / "integrity_probes.jsonl"
 
 PARITY_SAMPLER: dict[str, float] = {"tau": 0.9, "top_p": 0.95, "top_k": 50.0}
 
@@ -731,13 +736,23 @@ def main() -> int:
     parser.add_argument(
         "--cost-cap-usd",
         type=float,
-        default=20.0,
-        help="Hard stop on Haiku-arms when ledger exceeds this. 0 disables.",
+        default=30.0,
+        help="Hard stop on Haiku-arms when ledger exceeds this. 0 disables. "
+        "Default 30 = v0.4 powered-pilot cap.",
     )
     parser.add_argument(
         "--pilot",
         action="store_true",
-        help="Pilot preset: n=5/domain, K=3, all four v0.3 arms, $20 cost cap.",
+        help="v0.3 pilot preset: n=5/domain, K=3, all four v0.3 arms, $20 cap.",
+    )
+    parser.add_argument(
+        "--v04-pilot",
+        action="store_true",
+        help="v0.4 powered-pilot preset (Phase 7): n=20/domain × 4 domains, "
+        "all four base arms, K=4, $30 cost cap. The cascade arm's commit-"
+        "policy multiplex (always_draft / always_revise / event_gated / "
+        "learned_gate + oracle) is computed post-hoc at zero extra Haiku "
+        "cost via _multiplex_commit_policies.",
     )
     parser.add_argument(
         "--no-integrity-probe",
@@ -766,6 +781,16 @@ def main() -> int:
             "sci_creativity": 5,
         }
         arms = ARMS_V3
+    if args.v04_pilot:
+        n_map = {
+            "poetry_gen": 20,
+            "poetry_interp": 20,
+            "aut": 20,
+            "sci_creativity": 20,
+        }
+        arms = ARMS_V3
+        if args.K == 4:  # respect explicit user override
+            args.K = 4
 
     embed = Embedder()
     need_local = any(a in arms for a in ARMS_LEGACY)
