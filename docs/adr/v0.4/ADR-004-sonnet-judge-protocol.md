@@ -55,9 +55,9 @@ Negative:
 
 ## Implementation files
 
-- `scripts/run_judge_bridge.py` — re-enabled; reads `benchmarks/results_v0.4/<domain>.json`, draws stratified subset, calls Sonnet, writes `judge.jsonl` and `judge_agreement.json`.
-- `scripts/judge_prompt_v0_4.txt` — frozen judge prompt; sha256 = `<computed at Phase 5>`.
-- `tests/test_judge_bridge_dryrun.py` — synthetic 4-item dry-run test using a `MockJudge` that returns deterministic preferences (no Sonnet call).
+- `scripts/judge_subset.py` — v0.4 OAuth-only bridge; reads `benchmarks/results_v0.4/<domain>.json`, draws a quartile-stratified subset, calls Sonnet via `claude --print --model sonnet`, and writes `judge.jsonl` and `judge_agreement.json`. (The legacy v0.2 bridge `scripts/run_judge_bridge.py` is kept for `paper/v0.3/` reproducibility but is *not* used by v0.4.)
+- `scripts/judge_prompt_v0_4.txt` — frozen judge prompt; sha256 = `5b39ee653b4aa4fe4d3c007f2f0237b9839975c3347679d8a73a56e16e4ac0d9`. Recorded on every JSONL row and in `judge_agreement.json`.
+- `tests/test_judge_bridge_dryrun.py` — 11 tests covering the frozen-prompt sha, position-swap inversion, deterministic dry-run responder, quartile stratification, projected-cost guard, and an end-to-end CLI dry-run that writes a valid 4-row `judge.jsonl` + `judge_agreement.json`.
 - `benchmarks/results_v0.4/judge.jsonl`, `benchmarks/results_v0.4/judge_agreement.json` — Phase 7 outputs.
 
 ## Acceptance gate (Phase 5)
