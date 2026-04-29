@@ -1,28 +1,47 @@
 #!/usr/bin/env python3
-"""PCE v0.2 benchmark driver.
+"""PCE v0.3 benchmark driver: four-arm Haiku matrix with per-item integrity probe.
 
-For each item across the four task domains, run up to four arms:
+Per the v0.3 plan ("no local LLM arm or Sonnet ... same benchmark sample as
+v0.2"), the driver now defaults to a *Haiku-only* four-arm matrix on the
+v0.2 sample (n=20-30 paired). Local arms are kept callable for backward
+compatibility with v0.2 audits but are no longer in the default arm set.
 
-* ``local_bare``     - Qwen2-1.5B-Instruct via raw LM.generate().              (no PCE)
-* ``local_cascade``  - Qwen2-1.5B-Instruct through run_cascade().              (with PCE)
-* ``haiku_bare``     - Claude Haiku via HaikuLM.generate() (single call).      (no PCE)
-* ``haiku_cascade``  - Claude Haiku through run_cascade(lm=HaikuLM).           (with PCE)
+The four v0.3 arms are:
 
-The v0.1 ``claude_haiku`` arm is retained as a backward-compat alias for
-``haiku_bare`` so the v0.1 benchmark script paths still resolve.
+* ``haiku_bare``                - 1 Haiku call with the parity sampler.
+                                  Architecture-free baseline.
+* ``haiku_cascade``             - run_cascade with ``commit_policy="event_gated"``
+                                  and the active-inference uplift (aspect-conditioned
+                                  BMR, Hopfield warm-start, free-energy budget).
+* ``haiku_bare_2K_scorer``      - ``iccha`` with K' = 2K candidates, single pass
+                                  (commit_policy="always_draft"). Controls the
+                                  *extra-compute* confound (H6).
+* ``haiku_generic_revise_2pass`` - ``run_cascade`` with ``commit_policy="always_revise"``
+                                  but ``brief_override`` set to a fixed generic
+                                  creative-revise prompt. Isolates the
+                                  *content* of the brief from the *existence*
+                                  of a revision pass (H7).
 
-Each call's response is scored locally with ``benchmarks.scoring.*`` and the raw
-text + axis dict + composite score is appended to a per-domain JSON file.
+Per-item integrity probe (ADR-001 / Phase 5): before processing every item
+we run :class:`pce.substrate.integrity.IntegrityProbe` and assert
+``passed=True``. Probe results are cached per-(env_hash, flags_hash) so the
+real-time cost is negligible after the first call. Per-item probe rows are
+written to ``audit/v0.3/integrity_probes.jsonl`` for forensics; if any
+probe fails the driver halts unless ``--allow-leakage`` is set.
+
+Each call's response is scored locally with ``benchmarks.scoring.*`` and
+the raw text + axis dict + composite score is appended to a per-domain
+JSON file under ``--out-dir`` (default ``benchmarks/results_v0.3``).
 
 Cost telemetry: HaikuLM owns a shared cost ledger that is snapshotted to
-``audit/cost_ledger.json`` after every Haiku-touching call so the run can be
-budget-capped.
+``audit/v0.3/cost_snapshot.json`` after every Haiku-touching call so the
+run can be budget-capped.
 
 Robustness:
 * Per-call timeout. If a call fails (rate limit, network), the row is recorded
-  with ``error`` set and ``composite=NaN``.
+  with ``error`` set and ``composite=null`` (JSON; in-memory it's None).
 * Resumable: if ``--out-dir`` already contains a file for a domain, skip items
-  whose ``id`` is already present.
+  whose ``id`` is already present for the requested arms.
 """
 from __future__ import annotations
 
@@ -31,7 +50,7 @@ import json
 import sys
 import time
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 SRC = REPO_ROOT / "src"
@@ -46,26 +65,44 @@ from benchmarks import scoring as bench_scoring  # noqa: E402
 from pce.cascade import run_cascade  # noqa: E402
 from pce.substrate.embed import Embedder  # noqa: E402
 from pce.substrate.haiku_lm import HaikuBudgetExceededError, HaikuLM  # noqa: E402
+from pce.substrate.integrity import IntegrityProbe  # noqa: E402
 from pce.substrate.lm import LocalLM  # noqa: E402
 from pce.substrate.lm_protocol import LMProtocol  # noqa: E402
 from pce.types import Constraint  # noqa: E402
 
-# v0.2 arms (default).  ``claude_haiku`` is a v0.1 alias.
-ARMS_V2 = ("local_bare", "local_cascade", "haiku_bare", "haiku_cascade")
-ARMS_V1_ALIASES = {"claude_haiku": "haiku_bare"}
+# v0.3 default Haiku-only four-arm matrix.
+ARMS_V3 = (
+    "haiku_bare",
+    "haiku_cascade",
+    "haiku_bare_2K_scorer",
+    "haiku_generic_revise_2pass",
+)
+# v0.2 / v0.1 arm aliases retained for backward compatibility.
+ARMS_LEGACY = ("local_bare", "local_cascade")
+ARM_ALIASES = {
+    "claude_haiku": "haiku_bare",
+    "haiku_bare_2k": "haiku_bare_2K_scorer",
+    "haiku_bare_2K": "haiku_bare_2K_scorer",
+    "haiku_generic_revise": "haiku_generic_revise_2pass",
+}
 
 DEFAULT_DOMAINS = ("poetry_gen", "poetry_interp", "aut", "sci_creativity")
-# NB: HaikuLM's *persistent* cost ledger is `audit/cost_ledger.json` and is
-# read+written by HaikuLM itself; we must NOT overwrite it here. The driver
-# snapshot below (written for the benchmark report) lives at a different path.
-COST_SNAPSHOT_PATH = REPO_ROOT / "audit" / "cost_snapshot.json"
+DEFAULT_OUT_DIR = REPO_ROOT / "benchmarks" / "results_v0.3"
+COST_SNAPSHOT_PATH = REPO_ROOT / "audit" / "v0.3" / "cost_snapshot.json"
+INTEGRITY_LOG_PATH = REPO_ROOT / "audit" / "v0.3" / "integrity_probes.jsonl"
 
-# Parity sampler -- matches operators.iccha.PARITY_SAMPLER so haiku_bare and
-# haiku_cascade share the same sampler distribution.
 PARITY_SAMPLER: dict[str, float] = {"tau": 0.9, "top_p": 0.95, "top_k": 50.0}
 
+GENERIC_REVISE_BRIEF = (
+    "Revise the previous draft to be more creative, specific, and surprising. "
+    "Add concrete sensory detail, remove cliches, and strengthen the most "
+    "interesting move you can find."
+)
 
-def _build_prompt(domain: str, item: dict[str, Any]) -> tuple[str, str, list[str], list[str], list[str]]:
+
+def _build_prompt(
+    domain: str, item: dict[str, Any]
+) -> tuple[str, str, list[str], list[str], list[str]]:
     """Return (user_prompt, constraint_text, must_avoid, aspects, retrieval_set)."""
     if domain == "poetry_gen":
         prompt = (
@@ -74,40 +111,45 @@ def _build_prompt(domain: str, item: dict[str, Any]) -> tuple[str, str, list[str
             f"Output only the poem.\n"
         )
         constraint = f"a {item['form']} about {item['topic']}"
-        must_avoid = list(item["must_avoid"])
-        aspects: list[str] = []
-        retrieval: list[str] = []
-        return prompt, constraint, must_avoid, aspects, retrieval
+        return prompt, constraint, list(item["must_avoid"]), [], []
     if domain == "poetry_interp":
         prompt = (
-            f"Interpret this line in two short paragraphs, naming each reading:\n\n"
-            f"\"{item['surface']}\"\n\n"
-            f"Reading A:\n"
+            "Interpret this line in two short paragraphs, naming each reading:\n\n"
+            f"\"{item['surface']}\"\n\nReading A:\n"
         )
         constraint = f"two readings of: {item['surface']}"
         return prompt, constraint, [], list(item["aspects"]), list(item["retrieval_set"])
     if domain == "aut":
         prompt = (
             f"List 8 unusual, non-obvious uses of a {item['object']}. "
-            f"Be concrete and specific. Avoid the standard everyday use. "
-            f"Format: one use per line.\n"
+            "Be concrete and specific. Avoid the standard everyday use. "
+            "Format: one use per line.\n"
         )
         constraint = f"unusual, non-obvious uses of a {item['object']}"
-        return prompt, constraint, [f"the standard everyday use of a {item['object']}"], [], []
+        return (
+            prompt,
+            constraint,
+            [f"the standard everyday use of a {item['object']}"],
+            [],
+            [],
+        )
     if domain == "sci_creativity":
         prompt = (
             f"{item['question']} Give a non-obvious explanation in 4-6 sentences, "
-            f"naming at least two different framings. Avoid the textbook one-liner.\n"
+            "naming at least two different framings. Avoid the textbook one-liner.\n"
         )
         constraint = f"non-obvious explanation of: {item['question']}"
-        return prompt, constraint, [
-            f"the standard textbook explanation of {item['question']}",
-        ], list(item.get("framings", [])), []
+        return (
+            prompt,
+            constraint,
+            [f"the standard textbook explanation of {item['question']}"],
+            list(item.get("framings", [])),
+            [],
+        )
     raise ValueError(f"unknown domain: {domain}")
 
 
 def _snapshot_cost_ledger(haiku_lm: HaikuLM | None) -> None:
-    """Write a JSON snapshot of HaikuLM's cost ledger after every Haiku-touching call."""
     if haiku_lm is None:
         return
     rep = haiku_lm.report()
@@ -116,6 +158,35 @@ def _snapshot_cost_ledger(haiku_lm: HaikuLM | None) -> None:
         json.dumps({"haiku": rep, "ts": time.time()}, indent=2),
         encoding="utf-8",
     )
+
+
+def _normalise_arm(arm: str) -> str:
+    return ARM_ALIASES.get(arm, arm)
+
+
+CommitPolicyLit = Literal["event_gated", "always_revise", "always_draft"]
+
+
+def _arm_overrides_for_run_cascade(
+    arm: str, *, K: int
+) -> tuple[int, CommitPolicyLit, str | None]:
+    """Resolve (K_eff, commit_policy, brief_override) for the v0.3 arm dispatch.
+
+    Mirror of :func:`plugin.mcp.server._v3_arm_overrides` so the benchmark
+    driver and the MCP layer share the same arm semantics.
+    """
+    a = _normalise_arm(arm).lower()
+    if a == "haiku_bare_2k_scorer":
+        return (max(1, K) * 2, "always_draft", None)
+    if a == "haiku_generic_revise_2pass":
+        return (K, "always_revise", GENERIC_REVISE_BRIEF)
+    if a == "haiku_cascade":
+        return (K, "event_gated", None)
+    if a in {"haiku_bare", "local_bare"}:
+        return (K, "always_draft", None)
+    if a == "local_cascade":
+        return (K, "event_gated", None)
+    raise ValueError(f"unknown v0.3 arm: {arm}")
 
 
 def _call_local_bare(
@@ -127,26 +198,38 @@ def _call_local_bare(
 
 
 def _call_haiku_bare(
-    prompt: str, *, haiku_lm: HaikuLM, max_tokens: int, seed: int,
+    prompt: str, *, haiku_lm: HaikuLM, max_tokens: int, seed: int
 ) -> tuple[str, dict[str, Any]]:
     started = time.time()
     try:
-        out = haiku_lm.generate(prompt, max_tokens=max_tokens, sampler=PARITY_SAMPLER, seed=seed)
+        out = haiku_lm.generate(
+            prompt, max_tokens=max_tokens, sampler=PARITY_SAMPLER, seed=seed
+        )
     except HaikuBudgetExceededError as e:
-        return "", {"ok": False, "error": f"budget: {e}", "elapsed_s": time.time() - started}
+        return "", {
+            "ok": False,
+            "error": f"budget: {e}",
+            "elapsed_s": time.time() - started,
+        }
     except Exception as e:  # noqa: BLE001
-        return "", {"ok": False, "error": f"{type(e).__name__}: {e}", "elapsed_s": time.time() - started}
+        return "", {
+            "ok": False,
+            "error": f"{type(e).__name__}: {e}",
+            "elapsed_s": time.time() - started,
+        }
+    rep = haiku_lm.report()
     return out.text, {
         "ok": True,
         "elapsed_s": time.time() - started,
-        "haiku_total_usd": float(haiku_lm.report()["ledger_total_usd"]),
-        "haiku_n_calls": int(haiku_lm.report()["ledger_n_calls"]),
+        "haiku_total_usd": float(rep["ledger_total_usd"]),
+        "haiku_n_calls": int(rep["ledger_n_calls"]),
     }
 
 
-def _call_cascade(
-    prompt: str,
+def _call_cascade_arm(
     *,
+    prompt: str,
+    arm: str,
     lm: LMProtocol,
     embed: Embedder,
     constraint_text: str,
@@ -158,8 +241,9 @@ def _call_cascade(
     seed: int,
     haiku_lm: HaikuLM | None,
 ) -> tuple[str, dict[str, Any]]:
-    """Run two-pass-always cascade through ``lm`` (LocalLM or HaikuLM)."""
+    """Run the v0.3 cascade with arm-specific overrides applied."""
     started = time.time()
+    K_eff, commit_policy, brief_override = _arm_overrides_for_run_cascade(arm, K=K)
     constraint = Constraint(
         text=constraint_text,
         embedding=embed.encode(constraint_text),
@@ -171,31 +255,67 @@ def _call_cascade(
             constraint=constraint,
             lm=lm,
             embed=embed,
-            K=K,
+            K=K_eff,
             max_tokens=max_tokens,
             base_seed=seed,
             retrieval_set=retrieval_set,
             aspects=aspects,
+            commit_policy=commit_policy,
+            brief_override=brief_override,
         )
     except HaikuBudgetExceededError as e:
-        return "", {"ok": False, "error": f"budget: {e}", "elapsed_s": time.time() - started}
+        return "", {
+            "ok": False,
+            "error": f"budget: {e}",
+            "elapsed_s": time.time() - started,
+        }
     except Exception as e:  # noqa: BLE001
-        return "", {"ok": False, "error": f"{type(e).__name__}: {e}", "elapsed_s": time.time() - started}
+        return "", {
+            "ok": False,
+            "error": f"{type(e).__name__}: {e}",
+            "elapsed_s": time.time() - started,
+        }
+    aud = state.audit
     meta: dict[str, Any] = {
         "ok": True,
         "elapsed_s": time.time() - started,
+        "K_effective": K_eff,
+        "commit_policy_effective": commit_policy,
+        "brief_override_used": brief_override is not None,
+        "committed": str(state.committed),
         "vimarsa_event": bool(state.vimarsa_event),
+        "vimarsa_event_draft": bool(state.vimarsa_event_draft),
         "novelty": float(state.vimarsa_novelty),
-        "delta_F": float(state.audit.get("delta_F", float("nan"))),
-        "selected_idx": int(state.audit.get("selected_idx", -1)),
-        "two_pass": bool(state.audit.get("two_pass", False)),
-        "revision_differs_from_draft": bool(state.audit.get("revision_differs_from_draft", False)),
+        "delta_F": _coerce_float_or_none(aud.get("delta_F")),
+        "delta_F_draft": _coerce_float_or_none(aud.get("delta_F_draft")),
+        "delta_F_revision": _coerce_float_or_none(aud.get("delta_F_revision")),
+        "selected_idx": int(aud.get("selected_idx", -1)),
+        "two_pass": bool(aud.get("two_pass", False)),
+        "revision_differs_from_draft": bool(
+            aud.get("revision_differs_from_draft", False)
+        ),
+        "surface_draft": str(state.surface_draft or ""),
+        "surface_revision": str(state.surface_revision or ""),
     }
     if haiku_lm is not None:
         rep = haiku_lm.report()
         meta["haiku_total_usd"] = float(rep["ledger_total_usd"])
         meta["haiku_n_calls"] = int(rep["ledger_n_calls"])
     return state.surface or "", meta
+
+
+def _coerce_float_or_none(v: object) -> float | None:
+    """Convert numeric to float; return None for NaN / non-finite. Used by the
+    v0.3 stats ``allow_nan=False`` JSON serialiser pipeline."""
+    if v is None:
+        return None
+    try:
+        f = float(v)  # type: ignore[arg-type]
+    except (TypeError, ValueError):
+        return None
+    if not np.isfinite(f):
+        return None
+    return f
 
 
 SCORERS = {
@@ -207,9 +327,8 @@ SCORERS = {
 
 
 def _domain_items(domain: str, n: int | None = None) -> list[dict[str, Any]]:
-    out: list[dict[str, Any]]
     if domain == "poetry_gen":
-        out = [dict(x) for x in bench_items.POETRY_GEN]
+        out: list[dict[str, Any]] = [dict(x) for x in bench_items.POETRY_GEN]
     elif domain == "poetry_interp":
         out = [dict(x) for x in bench_items.POETRY_INTERP]
     elif domain == "aut":
@@ -223,21 +342,55 @@ def _domain_items(domain: str, n: int | None = None) -> list[dict[str, Any]]:
     return out
 
 
-def _load_existing(out_path: Path) -> dict[str, dict[str, dict[str, Any]]]:
+def _load_existing(out_path: Path) -> dict[str, dict[str, Any]]:
     if not out_path.exists():
         return {}
     data = json.loads(out_path.read_text(encoding="utf-8"))
-    rows: dict[str, dict[str, dict[str, Any]]] = data.get("rows", {})
+    rows: dict[str, dict[str, Any]] = data.get("rows", {})
     return rows
 
 
-def _save(out_path: Path, rows: dict[str, dict[str, dict[str, Any]]], domain: str) -> None:
+def _save(out_path: Path, rows: dict[str, dict[str, Any]], domain: str) -> None:
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    out_path.write_text(json.dumps({"domain": domain, "rows": rows}, indent=2, ensure_ascii=False), encoding="utf-8")
+    payload = {"domain": domain, "version": "v0.3", "rows": rows}
+    out_path.write_text(
+        json.dumps(payload, indent=2, ensure_ascii=False, allow_nan=False),
+        encoding="utf-8",
+    )
 
 
-def _normalise_arm(arm: str) -> str:
-    return ARMS_V1_ALIASES.get(arm, arm)
+def _per_item_integrity_probe(
+    probe: IntegrityProbe,
+    *,
+    haiku_lm: HaikuLM,
+    domain: str,
+    item_id: str,
+    allow_leakage: bool,
+) -> dict[str, Any]:
+    """Run + log a per-item :class:`IntegrityProbe`. Halts the run if the probe
+    fails unless ``allow_leakage`` is True (in which case the failing rows are
+    still recorded and the run continues)."""
+    res = probe.run(haiku_lm)  # cached unless env/flags change
+    record = {
+        "domain": domain,
+        "item_id": item_id,
+        "passed": bool(res.passed),
+        "leak_matches": list(res.leak_matches),
+        "positive_hint": bool(res.positive_hint),
+        "env_hash": res.env_hash,
+        "flags_hash": res.flags_hash,
+        "probe_at_iso": res.probe_at_iso,
+        "ts": time.time(),
+    }
+    INTEGRITY_LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with INTEGRITY_LOG_PATH.open("a", encoding="utf-8") as f:
+        f.write(json.dumps(record, ensure_ascii=False) + "\n")
+    if not res.passed and not allow_leakage:
+        raise SystemExit(
+            f"[bench] integrity probe FAILED on {domain}/{item_id}: "
+            f"leaks={res.leak_matches}; pass --allow-leakage to ignore"
+        )
+    return record
 
 
 def run_domain(
@@ -253,25 +406,57 @@ def run_domain(
     lm: LocalLM | None,
     haiku_lm: HaikuLM | None,
     cost_cap_usd: float | None,
+    integrity_probe: IntegrityProbe | None,
+    allow_leakage: bool,
 ) -> int:
     items = _domain_items(domain, n=n)
     rows = _load_existing(out_path)
     scorer = SCORERS[domain]
-    print(f"[bench] domain={domain}  items={len(items)}  arms={list(arms)}", flush=True)
+    print(
+        f"[bench] domain={domain}  items={len(items)}  arms={list(arms)}",
+        flush=True,
+    )
     for i, item in enumerate(items):
         item_id = item["id"]
         item_rows = rows.setdefault(item_id, {"item": item})
-        prompt, constraint_text, must_avoid, aspects, retrieval = _build_prompt(domain, item)
+        prompt, constraint_text, must_avoid, aspects, retrieval = _build_prompt(
+            domain, item
+        )
+        if integrity_probe is not None and haiku_lm is not None:
+            ip_record = _per_item_integrity_probe(
+                integrity_probe,
+                haiku_lm=haiku_lm,
+                domain=domain,
+                item_id=item_id,
+                allow_leakage=allow_leakage,
+            )
+            probes_list = item_rows.setdefault("_integrity_probes", [])
+            assert isinstance(probes_list, list)
+            probes_list.append(
+                {
+                    "passed": ip_record["passed"],
+                    "leak_matches": ip_record["leak_matches"],
+                    "env_hash": ip_record["env_hash"],
+                    "flags_hash": ip_record["flags_hash"],
+                }
+            )
         for raw_arm in arms:
             arm = _normalise_arm(raw_arm)
             if arm in item_rows:
                 continue
-            if cost_cap_usd is not None and haiku_lm is not None and arm.startswith("haiku"):
-                if float(haiku_lm.report()["ledger_total_usd"]) >= cost_cap_usd:
-                    print(f"  [{domain}] {item_id} :: {arm} SKIPPED (cost cap reached)", flush=True)
-                    item_rows[arm] = {"skipped": True, "reason": "cost_cap"}
-                    _save(out_path, rows, domain)
-                    continue
+            if (
+                cost_cap_usd is not None
+                and haiku_lm is not None
+                and arm.startswith("haiku")
+                and float(haiku_lm.report()["ledger_total_usd"]) >= cost_cap_usd
+            ):
+                print(
+                    f"  [{domain}] {item_id} :: {arm} SKIPPED (cost cap reached)",
+                    flush=True,
+                )
+                item_rows[arm] = {"skipped": True, "reason": "cost_cap"}
+                _save(out_path, rows, domain)
+                continue
             print(f"  [{domain}] {item_id} :: {arm} ...", flush=True)
             text = ""
             meta: dict[str, Any] = {}
@@ -282,8 +467,9 @@ def run_domain(
                 )
             elif arm == "local_cascade":
                 assert lm is not None
-                text, meta = _call_cascade(
-                    prompt,
+                text, meta = _call_cascade_arm(
+                    prompt=prompt,
+                    arm=arm,
                     lm=lm,
                     embed=embed,
                     constraint_text=constraint_text,
@@ -298,13 +484,21 @@ def run_domain(
             elif arm == "haiku_bare":
                 assert haiku_lm is not None
                 text, meta = _call_haiku_bare(
-                    prompt, haiku_lm=haiku_lm, max_tokens=max_tokens, seed=seed + i,
+                    prompt,
+                    haiku_lm=haiku_lm,
+                    max_tokens=max_tokens,
+                    seed=seed + i,
                 )
                 _snapshot_cost_ledger(haiku_lm)
-            elif arm == "haiku_cascade":
+            elif arm in {
+                "haiku_cascade",
+                "haiku_bare_2K_scorer",
+                "haiku_generic_revise_2pass",
+            }:
                 assert haiku_lm is not None
-                text, meta = _call_cascade(
-                    prompt,
+                text, meta = _call_cascade_arm(
+                    prompt=prompt,
+                    arm=arm,
                     lm=haiku_lm,
                     embed=embed,
                     constraint_text=constraint_text,
@@ -321,7 +515,9 @@ def run_domain(
                 raise ValueError(arm)
             if text:
                 score = scorer(text, item=item, embed=embed)
-                composite = float(score.composite) if not np.isnan(score.composite) else None
+                composite = (
+                    float(score.composite) if not np.isnan(score.composite) else None
+                )
                 axes = score.axes
             else:
                 composite = None
@@ -330,6 +526,8 @@ def run_domain(
                 "text": text,
                 "axes": axes,
                 "composite": composite,
+                "n_chars": len(text),
+                "n_words": len(text.split()) if text else 0,
                 "meta": meta,
             }
             _save(out_path, rows, domain)
@@ -340,7 +538,9 @@ def run_domain(
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--domains", nargs="+", default=list(DEFAULT_DOMAINS),
+        "--domains",
+        nargs="+",
+        default=list(DEFAULT_DOMAINS),
         help="One or more domain ids",
     )
     parser.add_argument("--n-poetry-gen", type=int, default=15)
@@ -348,22 +548,35 @@ def main() -> int:
     parser.add_argument("--n-aut", type=int, default=10)
     parser.add_argument("--n-sci-creativity", type=int, default=10)
     parser.add_argument(
-        "--arms", nargs="+", default=list(ARMS_V2),
-        help=f"Subset of: {ARMS_V2 + tuple(ARMS_V1_ALIASES.keys())}",
+        "--arms",
+        nargs="+",
+        default=list(ARMS_V3),
+        help=f"Subset of: {ARMS_V3 + ARMS_LEGACY + tuple(ARM_ALIASES.keys())}",
     )
     parser.add_argument("--K", type=int, default=4)
     parser.add_argument("--max-tokens", type=int, default=200)
     parser.add_argument("--seed", type=int, default=4242)
+    parser.add_argument("--out-dir", type=Path, default=DEFAULT_OUT_DIR)
     parser.add_argument(
-        "--out-dir", type=Path, default=REPO_ROOT / "benchmarks" / "results_v2"
-    )
-    parser.add_argument(
-        "--cost-cap-usd", type=float, default=20.0,
+        "--cost-cap-usd",
+        type=float,
+        default=20.0,
         help="Hard stop on Haiku-arms when ledger exceeds this. 0 disables.",
     )
     parser.add_argument(
-        "--pilot", action="store_true",
-        help="Pilot preset: n=8 poetry, 6 aut/sci, K=4, max_tokens=200, all four arms.",
+        "--pilot",
+        action="store_true",
+        help="Pilot preset: n=5/domain, K=3, all four v0.3 arms, $20 cost cap.",
+    )
+    parser.add_argument(
+        "--no-integrity-probe",
+        action="store_true",
+        help="Skip per-item IntegrityProbe (use only for debugging the driver itself).",
+    )
+    parser.add_argument(
+        "--allow-leakage",
+        action="store_true",
+        help="Continue even if IntegrityProbe detects leakage; default halts.",
     )
     args = parser.parse_args()
 
@@ -375,18 +588,38 @@ def main() -> int:
         "sci_creativity": args.n_sci_creativity,
     }
     if args.pilot:
-        # Pilot scope: n=20 paired total (5 per domain), K=3, max_tokens=150.
-        # This sits inside the SPEC_v0.2 "n=20-30" envelope and finishes
-        # within the ~$15 / ~75-min budget on a laptop CPU/MPS substrate.
-        n_map = {"poetry_gen": 5, "poetry_interp": 5, "aut": 5, "sci_creativity": 5}
-        arms = ARMS_V2
+        n_map = {
+            "poetry_gen": 5,
+            "poetry_interp": 5,
+            "aut": 5,
+            "sci_creativity": 5,
+        }
+        arms = ARMS_V3
 
     embed = Embedder()
-    need_local = any(a in arms for a in ("local_bare", "local_cascade"))
-    need_haiku = any(a in arms for a in ("haiku_bare", "haiku_cascade"))
+    need_local = any(a in arms for a in ARMS_LEGACY)
+    need_haiku = any(a.startswith("haiku") for a in arms)
     lm = LocalLM() if need_local else None
     haiku_lm = HaikuLM() if need_haiku else None
     cost_cap = args.cost_cap_usd if args.cost_cap_usd > 0 else None
+    integrity_probe = (
+        IntegrityProbe()
+        if (need_haiku and not args.no_integrity_probe)
+        else None
+    )
+
+    if integrity_probe is not None and haiku_lm is not None:
+        boot = integrity_probe.run(haiku_lm)
+        print(
+            f"[bench] integrity_probe@boot passed={boot.passed} "
+            f"leaks={boot.leak_matches} positive_hint={boot.positive_hint}",
+            flush=True,
+        )
+        if not boot.passed and not args.allow_leakage:
+            raise SystemExit(
+                "[bench] BOOT integrity probe FAILED; aborting. "
+                "Pass --allow-leakage to override."
+            )
 
     for domain in args.domains:
         out_path = args.out_dir / f"{domain}.json"
@@ -402,11 +635,17 @@ def main() -> int:
             lm=lm,
             haiku_lm=haiku_lm,
             cost_cap_usd=cost_cap,
+            integrity_probe=integrity_probe,
+            allow_leakage=args.allow_leakage,
         )
     if haiku_lm is not None:
         _snapshot_cost_ledger(haiku_lm)
         rep = haiku_lm.report()
-        print(f"[bench] haiku cost: ${float(rep['ledger_total_usd']):.4f} over {int(rep['ledger_n_calls'])} calls")
+        print(
+            f"[bench] haiku cost: ${float(rep['ledger_total_usd']):.4f} over "
+            f"{int(rep['ledger_n_calls'])} calls",
+            flush=True,
+        )
     return 0
 
 
