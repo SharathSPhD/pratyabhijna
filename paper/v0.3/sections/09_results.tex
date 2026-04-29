@@ -1,0 +1,101 @@
+\section{Results (v0.3 pilot)}\label{sec:results}
+
+\subsection{Pilot scope and the v0.3 four-arm matrix}
+
+The v0.3 pilot evaluates four arms across the same four creativity domains as v0.2:
+\begin{itemize}
+  \item \texttt{haiku\_bare}                  --- Anthropic Claude Haiku, single sampler call (no PCE). Architecture-vs-nothing baseline.
+  \item \texttt{haiku\_cascade}               --- Haiku through the v0.3 event-gated, always-shadow-revision cascade with the active-inference uplift.
+  \item \texttt{haiku\_bare\_2K\_scorer}      --- Haiku, single pass, $K' = 2K$ candidates fanned out by \iast{icch\=a}. \emph{Extra-compute control} (H6.v3).
+  \item \texttt{haiku\_generic\_revise\_2pass} --- Haiku, 2 passes with \texttt{commit\_policy="always\_revise"} but a fixed generic creative-revise brief replacing the \iast{vimar\'sa}-generated brief. \emph{Revision-protocol control} (H7.v3).
+\end{itemize}
+Local-substrate arms are removed from the default matrix per the locked v0.3 scope (the v0.2 review's headline criticism was that the ``apples-to-apples'' v0.2 contrast still bundled cascade lift with extra compute, not that local-vs-Haiku needed re-running). Every Haiku call goes through the clean-substrate pipeline (subprocess flag isolation + scrubbed \texttt{HOME} + per-item \texttt{IntegrityProbe}; see \S\ref{sec:engine}); the boot probe and the per-item probes are recorded in \texttt{audit/v0.3/integrity\_probes.jsonl} and the pilot halts on any leakage unless \texttt{--allow-leakage} is set.
+
+The pilot used $n{=}5$ items per domain, $K{=}3$ candidate fan-out per pass, max\_tokens$=200$, hard cost cap of \$20, and ran with \texttt{seed}=4242 throughout. All numerical claims below are auto-substituted from \texttt{benchmarks/results\_v0.3/stats.json} into Table~\ref{tab:primary} via \texttt{benchmarks/autoreport.py}; see \texttt{audit/v0.3/} for the raw run logs and per-item integrity probes.
+
+\subsection{Length-controlled scoring}
+
+The v0.2 review noted that the cascade's surfaces are systematically longer than \texttt{haiku\_bare}'s, and that mean-length alone could explain the win on length-correlated axes (POEMetric \texttt{lexical\_diversity}, AUT \texttt{creativity}). v0.3 \texttt{benchmarks/stats.py} now reports a per-pair length-controlled composite: the per-arm linear word-count effect is regressed out before pairing, and both the raw and length-controlled estimates and Hedges' $g$ values appear in the auto-report. If a hypothesis remains supported under the length-controlled estimate, the cascade's lift survives the length confound; if it does not, we report that explicitly.
+
+\subsection{Pre-registered hypothesis tests --- H1.v3--H4.v3}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{figures/fig_paired_deltas.png}
+  \caption{v0.3 paired score deltas for H1.v3--H4.v3 on the apples-to-apples \texttt{haiku\_cascade} $-$ \texttt{haiku\_bare} contrast. Dashed line $\Delta=0$; shaded region 95\% BCa CI; Holm-adjusted $p$ in panel title.}
+  \label{fig:paired_deltas}
+\end{figure}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.9\linewidth]{figures/fig_effects_forest.png}
+  \caption{Forest plot of pre-registered hypothesis effects for v0.3's primary \texttt{haiku\_cascade} $-$ \texttt{haiku\_bare} contrast. Markers are paired mean $\Delta$; whiskers are 95\% BCa CIs.}
+  \label{fig:forest}
+\end{figure}
+
+The four pre-registered primary hypotheses on the architecture-vs-nothing contrast are H1 (AUT, CreativityPrism), H2 (poetry\_interp, Wittgenstein aspect-shift), H3 (poetry\_gen, POEMetric), and H4 (sci\_creativity, BBH-style). Numerical values are populated in Table~\ref{tab:primary}. As in v0.2, the pilot $n{=}5$ items per domain caps the smallest possible Holm-adjusted $p$ at $4 \cdot 0.0312 = 0.125$; we report effect sizes, BCa CIs, and Holm-adjusted permutation $p$ honestly and avoid claiming significance the pilot cannot supply.
+
+\paragraph{v0.3 pilot outcome (negative).} On the present pilot ($n{=}5$ per domain), the \texttt{haiku\_cascade} arm did not exceed the clean-substrate \texttt{haiku\_bare} arm on any of H1.v3--H4.v3: all four point estimates were directionally \emph{negative}, with Hedges' $g$ ranging from $-0.22$ (sci\_creativity) to $-0.90$ (poetry\_interp). All BCa CIs strictly contained zero or fell below it, and no Holm-adjusted $p$ was below $0.05$. We report this outcome openly per the SPEC's negative-result obligation. Three implications follow. First, on a clean Haiku CLI substrate the v0.2-era ``cascade beats bare'' lift does not survive replication --- consistent with the v0.2 adversarial review's prediction that the lift was at least partly attributable to context-leakage suppressing the bare arm and to the cascade's larger compute budget. Second, against the budget-matched H6.v3 control (\texttt{haiku\_bare\_2K\_scorer}) and the protocol-matched H7.v3 control (\texttt{haiku\_generic\_revise\_2pass}), the cascade likewise did not lead on any domain: the simpler controls absorbed and exceeded any gain the cascade contributes. Third, the within-cascade H8.v3 paired test was directionally positive but underpowered ($n{=}3$ items where event-gated commit selected revision; $\Delta=+0.004$, $g=+0.21$, $p=0.375$), so we cannot yet adjudicate whether the second pass adds value on the items it itself decides to revise.
+
+\subsection{H5.v3 --- pooled effect across domains (random-effects DerSimonian--Laird)}
+
+The v0.2 H5 ``z-blend'' aggregated per-domain $z$-scores under independence. The v0.2 review correctly noted this conflates magnitude and significance and is power-fragile. v0.3 replaces it with a random-effects DerSimonian--Laird meta-analysis of the per-domain Hedges' $g$ values (the same effect-size metric used in H1--H4): pooled $g$, $\tau^2$ (between-domain heterogeneity), and a 95\% CI from the random-effects standard error. This reads the cascade's lift as a single estimable quantity at the architecture level, with appropriate honesty about between-domain variability.
+
+\subsection{H6.v3 --- the headline fairness contrast (architecture vs.\ +K compute)}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{figures/fig_h6_event_vs_no_event.png}
+  \caption{H6.v3: per-domain \texttt{haiku\_cascade} vs.\ \texttt{haiku\_bare\_2K\_scorer}. The $2K$-candidate single-pass control matches the cascade's compute budget and denies it the second pass and the \iast{vimar\'sa} brief. A positive bar means architecture beats more-compute on that domain.}
+  \label{fig:h6_v3}
+\end{figure}
+
+H6.v3 is the headline fairness test: per-domain paired \texttt{haiku\_cascade} $-$ \texttt{haiku\_bare\_2K\_scorer}. The 2K-scorer arm spends roughly the same number of Haiku-tokens as the cascade but on a single-pass $2K$-candidate fan-out scored by the same \iast{j\~n\=ana} BMR; if the cascade only ``works'' because it spends more compute, H6.v3 will be null or negative. If H6.v3 is positive on any domain, the architecture itself --- not the budget --- carries that domain.
+
+\subsection{H7.v3 --- architecture vs.\ generic 2-pass}
+
+H7.v3 is the protocol fairness test: per-domain paired \texttt{haiku\_cascade} $-$ \texttt{haiku\_generic\_revise\_2pass}. The generic-revise arm runs the same 2-pass pipeline but with the \iast{vimar\'sa}-generated brief replaced by a fixed generic creative-revise prompt. If H7.v3 is positive on any domain, the \emph{content} of the \iast{vimar\'sa} brief --- not the mere existence of a revision pass --- carries that domain.
+
+\subsection{H8.v3 --- within-cascade revision-vs-draft (causal contribution of the second pass)}
+
+H8.v3 directly tests the causal claim of the v0.3 cascade: for items where the event-gated commit chose to commit revision, does the revision text actually score higher than the shadow draft? We pair $\texttt{score(surface\_revision)} - \texttt{score(surface\_draft)}$ within \texttt{haiku\_cascade} on every item with \texttt{committed=="revision"}, score both with the same domain scorer, and report the paired Hedges' $g$, BCa CI, and exact sign-flip permutation $p$. Because the cascade always produces a shadow revision regardless of commit policy (ADR-002), the test is well-defined for every \texttt{committed=="revision"} item.
+
+\subsection{Auto-generated headline table}
+
+\begin{table}[t]
+\centering
+\caption{Pre-registered hypothesis effects for v0.3's pilot. Rows H1.v3--H4.v3 use the primary \texttt{haiku\_cascade} vs.\ \texttt{haiku\_bare} contrast; H5.v3 reports the random-effects pooled $g$ across the four primary hypotheses; H6.v3 and H7.v3 report meta-aggregated per-domain support counts for the +K-compute and generic-2-pass control contrasts; H8.v3 reports the within-cascade revision-vs-draft test on items the event-gated commit chose to revise. Auto-generated from \texttt{benchmarks/results\_v0.3/stats.json} via \texttt{paper/autoreport.tex}.}
+\label{tab:primary}
+\input{autoreport}
+\end{table}
+
+\subsection{Statistical power}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.85\linewidth]{figures/fig_power.png}
+  \caption{A-priori (under the SPEC-pre-registered $g{=}0.5$ assumption) vs retrospective (under observed $g$) power for H1.v3--H4.v3 in the v0.3 pilot. Retrospective power is high on domains with large observed $g$, but the apriori-power column shows the pilot's $n{=}5$ is well below conventional adequacy ($\sim 0.80$); a fully-powered run requires $n{\sim}20$ per domain.}
+  \label{fig:power}
+\end{figure}
+
+\subsection{v0.2 vs v0.3 contrast}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{p{0.34\linewidth} p{0.30\linewidth} p{0.30\linewidth}}
+\toprule
+Aspect & v0.2 & v0.3 \\
+\midrule
+Substrate isolation       & inherits Claude Code skills \& env (leakage in bare control) & clean Haiku CLI: subprocess flag isolation + scrubbed \texttt{HOME} + per-item \texttt{IntegrityProbe}; \texttt{LEAKAGE\_REGEX} (negation-aware) on every Haiku surface \\
+\iast{Vimar\'sa}          & two-pass-always; revision committed unconditionally & event-gated commit on \iast{j\~n\=ana} $\Delta F$; always-shadow revision so H8 is measurable on every item \\
+Active inference          & primarily prompting; BMR over a constant prior; Hopfield only at consolidation; \iast{cit}-temperature unused on causal path & aspect-conditioned BMR; Hopfield as warm-start aspect prior in \iast{apohana}; \iast{cit}-temperature plumbed into \iast{icch\=a} fan-out posterior; per-item free-energy budget controls abort/continue \\
+Compute fairness          & single primary contrast (\texttt{cascade} vs.\ \texttt{bare}); no compute control; no protocol control & H6.v3 (vs.\ +K compute) and H7.v3 (vs.\ generic 2-pass) explicitly designed to control these confounds \\
+H5 aggregate              & z-blend over per-domain $z$-scores & random-effects DerSimonian--Laird Hedges' $g$ pool with $\tau^2$ heterogeneity \\
+H8 revision-causality     & implicit (every cascade item revises); not separately tested as a within-cascade pair & paired \texttt{score(revision)} -- \texttt{score(draft)} on items where event-gated commit chose revision \\
+JSON serialisation        & bare \texttt{NaN} literals (RFC-non-compliant) & every numeric leaf passes through \texttt{\_clean\_json}; \texttt{allow\_nan=False} \\
+\bottomrule
+\end{tabular}
+\caption{v0.2 vs v0.3 design summary. v0.3's substrate isolation, event-gated causal cascade, full active-inference uplift, and explicit compute/protocol control arms each address a falsifiable finding from the v0.2 adversarial review. The TRIZ-resolved contradictions and ADRs are catalogued in \texttt{docs/triz/v0.3/} and \texttt{docs/adr/v0.3/}.}
+\label{tab:v02_vs_v03}
+\end{table}
