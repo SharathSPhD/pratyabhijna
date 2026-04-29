@@ -1,11 +1,21 @@
-"""Pratyabhijna Creative Engine - MCP server (v0.2).
+"""Pratyabhijna Creative Engine - MCP server (v0.3).
 
 Exposes the seven cascade operators, the cascade orchestrator, consolidation
-routines, and a handful of audit/diagnostic utilities. v0.2 (ADR-001 / ADR-004)
-adds a pluggable substrate so the cascade can run against either the local
-Qwen2-1.5B (`arm="local"`) or Anthropic Haiku via the `claude` CLI
-(`arm="haiku"`); the new `pce_cascade` tool exposes that switch. All v0.1 tool
-names are preserved for backward compatibility.
+routines, and a handful of audit/diagnostic utilities. v0.3 (ADR-001 .. ADR-005)
+adds:
+
+* a clean Haiku CLI substrate (subprocess flag + scrubbed HOME isolation;
+  see ``haiku_clean_substrate_probe`` for the live integrity probe);
+* event-gated, always-shadow-revision cascade (``pce_cascade`` now takes
+  ``commit_policy`` and ``cit_temperature``);
+* two new control arms in ``_resolve_arm`` -- ``haiku_bare_2K`` and
+  ``haiku_generic_revise`` -- for the four-arm benchmark fairness contrast;
+* a per-cascade Hopfield ālayavijñāna with introspection via the new
+  ``hopfield_state`` tool (the ``HopfieldStore`` from
+  ``pce.active_inference.hopfield``, distinct from the legacy
+  v0.1 store under ``pce.substrate.hopfield``).
+
+All v0.1 / v0.2 tool names are preserved for backward compatibility.
 
 Substrate singletons (LocalLM, HaikuLM, Embedder, HopfieldStore) are held as
 process-level state so each model is loaded only once per session.
@@ -34,7 +44,7 @@ import os
 import sys
 import time
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 SRC = REPO_ROOT / "src"
@@ -44,6 +54,7 @@ if str(SRC) not in sys.path:
 import numpy as np  # noqa: E402
 from mcp.server.fastmcp import FastMCP  # noqa: E402
 
+from pce.active_inference.hopfield import HopfieldStore as ActiveHopfieldStore  # noqa: E402
 from pce.cascade import run_cascade  # noqa: E402
 from pce.consolidation.sleep import (  # noqa: E402
     is_consolidated,
@@ -61,6 +72,7 @@ from pce.operators.vimarsa import vimarsa as vimarsa_op  # noqa: E402
 from pce.substrate.embed import Embedder  # noqa: E402
 from pce.substrate.haiku_lm import HaikuConfig, HaikuLM  # noqa: E402
 from pce.substrate.hopfield import HopfieldStore  # noqa: E402
+from pce.substrate.integrity import IntegrityProbe  # noqa: E402
 from pce.substrate.lm import LMConfig, LocalLM  # noqa: E402
 from pce.substrate.lm_protocol import LMProtocol  # noqa: E402
 from pce.types import Constraint  # noqa: E402
@@ -71,7 +83,15 @@ _LM: LocalLM | None = None
 _HAIKU: HaikuLM | None = None
 _EMBED: Embedder | None = None
 _HOPFIELD: HopfieldStore | None = None
+_ACTIVE_HOPFIELD: ActiveHopfieldStore | None = None
+_INTEGRITY_PROBE: IntegrityProbe | None = None
 _AUDIT_PATH = REPO_ROOT / "audit" / "phase8" / "mcp_calls.jsonl"
+
+GENERIC_REVISE_BRIEF = (
+    "Revise the previous draft to be more creative, specific, and surprising. "
+    "Add concrete sensory detail, remove cliches, and strengthen the most "
+    "interesting move you can find."
+)
 
 
 def _get_lm() -> LocalLM:
@@ -109,17 +129,62 @@ def _resolve_arm(arm: str) -> tuple[str, LMProtocol]:
     """Map ``arm`` argument to a substrate. Accepts shortforms and long forms.
 
     ``"local"``, ``"local_bare"``, ``"local_cascade"`` -> LocalLM.
-    ``"haiku"``, ``"haiku_bare"``, ``"haiku_cascade"``  -> HaikuLM.
+    ``"haiku"``, ``"haiku_bare"``, ``"haiku_cascade"``,
+    ``"haiku_bare_2K"``, ``"haiku_generic_revise"`` -> HaikuLM (the cascade
+    entry point branches on arm to wire the right ``commit_policy`` /
+    K multiplier / brief override per ADR-002 / Phase 7 driver design).
     """
     a = (arm or "local").strip().lower()
     if a in {"local", "local_bare", "local_cascade", "qwen", "qwen2"}:
         return "local", _get_lm()
-    if a in {"haiku", "haiku_bare", "haiku_cascade", "claude_haiku"}:
+    if a in {
+        "haiku",
+        "haiku_bare",
+        "haiku_cascade",
+        "haiku_bare_2k",
+        "haiku_bare_2k_scorer",
+        "haiku_generic_revise",
+        "haiku_generic_revise_2pass",
+        "claude_haiku",
+    }:
         return "haiku", _get_haiku()
     raise ValueError(
         f"unknown arm={arm!r}; expected one of: local, haiku, "
-        "local_bare, local_cascade, haiku_bare, haiku_cascade"
+        "local_bare, local_cascade, haiku_bare, haiku_cascade, "
+        "haiku_bare_2K, haiku_generic_revise"
     )
+
+
+CommitPolicyLit = Literal["event_gated", "always_revise", "always_draft"]
+
+
+def _v3_arm_overrides(
+    arm: str,
+    *,
+    K: int,
+    commit_policy: str | None,
+) -> tuple[int, CommitPolicyLit, str | None]:
+    """Resolve (K, commit_policy, brief_override) for v0.3 control arms.
+
+    The benchmark driver normally passes ``arm="haiku_cascade"`` and lets
+    ``commit_policy`` default to ``"event_gated"``. The two new control
+    arms force their own protocol so the driver does not need to know
+    the wiring details.
+    """
+    a = (arm or "").strip().lower()
+    if a in {"haiku_bare_2k", "haiku_bare_2k_scorer"}:
+        return (max(1, K) * 2, "always_draft", None)
+    if a in {"haiku_generic_revise", "haiku_generic_revise_2pass"}:
+        return (K, "always_revise", GENERIC_REVISE_BRIEF)
+    if a in {"haiku_bare"}:
+        return (K, "always_draft", None)
+    cp = commit_policy or "event_gated"
+    if cp not in {"event_gated", "always_revise", "always_draft"}:
+        raise ValueError(
+            f"_v3_arm_overrides: commit_policy must be 'event_gated'|'always_revise'|"
+            f"'always_draft'; got {cp!r}"
+        )
+    return (K, cp, None)  # type: ignore[return-value]
 
 
 def _get_embed() -> Embedder:
@@ -134,6 +199,32 @@ def _get_hopfield() -> HopfieldStore:
     if _HOPFIELD is None:
         _HOPFIELD = HopfieldStore(dim=_get_embed().dim)
     return _HOPFIELD
+
+
+def _get_active_hopfield(_embed: Embedder) -> ActiveHopfieldStore:
+    """Lazy-load the v0.3 active-inference Hopfield ālayavijñāna.
+
+    Distinct from the legacy v0.1 ``_HOPFIELD`` (which lives under
+    ``pce.substrate.hopfield`` and powers the v0.1 ``hopfield_store`` /
+    ``hopfield_recall`` MCP tools). This is the storehouse the v0.3
+    cascade reads (warm-start aspect prior in apohana) and writes
+    (vimarsa.consolidate at commit time). The MCP-process store uses a
+    single shared domain (``"mcp_session"``) so cross-prompt continuity
+    works for any MCP caller; the benchmark driver creates per-domain
+    stores instead.
+    """
+    global _ACTIVE_HOPFIELD
+    if _ACTIVE_HOPFIELD is None:
+        _ACTIVE_HOPFIELD = ActiveHopfieldStore(domain="mcp_session")
+    return _ACTIVE_HOPFIELD
+
+
+def _get_integrity_probe() -> IntegrityProbe:
+    """Singleton :class:`IntegrityProbe` so cached per-(env,flags) results are reused."""
+    global _INTEGRITY_PROBE
+    if _INTEGRITY_PROBE is None:
+        _INTEGRITY_PROBE = IntegrityProbe()
+    return _INTEGRITY_PROBE
 
 
 def _audit(tool: str, args: dict[str, Any], result_summary: dict[str, Any]) -> None:
@@ -277,11 +368,19 @@ def jnana(
     apoha = np.array(apoha_scores, dtype=np.float32)
     anan = np.array(ananda_scores, dtype=np.float32)
     cands: tuple[object, ...] = tuple(range(len(candidate_texts)))
+    valid_targets = {"halve", "single", "custom", "aspect_conditioned"}
+    if reduction_target not in valid_targets:
+        raise ValueError(
+            f"jnana: reduction_target must be one of {sorted(valid_targets)}; got {reduction_target!r}"
+        )
+    rt: Literal["halve", "single", "custom", "aspect_conditioned"] = (
+        reduction_target  # type: ignore[assignment]
+    )
     sel, dF, post = jnana_op(
         cands,
         apoha,
         anan,
-        reduction_target=reduction_target,  # type: ignore[arg-type]
+        reduction_target=rt,
         lambda_a=lambda_a,
         lambda_p=lambda_p,
     )
@@ -315,9 +414,15 @@ def kriya(
         logp=0.0,
         embedding=embed.encode(selected_text),
     )
+    valid_render_modes = {"verbatim", "polish", "claude_polish"}
+    if render_mode not in valid_render_modes:
+        raise ValueError(
+            f"kriya: render_mode must be one of {sorted(valid_render_modes)}; got {render_mode!r}"
+        )
+    rm: Literal["verbatim", "polish", "claude_polish"] = render_mode  # type: ignore[assignment]
     surface = kriya_op(
         cand,
-        render_mode=render_mode,  # type: ignore[arg-type]
+        render_mode=rm,
         lm=_get_lm() if render_mode == "polish" else None,
         embed=embed if render_mode == "polish" else None,
     )
@@ -374,11 +479,12 @@ def cascade(
     render_mode: str = "verbatim",
     bypass_vimarsa: bool = False,
 ) -> dict[str, Any]:
-    """Run the full v0.2 two-pass-always cascade against the local Qwen2 substrate.
+    """Run the full cascade against the local Qwen2 substrate (v0.1-compatible alias).
 
-    For the four-arm v0.2 setup (`local_bare`, `local_cascade`, `haiku_bare`,
-    `haiku_cascade`) use :func:`pce_cascade(arm=...)` instead; this tool is the
-    drop-in v0.1 replacement that always runs `local_cascade`.
+    Kept for backward compatibility with v0.1 / v0.2 callers. New code should
+    call :func:`pce_cascade` directly with ``arm="local"`` (or any of the
+    v0.3 ``haiku*`` arms) and explicit ``commit_policy``. ``bypass_vimarsa``
+    here maps to ``commit_policy="always_draft"`` (legacy alias).
     """
     embed = _get_embed()
     constraint = Constraint(
@@ -399,7 +505,7 @@ def cascade(
         render_mode=render_mode,
         bypass_vimarsa=bypass_vimarsa,
     )
-    out = state.to_audit()
+    out: dict[str, Any] = state.to_audit()
     out["surface"] = state.surface
     out["selected_text"] = state.selected.text if state.selected is not None else None
     _audit("cascade", {"prompt": prompt[:200], "K": K, "bypass_vimarsa": bypass_vimarsa}, {
@@ -410,39 +516,75 @@ def cascade(
     return out
 
 
-# v0.2 tool: arm-switchable cascade.
+# v0.3 tool: arm-switchable cascade with event-gated commit + active-inference uplift.
 @mcp.tool()
 def pce_cascade(
     prompt: str,
     constraint_text: str,
-    arm: str = "local",
+    arm: str = "haiku",
     must_avoid: list[str] | None = None,
     aspects: list[str] | None = None,
     retrieval_set: list[str] | None = None,
     K: int = 4,
+    cit_temperature: float = 1.0,
     max_tokens: int = 200,
     base_seed: int = 0,
     render_mode: str = "verbatim",
+    commit_policy: str | None = None,
     bypass_vimarsa: bool = False,
+    use_storehouse: bool = True,
+    hopfield_weight: float = 0.25,
 ) -> dict[str, Any]:
-    """Run the v0.2 two-pass cascade against an arm-selected substrate.
+    """Run the v0.3 event-gated, always-shadow-revision cascade.
 
     Args:
-        arm: ``"local"`` (Qwen2-1.5B), ``"haiku"`` (Anthropic Haiku via
-            ``claude`` CLI), or any of the long-form arm names from the
-            benchmark driver (``local_bare``/``local_cascade``/``haiku_bare``/
-            ``haiku_cascade``). The cascade itself is the same two-pass
-            pipeline regardless of arm; ``arm`` only chooses the substrate.
-        bypass_vimarsa: when True the cascade collapses to a single pass and
-            returns the draft as ``surface`` (the explicit ablation control
-            for H6.v2 / H8.v2). Default False (two-pass-always).
+        arm: substrate + protocol selector. Options:
+
+            * ``"haiku"`` / ``"haiku_cascade"`` (default): Haiku substrate,
+              event-gated commit, always-shadow revision.
+            * ``"haiku_bare"``: Haiku substrate, single pass (always_draft).
+              For benchmark control parity; for true bare scoring use the
+              ``haiku_bare`` MCP tool which skips the cascade entirely.
+            * ``"haiku_bare_2K"``: doubles K, single pass, no revision.
+              Controls the "extra compute" confound (H6).
+            * ``"haiku_generic_revise"``: 2-pass always_revise with the
+              vimarsa brief replaced by a fixed generic creative-revise
+              prompt. Isolates brief content from brief existence (H7).
+            * ``"local"`` / ``"local_cascade"``: legacy Qwen2-1.5B path.
+
+        commit_policy: ``"event_gated"`` (default for cascade arms),
+            ``"always_revise"``, or ``"always_draft"``. The arm dispatch
+            forces this for the control arms; explicit ``commit_policy``
+            on a cascade arm overrides the default.
+
+        cit_temperature: posterior temperature for ``iccha`` exploration.
+            Plumbed through ``parity_sampler`` per ADR-003.
+
+        use_storehouse: when True (default) the per-process active-inference
+            Hopfield store is threaded into the cascade so apohana gets a
+            warm-start prior and vimarsa.consolidate writes the committed
+            surface back at the end. Inspect via ``hopfield_state``.
 
     The returned payload mirrors :class:`pce.types.CascadeState.to_audit()`
-    plus a top-level ``surface`` and a ``substrate`` field naming the
-    resolved substrate.
+    plus top-level ``surface``, ``surface_draft``, ``surface_revision``,
+    ``substrate``, ``arm``, and ``arm_overrides``.
     """
     embed = _get_embed()
     arm_resolved, lm = _resolve_arm(arm)
+    # Legacy alias: v0.2 callers pass `bypass_vimarsa=True` instead of
+    # `commit_policy="always_draft"`. Honour it when commit_policy was not
+    # explicitly set; otherwise let _resolve_commit_policy raise so the
+    # caller resolves the ambiguity.
+    cp_for_dispatch = commit_policy
+    if commit_policy is None and bypass_vimarsa:
+        cp_for_dispatch = "always_draft"
+    K_eff, commit_eff, brief_override = _v3_arm_overrides(
+        arm, K=K, commit_policy=cp_for_dispatch
+    )
+    # When the arm dispatch picked a commit policy, suppress the legacy
+    # bypass alias so we don't trip the conflict guard.
+    bypass_for_run = bypass_vimarsa and commit_eff == "always_draft" and commit_policy is None
+    hop = _get_active_hopfield(embed) if use_storehouse else None
     constraint = Constraint(
         text=constraint_text,
         embedding=embed.encode(constraint_text),
@@ -453,28 +595,48 @@ def pce_cascade(
         constraint=constraint,
         lm=lm,
         embed=embed,
-        K=K,
+        K=K_eff,
+        cit_temperature=cit_temperature,
         max_tokens=max_tokens,
         base_seed=base_seed,
         retrieval_set=list(retrieval_set or []),
         aspects=list(aspects or []),
         render_mode=render_mode,
-        bypass_vimarsa=bypass_vimarsa,
+        commit_policy=commit_eff,
+        bypass_vimarsa=bypass_for_run,
+        hopfield=hop,
+        hopfield_weight=hopfield_weight,
+        brief_override=brief_override,
     )
-    out = state.to_audit()
+    out: dict[str, Any] = state.to_audit()
     out["surface"] = state.surface
     out["surface_draft"] = state.surface_draft
     out["surface_revision"] = state.surface_revision
     out["substrate"] = arm_resolved
     out["arm"] = arm
+    out["arm_overrides"] = {
+        "K_effective": K_eff,
+        "commit_policy_effective": commit_eff,
+        "brief_override_used": brief_override is not None,
+    }
     _audit(
         "pce_cascade",
-        {"prompt": prompt[:200], "arm": arm, "K": K, "bypass_vimarsa": bypass_vimarsa},
+        {
+            "prompt": prompt[:200],
+            "arm": arm,
+            "K": K,
+            "commit_policy": commit_policy,
+            "cit_temperature": cit_temperature,
+        },
         {
             "substrate": arm_resolved,
+            "K_effective": K_eff,
+            "commit_policy_effective": commit_eff,
+            "brief_override_used": brief_override is not None,
             "vimarsa_event": state.vimarsa_event,
             "vimarsa_event_draft": state.vimarsa_event_draft,
             "novelty": state.vimarsa_novelty,
+            "committed": state.committed,
             "two_pass": state.audit.get("two_pass", False),
             "revision_differs_from_draft": state.audit.get(
                 "revision_differs_from_draft", False
@@ -616,10 +778,19 @@ def report() -> dict[str, Any]:
     embed = _get_embed()
     h = _get_hopfield()
     out: dict[str, Any] = {
-        "version": "0.2.0",
+        "version": "0.3.0",
         "lm": lm.report(),
         "embedder": {"model_id": embed.model_id, "dim": embed.dim},
         "hopfield": {"dim": h.dim, "beta": h.beta, "n_patterns": h.n_patterns},
+        "active_hopfield": (
+            {
+                "domain": _ACTIVE_HOPFIELD.domain,
+                "dim": _ACTIVE_HOPFIELD.dim,
+                "n_patterns": _ACTIVE_HOPFIELD.n_patterns,
+            }
+            if _ACTIVE_HOPFIELD is not None
+            else None
+        ),
         "audit_path": str(_AUDIT_PATH),
     }
     if _HAIKU is not None:
@@ -630,12 +801,99 @@ def report() -> dict[str, Any]:
 # Tool 15
 @mcp.tool()
 def reset_state() -> dict[str, Any]:
-    """Reset the Hopfield store (LM and embedder remain loaded)."""
-    global _HOPFIELD
-    n_before = _HOPFIELD.n_patterns if _HOPFIELD is not None else 0
+    """Reset both the v0.1 and v0.3 Hopfield stores (LM/embedder stay loaded)."""
+    global _HOPFIELD, _ACTIVE_HOPFIELD, _INTEGRITY_PROBE
+    n_before_legacy = _HOPFIELD.n_patterns if _HOPFIELD is not None else 0
+    n_before_active = (
+        _ACTIVE_HOPFIELD.n_patterns if _ACTIVE_HOPFIELD is not None else 0
+    )
     _HOPFIELD = None
+    _ACTIVE_HOPFIELD = None
+    if _INTEGRITY_PROBE is not None:
+        _INTEGRITY_PROBE.invalidate()
     h = _get_hopfield()
-    return {"n_patterns_before": n_before, "n_patterns_after": h.n_patterns}
+    return {
+        "n_patterns_before_legacy": n_before_legacy,
+        "n_patterns_after_legacy": h.n_patterns,
+        "n_patterns_before_active": n_before_active,
+        "n_patterns_after_active": 0,
+        "integrity_probe_cache_invalidated": _INTEGRITY_PROBE is not None,
+    }
+
+
+# Tool 16 (v0.3 NEW)
+@mcp.tool()
+def haiku_clean_substrate_probe(force: bool = False) -> dict[str, Any]:
+    """Run the v0.3 :class:`IntegrityProbe` against the inner Haiku CLI subprocess.
+
+    Spawns a single ``claude --print`` subprocess via the same path the
+    cascade uses, asks the model to enumerate any active plugins / skills /
+    system instructions, and asserts the response contains no
+    :data:`pce.substrate.integrity.LEAKAGE_REGEX` matches (with
+    negation-context filter, so "no plugins loaded" is not a leak).
+
+    Args:
+        force: bypass the per-(env_hash, flags_hash) cache and always
+            re-spawn the inner subprocess. Default False.
+
+    Returns the full :class:`IntegrityResult` payload as JSON.
+    """
+    haiku = _get_haiku()
+    probe = _get_integrity_probe()
+    res = probe.run(haiku, force=force)
+    out: dict[str, Any] = {
+        "passed": bool(res.passed),
+        "response": res.response,
+        "leak_matches": list(res.leak_matches),
+        "positive_hint": bool(res.positive_hint),
+        "env_hash": res.env_hash,
+        "flags_hash": res.flags_hash,
+        "probe_at_iso": res.probe_at_iso,
+        "cost_usd": float(res.cost_usd),
+    }
+    _audit(
+        "haiku_clean_substrate_probe",
+        {"force": force},
+        {
+            "passed": out["passed"],
+            "leak_count": len(out["leak_matches"]),
+            "cost_usd": out["cost_usd"],
+        },
+    )
+    return out
+
+
+# Tool 17 (v0.3 NEW)
+@mcp.tool()
+def hopfield_state(last_n: int = 5) -> dict[str, Any]:
+    """Inspect the v0.3 active-inference Hopfield ālayavijñāna.
+
+    Returns ``n_patterns``, ``dim``, the per-aspect-label pattern count,
+    and the L2 norms of the last ``last_n`` stored patterns -- enough to
+    confirm the storehouse is non-degenerate and warming the cascade
+    apohana prior. Distinct from the v0.1 ``hopfield_store`` /
+    ``hopfield_recall`` legacy store.
+    """
+    embed = _get_embed()
+    h = _get_active_hopfield(embed)
+    last_norms: list[float] = []
+    label_counts: dict[str, int] = {}
+    if h.n_patterns > 0:
+        for lab in h._labels:  # noqa: SLF001 — read-only introspection
+            label_counts[lab] = label_counts.get(lab, 0) + 1
+        n = int(max(0, min(last_n, h.n_patterns)))
+        if n > 0:
+            tail = h._patterns[-n:]  # noqa: SLF001 — read-only introspection
+            last_norms = [float(np.linalg.norm(row)) for row in tail]
+    out: dict[str, Any] = {
+        "dim": int(h.dim),
+        "n_patterns": int(h.n_patterns),
+        "domain": h.domain,
+        "label_counts": label_counts,
+        "last_norms": last_norms,
+    }
+    _audit("hopfield_state", {"last_n": last_n}, {"n_patterns": out["n_patterns"]})
+    return out
 
 
 def main() -> None:
