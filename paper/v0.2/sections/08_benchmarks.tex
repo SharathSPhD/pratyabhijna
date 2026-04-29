@@ -1,0 +1,24 @@
+\section{Benchmarks}\label{sec:benchmarks}
+
+\subsection{Items}
+
+We use four task domains, items listed in Appendix~\ref{app:benchmark_items}:
+
+\begin{itemize}[leftmargin=1.4em]
+\item \textbf{poetry\_gen} ($n_{\text{12}}$ items): paired (form, topic, must-avoid) targets across haiku, tanka, sonnet, free verse and a small ghazal slice. POEMetric six-axis scoring~\citep{Ye2025POEMetric}: creativity, lexical diversity, idiosyncrasy, emotional resonance, literary devices, imagery.
+\item \textbf{poetry\_interp} ($n_{\text{10}}$ items): a stratified Wittgenstein aspect-shift slice. Each item is a single line of poetry with two pre-registered candidate readings; the model must produce both and the scorer measures aspect-coverage (cosine to each aspect target), aspect-multiplicity (count of aspects $\geq$ 0.40 cosine), novelty (1$-$ retrieval-set similarity).
+\item \textbf{aut} ($n_{\text{8}}$ items): the alternative-uses-task component of CreativityPrism~\citep{CreativityPrism2025}. The composite is creativity (cosine novelty against the standard use), lexical-diversity, and feasibility-style heuristics.
+\item \textbf{sci\_creativity} ($n_{\text{8}}$ items): scientific-creativity items drawn from BIG-Bench Hard / MacGyverBench style probes~\citep{Suzgun2022BBH,Tian2024MacGyverBench}; each carries 2--3 ``framings'' (analogical, mechanistic, mathematical) the model is asked to produce. The composite weights non-textbook novelty, framing-coverage, and depth-via-length.
+\end{itemize}
+
+\subsection{Scoring}
+
+All four scoring functions live in \texttt{benchmarks/scoring.py} and are deterministic: they use \texttt{sentence-transformers/all-MiniLM-L6-v2} (the same embedder PCE uses internally) for cosine-based novelty and aspect-coverage, plus light token-level statistics (lexical diversity, length, presence of imagery cues). We deliberately avoid LLM-as-judge so the contrasts are between observable outputs and not between an evaluator's preference distribution.
+
+\subsection{Why the v0.2 four-arm design is sufficient for the headline test}
+
+The v0.1 paper conflated two distinct comparisons in a single contrast: (i) \emph{cascade contribution} (PCE vs no-PCE on the same substrate) and (ii) \emph{substrate gap} (a 1.5B local model vs cloud-grade Haiku). The v0.2 four-arm design separates them. The pre-registered v0.2 claim is that the PCE cascade materially raises creative-cognition outputs over its own no-PCE baseline \emph{on the same substrate}. The four-arm contrast tests this in three ways: (a) the \emph{primary} apples-to-apples contrast (\texttt{haiku\_cascade} vs.\ \texttt{haiku\_bare}); (b) the \emph{local ablation} (\texttt{local\_cascade} vs.\ \texttt{local\_bare}, deferred to v0.3 in the pilot); and (c) the \emph{substrate baseline} (\texttt{haiku\_bare} vs.\ \texttt{local\_bare}) which calibrates the absolute score gap so the cascade contribution can be read in the right units. The within-cascade H6 test (\iast{vimar\'sa}-fired vs not) supplies the internal-validity arm: if the recursive layer is causally responsible for any cascade lift, fired trials should outscore non-fired ones.
+
+\subsection{v0.2 prove-gate (single-case validation before pilot)}
+
+Before running the pilot we executed a two-case prove-gate (\texttt{scripts/prove\_gate.py}) on \texttt{tests/fixtures/duck\_rabbit\_textual.json} (Wittgenstein duck-rabbit textual probe) and \texttt{tests/fixtures/aut\_brick.json} (CreativityPrism AUT brick) across all four arms. The prove-gate verified, per the report at \texttt{docs/reviews/2026-04-28-prove-gate.md}, that (i) \iast{vimar\'sa} fires on cascade arms when an aspect-shift is present in the revised surface; (ii) the revised surface differs from the draft on every cascade item (revision-causality, H8 in v0.2 SPEC); (iii) \iast{j\~n\=ana}'s posterior responds to negative \iast{apohana} (signed exclusion); and (iv) \texttt{haiku\_cascade} produces qualitatively different and more multi-aspect outputs than \texttt{haiku\_bare} on both cases. The prove-gate is the local-validity check the v0.1 process lacked and is required to pass before any pilot or full benchmark run.
