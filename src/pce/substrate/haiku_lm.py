@@ -69,8 +69,10 @@ __all__ = [
 ]
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
-AUDIT_DIR = REPO_ROOT / "audit" / "haiku"
-COST_LEDGER = REPO_ROOT / "audit" / "cost_ledger.json"
+AUDIT_DIR = Path(os.environ.get("PCE_HAIKU_AUDIT_DIR") or (REPO_ROOT / "audit" / "haiku"))
+COST_LEDGER = Path(
+    os.environ.get("PCE_HAIKU_COST_LEDGER") or (REPO_ROOT / "audit" / "cost_ledger.json")
+)
 
 # Frozen system prompt override. Replaces the default Claude Code system prompt
 # (which carries plugin / skill / framing context). Value is the same neutral
@@ -101,6 +103,11 @@ DEFAULT_ISOLATION_FLAGS: tuple[str, ...] = (
 
 # Allow-list of env vars carried into the inner subprocess. Everything else is
 # dropped. We never `os.environ.copy()`; clean_env is built explicitly.
+#
+# v0.4: extended to include AWS / Bedrock auth so the Phase-7 powered pilot
+# can run via `CLAUDE_CODE_USE_BEDROCK=1` on AWS Bedrock with no OAuth quota
+# ceiling. These do NOT carry Claude Code session state; they only describe
+# how the inner `claude` CLI should authenticate to a backend.
 ENV_ALLOWLIST: tuple[str, ...] = (
     "PATH",
     "LANG",
@@ -113,6 +120,30 @@ ENV_ALLOWLIST: tuple[str, ...] = (
     "SHELL",
     "TMPDIR",
     "__CF_USER_TEXT_ENCODING",  # macOS-specific; harmless if absent on Linux
+    # --- Claude Code backend selection (v0.4 Bedrock pilot) ---
+    "CLAUDE_CODE_USE_BEDROCK",
+    "CLAUDE_CODE_USE_VERTEX",
+    "ANTHROPIC_MODEL",
+    "ANTHROPIC_SMALL_FAST_MODEL",
+    "ANTHROPIC_BEDROCK_BASE_URL",
+    "ANTHROPIC_VERTEX_PROJECT_ID",
+    "ANTHROPIC_API_KEY",  # only present if user opted into SDK / direct API
+    # --- AWS auth chain (Bedrock) ---
+    "AWS_REGION",
+    "AWS_DEFAULT_REGION",
+    "AWS_PROFILE",
+    "AWS_DEFAULT_PROFILE",
+    "AWS_ACCESS_KEY_ID",
+    "AWS_SECRET_ACCESS_KEY",
+    "AWS_SESSION_TOKEN",
+    "AWS_BEARER_TOKEN_BEDROCK",
+    "AWS_CONFIG_FILE",
+    "AWS_SHARED_CREDENTIALS_FILE",
+    "AWS_ROLE_ARN",
+    "AWS_WEB_IDENTITY_TOKEN_FILE",
+    # --- GCP auth chain (Vertex) — kept for parity, unused by v0.4 pilot ---
+    "GOOGLE_APPLICATION_CREDENTIALS",
+    "CLOUD_ML_REGION",
 )
 
 # Env vars that, if present in the parent, indicate the parent is itself a
@@ -223,15 +254,23 @@ def _setup_clean_home(pid: int, root: str | None = None) -> Path:
     Layout (macOS):
       /tmp/pce_home_<pid>/
         Library/Keychains -> ~/Library/Keychains       (symlink, OAuth)
+        .aws              -> ~/.aws                    (symlink, Bedrock; v0.4)
 
     Layout (Linux):
       /tmp/pce_home_<pid>/
         .config/claude    -> ~/.config/claude          (symlink, OAuth, if exists)
+        .aws              -> ~/.aws                    (symlink, Bedrock; v0.4)
 
     Crucially we do NOT symlink:
       ~/.claude/                  (plugins, skills, settings, agents, sessions, CLAUDE.md auto-memory)
       ~/.config/claude/plugins/   (if claude grows a Linux plugin dir there)
       project CLAUDE.md           (avoided by also setting cwd to a temp dir outside the repo)
+
+    v0.4 (Bedrock pilot): when ``CLAUDE_CODE_USE_BEDROCK=1`` is set in the
+    parent env, we additionally symlink ``~/.aws`` into ``clean_home`` so the
+    inner subprocess can resolve ``AWS_PROFILE`` against the user's existing
+    AWS config/credentials. The env-allowlist already carries the
+    ``AWS_*`` / ``CLAUDE_CODE_USE_BEDROCK`` / ``ANTHROPIC_*`` vars through.
     """
     base = Path(root) if root else Path(tempfile.gettempdir())
     clean_home = base / f"pce_home_{pid}"
@@ -268,6 +307,16 @@ def _setup_clean_home(pid: int, root: str | None = None) -> Path:
         # We prefer to be conservative here and only handle the .config path;
         # if credentials live elsewhere on a Linux box, set PCE_HAIKU_CLEAN_HOME
         # to a manually-prepared dir.
+
+    # v0.4: AWS config / credentials for Bedrock auth.
+    aws_src = real_home / ".aws"
+    if aws_src.exists():
+        aws_link = clean_home / ".aws"
+        if not aws_link.exists():
+            try:
+                os.symlink(aws_src, aws_link)
+            except OSError:  # pragma: no cover — best-effort
+                pass
 
     _CREATED_CLEAN_HOMES.append(clean_home)
     return clean_home

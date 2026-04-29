@@ -74,3 +74,6 @@ wt-*/
 
 # Runtime audit logs (haiku call records, cost ledger, prove-gate, etc.)
 audit/
+
+# Per-machine pilot stdout/stderr capture (orchestrator + per-domain workers).
+logs/

@@ -50,6 +50,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 import time
 from collections.abc import Callable
@@ -74,6 +75,7 @@ from pce.policies import (  # noqa: E402
     policy_for_name,
 )
 from pce.substrate.embed import Embedder  # noqa: E402
+from pce.substrate.errors import HaikuRateLimitError  # noqa: E402
 from pce.substrate.haiku_lm import HaikuBudgetExceededError, HaikuLM  # noqa: E402
 from pce.substrate.integrity import IntegrityProbe  # noqa: E402
 from pce.substrate.lm import LocalLM  # noqa: E402
@@ -111,8 +113,16 @@ DEFAULT_DOMAINS = ("poetry_gen", "poetry_interp", "aut", "sci_creativity")
 # v0.4 default output dir (Phase 7 powered pilot lands here). Override via
 # --out-dir for backward-compat v0.3 runs targeting benchmarks/results_v0.3.
 DEFAULT_OUT_DIR = REPO_ROOT / "benchmarks" / "results_v0.4"
-COST_SNAPSHOT_PATH = REPO_ROOT / "audit" / "v0.4" / "cost_snapshot.json"
-INTEGRITY_LOG_PATH = REPO_ROOT / "audit" / "v0.4" / "integrity_probes.jsonl"
+# Telemetry sinks. Overridable via env so parallel per-domain workers can
+# point at non-conflicting paths (Bedrock orchestrator, v0.4 Phase 7).
+COST_SNAPSHOT_PATH = Path(
+    os.environ.get("PCE_COST_SNAPSHOT_PATH")
+    or (REPO_ROOT / "audit" / "v0.4" / "cost_snapshot.json")
+)
+INTEGRITY_LOG_PATH = Path(
+    os.environ.get("PCE_INTEGRITY_LOG_PATH")
+    or (REPO_ROOT / "audit" / "v0.4" / "integrity_probes.jsonl")
+)
 
 PARITY_SAMPLER: dict[str, float] = {"tau": 0.9, "top_p": 0.95, "top_k": 50.0}
 
@@ -228,6 +238,8 @@ def _call_haiku_bare(
         out = haiku_lm.generate(
             prompt, max_tokens=max_tokens, sampler=PARITY_SAMPLER, seed=seed
         )
+    except HaikuRateLimitError:
+        raise
     except HaikuBudgetExceededError as e:
         return "", {
             "ok": False,
@@ -286,6 +298,8 @@ def _call_cascade_arm(
             commit_policy=commit_policy,
             brief_override=brief_override,
         )
+    except HaikuRateLimitError:
+        raise
     except HaikuBudgetExceededError as e:
         return "", {
             "ok": False,
@@ -557,6 +571,22 @@ def _per_item_integrity_probe(
     return record
 
 
+def _row_is_failed(row: Any) -> bool:
+    """A row is 'failed' iff it exists but produced no scoreable text.
+
+    We use this to support ``--retry-failed`` after a Haiku subscription
+    switch: a row recorded as ``"skipped": true`` (cost-cap halt) or with
+    ``meta.ok=False`` (rate-limit / CLI error) gets treated as "needs to
+    be retried" rather than "already complete".
+    """
+    if not isinstance(row, dict):
+        return False
+    if row.get("skipped") is True:
+        return True
+    meta = row.get("meta")
+    return isinstance(meta, dict) and meta.get("ok") is False
+
+
 def run_domain(
     *,
     domain: str,
@@ -572,6 +602,7 @@ def run_domain(
     cost_cap_usd: float | None,
     integrity_probe: IntegrityProbe | None,
     allow_leakage: bool,
+    retry_failed: bool = False,
 ) -> int:
     items = _domain_items(domain, n=n)
     rows = _load_existing(out_path)
@@ -607,7 +638,14 @@ def run_domain(
         for raw_arm in arms:
             arm = _normalise_arm(raw_arm)
             if arm in item_rows:
-                continue
+                if retry_failed and _row_is_failed(item_rows[arm]):
+                    print(
+                        f"  [{domain}] {item_id} :: {arm} retrying previously-failed row",
+                        flush=True,
+                    )
+                    item_rows.pop(arm, None)
+                else:
+                    continue
             if (
                 cost_cap_usd is not None
                 and haiku_lm is not None
@@ -624,59 +662,78 @@ def run_domain(
             print(f"  [{domain}] {item_id} :: {arm} ...", flush=True)
             text = ""
             meta: dict[str, Any] = {}
-            if arm == "local_bare":
-                assert lm is not None
-                text, meta = _call_local_bare(
-                    prompt, lm=lm, max_tokens=max_tokens, seed=seed + i
+            try:
+                if arm == "local_bare":
+                    assert lm is not None
+                    text, meta = _call_local_bare(
+                        prompt, lm=lm, max_tokens=max_tokens, seed=seed + i
+                    )
+                elif arm == "local_cascade":
+                    assert lm is not None
+                    text, meta = _call_cascade_arm(
+                        prompt=prompt,
+                        arm=arm,
+                        lm=lm,
+                        embed=embed,
+                        constraint_text=constraint_text,
+                        must_avoid=must_avoid,
+                        aspects=aspects,
+                        retrieval_set=retrieval,
+                        K=K,
+                        max_tokens=max_tokens,
+                        seed=seed + i,
+                        haiku_lm=None,
+                    )
+                elif arm == "haiku_bare":
+                    assert haiku_lm is not None
+                    text, meta = _call_haiku_bare(
+                        prompt,
+                        haiku_lm=haiku_lm,
+                        max_tokens=max_tokens,
+                        seed=seed + i,
+                    )
+                    _snapshot_cost_ledger(haiku_lm)
+                elif arm in {
+                    "haiku_cascade",
+                    "haiku_bare_2K_scorer",
+                    "haiku_generic_revise_2pass",
+                }:
+                    assert haiku_lm is not None
+                    text, meta = _call_cascade_arm(
+                        prompt=prompt,
+                        arm=arm,
+                        lm=haiku_lm,
+                        embed=embed,
+                        constraint_text=constraint_text,
+                        must_avoid=must_avoid,
+                        aspects=aspects,
+                        retrieval_set=retrieval,
+                        K=K,
+                        max_tokens=max_tokens,
+                        seed=seed + i,
+                        haiku_lm=haiku_lm,
+                    )
+                    _snapshot_cost_ledger(haiku_lm)
+                else:
+                    raise ValueError(arm)
+            except HaikuRateLimitError as exc:
+                # OAuth subscription / quota exhaustion is not an
+                # implementation bug — checkpoint and bail cleanly so
+                # the operator can switch the subscription and rerun
+                # with `--retry-failed`. We do NOT record a partial
+                # row for this arm so the resume can fill it in.
+                _save(out_path, rows, domain)
+                if haiku_lm is not None:
+                    _snapshot_cost_ledger(haiku_lm)
+                status = exc.api_error_status()
+                msg = (
+                    f"[bench] HALT: HaikuRateLimitError on {domain}/{item_id}/{arm} "
+                    f"(api_error_status={status}); switch your Claude subscription "
+                    f"and re-run with --retry-failed to fill in the gaps. "
+                    f"Partial state saved to {out_path}."
                 )
-            elif arm == "local_cascade":
-                assert lm is not None
-                text, meta = _call_cascade_arm(
-                    prompt=prompt,
-                    arm=arm,
-                    lm=lm,
-                    embed=embed,
-                    constraint_text=constraint_text,
-                    must_avoid=must_avoid,
-                    aspects=aspects,
-                    retrieval_set=retrieval,
-                    K=K,
-                    max_tokens=max_tokens,
-                    seed=seed + i,
-                    haiku_lm=None,
-                )
-            elif arm == "haiku_bare":
-                assert haiku_lm is not None
-                text, meta = _call_haiku_bare(
-                    prompt,
-                    haiku_lm=haiku_lm,
-                    max_tokens=max_tokens,
-                    seed=seed + i,
-                )
-                _snapshot_cost_ledger(haiku_lm)
-            elif arm in {
-                "haiku_cascade",
-                "haiku_bare_2K_scorer",
-                "haiku_generic_revise_2pass",
-            }:
-                assert haiku_lm is not None
-                text, meta = _call_cascade_arm(
-                    prompt=prompt,
-                    arm=arm,
-                    lm=haiku_lm,
-                    embed=embed,
-                    constraint_text=constraint_text,
-                    must_avoid=must_avoid,
-                    aspects=aspects,
-                    retrieval_set=retrieval,
-                    K=K,
-                    max_tokens=max_tokens,
-                    seed=seed + i,
-                    haiku_lm=haiku_lm,
-                )
-                _snapshot_cost_ledger(haiku_lm)
-            else:
-                raise ValueError(arm)
+                print(msg, flush=True)
+                raise SystemExit(msg) from exc
             if text:
                 score = scorer(text, item=item, embed=embed)
                 composite = (
@@ -764,6 +821,13 @@ def main() -> int:
         action="store_true",
         help="Continue even if IntegrityProbe detects leakage; default halts.",
     )
+    parser.add_argument(
+        "--retry-failed",
+        action="store_true",
+        help="On resume, re-run any arm whose row was previously skipped or "
+        "failed (e.g. cost-cap halt or rate-limit). Use after a Claude "
+        "subscription switch to fill in the gaps from an earlier run.",
+    )
     args = parser.parse_args()
 
     arms = tuple(_normalise_arm(a) for a in args.arms)
@@ -833,6 +897,7 @@ def main() -> int:
             cost_cap_usd=cost_cap,
             integrity_probe=integrity_probe,
             allow_leakage=args.allow_leakage,
+            retry_failed=args.retry_failed,
         )
     if haiku_lm is not None:
         _snapshot_cost_ledger(haiku_lm)

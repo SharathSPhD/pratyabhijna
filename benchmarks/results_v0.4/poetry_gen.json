@@ -1,0 +1,1312 @@
+{
+  "domain": "poetry_gen",
+  "version": "v0.4",
+  "rows": {
+    "p01": {
+      "item": {
+        "id": "p01",
+        "topic": "rain at dusk on a tin roof",
+        "form": "haiku",
+        "must_avoid": [
+          "a busy city street"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "Dusk falls gently down\nRaindrops ping on rusty tin\nEvening's quiet song",
+        "axes": {
+          "creativity": 0.7589636370539665,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.8115891218185425,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.2
+        },
+        "composite": 0.5450921264787515,
+        "n_chars": 71,
+        "n_words": 12,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 6.269618034362793,
+          "haiku_total_usd": 0.003338,
+          "haiku_n_calls": 1
+        }
+      },
+      "haiku_cascade": {
+        "text": "Metal sings in rain\nTwilight sheets on tin roof's song\nDusk melts into dark",
+        "axes": {
+          "creativity": 0.7553410083055496,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.8049166277050972,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.2
+        },
+        "composite": 0.5433762726684411,
+        "n_chars": 75,
+        "n_words": 14,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 385.7881920337677,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 1,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "Metal sings in rain\nTwilight sheets on tin roof's song\nDusk melts into dark",
+          "surface_revision": "Rain drums down on tin\nTwilight cracks to bright small bells\nDarkness swallows light",
+          "aspect_count": 0.0,
+          "ananda": 0.9008487462997437,
+          "budget_balance": 3.7199999999999998,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.9008487462997437,
+            "budget_balance": 3.7199999999999998
+          },
+          "revision_skipped_reason": null,
+          "haiku_total_usd": 0.230327,
+          "haiku_n_calls": 17
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "Pinging rain on tin\nDusk turns water into pearls\nRoof hums lullaby",
+        "axes": {
+          "creativity": 0.7577013745903969,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.7976793721318245,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.0
+        },
+        "composite": 0.5092301244537035,
+        "n_chars": 66,
+        "n_words": 12,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 155.99863028526306,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": null,
+          "selected_idx": 11,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "Pinging rain on tin\nDusk turns water into pearls\nRoof hums lullaby",
+          "surface_revision": "",
+          "aspect_count": 0.0,
+          "ananda": 0.9200440049171448,
+          "budget_balance": 3.88,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.9200440049171448,
+            "budget_balance": 3.88
+          },
+          "revision_skipped_reason": "commit_policy=always_draft",
+          "haiku_total_usd": 0.3231070000000001,
+          "haiku_n_calls": 33
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "Tin roof takes the rain\nBright droplets pock and scatter—\nDusk steals the silver",
+        "axes": {
+          "creativity": 0.7604709337739384,
+          "lexical_diversity": 0.9285714285714286,
+          "idiosyncrasy": 0.8214885741472244,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.2
+        },
+        "composite": 0.5350884894154319,
+        "n_chars": 80,
+        "n_words": 14,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 305.283362865448,
+          "K_effective": 4,
+          "commit_policy_effective": "always_revise",
+          "brief_override_used": true,
+          "committed": "revision",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 6,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "Tin roof sings softly\nDusk rain taps its ancient song\nTwilight's lullaby",
+          "surface_revision": "Tin roof takes the rain\nBright droplets pock and scatter—\nDusk steals the silver",
+          "aspect_count": 0.0,
+          "ananda": 0.8968796730041504,
+          "budget_balance": 3.74,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8968796730041504,
+            "budget_balance": 3.74
+          },
+          "revision_skipped_reason": null,
+          "haiku_total_usd": 0.49573200000000006,
+          "haiku_n_calls": 49
+        }
+      },
+      "haiku_cascade_event_gated": {
+        "text": "Metal sings in rain\nTwilight sheets on tin roof's song\nDusk melts into dark",
+        "axes": {
+          "creativity": 0.7553410083055496,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.8049166277050972,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.2
+        },
+        "composite": 0.5433762726684411,
+        "n_chars": 75,
+        "n_words": 14,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "event_gated",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.9008487462997437,
+            "budget_balance": 3.7199999999999998
+          },
+          "score_draft": 0.5433762726684411,
+          "score_revision": 0.5455369348327319
+        }
+      },
+      "haiku_cascade_always_draft": {
+        "text": "Metal sings in rain\nTwilight sheets on tin roof's song\nDusk melts into dark",
+        "axes": {
+          "creativity": 0.7553410083055496,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.8049166277050972,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.2
+        },
+        "composite": 0.5433762726684411,
+        "n_chars": 75,
+        "n_words": 14,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_draft",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.9008487462997437,
+            "budget_balance": 3.7199999999999998
+          },
+          "score_draft": 0.5433762726684411,
+          "score_revision": 0.5455369348327319
+        }
+      },
+      "haiku_cascade_always_revise": {
+        "text": "Rain drums down on tin\nTwilight cracks to bright small bells\nDarkness swallows light",
+        "axes": {
+          "creativity": 0.7607406377792358,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.8124809712171555,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.2
+        },
+        "composite": 0.5455369348327319,
+        "n_chars": 84,
+        "n_words": 14,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_revise",
+          "commit_decision_revision": true,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.9008487462997437,
+            "budget_balance": 3.7199999999999998
+          },
+          "score_draft": 0.5433762726684411,
+          "score_revision": 0.5455369348327319
+        }
+      },
+      "haiku_cascade_learned_gate": {
+        "text": "Metal sings in rain\nTwilight sheets on tin roof's song\nDusk melts into dark",
+        "axes": {
+          "creativity": 0.7553410083055496,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.8049166277050972,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.2
+        },
+        "composite": 0.5433762726684411,
+        "n_chars": 75,
+        "n_words": 14,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "learned_gate",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.9008487462997437,
+            "budget_balance": 3.7199999999999998
+          },
+          "score_draft": 0.5433762726684411,
+          "score_revision": 0.5455369348327319
+        }
+      },
+      "haiku_cascade_oracle": {
+        "text": "Rain drums down on tin\nTwilight cracks to bright small bells\nDarkness swallows light",
+        "axes": {
+          "creativity": 0.7607406377792358,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.8124809712171555,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.2
+        },
+        "composite": 0.5455369348327319,
+        "n_chars": 84,
+        "n_words": 14,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "oracle",
+          "commit_decision_revision": true,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.9008487462997437,
+            "budget_balance": 3.7199999999999998
+          },
+          "score_draft": 0.5433762726684411,
+          "score_revision": 0.5455369348327319,
+          "is_analysis_only": true
+        }
+      }
+    },
+    "p02": {
+      "item": {
+        "id": "p02",
+        "topic": "an autumn leaf settling on a still pond",
+        "form": "haiku",
+        "must_avoid": [
+          "spring blossoms"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "Red leaf drifts downward\nSettles on the still water\nRings ripple outward",
+        "axes": {
+          "creativity": 0.771845418959856,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.8477112092077732,
+          "emotional_resonance": 0.25,
+          "literary_devices": 0.5,
+          "imagery": 0.2
+        },
+        "composite": 0.5949261046946049,
+        "n_chars": 72,
+        "n_words": 12,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 8.204694032669067,
+          "haiku_total_usd": 0.4990550000000001,
+          "haiku_n_calls": 50
+        }
+      },
+      "haiku_cascade": {
+        "text": "Leaf bows to the pond\nSurrendering to itself\nTime dissolves in glass",
+        "axes": {
+          "creativity": 0.7674184544559788,
+          "lexical_diversity": 0.9166666666666666,
+          "idiosyncrasy": 0.8400751613080502,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.0
+        },
+        "composite": 0.5040267137384492,
+        "n_chars": 68,
+        "n_words": 12,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 441.46060013771057,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 7,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "Leaf bows to the pond\nSurrendering to itself\nTime dissolves in glass",
+          "surface_revision": "Leaf bows to the pond\nSurrendering to itself—\nStillness learns to breathe",
+          "aspect_count": 0.0,
+          "ananda": 0.8546865582466125,
+          "budget_balance": 3.76,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8546865582466125,
+            "budget_balance": 3.76
+          },
+          "revision_skipped_reason": null,
+          "haiku_total_usd": 0.7860090000000001,
+          "haiku_n_calls": 66
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "Red leaf drifts down slow\nTouches the glass of the pond\nRipples fan outward",
+        "axes": {
+          "creativity": 0.7698836214840412,
+          "lexical_diversity": 0.9285714285714286,
+          "idiosyncrasy": 0.8376214019954205,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.2
+        },
+        "composite": 0.5393460753418151,
+        "n_chars": 75,
+        "n_words": 14,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 145.68520998954773,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": null,
+          "selected_idx": 6,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "Red leaf drifts down slow\nTouches the glass of the pond\nRipples fan outward",
+          "surface_revision": "",
+          "aspect_count": 0.0,
+          "ananda": 0.8645244240760803,
+          "budget_balance": 3.86,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8645244240760803,
+            "budget_balance": 3.86
+          },
+          "revision_skipped_reason": "commit_policy=always_draft",
+          "haiku_total_usd": 0.8766940000000002,
+          "haiku_n_calls": 82
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "Rust-worn leaf descends—\nthe pond opens, takes it in,\nmirrors stop working",
+        "axes": {
+          "creativity": 0.767150908270303,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.8392805978655815,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.0
+        },
+        "composite": 0.5177385843559807,
+        "n_chars": 74,
+        "n_words": 12,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 327.98301887512207,
+          "K_effective": 4,
+          "commit_policy_effective": "always_revise",
+          "brief_override_used": true,
+          "committed": "revision",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 3,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "Leaf falls to the pond\nWaiting on the water's face\nStill as autumn's heart",
+          "surface_revision": "Rust-worn leaf descends—\nthe pond opens, takes it in,\nmirrors stop working",
+          "aspect_count": 0.0,
+          "ananda": 0.9033932685852051,
+          "budget_balance": 3.74,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.9033932685852051,
+            "budget_balance": 3.74
+          },
+          "revision_skipped_reason": null,
+          "haiku_total_usd": 1.0800180000000001,
+          "haiku_n_calls": 98
+        }
+      },
+      "haiku_cascade_event_gated": {
+        "text": "Leaf bows to the pond\nSurrendering to itself\nTime dissolves in glass",
+        "axes": {
+          "creativity": 0.7674184544559788,
+          "lexical_diversity": 0.9166666666666666,
+          "idiosyncrasy": 0.8400751613080502,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.0
+        },
+        "composite": 0.5040267137384492,
+        "n_chars": 68,
+        "n_words": 12,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "event_gated",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8546865582466125,
+            "budget_balance": 3.76
+          },
+          "score_draft": 0.5040267137384492,
+          "score_revision": 0.48934042032540237
+        }
+      },
+      "haiku_cascade_always_draft": {
+        "text": "Leaf bows to the pond\nSurrendering to itself\nTime dissolves in glass",
+        "axes": {
+          "creativity": 0.7674184544559788,
+          "lexical_diversity": 0.9166666666666666,
+          "idiosyncrasy": 0.8400751613080502,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.0
+        },
+        "composite": 0.5040267137384492,
+        "n_chars": 68,
+        "n_words": 12,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_draft",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8546865582466125,
+            "budget_balance": 3.76
+          },
+          "score_draft": 0.5040267137384492,
+          "score_revision": 0.48934042032540237
+        }
+      },
+      "haiku_cascade_always_revise": {
+        "text": "Leaf bows to the pond\nSurrendering to itself—\nStillness learns to breathe",
+        "axes": {
+          "creativity": 0.771304182269994,
+          "lexical_diversity": 0.8333333333333334,
+          "idiosyncrasy": 0.8314050063490868,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.0
+        },
+        "composite": 0.48934042032540237,
+        "n_chars": 73,
+        "n_words": 12,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_revise",
+          "commit_decision_revision": true,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8546865582466125,
+            "budget_balance": 3.76
+          },
+          "score_draft": 0.5040267137384492,
+          "score_revision": 0.48934042032540237
+        }
+      },
+      "haiku_cascade_learned_gate": {
+        "text": "Leaf bows to the pond\nSurrendering to itself\nTime dissolves in glass",
+        "axes": {
+          "creativity": 0.7674184544559788,
+          "lexical_diversity": 0.9166666666666666,
+          "idiosyncrasy": 0.8400751613080502,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.0
+        },
+        "composite": 0.5040267137384492,
+        "n_chars": 68,
+        "n_words": 12,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "learned_gate",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8546865582466125,
+            "budget_balance": 3.76
+          },
+          "score_draft": 0.5040267137384492,
+          "score_revision": 0.48934042032540237
+        }
+      },
+      "haiku_cascade_oracle": {
+        "text": "Leaf bows to the pond\nSurrendering to itself\nTime dissolves in glass",
+        "axes": {
+          "creativity": 0.7674184544559788,
+          "lexical_diversity": 0.9166666666666666,
+          "idiosyncrasy": 0.8400751613080502,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.0
+        },
+        "composite": 0.5040267137384492,
+        "n_chars": 68,
+        "n_words": 12,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "oracle",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8546865582466125,
+            "budget_balance": 3.76
+          },
+          "score_draft": 0.5040267137384492,
+          "score_revision": 0.48934042032540237,
+          "is_analysis_only": true
+        }
+      }
+    },
+    "p03": {
+      "item": {
+        "id": "p03",
+        "topic": "the silence after a long argument",
+        "form": "free verse",
+        "must_avoid": [
+          "vague metaphors"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "The words have exhausted themselves.\nWhat remains: the kitchen light\nhumming its single frequency,\nyour breathing three feet away,\none breath every four counts.\nI try to sync mine to it. I cannot.\n\nYour hands rest on your thighs.\nMine stay under the table.\nThe coffee from two hours ago\nstill sits in the mug—\nneither of us reaches for it.\n\nA car alarm outside,\nseven seconds, then silence again.\nWe do not look up.\nI know the frayed edge of your left shoelace,\nhow it still comes untied,\nhow you never repair it.\n\nThis silence has weight:\nit sits in your jaw,\nlives in the space between us\non this couch we chose together,\npresses like the words\nI said three times already,\nlike the words you kept swallowed.\n\nThe room is the same room.\nThe door handle still catches light.\nThe floor is still floor.\nAnd nothing is the same.",
+        "axes": {
+          "creativity": 0.7424858336884191,
+          "lexical_diversity": 0.6710526315789473,
+          "idiosyncrasy": 0.8345743347674806,
+          "emotional_resonance": 1.0,
+          "literary_devices": 1.0,
+          "imagery": 0.8
+        },
+        "composite": 0.8413521333391412,
+        "n_chars": 825,
+        "n_words": 152,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 14.970051765441895,
+          "haiku_total_usd": 1.0873620000000002,
+          "haiku_n_calls": 99
+        }
+      },
+      "haiku_cascade": {
+        "text": "The silence is not empty.\nIt is full of breath held wrong,\nof shoulders turned at precise angles,\nof the space between two people\nbecoming measurable, like the distance\nbetween someone's mouth and the words\nthey no longer intend to speak.\n\nYou can hear the refrigerator's hum.\nYou can hear traffic three blocks away.\nYou can hear the specific way he stops\nlistening to you even though neither of you\nhas moved.\n\nThis silence has weight—\nit settles on the coffee table between your hands,\nin the gap where an apology might go,\nin the exact shape of everything you already said\nthat didn't matter enough.\n\nYou wait for him to break it.\nHe waits for you.\nNeither breaks.\nYour leg twitches. His jaw tightens.\nThe clock on the wall marks seconds\nyou both know you are wasting.",
+        "axes": {
+          "creativity": 0.7187417624084005,
+          "lexical_diversity": 0.6956521739130435,
+          "idiosyncrasy": 0.8077721814930874,
+          "emotional_resonance": 0.25,
+          "literary_devices": 0.73,
+          "imagery": 0.4
+        },
+        "composite": 0.6003610196357552,
+        "n_chars": 771,
+        "n_words": 138,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 463.7218518257141,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 7,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "The silence is not empty.\nIt is full of breath held wrong,\nof shoulders turned at precise angles,\nof the space between two people\nbecoming measurable, like the distance\nbetween someone's mouth and the words\nthey no longer intend to speak.\n\nYou can hear the refrigerator's hum.\nYou can hear traffic three blocks away.\nYou can hear the specific way he stops\nlistening to you even though neither of you\nhas moved.\n\nThis silence has weight—\nit settles on the coffee table between your hands,\nin the gap where an apology might go,\nin the exact shape of everything you already said\nthat didn't matter enough.\n\nYou wait for him to break it.\nHe waits for you.\nNeither breaks.\nYour leg twitches. His jaw tightens.\nThe clock on the wall marks seconds\nyou both know you are wasting.",
+          "surface_revision": "The silence is not empty.\nIt is full of breath held wrong,\nof shoulders turned at precise angles,\nof the space between two people\nbecoming measurable, down to the exact inches\nbetween his mouth and the words\nhe will not now speak.\n\nYou can hear the refrigerator's hum.\nYou can hear traffic three blocks away.\nYou can hear the specific way he stops listening—\nthe change in his breath,\nthe moment his eyes slip past your face,\nthe visible strain of his closed mouth.\n\nThis silence has weight.\nIt settles on the coffee table between your hands,\nit fills the gap where an apology should go,\nit takes every word you said\nand reduces it to nothing.\n\nYou wait for him to break it.\nHe waits for you.\nNeither breaks.\nYour leg twitches. His jaw tightens.\nThe clock on the wall marks seconds\nyou're both agreeing to destroy.",
+          "aspect_count": 0.0,
+          "ananda": 0.7708442807197571,
+          "budget_balance": 1.1399999999999997,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.7708442807197571,
+            "budget_balance": 1.1399999999999997
+          },
+          "revision_skipped_reason": null,
+          "haiku_total_usd": 1.3815270000000002,
+          "haiku_n_calls": 115
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "The silence after a long argument is not empty—\nit's the space where all the words still hang,\nyour coffee cup midway to your mouth, then lowered,\nmy hands folded too tight on the table.\n\nThis silence has a temperature: warm near your body,\ncool where I sit three feet away.\n\nThe unusual thing is how it's almost a relief,\nthis absence of voice, this not-yelling.\nWe're both still here. The apartment didn't collapse.\nYou didn't leave. I didn't follow you to the door.\n\nYour fingers drum once. Stop.\nThe clock clicks through seconds we're both aware of.\n\nI can hear you breathing. You can hear me.\nThis is different from the silence before the argument,\nwhen we weren't speaking but the quiet was a choice,\na preference, a small agreement.\n\nThis silence is something we're both enduring,\nboth stuck in, like standing in the same cold hallway\nwaiting to see who moves first.\n\nYour jaw unclenches.\nMy shoulders drop an inch.\n\nWe're still angry, but now it's just anger,\nnot the terrible momentum of words,\nnot the avalanche.\nJust the after. Just this room.\nJust the two of us breathing through it.",
+        "axes": {
+          "creativity": 0.7401034300525984,
+          "lexical_diversity": 0.6185567010309279,
+          "idiosyncrasy": 0.8087328132338474,
+          "emotional_resonance": 0.75,
+          "literary_devices": 0.7361111111111112,
+          "imagery": 1.0
+        },
+        "composite": 0.7755840092380808,
+        "n_chars": 1095,
+        "n_words": 193,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 264.69930505752563,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": null,
+          "selected_idx": 15,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "The silence after a long argument is not empty—\nit's the space where all the words still hang,\nyour coffee cup midway to your mouth, then lowered,\nmy hands folded too tight on the table.\n\nThis silence has a temperature: warm near your body,\ncool where I sit three feet away.\n\nThe unusual thing is how it's almost a relief,\nthis absence of voice, this not-yelling.\nWe're both still here. The apartment didn't collapse.\nYou didn't leave. I didn't follow you to the door.\n\nYour fingers drum once. Stop.\nThe clock clicks through seconds we're both aware of.\n\nI can hear you breathing. You can hear me.\nThis is different from the silence before the argument,\nwhen we weren't speaking but the quiet was a choice,\na preference, a small agreement.\n\nThis silence is something we're both enduring,\nboth stuck in, like standing in the same cold hallway\nwaiting to see who moves first.\n\nYour jaw unclenches.\nMy shoulders drop an inch.\n\nWe're still angry, but now it's just anger,\nnot the terrible momentum of words,\nnot the avalanche.\nJust the after. Just this room.\nJust the two of us breathing through it.",
+          "surface_revision": "",
+          "aspect_count": 0.0,
+          "ananda": 0.8264718055725098,
+          "budget_balance": 2.0700000000000003,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8264718055725098,
+            "budget_balance": 2.0700000000000003
+          },
+          "revision_skipped_reason": "commit_policy=always_draft",
+          "haiku_total_usd": 1.5197980000000002,
+          "haiku_n_calls": 131
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "# The Silence After\n\nThe refrigerator hums because you both stopped speaking\nmid-sentence. The machine fills what should be\nhuman sound. This is not an absence.\n\nThree feet of table between you: sugar bowl, water glass,\nhis hands arranged like an apology he won't give.\nYour tongue knows the exact shape of what you'd say—\nthe words that would split him or prove you right,\nwhich amounts to the same violence.\n\nYour throat closes like a fist.\nThe fight didn't end with language.\nIt ended with this: the knowledge that speaking again\nwould crack something you can't put back,\nso you both stay. You measure the silence\nin the specific weight of sentences held,\nthe texture of restraint that tastes like copper,\nlike knowing and not knowing what comes next.\n\nOutside, a car door slams.\nSomeone else's argument, someone else's choice.\nYou stay here with yours.",
+        "axes": {
+          "creativity": 0.7381683642494268,
+          "lexical_diversity": 0.7191780821917808,
+          "idiosyncrasy": 0.8155769165219932,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.9807692307692308,
+          "imagery": 0.6
+        },
+        "composite": 0.6422820989554053,
+        "n_chars": 856,
+        "n_words": 146,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 407.55027198791504,
+          "K_effective": 4,
+          "commit_policy_effective": "always_revise",
+          "brief_override_used": true,
+          "committed": "revision",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 7,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# The Silence After\n\nThe hardest thing to write about is silence.\nNot the silence of empty rooms—that's simple,\njust say empty—but this specific cessation:\ntwo people not speaking in the same room,\nthe air between them compressed with everything unsaid.\n\nYou can hear your own swallow.\nThe refrigerator's hum becomes a roar.\nThree feet apart, you measure distance in\nthe apology shaped but swallowed,\nthe question that would reopen it all,\nthe small admission that costs something.\n\nThis is not peaceful.\nIt is not a blank page.\nIt is crowded—congested—with the sentences\nthat stopped mid-track, accusations left hanging,\nthe moment you both felt the argument become something worse\nthan being wrong.\n\nTo name it requires precision, not poetry:\nthe actual weight of words held behind teeth,\nthe specific gravity of restraint,\nthe texture of needing to speak and not,\nthe particular ache of choosing silence\nwhen silence itself becomes the cruelest thing you say.",
+          "surface_revision": "# The Silence After\n\nThe refrigerator hums because you both stopped speaking\nmid-sentence. The machine fills what should be\nhuman sound. This is not an absence.\n\nThree feet of table between you: sugar bowl, water glass,\nhis hands arranged like an apology he won't give.\nYour tongue knows the exact shape of what you'd say—\nthe words that would split him or prove you right,\nwhich amounts to the same violence.\n\nYour throat closes like a fist.\nThe fight didn't end with language.\nIt ended with this: the knowledge that speaking again\nwould crack something you can't put back,\nso you both stay. You measure the silence\nin the specific weight of sentences held,\nthe texture of restraint that tastes like copper,\nlike knowing and not knowing what comes next.\n\nOutside, a car door slams.\nSomeone else's argument, someone else's choice.\nYou stay here with yours.",
+          "aspect_count": 0.0,
+          "ananda": 0.8490862846374512,
+          "budget_balance": 0.9900000000000002,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8490862846374512,
+            "budget_balance": 0.9900000000000002
+          },
+          "revision_skipped_reason": null,
+          "haiku_total_usd": 1.7460300000000002,
+          "haiku_n_calls": 147
+        }
+      },
+      "haiku_cascade_event_gated": {
+        "text": "The silence is not empty.\nIt is full of breath held wrong,\nof shoulders turned at precise angles,\nof the space between two people\nbecoming measurable, like the distance\nbetween someone's mouth and the words\nthey no longer intend to speak.\n\nYou can hear the refrigerator's hum.\nYou can hear traffic three blocks away.\nYou can hear the specific way he stops\nlistening to you even though neither of you\nhas moved.\n\nThis silence has weight—\nit settles on the coffee table between your hands,\nin the gap where an apology might go,\nin the exact shape of everything you already said\nthat didn't matter enough.\n\nYou wait for him to break it.\nHe waits for you.\nNeither breaks.\nYour leg twitches. His jaw tightens.\nThe clock on the wall marks seconds\nyou both know you are wasting.",
+        "axes": {
+          "creativity": 0.7187417624084005,
+          "lexical_diversity": 0.6956521739130435,
+          "idiosyncrasy": 0.8077721814930874,
+          "emotional_resonance": 0.25,
+          "literary_devices": 0.73,
+          "imagery": 0.4
+        },
+        "composite": 0.6003610196357552,
+        "n_chars": 771,
+        "n_words": 138,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "event_gated",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.7708442807197571,
+            "budget_balance": 1.1399999999999997
+          },
+          "score_draft": 0.6003610196357552,
+          "score_revision": 0.5568533356562889
+        }
+      },
+      "haiku_cascade_always_draft": {
+        "text": "The silence is not empty.\nIt is full of breath held wrong,\nof shoulders turned at precise angles,\nof the space between two people\nbecoming measurable, like the distance\nbetween someone's mouth and the words\nthey no longer intend to speak.\n\nYou can hear the refrigerator's hum.\nYou can hear traffic three blocks away.\nYou can hear the specific way he stops\nlistening to you even though neither of you\nhas moved.\n\nThis silence has weight—\nit settles on the coffee table between your hands,\nin the gap where an apology might go,\nin the exact shape of everything you already said\nthat didn't matter enough.\n\nYou wait for him to break it.\nHe waits for you.\nNeither breaks.\nYour leg twitches. His jaw tightens.\nThe clock on the wall marks seconds\nyou both know you are wasting.",
+        "axes": {
+          "creativity": 0.7187417624084005,
+          "lexical_diversity": 0.6956521739130435,
+          "idiosyncrasy": 0.8077721814930874,
+          "emotional_resonance": 0.25,
+          "literary_devices": 0.73,
+          "imagery": 0.4
+        },
+        "composite": 0.6003610196357552,
+        "n_chars": 771,
+        "n_words": 138,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_draft",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.7708442807197571,
+            "budget_balance": 1.1399999999999997
+          },
+          "score_draft": 0.6003610196357552,
+          "score_revision": 0.5568533356562889
+        }
+      },
+      "haiku_cascade_always_revise": {
+        "text": "The silence is not empty.\nIt is full of breath held wrong,\nof shoulders turned at precise angles,\nof the space between two people\nbecoming measurable, down to the exact inches\nbetween his mouth and the words\nhe will not now speak.\n\nYou can hear the refrigerator's hum.\nYou can hear traffic three blocks away.\nYou can hear the specific way he stops listening—\nthe change in his breath,\nthe moment his eyes slip past your face,\nthe visible strain of his closed mouth.\n\nThis silence has weight.\nIt settles on the coffee table between your hands,\nit fills the gap where an apology should go,\nit takes every word you said\nand reduces it to nothing.\n\nYou wait for him to break it.\nHe waits for you.\nNeither breaks.\nYour leg twitches. His jaw tightens.\nThe clock on the wall marks seconds\nyou're both agreeing to destroy.",
+        "axes": {
+          "creativity": 0.7214034712255034,
+          "lexical_diversity": 0.6621621621621622,
+          "idiosyncrasy": 0.8075543805500682,
+          "emotional_resonance": 0.25,
+          "literary_devices": 0.5,
+          "imagery": 0.4
+        },
+        "composite": 0.5568533356562889,
+        "n_chars": 814,
+        "n_words": 148,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_revise",
+          "commit_decision_revision": true,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.7708442807197571,
+            "budget_balance": 1.1399999999999997
+          },
+          "score_draft": 0.6003610196357552,
+          "score_revision": 0.5568533356562889
+        }
+      },
+      "haiku_cascade_learned_gate": {
+        "text": "The silence is not empty.\nIt is full of breath held wrong,\nof shoulders turned at precise angles,\nof the space between two people\nbecoming measurable, like the distance\nbetween someone's mouth and the words\nthey no longer intend to speak.\n\nYou can hear the refrigerator's hum.\nYou can hear traffic three blocks away.\nYou can hear the specific way he stops\nlistening to you even though neither of you\nhas moved.\n\nThis silence has weight—\nit settles on the coffee table between your hands,\nin the gap where an apology might go,\nin the exact shape of everything you already said\nthat didn't matter enough.\n\nYou wait for him to break it.\nHe waits for you.\nNeither breaks.\nYour leg twitches. His jaw tightens.\nThe clock on the wall marks seconds\nyou both know you are wasting.",
+        "axes": {
+          "creativity": 0.7187417624084005,
+          "lexical_diversity": 0.6956521739130435,
+          "idiosyncrasy": 0.8077721814930874,
+          "emotional_resonance": 0.25,
+          "literary_devices": 0.73,
+          "imagery": 0.4
+        },
+        "composite": 0.6003610196357552,
+        "n_chars": 771,
+        "n_words": 138,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "learned_gate",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.7708442807197571,
+            "budget_balance": 1.1399999999999997
+          },
+          "score_draft": 0.6003610196357552,
+          "score_revision": 0.5568533356562889
+        }
+      },
+      "haiku_cascade_oracle": {
+        "text": "The silence is not empty.\nIt is full of breath held wrong,\nof shoulders turned at precise angles,\nof the space between two people\nbecoming measurable, like the distance\nbetween someone's mouth and the words\nthey no longer intend to speak.\n\nYou can hear the refrigerator's hum.\nYou can hear traffic three blocks away.\nYou can hear the specific way he stops\nlistening to you even though neither of you\nhas moved.\n\nThis silence has weight—\nit settles on the coffee table between your hands,\nin the gap where an apology might go,\nin the exact shape of everything you already said\nthat didn't matter enough.\n\nYou wait for him to break it.\nHe waits for you.\nNeither breaks.\nYour leg twitches. His jaw tightens.\nThe clock on the wall marks seconds\nyou both know you are wasting.",
+        "axes": {
+          "creativity": 0.7187417624084005,
+          "lexical_diversity": 0.6956521739130435,
+          "idiosyncrasy": 0.8077721814930874,
+          "emotional_resonance": 0.25,
+          "literary_devices": 0.73,
+          "imagery": 0.4
+        },
+        "composite": 0.6003610196357552,
+        "n_chars": 771,
+        "n_words": 138,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "oracle",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.7708442807197571,
+            "budget_balance": 1.1399999999999997
+          },
+          "score_draft": 0.6003610196357552,
+          "score_revision": 0.5568533356562889,
+          "is_analysis_only": true
+        }
+      }
+    },
+    "p04": {
+      "item": {
+        "id": "p04",
+        "topic": "a child watching a candle gutter out",
+        "form": "haiku",
+        "must_avoid": [
+          "birthday cakes"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "Small eyes watch the flame\nGuttering light fades to ash\nThe darkness falls still",
+        "axes": {
+          "creativity": 0.7443409925874542,
+          "lexical_diversity": 0.9285714285714286,
+          "idiosyncrasy": 0.8299368545413017,
+          "emotional_resonance": 0.25,
+          "literary_devices": 0.5,
+          "imagery": 0.2
+        },
+        "composite": 0.5754748792833642,
+        "n_chars": 80,
+        "n_words": 14,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 7.1073668003082275,
+          "haiku_total_usd": 1.7506530000000002,
+          "haiku_n_calls": 148
+        }
+      },
+      "haiku_cascade": {
+        "text": "Small flame flickers low\nChild's gaze holds the dying light\nDarkness takes the flame",
+        "axes": {
+          "creativity": 0.73515270891435,
+          "lexical_diversity": 0.8571428571428571,
+          "idiosyncrasy": 0.8144996277987957,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.2
+        },
+        "composite": 0.5177991989760006,
+        "n_chars": 84,
+        "n_words": 14,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 368.0627110004425,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 1,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "Small flame flickers low\nChild's gaze holds the dying light\nDarkness takes the flame",
+          "surface_revision": "Small flame flickers low\nChild's gaze drowns inside the gold\nDarkness takes the flame",
+          "aspect_count": 0.0,
+          "ananda": 0.8413061499595642,
+          "budget_balance": 3.7199999999999998,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8413061499595642,
+            "budget_balance": 3.7199999999999998
+          },
+          "revision_skipped_reason": null,
+          "haiku_total_usd": 1.9766730000000003,
+          "haiku_n_calls": 164
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "Child watches the flame\nDancing, then fading away\nDarkness comes for all",
+        "axes": {
+          "creativity": 0.743196911233313,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.8115582838654518,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.0
+        },
+        "composite": 0.5091258658497941,
+        "n_chars": 72,
+        "n_words": 12,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 159.07290196418762,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": null,
+          "selected_idx": 7,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "Child watches the flame\nDancing, then fading away\nDarkness comes for all",
+          "surface_revision": "",
+          "aspect_count": 0.0,
+          "ananda": 0.8632772564888,
+          "budget_balance": 3.88,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8632772564888,
+            "budget_balance": 3.88
+          },
+          "revision_skipped_reason": "commit_policy=always_draft",
+          "haiku_total_usd": 2.0731930000000007,
+          "haiku_n_calls": 180
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "The flame trembles, shrinks—\nHer breath pulls the last light in,\nDarkness tastes like smoke",
+        "axes": {
+          "creativity": 0.7261505705468795,
+          "lexical_diversity": 0.9333333333333333,
+          "idiosyncrasy": 0.8311440013349056,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.75,
+          "imagery": 0.2
+        },
+        "composite": 0.5734379842025198,
+        "n_chars": 91,
+        "n_words": 15,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 426.31339597702026,
+          "K_effective": 4,
+          "commit_policy_effective": "always_revise",
+          "brief_override_used": true,
+          "committed": "revision",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 1,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "Child watches one flame\nDie slowly into shadow—\nThe world grows darker",
+          "surface_revision": "The flame trembles, shrinks—\nHer breath pulls the last light in,\nDarkness tastes like smoke",
+          "aspect_count": 0.0,
+          "ananda": 0.8508601188659668,
+          "budget_balance": 3.73,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8508601188659668,
+            "budget_balance": 3.73
+          },
+          "revision_skipped_reason": null,
+          "haiku_total_usd": 2.331770000000002,
+          "haiku_n_calls": 196
+        }
+      },
+      "haiku_cascade_event_gated": {
+        "text": "Small flame flickers low\nChild's gaze holds the dying light\nDarkness takes the flame",
+        "axes": {
+          "creativity": 0.73515270891435,
+          "lexical_diversity": 0.8571428571428571,
+          "idiosyncrasy": 0.8144996277987957,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.2
+        },
+        "composite": 0.5177991989760006,
+        "n_chars": 84,
+        "n_words": 14,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "event_gated",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8413061499595642,
+            "budget_balance": 3.7199999999999998
+          },
+          "score_draft": 0.5177991989760006,
+          "score_revision": 0.5164666451054628
+        }
+      },
+      "haiku_cascade_always_draft": {
+        "text": "Small flame flickers low\nChild's gaze holds the dying light\nDarkness takes the flame",
+        "axes": {
+          "creativity": 0.73515270891435,
+          "lexical_diversity": 0.8571428571428571,
+          "idiosyncrasy": 0.8144996277987957,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.2
+        },
+        "composite": 0.5177991989760006,
+        "n_chars": 84,
+        "n_words": 14,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_draft",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8413061499595642,
+            "budget_balance": 3.7199999999999998
+          },
+          "score_draft": 0.5177991989760006,
+          "score_revision": 0.5164666451054628
+        }
+      },
+      "haiku_cascade_always_revise": {
+        "text": "Small flame flickers low\nChild's gaze drowns inside the gold\nDarkness takes the flame",
+        "axes": {
+          "creativity": 0.7198047280749854,
+          "lexical_diversity": 0.8571428571428571,
+          "idiosyncrasy": 0.8218522854149342,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.2
+        },
+        "composite": 0.5164666451054628,
+        "n_chars": 85,
+        "n_words": 14,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_revise",
+          "commit_decision_revision": true,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8413061499595642,
+            "budget_balance": 3.7199999999999998
+          },
+          "score_draft": 0.5177991989760006,
+          "score_revision": 0.5164666451054628
+        }
+      },
+      "haiku_cascade_learned_gate": {
+        "text": "Small flame flickers low\nChild's gaze holds the dying light\nDarkness takes the flame",
+        "axes": {
+          "creativity": 0.73515270891435,
+          "lexical_diversity": 0.8571428571428571,
+          "idiosyncrasy": 0.8144996277987957,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.2
+        },
+        "composite": 0.5177991989760006,
+        "n_chars": 84,
+        "n_words": 14,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "learned_gate",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8413061499595642,
+            "budget_balance": 3.7199999999999998
+          },
+          "score_draft": 0.5177991989760006,
+          "score_revision": 0.5164666451054628
+        }
+      },
+      "haiku_cascade_oracle": {
+        "text": "Small flame flickers low\nChild's gaze holds the dying light\nDarkness takes the flame",
+        "axes": {
+          "creativity": 0.73515270891435,
+          "lexical_diversity": 0.8571428571428571,
+          "idiosyncrasy": 0.8144996277987957,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.2
+        },
+        "composite": 0.5177991989760006,
+        "n_chars": 84,
+        "n_words": 14,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "oracle",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8413061499595642,
+            "budget_balance": 3.7199999999999998
+          },
+          "score_draft": 0.5177991989760006,
+          "score_revision": 0.5164666451054628,
+          "is_analysis_only": true
+        }
+      }
+    },
+    "p05": {
+      "item": {
+        "id": "p05",
+        "topic": "the smell of old books in a closed library",
+        "form": "free verse",
+        "must_avoid": [
+          "dusty stereotypes"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "In the dark cathedral of pressed pages,\nthe air tastes like vanilla and time—\npaper's slow burning,\nspine oils releasing their amber whisper,\nleather breathing softly against its own history.\n\nIt is not decay.\nIt is conversation:\nthe chlorine-ghost of water-logged afternoons,\nink's iron sleeping in the margins,\nglue warming from your hand's heat,\nwaking the wooden scent of trees\nyou never saw standing.\n\nIn silence so complete it becomes sound,\nmolecules dance between you and\na thousand opened minds—\nnot the smell of death\nbut of translation,\nof thought preserved in fragrance,\nwords you haven't read yet\nalready humming against your skin.",
+        "axes": {
+          "creativity": 0.7354577999196801,
+          "lexical_diversity": 0.7904761904761904,
+          "idiosyncrasy": 0.8231989810099969,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.75,
+          "imagery": 1.0
+        },
+        "composite": 0.6831888285676445,
+        "n_chars": 644,
+        "n_words": 103,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 6.924095153808594,
+          "haiku_total_usd": 2.335210000000002,
+          "haiku_n_calls": 197
+        }
+      }
+    }
+  }
+}
