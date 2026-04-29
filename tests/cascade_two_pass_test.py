@@ -54,6 +54,9 @@ class _FakeLM:
     """Mock LMProtocol: returns text whose content depends on prompt + seed."""
 
     name = "fake-lm"
+    supports_logprobs = True
+    supports_score = False
+    supports_entropy = False
 
     def __init__(self) -> None:
         self.calls: list[dict[str, Any]] = []
@@ -83,6 +86,9 @@ class _FakeLM:
 
     def report(self) -> dict[str, Any]:
         return {"name": self.name, "n_calls": len(self.calls)}
+
+    def length_proxy_logp(self, candidate: Candidate) -> float:
+        return float(candidate.logp)
 
 
 def _make_lm_protocol_compliant(lm: _FakeLM) -> LMProtocol:

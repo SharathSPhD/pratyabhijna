@@ -11,16 +11,18 @@ from __future__ import annotations
 
 import inspect
 
-from pce.substrate.lm_protocol import LMProtocol
+from pce.substrate.lm_protocol import GeneratorProtocol, LMProtocol
 
 
-def test_protocol_requires_three_attributes() -> None:
-    members = {name for name, _ in inspect.getmembers(LMProtocol) if not name.startswith("_")}
+def test_protocol_requires_methods() -> None:
+    members = {name for name, _ in inspect.getmembers(GeneratorProtocol) if not name.startswith("_")}
     # Protocol attributes are reflected as class members on the runtime_checkable proxy.
-    # Class-level `name` is a bare ClassVar without a getter, so we only assert
-    # the methods explicitly here.
-    for required in ("generate", "report"):
-        assert required in members, f"LMProtocol missing required method: {required}"
+    for required in ("generate", "report", "length_proxy_logp"):
+        assert required in members, f"GeneratorProtocol missing required method: {required}"
+
+
+def test_lm_protocol_alias_present() -> None:
+    assert LMProtocol is GeneratorProtocol, "LMProtocol must alias GeneratorProtocol for backward compat"
 
 
 def test_local_lm_class_has_protocol_surface() -> None:
@@ -39,6 +41,16 @@ def test_haiku_lm_class_has_protocol_surface() -> None:
     assert hasattr(HaikuLM, "generate")
     assert hasattr(HaikuLM, "report")
     assert HaikuLM.name
+
+
+def test_haiku_lm_capability_flags_are_honest() -> None:
+    """HaikuLM advertises no logprobs/score/entropy because the CLI exposes none."""
+    from pce.substrate.haiku_lm import HaikuLM
+
+    assert HaikuLM.supports_logprobs is False
+    assert HaikuLM.supports_score is False
+    assert HaikuLM.supports_entropy is False
+    assert hasattr(HaikuLM, "length_proxy_logp")
 
 
 def test_haiku_config_from_env_defaults() -> None:

@@ -7,6 +7,7 @@ calls the real CLI once.
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 from pathlib import Path
 from typing import Any
@@ -166,3 +167,120 @@ def test_report_includes_ledger_total() -> None:
     assert rep["name"] == "claude-haiku"
     assert abs(float(rep["ledger_total_usd"]) - 0.03) < 1e-9
     assert int(rep["ledger_n_calls"]) == 1
+
+
+# --- v0.3 clean substrate tests ---------------------------------------------
+
+
+def test_clean_substrate_uses_isolation_flags_in_cmd() -> None:
+    cfg = HaikuConfig(cli_bin="claude", clean_substrate=True)
+    lm = HaikuLM(config=cfg, embedder=_FakeEmbed())
+    captured: list[list[str]] = []
+
+    def _capture(*args, **kwargs):
+        captured.append(list(args[0]) if args else [])
+        return _fake_proc(_payload())
+
+    with mock.patch("subprocess.run", side_effect=_capture):
+        lm.generate("hi", max_tokens=8, sampler={"tau": 0.9}, seed=0)
+    cmd = captured[0]
+    for flag in (
+        "--print",
+        "--system-prompt",
+        "--disable-slash-commands",
+        "--strict-mcp-config",
+        "--setting-sources",
+        "--permission-mode",
+        "bypassPermissions",
+        "--no-session-persistence",
+    ):
+        assert flag in cmd, f"clean substrate cmd missing required flag: {flag}"
+
+
+def test_clean_substrate_uses_explicit_env_and_cwd() -> None:
+    cfg = HaikuConfig(cli_bin="claude", clean_substrate=True)
+    lm = HaikuLM(config=cfg, embedder=_FakeEmbed())
+    captured: list[dict[str, Any]] = []
+
+    def _capture(*args, **kwargs):
+        captured.append(dict(kwargs))
+        return _fake_proc(_payload())
+
+    with mock.patch("subprocess.run", side_effect=_capture):
+        lm.generate("hi", max_tokens=8, sampler={"tau": 0.9}, seed=0)
+    kw = captured[0]
+    assert "env" in kw, "clean substrate must pass an explicit env to subprocess.run"
+    env = kw["env"]
+    assert "PATH" in env
+    assert env.get("HOME", "").startswith("/"), f"HOME must be set, got {env.get('HOME')!r}"
+    assert env["HOME"] != os.environ.get("HOME", ""), (
+        "clean HOME must differ from parent HOME"
+    )
+    # No Claude Code env vars should leak in.
+    for k in env:
+        assert not k.startswith("CLAUDE_CODE_"), f"clean env leaked Claude Code var: {k}"
+    assert "cwd" in kw and kw["cwd"]
+    assert kw["cwd"] != os.getcwd(), "clean substrate must use a temp cwd, not the repo"
+
+
+def test_clean_substrate_disabled_falls_back_to_v02_path() -> None:
+    cfg = HaikuConfig(cli_bin="claude", clean_substrate=False)
+    lm = HaikuLM(config=cfg, embedder=_FakeEmbed())
+    captured_kwargs: list[dict[str, Any]] = []
+
+    def _capture(*args, **kwargs):
+        captured_kwargs.append(dict(kwargs))
+        return _fake_proc(_payload())
+
+    with mock.patch("subprocess.run", side_effect=_capture):
+        lm.generate("hi", max_tokens=8, sampler={"tau": 0.9}, seed=0)
+    kw = captured_kwargs[0]
+    # When clean_substrate is off we don't pass env/cwd — subprocess inherits parent env.
+    assert "env" not in kw
+    assert "cwd" not in kw
+
+
+def test_clean_substrate_env_never_inherits_blindly() -> None:
+    """Regression guard: we must NEVER pass env=os.environ.copy() to subprocess.run."""
+    cfg = HaikuConfig(cli_bin="claude", clean_substrate=True)
+    lm = HaikuLM(config=cfg, embedder=_FakeEmbed())
+    captured: list[dict[str, Any]] = []
+
+    def _capture(*args, **kwargs):
+        captured.append(dict(kwargs))
+        return _fake_proc(_payload())
+
+    with mock.patch("subprocess.run", side_effect=_capture), \
+         mock.patch.dict(os.environ, {"CLAUDE_CODE_ENTRYPOINT": "test", "MY_SECRET": "leak-me"}):
+        lm.generate("hi", max_tokens=8, sampler={"tau": 0.9}, seed=0)
+    env = captured[0]["env"]
+    assert "CLAUDE_CODE_ENTRYPOINT" not in env
+    assert "MY_SECRET" not in env
+
+
+def test_capability_flags_present() -> None:
+    lm = HaikuLM(config=HaikuConfig(cli_bin="claude"), embedder=_FakeEmbed())
+    assert lm.supports_logprobs is False
+    assert lm.supports_score is False
+    assert lm.supports_entropy is False
+
+
+def test_length_proxy_logp_is_monotone_in_length() -> None:
+    from pce.types import Candidate
+
+    lm = HaikuLM(config=HaikuConfig(cli_bin="claude"), embedder=_FakeEmbed())
+    short = Candidate(seed=0, sampler={"tau": 0.9}, tokens=(), text="hi", logp=0.0, embedding=np.zeros(4, dtype=np.float32))
+    long = Candidate(seed=0, sampler={"tau": 0.9}, tokens=(), text="hi" * 200, logp=0.0, embedding=np.zeros(4, dtype=np.float32))
+    assert lm.length_proxy_logp(long) < lm.length_proxy_logp(short)
+
+
+def test_report_exposes_clean_substrate_state() -> None:
+    cfg = HaikuConfig(cli_bin="claude", clean_substrate=True)
+    lm = HaikuLM(config=cfg, embedder=_FakeEmbed())
+    rep = lm.report()
+    assert rep["clean_substrate"] is True
+    assert rep["clean_home"] is not None
+    assert rep["clean_cwd"] is not None
+    assert rep["supports_logprobs"] is False
+    assert "isolation_flags" in rep
+    assert "--disable-slash-commands" in rep["isolation_flags"]
