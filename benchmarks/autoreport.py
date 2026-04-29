@@ -250,9 +250,16 @@ def _replace_placeholders(text: str, mapping: dict[str, str]) -> str:
     """Substitute `{KEY}` with `{VALUE}` preserving the brace pair so the
     surrounding LaTeX (e.g. `\\text{...}`) stays well-formed even when the
     placeholder coincides with a LaTeX argument boundary.
+
+    Also tolerates the LaTeX-escaped form `{KEY\\_WITH\\_UNDERSCORES}` because
+    underscores are LaTeX-active outside math mode and the placeholder may
+    have been authored with backslash-escapes for the typeset preview.
     """
     for k, v in mapping.items():
         text = text.replace("{" + k + "}", "{" + v + "}")
+        if "_" in k:
+            escaped = k.replace("_", "\\_")
+            text = text.replace("{" + escaped + "}", "{" + v + "}")
     return text
 
 

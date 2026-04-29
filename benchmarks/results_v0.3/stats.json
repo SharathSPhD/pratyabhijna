@@ -1,0 +1,465 @@
+{
+  "config": {
+    "treatment_arm": "haiku_cascade",
+    "control_arm_primary": "haiku_bare",
+    "control_arm_h6": "haiku_bare_2K_scorer",
+    "control_arm_h7": "haiku_generic_revise_2pass",
+    "seed": 4242,
+    "n_permutations": 50000,
+    "n_bootstrap": 10000,
+    "alpha": 0.05,
+    "version": "v0.3"
+  },
+  "primary": {
+    "H1": {
+      "name": "H1",
+      "domain": "aut",
+      "n": 5,
+      "estimate": -0.016556007663408923,
+      "estimate_length_controlled": -0.007934601250286222,
+      "hedges_g": -0.6357140640488252,
+      "hedges_g_length_controlled": -0.2751981794116586,
+      "bca_ci_95": [
+        -0.033192150791486116,
+        -8.68678092956543e-05
+      ],
+      "permutation_p_one_sided": 0.90625,
+      "wilcoxon_p_one_sided": 0.90625,
+      "holm_p": 1.0,
+      "power_apriori": 0.23899517090352962,
+      "power_retrospective": 0.0020578569410477643,
+      "supported": false,
+      "treatment": "haiku_cascade",
+      "control": "haiku_bare"
+    },
+    "H2": {
+      "name": "H2",
+      "domain": "poetry_interp",
+      "n": 5,
+      "estimate": -0.014455556869506826,
+      "estimate_length_controlled": -0.05485567984963474,
+      "hedges_g": -0.8985306486799248,
+      "hedges_g_length_controlled": -0.5969118879876616,
+      "bca_ci_95": [
+        -0.02621348102887473,
+        -0.005042401949564601
+      ],
+      "permutation_p_one_sided": 1.0,
+      "wilcoxon_p_one_sided": 1.0,
+      "holm_p": 1.0,
+      "power_apriori": 0.23899517090352962,
+      "power_retrospective": 0.0003545720731921165,
+      "supported": false,
+      "treatment": "haiku_cascade",
+      "control": "haiku_bare"
+    },
+    "H3": {
+      "name": "H3",
+      "domain": "poetry_gen",
+      "n": 5,
+      "estimate": -0.027854882199867315,
+      "estimate_length_controlled": -0.02124419759241547,
+      "hedges_g": -0.24332353521146588,
+      "hedges_g_length_controlled": -0.27243987562016336,
+      "bca_ci_95": [
+        -0.09454680361269936,
+        0.048825510813901254
+      ],
+      "permutation_p_one_sided": 0.75,
+      "wilcoxon_p_one_sided": 0.78125,
+      "holm_p": 1.0,
+      "power_apriori": 0.23899517090352962,
+      "power_retrospective": 0.017474778979727712,
+      "supported": false,
+      "treatment": "haiku_cascade",
+      "control": "haiku_bare"
+    },
+    "H4": {
+      "name": "H4",
+      "domain": "sci_creativity",
+      "n": 5,
+      "estimate": -0.006164807081222523,
+      "estimate_length_controlled": -0.013352510097015713,
+      "hedges_g": -0.21627106156223308,
+      "hedges_g_length_controlled": -0.499854487539312,
+      "bca_ci_95": [
+        -0.027561353643735277,
+        0.009213671088218734
+      ],
+      "permutation_p_one_sided": 0.6875,
+      "wilcoxon_p_one_sided": 0.6875,
+      "holm_p": 1.0,
+      "power_apriori": 0.23899517090352962,
+      "power_retrospective": 0.019840113508252988,
+      "supported": false,
+      "treatment": "haiku_cascade",
+      "control": "haiku_bare"
+    }
+  },
+  "H5": {
+    "name": "H5",
+    "pooled_g": -0.4628591491366103,
+    "tau2": 0.0,
+    "ci_95": [
+      -0.9318774314289366,
+      0.006159133155715979
+    ],
+    "n_studies": 4,
+    "weights_re": [
+      0.23818204772868043,
+      0.20397160196213646,
+      0.2780785777956644,
+      0.2797677725135186
+    ],
+    "note": "random-effects DerSimonian-Laird meta-analysis of per-domain Hedges' g (replaces the v0.2 z-blend per phase 7 ADR)",
+    "per_domain_g": {
+      "H1": -0.6357140640488252,
+      "H2": -0.8985306486799248,
+      "H3": -0.24332353521146588,
+      "H4": -0.21627106156223308
+    },
+    "per_domain_n": {
+      "H1": 5,
+      "H2": 5,
+      "H3": 5,
+      "H4": 5
+    },
+    "supported": false
+  },
+  "H6_v3_extra_compute": {
+    "H1": {
+      "name": "H1",
+      "domain": "aut",
+      "n": 5,
+      "estimate": -0.02606422665678425,
+      "estimate_length_controlled": -0.022235364478633456,
+      "hedges_g": -0.9458702860502278,
+      "hedges_g_length_controlled": -0.7996852615088217,
+      "bca_ci_95": [
+        -0.04129759794400063,
+        -0.004829102754592895
+      ],
+      "permutation_p_one_sided": 0.96875,
+      "wilcoxon_p_one_sided": 0.96875,
+      "holm_p": 1.0,
+      "power_apriori": 0.23899517090352962,
+      "power_retrospective": 0.00025095225896842877,
+      "supported": false,
+      "treatment": "haiku_cascade",
+      "control": "haiku_bare_2K_scorer"
+    },
+    "H2": {
+      "name": "H2",
+      "domain": "poetry_interp",
+      "n": 5,
+      "estimate": -0.004021072387695302,
+      "estimate_length_controlled": -0.015598631195785851,
+      "hedges_g": -0.1934186436850908,
+      "hedges_g_length_controlled": -0.1373673484131511,
+      "bca_ci_95": [
+        -0.014093244075775124,
+        0.011326859394709255
+      ],
+      "permutation_p_one_sided": 0.75,
+      "wilcoxon_p_one_sided": 0.84375,
+      "holm_p": 1.0,
+      "power_apriori": 0.23899517090352962,
+      "power_retrospective": 0.022041971709735653,
+      "supported": false,
+      "treatment": "haiku_cascade",
+      "control": "haiku_bare_2K_scorer"
+    },
+    "H3": {
+      "name": "H3",
+      "domain": "poetry_gen",
+      "n": 5,
+      "estimate": -0.012084717515416777,
+      "estimate_length_controlled": -0.011672748958473433,
+      "hedges_g": -0.11160762829098814,
+      "hedges_g_length_controlled": -0.1261275111898777,
+      "bca_ci_95": [
+        -0.09474322853137063,
+        0.04080244856222126
+      ],
+      "permutation_p_one_sided": 0.59375,
+      "wilcoxon_p_one_sided": 0.5,
+      "holm_p": 1.0,
+      "power_apriori": 0.23899517090352962,
+      "power_retrospective": 0.03165503993036212,
+      "supported": false,
+      "treatment": "haiku_cascade",
+      "control": "haiku_bare_2K_scorer"
+    },
+    "H4": {
+      "name": "H4",
+      "domain": "sci_creativity",
+      "n": 5,
+      "estimate": -0.0010896553595860614,
+      "estimate_length_controlled": 0.0059050873716094965,
+      "hedges_g": -0.04534960272626989,
+      "hedges_g_length_controlled": 0.15337566011463868,
+      "bca_ci_95": [
+        -0.019427537918090786,
+        0.01129027009010316
+      ],
+      "permutation_p_one_sided": 0.59375,
+      "wilcoxon_p_one_sided": 0.5,
+      "holm_p": 1.0,
+      "power_apriori": 0.23899517090352962,
+      "power_retrospective": 0.041733802365541584,
+      "supported": false,
+      "treatment": "haiku_cascade",
+      "control": "haiku_bare_2K_scorer"
+    }
+  },
+  "H6_v3_extra_compute_meta": {
+    "name": "H5",
+    "pooled_g": -0.2727197481429805,
+    "tau2": 0.0,
+    "ci_95": [
+      -0.7305595772597271,
+      0.1851200809737661
+    ],
+    "n_studies": 4,
+    "weights_re": [
+      0.1885019507733087,
+      0.2678159270323944,
+      0.27113685136451654,
+      0.2725452708297805
+    ],
+    "note": "random-effects DerSimonian-Laird meta-analysis of per-domain Hedges' g (replaces the v0.2 z-blend per phase 7 ADR)",
+    "per_domain_g": {
+      "H1": -0.9458702860502278,
+      "H2": -0.1934186436850908,
+      "H3": -0.11160762829098814,
+      "H4": -0.04534960272626989
+    },
+    "per_domain_n": {
+      "H1": 5,
+      "H2": 5,
+      "H3": 5,
+      "H4": 5
+    },
+    "supported": false
+  },
+  "H7_v3_generic_revise": {
+    "H1": {
+      "name": "H1",
+      "domain": "aut",
+      "n": 5,
+      "estimate": -0.021071527401606248,
+      "estimate_length_controlled": -0.0018479350730324251,
+      "hedges_g": -0.8966549697181252,
+      "hedges_g_length_controlled": -0.08034928738359687,
+      "bca_ci_95": [
+        -0.03234378563033211,
+        -0.002409711480140686
+      ],
+      "permutation_p_one_sided": 0.96875,
+      "wilcoxon_p_one_sided": 0.96875,
+      "holm_p": 1.0,
+      "power_apriori": 0.23899517090352962,
+      "power_retrospective": 0.0003593952620355445,
+      "supported": false,
+      "treatment": "haiku_cascade",
+      "control": "haiku_generic_revise_2pass"
+    },
+    "H2": {
+      "name": "H2",
+      "domain": "poetry_interp",
+      "n": 5,
+      "estimate": -0.041689670085906974,
+      "estimate_length_controlled": -0.0023422961179350834,
+      "hedges_g": -0.44653794901974736,
+      "hedges_g_length_controlled": -0.022019262809674617,
+      "bca_ci_95": [
+        -0.1385144233703613,
+        -0.005003033081690455
+      ],
+      "permutation_p_one_sided": 0.90625,
+      "wilcoxon_p_one_sided": 0.90625,
+      "holm_p": 1.0,
+      "power_apriori": 0.23899517090352962,
+      "power_retrospective": 0.006194380061177118,
+      "supported": false,
+      "treatment": "haiku_cascade",
+      "control": "haiku_generic_revise_2pass"
+    },
+    "H3": {
+      "name": "H3",
+      "domain": "poetry_gen",
+      "n": 5,
+      "estimate": -0.03512078944238302,
+      "estimate_length_controlled": -0.029508478977718244,
+      "hedges_g": -0.3200986889826726,
+      "hedges_g_length_controlled": -0.24514817887171705,
+      "bca_ci_95": [
+        -0.11256191441480794,
+        0.02409520445564801
+      ],
+      "permutation_p_one_sided": 0.78125,
+      "wilcoxon_p_one_sided": 0.78125,
+      "holm_p": 1.0,
+      "power_apriori": 0.23899517090352962,
+      "power_retrospective": 0.012017846534120746,
+      "supported": false,
+      "treatment": "haiku_cascade",
+      "control": "haiku_generic_revise_2pass"
+    },
+    "H4": {
+      "name": "H4",
+      "domain": "sci_creativity",
+      "n": 5,
+      "estimate": -0.030445042252540598,
+      "estimate_length_controlled": -0.019655170524737343,
+      "hedges_g": -0.7177796606429914,
+      "hedges_g_length_controlled": -0.5093586632983464,
+      "bca_ci_95": [
+        -0.057138153910636924,
+        -0.003561145067214977
+      ],
+      "permutation_p_one_sided": 0.96875,
+      "wilcoxon_p_one_sided": 0.96875,
+      "holm_p": 1.0,
+      "power_apriori": 0.23899517090352962,
+      "power_retrospective": 0.001223135301151368,
+      "supported": false,
+      "treatment": "haiku_cascade",
+      "control": "haiku_generic_revise_2pass"
+    }
+  },
+  "H7_v3_generic_revise_meta": {
+    "name": "H5",
+    "pooled_g": -0.5701514997886701,
+    "tau2": 0.0,
+    "ci_95": [
+      -1.0477006963471016,
+      -0.09260230323023844
+    ],
+    "n_studies": 4,
+    "weights_re": [
+      0.21171304252296635,
+      0.2699110323295398,
+      0.2823551398675002,
+      0.23602078527999368
+    ],
+    "note": "random-effects DerSimonian-Laird meta-analysis of per-domain Hedges' g (replaces the v0.2 z-blend per phase 7 ADR)",
+    "per_domain_g": {
+      "H1": -0.8966549697181252,
+      "H2": -0.44653794901974736,
+      "H3": -0.3200986889826726,
+      "H4": -0.7177796606429914
+    },
+    "per_domain_n": {
+      "H1": 5,
+      "H2": 5,
+      "H3": 5,
+      "H4": 5
+    },
+    "supported": false
+  },
+  "H8_v3_revision_vs_draft": {
+    "name": "H8",
+    "cascade_arm": "haiku_cascade",
+    "n": 3,
+    "estimate": 0.0036964681413438893,
+    "hedges_g": 0.20748073858018223,
+    "bca_ci_95": [
+      -0.0064139564832050855,
+      0.013945718606313107
+    ],
+    "permutation_p_one_sided": 0.375,
+    "supported": false,
+    "note": "paired score(revision) - score(draft) within haiku_cascade for items where the event-gated commit committed revision"
+  },
+  "arm_means_per_domain": {
+    "poetry_gen": {
+      "haiku_bare": {
+        "n": 5,
+        "mean": 0.6061856340695462,
+        "std": 0.08586242902357083
+      },
+      "haiku_bare_2K_scorer": {
+        "n": 5,
+        "mean": 0.5904154693850956,
+        "std": 0.0930408620307194
+      },
+      "haiku_cascade": {
+        "n": 5,
+        "mean": 0.5783307518696789,
+        "std": 0.06320523252335401
+      },
+      "haiku_generic_revise_2pass": {
+        "n": 5,
+        "mean": 0.6134515413120618,
+        "std": 0.08900407800587755
+      }
+    },
+    "poetry_interp": {
+      "haiku_bare": {
+        "n": 5,
+        "mean": 0.5071530004342397,
+        "std": 0.1315799097043961
+      },
+      "haiku_bare_2K_scorer": {
+        "n": 5,
+        "mean": 0.49671851595242816,
+        "std": 0.11730289318864981
+      },
+      "haiku_cascade": {
+        "n": 5,
+        "mean": 0.49269744356473283,
+        "std": 0.12711713006775335
+      },
+      "haiku_generic_revise_2pass": {
+        "n": 5,
+        "mean": 0.5343871136506398,
+        "std": 0.08392425223691534
+      }
+    },
+    "aut": {
+      "haiku_bare": {
+        "n": 5,
+        "mean": 0.9296700865030288,
+        "std": 0.01015113304238317
+      },
+      "haiku_bare_2K_scorer": {
+        "n": 5,
+        "mean": 0.9391783054964042,
+        "std": 0.015621490701207663
+      },
+      "haiku_cascade": {
+        "n": 5,
+        "mean": 0.91311407883962,
+        "std": 0.021768023675850717
+      },
+      "haiku_generic_revise_2pass": {
+        "n": 5,
+        "mean": 0.9341856062412262,
+        "std": 0.01607895356125295
+      }
+    },
+    "sci_creativity": {
+      "haiku_bare": {
+        "n": 5,
+        "mean": 0.5139977345863979,
+        "std": 0.018971422761598793
+      },
+      "haiku_bare_2K_scorer": {
+        "n": 5,
+        "mean": 0.5089225828647613,
+        "std": 0.03514347741522807
+      },
+      "haiku_cascade": {
+        "n": 5,
+        "mean": 0.5078329275051753,
+        "std": 0.02947584898994801
+      },
+      "haiku_generic_revise_2pass": {
+        "n": 5,
+        "mean": 0.538277969757716,
+        "std": 0.01935765838167287
+      }
+    }
+  }
+}

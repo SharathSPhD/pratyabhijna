@@ -1,0 +1,721 @@
+{
+  "domain": "aut",
+  "version": "v0.3",
+  "rows": {
+    "a01": {
+      "item": {
+        "id": "a01",
+        "object": "brick"
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        },
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        },
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "1. Thermal mass heater: Heat bricks in a campfire and place them in your sleeping bag to provide 8+ hours of radiant warmth on cold camping nights.\n\n2. Pond anchor weights: Submerge bricks around the perimeter of pond liners to hold them against water pressure and prevent lifting from below.\n\n3. Kiln shelf supports: Stack and arrange bricks inside pottery kilns to create separated firing shelves, allowing multiple pieces to fire simultaneously without touching.\n\n4. Slope erosion control: Partially bury bricks lengthwise down hillsides in a staggered pattern to create mini-steps that break water flow and prevent soil runoff.\n\n5. Functional dumbbell: Hold bricks in each hand while doing exercises (lunges, rows, overhead presses) to add resistance using the weight distribution of a natural object.\n\n6. Leather stamping block: Use a smooth, flat brick as an anvil beneath leather for stamping designs, embossing, or flattening during leatherworking.\n\n7. Concrete form spacer: Position bricks vertically inside concrete molds before pouring to create hollow channels that reduce material weight while maintaining structural integrity.\n\n8. Smoker draft regulator: Stack bricks vertically inside a barrel smoker to create adjustable air channels and separate heat zones for precise temperature control during smoking meat.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.6523118615150452,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9130779653787613,
+        "n_chars": 1326,
+        "n_words": 198,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 16.635058164596558,
+          "haiku_total_usd": 2.3741510000000026,
+          "haiku_n_calls": 265
+        }
+      },
+      "haiku_cascade": {
+        "text": "# 8 Unusual Uses for a Brick\n\n1. Heat a brick in a campfire for 30 minutes, wrap it in cloth, and use it as a foot warmer in a sleeping bag while camping.\n\n2. Stack bricks with sand and gravel layers to create a DIY gray-water filtration system that allows you to reuse washing water for garden irrigation.\n\n3. Use a heated brick as a base surface to bake flatbread or pizza by placing dough directly on top and covering with a lid or foil.\n\n4. Place a brick under one leg of a wobbly table at a slight angle to adjust for uneven flooring without needing shims.\n\n5. Suspend a brick on a rope and lower it into a well or deep pond to measure water depth and quality by noting what clings to it.\n\n6. Lay a brick flat as an anvil surface when hammering and shaping wire, metal jewelry, or small metalworking projects.\n\n7. Wedge a brick horizontally under a door to prop it open at a specific angle for ventilation control rather than full-open.\n\n8. Use a damp brick as an emergency windshield cleaner by rubbing it gently across glass to remove dust and dried insects.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.593529462814331,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.8983823657035828,
+        "n_chars": 1065,
+        "n_words": 201,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 220.40604209899902,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 0,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# 8 Unusual Uses for a Brick\n\n1. Heat a brick in a campfire for 30 minutes, wrap it in cloth, and use it as a foot warmer in a sleeping bag while camping.\n\n2. Stack bricks with sand and gravel layers to create a DIY gray-water filtration system that allows you to reuse washing water for garden irrigation.\n\n3. Use a heated brick as a base surface to bake flatbread or pizza by placing dough directly on top and covering with a lid or foil.\n\n4. Place a brick under one leg of a wobbly table at a slight angle to adjust for uneven flooring without needing shims.\n\n5. Suspend a brick on a rope and lower it into a well or deep pond to measure water depth and quality by noting what clings to it.\n\n6. Lay a brick flat as an anvil surface when hammering and shaping wire, metal jewelry, or small metalworking projects.\n\n7. Wedge a brick horizontally under a door to prop it open at a specific angle for ventilation control rather than full-open.\n\n8. Use a damp brick as an emergency windshield cleaner by rubbing it gently across glass to remove dust and dried insects.",
+          "surface_revision": "# 8 Unusual Uses for a Brick\n\n1. Heat a brick in a campfire for 30 minutes and bury it in your sleeping bag—it will radiate warmth for 8+ hours, staying hot enough to warm your feet at dawn.\n\n2. Layer bricks with sand, gravel, and charcoal to transform opaque, food-scrap-clouded dishwater into clear liquid suitable for vegetable irrigation within minutes.\n\n3. Use a brick heated to 500°F as your baking surface in an outdoor oven, creating a crispy-bottomed flatbread with charred spots and a chewy interior impossible to replicate on metal.\n\n4. Tilt and rotate a brick lengthwise under a table leg to achieve millimeter-precision height adjustments—superior to shims because you can continuously fine-tune the angle without removing furniture.\n\n5. Tie a brick to a cord and lower it into a well or cistern; retrieve it to inspect the white lime-scale coating, dark sediment layer, and slime film—each reveals the water's mineral content and biological state.\n\n6. Place a brick as an anvil for delicate metalwork like wire-wrapping or jewelry assembly, where its slight vibration-dampening prevents the sharp rebounds of steel that cause metal fatigue and cracking in thin wires.\n\n7. Wedge a brick diagonally under a door to create a variable air gap that blocks wind while allowing precise ventilation control—rotate it one way for airflow, another for a sealed barrier.\n\n8. Drag the corner edge of a brick across frozen windshield glass to dislodge ice incrementally—the porous surface grips like frozen sandpaper without scratching.",
+          "haiku_total_usd": 2.5019850000000026,
+          "haiku_n_calls": 273
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "# 8 Unusual Uses of a Brick\n\n1. A grinding surface for crushing seeds, spices, and herbs by placing them on the flat side and grinding with another brick or stone pestle.\n\n2. A thermal mass for temperature regulation in coolers—place heated bricks in ice chests to keep food warm, or chilled bricks to extend cooling.\n\n3. A straightedge tool for scoring and cleanly breaking glass panes or ceramic tiles along a precise line.\n\n4. A percussion instrument in experimental music and drumming circles, struck with mallets to produce deep, resonant tones.\n\n5. A weighted anchor for securing camping tarps and gear against wind by tying rope around the brick and staking it down.\n\n6. A sauna stone heater that's heated in a fire pit or oven, then placed in water or on a sauna stove to generate steam.\n\n7. An emergency window breaker for vehicle escape—the corners of a brick can shatter tempered glass more effectively than typical emergency tools.\n\n8. A DIY cheese press for homemade cheesemaking, using its weight to compress curds by stacking it on top of cloth-wrapped cheese in a mold.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.6855922937393188,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9213980734348297,
+        "n_chars": 1085,
+        "n_words": 186,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 106.05567812919617,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": null,
+          "selected_idx": 6,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "# 8 Unusual Uses of a Brick\n\n1. A grinding surface for crushing seeds, spices, and herbs by placing them on the flat side and grinding with another brick or stone pestle.\n\n2. A thermal mass for temperature regulation in coolers—place heated bricks in ice chests to keep food warm, or chilled bricks to extend cooling.\n\n3. A straightedge tool for scoring and cleanly breaking glass panes or ceramic tiles along a precise line.\n\n4. A percussion instrument in experimental music and drumming circles, struck with mallets to produce deep, resonant tones.\n\n5. A weighted anchor for securing camping tarps and gear against wind by tying rope around the brick and staking it down.\n\n6. A sauna stone heater that's heated in a fire pit or oven, then placed in water or on a sauna stove to generate steam.\n\n7. An emergency window breaker for vehicle escape—the corners of a brick can shatter tempered glass more effectively than typical emergency tools.\n\n8. A DIY cheese press for homemade cheesemaking, using its weight to compress curds by stacking it on top of cloth-wrapped cheese in a mold.",
+          "surface_revision": "",
+          "haiku_total_usd": 2.552500000000003,
+          "haiku_n_calls": 281
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "# 8 Unusual Uses for a Brick\n\n1. **Thermal mass in a solar cooker** — After hours in direct sunlight, a brick becomes untouchable. Place it in an insulated box with root vegetables; the long-radiating heat slowly caramelizes exteriors while keeping centers tender—releasing a honeyed roasted aroma you can't achieve in a conventional oven.\n\n2. **Foot roller for plantar fasciitis relief** — Roll your foot's arch firmly over a brick; the clay's rough, irregular surface catches and massages fascia tissue with much sharper pressure points than smooth rollers, sending bright shock-sensations along your arch that gradually resolve into deep relief.\n\n3. **Heat diffuser in a smoker** — Set a brick directly above your coals. The porous surface absorbs direct heat and releases it in steady waves instead of sharp flames. Watch the meat develop an even, deep brown crust across its surface—the smoke rolls in a steady stream rather than acrid spikes that singe the exterior.\n\n4. **Acoustic bass trap** — Wedge bricks into room corners at precise angles; their porous clay absorbs the low frequencies that muddy recordings. When you play back vocals afterward, the shift is startling—what was a muddy blur suddenly untangles into sharp, clear articulation.\n\n5. **Percussion in traditional music** — Two clay bricks struck edge-to-edge produce a sharp *crack* that cuts through ensemble sound with surprising clarity. In Irish ceili and Balkan folk traditions, players control pitch and volume by varying strike angles, creating the percussive backbone that drives both music and dancers forward.\n\n6. **Spice grinder using friction heat** — Use a flat brick as base and another's corner as pestle. Grind whole cardamom or coriander seeds with firm circular motions. Within seconds, friction heat releases the essential oils and you'll smell the aroma surge suddenly, intensely. That smell-spike is how traditional cooks know to stop: push further and the heat destroys the volatile compounds, burning off the very flavor you're trying to extract.\n\n7. **Pattern impressing in clay and plaster** — Press a brick's surface into soft clay or freshly troweled plaster. The unique texture—wear marks, pitting, aged surface variations—transfers into an impression nearly impossible to replicate through other means, creating a pattern that records the brick's material history.\n\n8. **Weighted anchor for diving equipment** — Divers and underwater photographers tie bricks to camera rigs or light stands to hold gear at specific depths. The brick's weight is gentler on delicate equipment than metal anchors, and its porous surface creates friction that prevents slipping.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.6712933778762817,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9178233444690704,
+        "n_chars": 2660,
+        "n_words": 411,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 290.307156085968,
+          "K_effective": 4,
+          "commit_policy_effective": "always_revise",
+          "brief_override_used": true,
+          "committed": "revision",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 2,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# 8 Unusual Uses for a Brick\n\n1. **Thermal mass in a solar cooker** — Heat a brick in direct sunlight, then place it inside an insulated box with food to slowly cook vegetables or grains using retained warmth.\n\n2. **Foot roller for plantar fasciitis relief** — Roll the arch of your foot back and forth over a brick to massage and stretch the fascia tissue on the bottom of your foot.\n\n3. **Heat diffuser in a smoker or grill** — Place a brick directly over the heat source to break up direct flame, distribute heat evenly, and prevent flare-ups when smoking meat.\n\n4. **Acoustic bass trap in recording studios** — Wedge bricks into room corners at specific angles to absorb low-frequency sound reflections that ruin audio recordings.\n\n5. **Percussion instrument in traditional music** — Two bricks struck together create sharp rhythmic sounds used in folk music, Irish traditional sessions, and world music ensembles.\n\n6. **Mortar substitute for grinding spices** — Use a flat brick surface as the base and another brick's edge as the pestle to crush whole spices before cooking.\n\n7. **Ice scraper for cars and walkways** — The rough, sharp edge of a brick effectively removes accumulated ice from windshields and sidewalks in winter conditions.\n\n8. **Weighted anchor for underwater equipment** — Divers and underwater photographers use bricks tied to rigs or fishing nets to keep cameras and gear submerged at specific depths.",
+          "surface_revision": "# 8 Unusual Uses for a Brick\n\n1. **Thermal mass in a solar cooker** — After hours in direct sunlight, a brick becomes untouchable. Place it in an insulated box with root vegetables; the long-radiating heat slowly caramelizes exteriors while keeping centers tender—releasing a honeyed roasted aroma you can't achieve in a conventional oven.\n\n2. **Foot roller for plantar fasciitis relief** — Roll your foot's arch firmly over a brick; the clay's rough, irregular surface catches and massages fascia tissue with much sharper pressure points than smooth rollers, sending bright shock-sensations along your arch that gradually resolve into deep relief.\n\n3. **Heat diffuser in a smoker** — Set a brick directly above your coals. The porous surface absorbs direct heat and releases it in steady waves instead of sharp flames. Watch the meat develop an even, deep brown crust across its surface—the smoke rolls in a steady stream rather than acrid spikes that singe the exterior.\n\n4. **Acoustic bass trap** — Wedge bricks into room corners at precise angles; their porous clay absorbs the low frequencies that muddy recordings. When you play back vocals afterward, the shift is startling—what was a muddy blur suddenly untangles into sharp, clear articulation.\n\n5. **Percussion in traditional music** — Two clay bricks struck edge-to-edge produce a sharp *crack* that cuts through ensemble sound with surprising clarity. In Irish ceili and Balkan folk traditions, players control pitch and volume by varying strike angles, creating the percussive backbone that drives both music and dancers forward.\n\n6. **Spice grinder using friction heat** — Use a flat brick as base and another's corner as pestle. Grind whole cardamom or coriander seeds with firm circular motions. Within seconds, friction heat releases the essential oils and you'll smell the aroma surge suddenly, intensely. That smell-spike is how traditional cooks know to stop: push further and the heat destroys the volatile compounds, burning off the very flavor you're trying to extract.\n\n7. **Pattern impressing in clay and plaster** — Press a brick's surface into soft clay or freshly troweled plaster. The unique texture—wear marks, pitting, aged surface variations—transfers into an impression nearly impossible to replicate through other means, creating a pattern that records the brick's material history.\n\n8. **Weighted anchor for diving equipment** — Divers and underwater photographers tie bricks to camera rigs or light stands to hold gear at specific depths. The brick's weight is gentler on delicate equipment than metal anchors, and its porous surface creates friction that prevents slipping.",
+          "haiku_total_usd": 2.717527000000003,
+          "haiku_n_calls": 289
+        }
+      }
+    },
+    "a02": {
+      "item": {
+        "id": "a02",
+        "object": "paperclip"
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        },
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        },
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "# 8 Unusual Uses for a Paperclip\n\n1. Emergency fishing hook — reshape the bend to form a sharp hook, tie fishing line through the loop, and use it to catch small freshwater fish in survival situations\n\n2. Keyboard excavator — straighten one end and carefully scrape between keys to remove accumulated crumbs, dust, and debris from a computer keyboard\n\n3. Phone stand — bend into a Z-shape or triangular configuration to prop your smartphone at a viewing angle while watching videos or during video calls\n\n4. Plant training clip — thread climbing vines or tall plant stems through the loop to gently guide and train them to grow along a trellis or wall\n\n5. Broken zipper repair — thread the loop through a zipper slider that lost its pull tab to restore a functional handle for opening and closing stuck zippers\n\n6. Magnetic retrieval tool — straighten, magnetize with a strong magnet, and use it to fish out small metal objects dropped behind appliances or into tight crevices\n\n7. Cable suspension system — link multiple paperclips together and hook them over rafters or beams to create a hanging system that suspends heavy cables overhead\n\n8. Lock picking practice tool — bend into specific shapes to practice tension and picking techniques on padlocks, useful for understanding basic lock mechanics",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.720266580581665,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9300666451454163,
+        "n_chars": 1300,
+        "n_words": 219,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 14.872337341308594,
+          "haiku_total_usd": 2.7246830000000033,
+          "haiku_n_calls": 290
+        }
+      },
+      "haiku_cascade": {
+        "text": "# 8 Unusual Uses for a Paperclip\n\n1. Unclog a spray nozzle by straightening it and poking through the tiny opening of a stuck spray bottle or spray paint can.\n\n2. Bend into a hook shape and use as an emergency fishing hook when you have fishing line but no tackle.\n\n3. Eject a stuck CD or DVD drive by inserting the straightened wire into the emergency eject hole when the button fails.\n\n4. Straighten and push into garden soil as a delicate plant stake to support climbing seedlings or vining sprouts.\n\n5. Bend into a U-shape and fashion a replacement hinge for broken eyeglasses when the temple arm cracks.\n\n6. Fashion a makeshift slider for a broken zipper by bending it to catch the zipper's teeth instead of using a standard pull.\n\n7. Straighten and use as a prod to scrape dried paint out from hardened paintbrush bristles.\n\n8. Wrap loosely around a plant's stem to gently guide its growth in a desired direction on a trellis or moss pole.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.7873472571372986,
+          "elaboration": 1.0,
+          "flexibility": 0.7777777777777778
+        },
+        "composite": 0.8912812587287691,
+        "n_chars": 945,
+        "n_words": 171,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 227.35891032218933,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 0,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# 8 Unusual Uses for a Paperclip\n\n1. Unclog a spray nozzle by straightening it and poking through the tiny opening of a stuck spray bottle or spray paint can.\n\n2. Bend into a hook shape and use as an emergency fishing hook when you have fishing line but no tackle.\n\n3. Eject a stuck CD or DVD drive by inserting the straightened wire into the emergency eject hole when the button fails.\n\n4. Straighten and push into garden soil as a delicate plant stake to support climbing seedlings or vining sprouts.\n\n5. Bend into a U-shape and fashion a replacement hinge for broken eyeglasses when the temple arm cracks.\n\n6. Fashion a makeshift slider for a broken zipper by bending it to catch the zipper's teeth instead of using a standard pull.\n\n7. Straighten and use as a prod to scrape dried paint out from hardened paintbrush bristles.\n\n8. Wrap loosely around a plant's stem to gently guide its growth in a desired direction on a trellis or moss pole.",
+          "surface_revision": "# 8 Unusual Uses for a Paperclip\n\n1. Straighten and insert into the microscopic discharge hole of a stuck perfume atomizer or paint can nozzle, wiggling to dislodge crystallized residue that clogs the mechanism.\n\n2. Bend into a barbed fishing hook, thread fishing line through the loop, and feel the sudden violent tug of a freshwater fish striking, your hand alive with resistance and motion.\n\n3. Insert into the emergency eject hole of a jammed CD or DVD drive when the button fails, triggering the mechanical release with a decisive click.\n\n4. Straighten into a delicate support pole beside gossamer-thin seedlings, preventing them from collapsing under the weight of their first set of true leaves.\n\n5. Bend into an emergency eyeglasses hinge, looping tightly around a cracked temple arm and securing it with thread—now your vision literally depends on this improvised wire joint holding steady through an entire crucial meeting, flight, or presentation.\n\n6. Bend the clip into a hook that catches broken zipper teeth, allowing you to pry open a jammed suitcase or bag when the original pull-tab has snapped off.\n\n7. Straighten and use as a fine probe to scrape dried paint from deep between paintbrush bristles, salvaging expensive brushes that would otherwise be discarded as ruined.\n\n8. Wind loosely around a climbing plant's stem in a gentle spiral, creating a flexible scaffold that guides upward growth while remaining loose enough for the stem to thicken naturally as it matures.",
+          "haiku_total_usd": 2.8552230000000036,
+          "haiku_n_calls": 298
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "# 8 Unusual Paperclip Uses\n\n1. Emergency drain hair remover—bend into a hook shape and fish out hair clogs from shower drains without calling a plumber.\n\n2. SIM card ejector—use the pointed end to eject SIM cards from mobile phones when you've lost the official ejector tool.\n\n3. Keyboard debris extractor—carefully insert between keys to dislodge crumbs, dust, and food particles from computer keyboards.\n\n4. Plant stem support stake—insert into potted soil to prop up drooping or leaning seedling stems and young plants.\n\n5. Zipper pull replacement—thread through a broken or missing zipper pull tab to restore function to stuck jacket or bag zippers.\n\n6. Phone kickstand—bend into an angular stand to prop up a smartphone at a viewing angle without purchasing a stand.\n\n7. Cable organizer tag—wrap loosely around bundled cords and label with tape to identify which cable belongs to which device.\n\n8. DIY fishing hook—straighten one end and sharpen against stone, then bend into hook shape to create a makeshift fishing hook for small fish.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.775619626045227,
+          "elaboration": 0.9876543209876544,
+          "flexibility": 1.0
+        },
+        "composite": 0.9408184867582203,
+        "n_chars": 1042,
+        "n_words": 168,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 107.34564208984375,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": null,
+          "selected_idx": 3,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "# 8 Unusual Paperclip Uses\n\n1. Emergency drain hair remover—bend into a hook shape and fish out hair clogs from shower drains without calling a plumber.\n\n2. SIM card ejector—use the pointed end to eject SIM cards from mobile phones when you've lost the official ejector tool.\n\n3. Keyboard debris extractor—carefully insert between keys to dislodge crumbs, dust, and food particles from computer keyboards.\n\n4. Plant stem support stake—insert into potted soil to prop up drooping or leaning seedling stems and young plants.\n\n5. Zipper pull replacement—thread through a broken or missing zipper pull tab to restore function to stuck jacket or bag zippers.\n\n6. Phone kickstand—bend into an angular stand to prop up a smartphone at a viewing angle without purchasing a stand.\n\n7. Cable organizer tag—wrap loosely around bundled cords and label with tape to identify which cable belongs to which device.\n\n8. DIY fishing hook—straighten one end and sharpen against stone, then bend into hook shape to create a makeshift fishing hook for small fish.",
+          "surface_revision": "",
+          "haiku_total_usd": 2.9047440000000035,
+          "haiku_n_calls": 306
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "# 8 Unusual Uses for a Paperclip\n\n1. Probing crystallized ink deposits in a printer nozzle by straightening the wire, inserting it into each jet port, rotating until you feel the gritty blockage snap free, then blowing compressed air to verify the passage clears completely\n\n2. Ejecting a stuck SIM card tray by locating the pinhole emergency release on your phone's edge, inserting the straightened wire, and applying steady pressure until the spring mechanism clicks and the tray slides out smoothly\n\n3. Anchoring a crochet stitch marker by hooking the loop under an active stitch—the metal grips the yarn so firmly the clip becomes an immovable pivot point as you set your work down between sessions\n\n4. Repairing a separated zipper slider by straightening the wire, carefully re-threading it through the zipper teeth, and securing it with tiny loops wrapped around the slider housing to lock it permanently in place\n\n5. Unclogging a spray bottle nozzle by straightening the tip and inserting it into the jet, rotating to shatter the crystalline shell of dried cleaner or paint—the resistance suddenly collapses when the blockage fractures\n\n6. Supporting a leggy seedling by straightening the clip and anchoring it in soil next to the stem; the wire flexes slightly as it settles while the young plant leans its weight against the metal shaft\n\n7. Fishing a lost ring from a sink drain by unbending the paperclip into a long hook, maneuvering it carefully down the drain opening, and snagging the item to retrieve it—the smooth metal surface won't scratch jewelry the way cruder tools would\n\n8. Extracting an embedded splinter by bending the tip into a sharp upward hook, sliding it precisely under the splinter's edge, and leveraging the metal's unyielding rigidity to pry it out at exactly the angle needed to prevent snapping—the surgical control possible here vastly exceeds what tweezers can deliver",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.722641110420227,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9306602776050568,
+        "n_chars": 1906,
+        "n_words": 311,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 258.88572883605957,
+          "K_effective": 4,
+          "commit_policy_effective": "always_revise",
+          "brief_override_used": true,
+          "committed": "revision",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 0,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# 8 Unusual Uses for a Paperclip\n\n1. Clearing a clogged printer nozzle by straightening it and carefully probing the blocked inkjet ports to dislodge dried ink\n\n2. Extracting a stuck SIM card tray from a phone by inserting the straightened wire into the emergency eject hole\n\n3. Creating a stitch marker for crochet by hooking the loop around an active stitch to mark your place in a pattern\n\n4. Repairing broken eyeglasses temporarily by wrapping it around the bridge where the frames cracked to hold them together\n\n5. Unclogging a spray bottle nozzle by inserting the tip into the clogged jet and rotating to clear dried cleaner or paint\n\n6. Fashioning a plant support stake for weak seedlings by straightening it and inserting it into soil next to the stem\n\n7. Emergency bread bag tie by straightening and wrapping around opened cereal or chip bags to reseal them\n\n8. Forming a makeshift splinter removal tool by slightly bending the tip and using it to pry out embedded splinters from skin more precisely than tweezers",
+          "surface_revision": "# 8 Unusual Uses for a Paperclip\n\n1. Probing crystallized ink deposits in a printer nozzle by straightening the wire, inserting it into each jet port, rotating until you feel the gritty blockage snap free, then blowing compressed air to verify the passage clears completely\n\n2. Ejecting a stuck SIM card tray by locating the pinhole emergency release on your phone's edge, inserting the straightened wire, and applying steady pressure until the spring mechanism clicks and the tray slides out smoothly\n\n3. Anchoring a crochet stitch marker by hooking the loop under an active stitch—the metal grips the yarn so firmly the clip becomes an immovable pivot point as you set your work down between sessions\n\n4. Repairing a separated zipper slider by straightening the wire, carefully re-threading it through the zipper teeth, and securing it with tiny loops wrapped around the slider housing to lock it permanently in place\n\n5. Unclogging a spray bottle nozzle by straightening the tip and inserting it into the jet, rotating to shatter the crystalline shell of dried cleaner or paint—the resistance suddenly collapses when the blockage fractures\n\n6. Supporting a leggy seedling by straightening the clip and anchoring it in soil next to the stem; the wire flexes slightly as it settles while the young plant leans its weight against the metal shaft\n\n7. Fishing a lost ring from a sink drain by unbending the paperclip into a long hook, maneuvering it carefully down the drain opening, and snagging the item to retrieve it—the smooth metal surface won't scratch jewelry the way cruder tools would\n\n8. Extracting an embedded splinter by bending the tip into a sharp upward hook, sliding it precisely under the splinter's edge, and leveraging the metal's unyielding rigidity to pry it out at exactly the angle needed to prevent snapping—the surgical control possible here vastly exceeds what tweezers can deliver",
+          "haiku_total_usd": 3.0466630000000032,
+          "haiku_n_calls": 314
+        }
+      }
+    },
+    "a03": {
+      "item": {
+        "id": "a03",
+        "object": "rubber band"
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        },
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        },
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "1. Preventing charging cables from coming unplugged by wrapping a band tightly around both the plug and device port to create friction that keeps the connection seated.\n\n2. Training finger and hand strength for guitar playing by looping multiple bands around your fingertips and thumb, then repeatedly resisting their contraction.\n\n3. Silencing a rattling kitchen drawer by running a band horizontally across the interior opening to dampen and slow its closing speed.\n\n4. Marking reference levels on paint cans or water buckets by sliding a band to a specific height to quickly indicate optimal fill levels without guessing.\n\n5. Waterproofing a phone in emergencies by sealing it in a ziplock bag, then wrapping multiple bands around the sealed edges to compress it tightly against water intrusion.\n\n6. Tethering camera lens caps to prevent loss by threading the band through the cap's attachment eyelet and looping it around the lens barrel.\n\n7. Increasing grip diameter on tools like pencils, door handles, or toothbrushes for people with arthritis or limited hand strength.\n\n8. Stabilizing tripod feet on slippery floors by wrapping bands tightly around each leg to create friction and prevent sliding during video recording or photography.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.719782829284668,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.929945707321167,
+        "n_chars": 1243,
+        "n_words": 195,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 18.37699794769287,
+          "haiku_total_usd": 3.055822000000003,
+          "haiku_n_calls": 315
+        }
+      },
+      "haiku_cascade": {
+        "text": "# 8 Unusual Uses for a Rubber Band\n\n1. Wrap around wine glass stems at different heights to mark each guest's drink at parties so everyone can identify their glass.\n\n2. Secure tightly around rolled posters, yoga mats, or blueprints during storage to prevent them from unrolling and creasing over months.\n\n3. Stretch across the top of a paint can after dipping your brush to wipe off excess paint cleanly without bending bristles.\n\n4. Use as a figure-8 guide for climbing plants like ivy or clematis on a trellis—it gently directs growth without cutting into stems as they thicken.\n\n5. Color-code charging cables by wrapping different colored bands around each type (blue for USB-C, red for micro-USB, white for Lightning) to avoid cable tangles.\n\n6. Loop around a pencil or stick and use the tension as a makeshift grip aid when opening stuck jar lids coated with dried paint or rust.\n\n7. Wrap around your fingers in a specific pattern and snap it periodically during late-night work sessions as a tactile reminder to stand, stretch, and rest your eyes.\n\n8. Bundle around a closed book with pages you want to memorize or reference, positioning the band at your current page to mark progress and prevent the book from falling open to random spots.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.7365491390228271,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9341372847557068,
+        "n_chars": 1246,
+        "n_words": 213,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 270.825266122818,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 1,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# 8 Unusual Uses for a Rubber Band\n\n1. Wrap around wine glass stems at different heights to mark each guest's drink at parties so everyone can identify their glass.\n\n2. Secure tightly around rolled posters, yoga mats, or blueprints during storage to prevent them from unrolling and creasing over months.\n\n3. Stretch across the top of a paint can after dipping your brush to wipe off excess paint cleanly without bending bristles.\n\n4. Use as a figure-8 guide for climbing plants like ivy or clematis on a trellis—it gently directs growth without cutting into stems as they thicken.\n\n5. Color-code charging cables by wrapping different colored bands around each type (blue for USB-C, red for micro-USB, white for Lightning) to avoid cable tangles.\n\n6. Loop around a pencil or stick and use the tension as a makeshift grip aid when opening stuck jar lids coated with dried paint or rust.\n\n7. Wrap around your fingers in a specific pattern and snap it periodically during late-night work sessions as a tactile reminder to stand, stretch, and rest your eyes.\n\n8. Bundle around a closed book with pages you want to memorize or reference, positioning the band at your current page to mark progress and prevent the book from falling open to random spots.",
+          "surface_revision": "# 8 Unusual Uses for a Rubber Band\n\n1. Wrap around wine glass stems at different heights using multiple colored bands per guest—creating an instant visual fingerprint that lets you spot who's still holding their assigned drink even as people circulate and light shifts.\n\n2. Secure around rolled documents (blueprints, posters, textiles) at top, middle, and bottom to create a three-point anti-unroll lock—the layered pressure prevents microscopic unrolling that, over months in storage, creates permanent creases visible only when it's too late to fix them.\n\n3. Stretch across a paint can's rim after loading your brush, then drag bristles downward against the rubber band to catch excess paint—the band's elastic give prevents bristle splaying entirely, producing perfectly straight edges that rigid metal rims cannot achieve.\n\n4. Guide climbing vines by anchoring a figure-8 pattern to your trellis—as plant stems thicken, the rubber band stretches invisibly until snapping free and falling away, leaving zero scaffolding marks, unlike twine that strangles bark or wire that scars permanently.\n\n5. Wrap different colored bands around each cable connector (blue for USB-C, red for Lightning, green for micro-USB) so you can identify and grab the correct one in pitch darkness using touch alone—solving the cables-in-darkness problem that plagues bedside power strips and car cup holders.\n\n6. Loop tightly around a pencil or stick and use the doubled tension as a mechanical lever when opening stuck jar lids—the distributed grip prevents the sharp metal rim from cutting your palm while multiplying your leverage without requiring wrist strength.\n\n7. Wrap in a specific pattern around your wrist (band across palm, threaded between thumb and forefinger) and snap it sharply every 25 minutes during late-night work sessions—the sharp sensory jolt creates a Pavlovian trigger that conditions your body to stand and stretch *before* exhaustion locks in your posture.\n\n8. Bundle around a closed book with the band at your current page, then thread a second band through the first to create an interlocking progress marker—the physical configuration makes your exact stopping point impossible to lose and transforms reading progress into a visible progress staircase.",
+          "haiku_total_usd": 3.1979960000000034,
+          "haiku_n_calls": 323
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "# 8 Unusual Uses for Rubber Bands\n\n1. Wrap around a paintbrush's bristles when not in use to prevent splaying and keep them shaped for your next application.\n\n2. Stretch across the top of a paint can rim to catch excess paint when you drag your brush across—drips land on the band instead of the can's exterior.\n\n3. Secure plastic wrap over a shallow container to create a humidity dome for seed starting or rooting plant cuttings.\n\n4. Loop around a door frame and doorknob to prevent doors from swinging open when transporting items or working in a room with air circulation.\n\n5. Wrap around mushroom stems before cooking to hold them intact so they don't separate into caps and stems during slicing or sautéing.\n\n6. Use as a quick page marker in books by wrapping it around the pages at your current reading spot—faster to locate than a traditional bookmark.\n\n7. Bind climbing or vining plants (like tomatoes or ivy) loosely to stakes or trellises by looping the band around the stem and stake, allowing room for growth.\n\n8. Wrap around thin writing instruments, tools, or utensil handles to create a cushioned non-slip grip without permanent modification.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.7085769176483154,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9271442294120789,
+        "n_chars": 1158,
+        "n_words": 198,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 117.53683090209961,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": null,
+          "selected_idx": 4,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "# 8 Unusual Uses for Rubber Bands\n\n1. Wrap around a paintbrush's bristles when not in use to prevent splaying and keep them shaped for your next application.\n\n2. Stretch across the top of a paint can rim to catch excess paint when you drag your brush across—drips land on the band instead of the can's exterior.\n\n3. Secure plastic wrap over a shallow container to create a humidity dome for seed starting or rooting plant cuttings.\n\n4. Loop around a door frame and doorknob to prevent doors from swinging open when transporting items or working in a room with air circulation.\n\n5. Wrap around mushroom stems before cooking to hold them intact so they don't separate into caps and stems during slicing or sautéing.\n\n6. Use as a quick page marker in books by wrapping it around the pages at your current reading spot—faster to locate than a traditional bookmark.\n\n7. Bind climbing or vining plants (like tomatoes or ivy) loosely to stakes or trellises by looping the band around the stem and stake, allowing room for growth.\n\n8. Wrap around thin writing instruments, tools, or utensil handles to create a cushioned non-slip grip without permanent modification.",
+          "surface_revision": "",
+          "haiku_total_usd": 3.254591000000004,
+          "haiku_n_calls": 331
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "1. Securing cable tangles in drawers—Wrap bands at staggered heights around coiled charging cables; the position of each band instantly tells you which cord you're reaching for (top = phone, middle = laptop, bottom = monitor), creating a tactile filing system you can identify by touch alone.\n\n2. Increasing grip on sealed jars—Double-wrap the band around the lid, transforming a slippery glass surface into something your palm can actually purchase friction against; the resistance feels real and substantial where your bare hand finds none.\n\n3. Training climbing plant stems without damage—Loop around delicate vines and tie to the trellis; as each stem thickens, the rubber gradually yields beneath it, a guide that tightens with growth rather than constricting or cutting as wire would.\n\n4. Dampening door slamming noise—Stretch between the door knob and frame, converting violent bangs into soft thuds; the resistance of the rubber as it absorbs the impact creates a physical signal that someone's closed the door without announcing it through sound.\n\n5. Makeshift splint for finger sprains—Wrap around an injured finger with cotton padding underneath, the band holding just firmly enough to immobilize the joint while allowing crucial flex for circulation; it becomes a tactile reminder that forces you to think before reaching.\n\n6. Pant leg clip while cycling—Wrap around your trouser leg and anchor to the seat tube; with each pedal stroke the band creates steady pressure against the fabric, a meditative feedback loop that keeps your cuff positioned without the anxiety of chain tangling.\n\n7. Preserving partially-used wine corks—Wrap tightly around the bottom third and feel the cork resist, then yield beneath your fingers; as the cork naturally shrinks inward during storage, the sealed band tightens incrementally, creating a grip that actually improves with age rather than weakens.\n\n8. Pencil grip aid for arthritis sufferers—Layer multiple bands in a gentle spiral around the barrel, building diameter without the hard resistance of commercial grip-trainers; your palm settles into yielding softness, and the slightly tacky surface keeps your fingers positioned correctly without thinking.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.7007712721824646,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9251928180456161,
+        "n_chars": 2206,
+        "n_words": 336,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 244.36483883857727,
+          "K_effective": 4,
+          "commit_policy_effective": "always_revise",
+          "brief_override_used": true,
+          "committed": "revision",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 0,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "1. Securing cable tangles in drawers—wrap around coiled charging cables at different heights to prevent unraveling and mark varying lengths visually.\n\n2. Increasing grip strength for stuck jar lids—double-wrap around the lid to create friction that gives you better leverage and wrist control when opening tight jars.\n\n3. Training climbing plant stems without damage—loop around delicate vines and tie to a trellis; the elasticity prevents the rubber from cutting into growing stems like wire would.\n\n4. Dampening door slamming noise—stretch between the door knob and door frame to absorb impact and eliminate loud slamming that wakes people up.\n\n5. Makeshift splint for finger sprains—wrap around an injured finger (with gauze underneath for comfort) to immobilize it while still allowing limited movement.\n\n6. Pant leg clip while cycling—wrap around your trouser leg and attach to the bike's chain stay to prevent fabric from catching in the chain.\n\n7. Preserving partially-used wine corks—wrap tightly around the bottom of a cork to compress it and prevent it from shrinking and drying out between uses.\n\n8. Pencil grip aid for arthritis sufferers—wrap multiple bands around a pencil barrel to increase its diameter, reducing hand strain and making writing less painful.",
+          "surface_revision": "1. Securing cable tangles in drawers—Wrap bands at staggered heights around coiled charging cables; the position of each band instantly tells you which cord you're reaching for (top = phone, middle = laptop, bottom = monitor), creating a tactile filing system you can identify by touch alone.\n\n2. Increasing grip on sealed jars—Double-wrap the band around the lid, transforming a slippery glass surface into something your palm can actually purchase friction against; the resistance feels real and substantial where your bare hand finds none.\n\n3. Training climbing plant stems without damage—Loop around delicate vines and tie to the trellis; as each stem thickens, the rubber gradually yields beneath it, a guide that tightens with growth rather than constricting or cutting as wire would.\n\n4. Dampening door slamming noise—Stretch between the door knob and frame, converting violent bangs into soft thuds; the resistance of the rubber as it absorbs the impact creates a physical signal that someone's closed the door without announcing it through sound.\n\n5. Makeshift splint for finger sprains—Wrap around an injured finger with cotton padding underneath, the band holding just firmly enough to immobilize the joint while allowing crucial flex for circulation; it becomes a tactile reminder that forces you to think before reaching.\n\n6. Pant leg clip while cycling—Wrap around your trouser leg and anchor to the seat tube; with each pedal stroke the band creates steady pressure against the fabric, a meditative feedback loop that keeps your cuff positioned without the anxiety of chain tangling.\n\n7. Preserving partially-used wine corks—Wrap tightly around the bottom third and feel the cork resist, then yield beneath your fingers; as the cork naturally shrinks inward during storage, the sealed band tightens incrementally, creating a grip that actually improves with age rather than weakens.\n\n8. Pencil grip aid for arthritis sufferers—Layer multiple bands in a gentle spiral around the barrel, building diameter without the hard resistance of commercial grip-trainers; your palm settles into yielding softness, and the slightly tacky surface keeps your fingers positioned correctly without thinking.",
+          "haiku_total_usd": 3.399201000000004,
+          "haiku_n_calls": 339
+        }
+      }
+    },
+    "a04": {
+      "item": {
+        "id": "a04",
+        "object": "shoebox"
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        },
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        },
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "# 8 Unusual Uses for a Shoebox\n\n1. **Pinhole camera** – Cut a small hole in one end, line the interior with black paper, and use it to project inverted images onto the opposite wall for light-based photography experiments.\n\n2. **Insect hotel** – Drill small holes in the sides, stuff with straw, wood shavings, and bark, then mount outdoors to provide shelter for beneficial insects like bees and beetles.\n\n3. **DIY seed germination chamber** – Drill drainage holes in the bottom, fill with moist seed-starting mix, and cover with plastic wrap to create a humid microclimate for sprouting seeds indoors.\n\n4. **Portable hand drum** – Pack the bottom tightly with rice or beans, seal it shut, and cover the top with stretched fabric or membrane to create a functional percussion instrument.\n\n5. **Cat tunnel system** – Cut doorways between multiple boxes, stack and connect them, then cover with a blanket to create a multi-level hideaway your cat can crawl through and explore.\n\n6. **Shadow puppet theater** – Cut out detailed silhouettes from the sides, place a light source inside, and project shadows onto a white surface for storytelling or entertainment.\n\n7. **Terrarium base** – Layer soil, moss, and small rocks inside to grow a self-contained miniature garden with low-light tolerant plants like ferns or pothos.\n\n8. **Acoustic phone amplifier** – Cut a curved slot in one end sized to cradle your smartphone, and the shoebox's cardboard walls will naturally amplify speaker volume without electricity.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.741608202457428,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.935402050614357,
+        "n_chars": 1509,
+        "n_words": 244,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 10.265410900115967,
+          "haiku_total_usd": 3.4039200000000043,
+          "haiku_n_calls": 340
+        }
+      },
+      "haiku_cascade": {
+        "text": "# 8 Unusual Uses for a Shoebox\n\nCut small holes in the sides and bottom to create a DIY worm composting bin for kitchen scraps.\n\nLine with aluminum foil and newspaper to make an insulated cooler for keeping medication or food at stable temperature during travel.\n\nConstruct a pinhole camera by making a small hole in one end and loading with photographic paper to capture long-exposure images.\n\nPaint the interior and add battery-operated fairy lights to create a miniature diorama or shadow box for displaying collectible figurines.\n\nDrill drainage holes and fill with moisture-retaining soil to make a seed germination propagator with a plastic-wrap humidity dome on top.\n\nMount outside with an entrance hole drilled in one wall to create a nesting box for small birds like wrens or finches.\n\nCut a large opening in one side and cover with translucent plastic to build a small-scale terrarium for growing moss or low-light plants.\n\nPlace your phone inside facing upward and position the open box edge toward you to naturally amplify phone speaker audio through cardboard acoustic resonance.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.7550344467163086,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9387586116790771,
+        "n_chars": 1092,
+        "n_words": 177,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 233.46233296394348,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 1,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# 8 Unusual Uses for a Shoebox\n\nCut small holes in the sides and bottom to create a DIY worm composting bin for kitchen scraps.\n\nLine with aluminum foil and newspaper to make an insulated cooler for keeping medication or food at stable temperature during travel.\n\nConstruct a pinhole camera by making a small hole in one end and loading with photographic paper to capture long-exposure images.\n\nPaint the interior and add battery-operated fairy lights to create a miniature diorama or shadow box for displaying collectible figurines.\n\nDrill drainage holes and fill with moisture-retaining soil to make a seed germination propagator with a plastic-wrap humidity dome on top.\n\nMount outside with an entrance hole drilled in one wall to create a nesting box for small birds like wrens or finches.\n\nCut a large opening in one side and cover with translucent plastic to build a small-scale terrarium for growing moss or low-light plants.\n\nPlace your phone inside facing upward and position the open box edge toward you to naturally amplify phone speaker audio through cardboard acoustic resonance.",
+          "surface_revision": "# 8 Unusual Uses for a Shoebox\n\nCut small holes in the sides and bottom to create a worm composting bin where red wigglers visibly tunnel through kitchen scraps, transforming garbage into fragrant, dark humus within weeks.\n\nLayer with crumpled aluminum foil and newspaper, chill overnight, then seal to create an insulated travel container that maintains medications, breast milk, or vaccines at stable temperature for up to 14 hours without ice.\n\nDrill a single precise hole in one end and load with light-sensitive paper to capture ethereal, inverted photographs where light paints itself onto paper—ghostly, dream-like images of the world upside down.\n\nPaint the interior matte black and thread battery-operated LED lights along the ceiling to create a theatrical shadow box where translucent figurines cast dramatic, sculptural silhouettes.\n\nDrill drainage holes, fill with peat-perlite mixture, mist thoroughly, then seal under plastic wrap to watch seeds visibly germinate and sprout into bright green seedlings within days—the entire garden lifecycle compressed.\n\nMount outside a window with a 1.25-inch entrance hole to attract wrens that will meticulously pack it with hundreds of twigs and line it with grass before laying speckled eggs you can observe from indoors.\n\nCut a large opening, cover with clear plastic, and seal edges completely to create a self-sustaining closed terrarium where moss, ferns, and condensation cycle indefinitely for months or even years without a single drop of additional water.\n\nPlace your phone inside facing upward with the box opening angled toward you to leverage cardboard's acoustic resonance—transforming tinny phone audio into surprisingly full, room-filling sound with noticeably amplified bass.",
+          "haiku_total_usd": 3.5456380000000043,
+          "haiku_n_calls": 348
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "1. Miniature diorama display case—paint the interior and populate with tiny figurines and detailed landscapes to create immersive scene models of historical events or fantasy worlds\n\n2. Seed stratification box—layer sand, seeds, and moist paper towels to simulate winter cold conditions that trigger germination in dormant plant seeds\n\n3. Acoustic phone amplifier—cut a speaker-sized hole and insert your phone to naturally amplify sound output without batteries or electronics\n\n4. Pinhole camera—convert into a light-tight chamber with a small hole and film to capture surreal, unfocused photographs using only light and chemistry\n\n5. Bird nesting box—drill entrance hole and drainage holes, add wood shavings inside, mount on a pole to attract cavity-nesting species like wrens or bluebirds\n\n6. Personal time capsule—seal mementos, photos, and letters from today to bury and excavate in 10+ years for nostalgic reflection\n\n7. Cable organizer vault—subdivide the interior with cardboard partitions to sort and store USB cords, chargers, adapters, and tech accessories by type and length\n\n8. Insect observation habitat—cut a transparent acrylic window into one side, fill with soil and vegetation, and capture insects to monitor their behavior and lifecycle stages",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.8434703350067139,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9608675837516785,
+        "n_chars": 1264,
+        "n_words": 186,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 83.37262892723083,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": null,
+          "selected_idx": 1,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "1. Miniature diorama display case—paint the interior and populate with tiny figurines and detailed landscapes to create immersive scene models of historical events or fantasy worlds\n\n2. Seed stratification box—layer sand, seeds, and moist paper towels to simulate winter cold conditions that trigger germination in dormant plant seeds\n\n3. Acoustic phone amplifier—cut a speaker-sized hole and insert your phone to naturally amplify sound output without batteries or electronics\n\n4. Pinhole camera—convert into a light-tight chamber with a small hole and film to capture surreal, unfocused photographs using only light and chemistry\n\n5. Bird nesting box—drill entrance hole and drainage holes, add wood shavings inside, mount on a pole to attract cavity-nesting species like wrens or bluebirds\n\n6. Personal time capsule—seal mementos, photos, and letters from today to bury and excavate in 10+ years for nostalgic reflection\n\n7. Cable organizer vault—subdivide the interior with cardboard partitions to sort and store USB cords, chargers, adapters, and tech accessories by type and length\n\n8. Insect observation habitat—cut a transparent acrylic window into one side, fill with soil and vegetation, and capture insects to monitor their behavior and lifecycle stages",
+          "surface_revision": "",
+          "haiku_total_usd": 3.5843980000000046,
+          "haiku_n_calls": 356
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "# 8 Unusual Shoebox Uses (Revised)\n\n1. Pinhole camera for slow, inverted long-exposure photography—drill a precise hole through one end, line with black paper, insert photographic paper. Over 20–40 minutes, light burns an ethereal, softly-focused inversion onto the paper. The resulting image has an eerie, dreamlike quality no digital sensor can replicate.\n\n2. Hydroponic basil garden suspended over a nutrient reservoir—drill root holes through the top, suspend net pots with seedlings above the water bath. Within two weeks, glossy leaves emerge with a taste sharper and more peppery than soil-grown basil—almost numbing on the tongue.\n\n3. Carpenter ant observation metropolis—layer contrasting sand and loam, introduce a queen and colony. Watch them carve geometric chambers, vertical shafts, and burial sites within hours. You observe an impossibility made visible: an organism with no individual intelligence, yet executing architectural decisions with purposeful logic that mimics consciousness.\n\n4. Shadow puppet theater for intimate single-actor performances—cut intricate silhouettes into the sides, position a bulb inside so the box glows amber from within. The performer's hand-puppets cast sharp shadows onto a backdrop inches away; the audience sits close enough to hear the puppeteer's breath.\n\n5. Spring-loaded feral cat capture box for TNR programs—engineer a trap door using a wooden stick and fishing line. When triggered, it closes quietly, safely confining the cat in darkness until transport. Reduces stress injuries compared to metal traps.\n\n6. Passive solar water heater—paint interior matte black, seal in clear plastic, position on a south-facing sill. Water reaches 130–140°F within two hours. Feel the temperature gradient shift; winter's low sun angle penetrates deeper; summer's angle reduces heating. Hot enough for washing or brewing tea.\n\n7. Cedar waxwing nest observatory with infrared night-vision camera—mount on a backyard pole. Observe their bizarre courtship ritual: birds pass a single berry to each other in rapid succession—50+ exchanges per minute—in a relay so sustained it appears ecstatic. Capture the chaotic, violent moment of fledging.\n\n8. Native wildflower cold-stratification chamber for dormancy-breaking—seal with plastic wrap, maintain 80% humidity with daily misting, cycle between warm days and cold nights. Alpine and northern seeds undergo the seasonal signals evolution encoded in their genetics. Watch dormancy rupture: root emerges first, then cotyledon unfurls. Within weeks you're propagating high-altitude species from your kitchen.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.8397642970085144,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9599410742521286,
+        "n_chars": 2596,
+        "n_words": 372,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 195.74041986465454,
+          "K_effective": 4,
+          "commit_policy_effective": "always_revise",
+          "brief_override_used": true,
+          "committed": "revision",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 0,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# 8 Unusual Shoebox Uses\n\n1. Pinhole camera for teaching photography—poke a small hole in one end, line the interior with black paper, use photographic paper inside to capture inverted images.\n\n2. Hydroponic herb garden—drill drainage holes, fill with water and nutrient solution, suspend net pots with herb seedlings through the top to grow basil or lettuce.\n\n3. Humane feral cat trap for TNR (trap-neuter-return) programs—modify the entry with a spring-loaded door mechanism to safely capture and transport cats for spaying/neutering.\n\n4. Shadow puppet theater—cut silhouette designs into the sides, place a light source inside, and project stories onto a white backdrop for performance art or children's entertainment.\n\n5. Ant farm alternative—fill layered with sand and soil, add ant colony, observe tunneling behavior and social structures with minimal materials.\n\n6. Passive solar water heater—paint interior black, cover with clear plastic wrap, seal edges, position in sunlight to heat water for washing or experiments on solar thermal energy.\n\n7. Wildlife nest box with camera mount—mount on a pole with a small camera inside to observe and record birds, insects, or small mammals in their natural habitat.\n\n8. Seed propagation humidity chamber—seal with plastic wrap, fill with moist soil and seedlings, create a mini greenhouse effect to boost germination rates in dry climates.",
+          "surface_revision": "# 8 Unusual Shoebox Uses (Revised)\n\n1. Pinhole camera for slow, inverted long-exposure photography—drill a precise hole through one end, line with black paper, insert photographic paper. Over 20–40 minutes, light burns an ethereal, softly-focused inversion onto the paper. The resulting image has an eerie, dreamlike quality no digital sensor can replicate.\n\n2. Hydroponic basil garden suspended over a nutrient reservoir—drill root holes through the top, suspend net pots with seedlings above the water bath. Within two weeks, glossy leaves emerge with a taste sharper and more peppery than soil-grown basil—almost numbing on the tongue.\n\n3. Carpenter ant observation metropolis—layer contrasting sand and loam, introduce a queen and colony. Watch them carve geometric chambers, vertical shafts, and burial sites within hours. You observe an impossibility made visible: an organism with no individual intelligence, yet executing architectural decisions with purposeful logic that mimics consciousness.\n\n4. Shadow puppet theater for intimate single-actor performances—cut intricate silhouettes into the sides, position a bulb inside so the box glows amber from within. The performer's hand-puppets cast sharp shadows onto a backdrop inches away; the audience sits close enough to hear the puppeteer's breath.\n\n5. Spring-loaded feral cat capture box for TNR programs—engineer a trap door using a wooden stick and fishing line. When triggered, it closes quietly, safely confining the cat in darkness until transport. Reduces stress injuries compared to metal traps.\n\n6. Passive solar water heater—paint interior matte black, seal in clear plastic, position on a south-facing sill. Water reaches 130–140°F within two hours. Feel the temperature gradient shift; winter's low sun angle penetrates deeper; summer's angle reduces heating. Hot enough for washing or brewing tea.\n\n7. Cedar waxwing nest observatory with infrared night-vision camera—mount on a backyard pole. Observe their bizarre courtship ritual: birds pass a single berry to each other in rapid succession—50+ exchanges per minute—in a relay so sustained it appears ecstatic. Capture the chaotic, violent moment of fledging.\n\n8. Native wildflower cold-stratification chamber for dormancy-breaking—seal with plastic wrap, maintain 80% humidity with daily misting, cycle between warm days and cold nights. Alpine and northern seeds undergo the seasonal signals evolution encoded in their genetics. Watch dormancy rupture: root emerges first, then cotyledon unfurls. Within weeks you're propagating high-altitude species from your kitchen.",
+          "haiku_total_usd": 3.6865010000000056,
+          "haiku_n_calls": 364
+        }
+      }
+    },
+    "a05": {
+      "item": {
+        "id": "a05",
+        "object": "wire coat hanger"
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        },
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        },
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "7a67219592383e16",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "# 8 Unusual Wire Coat Hanger Uses\n\n1. **Drain hair removal tool** — Unbend and create a small hook at the end, then feed it down a bathtub or sink drain to snag and pull out hair clogs.\n\n2. **Vegetable garden stake** — Straighten completely and drive into soil next to tomato or pepper plants, using the curved hook to gently tie and train the stem upward as it grows.\n\n3. **Campfire marshmallow roaster** — Straighten one end and use to hold marshmallows over a fire, giving you precise heat control and distance adjustment.\n\n4. **Stuck ceiling fan blade starter** — Straighten the wire and use it to gently push a stuck fan blade to get it rotating again without forcing it.\n\n5. **Hot pot lid lifter** — Bend into a hook shape and use to lift the edge of a hot pot lid while cooking, protecting your hand from heat and steam.\n\n6. **Weighted wreath hanger** — Form a loop and hang wreaths or garlands at various angles on walls without putting nail holes in drywall.\n\n7. **Sagging curtain rod brace** — Unbend and create a diagonal support that props up a bent or drooping rod in room corners, preventing collapse.\n\n8. **Bookshelf book divider** — Bend into an L-shape and use as an adjustable stopper to keep books standing upright without sliding across shelves.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.7594322562217712,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9398580640554428,
+        "n_chars": 1265,
+        "n_words": 226,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 14.945507049560547,
+          "haiku_total_usd": 3.6938340000000056,
+          "haiku_n_calls": 365
+        }
+      },
+      "haiku_cascade": {
+        "text": "# 8 Unusual Uses for a Wire Coat Hanger\n\n1. Straighten and bend into a hook to fish out hair clogs and debris from shower drains without removing the drain cover\n\n2. Flatten and shape into a geometric diamond pattern as a DIY trellis for training climbing plants like beans, peas, or ivy upward in a garden\n\n3. Bend the hook into a loop and thread through a foam pool noodle to create a shallow-water fish net or floating toy retriever\n\n4. Wrap around a paintbrush handle and suspend it horizontally across a paint can rim to keep bristles elevated, preventing them from splaying or hardening against the can bottom\n\n5. Shape and flatten into a specialized hook to retrieve coins, keys, and items fallen between car seat cushions or furniture gaps\n\n6. Form the hook end into a curved frame and stretch window screen mesh across it to create an emergency bug screen for camping tents or cabin windows\n\n7. Bend the bottom into a wide, curved support cradle to create a hands-free phone or tablet stand for kitchen counters or bedside tables\n\n8. Unbend and wrap horizontally around the inside perimeter of a paint can, securing both ends to the rim, creating a paint-stirring mechanism when twisted",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.723154604434967,
+          "elaboration": 1.0,
+          "flexibility": 0.8888888888888888
+        },
+        "composite": 0.903010873330964,
+        "n_chars": 1195,
+        "n_words": 209,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 266.7236897945404,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 0,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# 8 Unusual Uses for a Wire Coat Hanger\n\n1. Straighten and bend into a hook to fish out hair clogs and debris from shower drains without removing the drain cover\n\n2. Flatten and shape into a geometric diamond pattern as a DIY trellis for training climbing plants like beans, peas, or ivy upward in a garden\n\n3. Bend the hook into a loop and thread through a foam pool noodle to create a shallow-water fish net or floating toy retriever\n\n4. Wrap around a paintbrush handle and suspend it horizontally across a paint can rim to keep bristles elevated, preventing them from splaying or hardening against the can bottom\n\n5. Shape and flatten into a specialized hook to retrieve coins, keys, and items fallen between car seat cushions or furniture gaps\n\n6. Form the hook end into a curved frame and stretch window screen mesh across it to create an emergency bug screen for camping tents or cabin windows\n\n7. Bend the bottom into a wide, curved support cradle to create a hands-free phone or tablet stand for kitchen counters or bedside tables\n\n8. Unbend and wrap horizontally around the inside perimeter of a paint can, securing both ends to the rim, creating a paint-stirring mechanism when twisted",
+          "surface_revision": "# 8 Unusual Uses for a Wire Coat Hanger\n\n1. Straighten and bend into a tight spiral hook to fish out hair clogs, soap scum, and waterlogged debris from shower drains in one aggressive pulling motion, without accessing the drain cover\n\n2. Flatten and shape into a geometric lattice frame that casts a diamond-patterned shadow across climbing plants, while the precise angles guide beans, peas, and ivy into tight, tessellated vertical rows\n\n3. Bend into a rigid hoop, thread through a pool noodle, and use as a swift-scooping net to retrieve toys and coins from pool bottoms with buoyancy, functioning like a shallow-water trawler\n\n4. Wrap tightly around a paintbrush handle and suspend horizontally across the can rim to create a bristle-saving cradle, preventing splayed or hardened bristles that would otherwise bond to the can floor\n\n5. Shape into a double-hooked retriever to snake into car seat crevices and furniture gaps, extracting not just coins and keys but also lost engagement rings, earrings, SD cards, remote batteries, and small utensils from unreachable depths\n\n6. Form the hook end into a curved frame and stretch window screen mesh across it to construct a pop-up emergency bug screen that deploys instantly to seal camping tents or cabin windows against insect invasion\n\n7. Bend the ends into a wide, curved cradle with a backward tilt to prop phones or tablets at a steep reclined angle, ideal for hands-free cooking videos, bedside reading, or kitchen counter viewing from standing distance\n\n8. Unbend completely and wrap horizontally around the paint can's interior perimeter, then twist hard to create a high-speed centrifugal action that violently disperses settled pigments and sludge, preventing paint separation and surface crusting",
+          "haiku_total_usd": 3.964064000000006,
+          "haiku_n_calls": 380
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "# 8 Unusual Uses for a Wire Coat Hanger\n\n1. Drain unclogger—straighten one end, create a small hook, and fish out hair and debris clogs from shower or sink drains\n\n2. Marshmallow roasting stick—bend the hook upward into a point and use to spear marshmallows over a campfire\n\n3. Garden plant support cage—bend and connect multiple hangers in a cylindrical shape to support sprawling tomato or pepper plants\n\n4. Boot tree—insert vertically inside boots or shoes to maintain their shape and prevent creasing during off-season storage\n\n5. Emergency car door opener—create a hook and slide between car window and frame to reach the unlock button if locked out\n\n6. Makeshift TV antenna—bend into a V or inverted U-shape and position on top of a television to boost rabbit-ear reception\n\n7. Picture hanging level jig—bend into a horizontal frame and mark equal spacing points to drill evenly-spaced holes for hanging multiple frames\n\n8. Aquarium cave builder—bend into an arch or tunnel structure and position in a fish tank to create hiding spots and resting areas for fish",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.7826526165008545,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9456631541252136,
+        "n_chars": 1067,
+        "n_words": 176,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 120.52544164657593,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": null,
+          "selected_idx": 2,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "# 8 Unusual Uses for a Wire Coat Hanger\n\n1. Drain unclogger—straighten one end, create a small hook, and fish out hair and debris clogs from shower or sink drains\n\n2. Marshmallow roasting stick—bend the hook upward into a point and use to spear marshmallows over a campfire\n\n3. Garden plant support cage—bend and connect multiple hangers in a cylindrical shape to support sprawling tomato or pepper plants\n\n4. Boot tree—insert vertically inside boots or shoes to maintain their shape and prevent creasing during off-season storage\n\n5. Emergency car door opener—create a hook and slide between car window and frame to reach the unlock button if locked out\n\n6. Makeshift TV antenna—bend into a V or inverted U-shape and position on top of a television to boost rabbit-ear reception\n\n7. Picture hanging level jig—bend into a horizontal frame and mark equal spacing points to drill evenly-spaced holes for hanging multiple frames\n\n8. Aquarium cave builder—bend into an arch or tunnel structure and position in a fish tank to create hiding spots and resting areas for fish",
+          "surface_revision": "",
+          "haiku_total_usd": 4.0225530000000065,
+          "haiku_n_calls": 388
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "# 8 Unusual Uses for a Wire Coat Hanger\n\nStraighten completely and thread through P-trap plumbing to hook and retrieve matted hair blockages—the wire vibrates against your palm as you twist and pull, and the sudden release of pressure when the clog gives way sends a satisfying jolt back up the metal shaft.\n\nBend into a loose diamond lattice and stake vertically in a garden bed for pole beans to climb; the wire stays cool to the touch even in summer heat, and the beans' fuzzy tendrils grip and spiral around each strand, eventually hiding the metal beneath dense foliage.\n\nReshape into a flat spiral loop and position vertically behind a television set; rotate it incrementally and watch the picture on screen pixelate, then suddenly snap into sharp focus when you hit the signal sweet spot—a tangible reward for precise physical positioning.\n\nFile one end sharp on a sidewalk, then use it to methodically scrape baked-on food from an oven's interior—the grating, grinding sound changes tone as the wire moves from crusty carbon to bare metal; satisfying progress marked by the shower of dark flakes falling onto the oven floor.\n\nUnbend into a long single wire and probe behind appliances for dropped jewelry—when the tip strikes a gold ring, you hear a clear metallic ping; hook it carefully and drag your prize slowly back across dust and debris until you can grasp it with your fingers.\n\nStraighten and sharpen the end to create a 3-foot roasting skewer, thread marshmallows onto the point, and position it waist-height above flickering coals; rotate slowly so the exterior surfaces turn amber-golden and slightly charred while the interior becomes gooey, collapsing slightly when pierced with a stick.\n\nCut into 6-inch segments and wrap each coil tightly with strips torn from a worn-out cotton t-shirt; these padded bands cushion heavy tomato branches and peony stems without cutting into living tissue, distributing the wire's pressure across a wider surface.\n\nWedge the straightened section diagonally across a sliding glass door frame and force it down into the track—the mechanical resistance you feel tells you the barrier is secure against forced entry, a simple physics-based lock requiring significant force to overcome.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.7492420673370361,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.937310516834259,
+        "n_chars": 2237,
+        "n_words": 362,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 211.4204499721527,
+          "K_effective": 4,
+          "commit_policy_effective": "always_revise",
+          "brief_override_used": true,
+          "committed": "revision",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 2,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# 8 Unusual Uses for a Wire Coat Hanger\n\nStraighten it and use as a plumbing snake to dislodge hair clogs and debris from drain pipes by fishing through P-traps.\n\nBend into a rectangular frame, string with twine or netting, and use as a climbing trellis for beans, cucumbers, or peas in a garden bed.\n\nShape into a loop with a hook and use as a makeshift antenna by positioning it behind a TV to receive digital over-the-air broadcast signals.\n\nUse the hooked end to scrape away dried paint drips, stubborn adhesive labels, or frost buildup from windows and glass surfaces.\n\nFish out jewelry, keys, or small items that have fallen behind refrigerators, washing machines, radiators, or into wall cavities by straightening and bending a hook.\n\nStraighten completely and sharpen one end to use as a long-handled roasting stick for cooking marshmallows, hot dogs, or bread over a campfire.\n\nCut into segments, wrap each with cloth or plastic strips, and use as soft plant ties to support heavy tomato branches, peonies, or flowering shrubs without cutting into stems.\n\nWedge diagonally across a sliding glass door or window frame as a security bar to prevent forced entry when traveling or in temporary living situations.",
+          "surface_revision": "# 8 Unusual Uses for a Wire Coat Hanger\n\nStraighten completely and thread through P-trap plumbing to hook and retrieve matted hair blockages—the wire vibrates against your palm as you twist and pull, and the sudden release of pressure when the clog gives way sends a satisfying jolt back up the metal shaft.\n\nBend into a loose diamond lattice and stake vertically in a garden bed for pole beans to climb; the wire stays cool to the touch even in summer heat, and the beans' fuzzy tendrils grip and spiral around each strand, eventually hiding the metal beneath dense foliage.\n\nReshape into a flat spiral loop and position vertically behind a television set; rotate it incrementally and watch the picture on screen pixelate, then suddenly snap into sharp focus when you hit the signal sweet spot—a tangible reward for precise physical positioning.\n\nFile one end sharp on a sidewalk, then use it to methodically scrape baked-on food from an oven's interior—the grating, grinding sound changes tone as the wire moves from crusty carbon to bare metal; satisfying progress marked by the shower of dark flakes falling onto the oven floor.\n\nUnbend into a long single wire and probe behind appliances for dropped jewelry—when the tip strikes a gold ring, you hear a clear metallic ping; hook it carefully and drag your prize slowly back across dust and debris until you can grasp it with your fingers.\n\nStraighten and sharpen the end to create a 3-foot roasting skewer, thread marshmallows onto the point, and position it waist-height above flickering coals; rotate slowly so the exterior surfaces turn amber-golden and slightly charred while the interior becomes gooey, collapsing slightly when pierced with a stick.\n\nCut into 6-inch segments and wrap each coil tightly with strips torn from a worn-out cotton t-shirt; these padded bands cushion heavy tomato branches and peony stems without cutting into living tissue, distributing the wire's pressure across a wider surface.\n\nWedge the straightened section diagonally across a sliding glass door frame and force it down into the track—the mechanical resistance you feel tells you the barrier is secure against forced entry, a simple physics-based lock requiring significant force to overcome.",
+          "haiku_total_usd": 4.141177000000007,
+          "haiku_n_calls": 396
+        }
+      }
+    }
+  }
+}
