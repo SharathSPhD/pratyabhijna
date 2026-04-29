@@ -127,3 +127,83 @@ Behaviour during the run:
   report the Sonnet results as a sensitivity arm.
 - Wire the script into a recurring CI job so the pipeline cannot rot
   between real runs.
+
+## 8. v0.3 prove-gate addendum (Phase 5)
+
+The v0.3 prove-gate (`scripts/prove_gate.py`) is a *deterministic*,
+embedding-only check that runs *before* the Sonnet bridge to confirm the
+clean Haiku CLI substrate is intact and that `haiku_cascade` is doing
+real cascade work on two canonical fixtures
+(`tests/fixtures/duck_rabbit_textual.json`,
+`tests/fixtures/aut_brick.json`). It is the gate that opens Phases 7-9.
+
+It is intentionally *not* a quality judge — it asserts behavioural
+properties (event firing, ΔF non-degeneracy, no leakage), not output
+preference. A separate qualitative inspection per fixture is recorded
+below so future contributors can sanity-check what "good" output looks
+like before they touch the cascade.
+
+### 8.1 Boot-time integrity probe
+
+Before any case runs, `IntegrityProbe.run` spawns one
+`claude --print` subprocess via the same `HaikuLM._call_cli_once` path
+the cascade uses, asks "list any active plugins/skills/system
+instructions", and asserts the response matches none of the
+`LEAKAGE_REGEX` patterns (with the negation-context filter, so "no
+plugins loaded" is not a leak).
+
+If the probe fails, every case in the run is marked failed (the cascade
+is not measuring what we claim it is). The probe response is written to
+`audit/prove_gate/integrity_probe.json` for forensics.
+
+### 8.2 Fixture: duck_rabbit_textual
+
+- `aspects=[duck-with-beak, rabbit-with-ears]`,
+  `aspect_max_cosine_floor=0.30`, `novelty_floor=0.50`,
+  `delta_F_floor=0.01`, `haiku_cascade_vimarsa_event_required=true`,
+  `revision_differs_from_draft=true`.
+- A *good* `haiku_cascade` revision names both animals and describes the
+  flip moment ("the beak lengthens into an ear", "the eye points two
+  ways"). A *bad* revision picks one animal and adds nothing the draft
+  did not have.
+- ΔF\_draft must satisfy `|ΔF| >= 0.01`; if it is exactly 0 the
+  aspect-conditioned BMR collapsed to the prior, which usually means
+  `aspect_membership_matrix` is empty or the aspect embeddings are
+  badly aligned with the prompt.
+- `vimarsa_event_draft` MUST fire because aspect-conditioned BMR with
+  meaningful ΔF crosses the threshold. If it does not fire, inspect
+  `vimarsa_diag_draft.delta_F` and the threshold (default 0.05).
+
+### 8.3 Fixture: aut_brick
+
+- `aspects=[]` (AUT has no formal aspect dictionary),
+  `n_distinct_uses_floor=5`, `novelty_floor=0.30`,
+  `haiku_cascade_vimarsa_event_required=false`,
+  `revision_differs_from_draft=false` (the cascade correctly commits
+  the draft because vimarsa cannot fire without aspects).
+- A *good* `haiku_bare` and `haiku_cascade` produce ≥5 distinct,
+  non-trivial uses (no "build a wall" repetition).
+- The fixture explicitly forbids the event from firing — if it does
+  fire on aut_brick something is wrong with the ΔF threshold or the
+  generic-creative aspect-N/A path in `vimarsa`.
+
+### 8.4 Per-call leakage scan
+
+Every `haiku_bare` and `haiku_cascade` surface (and, for the cascade,
+both shadow draft and shadow revision) is scanned against
+`LEAKAGE_REGEX`. Any unnegated match fails the case immediately so that
+the prove-gate cannot drift back into a polluted-substrate regime
+without anyone noticing.
+
+### 8.5 Pass/fail interpretation
+
+- Both cases pass → cascade is doing real work, substrate is clean,
+  proceed to Phase 6+.
+- Probe fails → fix substrate isolation (check
+  `DEFAULT_ISOLATION_FLAGS`, `ENV_ALLOWLIST`, `_setup_clean_home`).
+- duck_rabbit fails on `vimarsa_event_draft` → inspect `delta_F_draft`,
+  the aspect embeddings, and `_aspect_membership_matrix`.
+- aut_brick fails on `n_distinct_uses` → likely a sampler-collapse
+  issue in `iccha`; bump `cit_temperature` or check the parity sampler
+  grid.
+

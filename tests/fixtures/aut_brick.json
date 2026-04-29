@@ -1,5 +1,5 @@
 {
-  "id": "aut_brick_v0.2",
+  "id": "aut_brick_v0.3",
   "domain": "aut",
   "title": "Alternative Uses Test - brick (Guilford 1967)",
   "prompt": "List 8 unusual, non-obvious uses of a brick. Be concrete and specific. Avoid the standard everyday use (building walls or houses). Format: one use per line.",
@@ -14,11 +14,15 @@
     "use a brick as a paperweight"
   ],
   "expected_signals": {
-    "vimarsa_event_at_least_one_arm": true,
+    "vimarsa_event_at_least_one_arm": false,
+    "haiku_cascade_vimarsa_event_required": false,
     "novelty_floor": 0.30,
-    "revision_differs_from_draft": true,
+    "revision_differs_from_draft": false,
     "haiku_cascade_differs_from_haiku_bare": true,
-    "n_distinct_uses_floor": 5
+    "n_distinct_uses_floor": 5,
+    "delta_F_floor": 0.0,
+    "no_leakage": true,
+    "integrity_probe_must_pass": true
   },
-  "notes": "Aspects=[] is intentional - AUT has no formal aspect dictionary. With v0.2's aspect-N/A gate (when aspects=[]) and the generic creative brief, the cascade should still produce a non-trivial revision delta. We measure n_distinct_uses to detect duplicate-listing collapse."
+  "notes": "Aspects=[] is intentional - AUT has no formal aspect dictionary. With v0.3's event-gated commit policy, when there are no aspects the BMR ΔF is 0 and vimarsa correctly does NOT fire, so the cascade commits the draft. revision_differs_from_draft is therefore not required here (the commit policy correctly chose draft); we measure n_distinct_uses to detect duplicate-listing collapse and require integrity_probe + no_leakage as for every Haiku subprocess call."
 }
