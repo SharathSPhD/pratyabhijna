@@ -1,35 +1,54 @@
 #!/usr/bin/env python3
-"""Phase 4 prove-gate: validate two cases across all four arms before benchmark.
+"""Phase 5 prove-gate v0.3: validate two cases against the haiku_cascade arm.
 
-Per the user's frozen scope ("take one case and prove/validate thoroughly,
-debug, correct and then proceed for full benchmark"), the prove-gate runs
-``duck_rabbit_textual`` and ``aut_brick`` across:
+Per the user's frozen v0.3 scope ("no need to run local llm arm or sonnet …
+the same benchmark sample as v0.2 is the scope"), the prove-gate now runs
+*only* the two production Haiku arms on the two prove-gate fixtures:
 
-* ``local_bare``    - Qwen2-1.5B raw ``LM.generate``
-* ``local_cascade`` - Qwen2-1.5B through ``run_cascade``
-* ``haiku_bare``    - Haiku via ``HaikuLM.generate``
-* ``haiku_cascade`` - Haiku through ``run_cascade``
+* ``haiku_bare``    - one-shot Haiku via :class:`HaikuLM.generate` (parity sampler)
+* ``haiku_cascade`` - Haiku through :func:`pce.cascade.run_cascade` with
+                      ``commit_policy="event_gated"`` (always-shadow revision)
 
-For each (case, arm) we write the surface, draft, revision, brief, and
-diagnostic to ``audit/prove_gate/<case>/<arm>/result.json`` and assert the
-fixture's ``expected_signals``.
+The local Qwen2-1.5B arm has been dropped from the gate; it lives only as a
+ceiling reference in legacy v0.2 audits. The two new control arms
+(``haiku_bare_2K_scorer``, ``haiku_generic_revise_2pass``) are exercised by
+the Phase 7 benchmark driver, not the prove-gate.
+
+For every Haiku call the gate now verifies the *clean inner-subprocess
+substrate* (ADR-001):
+
+* :class:`pce.substrate.integrity.IntegrityProbe` is run once at boot and the
+  result must be ``passed=True``; cached for the rest of the run.
+* :data:`pce.substrate.integrity.LEAKAGE_REGEX` is applied (with the same
+  negation-context filter the probe uses) to every ``haiku_bare`` and
+  ``haiku_cascade`` surface (and, for the cascade, both shadow draft and
+  shadow revision). Any leak match fails the case.
+
+For ``haiku_cascade`` it additionally asserts (ADR-002 / ADR-003):
+
+* ``haiku_cascade.delta_F_draft`` is non-degenerate (``|ΔF| >= delta_F_floor``)
+  whenever the fixture supplies aspects, so the BMR aspect-conditioned
+  posterior is doing real work, not collapsing to the prior.
+* ``haiku_cascade.vimarsa_event_draft`` fires iff the fixture sets
+  ``haiku_cascade_vimarsa_event_required=true`` (duck-rabbit must fire;
+  aut_brick must NOT fire because it has no aspects).
+* When commit policy committed *revision*, ``revision_differs_from_draft``
+  is true (the revision pass actually changed the surface).
+
+Per-arm payload is written to ``audit/prove_gate/<case>/<arm>/result.json``;
+overall summary lands at ``audit/prove_gate/overall.json``.
 
 Exit codes:
 * 0 - all gates passed.
-* 1 - a hard gate failed (vimarsa never fires, revision == draft, etc).
+* 1 - a hard gate failed (and ``--strict`` was set).
+* 2 - claude CLI not present.
 
-Cost envelope: ~ $0.20-0.40 of Haiku (4 cascade calls + 4 bare calls,
-K=3, two-pass-always means each cascade call is 2*K = 6 Haiku
-generations; bare is 1 generation). Roughly 16 Haiku calls total
-@ ~$0.02/call cached = ~$0.32. Well within the $15 pilot envelope.
+Cost envelope: ~$0.10-$0.20 of Haiku
+(2 cases × 2 arms; cascade = 2 passes × K=3 = 6 generations + 1 probe).
 
 Usage::
 
     uv run python scripts/prove_gate.py [--strict]
-
-``--strict`` returns non-zero on any expected-signal failure; without
-``--strict`` it logs failures but still exits 0 so the report can be
-inspected.
 """
 from __future__ import annotations
 
@@ -49,13 +68,12 @@ if str(SRC) not in sys.path:
 from pce.cascade import run_cascade  # noqa: E402
 from pce.substrate.embed import Embedder  # noqa: E402
 from pce.substrate.haiku_lm import HaikuConfig, HaikuLM  # noqa: E402
-from pce.substrate.lm import LocalLM  # noqa: E402
-from pce.substrate.lm_protocol import LMProtocol  # noqa: E402
+from pce.substrate.integrity import IntegrityProbe, _scan_leakage  # noqa: E402
 from pce.types import Constraint  # noqa: E402
 
 FIXTURES_DIR = REPO_ROOT / "tests" / "fixtures"
 AUDIT_DIR = REPO_ROOT / "audit" / "prove_gate"
-ARMS = ("local_bare", "local_cascade", "haiku_bare", "haiku_cascade")
+ARMS = ("haiku_bare", "haiku_cascade")
 K = 3
 MAX_TOKENS = 220
 
@@ -64,12 +82,6 @@ def _load_fixture(name: str) -> dict[str, Any]:
     path = FIXTURES_DIR / f"{name}.json"
     data: dict[str, Any] = json.loads(path.read_text(encoding="utf-8"))
     return data
-
-
-def _bare_call_local(lm: LocalLM, prompt: str, *, seed: int) -> tuple[str, dict[str, Any]]:
-    t = time.time()
-    out = lm.generate(prompt, max_tokens=MAX_TOKENS, sampler={"tau": 0.9, "top_p": 0.95}, seed=seed)
-    return out.text, {"elapsed_s": float(time.time() - t)}
 
 
 def _bare_call_haiku(haiku: HaikuLM, prompt: str, *, seed: int) -> tuple[str, dict[str, Any]]:
@@ -84,7 +96,7 @@ def _bare_call_haiku(haiku: HaikuLM, prompt: str, *, seed: int) -> tuple[str, di
 
 
 def _cascade_call(
-    lm: LMProtocol,
+    haiku: HaikuLM,
     embed: Embedder,
     fixture: dict[str, Any],
     *,
@@ -99,13 +111,14 @@ def _cascade_call(
     state = run_cascade(
         prompt=str(fixture["prompt"]),
         constraint=constraint,
-        lm=lm,
+        lm=haiku,
         embed=embed,
         K=K,
         max_tokens=MAX_TOKENS,
         base_seed=seed,
         retrieval_set=list(fixture.get("retrieval_set", []) or []),
         aspects=list(fixture.get("aspects", []) or []),
+        commit_policy="event_gated",
     )
     diag = state.audit.get("vimarsa_diag_revision") or state.audit.get("vimarsa_diag", {})
     return state.surface or "", {
@@ -113,14 +126,19 @@ def _cascade_call(
         "two_pass": bool(state.audit.get("two_pass", False)),
         "revision_differs_from_draft": bool(state.audit.get("revision_differs_from_draft", False)),
         "vimarsa_event_draft": bool(state.vimarsa_event_draft),
-        "vimarsa_event_revision": bool(state.vimarsa_event),
+        "vimarsa_event_revision": bool(state.audit.get("vimarsa_event_revision", False)),
         "vimarsa_brief": str(state.vimarsa_brief or ""),
         "novelty_revision": float(state.vimarsa_novelty),
         "vimarsa_diag_revision": dict(diag) if isinstance(diag, dict) else {},
         "delta_F_draft": float(state.audit.get("delta_F_draft", float("nan"))),
         "delta_F_revision": float(state.audit.get("delta_F_revision", float("nan"))),
+        "delta_F": float(state.audit.get("delta_F", float("nan"))),
         "surface_draft": str(state.surface_draft or ""),
         "surface_revision": str(state.surface_revision or ""),
+        "committed": str(state.committed),
+        "commit_policy": str(state.commit_policy),
+        "n_storehouse_patterns": int(state.audit.get("n_storehouse_patterns", 0)),
+        "budget_ledger": dict(state.audit.get("budget_ledger", {}) or {}),
     }
 
 
@@ -152,6 +170,14 @@ def _count_distinct_uses(text: str) -> int:
     return len({ln.lower() for ln in lines if len(ln) > 3})
 
 
+def _leakage_check(label: str, text: str) -> list[str]:
+    """Return list of leak matches in ``text`` (with negation context filter)."""
+    leaks: list[str] = list(_scan_leakage(text or ""))
+    if leaks:
+        print(f"[gate]   LEAK[{label}]: {leaks[:3]}", file=sys.stderr, flush=True)
+    return leaks
+
+
 def _write_arm_audit(case: str, arm: str, payload: dict[str, Any]) -> Path:
     out = AUDIT_DIR / case / arm
     out.mkdir(parents=True, exist_ok=True)
@@ -165,12 +191,17 @@ def _check_signals(
     fixture: dict[str, Any],
     arm_results: dict[str, dict[str, Any]],
     embed: Embedder,
+    *,
+    integrity_passed: bool,
+    integrity_response: str,
 ) -> tuple[bool, list[str]]:
-    """Apply the fixture's expected_signals; return (passed, failure_reasons)."""
+    """Apply v0.3 fixture's expected_signals; return (passed, failure_reasons)."""
     sig = dict(fixture.get("expected_signals", {}))
     fails: list[str] = []
     aspects = list(fixture.get("aspects", []) or [])
     retrieval = list(fixture.get("retrieval_set", []) or [])
+
+    # ---- per-arm post-hoc embedding metrics ---------------------------
     for arm in ARMS:
         if arm not in arm_results:
             continue
@@ -181,6 +212,35 @@ def _check_signals(
         nov = _novelty(text, retrieval, embed)
         arm_results[arm]["aspect_max_cosine_post"] = amx
         arm_results[arm]["novelty_post"] = nov
+
+    # ---- v0.3 NEW: leakage regex on every Haiku surface ----------------
+    if sig.get("no_leakage", True):
+        for arm in ARMS:
+            r = arm_results.get(arm, {})
+            text = str(r.get("surface", ""))
+            leaks = _leakage_check(f"{arm}.surface", text)
+            r["leak_matches"] = leaks
+            if leaks:
+                fails.append(f"{arm}: leakage in surface: {leaks[:3]}")
+        # Also probe cascade shadow draft/revision since those traversed
+        # the same inner subprocess.
+        for sub in ("surface_draft", "surface_revision"):
+            cas = arm_results.get("haiku_cascade", {})
+            text = str(cas.get(sub, ""))
+            if text.strip():
+                leaks = _leakage_check(f"haiku_cascade.{sub}", text)
+                cas[f"leak_matches_{sub}"] = leaks
+                if leaks:
+                    fails.append(f"haiku_cascade.{sub}: leakage: {leaks[:3]}")
+
+    # ---- v0.3 NEW: integrity probe must pass ---------------------------
+    if sig.get("integrity_probe_must_pass", True):
+        if not integrity_passed:
+            fails.append(
+                f"IntegrityProbe failed at boot: {integrity_response[:160]!r}"
+            )
+
+    # ---- v0.2 carry-over: post-hoc cosine / novelty floors -------------
     floor_aspect = float(sig.get("aspect_max_cosine_floor", 0.0))
     floor_nov = float(sig.get("novelty_floor", 0.0))
     if floor_aspect > 0.0 and aspects:
@@ -189,9 +249,7 @@ def _check_signals(
             for a in ARMS
         )
         if not any_arm_clears:
-            fails.append(
-                f"no arm clears aspect_max_cosine_floor={floor_aspect}"
-            )
+            fails.append(f"no arm clears aspect_max_cosine_floor={floor_aspect}")
     if floor_nov > 0.0:
         any_arm_clears_nov = any(
             float(arm_results.get(a, {}).get("novelty_post", 0.0)) >= floor_nov
@@ -199,26 +257,57 @@ def _check_signals(
         )
         if not any_arm_clears_nov:
             fails.append(f"no arm clears novelty_floor={floor_nov}")
-    if sig.get("vimarsa_event_at_least_one_arm"):
-        any_event = any(
-            bool(arm_results.get(a, {}).get("vimarsa_event_revision", False))
-            or bool(arm_results.get(a, {}).get("vimarsa_event_draft", False))
-            for a in ("local_cascade", "haiku_cascade")
+
+    # ---- v0.3 NEW: haiku_cascade-specific assertions -------------------
+    cas = arm_results.get("haiku_cascade", {})
+
+    # vimarsa_event firing requirement (per fixture)
+    if sig.get("haiku_cascade_vimarsa_event_required", False):
+        if not bool(cas.get("vimarsa_event_draft", False)):
+            fails.append(
+                "haiku_cascade.vimarsa_event_draft did not fire "
+                "(fixture requires it)"
+            )
+    # AUT-style fixtures explicitly forbid the event from firing
+    elif "haiku_cascade_vimarsa_event_required" in sig and bool(
+        cas.get("vimarsa_event_draft", False)
+    ):
+        fails.append(
+            "haiku_cascade.vimarsa_event_draft fired but fixture set "
+            "haiku_cascade_vimarsa_event_required=false"
         )
-        if not any_event:
-            fails.append("vimarsa never fired across cascade arms")
-    if sig.get("revision_differs_from_draft"):
-        any_diff = any(
-            bool(arm_results.get(a, {}).get("revision_differs_from_draft", False))
-            for a in ("local_cascade", "haiku_cascade")
-        )
-        if not any_diff:
-            fails.append("revision == draft on all cascade arms")
-    if sig.get("haiku_cascade_differs_from_haiku_bare"):
-        cb = str(arm_results.get("haiku_cascade", {}).get("surface", ""))
+
+    # ΔF floor: only enforce when fixture supplies aspects (otherwise
+    # ΔF is structurally 0 and a floor would be meaningless).
+    delta_F_floor = float(sig.get("delta_F_floor", 0.0))
+    if delta_F_floor > 0.0 and aspects:
+        df_d = float(cas.get("delta_F_draft", 0.0))
+        if abs(df_d) < delta_F_floor:
+            fails.append(
+                f"haiku_cascade.delta_F_draft degenerate: |{df_d:.4f}| < "
+                f"{delta_F_floor}"
+            )
+
+    # revision_differs_from_draft: only required when commit committed
+    # the revision; aut_brick correctly commits draft.
+    if sig.get("revision_differs_from_draft", False):
+        committed = str(cas.get("committed", ""))
+        if committed == "revision" and not bool(
+            cas.get("revision_differs_from_draft", False)
+        ):
+            fails.append(
+                "haiku_cascade committed revision but revision == draft "
+                "(no architectural delta)"
+            )
+
+    # bare ≠ cascade textual identity check
+    if sig.get("haiku_cascade_differs_from_haiku_bare", False):
+        cb = str(cas.get("surface", ""))
         bb = str(arm_results.get("haiku_bare", {}).get("surface", ""))
         if cb.strip() and bb.strip() and cb.strip() == bb.strip():
             fails.append("haiku_cascade surface == haiku_bare surface")
+
+    # AUT distinct-uses floor
     if "n_distinct_uses_floor" in sig:
         floor = int(sig["n_distinct_uses_floor"])
         for a in ("haiku_bare", "haiku_cascade"):
@@ -227,6 +316,7 @@ def _check_signals(
             arm_results[a]["n_distinct_uses"] = n
             if n < floor:
                 fails.append(f"{a}: only {n} distinct uses (< {floor})")
+
     return (len(fails) == 0), fails
 
 
@@ -235,35 +325,33 @@ def _run_case(
     fixture: dict[str, Any],
     *,
     embed: Embedder,
-    local_lm: LocalLM,
     haiku_lm: HaikuLM,
+    integrity_passed: bool,
+    integrity_response: str,
     seed: int,
 ) -> tuple[bool, dict[str, Any]]:
     print(f"\n[gate] === {case} ===", flush=True)
     arm_results: dict[str, dict[str, Any]] = {}
     prompt = str(fixture["prompt"])
-    # local_bare
-    print("[gate]   local_bare ...", flush=True)
-    text, meta = _bare_call_local(local_lm, prompt, seed=seed)
-    arm_results["local_bare"] = {"arm": "local_bare", "surface": text, **meta}
-    _write_arm_audit(case, "local_bare", arm_results["local_bare"])
-    # local_cascade
-    print("[gate]   local_cascade ...", flush=True)
-    text, meta = _cascade_call(local_lm, embed, fixture, seed=seed)
-    arm_results["local_cascade"] = {"arm": "local_cascade", "surface": text, **meta}
-    _write_arm_audit(case, "local_cascade", arm_results["local_cascade"])
-    # haiku_bare
+
     print("[gate]   haiku_bare ...", flush=True)
     text, meta = _bare_call_haiku(haiku_lm, prompt, seed=seed)
     arm_results["haiku_bare"] = {"arm": "haiku_bare", "surface": text, **meta}
     _write_arm_audit(case, "haiku_bare", arm_results["haiku_bare"])
-    # haiku_cascade
+
     print("[gate]   haiku_cascade ...", flush=True)
     text, meta = _cascade_call(haiku_lm, embed, fixture, seed=seed)
     arm_results["haiku_cascade"] = {"arm": "haiku_cascade", "surface": text, **meta}
     _write_arm_audit(case, "haiku_cascade", arm_results["haiku_cascade"])
 
-    passed, fails = _check_signals(case, fixture, arm_results, embed)
+    passed, fails = _check_signals(
+        case,
+        fixture,
+        arm_results,
+        embed,
+        integrity_passed=integrity_passed,
+        integrity_response=integrity_response,
+    )
     summary = {
         "case": case,
         "passed": bool(passed),
@@ -283,6 +371,12 @@ def _run_case(
                     "n_distinct_uses",
                     "delta_F_draft",
                     "delta_F_revision",
+                    "delta_F",
+                    "committed",
+                    "commit_policy",
+                    "leak_matches",
+                    "leak_matches_surface_draft",
+                    "leak_matches_surface_revision",
                 )
                 if k in arm_results[a]
             }
@@ -317,20 +411,49 @@ def main() -> int:
     args = parser.parse_args()
     AUDIT_DIR.mkdir(parents=True, exist_ok=True)
     if not _check_claude_cli():
-        print("[gate] claude CLI not found - haiku arms will be skipped",
+        print("[gate] claude CLI not found - cannot run Haiku gates",
               file=sys.stderr)
         return 2
+
     embed = Embedder()
-    print("[gate] loading LocalLM...", flush=True)
-    local_lm = LocalLM()
-    print("[gate] starting HaikuLM...", flush=True)
+    print("[gate] starting clean-substrate HaikuLM ...", flush=True)
     haiku_lm = HaikuLM(config=HaikuConfig.from_env(), embedder=embed)
+
+    print("[gate] running IntegrityProbe on inner subprocess ...", flush=True)
+    probe = IntegrityProbe()
+    probe_result = probe.run(haiku_lm)
+    print(
+        f"[gate]   integrity_probe.passed={probe_result.passed} "
+        f"leak_matches={probe_result.leak_matches} "
+        f"positive_hint={probe_result.positive_hint}",
+        flush=True,
+    )
+    integrity_payload = {
+        "passed": probe_result.passed,
+        "response": probe_result.response,
+        "leak_matches": probe_result.leak_matches,
+        "positive_hint": probe_result.positive_hint,
+        "env_hash": probe_result.env_hash,
+        "flags_hash": probe_result.flags_hash,
+        "probe_at_iso": probe_result.probe_at_iso,
+        "cost_usd": probe_result.cost_usd,
+    }
+    (AUDIT_DIR / "integrity_probe.json").write_text(
+        json.dumps(integrity_payload, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+
     all_passed = True
     summaries: list[dict[str, Any]] = []
     for case in args.cases:
         fixture = _load_fixture(case)
         passed, summary = _run_case(
-            case, fixture, embed=embed, local_lm=local_lm, haiku_lm=haiku_lm,
+            case,
+            fixture,
+            embed=embed,
+            haiku_lm=haiku_lm,
+            integrity_passed=probe_result.passed,
+            integrity_response=probe_result.response,
             seed=args.seed,
         )
         summaries.append(summary)
@@ -340,6 +463,7 @@ def main() -> int:
         "passed": bool(all_passed),
         "case_summaries": summaries,
         "haiku_cost_report": cost_report,
+        "integrity_probe": integrity_payload,
     }
     overall_path = AUDIT_DIR / "overall.json"
     overall_path.write_text(

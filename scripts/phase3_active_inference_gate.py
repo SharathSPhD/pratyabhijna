@@ -59,12 +59,12 @@ def main() -> int:
 
     # Per-aspect prior derived from storehouse mass (uniform when no aspects).
     res = store.query(duck_emb, aspect_labels=aspects)
-    aspect_priors = np.maximum(res.aspect_priors, 1e-3)
-    aspect_priors = aspect_priors / float(aspect_priors.sum() + 1e-12)
+    aspect_priors_f64 = np.maximum(res.aspect_priors, 1e-3)
+    aspect_priors = (aspect_priors_f64 / float(aspect_priors_f64.sum() + 1e-12)).astype(np.float32)
 
     cands = tuple(range(K))
     sel, delta_F, posterior = jnana(
-        cands,  # type: ignore[arg-type]
+        cands,
         apoha,
         anan,
         reduction_target="aspect_conditioned",
