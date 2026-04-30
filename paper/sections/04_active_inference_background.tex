@@ -1,6 +1,6 @@
 \section{Active Inference Primitives}\label{sec:active_inference_background}
 
-PCE's design language is borrowed from the active-inference / free-energy programme \citep{Friston2010FreeEnergyUnifiedBrainTheory,Friston2017ActiveInferenceCuriosity}, but its v0.4 implementation does not yet realise that programme in its strict variational form. This section states the formal primitives, then declares precisely what the v0.4 cascade implements and what it does not. The v0.4 prose departs from the v0.3 prose mainly in the latter: the v0.4 release writes the scope-cuts down explicitly, in line with the mechanism-study framing.
+PCE's design language is borrowed from the active-inference / free-energy programme \citep{Friston2010FreeEnergyUnifiedBrainTheory,Friston2017ActiveInferenceCuriosity}, but the current implementation does not yet realise that programme in its strict variational form. This section states the formal primitives, then declares precisely what the cascade implements and what it does not, in line with the mechanism-study framing.
 
 \subsection{The formal substrate}
 
@@ -20,24 +20,25 @@ Practically, in PCE we use this in closed form for nested Dirichlet--multinomial
 
 \subsection{Insight as posterior re-organisation}
 
-\citet{Friston2017ActiveInferenceCuriosity} formalise insight as the BMR-driven re-organisation of $q(\theta)$ that yields a sudden drop in $F$. This is the active-inference correlate of \iast{vimar\'sa}: the recursive layer fires when the post-\iast{kriy\=a} state's $F$ has not yet stabilised, indicating an unrecognised aspect of the constraint manifold. In v0.4 the \iast{vimar\'sa} operator (Appendix~\ref{app:operator_specs}) conditions on three signals jointly: aspect-multiplicity in the surface (cosine to multiple aspect targets), novelty against the storehouse (Hopfield retrieval similarity), and the BMR $\Delta F$. The result of H8b in this paper is that the disjunctive event-gate as currently defined under-fires; an H8b-informed v0.5 will move to a \emph{learned} gate trained on the H8a paired-revision data (already supported by \texttt{commit\_policy="learned\_gate"}, \S\ref{sec:methods}, ADR-002).
+\citet{Friston2017ActiveInferenceCuriosity} formalise insight as the BMR-driven re-organisation of $q(\theta)$ that yields a sudden drop in $F$. This is the active-inference correlate of \iast{vimar\'sa}: the recursive layer fires when the post-\iast{kriy\=a} state's $F$ has not yet stabilised, indicating an unrecognised aspect of the constraint manifold. The \iast{vimar\'sa} operator (Appendix~\ref{app:operator_specs}) conditions on three signals jointly: aspect-multiplicity in the surface (cosine to multiple aspect targets), novelty against the storehouse (Hopfield retrieval similarity), and the BMR $\Delta F$. The result of H8b in this paper is that the disjunctive event-gate as currently defined under-fires; the H8b-informed direction is to move to a \emph{learned} gate trained on the H8a paired-revision data (already supported by \texttt{commit\_policy="learned\_gate"}, \S\ref{sec:methods}, ADR-002).
 
 \begin{figure*}[ht]
 \centering
+\resizebox{\textwidth}{!}{%
 \begin{tikzpicture}[
-  node distance=10mm and 8mm,
+  node distance=11mm and 11mm,
   every node/.style={font=\small},
   block/.style={
     draw, rounded corners=2pt, align=center,
-    minimum width=24mm, minimum height=10mm, inner sep=3pt, fill=blue!4,
+    text width=26mm, minimum height=12mm, inner sep=3pt, fill=blue!4,
   },
   bmr/.style={
     draw, rounded corners=2pt, align=center, fill=yellow!10,
-    minimum width=24mm, minimum height=10mm, inner sep=3pt,
+    text width=26mm, minimum height=12mm, inner sep=3pt,
   },
   gate/.style={
-    draw, diamond, aspect=1.6, align=center, fill=red!6,
-    minimum width=18mm, inner sep=1pt,
+    draw, diamond, aspect=1.8, align=center, fill=red!6,
+    text width=18mm, inner sep=1pt,
   },
   arrow/.style={-{Latex[length=2mm,width=2mm]}, thick},
 ]
@@ -57,15 +58,16 @@ Practically, in PCE we use this in closed form for nested Dirichlet--multinomial
 \draw[arrow] (vimarsa) -- node[right, font=\scriptsize]{shadow revision} (commit);
 \draw[arrow] (fbudget.south) |- node[pos=0.25, right, font=\scriptsize]{exhausted}
   ([yshift=-3mm]commit.east);
-\end{tikzpicture}
+\end{tikzpicture}%
+}
 \caption{F2 --- Active-inference / BMR loop in PCE. The composite-scorer head substitutes for a true variational likelihood (\S\ref{sec:active_inference_background}); $\Delta F$ is therefore a score-gap rather than a measured free-energy delta. The ADR-003 budget gate decides whether \iast{vimar\'sa} fires another revision pass.}
 \label{fig:flow_active_inference}
 \end{figure*}
 
-\subsection{What v0.4 implements honestly}
+\subsection{What the implementation does honestly}
 
-The v0.4 cascade implements an \emph{LM-best-of-K composite-score} substitute for true variational free-energy minimisation. The composite is a weighted sum of axis scorers (see \S\ref{sec:benchmarks}); the per-candidate best-of-K is taken over $K$ samples from the \iast{icch\=a} fan-out. We treat the \emph{rank order} this composite produces as a stand-in for $q(\theta)$, and the per-candidate score gap as a stand-in for the $\Delta F$ that BMR would compute. This is a design choice with three honest costs: (i) the composite is \emph{learned} only insofar as the weights were tuned on a small held-out sample, not by minimising any tractable variational lower bound; (ii) what we call $\Delta F$ in the v0.4 traces is therefore a score-gap, not a true free-energy delta; (iii) the per-item \texttt{FreeEnergyBudget} (\texttt{audit/v0.3/} ledger; ADR-003 v0.4) gates the cascade's token spend on a \emph{token-cost} budget that is interpreted as a free-energy budget at the cost-accounting level only. None of this invalidates the architecture --- best-of-K is a well-studied surrogate for variational selection in the LM literature \citep{StiennonEtAl2020LearningToSummarizeFromHumanFeedback,MadaanEtAl2023SelfRefineNeurIPS} --- but the prose has to say so. The v0.5 ladder commits to lifting the substitute to a true variational scoring head against a discrete-state-space model in \texttt{pymdp v1.0}~\citep{Heins2022pymdp,pymdpRelease100}.
+The cascade implements an \emph{LM-best-of-K composite-score} substitute for true variational free-energy minimisation. The composite is a weighted sum of axis scorers (see \S\ref{sec:benchmarks}); the per-candidate best-of-K is taken over $K$ samples from the \iast{icch\=a} fan-out. We treat the \emph{rank order} this composite produces as a stand-in for $q(\theta)$, and the per-candidate score gap as a stand-in for the $\Delta F$ that BMR would compute. This is a design choice with three honest costs: (i) the composite is \emph{learned} only insofar as the weights were tuned on a small held-out sample, not by minimising any tractable variational lower bound; (ii) what we call $\Delta F$ in the traces is therefore a score-gap, not a true free-energy delta; (iii) the per-item \texttt{FreeEnergyBudget} (cost ledger; ADR-003) gates the cascade's token spend on a \emph{token-cost} budget that is interpreted as a free-energy budget at the cost-accounting level only. None of this invalidates the architecture --- best-of-K is a well-studied surrogate for variational selection in the LM literature \citep{StiennonEtAl2020LearningToSummarizeFromHumanFeedback,MadaanEtAl2023SelfRefineNeurIPS} --- but the prose has to say so. Future work commits to lifting the substitute to a true variational scoring head against a discrete-state-space model in \texttt{pymdp v1.0}~\citep{Heins2022pymdp,pymdpRelease100}.
 
-\subsection{The Hopfield \iast{\=alayavij\~n\=ana}: status in v0.4}
+\subsection{The Hopfield \iast{\=alayavij\~n\=ana}: current status}
 
-The \iast{\=alayavij\~n\=ana} (``store-consciousness'') in PCE is implemented as a Hopfield-style attractor network~\citep{KrotovHopfield2016DenseAssociativeMemory,RamsauerEtAl2020HopfieldNetworksIsAllYouNeed,Mtenga2024HopfieldCreativity,Weber2025SelfOptHopfield} read by \iast{apohana} as a warm-start aspect prior and written by \iast{vimar\'sa.consolidate} after every committed surface (Appendix~\ref{app:consolidation}). The v0.4 honest claim is narrower than the v0.3 prose suggested: the Hopfield store is wired and exercised in single-session runs, but no large-scale multi-session memory dynamics have been measured against the network's documented retrieval guarantees \citep{RamsauerEtAl2020HopfieldNetworksIsAllYouNeed}. The v0.4 ablation stack treats the Hopfield store as one of three signals to the \iast{vimar\'sa} gate; we have not yet measured the marginal contribution of the Hopfield-warm-start signal alone. This is on the v0.5 ladder.
+The \iast{\=alayavij\~n\=ana} (``store-consciousness'') in PCE is implemented as a Hopfield-style attractor network~\citep{KrotovHopfield2016DenseAssociativeMemory,RamsauerEtAl2020HopfieldNetworksIsAllYouNeed,Mtenga2024HopfieldCreativity,Weber2025SelfOptHopfield} read by \iast{apohana} as a warm-start aspect prior and written by \iast{vimar\'sa.consolidate} after every committed surface (Appendix~\ref{app:consolidation}). The honest claim is narrow: the Hopfield store is wired and exercised in single-session runs, but no large-scale multi-session memory dynamics have been measured against the network's documented retrieval guarantees \citep{RamsauerEtAl2020HopfieldNetworksIsAllYouNeed}. The current ablation stack treats the Hopfield store as one of three signals to the \iast{vimar\'sa} gate; we have not yet measured the marginal contribution of the Hopfield-warm-start signal alone. This is on the future-work ladder.

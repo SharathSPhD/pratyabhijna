@@ -56,9 +56,52 @@ def _load_stats() -> dict[str, Any]:
     return json.loads((RESULTS / "stats.json").read_text(encoding="utf-8"))
 
 
+_IAST_TO_LATEX = {
+    "ā": r"\=a",
+    "Ā": r"\=A",
+    "ī": r"\=\i{}",
+    "Ī": r"\=I",
+    "ū": r"\=u",
+    "Ū": r"\=U",
+    "ṛ": r"\d{r}",
+    "Ṛ": r"\d{R}",
+    "ṝ": r"\d{\=r}",
+    "ḷ": r"\d{l}",
+    "ḥ": r"\d{h}",
+    "Ḥ": r"\d{H}",
+    "ṃ": r"\d{m}",
+    "Ṃ": r"\d{M}",
+    "ñ": r"\~n",
+    "Ñ": r"\~N",
+    "ś": r"\'s",
+    "Ś": r"\'S",
+    "ṣ": r"\d{s}",
+    "Ṣ": r"\d{S}",
+    "ṭ": r"\d{t}",
+    "Ṭ": r"\d{T}",
+    "ḍ": r"\d{d}",
+    "Ḍ": r"\d{D}",
+    "ṇ": r"\d{n}",
+    "Ṇ": r"\d{N}",
+}
+
+
+def _translit_iast(text: str) -> str:
+    for src, dst in _IAST_TO_LATEX.items():
+        text = text.replace(src, dst)
+    return text
+
+
 def _esc(text: str) -> str:
-    """Minimal LaTeX escaping for free-form strings used in table cells."""
-    return (
+    """Minimal LaTeX escaping for free-form strings used in table cells.
+
+    The regular ASCII metacharacter escape runs first so we don't accidentally
+    re-escape the backslashes emitted by IAST -> LaTeX transliteration; we then
+    transliterate Sanskrit IAST diacritics (``ā ī ū ṛ ṣ ñ ś ḥ ṃ ṭ ḍ ṇ``, etc.)
+    into the matching LaTeX accent macros so ec-lmr10 stops emitting
+    "Missing character" warnings on Sanskrit slugs.
+    """
+    text = (
         text.replace("\\", r"\textbackslash{}")
         .replace("&", r"\&")
         .replace("%", r"\%")
@@ -68,6 +111,7 @@ def _esc(text: str) -> str:
         .replace("^", r"\textasciicircum{}")
         .replace("\u00d7", r"$\times$")
     )
+    return _translit_iast(text)
 
 
 def _paired_axis_deltas(
@@ -270,7 +314,7 @@ def build_cost_split() -> str:
     return (
         "\\begin{table}[ht]\n"
         "\\centering\n"
-        "\\caption{T3 --- v0.4 Phase 7 pilot cost ledger, split per model line. The Haiku "
+        "\\caption{T3 --- Phase 7 pilot cost ledger, split per model line. The Haiku "
         "rows aggregate the four cascade arms running through the managed-API substrate; "
         "the Sonnet judge row covers the 23-pair stratified bridge (H9 agreement). Numbers "
         "match \\nolinkurl{audit/v0.4/cost_ledger_merged.json} and \\nolinkurl{benchmarks/results_v0.4/judge_agreement.json}.}\n"
@@ -292,6 +336,13 @@ def build_cost_split() -> str:
 
 
 def _read_validator(showcase_dir: Path) -> str:
+    """Return a *raw* (un-escaped) validator label.
+
+    The caller is responsible for running ``_esc`` exactly once on the result
+    so we never double-escape backslashes (which would re-escape the IAST
+    accent macros emitted by the transliterator into broken
+    ``\\textbackslash{}=a``-style sequences).
+    """
     v = showcase_dir / "validator.json"
     if not v.exists():
         return "n/a"
@@ -303,7 +354,7 @@ def _read_validator(showcase_dir: Path) -> str:
         ok = bool(row["ok"])
         notes = row.get("notes")
         if isinstance(notes, list) and notes:
-            return f"{'pass' if ok else 'review'} ({_esc(str(notes[0])[:48])})"
+            return f"{'pass' if ok else 'review'} ({str(notes[0])[:48]})"
         return "pass" if ok else "review"
     if "haiku_5_7_5" in row:
         ok = bool((row.get("haiku_5_7_5") or {}).get("ok"))
@@ -323,6 +374,13 @@ def _read_trace(showcase_dir: Path) -> dict[str, Any]:
         return {}
 
 
+def _esc_breakable(text: str) -> str:
+    """Like ``_esc`` but inserts ``\\allowbreak`` after each underscore so long
+    snake_case identifiers can wrap inside narrow ``\\texttt`` cells.
+    """
+    return _esc(text).replace("\\_", "\\_\\allowbreak{}")
+
+
 def build_showcase_registry() -> str:
     rows_lines: list[str] = []
     for slug_dir in sorted(SHOWCASE.iterdir()):
@@ -334,33 +392,41 @@ def build_showcase_registry() -> str:
         committed = trace.get("committed_choice") or trace.get("committed") or "?"
         validator = _read_validator(slug_dir)
         rows_lines.append(
-            f"  \\texttt{{{_esc(slug_dir.name)}}} & "
-            f"\\texttt{{{_esc(str(domain))}}} & "
-            f"\\texttt{{{_esc(str(source))}}} & "
-            f"\\texttt{{{_esc(str(committed))}}} & "
+            f"  \\texttt{{{_esc_breakable(slug_dir.name)}}} & "
+            f"\\texttt{{{_esc_breakable(str(domain))}}} & "
+            f"\\texttt{{{_esc_breakable(str(source))}}} & "
+            f"\\texttt{{{_esc_breakable(str(committed))}}} & "
             f"{_esc(validator)} \\\\"
         )
     body = "\n".join(rows_lines)
     return (
-        "\\begin{table}[ht]\n"
+        "\\begin{table*}[ht]\n"
         "\\centering\n"
-        "\\caption{T4 --- Showcase items registry. ``Source'' is the v0.4.1 trace "
-        "provenance: \\texttt{live\\_cascade\\_v0\\_4\\_1} for the three Sanskrit "
+        "\\caption{T4 --- Showcase items registry. ``Source'' is the trace "
+        "provenance: \\texttt{live\\_cascade} for the three Sanskrit "
         "items (regenerated under the live-cascade mode), \\texttt{phase7\\_cascade} "
         "for the curated English-poetry and scientific-creativity items. ``Commit'' "
         "names the surface that the cascade actually committed (draft / shadow "
         "revision / committed\\_choice). ``Validator'' is reported informationally; "
-        "for Sanskrit items the v0.4 cascade scorer is not chandas-aware "
-        "(v0.5 ladder).}\n"
+        "for Sanskrit items the cascade scorer is not chandas-aware "
+        "(future-work ladder).}\n"
         "\\label{tab:showcase_registry}\n"
-        "\\begin{tabular}{lllll}\n"
+        "\\renewcommand{\\arraystretch}{1.15}\n"
+        "\\sloppy\n"
+        "\\footnotesize\n"
+        "\\begin{tabularx}{\\linewidth}{@{}"
+        ">{\\raggedright\\arraybackslash}p{5.2cm}"
+        ">{\\raggedright\\arraybackslash}p{2.4cm}"
+        ">{\\raggedright\\arraybackslash}p{2.6cm}"
+        ">{\\raggedright\\arraybackslash}p{1.8cm}"
+        ">{\\raggedright\\arraybackslash}X@{}}\n"
         "\\toprule\n"
         "Slug & Domain & Source & Commit & Validator \\\\\n"
         "\\midrule\n"
         f"{body}\n"
         "\\bottomrule\n"
-        "\\end{tabular}\n"
-        "\\end{table}\n"
+        "\\end{tabularx}\n"
+        "\\end{table*}\n"
     )
 
 

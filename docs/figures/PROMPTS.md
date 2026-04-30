@@ -11,37 +11,40 @@ from scratch.
 1. Pick a figure section below.
 2. Pick a generator. Recommendations per figure are noted in each section.
 3. Use the prompt verbatim; tighten dimensions / palette knobs to match the
-   target slot.
+  target slot.
 4. Save the resulting PNG to the documented path under
-   `docs/site/public/figures/v0.4/...`. The `PlaceholderFigure` component on
+  `docs/site/public/figures/v0.4/...`. The `PlaceholderFigure` component on
    the site picks the file up automatically — once the file exists at the
    `src` path the placeholder box is replaced with the real image; until then
    the styled placeholder renders.
 
 ### Recommended generators
 
-| Use case | Recommended | Rationale |
-| --- | --- | --- |
-| Devanāgarī fidelity (hero) | Nano Banana / Gemini ImageGen 3 | Strong CJK/Devanāgarī typography; honours kerning. |
-| Stylised photo-style alternates of flowcharts | DALL-E 3 / Midjourney v6 | Strong on abstract geometric and gradient compositions. |
-| Diagrammatic / schematic alternates | Recraft / Ideogram | Stronger on text-in-image and clean line work. |
+
+| Use case                                      | Recommended                     | Rationale                                               |
+| --------------------------------------------- | ------------------------------- | ------------------------------------------------------- |
+| Devanāgarī fidelity (hero)                    | Nano Banana / Gemini ImageGen 3 | Strong CJK/Devanāgarī typography; honours kerning.      |
+| Stylised photo-style alternates of flowcharts | DALL-E 3 / Midjourney v6        | Strong on abstract geometric and gradient compositions. |
+| Diagrammatic / schematic alternates           | Recraft / Ideogram              | Stronger on text-in-image and clean line work.          |
+
 
 ### Canonicality
 
-| Figure | Canonical source | Notes |
-| --- | --- | --- |
-| F1 — 5-śakti cascade | TikZ in `paper/sections/03_pratyabhijna_background.tex` | Site uses the PNG export. |
-| F2 — Active-inference loop | TikZ in `paper/sections/04_active_inference_background.tex` | Site uses the PNG export. |
-| F3 — Commit-policy multiplexer | TikZ in `paper/sections/07_methods.tex` | Site uses the PNG export. |
-| F4 — Phase 7 pilot pipeline | TikZ in `paper/sections/07_methods.tex` | Site uses the PNG export. |
-| F5 — Hypothesis dependency tree | TikZ in `paper/sections/07_methods.tex` | Site uses the PNG export. |
-| C1 — Per-axis effect-size bar chart | matplotlib in `benchmarks/figures.py` | Already on disk at `paper/figures/v0.4/fig_v04_axes_breakdown.png`. |
-| C2 — Power vs realised effect | matplotlib in `benchmarks/figures.py` | Already on disk at `paper/figures/v0.4/fig_v04_power_vs_realised.png`. |
-| Hero | AI-generated (this file) | No paper analogue — site-only. |
+
+| Figure                              | Canonical source                                            | Notes                                                                  |
+| ----------------------------------- | ----------------------------------------------------------- | ---------------------------------------------------------------------- |
+| F1 — 5-śakti cascade                | TikZ in `paper/sections/03_pratyabhijna_background.tex`     | Site uses the PNG export.                                              |
+| F2 — Active-inference loop          | TikZ in `paper/sections/04_active_inference_background.tex` | Site uses the PNG export.                                              |
+| F3 — Commit-policy multiplexer      | TikZ in `paper/sections/07_methods.tex`                     | Site uses the PNG export.                                              |
+| F4 — Phase 7 pilot pipeline         | TikZ in `paper/sections/07_methods.tex`                     | Site uses the PNG export.                                              |
+| F5 — Hypothesis dependency tree     | TikZ in `paper/sections/07_methods.tex`                     | Site uses the PNG export.                                              |
+| C1 — Per-axis effect-size bar chart | matplotlib in `benchmarks/figures.py`                       | Already on disk at `paper/figures/v0.4/fig_v04_axes_breakdown.png`.    |
+| C2 — Power vs realised effect       | matplotlib in `benchmarks/figures.py`                       | Already on disk at `paper/figures/v0.4/fig_v04_power_vs_realised.png`. |
+| Hero                                | AI-generated (this file)                                    | No paper analogue — site-only.                                         |
+
 
 The TikZ flowcharts are the **canonical** source for the paper. The site PNGs
-are *exports* of those TikZ figures. Run `pdftocairo -png -r 200
-paper/main.pdf` (or use `dvisvgm` for a vector path) to refresh the exports
+are *exports* of those TikZ figures. Run `pdftocairo -png -r 200 paper/main.pdf` (or use `dvisvgm` for a vector path) to refresh the exports
 into `docs/site/public/figures/v0.4/flowcharts/` after a paper rebuild.
 
 The matplotlib charts (C1, C2) are also canonical — `benchmarks/figures.py`
@@ -80,35 +83,35 @@ project page. The verse is in the public domain (10th–11th c.).
 
 ### Alternate verses (if the recommended pick does not render cleanly)
 
-* **Alternate A** — Abhinavagupta, *Tantrāloka* I.1 opening invocation
-  (`vimalakalāśrayābhinavasṛṣṭimahā jananī...`). Same lineage, denser
-  Sanskrit. Use this when the hero benefits from a longer verse for visual
-  weight.
-* **Alternate B** — the project's existing `sanskrit_gayatri.curated_text`
-  (the Gāyatrī verse). More universally recognised across South Asian
-  audiences. Use this when accessibility to non-Śaiva readers matters more
-  than school-fidelity.
+- **Alternate A** — Abhinavagupta, *Tantrāloka* I.1 opening invocation
+(`vimalakalāśrayābhinavasṛṣṭimahā jananī...`). Same lineage, denser
+Sanskrit. Use this when the hero benefits from a longer verse for visual
+weight.
+- **Alternate B** — the project's existing `sanskrit_gayatri.curated_text`
+(the Gāyatrī verse). More universally recognised across South Asian
+audiences. Use this when accessibility to non-Śaiva readers matters more
+than school-fidelity.
 
 ### Composition
 
-* **Background:** an abstract recognition / cascade motif. Suggested visual
-  language: a warm-to-cool radial gradient (saffron / amber bleeding into
-  deep indigo / midnight blue), with a faint geometric overlay suggesting a
-  cascade of nested arcs (the five-śakti cascade as a radial composition —
-  cit at the centre, expanding outward through ānanda, icchā, jñāna, kriyā,
-  with vimarśa as the closing inward arc).
-* **Typography:** Devanāgarī rendered cleanly with proper kerning (śloka
-  visarga, anusvāra, halant joins must all render correctly). Choose a
-  modern Devanāgarī typeface with strong horizontal śiraḥrekhā (header line)
-  — e.g., Sakal Bharati, Mukti, or a high-quality variant of Mangal. The
-  verse should be the visual centrepiece, occupying roughly the central
-  third of the image.
-* **Negative space:** keep the right third clear of typography (the site
-  navigation may overlay there on small screens).
-* **Palette:** the project's existing dark-mode-aware Tailwind palette
-  (warm accent: amber-500 / saffron; cool background: slate-900 / indigo-950;
-  neutral foreground: zinc-100). Hero should read in both light and dark
-  mode without re-rendering.
+- **Background:** an abstract recognition / cascade motif. Suggested visual
+language: a warm-to-cool radial gradient (saffron / amber bleeding into
+deep indigo / midnight blue), with a faint geometric overlay suggesting a
+cascade of nested arcs (the five-śakti cascade as a radial composition —
+cit at the centre, expanding outward through ānanda, icchā, jñāna, kriyā,
+with vimarśa as the closing inward arc).
+- **Typography:** Devanāgarī rendered cleanly with proper kerning (śloka
+visarga, anusvāra, halant joins must all render correctly). Choose a
+modern Devanāgarī typeface with strong horizontal śiraḥrekhā (header line)
+— e.g., Sakal Bharati, Mukti, or a high-quality variant of Mangal. The
+verse should be the visual centrepiece, occupying roughly the central
+third of the image.
+- **Negative space:** keep the right third clear of typography (the site
+navigation may overlay there on small screens).
+- **Palette:** the project's existing dark-mode-aware Tailwind palette
+(warm accent: amber-500 / saffron; cool background: slate-900 / indigo-950;
+neutral foreground: zinc-100). Hero should read in both light and dark
+mode without re-rendering.
 
 ### Prompt — Nano Banana / Gemini ImageGen 3
 
@@ -149,9 +152,9 @@ primary surface.
 
 ### F1 — 5-śakti cascade
 
-* **Target path (TikZ export):** `docs/site/public/figures/v0.4/flowcharts/F1_panchashakti_cascade.png`
-* **Dimensions:** 1280 × 720 px (16:9).
-* **Canonical source:** TikZ in `paper/sections/03_pratyabhijna_background.tex`.
+- **Target path (TikZ export):** `docs/site/public/figures/v0.4/flowcharts/F1_panchashakti_cascade.png`
+- **Dimensions:** 1280 × 720 px (16:9).
+- **Canonical source:** TikZ in `paper/sections/03_pratyabhijna_background.tex`.
 
 **Stylised alternate prompt (optional, AI-generated):**
 
@@ -167,9 +170,9 @@ primary surface.
 
 ### F2 — Active inference / BMR loop
 
-* **Target path (TikZ export):** `docs/site/public/figures/v0.4/flowcharts/F2_active_inference_loop.png`
-* **Dimensions:** 1280 × 720 px (16:9).
-* **Canonical source:** TikZ in `paper/sections/04_active_inference_background.tex`.
+- **Target path (TikZ export):** `docs/site/public/figures/v0.4/flowcharts/F2_active_inference_loop.png`
+- **Dimensions:** 1280 × 720 px (16:9).
+- **Canonical source:** TikZ in `paper/sections/04_active_inference_background.tex`.
 
 **Stylised alternate prompt (optional):**
 
@@ -183,9 +186,9 @@ primary surface.
 
 ### F3 — Commit-policy multiplexer
 
-* **Target path (TikZ export):** `docs/site/public/figures/v0.4/flowcharts/F3_commit_policy_multiplexer.png`
-* **Dimensions:** 1280 × 720 px (16:9).
-* **Canonical source:** TikZ in `paper/sections/07_methods.tex`.
+- **Target path (TikZ export):** `docs/site/public/figures/v0.4/flowcharts/F3_commit_policy_multiplexer.png`
+- **Dimensions:** 1280 × 720 px (16:9).
+- **Canonical source:** TikZ in `paper/sections/07_methods.tex`.
 
 **Stylised alternate prompt (optional):**
 
@@ -199,9 +202,9 @@ primary surface.
 
 ### F4 — Phase 7 pilot pipeline
 
-* **Target path (TikZ export):** `docs/site/public/figures/v0.4/flowcharts/F4_phase7_pipeline.png`
-* **Dimensions:** 1280 × 720 px (16:9).
-* **Canonical source:** TikZ in `paper/sections/07_methods.tex`.
+- **Target path (TikZ export):** `docs/site/public/figures/v0.4/flowcharts/F4_phase7_pipeline.png`
+- **Dimensions:** 1280 × 720 px (16:9).
+- **Canonical source:** TikZ in `paper/sections/07_methods.tex`.
 
 **Stylised alternate prompt (optional):**
 
@@ -215,9 +218,9 @@ primary surface.
 
 ### F5 — Hypothesis dependency tree
 
-* **Target path (TikZ export):** `docs/site/public/figures/v0.4/flowcharts/F5_hypothesis_tree.png`
-* **Dimensions:** 1280 × 720 px (16:9).
-* **Canonical source:** TikZ in `paper/sections/07_methods.tex`.
+- **Target path (TikZ export):** `docs/site/public/figures/v0.4/flowcharts/F5_hypothesis_tree.png`
+- **Dimensions:** 1280 × 720 px (16:9).
+- **Canonical source:** TikZ in `paper/sections/07_methods.tex`.
 
 **Stylised alternate prompt (optional):**
 
@@ -233,35 +236,36 @@ primary surface.
 
 ### C1 — Per-axis effect-size bar chart
 
-* **Target path (matplotlib export):** `docs/site/public/figures/v0.4/fig_v04_axes_breakdown.png`
-* **Canonical source:** matplotlib in `benchmarks/figures.py` →
-  `_figure_v04_axes_breakdown`.
-* **No AI alternate** — this is a quantitative chart; only the matplotlib
-  output is appropriate.
+- **Target path (matplotlib export):** `docs/site/public/figures/v0.4/fig_v04_axes_breakdown.png`
+- **Canonical source:** matplotlib in `benchmarks/figures.py` →
+`_figure_v04_axes_breakdown`.
+- **No AI alternate** — this is a quantitative chart; only the matplotlib
+output is appropriate.
 
 ### C2 — Power vs realised effect
 
-* **Target path (matplotlib export):** `docs/site/public/figures/v0.4/fig_v04_power_vs_realised.png`
-* **Canonical source:** matplotlib in `benchmarks/figures.py` →
-  `_figure_v04_power_vs_realised`.
-* **No AI alternate** — this is a quantitative chart; only the matplotlib
-  output is appropriate.
+- **Target path (matplotlib export):** `docs/site/public/figures/v0.4/fig_v04_power_vs_realised.png`
+- **Canonical source:** matplotlib in `benchmarks/figures.py` →
+`_figure_v04_power_vs_realised`.
+- **No AI alternate** — this is a quantitative chart; only the matplotlib
+output is appropriate.
 
 ## Notes
 
-* **Accessibility:** every PNG that lands at one of the documented paths must
-  be paired with a meaningful `alt` attribute on the consumer site. The
-  `PlaceholderFigure.astro` component requires a non-empty `alt` prop and
-  falls back to the placeholder when the PNG is missing.
-* **Light/dark mode:** the site uses a single PNG for both modes. Hero and
-  flowchart images should be designed to read in both — avoid pure white or
-  pure black backgrounds; use the project's neutral palette
-  (slate-900 / zinc-100) as the contrast anchors.
-* **Devanāgarī typography QA:** before committing the hero PNG, paste the
-  rendered verse into a Devanāgarī validator (e.g.,
-  https://aksharamukha.appspot.com/converter) to confirm the script renders
-  correctly. Common failure modes: missing visarga, broken halant joins,
-  wrong order of vowel marks.
-* **Versioning:** if the hero verse is replaced, document the swap in the
-  next release notes and update the `Source verse (recommended)` block at
-  the top of this file.
+- **Accessibility:** every PNG that lands at one of the documented paths must
+be paired with a meaningful `alt` attribute on the consumer site. The
+`PlaceholderFigure.astro` component requires a non-empty `alt` prop and
+falls back to the placeholder when the PNG is missing.
+- **Light/dark mode:** the site uses a single PNG for both modes. Hero and
+flowchart images should be designed to read in both — avoid pure white or
+pure black backgrounds; use the project's neutral palette
+(slate-900 / zinc-100) as the contrast anchors.
+- **Devanāgarī typography QA:** before committing the hero PNG, paste the
+rendered verse into a Devanāgarī validator (e.g.,
+[https://aksharamukha.appspot.com/converter](https://aksharamukha.appspot.com/converter)) to confirm the script renders
+correctly. Common failure modes: missing visarga, broken halant joins,
+wrong order of vowel marks.
+- **Versioning:** if the hero verse is replaced, document the swap in the
+next release notes and update the `Source verse (recommended)` block at
+the top of this file.
+

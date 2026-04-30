@@ -1,20 +1,23 @@
-\begin{table}[ht]
+\begin{table*}[ht]
 \centering
-\caption{T4 --- Showcase items registry. ``Source'' is the v0.4.1 trace provenance: \texttt{live\_cascade\_v0\_4\_1} for the three Sanskrit items (regenerated under the live-cascade mode), \texttt{phase7\_cascade} for the curated English-poetry and scientific-creativity items. ``Commit'' names the surface that the cascade actually committed (draft / shadow revision / committed\_choice). ``Validator'' is reported informationally; for Sanskrit items the v0.4 cascade scorer is not chandas-aware (v0.5 ladder).}
+\caption{T4 --- Showcase items registry. ``Source'' is the trace provenance: \texttt{live\_cascade} for the three Sanskrit items (regenerated under the live-cascade mode), \texttt{phase7\_cascade} for the curated English-poetry and scientific-creativity items. ``Commit'' names the surface that the cascade actually committed (draft / shadow revision / committed\_choice). ``Validator'' is reported informationally; for Sanskrit items the cascade scorer is not chandas-aware (future-work ladder).}
 \label{tab:showcase_registry}
-\begin{tabular}{lllll}
+\renewcommand{\arraystretch}{1.15}
+\sloppy
+\footnotesize
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{5.2cm}>{\raggedright\arraybackslash}p{2.4cm}>{\raggedright\arraybackslash}p{2.6cm}>{\raggedright\arraybackslash}p{1.8cm}>{\raggedright\arraybackslash}X@{}}
 \toprule
 Slug & Domain & Source & Commit & Validator \\
 \midrule
-  \texttt{english\_dickinson\_slant} & \texttt{poetry\_gen} & \texttt{phase7\_cascade} & \texttt{draft} & imagism noted \\
-  \texttt{english\_imagist\_haiku} & \texttt{poetry\_gen} & \texttt{phase7\_cascade} & \texttt{draft} & 5-7-5 pass \\
-  \texttt{english\_pastoral\_traditional} & \texttt{poetry\_gen} & \texttt{phase7\_cascade} & \texttt{draft} & 5-7-5 pass \\
-  \texttt{sanskrit\_anustubh} & \texttt{sanskrit\_chandas} & \texttt{live\_cascade\_v0\_4\_1} & \texttt{draft} & review (expected 32 syllables (4 pādas \$\textbackslash{}times\$ 8); found 185) \\
-  \texttt{sanskrit\_gayatri} & \texttt{sanskrit\_chandas} & \texttt{live\_cascade\_v0\_4\_1} & \texttt{draft} & review (expected 24 syllables (3 pādas \$\textbackslash{}times\$ 8); found 214) \\
-  \texttt{sanskrit\_indravajra} & \texttt{sanskrit\_chandas} & \texttt{live\_cascade\_v0\_4\_1} & \texttt{draft} & review (expected 44 syllables (4 pādas \$\textbackslash{}times\$ 11); found 348) \\
-  \texttt{science\_galaxy\_arms} & \texttt{sci\_creativity} & \texttt{phase7\_cascade} & \texttt{draft} & n/a \\
-  \texttt{science\_ice\_geometry} & \texttt{sci\_creativity} & \texttt{phase7\_cascade} & \texttt{draft} & n/a \\
-  \texttt{science\_unreasonable\_effectiveness} & \texttt{sci\_creativity} & \texttt{phase7\_cascade} & \texttt{revision} & n/a \\
+  \texttt{english\_\allowbreak{}dickinson\_\allowbreak{}slant} & \texttt{poetry\_\allowbreak{}gen} & \texttt{phase7\_\allowbreak{}cascade} & \texttt{draft} & imagism noted \\
+  \texttt{english\_\allowbreak{}imagist\_\allowbreak{}haiku} & \texttt{poetry\_\allowbreak{}gen} & \texttt{phase7\_\allowbreak{}cascade} & \texttt{draft} & 5-7-5 pass \\
+  \texttt{english\_\allowbreak{}pastoral\_\allowbreak{}traditional} & \texttt{poetry\_\allowbreak{}gen} & \texttt{phase7\_\allowbreak{}cascade} & \texttt{draft} & 5-7-5 pass \\
+  \texttt{sanskrit\_\allowbreak{}anustubh} & \texttt{sanskrit\_\allowbreak{}chandas} & \texttt{live\_\allowbreak{}cascade\_\allowbreak{}v0\_\allowbreak{}4\_\allowbreak{}1} & \texttt{draft} & review (expected 32 syllables (4 p\=adas $\times$ 8); found 185) \\
+  \texttt{sanskrit\_\allowbreak{}gayatri} & \texttt{sanskrit\_\allowbreak{}chandas} & \texttt{live\_\allowbreak{}cascade\_\allowbreak{}v0\_\allowbreak{}4\_\allowbreak{}1} & \texttt{draft} & review (expected 24 syllables (3 p\=adas $\times$ 8); found 214) \\
+  \texttt{sanskrit\_\allowbreak{}indravajra} & \texttt{sanskrit\_\allowbreak{}chandas} & \texttt{live\_\allowbreak{}cascade\_\allowbreak{}v0\_\allowbreak{}4\_\allowbreak{}1} & \texttt{draft} & review (expected 44 syllables (4 p\=adas $\times$ 11); found 348) \\
+  \texttt{science\_\allowbreak{}galaxy\_\allowbreak{}arms} & \texttt{sci\_\allowbreak{}creativity} & \texttt{phase7\_\allowbreak{}cascade} & \texttt{draft} & n/a \\
+  \texttt{science\_\allowbreak{}ice\_\allowbreak{}geometry} & \texttt{sci\_\allowbreak{}creativity} & \texttt{phase7\_\allowbreak{}cascade} & \texttt{draft} & n/a \\
+  \texttt{science\_\allowbreak{}unreasonable\_\allowbreak{}effectiveness} & \texttt{sci\_\allowbreak{}creativity} & \texttt{phase7\_\allowbreak{}cascade} & \texttt{revision} & n/a \\
 \bottomrule
-\end{tabular}
-\end{table}
+\end{tabularx}
+\end{table*}
