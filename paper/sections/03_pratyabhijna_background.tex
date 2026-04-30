@@ -1,5 +1,7 @@
 \section{Pratyabhij\~n\=a Architecture}\label{sec:pratyabhijna_background}
 
+\sloppy
+
 We restate the Pratyabhij\~n\=a primitives we operationalise. We take the canonical \emph{\=I\'svarapratyabhij\~n\=ak\=arik\=a} formulation and preserve its phenomenological commitments while assigning each primitive an explicit computational role. Diacritics follow IAST.
 
 \subsection{The luminous ground}
@@ -12,20 +14,22 @@ The five \iast{\'sakti}s are functions, not stages: each describes a distinct ki
 
 \begin{figure*}[ht]
 \centering
+\resizebox{\textwidth}{!}{%
 \begin{tikzpicture}[
-  node distance=11mm and 7mm,
+  node distance=10mm and 9mm,
   every node/.style={font=\small},
   stage/.style={
     draw, rounded corners=2pt, align=center,
-    minimum width=20mm, minimum height=10mm,
+    text width=22mm, minimum height=12mm,
     inner sep=3pt, fill=blue!4,
   },
   io/.style={
     draw, ellipse, align=center, inner sep=2pt, fill=gray!8,
+    text width=18mm,
   },
   reflex/.style={
     draw, rounded corners=2pt, align=center, fill=yellow!10,
-    minimum width=20mm, minimum height=10mm, inner sep=3pt,
+    text width=22mm, minimum height=12mm, inner sep=3pt,
   },
   arrow/.style={-{Latex[length=2mm,width=2mm]}, thick},
   loopback/.style={-{Latex[length=2mm]}, thick, dashed},
@@ -53,7 +57,8 @@ The five \iast{\'sakti}s are functions, not stages: each describes a distinct ki
 \draw[loopback] (vimarsa.south west) to[bend left=18]
   node[midway, sloped, above, font=\scriptsize]{shadow revision (BMR re-fan-out)}
   (iccha.north);
-\end{tikzpicture}
+\end{tikzpicture}%
+}
 \caption{F1 --- The five-\iast{\'sakti} cascade. The bottom-left dashed arrow is the recursive \iast{vimar\'sa} loopback that re-enters the cascade at \iast{icch\=a}, producing a shadow revision; the commit-policy multiplexer (Figure~\ref{fig:flow_commit_policy}, \S\ref{sec:methods}) chooses between draft and revision.}
 \label{fig:flow_5shakti}
 \end{figure*}

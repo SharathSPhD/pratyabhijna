@@ -17,6 +17,13 @@ interface Props {
    * placeholder renders instead.
    */
   src?: string;
+  /**
+   * Optional video source. When set, a `<video autoplay muted loop
+   * playsinline>` renders in place of the `<img>` and uses `src` as the
+   * poster fallback (so the visible frame stays consistent if a browser
+   * blocks autoplay or while the video downloads).
+   */
+  videoSrc?: string;
   /** Required descriptive alt text for accessibility. */
   alt: string;
   /** Caption rendered below the image / placeholder. */
@@ -31,6 +38,7 @@ interface Props {
 
 const {
   src,
+  videoSrc,
   alt,
   caption,
   aspect = '16 / 9',
@@ -39,9 +47,21 @@ const {
 } = Astro.props;
 
 const resolvedSrc = src ? withBase(src) : null;
+const resolvedVideo = videoSrc ? withBase(videoSrc) : null;
 ---
 <figure class="not-prose my-6 border border-[var(--border)] rounded-md overflow-hidden bg-[var(--bg)]">
-  {resolvedSrc ? (
+  {resolvedVideo ? (
+    <video
+      src={resolvedVideo}
+      poster={resolvedSrc ?? undefined}
+      autoplay
+      muted
+      loop
+      playsinline
+      aria-label={alt}
+      style={`aspect-ratio: ${aspect}; width: 100%; height: auto; object-fit: cover; display: block;`}
+    />
+  ) : resolvedSrc ? (
     <img
       src={resolvedSrc}
       alt={alt}

@@ -481,14 +481,14 @@ def _build_v04_autoreport(
         p = primary.get(h, {})
         ci = p.get("bca_ci_95", [float("nan"), float("nan")])
         rows.append(
-            f"{h}.v4 & {int(p.get('n', 0))} & {_fmt_signed(p.get('hedges_g'), 2)} & "
+            f"{h} & {int(p.get('n', 0))} & {_fmt_signed(p.get('hedges_g'), 2)} & "
             f"[{_fmt_signed(ci[0], 3)},\\,{_fmt_signed(ci[1], 3)}] & "
             f"{_fmt_bare(p.get('permutation_p_one_sided'), 4)} & "
             f"{_fmt_bare(p.get('holm_p'), 4)} & "
             f"{'\\textbf{yes}' if p.get('supported') else 'no'} \\\\"
         )
     rows.append(
-        f"H5.v4 (FE pool) & {int(sum(int(p.get('n', 0)) for p in (primary.get(k, {}) for k in ('H1','H2','H3','H4'))))} "
+        f"H5 (FE pool) & {int(sum(int(p.get('n', 0)) for p in (primary.get(k, {}) for k in ('H1','H2','H3','H4'))))} "
         f"& {placeholders['V04_H5_POOLED_G']} & "
         f"[{placeholders['V04_H5_CI_LO']},\\,{placeholders['V04_H5_CI_HI']}] & --- & --- & "
         f"{'\\textbf{yes}' if h5.get('supported') else 'no'} \\\\"

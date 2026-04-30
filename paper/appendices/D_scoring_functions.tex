@@ -1,5 +1,7 @@
 \section{Scoring Functions}\label{app:scoring}
 
+\sloppy
+
 All four scoring functions live in \texttt{benchmarks/scoring.py} and are deterministic. Each returns a \texttt{Score(axes: dict[str, float], composite: float)}. The composite is the unweighted mean of the per-axis scores; we keep the per-axis breakdown in the audit log for the figures in \S\ref{sec:results}.
 
 \subsection{\texttt{score\_poetry\_gen}}

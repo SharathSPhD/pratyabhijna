@@ -78,7 +78,9 @@ def test_table_snippets_exist_on_disk() -> None:
         p = TABLES / fname
         assert p.exists(), f"table snippet missing: {p.relative_to(REPO)}"
         text = p.read_text(encoding="utf-8")
-        assert r"\begin{tabular}" in text, f"{fname} does not contain a tabular env"
+        assert (
+            r"\begin{tabular}" in text or r"\begin{tabularx}" in text
+        ), f"{fname} does not contain a tabular/tabularx env"
         assert r"\caption{" in text, f"{fname} does not contain a caption"
 
 

@@ -360,14 +360,20 @@ def gate_sdk_path_removed() -> dict:
 
 
 def gate_unmerged_state_critique_present() -> dict:
-    intro = _read(PAPER_SECTIONS / "01_introduction.tex")
+    """Verify the operator-forensic record of the unmerged-state critique is preserved.
+
+    The paper itself no longer carries this passage (the abstract closer and the
+    introduction §0.5 subsection were dropped to keep the paper focused on the
+    mechanism findings). The operator-facing forensic record stays on the
+    reproducibility page, which remains the canonical surface for any reader
+    auditing how the artefacts moved between branches.
+    """
     repro = _read(SITE / "src" / "pages" / "reproducibility.astro")
-    needles_intro = ("unmerged" in intro.lower()) or ("not yet merged" in intro.lower())
     needles_repro = ("unmerged" in repro.lower()) or ("not yet merged" in repro.lower())
     return {
         "name": "verify_unmerged_state_critique_present",
-        "passed": needles_intro and needles_repro,
-        "details": f"intro_has_critique={needles_intro}, repro_has_critique={needles_repro}",
+        "passed": needles_repro,
+        "details": f"repro_has_critique={needles_repro}",
     }
 
 
@@ -561,6 +567,149 @@ def gate_section_10_8_removed() -> dict:
     }
 
 
+def gate_no_version_in_paper_prose() -> dict:
+    """No prose-rendered ``v0.x`` mentions in the paper.
+
+    Versioned tokens are allowed only inside file-system identifiers
+    wrapped in ``\\nolinkurl{...}``, ``\\url{...}``, ``\\path{...}``, or
+    ``\\input{...}``, and on lines starting with a ``%`` LaTeX comment.
+    Everything else is treated as prose, where the v0.4.3 plan requires
+    zero version mentions.
+    """
+    version_re = re.compile(r"\bv0\.[0-9]+(?:\.[0-9]+)?\b")
+    path_macro_re = re.compile(
+        r"\\(?:nolinkurl|url|path|input|includegraphics(?:\[[^\]]*\])?)\{[^{}]*\}"
+    )
+    texttt_path_re = re.compile(
+        r"\\texttt\{[^{}]*?(?:/|v0\.[0-9]+|\\_)[^{}]*?\}"
+    )
+    targets: list[Path] = [PAPER / "main.tex"]
+    targets.extend(sorted(PAPER_SECTIONS.glob("*.tex")))
+    targets.extend(sorted((PAPER / "appendices").glob("*.tex")))
+    targets.extend(sorted((PAPER_SECTIONS / "_tables").glob("*.tex")))
+    targets.append(PAPER / "autoreport_v0.4.tex")
+    targets.append(PAPER / "autoreport.tex")
+    hits: list[str] = []
+    for t in targets:
+        if not t.exists():
+            continue
+        for lineno, raw in enumerate(t.read_text(encoding="utf-8").splitlines(), start=1):
+            if raw.lstrip().startswith("%"):
+                continue
+            prose = path_macro_re.sub("", raw)
+            prose = texttt_path_re.sub("", prose)
+            if version_re.search(prose):
+                hits.append(f"{t.relative_to(REPO)}:{lineno}")
+                if len(hits) >= 8:
+                    break
+        if len(hits) >= 8:
+            break
+    return {
+        "name": "verify_no_version_in_paper_prose",
+        "passed": not hits,
+        "details": "no prose v0.x hits" if not hits else f"{len(hits)} hits e.g. {hits[:4]}",
+    }
+
+
+def gate_paper_flowchart_pngs_present() -> dict:
+    """All 5 TikZ flowcharts exist as PNGs in both paper and site trees."""
+    expected = [
+        "F1_panchashakti_cascade.png",
+        "F2_active_inference_loop.png",
+        "F3_commit_policy_multiplexer.png",
+        "F4_phase7_pipeline.png",
+        "F5_hypothesis_tree.png",
+    ]
+    paper_dir = PAPER / "figures" / "v0.4" / "flowcharts"
+    site_dir = SITE / "public" / "figures" / "v0.4" / "flowcharts"
+    missing: list[str] = []
+    too_small: list[str] = []
+    for name in expected:
+        for parent, label in ((paper_dir, "paper"), (site_dir, "site")):
+            p = parent / name
+            if not p.exists():
+                missing.append(f"{label}:{name}")
+                continue
+            if p.stat().st_size < 5_000:
+                too_small.append(f"{label}:{name}={p.stat().st_size}b")
+    ok = not missing and not too_small
+    detail_parts: list[str] = []
+    if missing:
+        detail_parts.append(f"missing={missing}")
+    if too_small:
+        detail_parts.append(f"too_small={too_small}")
+    return {
+        "name": "verify_paper_flowchart_pngs_present",
+        "passed": ok,
+        "details": "; ".join(detail_parts) if detail_parts else "all 5 flowchart PNGs present in paper + site trees",
+    }
+
+
+def gate_hero_video_present() -> dict:
+    """Hero video is committed and wired into the index hero block."""
+    video = SITE / "public" / "figures" / "v0.4" / "hero.mp4"
+    poster = SITE / "public" / "figures" / "v0.4" / "hero.png"
+    index = SITE / "src" / "pages" / "index.astro"
+    video_ok = video.exists() and video.stat().st_size > 1_000_000
+    poster_ok = poster.exists() and poster.stat().st_size > 100_000
+    index_text = _read(index)
+    wired = "videoSrc" in index_text and "hero.mp4" in index_text
+    return {
+        "name": "verify_hero_video_present",
+        "passed": video_ok and poster_ok and wired,
+        "details": f"video_ok={video_ok}, poster_ok={poster_ok}, index_wired={wired}",
+    }
+
+
+def gate_paper_no_overfull_hbox() -> dict:
+    """Paper builds without ``Overfull \\hbox`` warnings from sections/.
+
+    Inspects ``paper/main.log`` (written by the most recent ``tectonic``
+    invocation in ``scripts/ralph_loop_local.sh``) and counts
+    ``Overfull \\hbox`` lines that name ``sections/...`` or
+    ``appendices/...`` source files. The threshold mirrors the v0.4.3
+    plan: zero overfulls greater than 5pt from ``sections/``; up to 5
+    overfulls from ``appendices/`` are tolerated to absorb residual
+    bibliography and float-positioning pressure.
+    """
+    log = PAPER / "main.log"
+    if not log.exists():
+        return {
+            "name": "verify_paper_no_overfull_hbox",
+            "passed": False,
+            "details": "paper/main.log missing — run ralph_loop_local.sh first",
+        }
+    text = _read(log)
+    pattern = re.compile(
+        r"Overfull \\hbox \(([0-9.]+)pt too wide\)[^\n]*?\n[^\n]*?\\(?:in)? ?([a-zA-Z0-9_/]+)",
+    )
+    sections_hits: list[str] = []
+    appendices_hits: list[str] = []
+    for line in text.splitlines():
+        if "Overfull \\hbox" not in line:
+            continue
+        if "sections/" in line:
+            m = re.search(r"\(([0-9.]+)pt too wide\)", line)
+            pts = float(m.group(1)) if m else 0.0
+            if pts > 5.0:
+                sections_hits.append(f"sections/* {pts}pt")
+        elif "appendices/" in line:
+            m = re.search(r"\(([0-9.]+)pt too wide\)", line)
+            pts = float(m.group(1)) if m else 0.0
+            if pts > 5.0:
+                appendices_hits.append(f"appendices/* {pts}pt")
+    ok = not sections_hits and len(appendices_hits) <= 5
+    return {
+        "name": "verify_paper_no_overfull_hbox",
+        "passed": ok,
+        "details": (
+            f"sections_hits={len(sections_hits)} (allowed 0), "
+            f"appendices_hits={len(appendices_hits)} (allowed ≤5)"
+            + (f"; e.g. {sections_hits[:3]}" if sections_hits else "")
+        ),
+    }
+
+
 def gate_outer_host_loads_pce() -> dict:
     py = REPO / ".venv" / "bin" / "python"
     if not py.exists():
@@ -602,6 +751,11 @@ GATES: list[Callable[[], dict]] = [
     gate_no_bedrock_in_user_prose,
     gate_image_prompts_md_present,
     gate_section_10_8_removed,
+    # v0.4.3 paper-polish gates (25 -> 28).
+    gate_no_version_in_paper_prose,
+    gate_paper_flowchart_pngs_present,
+    gate_hero_video_present,
+    gate_paper_no_overfull_hbox,
 ]
 
 
@@ -621,7 +775,7 @@ def main() -> int:
         "total": len(results),
         "pass": n_pass,
         "fail": n_fail,
-        "phase": "v0.4.2-phase-8-content-expansion",
+        "phase": "v0.4.3-phase-8-paper-polish-and-hero-video",
         "report_kind": "artefact_audit",
         "report_kind_note": (
             "Phase 8 inspects committed artefacts (PDFs, JSON, docs/site/dist) "
