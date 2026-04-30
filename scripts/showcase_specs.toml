@@ -1,8 +1,18 @@
 # PCE v0.4 showcase specification.
 #
 # Nine demos, three per stratum:
-#   * sanskrit_*  → curated reference compositions, validated by
-#                   tools/sanskrit_chandas.py (syllable count + pattern).
+#   * sanskrit_*  → as of v0.4.1 amend, the *release artefacts* are LIVE
+#                   v0.4.1 cascade outputs, generated with --mode live by
+#                   scripts/generate_v0_4_showcase.py and run on the same
+#                   prompts/constraints below. The `source = "curated_reference"`
+#                   field on each entry below is the curate-mode FALLBACK
+#                   surface (used only when --mode curate is selected); the
+#                   curated_text below stays as a chandas-validated
+#                   maintainer-authored reference that the v0.5
+#                   chandas-aware scorer will use as a calibration target.
+#                   tools/sanskrit_chandas.py runs on each artefact and is
+#                   reported informationally (not release-blocking) because
+#                   v0.4 has no chandas-aware composite scorer.
 #   * english_*   → real Phase 7 cascade traces, curated from
 #                   benchmarks/results_v0.4/poetry_gen.json (highest-scoring
 #                   items per style).
@@ -14,9 +24,6 @@
 #   * the item id to extract
 #   * which surface validators to run
 #   * the prose context that wraps the cascade trace on the showcase page
-#
-# Sanskrit entries embed the curated reference verse directly (since
-# Phase 7 has no Sanskrit benchmark; v0.5 will add one).
 
 # ---------------------------------------------------------------------------
 # Sanskrit chandas

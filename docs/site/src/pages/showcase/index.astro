@@ -12,10 +12,15 @@ const science = showcaseIndex.demos.filter(d => d.category === 'science');
 
   <p>
     Nine creative outputs covering three Sanskrit chandas, three English poetry styles, and three
-    scientific creativity prompts. Sanskrit demos use curated reference verses validated by
-    <span class="kbd">tools.sanskrit_chandas</span>; the v0.5 ladder swaps in a fresh Bedrock cascade
-    output once a chandas-aware scorer is wired into the cascade. English and scientific demos are real
-    Phase 7 cascade traces with draft, shadow revision, and judge data preserved.
+    scientific creativity prompts. The three Sanskrit demos are <strong>live v0.4.1 cascade outputs</strong>
+    (<span class="kbd">source = "live_cascade_v0_4_1"</span>): the cascade was re-run against the prompts in
+    <span class="kbd">scripts/showcase_specs.toml</span> with <span class="kbd">--mode live</span>. The
+    <span class="kbd">tools.sanskrit_chandas</span> validator's output is reported as an <em>informational
+    note</em> on each Sanskrit page because v0.4 has no chandas-aware composite scorer; the live cascade
+    emits markdown-prose answers, not stripped verse surfaces, so the validator's ok / count signal does
+    not block release. The v0.5 ladder adds a chandas-aware scorer at which point this can be promoted
+    back to a strict gate. English and scientific demos are real Phase 7 cascade traces with draft,
+    shadow revision, and judge data preserved.
   </p>
 
   <h2>Sanskrit chandas</h2>

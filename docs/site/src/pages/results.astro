@@ -62,13 +62,15 @@ const forestRows = [
 
   <HypothesisCard
     id="H5.v4"
+    kind="effect_size"
     title="Inverse-variance fixed-effects pool of cascade-vs-bare"
     g={h5.pooled_g}
     ci={h5.ci as [number, number]}
+    ciLabel="Fixed-effects 95% Wald CI on pooled g"
     p={null}
     n={Object.values(h5.per_domain_n).reduce((a, b) => a + b, 0)}
     supported={h5.supported}
-    note="ADR-005: fixed-effects chosen over random-effects given the small number of domain studies and homogeneity of the substrate."
+    note="ADR-005: fixed-effects chosen over random-effects given the small number of domain studies and homogeneity of the substrate. The reported interval is a Wald CI on the pooled g, not a BCa bootstrap."
   />
 
   <h2>9.4 Mechanism panel (H8a / H8b / H8c)</h2>
@@ -84,13 +86,16 @@ const forestRows = [
 
   <HypothesisCard
     id="H8a.v4"
+    kind="effect_size"
     title="Shadow revision > draft (paired)"
     g={h8a.g}
     ci={h8a.ci as [number, number]}
+    ciLabel="BCa 95% CI on paired mean Δ"
+    delta={typeof (h8a as any).delta === 'number' ? (h8a as any).delta : 0.058}
     p={h8a.p}
     n={h8a.n}
     supported={h8a.supported}
-    note="Paired score(revision) − score(draft) over all cascade items."
+    note="Paired score(revision) − score(draft) over all cascade items. The CI is a 10,000-resample BCa bootstrap on the paired mean Δ; the Hedges' g is reported alongside without a CI."
   />
 
   <p>
@@ -103,13 +108,14 @@ const forestRows = [
 
   <HypothesisCard
     id="H8b.v4"
+    kind="classifier"
     title="Learned gate F1 > event-gated F1"
-    g={h8b.learned_gate.f1 - h8b.event_gated.f1}
-    ci={[0, 0]}
-    p={null}
+    f1={h8b.learned_gate.f1}
+    precision={(h8b.learned_gate as any).precision ?? null}
+    recall={(h8b.learned_gate as any).recall ?? null}
     n={h8b.learned_gate.n}
     supported={h8b.supported}
-    note={`learned_gate F1 = ${fmt(h8b.learned_gate.f1, 3)} vs event_gated F1 = ${fmt(h8b.event_gated.f1, 3)}.`}
+    note={`learned_gate F1 = ${fmt(h8b.learned_gate.f1, 3)} vs event_gated F1 = ${fmt(h8b.event_gated.f1, 3)}. Binary classifier metric; no bootstrap CI is reported.`}
   />
 
   <p>

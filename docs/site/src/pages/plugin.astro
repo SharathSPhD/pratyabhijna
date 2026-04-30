@@ -8,8 +8,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     PCE v0.4 ships as a portable plugin with three first-class install paths: a Cursor plugin, a Claude
     Code plugin, and a standalone <span class="kbd">pce</span> CLI. The cascade itself is host-agnostic;
     only the manifest and the entry point change per host. A single configuration chain
-    (<span class="kbd">~/.config/pce/config.toml</span> &gt; repo <span class="kbd">pce.toml</span> &gt;
-    environment variables &gt; CLI flags) controls model selection across all three paths.
+    (defaults &lt; repo <span class="kbd">pce.toml</span> &lt; <span class="kbd">~/.config/pce/config.toml</span>
+    &lt; environment variables &lt; CLI flags; later layers override earlier) controls model selection
+    across all three paths.
   </p>
 
   <h2>1. Standalone CLI (recommended for batch / CI use)</h2>

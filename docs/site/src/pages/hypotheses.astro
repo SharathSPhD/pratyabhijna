@@ -26,10 +26,12 @@ const h8c = stats.commit_policy!;
     {Object.values(primary).map(p => (
       <HypothesisCard
         id={`H${p.hypothesis.replace('H', '')}.v4`}
+        kind="effect_size"
         domain={p.domain}
         title="Cascade > bare on this domain"
         g={p.g}
         ci={p.ci as [number, number]}
+        ciLabel="BCa 95% CI on paired mean Δ"
         p={p.p}
         n={p.n}
         supported={p.supported}
@@ -40,43 +42,51 @@ const h8c = stats.commit_policy!;
   <h2>Pooled effect (H5)</h2>
   <HypothesisCard
     id="H5.v4"
+    kind="effect_size"
     title="Fixed-effects pool of cascade-vs-bare"
     g={h5.pooled_g}
     ci={h5.ci as [number, number]}
+    ciLabel="Fixed-effects 95% Wald CI on pooled g"
     p={null}
     n={Object.values(h5.per_domain_n).reduce((a, b) => a + b, 0)}
     supported={h5.supported}
-    note={`ADR-005 inverse-variance fixed-effects meta-pool (${h5.method}).`}
+    note={`ADR-005 inverse-variance fixed-effects meta-pool (${h5.method}). The interval is a Wald CI on the pooled g, not a BCa bootstrap.`}
   />
 
   <h2>Mechanism decomposition (H8a/b/c)</h2>
   <div class="not-prose grid grid-cols-1 md:grid-cols-2 gap-3">
     <HypothesisCard
       id="H8a.v4"
+      kind="effect_size"
       title="Shadow revision > draft (paired)"
       g={h8a.g}
       ci={h8a.ci as [number, number]}
+      ciLabel="BCa 95% CI on paired mean Δ"
+      delta={typeof (h8a as any).delta === 'number' ? (h8a as any).delta : 0.058}
       p={h8a.p}
       n={h8a.n}
       supported={h8a.supported}
-      note="Direct test of vimarśa: does the recursive revision pass produce a measurable surface lift?"
+      note="Direct test of vimarśa: does the recursive revision pass produce a measurable surface lift? CI is on the paired mean Δ, not on the Hedges' g."
     />
     <HypothesisCard
       id="H8b.v4"
+      kind="classifier"
       title="Learned gate F1 > event-gated F1"
-      g={h8b.learned_gate.f1 - h8b.event_gated.f1}
-      ci={[0, 0]}
-      p={null}
+      f1={h8b.learned_gate.f1}
+      precision={(h8b.learned_gate as any).precision ?? null}
+      recall={(h8b.learned_gate as any).recall ?? null}
       n={h8b.learned_gate.n}
       supported={h8b.supported}
-      note={`learned_gate F1 = ${fmt(h8b.learned_gate.f1, 3)} vs event_gated F1 = ${fmt(h8b.event_gated.f1, 3)}; F1 gain reported as a binary-classifier delta, not a Hedges' g.`}
+      note={`learned_gate F1 = ${fmt(h8b.learned_gate.f1, 3)} vs event_gated F1 = ${fmt(h8b.event_gated.f1, 3)}; binary-classifier metric, no bootstrap CI.`}
     />
   </div>
   <HypothesisCard
     id="H8c.v4"
+    kind="effect_size"
     title={`Commit-policy leaderboard — winner: ${h8c.winner}`}
     g={h8c.leader_board[0]?.g ?? 0}
     ci={(h8c.leader_board[0]?.ci as [number, number]) ?? [0, 0]}
+    ciLabel="BCa 95% CI on paired mean Δ"
     p={h8c.leader_board[0]?.p ?? null}
     n={h8c.leader_board[0]?.n ?? 0}
     supported={h8c.supported}

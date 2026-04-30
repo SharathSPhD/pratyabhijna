@@ -1,9 +1,25 @@
-# PCE v0.4.0 — Release Notes
+# PCE v0.4.0 / v0.4.1 — Release Notes
 
-**Date:** 2026-04-30
-**Branch merged:** `v0.4-mechanism-study` → `main`
-**Tag:** `v0.4.0`
-**Frozen archive:** `paper/v0.4/`
+**Date:** 2026-04-30 (v0.4.0); v0.4.1 amend 2026-04-30
+**Branch merged:** `v0.4-mechanism-study` → `main` (v0.4.0); `v0.4.1-hardening` → `main` (v0.4.1)
+**Tags:** `v0.4.0`, `v0.4.1` (v0.4.1 supersedes the v0.4.0 archive but does not move the v0.4.0 tag)
+**Frozen PDF:** `paper/v0.4/main.pdf` is the canonical v0.4 archival PDF; the matching TeX sources live at the top of the working tree (`paper/main.tex`, `paper/sections/*.tex`, `paper/appendices/*.tex`, `paper/references.bib`) and are reproducible from the `v0.4.1` git tag (`git checkout v0.4.1 && cd paper && tectonic main.tex`).
+
+## v0.4.1 amend — what changed since v0.4.0
+
+The v0.4.1 amend is a hardening pass over v0.4.0 driven by `docs/reviews/2026-04-30-adversarial-v0.4-review.md` and `docs/reviews/2026-04-30-adversarial-v0.4.1-post-amend-review.md`. It changes no headline numbers and no scientific claims; it makes the public artefacts tell one consistent story.
+
+- **Sanskrit showcase:** the three `sanskrit_*` items at `benchmarks/showcase_v0.4/` are now live v0.4.1 cascade outputs (`source = "live_cascade_v0_4_1"` in each `trace.json`), regenerated against the prompts/constraints in `scripts/showcase_specs.toml` with `--mode live`. The `tools/sanskrit_chandas.py` validator is recorded against each output and is **informational only** — v0.4 has no chandas-aware composite scorer, and the live outputs are markdown-prose answers, not stripped verse surfaces. The v0.5 ladder includes a chandas-aware scorer that can promote this back to a blocking gate.
+- **CLI:** the showcase regeneration entry-point is `pce showcase --regenerate SLUG` (the v0.4.0 docs called it `showcase generate`; the implementation always was `--regenerate`).
+- **Config precedence:** the actual `PCEConfig.load` order is **`defaults < repo pce.toml < ~/.config/pce/config.toml < environment variables < CLI flags`** (later layers override earlier). v0.4.0 docs in two places had repo and user TOML reversed; this is now consistent across `src/pce/config.py`, `docs/RUN_LOCAL.md`, and `docs/site/src/pages/plugin.astro`.
+- **Statistics labels:** every `BCa CI` quoted in the headline tables, paper, and site cards now names its estimand explicitly: H8a / H8c / H1–H4 are reported as `BCa 95 % CI on paired mean Δ`; the H5 fixed-effects pool uses a `fixed-effects 95 % Wald CI on the pooled g` (no BCa). This corrects a labelling bug in v0.4.0 where the H8a CI bounds belonged to the paired mean Δ but were paired with `g` in a way that read as a CI on `g`.
+- **Frozen archive scope:** `paper/v0.4/` is now PDF-only (`paper/v0.4/main.pdf`); the stale TeX tree that previously lived there has been removed. Source for the v0.4.1 PDF is the live `paper/` tree at the `v0.4.1` tag.
+- **Judge audit metadata:** every row in `benchmarks/results_v0.4/judge.jsonl` carries a unique `formatted_prompt_sha256` (post-hoc backfilled by `scripts/recover_judge_formatted_sha.py`; aggregate provenance recorded on `benchmarks/results_v0.4/judge_agreement.json`). The `input_tokens = 9` field on each judge row is a **placeholder**: the OAuth `claude --print` substrate did not expose per-call token counts in the v0.4 pilot. Replay-auditability is via `formatted_prompt_sha256`, not via `input_tokens`.
+- **Site:** the H8b card now renders as a classifier card (F1 / precision / recall, no synthetic CI); the H8a card explicitly shows `Δ = +0.058` next to the BCa CI; the showcase index Sanskrit copy now matches the live-cascade reality.
+- **Phase 8 gate stack:** the chandas validator gate has been renamed `verify_chandas_validator_reports_present` (release-non-blocking, reports `validator_ok_count`); a new `verify_showcase_tests_pass` gate runs the showcase-semantics test modules; the report root carries `report_kind: "artefact_audit"` to make explicit that Phase 8 audits committed artefacts and does not rebuild them.
+- **Ralph-loop:** `scripts/ralph_loop_local.sh` is the single local "release-clean" command — it runs `pytest`, regenerates site data, builds the site, builds the paper, snapshots `paper/v0.4/main.pdf`, and runs `scripts/phase8_gate_stack.py`. No commit/tag/release is allowed without a green run; this is documented in `CLAUDE.md`.
+
+## Summary
 
 ## Summary
 
@@ -17,11 +33,11 @@ This is the project's first portable release: PCE now ships as a Cursor plugin, 
 
 | Hypothesis | Reading | Statistic |
 |---|---|---|
-| H8a.v4 — shadow revision > draft (within-cascade) | **supported** | *g* = 0.649, BCa 95 % CI [0.031, 0.095], *p* < 1e-4, *n* = 27 |
-| H8b.v4 — learned gate F1 > event gate F1 | **supported** | learned 0.647 vs event 0.516 |
+| H8a.v4 — shadow revision > draft (within-cascade) | **supported** | *g* = 0.649; paired mean Δ = +0.058, BCa 95 % CI on paired mean Δ [0.031, 0.095]; *p* < 1e-4, *n* = 27 |
+| H8b.v4 — learned gate F1 > event gate F1 | **supported** | learned F1 = 0.647 vs event F1 = 0.516 (binary classifier; no CI) |
 | H8c.v4 — commit-policy leaderboard | leaderboard reported; pairwise gaps not significant after Holm | `always_revise` ▸ `learned_gate` ▸ `event_gated` ▸ `always_draft` |
-| H1.v4–H4.v4 — cascade vs bare per domain | **inconclusive** at this *n* | *g* ∈ [−0.32, +0.32]; retrospective power ≤ 0.24 |
-| H5.v4 — fixed-effects pool of H1–H4 | **not supported** | pooled *g* = 0.145, CI [−0.255, 0.544] |
+| H1.v4–H4.v4 — cascade vs bare per domain | **inconclusive** at this *n* | *g* ∈ [−0.32, +0.32]; BCa 95 % CIs on paired mean Δ all cross zero; retrospective power ≤ 0.24 |
+| H5.v4 — fixed-effects pool of H1–H4 | **not supported** | pooled *g* = 0.145; fixed-effects 95 % Wald CI on pooled *g* [−0.255, 0.544] (no BCa for H5) |
 | H9.v4 — judge-vs-proxy agreement | **flagged** as a metric-design issue | ρ = 0.0; sign-agreement 56.5 %, *n* = 23 |
 | Pilot Haiku-cascade cost | — | $12.73 across 1 277 Bedrock calls (`audit/v0.4/cost_ledger_merged.json`) |
 | Pilot Sonnet-judge cost  | — | $0.48 across 23 judge rows (`benchmarks/results_v0.4/judge_agreement.json`) |
@@ -38,13 +54,13 @@ This is the project's first portable release: PCE now ships as a Cursor plugin, 
 
 ### Plugin portability
 - Cursor plugin manifest at `plugin/.cursor-plugin/plugin.json` mirrors the Claude Code manifest (same MCP tools, slash commands, hooks).
-- Standalone `pce` CLI (`src/pce/cli.py`) with `cascade`, `judge-pair`, `smoke`, `config show`, and `showcase generate` subcommands; wired into `pyproject.toml` as `pce` console-script.
-- `PCEConfig` (`src/pce/config.py`) with a 5-layer override chain: defaults ▸ `~/.config/pce/config.toml` ▸ repo `pce.toml` ▸ env vars ▸ CLI flags. Configurable to any Anthropic CLI-addressable model (default `haiku` for cascade, `sonnet` for judge). `PCE_HAIKU_MODEL` retained as a deprecated back-compat alias.
+- Standalone `pce` CLI (`src/pce/cli.py`) with `cascade`, `judge-pair`, `smoke`, `config show`, and `showcase --regenerate SLUG` subcommands; wired into `pyproject.toml` as `pce` console-script.
+- `PCEConfig` (`src/pce/config.py`) with a 5-layer override chain: defaults ▸ repo `pce.toml` ▸ `~/.config/pce/config.toml` ▸ env vars ▸ CLI flags (later layers override earlier; this is the order implemented in `PCEConfig.load`). Configurable to any Anthropic CLI-addressable model (default `haiku` for cascade, `sonnet` for judge). `PCE_HAIKU_MODEL` retained as a deprecated back-compat alias.
 - ADR-007: Anthropic Python SDK code path removed. PCE now declares one supported substrate: `claude --print` over OAuth.
 
 ### 9-demo showcase
 - `benchmarks/showcase_v0.4/` ships nine creative outputs with full cascade traces:
-  - 3 Sanskrit chandas (anuṣṭubh, gāyatrī, indravajrā) — curated reference verses validated by `tools/sanskrit_chandas.py` (v0.5 swaps in cascade-generated outputs once a chandas-aware scorer is wired).
+  - 3 Sanskrit chandas (anuṣṭubh, gāyatrī, indravajrā) — **live v0.4.1 cascade outputs** (`source = "live_cascade_v0_4_1"`), with `tools/sanskrit_chandas.py` validator runs attached as informational reports because v0.4 has no chandas-aware composite scorer; the curated reference verses kept in `scripts/showcase_specs.toml` are the curate-mode fallback (used only when `--mode curate` is selected) and the calibration target for the v0.5 chandas-aware scorer.
   - 3 English poetry styles (Dickinson slant, imagist haiku, traditional pastoral) — real Phase 7 cascade traces.
   - 3 scientific creativity prompts (galaxy arms, ice geometry, unreasonable effectiveness) — real Phase 7 cascade traces.
 - The Astro v0.4 site renders all 9 demos with the cit → ānanda → icchā → apohana → jñāna → kriyā → vimarśa → revision pipeline, draft / revised diff view, and validator output.
@@ -54,7 +70,7 @@ This is the project's first portable release: PCE now ships as a Cursor plugin, 
 - Abstract, §1 introduction, and §2 related work fully rewritten as academic prose. §10 discussion expanded to eight detailed subsections (mechanism reading, per-operator dissection, gate calibration, H9 flag, philosophical underpinnings, compounding work, threats to validity, unmerged-state context).
 - New sections: §7b Substrate and Portability, §10b Honest AI Claims, §10c Showcase Examples.
 - 19 new verified bibliography entries (active inference, LLM-as-judge, self-refinement, BMR, computational Sanskrit, Pratyabhijñā philosophy, Hopfield networks). Six unverifiable v0.3 entries removed. Bibliography verification log at `audit/v0.4/lit_verification.jsonl`.
-- Frozen archive at `paper/v0.4/main.pdf` + `paper/v0.4/sections/*.tex`.
+- Frozen PDF at `paper/v0.4/main.pdf`. Source for the v0.4.1 PDF lives at the top of the working tree (`paper/main.tex`, `paper/sections/*.tex`, `paper/appendices/*.tex`, `paper/references.bib`); the matching git tag is `v0.4.1`.
 
 ### HTML overhaul
 - `presentation/index.html` and the root `index.html` redirect shim are deleted.

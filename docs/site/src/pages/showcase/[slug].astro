@@ -46,7 +46,25 @@ const categoryColor = meta.category === 'sanskrit'
     <span class="font-mono text-[0.78rem] text-[var(--fg-soft)]">slug: {slug}</span>
     <span class="font-mono text-[0.78rem] text-[var(--fg-soft)]">seed: {prompt.seed ?? meta.seed}</span>
     <span class="font-mono text-[0.78rem] text-[var(--fg-soft)]">validator: {meta.validator_status}</span>
+    {isSanskrit && (
+      <span class="font-mono text-[0.78rem] text-[var(--fg-soft)]">source: {trace.source ?? 'unknown'}</span>
+    )}
   </div>
+
+  {isSanskrit && validator?.ok === false && (
+    <div class="not-prose font-sans rounded-md border border-amber-300 bg-amber-50 px-3 py-2 my-3 text-sm text-amber-900 dark:border-amber-800 dark:bg-amber-900/30 dark:text-amber-100">
+      <strong>Validator note (informational, non-blocking).</strong>{' '}
+      The <span class="kbd">tools.sanskrit_chandas</span> validator reports
+      <span class="font-mono"> ok = false </span>
+      for this output. v0.4 has no chandas-aware composite scorer, so this Sanskrit demo is a live
+      cascade markdown answer rather than a stripped verse surface; the validator counts syllables
+      across the whole answer (including commentary). The v0.5 ladder adds a chandas-aware scorer at
+      which point this validator can be promoted back to a strict release gate.
+      {Array.isArray(validator.notes) && validator.notes.length > 0 && (
+        <span class="block mt-1 font-mono text-[0.78rem]">{validator.notes.join(' · ')}</span>
+      )}
+    </div>
+  )}
 
   <h2>Prompt</h2>
   <blockquote>{prompt.prompt}</blockquote>

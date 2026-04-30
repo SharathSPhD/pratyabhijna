@@ -63,6 +63,23 @@ function pathExistsInDist(href) {
   return false;
 }
 
+function resolveRelative(file, href) {
+  // Resolve "./..." or "../..." or "foo/bar" against the directory of `file`,
+  // returning a project-base-relative absolute href ("/pratyabhijna/...")
+  // suitable for re-feeding into pathExistsInDist().
+  const fromDir = dirname(file);
+  const cleaned = href.split('#')[0].split('?')[0];
+  if (!cleaned) return null;
+  const target = resolve(fromDir, cleaned);
+  // distRoot is the project's served root; convert to a /base prefixed path.
+  let rel = relative(distRoot, target);
+  if (rel.startsWith('..')) {
+    return null; // out of dist tree; not an internal link we can resolve
+  }
+  rel = rel.replace(/\\/g, '/').replace(/\/$/, '');
+  return rel === '' ? base + '/' : `${base}/${rel}`;
+}
+
 function checkFile(file) {
   const html = readFileSync(file, 'utf8');
   const errors = [];
@@ -87,6 +104,22 @@ function checkFile(file) {
     if (href.startsWith('/')) {
       if (!pathExistsInDist(href)) {
         errors.push(`internal href does not resolve in dist/: ${href}`);
+      }
+      continue;
+    }
+    // Relative href: ./foo, ../foo, or foo/bar.
+    if (
+      href.startsWith('./') ||
+      href.startsWith('../') ||
+      (!href.includes(':') && !href.startsWith('/'))
+    ) {
+      const projectAbs = resolveRelative(file, href);
+      if (projectAbs == null) {
+        errors.push(`relative href escapes dist/: ${href}`);
+        continue;
+      }
+      if (!pathExistsInDist(projectAbs)) {
+        errors.push(`relative href does not resolve in dist/: ${href} (resolved ${projectAbs})`);
       }
     }
   }
