@@ -40,7 +40,7 @@ cd docs/site && pnpm install && python ../../scripts/prepare_site_data.py && pnp
     <li><a href={withBase('/benchmarks/results_v0.4/stats.json')}>benchmarks/results_v0.4/stats.json</a> — pre-registered hypothesis statistics.</li>
     <li><a href={withBase('/benchmarks/results_v0.4/judge.jsonl')}>benchmarks/results_v0.4/judge.jsonl</a> — per-item LLM-judge verdicts.</li>
     <li><a href={withBase('/benchmarks/results_v0.4/judge_agreement.json')}>benchmarks/results_v0.4/judge_agreement.json</a> — Spearman ρ and sign-agreement (H9.v4).</li>
-    <li><span class="kbd">audit/v0.4/cost_ledger_merged.json</span> — Bedrock token-cost ledger across the four domains.</li>
+    <li><span class="kbd">audit/v0.4/cost_ledger_merged.json</span> — managed-API token-cost ledger across the four domains.</li>
     <li><span class="kbd">audit/v0.4/integrity_probes_merged.jsonl</span> — substrate integrity probes across the pilot run.</li>
     <li><span class="kbd">audit/v0.4/lit_verification.jsonl</span> &amp; <span class="kbd">lit_new_entries.jsonl</span> — bibliography verification + new-entry log.</li>
     <li><span class="kbd">audit/v0.4/phase8_gate_report.json</span> — Phase 8 Ralph gate stack pass/fail summary.</li>
@@ -49,7 +49,8 @@ cd docs/site && pnpm install && python ../../scripts/prepare_site_data.py && pnp
   <h2 id="unmerged-state">The §0.5 unmerged-state critique</h2>
 
   <p>
-    Phase 7 of the v0.4 mechanism study completed on AWS Bedrock on April 30 2026 with the result tree
+    Phase 7 of the v0.4 mechanism study completed via parallel API calls against the managed
+    Anthropic-API substrate on April 30 2026 with the result tree
     pushed to <span class="kbd">origin/v0.4-mechanism-study</span> at commit <span class="kbd">94ba97e</span>.
     From that date until Phase 8 landed, the public <span class="kbd">main</span> branch and the
     GitHub Pages site told the v0.3 story: <span class="kbd">results_v0.3/stats.json</span> is what the
@@ -70,9 +71,9 @@ cd docs/site && pnpm install && python ../../scripts/prepare_site_data.py && pnp
     May 1 2026 saw results that were by then stale at the headline level (the cascade-vs-bare null
     without the H8a / H8b mechanism findings); collaborators did not see ADR-005 fixed-effects or
     ADR-006 typed Haiku errors on the trunk; the branch was at risk of drifting if anything else landed
-    on <span class="kbd">main</span>; the cost ledgers + integrity probes from a reproducible Bedrock run
-    were not visible at <span class="kbd">main</span> yet, so anyone trying to replicate had to dig
-    through branches.
+    on <span class="kbd">main</span>; the cost ledgers + integrity probes from a reproducible managed-API
+    pilot run were not visible at <span class="kbd">main</span> yet, so anyone trying to replicate had to
+    dig through branches.
   </p>
 
   <p>

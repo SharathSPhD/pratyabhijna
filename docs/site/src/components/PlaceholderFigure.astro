@@ -1,0 +1,66 @@
+---
+// Reusable image / placeholder figure component for the v0.4.2 content
+// expansion. When `src` resolves (a real PNG dropped at the documented
+// path), the real image renders. Otherwise we show a styled grey
+// placeholder with the caption + alt text so the page layout matches what
+// the final image will look like.
+//
+// See `docs/figures/PROMPTS.md` for the per-figure prompt specifications
+// and the canonical paths each placeholder will resolve to.
+import { withBase } from '../lib/nav';
+
+interface Props {
+  /**
+   * Public-relative path under `docs/site/public/` (or absolute path
+   * already prefixed with the site base). When the file is present at
+   * that path the real image renders; when it is missing the styled
+   * placeholder renders instead.
+   */
+  src?: string;
+  /** Required descriptive alt text for accessibility. */
+  alt: string;
+  /** Caption rendered below the image / placeholder. */
+  caption: string;
+  /** Aspect-ratio CSS string (e.g. "21 / 9", "4 / 3"); default 16/9. */
+  aspect?: string;
+  /** Slug used in the placeholder header; defaults to "figure". */
+  slug?: string;
+  /** Pointer to PROMPTS.md for the human generating the real image. */
+  promptRef?: string;
+}
+
+const {
+  src,
+  alt,
+  caption,
+  aspect = '16 / 9',
+  slug = 'figure',
+  promptRef = 'docs/figures/PROMPTS.md',
+} = Astro.props;
+
+const resolvedSrc = src ? withBase(src) : null;
+---
+<figure class="not-prose my-6 border border-[var(--border)] rounded-md overflow-hidden bg-[var(--bg)]">
+  {resolvedSrc ? (
+    <img
+      src={resolvedSrc}
+      alt={alt}
+      style={`aspect-ratio: ${aspect}; width: 100%; height: auto; object-fit: contain;`}
+    />
+  ) : (
+    <div
+      role="img"
+      aria-label={alt}
+      style={`aspect-ratio: ${aspect}; width: 100%;`}
+      class="flex flex-col items-center justify-center text-center text-[var(--fg-soft)] bg-[var(--bg-soft)] p-6"
+    >
+      <span class="text-xs uppercase tracking-widest opacity-70">placeholder</span>
+      <span class="font-mono text-xs mt-1">{slug}</span>
+      <span class="text-sm mt-2 max-w-prose">{alt}</span>
+      <span class="text-xs mt-3 opacity-70">prompt → <span class="font-mono">{promptRef}</span></span>
+    </div>
+  )}
+  <figcaption class="text-[0.85rem] text-[var(--fg-soft)] px-3 py-2 border-t border-[var(--border)]">
+    {caption}
+  </figcaption>
+</figure>

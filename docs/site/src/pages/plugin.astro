@@ -98,7 +98,7 @@ cost_cap_usd = 50.0`}</pre>
     The Anthropic Python SDK code path was removed in Phase 8 (<span class="kbd">ADR-007</span>). PCE has
     a single supported substrate: <span class="kbd">claude --print</span> over the OAuth-bound CLI.
     Legacy users who set <span class="kbd">PCE_USE_SDK=1</span> will see a clear deprecation error with a
-    one-line remediation path. The Phase 7 mechanism pilot used Bedrock through the same CLI's profile
-    selector; ADR-006 records the deviation.
+    one-line remediation path. The Phase 7 mechanism pilot used the managed Anthropic-API substrate
+    through the same CLI's profile selector; ADR-006 records the deviation.
   </p>
 </BaseLayout>

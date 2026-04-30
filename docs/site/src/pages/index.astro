@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import HypothesisCard from '../components/HypothesisCard.astro';
 import ForestPlot from '../components/ForestPlot.astro';
 import CostPanel from '../components/CostPanel.astro';
+import PlaceholderFigure from '../components/PlaceholderFigure.astro';
 import { stats, costLedger, fmt, fmtP } from '../lib/stats';
 import { withBase } from '../lib/nav';
 
@@ -18,6 +19,15 @@ const forestRows = [
 ];
 ---
 <BaseLayout title="Overview" active="/">
+  <PlaceholderFigure
+    src="/figures/v0.4/hero.png"
+    alt="Hero — Pratyabhijñā root verse in Devanāgarī, abstract recognition / cascade motif (TBD; see docs/figures/PROMPTS.md for the prompt and target generator)."
+    caption="Hero figure (TBD): canonical Pratyabhijñā root verse rendered in Devanāgarī, set against an abstract cascade motif. Generation prompt and source verse documented in docs/figures/PROMPTS.md."
+    aspect="21 / 9"
+    slug="hero"
+    promptRef="docs/figures/PROMPTS.md#hero-image"
+  />
+
   <h1>Pratyabhijñā Creative Engine v0.4</h1>
   <p class="text-[var(--fg-soft)] text-[1.1rem]"><em>A mechanism study of recursive self-reflexivity layers for LLM creative cognition.</em></p>
 
@@ -80,7 +90,7 @@ const forestRows = [
   <h2>Where to read more</h2>
   <ul>
     <li><a href={withBase('/results')}>Results</a> — every hypothesis with prose, charts, and per-item drill-downs.</li>
-    <li><a href={withBase('/discussion')}>Discussion</a> — the eight-subsection mechanism reading, including the H9 flag and the v0.3 unmerged-state context.</li>
+    <li><a href={withBase('/discussion')}>Discussion</a> — the seven-subsection mechanism reading, including the H9 sensitivity flag.</li>
     <li><a href={withBase('/showcase')}>Showcase</a> — nine creative outputs (Sanskrit chandas, English poetry, scientific creativity) with the full five-śakti trace animated.</li>
     <li><a href={withBase('/plugin')}>Plugin &amp; CLI</a> — install paths for Cursor, Claude Code, and the standalone <span class="kbd">pce</span> CLI.</li>
     <li><a href={withBase('/paper/main.pdf')}>Paper PDF</a> — the v0.4 mechanism-study paper.</li>

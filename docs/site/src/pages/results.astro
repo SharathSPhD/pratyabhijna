@@ -5,6 +5,7 @@ import CommitPolicyBar from '../components/CommitPolicyBar.astro';
 import JudgeScorerScatter from '../components/JudgeScorerScatter.astro';
 import HypothesisCard from '../components/HypothesisCard.astro';
 import CostPanel from '../components/CostPanel.astro';
+import PlaceholderFigure from '../components/PlaceholderFigure.astro';
 import { stats, judgeAgreement, costLedger, fmt, fmtP } from '../lib/stats';
 import { withBase } from '../lib/nav';
 
@@ -25,8 +26,8 @@ const forestRows = [
   <h2>9.1 Pilot coverage</h2>
 
   <p>
-    The Phase 7 pilot ran on AWS Bedrock with a deterministic seed regime and two
-    per-model cost ledgers. The Haiku cascade consumed
+    The Phase 7 pilot ran via parallel API calls against the managed Anthropic-API substrate, with a
+    deterministic seed regime and two per-model cost ledgers. The Haiku cascade consumed
     <span class="font-mono">${fmt(costLedger.total_usd, 2)}</span> across
     <span class="font-mono">{costLedger.n_calls.toLocaleString()}</span> CLI calls;
     the Sonnet judge consumed
@@ -57,6 +58,19 @@ const forestRows = [
   </p>
 
   <ForestPlot rows={forestRows} title="H1–H4 cascade-vs-bare with H5 fixed-effects pool" xMin={-1} xMax={1} />
+
+  <figure class="not-prose my-6 border border-[var(--border)] rounded-md overflow-hidden bg-[var(--bg)]">
+    <img
+      src={withBase('/figures/v0.4/fig_v04_axes_breakdown.png')}
+      alt="Per-axis effect-size bar chart for the four primary cascade-vs-bare contrasts (H1–H4). Each bar is a paired Δ on one axis (form, depth, novelty, accuracy, …); axes are domain-specific."
+      style="width: 100%; height: auto; object-fit: contain;"
+    />
+    <figcaption class="text-[0.85rem] text-[var(--fg-soft)] px-3 py-2 border-t border-[var(--border)]">
+      Per-axis paired Δ for the cascade-vs-bare contrast across the four domains. Axis vocabularies
+      differ; the chart is not intended to be cross-domain comparable. Source:
+      <span class="font-mono">benchmarks/figures.py → fig_v04_axes_breakdown</span>.
+    </figcaption>
+  </figure>
 
   <h2>9.3 Fixed-effects meta-pool (H5.v4)</h2>
 
@@ -125,6 +139,15 @@ const forestRows = [
     after Holm correction, which we read as: revision is the right default, and a smarter gate gets
     closer to the always-revise upper bound.
   </p>
+
+  <PlaceholderFigure
+    src="/figures/v0.4/flowcharts/F3_commit_policy_multiplexer.png"
+    alt="Commit-policy multiplexer: (draft, shadow_revision, judge_pair) feed into five policies — always_draft, always_revise, event_gated, learned_gate, oracle — that pick the committed surface."
+    caption="F3 — Commit-policy multiplexer. The cascade emits the draft and the shadow revision; one of five policies selects the surface that is actually committed. The H8c leaderboard below is the empirical comparison. TikZ source: paper/sections/07_methods.tex."
+    aspect="16 / 9"
+    slug="F3-commit-policy"
+    promptRef="docs/figures/PROMPTS.md#f3-commit-policy-multiplexer"
+  />
 
   <CommitPolicyBar
     rows={h8c.leader_board.map(r => ({ policy: r.policy, g: r.g, ci: r.ci as [number, number] }))}

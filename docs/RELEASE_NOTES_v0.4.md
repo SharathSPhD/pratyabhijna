@@ -39,7 +39,7 @@ This is the project's first portable release: PCE now ships as a Cursor plugin, 
 | H1.v4–H4.v4 — cascade vs bare per domain | **inconclusive** at this *n* | *g* ∈ [−0.32, +0.32]; BCa 95 % CIs on paired mean Δ all cross zero; retrospective power ≤ 0.24 |
 | H5.v4 — fixed-effects pool of H1–H4 | **not supported** | pooled *g* = 0.145; fixed-effects 95 % Wald CI on pooled *g* [−0.255, 0.544] (no BCa for H5) |
 | H9.v4 — judge-vs-proxy agreement | **flagged** as a metric-design issue | ρ = 0.0; sign-agreement 56.5 %, *n* = 23 |
-| Pilot Haiku-cascade cost | — | $12.73 across 1 277 Bedrock calls (`audit/v0.4/cost_ledger_merged.json`) |
+| Pilot Haiku-cascade cost | — | $12.73 across 1 277 managed-API calls (`audit/v0.4/cost_ledger_merged.json`) |
 | Pilot Sonnet-judge cost  | — | $0.48 across 23 judge rows (`benchmarks/results_v0.4/judge_agreement.json`) |
 | Combined v0.4 pilot spend | — | $13.21 across 1 300 CLI invocations |
 
@@ -50,7 +50,7 @@ This is the project's first portable release: PCE now ships as a Cursor plugin, 
 - Fixed-effects H5 pool (ADR-005). Random-effects DerSimonian–Laird is reported as a sensitivity check.
 - Honest active-inference accounting (paper §4): FreeEnergyBudget gates revision, cit_temperature drives best-of-K via prompt perturbations, BMR prunes generative-model components — but the OAuth CLI does not expose the sampler so we do not claim full variational inference. Hopfield ālayavijñāna is wired but multi-session dynamics are deferred to v0.5.
 - Sonnet-4.5 LLM-judge bridge with a frozen prompt; per-item judge verdicts published to `benchmarks/results_v0.4/judge.jsonl`.
-- AWS Bedrock substrate for the Phase 7 pilot (ADR-006); same `claude --print` interface, different profile.
+- Managed Anthropic-API substrate for the Phase 7 pilot (ADR-006); same `claude --print` interface, different profile.
 
 ### Plugin portability
 - Cursor plugin manifest at `plugin/.cursor-plugin/plugin.json` mirrors the Claude Code manifest (same MCP tools, slash commands, hooks).
@@ -91,7 +91,7 @@ This is the project's first portable release: PCE now ships as a Cursor plugin, 
 
 PCE is the second project in an ongoing program that grounds agent design in classical Indian darśana. The first, Pratyākṣa (direct perception / context-discipline), reports a strong Stouffer pooled signal (Z = 9.114) across ten studies on RULER, HELMET, NoCha, HaluEval, TruthfulQA, FACTS-Grounding, and SWE-bench Verified. PCE's smaller, more decomposed effect on the recognition + creativity axis is a calibration data-point for the program: creativity is harder to move with this kind of mechanism than hallucination is.
 
-The Phase 7 mechanism pilot was run on AWS Bedrock; thanks to AWS for the credit envelope that let this experiment parallelise across domains.
+The Phase 7 mechanism pilot was run via parallel API calls against the managed Anthropic-API substrate; thanks to the substrate provider for the credit envelope that let this experiment parallelise across domains.
 
 ## Citation
 
@@ -108,7 +108,7 @@ The Phase 7 mechanism pilot was run on AWS Bedrock; thanks to AWS for the credit
 
 ## The §0.5 unmerged-state context (carried into the public record)
 
-Phase 7 of the v0.4 mechanism study completed on AWS Bedrock on 2026-04-30 with the result tree pushed to `origin/v0.4-mechanism-study`. From that date until Phase 8 landed, the public `main` branch and the GitHub Pages site told the v0.3 story; a reader arriving on May 1 2026 would have seen the v0.3 negative-result summary at the headline level. The branch-only stance was a defensible choice — the v0.4 paper, Astro site, and release notes were not ready, and a premature merge would have surfaced raw stats without their academic interpretation — but it was not costless. The Phase 8 mitigation is not a defensive squash but an explicit acknowledgement, recorded in the paper's §1 introduction, in §10.8 of the discussion, on the [reproducibility page](https://sharathsphd.github.io/pratyabhijna/reproducibility) of the new site, and in the PR body for the v0.4.0 mega-merge. v0.5 introduces a "preliminary results" PR window that lands within 48 hours of pilot completion to prevent the same gap from recurring.
+Phase 7 of the v0.4 mechanism study completed against the managed Anthropic-API substrate on 2026-04-30 with the result tree pushed to `origin/v0.4-mechanism-study`. From that date until Phase 8 landed, the public `main` branch and the GitHub Pages site told the v0.3 story; a reader arriving on May 1 2026 would have seen the v0.3 negative-result summary at the headline level. The branch-only stance was a defensible choice — the v0.4 paper, Astro site, and release notes were not ready, and a premature merge would have surfaced raw stats without their academic interpretation — but it was not costless. The Phase 8 mitigation is not a defensive squash but an explicit acknowledgement, recorded in the paper's §1 introduction (the §0.5 unmerged-state critique), on the [reproducibility page](https://sharathsphd.github.io/pratyabhijna/reproducibility) of the new site, and in the PR body for the v0.4.0 mega-merge. v0.5 introduces a "preliminary results" PR window that lands within 48 hours of pilot completion to prevent the same gap from recurring.
 
 ## License
 

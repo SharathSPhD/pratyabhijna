@@ -82,28 +82,14 @@ import { withBase } from '../lib/nav';
   <h2>10.7 Threats to validity</h2>
 
   <p>
-    The pilot ran on Bedrock with a single judge model (Sonnet-4.5). Per-domain n is in the single digits
-    for the cascade arm, which gives retrospective power below 0.25 on H1–H4. The proxy composite is
-    misaligned with the LLM-judge at ρ = 0.0 (H9), so the H8a finding is conditional on the proxy as a
-    proxy; the v0.5 ladder includes a judge-aligned scorer. Integrity probes and the cost ledger are
-    published alongside this site for forensic audit. Seed regime is deterministic; the per-worker ledger
-    separation is documented in the orchestrator design.
-  </p>
-
-  <h2>10.8 The unmerged-state context</h2>
-
-  <p>
-    Phase 7 of the v0.4 mechanism study completed on Bedrock on April 30 2026 with the result tree pushed
-    to <span class="kbd">origin/v0.4-mechanism-study</span>. Until Phase 8 (this site, the paper, the
-    showcase, and this release) landed, the public Pages surface still told the v0.3 story; a reader
-    arriving on May 1 2026 would have seen the v0.3 negative-result summary at the headline level. The
-    branch-only stance was a defensible choice — the v0.4 paper, Astro site, and release notes were not
-    ready, and a premature merge would have surfaced raw stats without their academic interpretation —
-    but it was not costless. The Phase 8 mitigation is not a defensive squash but an explicit
-    acknowledgement: the merge happens at the end of Phase 8 in lockstep with the paper, the site, the
-    showcase, the release notes, and the v0.4.0 tag. We do not pretend the gap was costless; we record
-    what it cost and why we accepted the cost. v0.5 introduces a "preliminary results" PR window that
-    lands within 48 hours of pilot completion to prevent the same gap from recurring. See the
-    <a href={withBase('/reproducibility')}>reproducibility page</a> for the full statement.
+    The pilot ran via parallel API calls against the managed Anthropic-API substrate with a single judge
+    model (Sonnet-4.5). Per-domain n is in the single digits for the cascade arm, which gives
+    retrospective power below 0.25 on H1–H4. The proxy composite is misaligned with the LLM-judge at
+    ρ = 0.0 (H9), so the H8a finding is conditional on the proxy as a proxy; the v0.5 ladder includes a
+    judge-aligned scorer. Integrity probes and the cost ledger are published alongside this site for
+    forensic audit. Seed regime is deterministic; the per-worker ledger separation is documented in the
+    orchestrator design. The §0.5 unmerged-state critique covering the Phase 7-to-Phase 8 gap is
+    preserved on the <a href={withBase('/reproducibility')}>reproducibility page</a> as the canonical
+    forensic record.
   </p>
 </BaseLayout>
