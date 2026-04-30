@@ -243,5 +243,8 @@
     "already_present": 0,
     "unrecoverable": 0,
     "version": "v0.4.1"
-  }
+  },
+  "input_tokens_provenance": "placeholder_substrate_did_not_record",
+  "input_tokens_provenance_note": "The OAuth claude --print substrate used in the v0.4 pilot did not record per-call token counts. The input_tokens=9 placeholder in benchmarks/results_v0.4/judge.jsonl is therefore not a measured count; replay-auditability is via formatted_prompt_sha256 (unique per row, post-hoc recovered for v0.4.1) and prompt_sha256 (template hash, constant across rows). A v0.5 ladder item upgrades the substrate to a JSON-emitting provider that exposes usage so input_tokens can become a real measurement.",
+  "formatted_prompt_sha256_provenance": "post_hoc_v0_4_1_recovery"
 }

@@ -70,3 +70,18 @@ Fix the cause; do not paper-over. The gate is the contract.
 * `gammaln`-based log-Beta computations over direct Gamma evaluation.
 * Frozen dataclasses over mutable dicts.
 * Explicit `Substrate` Protocol parameters over hidden module-level singletons.
+
+## Ralph-loop discipline (v0.4.2 hardening contract)
+
+* `scripts/ralph_loop_local.sh` is the single local "release-clean" command.
+  It runs `pytest`, regenerates `docs/site` data, builds the site, builds the
+  paper, snapshots `paper/v0.4/main.pdf`, and runs `scripts/phase8_gate_stack.py`.
+* **Do not commit, tag, or push a release artefact** — release notes,
+  `paper/v0.4/main.pdf`, GitHub Release body, tag move — without a green
+  ralph-loop run. Phase 8 is an *artefact audit* (`report_kind: artefact_audit`),
+  not a build, so a stale `paper/v0.4/main.pdf` or `docs/site/dist` can
+  satisfy Phase 8 even when the source no longer builds. Ralph-loop closes
+  that gap.
+* If a gate goes red, fix the underlying cause; do not skip stages or pass
+  `--allow-dirty` flags. The point of the loop is to keep public artefacts
+  and source telling one consistent story.

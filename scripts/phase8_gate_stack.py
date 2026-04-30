@@ -1,8 +1,14 @@
 #!/usr/bin/env python3
-"""Run the Ralph Phase 8 gate stack and emit audit/v0.4/phase8_gate_report.json.
+"""Run the Ralph Phase 8 gate stack and emit audit/v0.4/phase8_gate_report*.json.
 
-Each gate returns a dict {name, passed: bool, details: str}. The script runs them
+Each gate returns a dict ``{name, passed, details, ...}``. The script runs them
 all, prints a summary, and exits non-zero if any FAIL gates remain.
+
+Phase 8 is an **artefact audit**, not a build: it inspects committed JSON,
+PDFs, and ``docs/site/dist`` rather than re-running the cascade, ``pnpm
+build``, or ``tectonic``. The wrapper script
+``scripts/ralph_loop_local.sh`` rebuilds the artefacts before invoking this
+gate stack so the audit is meaningful end-to-end.
 """
 from __future__ import annotations
 
@@ -256,22 +262,25 @@ def gate_showcase_traces_complete() -> dict:
     }
 
 
-def gate_chandas_validators_pass() -> dict:
-    """Reporting-only chandas validator audit (v0.4.1 review fix #1).
+def gate_chandas_validator_reports_present() -> dict:
+    """Reporting-only chandas validator audit (v0.4.2 hardening fix #2).
 
-    v0.4 has no chandas-aware scorer. When the Sanskrit showcase is
-    produced live (``--mode live``) the cascade routinely emits
-    non-conformant chandas; when produced in curated_reference mode the
-    chandas validator passes, but those verses are maintainer-authored.
-    Either way, the *release-blocking* contract is "the validator ran
-    and its result was recorded", not "the validator passed". A v0.5
-    ladder item adds a chandas-aware scorer; until then this gate
-    surfaces the syllable/pattern report for human review without
-    blocking the release.
+    Renamed from ``verify_chandas_validators_pass`` because v0.4 has no
+    chandas-aware scorer; when the Sanskrit showcase is produced live
+    (``--mode live``) the cascade emits markdown-prose answers, not
+    stripped verse surfaces, and the chandas validator does not pass.
+    The *release-blocking* contract is "every Sanskrit slug has a
+    well-formed ``validator.json``", not "every validator says ok=True".
+    The gate now records ``release_blocking: false`` and
+    ``validator_ok_count`` so consumers see at a glance how many
+    Sanskrit validators actually passed conformance. A v0.5 ladder item
+    adds a chandas-aware scorer at which point this gate can be promoted
+    back to a strict pass.
     """
     sanskrit_dirs = [d for d in SHOWCASE.glob("sanskrit_*") if d.is_dir()]
-    statuses = []
+    statuses: list[str] = []
     structural_failures: list[str] = []
+    ok_count = 0
     for d in sanskrit_dirs:
         v = d / "validator.json"
         if not v.exists():
@@ -285,17 +294,57 @@ def gate_chandas_validators_pass() -> dict:
             structural_failures.append(d.name)
             continue
         ok = row.get("ok")
-        # v0.4.1: report honestly. ok=True -> pass, ok=False -> chandas_review.
-        # The gate fails ONLY on missing/malformed validator.json.
         if ok is True:
+            ok_count += 1
             statuses.append(f"{d.name}:pass")
         else:
             note = (row.get("notes") or [""])[0] if isinstance(row.get("notes"), list) else ""
             statuses.append(f"{d.name}:chandas_review[{note}]" if note else f"{d.name}:chandas_review")
     return {
-        "name": "verify_chandas_validators_pass",
+        "name": "verify_chandas_validator_reports_present",
         "passed": not structural_failures and len(statuses) == 3,
+        "release_blocking": False,
+        "validator_ok_count": ok_count,
+        "validator_total": len(statuses),
         "details": ", ".join(statuses),
+    }
+
+
+def gate_showcase_tests_pass() -> dict:
+    """Run the showcase test modules and surface non-zero exit as a fail.
+
+    v0.4.2 hardening fix #2: the existing ``tests/test_v0_4_showcase.py``
+    must be green at the same time Phase 8 reports release-clean,
+    together with the file-semantics regression test
+    (``tests/test_showcase_file_semantics.py``) and the release-label
+    consistency test (``tests/test_release_label_consistency.py``). This
+    closes the contradiction the post-amend review flagged where Phase 8
+    said 21/21 PASS while showcase tests failed.
+    """
+    py = REPO / ".venv" / "bin" / "python"
+    if not py.exists():
+        return {"name": "verify_showcase_tests_pass", "passed": False, "details": ".venv missing"}
+    test_files = [
+        REPO / "tests" / "test_v0_4_showcase.py",
+        REPO / "tests" / "test_showcase_file_semantics.py",
+        REPO / "tests" / "test_release_label_consistency.py",
+    ]
+    missing = [t for t in test_files if not t.exists()]
+    if missing:
+        return {
+            "name": "verify_showcase_tests_pass",
+            "passed": False,
+            "details": f"missing: {[str(m.relative_to(REPO)) for m in missing]}",
+        }
+    proc = subprocess.run(
+        [str(py), "-m", "pytest", *[str(t) for t in test_files], "-q", "--no-header"],
+        cwd=REPO, capture_output=True, text=True, timeout=180,
+    )
+    tail = "\n".join((proc.stdout + proc.stderr).splitlines()[-3:])
+    return {
+        "name": "verify_showcase_tests_pass",
+        "passed": proc.returncode == 0,
+        "details": ("pytest ok" if proc.returncode == 0 else tail[-300:]),
     }
 
 
@@ -438,12 +487,13 @@ GATES: list[Callable[[], dict]] = [
     gate_model_config_resolution,
     gate_showcase_count_9,
     gate_showcase_traces_complete,
-    gate_chandas_validators_pass,
+    gate_chandas_validator_reports_present,
     gate_sdk_path_removed,
     gate_unmerged_state_critique_present,
     gate_internal_link_crawl_passes,
     gate_judge_audit_metadata_complete,
     gate_cli_doc_examples_parse,
+    gate_showcase_tests_pass,
 ]
 
 
@@ -459,12 +509,24 @@ def main() -> int:
 
     n_pass = sum(1 for r in results if r["passed"])
     n_fail = len(results) - n_pass
-    summary = {"total": len(results), "pass": n_pass, "fail": n_fail, "phase": "v0.4.1-phase-8"}
+    summary = {
+        "total": len(results),
+        "pass": n_pass,
+        "fail": n_fail,
+        "phase": "v0.4.2-phase-8",
+        "report_kind": "artefact_audit",
+        "report_kind_note": (
+            "Phase 8 inspects committed artefacts (PDFs, JSON, docs/site/dist) "
+            "without re-running tectonic, pnpm build, or the cascade. "
+            "scripts/ralph_loop_local.sh rebuilds artefacts before this audit."
+        ),
+    }
     report = {"summary": summary, "gates": results}
     (AUDIT / "phase8_gate_report.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
     (AUDIT / "phase8_gate_report_v0_4_1.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
+    (AUDIT / "phase8_gate_report_v0_4_1_hardened.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
 
-    print(f"Phase 8 gate stack — {n_pass}/{len(results)} passed")
+    print(f"Phase 8 artefact audit — {n_pass}/{len(results)} passed")
     for r in results:
         marker = "PASS" if r["passed"] else "FAIL"
         print(f"  [{marker}] {r['name']:42s}  {r['details']}")

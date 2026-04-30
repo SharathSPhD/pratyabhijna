@@ -137,3 +137,40 @@ def test_judge_agreement_carries_recovery_audit_block() -> None:
     assert audit.get("recovered", 0) >= 20
     index = agree.get("formatted_prompt_sha256_index") or []
     assert len(index) == len(_load_rows())
+
+
+def test_input_tokens_is_placeholder_contract() -> None:
+    """v0.4.2 hardening: ``input_tokens`` in judge.jsonl is a documented placeholder.
+
+    The OAuth ``claude --print`` substrate did not expose per-call token
+    counts in the v0.4 pilot. We can either record the counts truthfully
+    or remove the field; we chose to keep the placeholder and document
+    it. The contract this test enforces:
+
+    1. Every row has an ``input_tokens`` field (so consumers do not need
+       to handle a missing key).
+    2. Every row reports the **same** placeholder value (otherwise the
+       field looks like a real measurement).
+    """
+    rows = _load_rows()
+    assert all("input_tokens" in r for r in rows), (
+        "all judge.jsonl rows must carry input_tokens (even if a placeholder)"
+    )
+    seen = {r["input_tokens"] for r in rows}
+    assert len(seen) == 1, (
+        f"input_tokens must be a single placeholder across all rows, "
+        f"got {len(seen)} distinct values: {seen}"
+    )
+
+
+def test_judge_provenance_keys_present() -> None:
+    """v0.4.2 hardening: judge_agreement.json names the provenance of
+    its two audit fields so consumers know what was measured vs.
+    recovered post-hoc."""
+    agree = json.loads(JUDGE_AGREEMENT.read_text(encoding="utf-8"))
+    assert agree.get("input_tokens_provenance") == "placeholder_substrate_did_not_record"
+    assert agree.get("formatted_prompt_sha256_provenance") == "post_hoc_v0_4_1_recovery"
+    note = agree.get("input_tokens_provenance_note") or ""
+    assert "placeholder" in note.lower(), (
+        "input_tokens_provenance_note must explain the placeholder"
+    )

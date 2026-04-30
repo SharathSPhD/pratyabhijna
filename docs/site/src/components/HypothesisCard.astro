@@ -1,17 +1,36 @@
 ---
+type Kind = 'effect_size' | 'classifier';
+
 interface Props {
   id: string;
   title: string;
   domain?: string;
-  g: number;
-  ci: [number, number];
+  kind?: Kind;
+  // Effect-size fields
+  g?: number;
+  ci?: [number, number];
+  delta?: number | null;
+  ciLabel?: string;
   p?: number | null;
+  // Classifier fields
+  f1?: number;
+  precision?: number | null;
+  recall?: number | null;
+  // Common
   n: number;
   supported: boolean | null;
   note?: string;
 }
-const { id, title, domain, g, ci, p, n, supported, note } = Astro.props as Props;
-const fmt = (x: number, d = 2) => Number.isFinite(x) ? x.toFixed(d) : '—';
+const props = Astro.props as Props;
+const kind: Kind = props.kind ?? 'effect_size';
+const {
+  id, title, domain, n, supported, note,
+  g, ci, delta, ciLabel, p,
+  f1, precision, recall,
+} = props;
+
+const fmt = (x: number | null | undefined, d = 2) =>
+  x === null || x === undefined || !Number.isFinite(x) ? '—' : x.toFixed(d);
 const fmtP = (x?: number | null) =>
   x === null || x === undefined
     ? '—'
@@ -27,6 +46,8 @@ const stateClass =
     : supported === false
       ? 'bg-rose-100 text-rose-900 dark:bg-rose-900/40 dark:text-rose-100'
       : 'bg-amber-100 text-amber-900 dark:bg-amber-900/40 dark:text-amber-100';
+
+const ciDisplayLabel = ciLabel ?? "BCa 95% CI on paired mean Δ";
 ---
 <div class="card not-prose font-sans">
   <div class="flex justify-between items-start gap-3 mb-1">
@@ -37,19 +58,49 @@ const stateClass =
     <span class={`text-[0.72rem] px-2 py-0.5 rounded-full font-semibold ${stateClass}`}>{stateLabel}</span>
   </div>
 
-  <div class="grid grid-cols-3 gap-3 mt-2 text-sm">
-    <div>
-      <div class="text-[0.7rem] uppercase text-[var(--fg-soft)] tracking-widest">Hedges' g</div>
-      <div class="font-mono font-semibold text-base">{fmt(g, 3)}</div>
+  {kind === 'effect_size' && (
+    <div class="grid grid-cols-3 gap-3 mt-2 text-sm">
+      <div>
+        <div class="text-[0.7rem] uppercase text-[var(--fg-soft)] tracking-widest">Hedges' g</div>
+        <div class="font-mono font-semibold text-base">{fmt(g, 3)}</div>
+        {delta !== undefined && delta !== null && (
+          <div class="font-mono text-[0.75rem] text-[var(--fg-soft)] mt-0.5">Δ = {fmt(delta, 3)}</div>
+        )}
+      </div>
+      <div>
+        <div class="text-[0.7rem] uppercase text-[var(--fg-soft)] tracking-widest">{ciDisplayLabel}</div>
+        <div class="font-mono">{ci ? `[${fmt(ci[0], 3)}, ${fmt(ci[1], 3)}]` : '—'}</div>
+      </div>
+      <div>
+        <div class="text-[0.7rem] uppercase text-[var(--fg-soft)] tracking-widest">{`p · n`}</div>
+        <div class="font-mono">{fmtP(p)} · n={n}</div>
+      </div>
     </div>
-    <div>
-      <div class="text-[0.7rem] uppercase text-[var(--fg-soft)] tracking-widest">95% CI</div>
-      <div class="font-mono">[{fmt(ci[0], 2)}, {fmt(ci[1], 2)}]</div>
+  )}
+
+  {kind === 'classifier' && (
+    <div class="grid grid-cols-3 gap-3 mt-2 text-sm">
+      <div>
+        <div class="text-[0.7rem] uppercase text-[var(--fg-soft)] tracking-widest">F1</div>
+        <div class="font-mono font-semibold text-base">{fmt(f1, 3)}</div>
+      </div>
+      <div>
+        <div class="text-[0.7rem] uppercase text-[var(--fg-soft)] tracking-widest">precision · recall</div>
+        <div class="font-mono">{fmt(precision, 2)} · {fmt(recall, 2)}</div>
+      </div>
+      <div>
+        <div class="text-[0.7rem] uppercase text-[var(--fg-soft)] tracking-widest">support</div>
+        <div class="font-mono">n={n}</div>
+      </div>
     </div>
-    <div>
-      <div class="text-[0.7rem] uppercase text-[var(--fg-soft)] tracking-widest">{`p · n`}</div>
-      <div class="font-mono">{fmtP(p)} · n={n}</div>
-    </div>
-  </div>
+  )}
+
+  {kind === 'classifier' && (
+    <p class="mt-2 text-[0.75rem] text-[var(--fg-soft)] mb-0 italic">
+      Binary classifier metric; no bootstrap CI is reported. The H8b card intentionally omits CI / p-value
+      because F1 contrasts are not Hedges' g and the v0.4 pilot did not bootstrap them.
+    </p>
+  )}
+
   {note && <p class="mt-2 text-[0.85rem] text-[var(--fg-soft)] mb-0">{note}</p>}
 </div>

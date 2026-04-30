@@ -122,6 +122,14 @@ pnpm preview                           # serves dist/ locally on http://localhos
 
 The site reads `benchmarks/results_v0.4/stats.json` (via `prepare_site_data.py`'s materialised assets), the per-demo showcase trace bundles, and the verified bibliography. The GitHub Actions workflow in `.github/workflows/pages.yml` does the same on push to `main`.
 
+## Judge audit metadata
+
+The Sonnet judge runs are recorded one-row-per-pair in `benchmarks/results_v0.4/judge.jsonl`. Each row carries:
+
+* `prompt_sha256` — the template hash, constant across all rows (the v0.4 judge prompt is frozen).
+* `formatted_prompt_sha256` — the per-row hash of the formatted prompt with the actual treatment / control texts substituted; this is what gives us replay-auditability per pair. For the v0.4 pilot this field was post-hoc reconstructed by `scripts/recover_judge_formatted_sha.py` (see `benchmarks/results_v0.4/judge_agreement.json` → `formatted_prompt_sha256_provenance: "post_hoc_v0_4_1_recovery"`).
+* `input_tokens` — **placeholder, not a measurement.** The OAuth `claude --print` substrate the v0.4 pilot used did not expose per-call token counts. `judge_agreement.json` records `input_tokens_provenance: "placeholder_substrate_did_not_record"` and an explanatory note. Replay-auditability is via `formatted_prompt_sha256`, not via `input_tokens`. v0.5 upgrades the judge bridge to a JSON-emitting provider that exposes usage, at which point `input_tokens` becomes a real measurement.
+
 ## Troubleshooting
 
 * `pce smoke` fails on `claude --version` → install / sign-in to the Claude CLI; verify with `which claude`.
