@@ -26,8 +26,12 @@ interface Props {
   videoSrc?: string;
   /** Required descriptive alt text for accessibility. */
   alt: string;
-  /** Caption rendered below the image / placeholder. */
-  caption: string;
+  /**
+   * Optional caption rendered below the image / placeholder. When
+   * omitted the `<figcaption>` is not emitted at all (e.g. for the
+   * hero block where the surrounding prose already supplies context).
+   */
+  caption?: string;
   /** Aspect-ratio CSS string (e.g. "21 / 9", "4 / 3"); default 16/9. */
   aspect?: string;
   /** Slug used in the placeholder header; defaults to "figure". */
@@ -80,7 +84,9 @@ const resolvedVideo = videoSrc ? withBase(videoSrc) : null;
       <span class="text-xs mt-3 opacity-70">prompt → <span class="font-mono">{promptRef}</span></span>
     </div>
   )}
-  <figcaption class="text-[0.85rem] text-[var(--fg-soft)] px-3 py-2 border-t border-[var(--border)]">
-    {caption}
-  </figcaption>
+  {caption && (
+    <figcaption class="text-[0.85rem] text-[var(--fg-soft)] px-3 py-2 border-t border-[var(--border)]">
+      {caption}
+    </figcaption>
+  )}
 </figure>
