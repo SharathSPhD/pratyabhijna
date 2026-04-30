@@ -1,0 +1,11 @@
+{
+  "total_usd": 3.4761780000000018,
+  "n_calls": 296,
+  "by_model": {
+    "global.anthropic.claude-haiku-4-5-20251001-v1:0": {
+      "total_usd": 3.4761780000000018,
+      "n_calls": 296,
+      "total_latency_ms": 5232838
+    }
+  }
+}

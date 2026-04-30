@@ -1,0 +1,2057 @@
+{
+  "domain": "sci_creativity",
+  "version": "v0.4",
+  "rows": {
+    "s01": {
+      "item": {
+        "id": "s01",
+        "question": "Why do mass extinctions sometimes accelerate evolutionary innovation?",
+        "framings": [
+          "niche-vacuum dynamics",
+          "regulatory-network release"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "# Mass Extinctions and Evolutionary Innovation: A Reframed View\n\nRather than simply clearing ecological niches, mass extinctions may accelerate innovation by **dismantling evolutionary constraint networks**—when dominant lineages vanish, they remove not just competitors but the morphological and behavioral \"solutions\" that had foreclosed alternative designs. Surviving taxa suddenly discover that previously disadvantageous traits become viable because the predators, parasites, and competitors that made those traits untenable no longer exist, allowing innovation in directions that were evolutionarily blocked before.\n\nA less intuitive angle: **surviving populations experience genetic architecture reshuffling during bottlenecks** that can temporarily increase evolvability. When populations crash, the specific combinations of mutations and linkage patterns that were masked by standing genetic variation become exposed to selection in novel ways, and founder effects can create new epistatic interactions that make certain traits more responsive to selection—essentially creating genetic \"plasticity\" that wasn't accessible before.\n\nCritically, these mechanisms interact: the removal of constraints *combined* with genetic reorganization in small populations creates windows where lineages can explore adaptive space more radically than the gradual, incremental path evolution takes when dominant competitors are present. It's not that evolution speeds up universally—rather, innovation becomes *possible* in directions that were previously locked behind evolutionary commitments made by now-extinct groups.",
+        "axes": {
+          "frame_coverage": 0.19611066579818726,
+          "novelty": 0.3225945234298706,
+          "specificity": 1.0
+        },
+        "composite": 0.5062350630760193,
+        "n_chars": 1614,
+        "n_words": 202,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 14.392589092254639,
+          "haiku_total_usd": 0.004606,
+          "haiku_n_calls": 1
+        }
+      },
+      "haiku_cascade": {
+        "text": "# Mass Extinctions and Evolutionary Acceleration: Two Overlooked Framings\n\nOne underappreciated mechanism involves morphological **\"licensing\"**: established competitors often occupy intermediate phenotypes that prevent others from evolving toward distant innovations, since intermediate steps toward novelty would initially reduce fitness. Mass extinction removes these jamming intermediates, suddenly opening previously-forbidden evolutionary pathways. A second framing emphasizes **ecological rewiring**—extinction doesn't merely create vacant niches, it severs ancient coevolutionary locks (predator-prey arms races, for instance) that had constrained the genetic exploration of survivors, making previously maladaptive trait combinations now adaptive. The surprising result is that innovation accelerates not because there's more *room* to diversify, but because the selective *rules* of what's feasible have fundamentally changed. Small survivor populations drift into unlikely genetic combinations that, in the blank ecological slate, become sources of adaptive variation rather than evolutionary dead weight.\n\n**The key insight**: evolution may not be primarily exploration-limited by empty space, but rather constrained by the persistence of old competitive and coevolutionary structures.",
+        "axes": {
+          "frame_coverage": 0.19142158329486847,
+          "novelty": 0.27823328971862793,
+          "specificity": 1.0
+        },
+        "composite": 0.48988495767116547,
+        "n_chars": 1297,
+        "n_words": 158,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 493.13057374954224,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 2.9362171221911666,
+          "selected_idx": 6,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# Mass Extinctions and Evolutionary Acceleration: Two Overlooked Framings\n\nOne underappreciated mechanism involves morphological **\"licensing\"**: established competitors often occupy intermediate phenotypes that prevent others from evolving toward distant innovations, since intermediate steps toward novelty would initially reduce fitness. Mass extinction removes these jamming intermediates, suddenly opening previously-forbidden evolutionary pathways. A second framing emphasizes **ecological rewiring**—extinction doesn't merely create vacant niches, it severs ancient coevolutionary locks (predator-prey arms races, for instance) that had constrained the genetic exploration of survivors, making previously maladaptive trait combinations now adaptive. The surprising result is that innovation accelerates not because there's more *room* to diversify, but because the selective *rules* of what's feasible have fundamentally changed. Small survivor populations drift into unlikely genetic combinations that, in the blank ecological slate, become sources of adaptive variation rather than evolutionary dead weight.\n\n**The key insight**: evolution may not be primarily exploration-limited by empty space, but rather constrained by the persistence of old competitive and coevolutionary structures.",
+          "surface_revision": "# Mass Extinctions and Evolutionary Acceleration: Regulatory and Competitive Release\n\nMass extinctions accelerate innovation through **niche-vacuum dynamics** that operate counter-intuitively: survivors don't simply diversify to fill empty spaces, but encounter *remapped adaptive landscapes* where previously non-competitive trait combinations become functional as the competitive topography inverts. A second mechanism, **regulatory-network release**, reveals how gene-regulatory networks controlling development were locked into stable configurations by standing competitors imposing developmental canalization; when competitors vanish, these GRNs become plastic, enabling exploration of phenotypic space that stabilizing selection had forbidden. The morphological **\"licensing\"** mechanism compounds this: established intermediates had blocked innovation because progression toward novelty reduced fitness; their removal opens previously closed pathways. **Ecological rewiring** severs coevolutionary locks that had further constrained viable trait combinations. The key insight: innovation is constrained not primarily by the absence of empty ecological space, but by the persistence of genetic, developmental, and competitive rigidity—extinction doesn't create room to explore so much as reprogram what counts as an evolutionary solution.",
+          "aspect_count": 0.0,
+          "ananda": 0.8771713972091675,
+          "budget_balance": 1.0456483460604904,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8771713972091675,
+            "budget_balance": 1.0456483460604904
+          },
+          "revision_skipped_reason": null,
+          "haiku_total_usd": 0.326532,
+          "haiku_n_calls": 17
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "# Why Mass Extinctions Accelerate Innovation: A Constraint-Release Frame\n\nMass extinctions accelerate innovation through **constraint release** rather than simple opportunity. Viewed through an **informational lens**, evolution under stable conditions gets trapped in local optima—organisms become exquisitely refined for vanished conditions, their developmental pathways inflexible despite irrelevance. Simultaneously, from a **network dynamics perspective**, healthy ecosystems lock organisms into interdependent ecological roles; extinction severs these relationships, liberating survivors from co-evolutionary baggage and allowing simpler, more modular forms to proliferate. These simplified forms paradoxically innovate faster because they carry less \"legacy code\"—fewer structural constraints inherited from specialization. What emerges isn't random diversity filling empty niches, but rather *forced experimentation*: being suddenly mismatched to your own body plan becomes adaptive pressure for rapid redesign. The real acceleration comes from breaking both the selective lock on old solutions *and* the structural lock of complex interdependence—innovation surges not when there's more room, but when the old optimization criteria vanish.",
+        "axes": {
+          "frame_coverage": 0.214545339345932,
+          "novelty": 0.2954052686691284,
+          "specificity": 1.0
+        },
+        "composite": 0.5033168693383535,
+        "n_chars": 1247,
+        "n_words": 153,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 320.38760328292847,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": null,
+          "selected_idx": 4,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "# Why Mass Extinctions Accelerate Innovation: A Constraint-Release Frame\n\nMass extinctions accelerate innovation through **constraint release** rather than simple opportunity. Viewed through an **informational lens**, evolution under stable conditions gets trapped in local optima—organisms become exquisitely refined for vanished conditions, their developmental pathways inflexible despite irrelevance. Simultaneously, from a **network dynamics perspective**, healthy ecosystems lock organisms into interdependent ecological roles; extinction severs these relationships, liberating survivors from co-evolutionary baggage and allowing simpler, more modular forms to proliferate. These simplified forms paradoxically innovate faster because they carry less \"legacy code\"—fewer structural constraints inherited from specialization. What emerges isn't random diversity filling empty niches, but rather *forced experimentation*: being suddenly mismatched to your own body plan becomes adaptive pressure for rapid redesign. The real acceleration comes from breaking both the selective lock on old solutions *and* the structural lock of complex interdependence—innovation surges not when there's more room, but when the old optimization criteria vanish.",
+          "surface_revision": "",
+          "aspect_count": 0.0,
+          "ananda": 0.8713130354881287,
+          "budget_balance": 0.9662675869464872,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8713130354881287,
+            "budget_balance": 0.9662675869464872
+          },
+          "revision_skipped_reason": "commit_policy=always_draft",
+          "haiku_total_usd": 0.513503,
+          "haiku_n_calls": 33
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "# The Paradox: Mass Death Breeds Morphological Abundance—Revised\n\nThe textbook answer (fill vacant niches) obscures the genuine puzzle. Two less-obvious framings expose it:\n\n**Morphological gatekeeping through resource monopoly.** Dominant lineages don't suppress alternatives merely through predation—they crystallize a particular solution-set by saturating ecological space in optimized configurations. A successful apex predator doesn't kill odd-bodied competitors; it renders them metabolically pointless, selection-invisible. When extinction removes that predator, surviving populations suddenly discover that morphologies previously auto-culled (short legs, mismatched sensory placements, unusual vertebral proportions) are viable for testing. The solution-space didn't expand. The selection filter simply switched off.\n\n**Developmental explosion through drift during bottlenecks.** Extreme population collapse lets genetic drift override selection, pushing alleles into frequencies entirely detached from fitness—including variants that express as phenotypic aberrations: novel growth sequences, asymmetrical tissue distributions, morphological noise. Normally culled before it matters. But when post-extinction predation and competition collapse, that dormant developmental variance—accumulated as silent cargo in surviving genomes—suddenly becomes selectable. Mutant body plans that would've vanished invisibly now persist long enough to reproduce.\n\nThe overlooked mechanism: innovation accelerates not because the world opened, but because the *active suppression infrastructure* simultaneously failed. Extinction doesn't create possibility space. It disables the predators and competitors that were systematically pruning variation before it could prove adaptive. The void fills not because room appeared—it fills because the machinery of suppression went silent.",
+        "axes": {
+          "frame_coverage": 0.16218426823616028,
+          "novelty": 0.5143158435821533,
+          "specificity": 1.0
+        },
+        "composite": 0.5588333706061045,
+        "n_chars": 1874,
+        "n_words": 223,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 474.3773980140686,
+          "K_effective": 4,
+          "commit_policy_effective": "always_revise",
+          "brief_override_used": true,
+          "committed": "revision",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 4,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# The Paradox: Mass Death Breeds Morphological Abundance\n\nThe unusual aspect here is genuinely paradoxical—you'd expect extinction to narrow possibility space, yet it often explodes it. The textbook answer (vacant niches fill quickly) misses the deeper dynamics.\n\nOne framing: **Constraint relaxation through predator/competitor removal.** Dominant lineages often suppress exploratory experimentation in subordinate groups—not through active hunting, but by monopolizing resources and space in optimized ways. When mass extinction clears these \"morphological gatekeepers,\" surviving populations can rapidly explore body plans that were previously invisible to selection because they'd never compete successfully. It's like removing a chess master from the board; suddenly mediocre players can test weird strategies.\n\nAnother framing: **Developmental reorganization under drift.** In crowded, stable ecosystems, stabilizing selection keeps developmental pathways locked in. Extreme population bottlenecks during extinction events actually *increase* the variance in developmental expression through genetic drift—meaning more phenotypic experimentation. Some of this noise becomes signal when ecological pressure suddenly releases. Post-extinction radiations aren't just filling niches; they're testing morphological mutations that would normally be invisible or selected against.\n\nThe key insight: innovation doesn't accelerate because opportunity increased, but because the *suppression mechanisms* that normally eliminate creative variation simultaneously collapsed. Extinction doesn't open doors—it removes the bouncers.",
+          "surface_revision": "# The Paradox: Mass Death Breeds Morphological Abundance—Revised\n\nThe textbook answer (fill vacant niches) obscures the genuine puzzle. Two less-obvious framings expose it:\n\n**Morphological gatekeeping through resource monopoly.** Dominant lineages don't suppress alternatives merely through predation—they crystallize a particular solution-set by saturating ecological space in optimized configurations. A successful apex predator doesn't kill odd-bodied competitors; it renders them metabolically pointless, selection-invisible. When extinction removes that predator, surviving populations suddenly discover that morphologies previously auto-culled (short legs, mismatched sensory placements, unusual vertebral proportions) are viable for testing. The solution-space didn't expand. The selection filter simply switched off.\n\n**Developmental explosion through drift during bottlenecks.** Extreme population collapse lets genetic drift override selection, pushing alleles into frequencies entirely detached from fitness—including variants that express as phenotypic aberrations: novel growth sequences, asymmetrical tissue distributions, morphological noise. Normally culled before it matters. But when post-extinction predation and competition collapse, that dormant developmental variance—accumulated as silent cargo in surviving genomes—suddenly becomes selectable. Mutant body plans that would've vanished invisibly now persist long enough to reproduce.\n\nThe overlooked mechanism: innovation accelerates not because the world opened, but because the *active suppression infrastructure* simultaneously failed. Extinction doesn't create possibility space. It disables the predators and competitors that were systematically pruning variation before it could prove adaptive. The void fills not because room appeared—it fills because the machinery of suppression went silent.",
+          "aspect_count": 0.0,
+          "ananda": 0.8571448922157288,
+          "budget_balance": -3.065070958137512,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8571448922157288,
+            "budget_balance": -3.065070958137512
+          },
+          "revision_skipped_reason": null,
+          "haiku_total_usd": 0.8080190000000004,
+          "haiku_n_calls": 49
+        }
+      },
+      "haiku_cascade_event_gated": {
+        "text": "# Mass Extinctions and Evolutionary Acceleration: Two Overlooked Framings\n\nOne underappreciated mechanism involves morphological **\"licensing\"**: established competitors often occupy intermediate phenotypes that prevent others from evolving toward distant innovations, since intermediate steps toward novelty would initially reduce fitness. Mass extinction removes these jamming intermediates, suddenly opening previously-forbidden evolutionary pathways. A second framing emphasizes **ecological rewiring**—extinction doesn't merely create vacant niches, it severs ancient coevolutionary locks (predator-prey arms races, for instance) that had constrained the genetic exploration of survivors, making previously maladaptive trait combinations now adaptive. The surprising result is that innovation accelerates not because there's more *room* to diversify, but because the selective *rules* of what's feasible have fundamentally changed. Small survivor populations drift into unlikely genetic combinations that, in the blank ecological slate, become sources of adaptive variation rather than evolutionary dead weight.\n\n**The key insight**: evolution may not be primarily exploration-limited by empty space, but rather constrained by the persistence of old competitive and coevolutionary structures.",
+        "axes": {
+          "frame_coverage": 0.19142158329486847,
+          "novelty": 0.27823328971862793,
+          "specificity": 1.0
+        },
+        "composite": 0.48988495767116547,
+        "n_chars": 1297,
+        "n_words": 158,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "event_gated",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8771713972091675,
+            "budget_balance": 1.0456483460604904
+          },
+          "score_draft": 0.48988495767116547,
+          "score_revision": 0.5858312447865804
+        }
+      },
+      "haiku_cascade_always_draft": {
+        "text": "# Mass Extinctions and Evolutionary Acceleration: Two Overlooked Framings\n\nOne underappreciated mechanism involves morphological **\"licensing\"**: established competitors often occupy intermediate phenotypes that prevent others from evolving toward distant innovations, since intermediate steps toward novelty would initially reduce fitness. Mass extinction removes these jamming intermediates, suddenly opening previously-forbidden evolutionary pathways. A second framing emphasizes **ecological rewiring**—extinction doesn't merely create vacant niches, it severs ancient coevolutionary locks (predator-prey arms races, for instance) that had constrained the genetic exploration of survivors, making previously maladaptive trait combinations now adaptive. The surprising result is that innovation accelerates not because there's more *room* to diversify, but because the selective *rules* of what's feasible have fundamentally changed. Small survivor populations drift into unlikely genetic combinations that, in the blank ecological slate, become sources of adaptive variation rather than evolutionary dead weight.\n\n**The key insight**: evolution may not be primarily exploration-limited by empty space, but rather constrained by the persistence of old competitive and coevolutionary structures.",
+        "axes": {
+          "frame_coverage": 0.19142158329486847,
+          "novelty": 0.27823328971862793,
+          "specificity": 1.0
+        },
+        "composite": 0.48988495767116547,
+        "n_chars": 1297,
+        "n_words": 158,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_draft",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8771713972091675,
+            "budget_balance": 1.0456483460604904
+          },
+          "score_draft": 0.48988495767116547,
+          "score_revision": 0.5858312447865804
+        }
+      },
+      "haiku_cascade_always_revise": {
+        "text": "# Mass Extinctions and Evolutionary Acceleration: Regulatory and Competitive Release\n\nMass extinctions accelerate innovation through **niche-vacuum dynamics** that operate counter-intuitively: survivors don't simply diversify to fill empty spaces, but encounter *remapped adaptive landscapes* where previously non-competitive trait combinations become functional as the competitive topography inverts. A second mechanism, **regulatory-network release**, reveals how gene-regulatory networks controlling development were locked into stable configurations by standing competitors imposing developmental canalization; when competitors vanish, these GRNs become plastic, enabling exploration of phenotypic space that stabilizing selection had forbidden. The morphological **\"licensing\"** mechanism compounds this: established intermediates had blocked innovation because progression toward novelty reduced fitness; their removal opens previously closed pathways. **Ecological rewiring** severs coevolutionary locks that had further constrained viable trait combinations. The key insight: innovation is constrained not primarily by the absence of empty ecological space, but by the persistence of genetic, developmental, and competitive rigidity—extinction doesn't create room to explore so much as reprogram what counts as an evolutionary solution.",
+        "axes": {
+          "frame_coverage": 0.35462552309036255,
+          "novelty": 0.40286821126937866,
+          "specificity": 1.0
+        },
+        "composite": 0.5858312447865804,
+        "n_chars": 1344,
+        "n_words": 159,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_revise",
+          "commit_decision_revision": true,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8771713972091675,
+            "budget_balance": 1.0456483460604904
+          },
+          "score_draft": 0.48988495767116547,
+          "score_revision": 0.5858312447865804
+        }
+      },
+      "haiku_cascade_learned_gate": {
+        "text": "# Mass Extinctions and Evolutionary Acceleration: Two Overlooked Framings\n\nOne underappreciated mechanism involves morphological **\"licensing\"**: established competitors often occupy intermediate phenotypes that prevent others from evolving toward distant innovations, since intermediate steps toward novelty would initially reduce fitness. Mass extinction removes these jamming intermediates, suddenly opening previously-forbidden evolutionary pathways. A second framing emphasizes **ecological rewiring**—extinction doesn't merely create vacant niches, it severs ancient coevolutionary locks (predator-prey arms races, for instance) that had constrained the genetic exploration of survivors, making previously maladaptive trait combinations now adaptive. The surprising result is that innovation accelerates not because there's more *room* to diversify, but because the selective *rules* of what's feasible have fundamentally changed. Small survivor populations drift into unlikely genetic combinations that, in the blank ecological slate, become sources of adaptive variation rather than evolutionary dead weight.\n\n**The key insight**: evolution may not be primarily exploration-limited by empty space, but rather constrained by the persistence of old competitive and coevolutionary structures.",
+        "axes": {
+          "frame_coverage": 0.19142158329486847,
+          "novelty": 0.27823328971862793,
+          "specificity": 1.0
+        },
+        "composite": 0.48988495767116547,
+        "n_chars": 1297,
+        "n_words": 158,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "learned_gate",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8771713972091675,
+            "budget_balance": 1.0456483460604904
+          },
+          "score_draft": 0.48988495767116547,
+          "score_revision": 0.5858312447865804
+        }
+      },
+      "haiku_cascade_oracle": {
+        "text": "# Mass Extinctions and Evolutionary Acceleration: Regulatory and Competitive Release\n\nMass extinctions accelerate innovation through **niche-vacuum dynamics** that operate counter-intuitively: survivors don't simply diversify to fill empty spaces, but encounter *remapped adaptive landscapes* where previously non-competitive trait combinations become functional as the competitive topography inverts. A second mechanism, **regulatory-network release**, reveals how gene-regulatory networks controlling development were locked into stable configurations by standing competitors imposing developmental canalization; when competitors vanish, these GRNs become plastic, enabling exploration of phenotypic space that stabilizing selection had forbidden. The morphological **\"licensing\"** mechanism compounds this: established intermediates had blocked innovation because progression toward novelty reduced fitness; their removal opens previously closed pathways. **Ecological rewiring** severs coevolutionary locks that had further constrained viable trait combinations. The key insight: innovation is constrained not primarily by the absence of empty ecological space, but by the persistence of genetic, developmental, and competitive rigidity—extinction doesn't create room to explore so much as reprogram what counts as an evolutionary solution.",
+        "axes": {
+          "frame_coverage": 0.35462552309036255,
+          "novelty": 0.40286821126937866,
+          "specificity": 1.0
+        },
+        "composite": 0.5858312447865804,
+        "n_chars": 1344,
+        "n_words": 159,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "oracle",
+          "commit_decision_revision": true,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8771713972091675,
+            "budget_balance": 1.0456483460604904
+          },
+          "score_draft": 0.48988495767116547,
+          "score_revision": 0.5858312447865804,
+          "is_analysis_only": true
+        }
+      }
+    },
+    "s02": {
+      "item": {
+        "id": "s02",
+        "question": "Why does ice float on water?",
+        "framings": [
+          "hydrogen-bond geometry",
+          "thermodynamic stability"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "# Why Ice Floats: Beyond the Textbook\n\n**Geometric framing:** When water freezes, hydrogen bonds force molecules into a rigid hexagonal lattice where each water molecule must maintain optimal bonding angles with its neighbors. This geometric constraint paradoxically *requires* more space than the looser, constantly-rearranging hydrogen bonds in liquid water—it's like forcing people into assigned seats compared to letting them pack into a crowd.\n\n**The anomaly framing:** Ice floating is actually bizarre from a physics standpoint. Almost every other substance gets denser when it freezes because molecular motion decreases and gravity squeezes things tighter. Water does the opposite because its hydrogen bonding is so specific and directional that the solid form literally can't pack molecules as efficiently as the liquid does. In a sense, water \"rebels\" against the normal laws of phase transitions.\n\nThe deeper strangeness: this anomaly is *crucial* for life—if ice sank, lakes would freeze from the bottom up and aquatic ecosystems would collapse. Water somehow \"chose\" an exception to the fundamental rule that solids are denser than liquids, yet this exception is exactly what allowed life to evolve in northern climates.",
+        "axes": {
+          "frame_coverage": 0.20231959223747253,
+          "novelty": 0.3329049348831177,
+          "specificity": 1.0
+        },
+        "composite": 0.5117415090401968,
+        "n_chars": 1232,
+        "n_words": 183,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 8.308241128921509,
+          "haiku_total_usd": 0.8114710000000004,
+          "haiku_n_calls": 50
+        }
+      },
+      "haiku_cascade": {
+        "text": "# Why Ice Floats: Beyond the Textbook\n\nIce floats because liquid water maintains an unexpectedly sophisticated hydrogen-bonded network that actually packs *more* densely than ice's rigid crystal structure. **From a geometry angle:** while ice locks molecules into perfect tetrahedral arrangements—highly ordered and energetically stable—these angles inevitably create wasted space. In contrast, liquid water's bonds constantly break and reform on millisecond timescales, allowing molecules to occasionally shift into tighter packings than any static geometry would permit. **From a frustration angle:** liquid water exists in dynamic tension between two competing goals: forming optimal hydrogen bonds (which would create ice's spacious lattice) and achieving maximum density (which requires breaking some bonds to permit closer packing). The liquid state effectively \"wins\" this competition by accepting imperfect bonding to achieve denser packing—a counterintuitive trade-off where disorder, paradoxically, produces better density than the highly ordered crystalline state.\n\nThe deeper puzzle is that water almost uniquely violates the rule that solids are denser than liquids, suggesting that ice's crystallinity isn't a feature that packs efficiently—it's actually a constraint that forces molecules apart.",
+        "axes": {
+          "frame_coverage": 0.218336820602417,
+          "novelty": 0.38748717308044434,
+          "specificity": 1.0
+        },
+        "composite": 0.5352746645609537,
+        "n_chars": 1310,
+        "n_words": 175,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 482.8038809299469,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 2.973519089056097,
+          "selected_idx": 5,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# Why Ice Floats: Beyond the Textbook\n\nIce floats because liquid water maintains an unexpectedly sophisticated hydrogen-bonded network that actually packs *more* densely than ice's rigid crystal structure. **From a geometry angle:** while ice locks molecules into perfect tetrahedral arrangements—highly ordered and energetically stable—these angles inevitably create wasted space. In contrast, liquid water's bonds constantly break and reform on millisecond timescales, allowing molecules to occasionally shift into tighter packings than any static geometry would permit. **From a frustration angle:** liquid water exists in dynamic tension between two competing goals: forming optimal hydrogen bonds (which would create ice's spacious lattice) and achieving maximum density (which requires breaking some bonds to permit closer packing). The liquid state effectively \"wins\" this competition by accepting imperfect bonding to achieve denser packing—a counterintuitive trade-off where disorder, paradoxically, produces better density than the highly ordered crystalline state.\n\nThe deeper puzzle is that water almost uniquely violates the rule that solids are denser than liquids, suggesting that ice's crystallinity isn't a feature that packs efficiently—it's actually a constraint that forces molecules apart.",
+          "surface_revision": "# Why Ice Floats: Geometry and Thermodynamic Precarity\n\nIce floats because water's rigid tetrahedral hydrogen-bond geometry—four bonds per molecule locked at ~109.5° angles—fundamentally enforces a spacious lattice that liquid water exceeds by selectively breaking and reorienting some bonds into denser packing. **From a geometric perspective:** the tetrahedral constraint isn't a flaw; it emerges from water's orbital structure as the energetically optimal bonding angle, yet this very \"perfection\" creates spatial inefficiency—like a building designed for angular harmony rather than usable space. **From a thermodynamic perspective:** ice at 0°C barely maintains its advantage; liquid water exists in near-parity on the free energy scale, separated only by a thin ΔG margin that entropy aggressively erodes as temperature rises. This knife-edge thermodynamic balance exposes the real anomaly: ice floats not from intrinsic instability but from geometric rigidity that can barely overcome liquid water's entropic advantage. Liquid water achieves superior density by embracing variable, imperfectly-angled hydrogen bonding—sacrificing local bonding \"purity\" for global molecular crowding. The anomaly ultimately reveals that water's phases occupy an unusual landscape where crystalline order, paradoxically, enforces lower density.\n\nThe deeper insight: water's crystallinity doesn't fail from weakness—it succeeds brilliantly at bonding, which is precisely the problem. That success creates a geometric straitjacket that only barely survives thermodynamic competition with disorder.",
+          "aspect_count": 0.0,
+          "ananda": 0.8378182053565979,
+          "budget_balance": 0.46953186972244865,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8378182053565979,
+            "budget_balance": 0.46953186972244865
+          },
+          "revision_skipped_reason": null,
+          "haiku_total_usd": 1.1055600000000005,
+          "haiku_n_calls": 66
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:89796 -->\\nLean toward the literal interpretation. Why does ice float on water? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n']' timed out after 120 seconds",
+          "elapsed_s": 196.72497487068176
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', ' <!-- pce-seed:54594 -->\\nForeground the unusual aspect of the prompt. Why does ice float on water? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.11418390274048
+        }
+      },
+      "haiku_cascade_event_gated": {
+        "text": "# Why Ice Floats: Beyond the Textbook\n\nIce floats because liquid water maintains an unexpectedly sophisticated hydrogen-bonded network that actually packs *more* densely than ice's rigid crystal structure. **From a geometry angle:** while ice locks molecules into perfect tetrahedral arrangements—highly ordered and energetically stable—these angles inevitably create wasted space. In contrast, liquid water's bonds constantly break and reform on millisecond timescales, allowing molecules to occasionally shift into tighter packings than any static geometry would permit. **From a frustration angle:** liquid water exists in dynamic tension between two competing goals: forming optimal hydrogen bonds (which would create ice's spacious lattice) and achieving maximum density (which requires breaking some bonds to permit closer packing). The liquid state effectively \"wins\" this competition by accepting imperfect bonding to achieve denser packing—a counterintuitive trade-off where disorder, paradoxically, produces better density than the highly ordered crystalline state.\n\nThe deeper puzzle is that water almost uniquely violates the rule that solids are denser than liquids, suggesting that ice's crystallinity isn't a feature that packs efficiently—it's actually a constraint that forces molecules apart.",
+        "axes": {
+          "frame_coverage": 0.218336820602417,
+          "novelty": 0.38748717308044434,
+          "specificity": 1.0
+        },
+        "composite": 0.5352746645609537,
+        "n_chars": 1310,
+        "n_words": 175,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "event_gated",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8378182053565979,
+            "budget_balance": 0.46953186972244865
+          },
+          "score_draft": 0.5352746645609537,
+          "score_revision": 0.5925811926523844
+        }
+      },
+      "haiku_cascade_always_draft": {
+        "text": "# Why Ice Floats: Beyond the Textbook\n\nIce floats because liquid water maintains an unexpectedly sophisticated hydrogen-bonded network that actually packs *more* densely than ice's rigid crystal structure. **From a geometry angle:** while ice locks molecules into perfect tetrahedral arrangements—highly ordered and energetically stable—these angles inevitably create wasted space. In contrast, liquid water's bonds constantly break and reform on millisecond timescales, allowing molecules to occasionally shift into tighter packings than any static geometry would permit. **From a frustration angle:** liquid water exists in dynamic tension between two competing goals: forming optimal hydrogen bonds (which would create ice's spacious lattice) and achieving maximum density (which requires breaking some bonds to permit closer packing). The liquid state effectively \"wins\" this competition by accepting imperfect bonding to achieve denser packing—a counterintuitive trade-off where disorder, paradoxically, produces better density than the highly ordered crystalline state.\n\nThe deeper puzzle is that water almost uniquely violates the rule that solids are denser than liquids, suggesting that ice's crystallinity isn't a feature that packs efficiently—it's actually a constraint that forces molecules apart.",
+        "axes": {
+          "frame_coverage": 0.218336820602417,
+          "novelty": 0.38748717308044434,
+          "specificity": 1.0
+        },
+        "composite": 0.5352746645609537,
+        "n_chars": 1310,
+        "n_words": 175,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_draft",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8378182053565979,
+            "budget_balance": 0.46953186972244865
+          },
+          "score_draft": 0.5352746645609537,
+          "score_revision": 0.5925811926523844
+        }
+      },
+      "haiku_cascade_always_revise": {
+        "text": "# Why Ice Floats: Geometry and Thermodynamic Precarity\n\nIce floats because water's rigid tetrahedral hydrogen-bond geometry—four bonds per molecule locked at ~109.5° angles—fundamentally enforces a spacious lattice that liquid water exceeds by selectively breaking and reorienting some bonds into denser packing. **From a geometric perspective:** the tetrahedral constraint isn't a flaw; it emerges from water's orbital structure as the energetically optimal bonding angle, yet this very \"perfection\" creates spatial inefficiency—like a building designed for angular harmony rather than usable space. **From a thermodynamic perspective:** ice at 0°C barely maintains its advantage; liquid water exists in near-parity on the free energy scale, separated only by a thin ΔG margin that entropy aggressively erodes as temperature rises. This knife-edge thermodynamic balance exposes the real anomaly: ice floats not from intrinsic instability but from geometric rigidity that can barely overcome liquid water's entropic advantage. Liquid water achieves superior density by embracing variable, imperfectly-angled hydrogen bonding—sacrificing local bonding \"purity\" for global molecular crowding. The anomaly ultimately reveals that water's phases occupy an unusual landscape where crystalline order, paradoxically, enforces lower density.\n\nThe deeper insight: water's crystallinity doesn't fail from weakness—it succeeds brilliantly at bonding, which is precisely the problem. That success creates a geometric straitjacket that only barely survives thermodynamic competition with disorder.",
+        "axes": {
+          "frame_coverage": 0.30009549856185913,
+          "novelty": 0.4776480793952942,
+          "specificity": 1.0
+        },
+        "composite": 0.5925811926523844,
+        "n_chars": 1584,
+        "n_words": 209,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_revise",
+          "commit_decision_revision": true,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8378182053565979,
+            "budget_balance": 0.46953186972244865
+          },
+          "score_draft": 0.5352746645609537,
+          "score_revision": 0.5925811926523844
+        }
+      },
+      "haiku_cascade_learned_gate": {
+        "text": "# Why Ice Floats: Beyond the Textbook\n\nIce floats because liquid water maintains an unexpectedly sophisticated hydrogen-bonded network that actually packs *more* densely than ice's rigid crystal structure. **From a geometry angle:** while ice locks molecules into perfect tetrahedral arrangements—highly ordered and energetically stable—these angles inevitably create wasted space. In contrast, liquid water's bonds constantly break and reform on millisecond timescales, allowing molecules to occasionally shift into tighter packings than any static geometry would permit. **From a frustration angle:** liquid water exists in dynamic tension between two competing goals: forming optimal hydrogen bonds (which would create ice's spacious lattice) and achieving maximum density (which requires breaking some bonds to permit closer packing). The liquid state effectively \"wins\" this competition by accepting imperfect bonding to achieve denser packing—a counterintuitive trade-off where disorder, paradoxically, produces better density than the highly ordered crystalline state.\n\nThe deeper puzzle is that water almost uniquely violates the rule that solids are denser than liquids, suggesting that ice's crystallinity isn't a feature that packs efficiently—it's actually a constraint that forces molecules apart.",
+        "axes": {
+          "frame_coverage": 0.218336820602417,
+          "novelty": 0.38748717308044434,
+          "specificity": 1.0
+        },
+        "composite": 0.5352746645609537,
+        "n_chars": 1310,
+        "n_words": 175,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "learned_gate",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8378182053565979,
+            "budget_balance": 0.46953186972244865
+          },
+          "score_draft": 0.5352746645609537,
+          "score_revision": 0.5925811926523844
+        }
+      },
+      "haiku_cascade_oracle": {
+        "text": "# Why Ice Floats: Geometry and Thermodynamic Precarity\n\nIce floats because water's rigid tetrahedral hydrogen-bond geometry—four bonds per molecule locked at ~109.5° angles—fundamentally enforces a spacious lattice that liquid water exceeds by selectively breaking and reorienting some bonds into denser packing. **From a geometric perspective:** the tetrahedral constraint isn't a flaw; it emerges from water's orbital structure as the energetically optimal bonding angle, yet this very \"perfection\" creates spatial inefficiency—like a building designed for angular harmony rather than usable space. **From a thermodynamic perspective:** ice at 0°C barely maintains its advantage; liquid water exists in near-parity on the free energy scale, separated only by a thin ΔG margin that entropy aggressively erodes as temperature rises. This knife-edge thermodynamic balance exposes the real anomaly: ice floats not from intrinsic instability but from geometric rigidity that can barely overcome liquid water's entropic advantage. Liquid water achieves superior density by embracing variable, imperfectly-angled hydrogen bonding—sacrificing local bonding \"purity\" for global molecular crowding. The anomaly ultimately reveals that water's phases occupy an unusual landscape where crystalline order, paradoxically, enforces lower density.\n\nThe deeper insight: water's crystallinity doesn't fail from weakness—it succeeds brilliantly at bonding, which is precisely the problem. That success creates a geometric straitjacket that only barely survives thermodynamic competition with disorder.",
+        "axes": {
+          "frame_coverage": 0.30009549856185913,
+          "novelty": 0.4776480793952942,
+          "specificity": 1.0
+        },
+        "composite": 0.5925811926523844,
+        "n_chars": 1584,
+        "n_words": 209,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "oracle",
+          "commit_decision_revision": true,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8378182053565979,
+            "budget_balance": 0.46953186972244865
+          },
+          "score_draft": 0.5352746645609537,
+          "score_revision": 0.5925811926523844,
+          "is_analysis_only": true
+        }
+      }
+    },
+    "s03": {
+      "item": {
+        "id": "s03",
+        "question": "Why are leaves green and not black?",
+        "framings": [
+          "photon-absorption efficiency",
+          "evolutionary path-dependence"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:13481 -->\\nWhy are leaves green and not black? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.0213360786438
+        }
+      },
+      "haiku_cascade": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:13481 -->\\nForeground the conventional aspect of the prompt. Why are leaves green and not black? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.23357105255127
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:13481 -->\\nForeground the conventional aspect of the prompt. Why are leaves green and not black? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.08655786514282
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:13481 -->\\nForeground the conventional aspect of the prompt. Why are leaves green and not black? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.15050387382507
+        }
+      }
+    },
+    "s04": {
+      "item": {
+        "id": "s04",
+        "question": "Why does sleep exist if it makes us vulnerable?",
+        "framings": [
+          "synaptic homeostasis",
+          "memory consolidation",
+          "energy metabolism"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:46755 -->\\nWhy does sleep exist if it makes us vulnerable? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.00452899932861
+        }
+      },
+      "haiku_cascade": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:46755 -->\\nUse one specific concrete image. Why does sleep exist if it makes us vulnerable? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.11343002319336
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:46755 -->\\nUse one specific concrete image. Why does sleep exist if it makes us vulnerable? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.10922598838806
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:46755 -->\\nUse one specific concrete image. Why does sleep exist if it makes us vulnerable? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.13169002532959
+        }
+      }
+    },
+    "s05": {
+      "item": {
+        "id": "s05",
+        "question": "Why do galaxies have spiral arms?",
+        "framings": [
+          "density-wave theory",
+          "self-propagating star formation"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:8161 -->\\nWhy do galaxies have spiral arms? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.02029800415039
+        }
+      },
+      "haiku_cascade": {
+        "text": "# Why Galaxies Have Spiral Arms\n\n**Framing 1 - The Traffic Jam Model:** Spiral arms aren't rigid structures rotating with the galaxy like spokes on a wheel. Instead, stars and gas continuously flow *through* the arms like cars passing through a traffic bottleneck—the arm pattern persists as a density wave even though individual particles keep moving and eventually exit the arm. This explains why the arms don't wind up into impossibly tight coils over billions of years.\n\n**Framing 2 - Resonance Amplification:** The arms may be sustained by orbital resonances: when a galaxy has any asymmetry (a bar, a satellite galaxy's tidal influence, or even internal perturbations), this sets up specific orbits where material naturally clusters. Stars at certain radii keep returning to the same angular positions as they orbit, amplifying small density variations into coherent spiral patterns through a \"swing amplification\" mechanism—the galaxy bootstraps its own spiral from tiny imbalances.\n\nThe reality is likely both mechanisms work together, and spiral arms probably represent an ongoing conversation between the galaxy's internal geometry and external perturbations, rather than a single elegant explanation.",
+        "axes": {
+          "frame_coverage": 0.18907146155834198,
+          "novelty": 0.2679538130760193,
+          "specificity": 1.0
+        },
+        "composite": 0.4856750915447871,
+        "n_chars": 1211,
+        "n_words": 181,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 386.9306182861328,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 3.2432016869061755,
+          "selected_idx": 2,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# Why Galaxies Have Spiral Arms\n\n**Framing 1 - The Traffic Jam Model:** Spiral arms aren't rigid structures rotating with the galaxy like spokes on a wheel. Instead, stars and gas continuously flow *through* the arms like cars passing through a traffic bottleneck—the arm pattern persists as a density wave even though individual particles keep moving and eventually exit the arm. This explains why the arms don't wind up into impossibly tight coils over billions of years.\n\n**Framing 2 - Resonance Amplification:** The arms may be sustained by orbital resonances: when a galaxy has any asymmetry (a bar, a satellite galaxy's tidal influence, or even internal perturbations), this sets up specific orbits where material naturally clusters. Stars at certain radii keep returning to the same angular positions as they orbit, amplifying small density variations into coherent spiral patterns through a \"swing amplification\" mechanism—the galaxy bootstraps its own spiral from tiny imbalances.\n\nThe reality is likely both mechanisms work together, and spiral arms probably represent an ongoing conversation between the galaxy's internal geometry and external perturbations, rather than a single elegant explanation.",
+          "surface_revision": "# Why Galaxies Have Spiral Arms\n\n**Framing 1 - Density Waves Sustained by Self-Propagating Star Formation:** Spiral arms are **density waves**—compression patterns that rotate more slowly than the stars and gas streaming through them, like a persistent traffic bottleneck. The pattern regenerates itself through a feedback cycle: massive stars born in compressed regions explode violently within millions of years, their shockwaves compress downstream gas and trigger the next generation of star formation, which compresses gas further—this self-propagating mechanism continuously rebuilds the density wave and prevents it from winding into impossibly tight coils over time.\n\n**Framing 2 - Resonance Amplification:** The spiral structure likely originates from orbital resonances (galactic bars, satellite tidal effects, or internal asymmetries) that cause material to cluster at specific angular positions as it orbits. Differential rotation stretches these perturbations while gravity re-concentrates them—a \"swing amplification\" process that dramatically amplifies small asymmetries into organized spiral overdensities.\n\nThe key insight: density waves alone don't persist; they require stellar feedback—supernovae detonating within the wave sustain the self-perpetuating compression-birth-explosion cycle. Spiral arms are thus dynamic equilibria maintained by feedback between the galaxy's resonant structure and violent stellar outbursts, neither rigid geometries nor transient accidents.",
+          "aspect_count": 0.0,
+          "ananda": 0.8687252998352051,
+          "budget_balance": 1.0314733024113938,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8687252998352051,
+            "budget_balance": 1.0314733024113938
+          },
+          "revision_skipped_reason": null,
+          "haiku_total_usd": 1.3936740000000003,
+          "haiku_n_calls": 88
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "# Why Galaxies Have Spiral Arms: A Non-Obvious View\n\n**The Shear Amplification Framing**: Spiral arms may arise not from static density waves, but from differential rotation acting as an amplifier. Because stars orbit faster near the galactic center than at the edges, any small initial perturbation gets stretched and sheared—much like taffy being pulled. Through a process called swing amplification, this shear can paradoxically reinforce these stretching disturbances into tighter, more coherent spiral patterns, turning chaos into structure through the very mechanism that seems to disrupt it.\n\n**The Gravitational Instability Framing**: Alternatively, disk galaxies are fundamentally self-gravitating systems prone to developing instabilities, not unlike how a tall stack of blocks will topple into a stable configuration. Spiral arms represent the disk \"deciding\" to reorganize itself into a lower-energy state by buckling and corrugating. Rather than arms being imposed by external forces, they emerge as the system's own solution to internal tension between gravity trying to collapse material and rotation trying to fling it outward.\n\nThe striking implication: **the same spiral structure we see might arise from multiple different mechanisms in different galaxies**, and even coexist in a single galaxy as multiple interacting processes compete. The spiral arms aren't necessarily a single phenomenon but rather a geometric signature of how galactic disks manage internal stress.",
+        "axes": {
+          "frame_coverage": 0.1975143551826477,
+          "novelty": 0.25781917572021484,
+          "specificity": 1.0
+        },
+        "composite": 0.48511117696762085,
+        "n_chars": 1490,
+        "n_words": 214,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 181.15087509155273,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 3.3268554641117873,
+          "delta_F_draft": 3.3268554641117873,
+          "delta_F_revision": null,
+          "selected_idx": 2,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "# Why Galaxies Have Spiral Arms: A Non-Obvious View\n\n**The Shear Amplification Framing**: Spiral arms may arise not from static density waves, but from differential rotation acting as an amplifier. Because stars orbit faster near the galactic center than at the edges, any small initial perturbation gets stretched and sheared—much like taffy being pulled. Through a process called swing amplification, this shear can paradoxically reinforce these stretching disturbances into tighter, more coherent spiral patterns, turning chaos into structure through the very mechanism that seems to disrupt it.\n\n**The Gravitational Instability Framing**: Alternatively, disk galaxies are fundamentally self-gravitating systems prone to developing instabilities, not unlike how a tall stack of blocks will topple into a stable configuration. Spiral arms represent the disk \"deciding\" to reorganize itself into a lower-energy state by buckling and corrugating. Rather than arms being imposed by external forces, they emerge as the system's own solution to internal tension between gravity trying to collapse material and rotation trying to fling it outward.\n\nThe striking implication: **the same spiral structure we see might arise from multiple different mechanisms in different galaxies**, and even coexist in a single galaxy as multiple interacting processes compete. The spiral arms aren't necessarily a single phenomenon but rather a geometric signature of how galactic disks manage internal stress.",
+          "surface_revision": "",
+          "aspect_count": 0.0,
+          "ananda": 0.8684876561164856,
+          "budget_balance": 3.8846695710530104,
+          "policy_features": {
+            "delta_F": 3.3268554641117873,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8684876561164856,
+            "budget_balance": 3.8846695710530104
+          },
+          "revision_skipped_reason": "commit_policy=always_draft",
+          "haiku_total_usd": 1.481802,
+          "haiku_n_calls": 104
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "# Revised: The Unusual Request Here\n\nYou're asking me to sidestep the standard explanation—which signals the genuinely strange part density wave theory *describes* but obscures: **spirals aren't structures galaxies possess, they're processes galaxies *continuously enact*.**\n\n**From one framing**: swing amplification reveals spirals as pure motion-sculptures—kinetic geometry with no solid substrate. Differential rotation—inner regions spinning faster—perpetually stretches any small asymmetry like taffy under tension. Nothing accumulates in those arms; they're phantom compressions. Erase the rotation and the spiral evaporates mid-frame, exposing itself as nothing but a shadow cast by velocity shear—not a groove, just a visual echo of differential motion.\n\n**From another framing—the one that genuinely defamiliarizes**: spiral arms function like cosmic traffic jams where the vehicles *constitute* the roadway itself. Stars ignite within the density concentration, then orbit *through* that same pattern across 200-million-year journeys. The spiral you observe now contains entirely different stars than spirals photographed generations ago, yet the *shape* endures unbroken—fresh generations of stars perpetually funnel through the same gravitational bottleneck, redrawing the design with their own bodies.\n\n**The unsettling realization**: you're looking at a standing wave *made of matter*—a pattern that perpetually redraws itself using stellar material as ink. The question \"why spirals?\" dissolves when you ask instead: **\"why does the universe embed this particular self-regenerating shape-engine into rotating disks?\"**",
+        "axes": {
+          "frame_coverage": 0.3045639097690582,
+          "novelty": 0.37584495544433594,
+          "specificity": 1.0
+        },
+        "composite": 0.5601362884044647,
+        "n_chars": 1634,
+        "n_words": 214,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 419.14629793167114,
+          "K_effective": 4,
+          "commit_policy_effective": "always_revise",
+          "brief_override_used": true,
+          "committed": "revision",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 3.3372205066877285,
+          "delta_F_draft": 2.5596610760949545,
+          "delta_F_revision": 3.3372205066877285,
+          "selected_idx": 4,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# The Unusual Request Here\n\nYou're asking me to *avoid* the standard explanation, which signals the usual answer—density wave theory—misses something crucial about what's really happening.\n\n**From one framing**: spiral arms emerge through \"swing amplification,\" a dynamic process where the galaxy's differential rotation (inner parts moving faster) stretches small asymmetries into elongated structures that gradually compress into coherent arms—like watching shear forces constantly regenerate a pattern from perturbations.\n\n**From another framing**: spirals are self-sustaining feedback systems. Massive stars ignite within the density concentration, and their collective gravity reinforces the very pattern that triggered their formation, creating a loop that perpetually regenerates the arms rather than a static solution.\n\nThe counterintuitive insight is that neither mechanism treats spirals as permanent grooves etched into the disk. They're quasi-stable, transient structures maintained by ongoing internal dynamics. The arms continuously dissolve and reform—what we see isn't the *same* material persisting for billions of years, but a persistent *process* maintaining the pattern. Rather than asking \"why does this disk have arms?\" the sharper question is \"why does this particular self-organizing process keep making arms?\"",
+          "surface_revision": "# Revised: The Unusual Request Here\n\nYou're asking me to sidestep the standard explanation—which signals the genuinely strange part density wave theory *describes* but obscures: **spirals aren't structures galaxies possess, they're processes galaxies *continuously enact*.**\n\n**From one framing**: swing amplification reveals spirals as pure motion-sculptures—kinetic geometry with no solid substrate. Differential rotation—inner regions spinning faster—perpetually stretches any small asymmetry like taffy under tension. Nothing accumulates in those arms; they're phantom compressions. Erase the rotation and the spiral evaporates mid-frame, exposing itself as nothing but a shadow cast by velocity shear—not a groove, just a visual echo of differential motion.\n\n**From another framing—the one that genuinely defamiliarizes**: spiral arms function like cosmic traffic jams where the vehicles *constitute* the roadway itself. Stars ignite within the density concentration, then orbit *through* that same pattern across 200-million-year journeys. The spiral you observe now contains entirely different stars than spirals photographed generations ago, yet the *shape* endures unbroken—fresh generations of stars perpetually funnel through the same gravitational bottleneck, redrawing the design with their own bodies.\n\n**The unsettling realization**: you're looking at a standing wave *made of matter*—a pattern that perpetually redraws itself using stellar material as ink. The question \"why spirals?\" dissolves when you ask instead: **\"why does the universe embed this particular self-regenerating shape-engine into rotating disks?\"**",
+          "aspect_count": 0.0,
+          "ananda": 0.8517453074455261,
+          "budget_balance": 3.5343583918074937,
+          "policy_features": {
+            "delta_F": 2.5596610760949545,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8517453074455261,
+            "budget_balance": 3.5343583918074937
+          },
+          "revision_skipped_reason": null,
+          "haiku_total_usd": 1.748918,
+          "haiku_n_calls": 120
+        }
+      },
+      "haiku_cascade_event_gated": {
+        "text": "# Why Galaxies Have Spiral Arms\n\n**Framing 1 - The Traffic Jam Model:** Spiral arms aren't rigid structures rotating with the galaxy like spokes on a wheel. Instead, stars and gas continuously flow *through* the arms like cars passing through a traffic bottleneck—the arm pattern persists as a density wave even though individual particles keep moving and eventually exit the arm. This explains why the arms don't wind up into impossibly tight coils over billions of years.\n\n**Framing 2 - Resonance Amplification:** The arms may be sustained by orbital resonances: when a galaxy has any asymmetry (a bar, a satellite galaxy's tidal influence, or even internal perturbations), this sets up specific orbits where material naturally clusters. Stars at certain radii keep returning to the same angular positions as they orbit, amplifying small density variations into coherent spiral patterns through a \"swing amplification\" mechanism—the galaxy bootstraps its own spiral from tiny imbalances.\n\nThe reality is likely both mechanisms work together, and spiral arms probably represent an ongoing conversation between the galaxy's internal geometry and external perturbations, rather than a single elegant explanation.",
+        "axes": {
+          "frame_coverage": 0.18907146155834198,
+          "novelty": 0.2679538130760193,
+          "specificity": 1.0
+        },
+        "composite": 0.4856750915447871,
+        "n_chars": 1211,
+        "n_words": 181,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "event_gated",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8687252998352051,
+            "budget_balance": 1.0314733024113938
+          },
+          "score_draft": 0.4856750915447871,
+          "score_revision": 0.5953965286413828
+        }
+      },
+      "haiku_cascade_always_draft": {
+        "text": "# Why Galaxies Have Spiral Arms\n\n**Framing 1 - The Traffic Jam Model:** Spiral arms aren't rigid structures rotating with the galaxy like spokes on a wheel. Instead, stars and gas continuously flow *through* the arms like cars passing through a traffic bottleneck—the arm pattern persists as a density wave even though individual particles keep moving and eventually exit the arm. This explains why the arms don't wind up into impossibly tight coils over billions of years.\n\n**Framing 2 - Resonance Amplification:** The arms may be sustained by orbital resonances: when a galaxy has any asymmetry (a bar, a satellite galaxy's tidal influence, or even internal perturbations), this sets up specific orbits where material naturally clusters. Stars at certain radii keep returning to the same angular positions as they orbit, amplifying small density variations into coherent spiral patterns through a \"swing amplification\" mechanism—the galaxy bootstraps its own spiral from tiny imbalances.\n\nThe reality is likely both mechanisms work together, and spiral arms probably represent an ongoing conversation between the galaxy's internal geometry and external perturbations, rather than a single elegant explanation.",
+        "axes": {
+          "frame_coverage": 0.18907146155834198,
+          "novelty": 0.2679538130760193,
+          "specificity": 1.0
+        },
+        "composite": 0.4856750915447871,
+        "n_chars": 1211,
+        "n_words": 181,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_draft",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8687252998352051,
+            "budget_balance": 1.0314733024113938
+          },
+          "score_draft": 0.4856750915447871,
+          "score_revision": 0.5953965286413828
+        }
+      },
+      "haiku_cascade_always_revise": {
+        "text": "# Why Galaxies Have Spiral Arms\n\n**Framing 1 - Density Waves Sustained by Self-Propagating Star Formation:** Spiral arms are **density waves**—compression patterns that rotate more slowly than the stars and gas streaming through them, like a persistent traffic bottleneck. The pattern regenerates itself through a feedback cycle: massive stars born in compressed regions explode violently within millions of years, their shockwaves compress downstream gas and trigger the next generation of star formation, which compresses gas further—this self-propagating mechanism continuously rebuilds the density wave and prevents it from winding into impossibly tight coils over time.\n\n**Framing 2 - Resonance Amplification:** The spiral structure likely originates from orbital resonances (galactic bars, satellite tidal effects, or internal asymmetries) that cause material to cluster at specific angular positions as it orbits. Differential rotation stretches these perturbations while gravity re-concentrates them—a \"swing amplification\" process that dramatically amplifies small asymmetries into organized spiral overdensities.\n\nThe key insight: density waves alone don't persist; they require stellar feedback—supernovae detonating within the wave sustain the self-perpetuating compression-birth-explosion cycle. Spiral arms are thus dynamic equilibria maintained by feedback between the galaxy's resonant structure and violent stellar outbursts, neither rigid geometries nor transient accidents.",
+        "axes": {
+          "frame_coverage": 0.3470817506313324,
+          "novelty": 0.43910783529281616,
+          "specificity": 1.0
+        },
+        "composite": 0.5953965286413828,
+        "n_chars": 1492,
+        "n_words": 193,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_revise",
+          "commit_decision_revision": true,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8687252998352051,
+            "budget_balance": 1.0314733024113938
+          },
+          "score_draft": 0.4856750915447871,
+          "score_revision": 0.5953965286413828
+        }
+      },
+      "haiku_cascade_learned_gate": {
+        "text": "# Why Galaxies Have Spiral Arms\n\n**Framing 1 - The Traffic Jam Model:** Spiral arms aren't rigid structures rotating with the galaxy like spokes on a wheel. Instead, stars and gas continuously flow *through* the arms like cars passing through a traffic bottleneck—the arm pattern persists as a density wave even though individual particles keep moving and eventually exit the arm. This explains why the arms don't wind up into impossibly tight coils over billions of years.\n\n**Framing 2 - Resonance Amplification:** The arms may be sustained by orbital resonances: when a galaxy has any asymmetry (a bar, a satellite galaxy's tidal influence, or even internal perturbations), this sets up specific orbits where material naturally clusters. Stars at certain radii keep returning to the same angular positions as they orbit, amplifying small density variations into coherent spiral patterns through a \"swing amplification\" mechanism—the galaxy bootstraps its own spiral from tiny imbalances.\n\nThe reality is likely both mechanisms work together, and spiral arms probably represent an ongoing conversation between the galaxy's internal geometry and external perturbations, rather than a single elegant explanation.",
+        "axes": {
+          "frame_coverage": 0.18907146155834198,
+          "novelty": 0.2679538130760193,
+          "specificity": 1.0
+        },
+        "composite": 0.4856750915447871,
+        "n_chars": 1211,
+        "n_words": 181,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "learned_gate",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8687252998352051,
+            "budget_balance": 1.0314733024113938
+          },
+          "score_draft": 0.4856750915447871,
+          "score_revision": 0.5953965286413828
+        }
+      },
+      "haiku_cascade_oracle": {
+        "text": "# Why Galaxies Have Spiral Arms\n\n**Framing 1 - Density Waves Sustained by Self-Propagating Star Formation:** Spiral arms are **density waves**—compression patterns that rotate more slowly than the stars and gas streaming through them, like a persistent traffic bottleneck. The pattern regenerates itself through a feedback cycle: massive stars born in compressed regions explode violently within millions of years, their shockwaves compress downstream gas and trigger the next generation of star formation, which compresses gas further—this self-propagating mechanism continuously rebuilds the density wave and prevents it from winding into impossibly tight coils over time.\n\n**Framing 2 - Resonance Amplification:** The spiral structure likely originates from orbital resonances (galactic bars, satellite tidal effects, or internal asymmetries) that cause material to cluster at specific angular positions as it orbits. Differential rotation stretches these perturbations while gravity re-concentrates them—a \"swing amplification\" process that dramatically amplifies small asymmetries into organized spiral overdensities.\n\nThe key insight: density waves alone don't persist; they require stellar feedback—supernovae detonating within the wave sustain the self-perpetuating compression-birth-explosion cycle. Spiral arms are thus dynamic equilibria maintained by feedback between the galaxy's resonant structure and violent stellar outbursts, neither rigid geometries nor transient accidents.",
+        "axes": {
+          "frame_coverage": 0.3470817506313324,
+          "novelty": 0.43910783529281616,
+          "specificity": 1.0
+        },
+        "composite": 0.5953965286413828,
+        "n_chars": 1492,
+        "n_words": 193,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "oracle",
+          "commit_decision_revision": true,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8687252998352051,
+            "budget_balance": 1.0314733024113938
+          },
+          "score_draft": 0.4856750915447871,
+          "score_revision": 0.5953965286413828,
+          "is_analysis_only": true
+        }
+      }
+    },
+    "s06": {
+      "item": {
+        "id": "s06",
+        "question": "Why is mathematics unreasonably effective in physics?",
+        "framings": [
+          "selection bias on what we call 'physics'",
+          "an unexplained ontological alignment"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "# The Unreasonable Effectiveness of Mathematics: Non-Obvious Framings\n\n**Selection bias reframing:** We've essentially drawn the boundary of \"physics\" around exactly those phenomena that *submit* to mathematical description—a self-fulfilling prophecy. Messy domains like biology or human behavior don't lack mathematical structure; rather, they retained enough complexity that our math tools couldn't abstract them away. Physics succeeded by progressively eliminating everything math couldn't handle.\n\n**Abstraction-matching reframing:** Both physics and mathematics are fundamentally machines for stripping away irrelevant details until patterns emerge. A pendulum \"works\" mathematically not because nature is mathematical, but because physicists asked a question—period and angle, not wood-grain and temperature—that mathematicians built perfect tools to answer. The unreasonable effectiveness is really two abstraction-making processes getting lucky enough to overlap.\n\n**The pragmatic blind spot:** We measure \"effectiveness\" by predictive accuracy for *specific, quantifiable outcomes*—where math excels. But physics is silent on why those outcomes matter, why anything exists, or what happens outside measurement. Mathematics isn't unreasonably effective; it's just been tested only on the narrow domain where we pre-committed to quantification as success.\n\nThe deeper puzzle isn't why math works in physics, but why we're surprised—as if we expected our formal symbol-manipulation to fail in the one domain where we carefully curated the questions to suit it.",
+        "axes": {
+          "frame_coverage": 0.2456807643175125,
+          "novelty": 0.3862112760543823,
+          "specificity": 1.0
+        },
+        "composite": 0.5439640134572983,
+        "n_chars": 1566,
+        "n_words": 206,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 9.491976022720337,
+          "haiku_total_usd": 1.752877,
+          "haiku_n_calls": 121
+        }
+      },
+      "haiku_cascade": {
+        "text": "# Why Mathematics Works in Physics: The Persistent Mystery\n\nConsider a tuning fork: strike it, and an identical fork nearby spontaneously vibrates at the same frequency—mathematics describes this with perfect precision. The **co-evolution framing** proposes that physics and mathematics developed in tangled feedback loops, each shaping the boundaries of the other's inquiry; yet this merely relocates the mystery—why would such conceptual feedback loops generalize so reliably to unseen phenomena, to electrons and galaxies we've never observed? The **selection bias framing** rightly observes that we celebrate mathematical survivors while quietly abandoning failures; but this too sidesteps the fundamental question: why does abstract symbol manipulation resonate with concrete physical reality at all? Beneath both framings lies what they cannot explain: an **ontological alignment** between wholly independent domains—abstract logical structure and concrete physical process—that converge with uncanny precision, suggesting not a solvable puzzle but a mystery at the foundation of things.",
+        "axes": {
+          "frame_coverage": 0.3475874662399292,
+          "novelty": 0.5057646930217743,
+          "specificity": 1.0
+        },
+        "composite": 0.6177840530872345,
+        "n_chars": 1093,
+        "n_words": 148,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 408.77369809150696,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "revision",
+          "vimarsa_event": true,
+          "vimarsa_event_draft": true,
+          "novelty": 1.0,
+          "delta_F": 3.2176799475540747,
+          "delta_F_draft": 3.1875787437872845,
+          "delta_F_revision": 3.2176799475540747,
+          "selected_idx": 5,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# Why Mathematics Works in Physics: A Contrarian View\n\nThe conventional answer—that the universe is fundamentally mathematical—misses something crucial. Consider the **co-evolution framing**: physics and mathematics didn't develop separately, with one \"discovering\" the other. Rather, they evolved in tight feedback loops, each shaping what counted as a legitimate question in the other. What appears as mathematics describing physics may actually be us recognizing structural patterns we *developed in tandem* with our observations, making the fit less mysterious than it seems. \n\nAlternatively, the **selection bias framing** suggests we experience severe survivorship bias: thousands of mathematical formalisms have been tried and quietly abandoned, while we celebrate the handful that worked, creating an illusion of unreasonable effectiveness. The framing that cuts deeper, though, is that mathematics and physical law both navigate the same constraint—they must be internally consistent, non-contradictory systems. Both are exploring what's *logically permissible* rather than discovering some pre-existing blueprint. In this view, their resonance reflects not that the universe is made of math, but that math and physics are two different paths through the same landscape of logical possibility, naturally converging where their constraints overlap.",
+          "surface_revision": "# Why Mathematics Works in Physics: The Persistent Mystery\n\nConsider a tuning fork: strike it, and an identical fork nearby spontaneously vibrates at the same frequency—mathematics describes this with perfect precision. The **co-evolution framing** proposes that physics and mathematics developed in tangled feedback loops, each shaping the boundaries of the other's inquiry; yet this merely relocates the mystery—why would such conceptual feedback loops generalize so reliably to unseen phenomena, to electrons and galaxies we've never observed? The **selection bias framing** rightly observes that we celebrate mathematical survivors while quietly abandoning failures; but this too sidesteps the fundamental question: why does abstract symbol manipulation resonate with concrete physical reality at all? Beneath both framings lies what they cannot explain: an **ontological alignment** between wholly independent domains—abstract logical structure and concrete physical process—that converge with uncanny precision, suggesting not a solvable puzzle but a mystery at the foundation of things.",
+          "aspect_count": 1.0,
+          "ananda": 0.8386933207511902,
+          "budget_balance": 4.893687803775746,
+          "policy_features": {
+            "delta_F": 3.1875787437872845,
+            "novelty": 1.0,
+            "aspect_count": 1.0,
+            "ananda": 0.8386933207511902,
+            "budget_balance": 4.893687803775746
+          },
+          "revision_skipped_reason": null,
+          "haiku_total_usd": 2.0204549999999997,
+          "haiku_n_calls": 137
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "# Soap Bubbles and the Illusion of Mystery\n\nConsider soap bubbles minimizing their surface area—physical systems that spontaneously solve optimization problems without knowing mathematics. The unreasonable effectiveness of mathematics in physics becomes less mysterious from one framing: the universe operates through optimization principles (least action, maximum entropy, symmetry preservation), and mathematics is the formal study of what constrained optimization systems *must* do, so success is expected rather than miraculous. From another framing, we've created the mystery through selection bias: we marvel at Maxwell's equations capturing electromagnetism while finding nothing odd about mathematics failing utterly with neural networks or ecosystems, when really we never expected those to be mathematical anyway. The asymmetry is revealing: physics alone has a structure entirely describable through optimization, while biology, psychology, and history do not. The unreasonable effectiveness is really about the unreasonable *narrowness* of the domain—we've confused a boundary condition with a mystery.",
+        "axes": {
+          "frame_coverage": 0.3393247127532959,
+          "novelty": 0.4838612675666809,
+          "specificity": 1.0
+        },
+        "composite": 0.6077286601066589,
+        "n_chars": 1114,
+        "n_words": 148,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 291.65665888786316,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": true,
+          "vimarsa_event_draft": true,
+          "novelty": 1.0,
+          "delta_F": 6.569505270647625,
+          "delta_F_draft": 6.569505270647625,
+          "delta_F_revision": null,
+          "selected_idx": 14,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "# Soap Bubbles and the Illusion of Mystery\n\nConsider soap bubbles minimizing their surface area—physical systems that spontaneously solve optimization problems without knowing mathematics. The unreasonable effectiveness of mathematics in physics becomes less mysterious from one framing: the universe operates through optimization principles (least action, maximum entropy, symmetry preservation), and mathematics is the formal study of what constrained optimization systems *must* do, so success is expected rather than miraculous. From another framing, we've created the mystery through selection bias: we marvel at Maxwell's equations capturing electromagnetism while finding nothing odd about mathematics failing utterly with neural networks or ecosystems, when really we never expected those to be mathematical anyway. The asymmetry is revealing: physics alone has a structure entirely describable through optimization, while biology, psychology, and history do not. The unreasonable effectiveness is really about the unreasonable *narrowness* of the domain—we've confused a boundary condition with a mystery.",
+          "surface_revision": "",
+          "aspect_count": 1.0,
+          "ananda": 0.82536780834198,
+          "budget_balance": 8.111422494577983,
+          "policy_features": {
+            "delta_F": 6.569505270647625,
+            "novelty": 1.0,
+            "aspect_count": 1.0,
+            "ananda": 0.82536780834198,
+            "budget_balance": 8.111422494577983
+          },
+          "revision_skipped_reason": "commit_policy=always_draft",
+          "haiku_total_usd": 2.183024999999999,
+          "haiku_n_calls": 153
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "# Why Mathematics Works in Physics: A Tighter Story\n\nThe conventional mystery asks why mathematical abstractions should precisely describe physical reality. But **from a co-evolutionary framing**, mathematics and physics aren't separate domains that mysteriously converged—they were locked in a feedback loop where physicists discovered Newton's calculus tracked cannonballs and pendulums with uncanny precision because they'd learned to think about motion in infinitesimal steps, which mathematicians then formalized into differential equations, which revealed hidden symmetries in force and momentum that rewarded earlier physicists' intuitions. **From a compression framing**, mathematics is humanity's most efficient pattern-squeezer: when you write a wave equation, you're not uncovering nature's hidden blueprint—you're recognizing that water hammering a pier follows the same logical skeleton as sound vibrating your sternum or light bending through a lens. The real puzzle isn't \"why does math work?\" but \"why does nature exhibit such stark conservation laws and symmetries that practically demand mathematical compression?\"—and the answer may hinge on observer-selection: only universes coherent and structured enough to build stars, chemistry, and thinking observers could turn around and formulate the question themselves.",
+        "axes": {
+          "frame_coverage": 0.323878675699234,
+          "novelty": 0.4887540340423584,
+          "specificity": 1.0
+        },
+        "composite": 0.6042109032471975,
+        "n_chars": 1333,
+        "n_words": 178,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 506.3319089412689,
+          "K_effective": 4,
+          "commit_policy_effective": "always_revise",
+          "brief_override_used": true,
+          "committed": "revision",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 3.354713239434986,
+          "delta_F_draft": 3.3811766033302177,
+          "delta_F_revision": 3.354713239434986,
+          "selected_idx": 1,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# Why Mathematics Works in Physics: Beyond the Cliché\n\nThe conventional mystery asks why mathematical abstractions should precisely describe physical reality, as if the universe independently \"turned out to be\" mathematical. But this foregrounds a false symmetry: **from a co-evolutionary framing**, mathematics and physics aren't separate domains with an inexplicable alignment—they developed symbiotically, with physicists selectively developing mathematical tools based on what worked empirically, while mathematicians drew inspiration from physical problems. **From a compression framing**, mathematics is simply humanity's most efficient pattern-language, and the \"unreasonable\" effectiveness dissolves once you recognize that physical reality teems with redundancy, symmetry, and structure that begs to be collapsed into elegant formulas. The actual puzzle is therefore not \"why does math work?\" but \"why does nature exhibit such remarkable conservation laws and symmetries?\"—a question that might have nothing to do with math's metaphysical properties and everything to do with which universes can maintain the coherence necessary for observers to exist in them.",
+          "surface_revision": "# Why Mathematics Works in Physics: A Tighter Story\n\nThe conventional mystery asks why mathematical abstractions should precisely describe physical reality. But **from a co-evolutionary framing**, mathematics and physics aren't separate domains that mysteriously converged—they were locked in a feedback loop where physicists discovered Newton's calculus tracked cannonballs and pendulums with uncanny precision because they'd learned to think about motion in infinitesimal steps, which mathematicians then formalized into differential equations, which revealed hidden symmetries in force and momentum that rewarded earlier physicists' intuitions. **From a compression framing**, mathematics is humanity's most efficient pattern-squeezer: when you write a wave equation, you're not uncovering nature's hidden blueprint—you're recognizing that water hammering a pier follows the same logical skeleton as sound vibrating your sternum or light bending through a lens. The real puzzle isn't \"why does math work?\" but \"why does nature exhibit such stark conservation laws and symmetries that practically demand mathematical compression?\"—and the answer may hinge on observer-selection: only universes coherent and structured enough to build stars, chemistry, and thinking observers could turn around and formulate the question themselves.",
+          "aspect_count": 0.0,
+          "ananda": 0.8442429304122925,
+          "budget_balance": 5.045488014476172,
+          "policy_features": {
+            "delta_F": 3.3811766033302177,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8442429304122925,
+            "budget_balance": 5.045488014476172
+          },
+          "revision_skipped_reason": null,
+          "haiku_total_usd": 2.528151,
+          "haiku_n_calls": 169
+        }
+      },
+      "haiku_cascade_event_gated": {
+        "text": "# Why Mathematics Works in Physics: The Persistent Mystery\n\nConsider a tuning fork: strike it, and an identical fork nearby spontaneously vibrates at the same frequency—mathematics describes this with perfect precision. The **co-evolution framing** proposes that physics and mathematics developed in tangled feedback loops, each shaping the boundaries of the other's inquiry; yet this merely relocates the mystery—why would such conceptual feedback loops generalize so reliably to unseen phenomena, to electrons and galaxies we've never observed? The **selection bias framing** rightly observes that we celebrate mathematical survivors while quietly abandoning failures; but this too sidesteps the fundamental question: why does abstract symbol manipulation resonate with concrete physical reality at all? Beneath both framings lies what they cannot explain: an **ontological alignment** between wholly independent domains—abstract logical structure and concrete physical process—that converge with uncanny precision, suggesting not a solvable puzzle but a mystery at the foundation of things.",
+        "axes": {
+          "frame_coverage": 0.3475874662399292,
+          "novelty": 0.5057646930217743,
+          "specificity": 1.0
+        },
+        "composite": 0.6177840530872345,
+        "n_chars": 1093,
+        "n_words": 148,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "event_gated",
+          "commit_decision_revision": true,
+          "policy_features": {
+            "delta_F": 3.1875787437872845,
+            "novelty": 1.0,
+            "aspect_count": 1.0,
+            "ananda": 0.8386933207511902,
+            "budget_balance": 4.893687803775746
+          },
+          "score_draft": 0.5865374803543091,
+          "score_revision": 0.6177840530872345
+        }
+      },
+      "haiku_cascade_always_draft": {
+        "text": "# Why Mathematics Works in Physics: A Contrarian View\n\nThe conventional answer—that the universe is fundamentally mathematical—misses something crucial. Consider the **co-evolution framing**: physics and mathematics didn't develop separately, with one \"discovering\" the other. Rather, they evolved in tight feedback loops, each shaping what counted as a legitimate question in the other. What appears as mathematics describing physics may actually be us recognizing structural patterns we *developed in tandem* with our observations, making the fit less mysterious than it seems. \n\nAlternatively, the **selection bias framing** suggests we experience severe survivorship bias: thousands of mathematical formalisms have been tried and quietly abandoned, while we celebrate the handful that worked, creating an illusion of unreasonable effectiveness. The framing that cuts deeper, though, is that mathematics and physical law both navigate the same constraint—they must be internally consistent, non-contradictory systems. Both are exploring what's *logically permissible* rather than discovering some pre-existing blueprint. In this view, their resonance reflects not that the universe is made of math, but that math and physics are two different paths through the same landscape of logical possibility, naturally converging where their constraints overlap.",
+        "axes": {
+          "frame_coverage": 0.3436509370803833,
+          "novelty": 0.41596150398254395,
+          "specificity": 1.0
+        },
+        "composite": 0.5865374803543091,
+        "n_chars": 1356,
+        "n_words": 185,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_draft",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 3.1875787437872845,
+            "novelty": 1.0,
+            "aspect_count": 1.0,
+            "ananda": 0.8386933207511902,
+            "budget_balance": 4.893687803775746
+          },
+          "score_draft": 0.5865374803543091,
+          "score_revision": 0.6177840530872345
+        }
+      },
+      "haiku_cascade_always_revise": {
+        "text": "# Why Mathematics Works in Physics: The Persistent Mystery\n\nConsider a tuning fork: strike it, and an identical fork nearby spontaneously vibrates at the same frequency—mathematics describes this with perfect precision. The **co-evolution framing** proposes that physics and mathematics developed in tangled feedback loops, each shaping the boundaries of the other's inquiry; yet this merely relocates the mystery—why would such conceptual feedback loops generalize so reliably to unseen phenomena, to electrons and galaxies we've never observed? The **selection bias framing** rightly observes that we celebrate mathematical survivors while quietly abandoning failures; but this too sidesteps the fundamental question: why does abstract symbol manipulation resonate with concrete physical reality at all? Beneath both framings lies what they cannot explain: an **ontological alignment** between wholly independent domains—abstract logical structure and concrete physical process—that converge with uncanny precision, suggesting not a solvable puzzle but a mystery at the foundation of things.",
+        "axes": {
+          "frame_coverage": 0.3475874662399292,
+          "novelty": 0.5057646930217743,
+          "specificity": 1.0
+        },
+        "composite": 0.6177840530872345,
+        "n_chars": 1093,
+        "n_words": 148,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_revise",
+          "commit_decision_revision": true,
+          "policy_features": {
+            "delta_F": 3.1875787437872845,
+            "novelty": 1.0,
+            "aspect_count": 1.0,
+            "ananda": 0.8386933207511902,
+            "budget_balance": 4.893687803775746
+          },
+          "score_draft": 0.5865374803543091,
+          "score_revision": 0.6177840530872345
+        }
+      },
+      "haiku_cascade_learned_gate": {
+        "text": "# Why Mathematics Works in Physics: A Contrarian View\n\nThe conventional answer—that the universe is fundamentally mathematical—misses something crucial. Consider the **co-evolution framing**: physics and mathematics didn't develop separately, with one \"discovering\" the other. Rather, they evolved in tight feedback loops, each shaping what counted as a legitimate question in the other. What appears as mathematics describing physics may actually be us recognizing structural patterns we *developed in tandem* with our observations, making the fit less mysterious than it seems. \n\nAlternatively, the **selection bias framing** suggests we experience severe survivorship bias: thousands of mathematical formalisms have been tried and quietly abandoned, while we celebrate the handful that worked, creating an illusion of unreasonable effectiveness. The framing that cuts deeper, though, is that mathematics and physical law both navigate the same constraint—they must be internally consistent, non-contradictory systems. Both are exploring what's *logically permissible* rather than discovering some pre-existing blueprint. In this view, their resonance reflects not that the universe is made of math, but that math and physics are two different paths through the same landscape of logical possibility, naturally converging where their constraints overlap.",
+        "axes": {
+          "frame_coverage": 0.3436509370803833,
+          "novelty": 0.41596150398254395,
+          "specificity": 1.0
+        },
+        "composite": 0.5865374803543091,
+        "n_chars": 1356,
+        "n_words": 185,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "learned_gate",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 3.1875787437872845,
+            "novelty": 1.0,
+            "aspect_count": 1.0,
+            "ananda": 0.8386933207511902,
+            "budget_balance": 4.893687803775746
+          },
+          "score_draft": 0.5865374803543091,
+          "score_revision": 0.6177840530872345
+        }
+      },
+      "haiku_cascade_oracle": {
+        "text": "# Why Mathematics Works in Physics: The Persistent Mystery\n\nConsider a tuning fork: strike it, and an identical fork nearby spontaneously vibrates at the same frequency—mathematics describes this with perfect precision. The **co-evolution framing** proposes that physics and mathematics developed in tangled feedback loops, each shaping the boundaries of the other's inquiry; yet this merely relocates the mystery—why would such conceptual feedback loops generalize so reliably to unseen phenomena, to electrons and galaxies we've never observed? The **selection bias framing** rightly observes that we celebrate mathematical survivors while quietly abandoning failures; but this too sidesteps the fundamental question: why does abstract symbol manipulation resonate with concrete physical reality at all? Beneath both framings lies what they cannot explain: an **ontological alignment** between wholly independent domains—abstract logical structure and concrete physical process—that converge with uncanny precision, suggesting not a solvable puzzle but a mystery at the foundation of things.",
+        "axes": {
+          "frame_coverage": 0.3475874662399292,
+          "novelty": 0.5057646930217743,
+          "specificity": 1.0
+        },
+        "composite": 0.6177840530872345,
+        "n_chars": 1093,
+        "n_words": 148,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "oracle",
+          "commit_decision_revision": true,
+          "policy_features": {
+            "delta_F": 3.1875787437872845,
+            "novelty": 1.0,
+            "aspect_count": 1.0,
+            "ananda": 0.8386933207511902,
+            "budget_balance": 4.893687803775746
+          },
+          "score_draft": 0.5865374803543091,
+          "score_revision": 0.6177840530872345,
+          "is_analysis_only": true
+        }
+      }
+    },
+    "s07": {
+      "item": {
+        "id": "s07",
+        "question": "Why do crows recognize individual human faces?",
+        "framings": [
+          "co-evolutionary pressure with humans",
+          "general object-individuation cognition"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "# Why Crows Recognize Individual Human Faces\n\nRather than evolving specifically to identify humans, crows likely recognize us as a **spillover effect of their complex social cognition**. Crows maintain sophisticated hierarchies, alliances, and grudges within their own populations—requiring the ability to distinguish dozens of individual faces. Our faces, with their distinctive asymmetries and features, simply fall within the visual resolution their brains already process for socially relevant individuals. We're not special; we're just another group of individuated agents they've learned to parse.\n\nFrom an **information-prediction framing**, face recognition serves a different function than \"threat or treat.\" Each human becomes a legible entity with predictable habits: this person always carries food scraps, that one runs at crows, another sits quietly. By mapping faces to behavioral patterns and routines, crows convert an otherwise chaotic human landscape into a navigable social terrain. Recognition enables them to anticipate and optimize their own behavior in response to our consistency.\n\nThe third angle is **incidental integration into ecological knowledge**—crows now track humans the way they track persistent environmental features like productive feeding sites or predatory hawks. Individual human recognition isn't an adaptation to us; it's crows incorporating us into their already-sophisticated environmental literacy system, no different than remembering which tree reliably has nuts or which neighbor crows are reliable allies.",
+        "axes": {
+          "frame_coverage": 0.3095669448375702,
+          "novelty": 0.2129349708557129,
+          "specificity": 1.0
+        },
+        "composite": 0.5075006385644277,
+        "n_chars": 1556,
+        "n_words": 214,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 12.454811096191406,
+          "haiku_total_usd": 2.5327599999999997,
+          "haiku_n_calls": 170
+        }
+      },
+      "haiku_cascade": {
+        "text": "# On Why Crows Recognize Individual Human Faces\n\nThe conventional explanation dominates: crows recognize specific humans because it's adaptive—they remember who fed them versus who chased them away, a straightforward survival calculus. But this framing obscures something curious about the phenomenon.\n\n**Reframing through social complexity**: Crows may recognize human faces less as individual threats/rewards and more as they recognize members within their own hierarchical social networks. We're not discrete danger-sources or food-dispensers to them; we're persistent social entities they encounter repeatedly in specific contexts, requiring the same categorical attention they give to rival crows or flock members. The face becomes a node in their social map.\n\n**Reframing through cognitive spillover**: Face recognition might not exist *for* recognizing humans at all. Crows evolved highly sophisticated visual processing to navigate complex environments and distinguish individual conspecifics. Our faces simply exploit existing neural machinery—we became legible to them through the same visual systems they use to read their own kind. It's not adaptation *to* humans so much as humans becoming accidentally legible to an already-sophisticated system.\n\nThe recognition likely feels less like remembering a specific \"threat\" and more like how you might distinctly remember a particular barista you see weekly—not because they're survival-relevant, but because repeated individual variation becomes neurologically sticky.",
+        "axes": {
+          "frame_coverage": 0.30802398920059204,
+          "novelty": 0.17965197563171387,
+          "specificity": 1.0
+        },
+        "composite": 0.4958919882774353,
+        "n_chars": 1527,
+        "n_words": 208,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 428.56086707115173,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 1.5677464111920045,
+          "delta_F_draft": 1.5677464111920045,
+          "delta_F_revision": 3.3569155874972694,
+          "selected_idx": 4,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# On Why Crows Recognize Individual Human Faces\n\nThe conventional explanation dominates: crows recognize specific humans because it's adaptive—they remember who fed them versus who chased them away, a straightforward survival calculus. But this framing obscures something curious about the phenomenon.\n\n**Reframing through social complexity**: Crows may recognize human faces less as individual threats/rewards and more as they recognize members within their own hierarchical social networks. We're not discrete danger-sources or food-dispensers to them; we're persistent social entities they encounter repeatedly in specific contexts, requiring the same categorical attention they give to rival crows or flock members. The face becomes a node in their social map.\n\n**Reframing through cognitive spillover**: Face recognition might not exist *for* recognizing humans at all. Crows evolved highly sophisticated visual processing to navigate complex environments and distinguish individual conspecifics. Our faces simply exploit existing neural machinery—we became legible to them through the same visual systems they use to read their own kind. It's not adaptation *to* humans so much as humans becoming accidentally legible to an already-sophisticated system.\n\nThe recognition likely feels less like remembering a specific \"threat\" and more like how you might distinctly remember a particular barista you see weekly—not because they're survival-relevant, but because repeated individual variation becomes neurologically sticky.",
+          "surface_revision": "# On Why Crows Recognize Individual Human Faces\n\nThe conventional explanation dominates: crows recognize specific humans because it's adaptive—they remember who fed them versus who chased them away. But this framing obscures the actual mechanism.\n\n**Reframing through co-evolutionary social complexity**: Crows and humans have mutually shaped each other across centuries in overlapping urban spaces through feedback, not genetic adaptation. Crows recognize individual humans as persistent social entities in their hierarchy—like specific rivals or allies—precisely because density and repetition created selective advantage in this landscape. Some humans punished crows, others fed them; simultaneously, crows' presence shaped which humans thrived in cities and how they moved through space. The recognition emerged from a two-way feedback loop, not one-way adaptation to us.\n\n**Reframing through general object-individuation cognition**: Face recognition likely isn't specialized for humans at all, but rather one expression of crows' broad capacity to individuate distinct entities across domains—specific trees, rivals, and food sources. Human faces become legible through the same neural machinery crows use to track anything worth remembering as distinct. We're not special in their cognitive landscape; we're just another persistently-varied entity their visual system treats as individuated.\n\nThe recognition feels less like deliberate memory and more like the neurological stickiness any repeated individual variation produces, regardless of whether it's human, corvid, or environmental.",
+          "aspect_count": 0.0,
+          "ananda": 0.8915095925331116,
+          "budget_balance": 2.1208193635345496,
+          "policy_features": {
+            "delta_F": 1.5677464111920045,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8915095925331116,
+            "budget_balance": 2.1208193635345496
+          },
+          "revision_skipped_reason": null,
+          "haiku_total_usd": 2.8111189999999997,
+          "haiku_n_calls": 186
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "# Why Crows Recognize Individual Human Faces\n\nConventionally, we attribute this to corvid intelligence and straightforward survival memory—crows remember the faces of people who feed them or threaten them. But there's more layered reasoning at work.\n\nConsider a **social-network framing**: crows may recognize faces not as isolated data points but as nodes in a relationship topology. They're tracking how *specific humans* behave within a broader ecosystem of human movement and intention, predicting resource or threat patterns more accurately than if they treated all humans as interchangeable. From an **information-asymmetry angle**, face recognition becomes a counterbalance—humans operate at a different scale of unpredictability, and crows need to identify which *individual* human is currently a threat, which can be exploited, which is genuinely indifferent. This is less about cleverness and more about leveling an asymmetrical encounter.\n\nA third framing views it as **distributed cultural memory**: individual recognition serves as a touchstone for collective knowledge-sharing. When a young crow learns \"that face means danger,\" the face itself becomes a social medium through which experienced crows transmit survival knowledge across generations, rather than each bird reinventing the wheel. The face, then, isn't just perceived—it's a linguistic unit in crow society, a way to compress complex behavioral history into something transmissible.",
+        "axes": {
+          "frame_coverage": 0.31035417318344116,
+          "novelty": 0.2433079481124878,
+          "specificity": 1.0
+        },
+        "composite": 0.5178873737653097,
+        "n_chars": 1459,
+        "n_words": 206,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 177.55786299705505,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 7.3547138836991905,
+          "delta_F_draft": 7.3547138836991905,
+          "delta_F_revision": null,
+          "selected_idx": 12,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "# Why Crows Recognize Individual Human Faces\n\nConventionally, we attribute this to corvid intelligence and straightforward survival memory—crows remember the faces of people who feed them or threaten them. But there's more layered reasoning at work.\n\nConsider a **social-network framing**: crows may recognize faces not as isolated data points but as nodes in a relationship topology. They're tracking how *specific humans* behave within a broader ecosystem of human movement and intention, predicting resource or threat patterns more accurately than if they treated all humans as interchangeable. From an **information-asymmetry angle**, face recognition becomes a counterbalance—humans operate at a different scale of unpredictability, and crows need to identify which *individual* human is currently a threat, which can be exploited, which is genuinely indifferent. This is less about cleverness and more about leveling an asymmetrical encounter.\n\nA third framing views it as **distributed cultural memory**: individual recognition serves as a touchstone for collective knowledge-sharing. When a young crow learns \"that face means danger,\" the face itself becomes a social medium through which experienced crows transmit survival knowledge across generations, rather than each bird reinventing the wheel. The face, then, isn't just perceived—it's a linguistic unit in crow society, a way to compress complex behavioral history into something transmissible.",
+          "surface_revision": "",
+          "aspect_count": 0.0,
+          "ananda": 0.8768938183784485,
+          "budget_balance": 8.003567903341066,
+          "policy_features": {
+            "delta_F": 7.3547138836991905,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8768938183784485,
+            "budget_balance": 8.003567903341066
+          },
+          "revision_skipped_reason": "commit_policy=always_draft",
+          "haiku_total_usd": 2.8901579999999996,
+          "haiku_n_calls": 202
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "# The Oddly Misdirected Question\n\nThe unusual part worth foregrounding: crow face recognition probably isn't about *us* at all, but reveals something unsettling about how one species accidentally installs itself in another's social calendar.\n\n**First framing—the misdirected hierarchy sensor**: Crows evolved face-discrimination as a mechanism for managing savage in-group politics—tracking which individuals to defer to, which to mob, which to steal from. That neural machinery is obsessively sensitive to visual detail: the exact slant of an eyelid, a scar, the asymmetry of a jaw. Human faces, with their baroque expressiveness and infinite variations, happen to *overstimulate* that same discriminator the way a rival crow's features would. We're not being recognized *as* anything. We're noise that crossed a threshold into salience. The machinery has misclassified visual complexity as membership.\n\n**Second framing—the persistence anomaly**: What's unsettling is what happens next: crows don't merely distinguish your face from another human's. They *scold you, mob you, teach their young your face means danger*. A single act of cruelty—netting a crow—becomes etched into local lore, transmitted through encounters and seasons without explicit instruction. Humans have been absorbed into crow mythology as individually traceable, morally significant in some dim crow way. We exist in their collective memory as distinct individuals—characters in an extended social drama, treated with the seriousness crows reserve for each other.",
+        "axes": {
+          "frame_coverage": 0.2834157347679138,
+          "novelty": 0.20141011476516724,
+          "specificity": 1.0
+        },
+        "composite": 0.49494194984436035,
+        "n_chars": 1538,
+        "n_words": 218,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 416.1228289604187,
+          "K_effective": 4,
+          "commit_policy_effective": "always_revise",
+          "brief_override_used": true,
+          "committed": "revision",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 3.3005122545669536,
+          "delta_F_revision": 0.0,
+          "selected_idx": 1,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# The Oddly Misdirected Question\n\nThe unusual part worth foregrounding: crow face recognition probably isn't about *us* at all, but rather reveals something strange about how cognition travels.\n\n**First framing—social machinery spillover**: Crows evolved their face-recognition abilities to manage intensely hierarchical relationships within their own societies, where individual identity determines access to resources, mates, and safety. Human faces, with their high visual complexity and variability, simply happen to activate the same neural discriminator they use for tracking rival crows and allies. We're not the target audience of this ability; we're incidental beneficiaries.\n\n**Second framing—the persistence puzzle**: The truly odd feature is that this recognition *persists and spreads* across populations and generations without formal teaching. Crows treat human identities less like learned associations and more like social entities embedded in crow cultural knowledge—a kind of distributed memory or folk map of \"important individuals\" passed through groups over time. This suggests crows grant humans a semi-social status, which is cognitively weirder than simple discrimination. The question then becomes not \"why recognize faces?\" but \"why do crows invest humans with the kind of persistent social significance normally reserved for other crows?\"",
+          "surface_revision": "# The Oddly Misdirected Question\n\nThe unusual part worth foregrounding: crow face recognition probably isn't about *us* at all, but reveals something unsettling about how one species accidentally installs itself in another's social calendar.\n\n**First framing—the misdirected hierarchy sensor**: Crows evolved face-discrimination as a mechanism for managing savage in-group politics—tracking which individuals to defer to, which to mob, which to steal from. That neural machinery is obsessively sensitive to visual detail: the exact slant of an eyelid, a scar, the asymmetry of a jaw. Human faces, with their baroque expressiveness and infinite variations, happen to *overstimulate* that same discriminator the way a rival crow's features would. We're not being recognized *as* anything. We're noise that crossed a threshold into salience. The machinery has misclassified visual complexity as membership.\n\n**Second framing—the persistence anomaly**: What's unsettling is what happens next: crows don't merely distinguish your face from another human's. They *scold you, mob you, teach their young your face means danger*. A single act of cruelty—netting a crow—becomes etched into local lore, transmitted through encounters and seasons without explicit instruction. Humans have been absorbed into crow mythology as individually traceable, morally significant in some dim crow way. We exist in their collective memory as distinct individuals—characters in an extended social drama, treated with the seriousness crows reserve for each other.",
+          "aspect_count": 0.0,
+          "ananda": 0.8836134672164917,
+          "budget_balance": 0.5412290719459509,
+          "policy_features": {
+            "delta_F": 3.3005122545669536,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8836134672164917,
+            "budget_balance": 0.5412290719459509
+          },
+          "revision_skipped_reason": null,
+          "haiku_total_usd": 3.1517250000000003,
+          "haiku_n_calls": 218
+        }
+      },
+      "haiku_cascade_event_gated": {
+        "text": "# On Why Crows Recognize Individual Human Faces\n\nThe conventional explanation dominates: crows recognize specific humans because it's adaptive—they remember who fed them versus who chased them away, a straightforward survival calculus. But this framing obscures something curious about the phenomenon.\n\n**Reframing through social complexity**: Crows may recognize human faces less as individual threats/rewards and more as they recognize members within their own hierarchical social networks. We're not discrete danger-sources or food-dispensers to them; we're persistent social entities they encounter repeatedly in specific contexts, requiring the same categorical attention they give to rival crows or flock members. The face becomes a node in their social map.\n\n**Reframing through cognitive spillover**: Face recognition might not exist *for* recognizing humans at all. Crows evolved highly sophisticated visual processing to navigate complex environments and distinguish individual conspecifics. Our faces simply exploit existing neural machinery—we became legible to them through the same visual systems they use to read their own kind. It's not adaptation *to* humans so much as humans becoming accidentally legible to an already-sophisticated system.\n\nThe recognition likely feels less like remembering a specific \"threat\" and more like how you might distinctly remember a particular barista you see weekly—not because they're survival-relevant, but because repeated individual variation becomes neurologically sticky.",
+        "axes": {
+          "frame_coverage": 0.30802398920059204,
+          "novelty": 0.17965197563171387,
+          "specificity": 1.0
+        },
+        "composite": 0.4958919882774353,
+        "n_chars": 1527,
+        "n_words": 208,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "event_gated",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 1.5677464111920045,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8915095925331116,
+            "budget_balance": 2.1208193635345496
+          },
+          "score_draft": 0.4958919882774353,
+          "score_revision": 0.5068925122419993
+        }
+      },
+      "haiku_cascade_always_draft": {
+        "text": "# On Why Crows Recognize Individual Human Faces\n\nThe conventional explanation dominates: crows recognize specific humans because it's adaptive—they remember who fed them versus who chased them away, a straightforward survival calculus. But this framing obscures something curious about the phenomenon.\n\n**Reframing through social complexity**: Crows may recognize human faces less as individual threats/rewards and more as they recognize members within their own hierarchical social networks. We're not discrete danger-sources or food-dispensers to them; we're persistent social entities they encounter repeatedly in specific contexts, requiring the same categorical attention they give to rival crows or flock members. The face becomes a node in their social map.\n\n**Reframing through cognitive spillover**: Face recognition might not exist *for* recognizing humans at all. Crows evolved highly sophisticated visual processing to navigate complex environments and distinguish individual conspecifics. Our faces simply exploit existing neural machinery—we became legible to them through the same visual systems they use to read their own kind. It's not adaptation *to* humans so much as humans becoming accidentally legible to an already-sophisticated system.\n\nThe recognition likely feels less like remembering a specific \"threat\" and more like how you might distinctly remember a particular barista you see weekly—not because they're survival-relevant, but because repeated individual variation becomes neurologically sticky.",
+        "axes": {
+          "frame_coverage": 0.30802398920059204,
+          "novelty": 0.17965197563171387,
+          "specificity": 1.0
+        },
+        "composite": 0.4958919882774353,
+        "n_chars": 1527,
+        "n_words": 208,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_draft",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 1.5677464111920045,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8915095925331116,
+            "budget_balance": 2.1208193635345496
+          },
+          "score_draft": 0.4958919882774353,
+          "score_revision": 0.5068925122419993
+        }
+      },
+      "haiku_cascade_always_revise": {
+        "text": "# On Why Crows Recognize Individual Human Faces\n\nThe conventional explanation dominates: crows recognize specific humans because it's adaptive—they remember who fed them versus who chased them away. But this framing obscures the actual mechanism.\n\n**Reframing through co-evolutionary social complexity**: Crows and humans have mutually shaped each other across centuries in overlapping urban spaces through feedback, not genetic adaptation. Crows recognize individual humans as persistent social entities in their hierarchy—like specific rivals or allies—precisely because density and repetition created selective advantage in this landscape. Some humans punished crows, others fed them; simultaneously, crows' presence shaped which humans thrived in cities and how they moved through space. The recognition emerged from a two-way feedback loop, not one-way adaptation to us.\n\n**Reframing through general object-individuation cognition**: Face recognition likely isn't specialized for humans at all, but rather one expression of crows' broad capacity to individuate distinct entities across domains—specific trees, rivals, and food sources. Human faces become legible through the same neural machinery crows use to track anything worth remembering as distinct. We're not special in their cognitive landscape; we're just another persistently-varied entity their visual system treats as individuated.\n\nThe recognition feels less like deliberate memory and more like the neurological stickiness any repeated individual variation produces, regardless of whether it's human, corvid, or environmental.",
+        "axes": {
+          "frame_coverage": 0.3380458652973175,
+          "novelty": 0.18263167142868042,
+          "specificity": 1.0
+        },
+        "composite": 0.5068925122419993,
+        "n_chars": 1595,
+        "n_words": 214,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_revise",
+          "commit_decision_revision": true,
+          "policy_features": {
+            "delta_F": 1.5677464111920045,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8915095925331116,
+            "budget_balance": 2.1208193635345496
+          },
+          "score_draft": 0.4958919882774353,
+          "score_revision": 0.5068925122419993
+        }
+      },
+      "haiku_cascade_learned_gate": {
+        "text": "# On Why Crows Recognize Individual Human Faces\n\nThe conventional explanation dominates: crows recognize specific humans because it's adaptive—they remember who fed them versus who chased them away, a straightforward survival calculus. But this framing obscures something curious about the phenomenon.\n\n**Reframing through social complexity**: Crows may recognize human faces less as individual threats/rewards and more as they recognize members within their own hierarchical social networks. We're not discrete danger-sources or food-dispensers to them; we're persistent social entities they encounter repeatedly in specific contexts, requiring the same categorical attention they give to rival crows or flock members. The face becomes a node in their social map.\n\n**Reframing through cognitive spillover**: Face recognition might not exist *for* recognizing humans at all. Crows evolved highly sophisticated visual processing to navigate complex environments and distinguish individual conspecifics. Our faces simply exploit existing neural machinery—we became legible to them through the same visual systems they use to read their own kind. It's not adaptation *to* humans so much as humans becoming accidentally legible to an already-sophisticated system.\n\nThe recognition likely feels less like remembering a specific \"threat\" and more like how you might distinctly remember a particular barista you see weekly—not because they're survival-relevant, but because repeated individual variation becomes neurologically sticky.",
+        "axes": {
+          "frame_coverage": 0.30802398920059204,
+          "novelty": 0.17965197563171387,
+          "specificity": 1.0
+        },
+        "composite": 0.4958919882774353,
+        "n_chars": 1527,
+        "n_words": 208,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "learned_gate",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 1.5677464111920045,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8915095925331116,
+            "budget_balance": 2.1208193635345496
+          },
+          "score_draft": 0.4958919882774353,
+          "score_revision": 0.5068925122419993
+        }
+      },
+      "haiku_cascade_oracle": {
+        "text": "# On Why Crows Recognize Individual Human Faces\n\nThe conventional explanation dominates: crows recognize specific humans because it's adaptive—they remember who fed them versus who chased them away. But this framing obscures the actual mechanism.\n\n**Reframing through co-evolutionary social complexity**: Crows and humans have mutually shaped each other across centuries in overlapping urban spaces through feedback, not genetic adaptation. Crows recognize individual humans as persistent social entities in their hierarchy—like specific rivals or allies—precisely because density and repetition created selective advantage in this landscape. Some humans punished crows, others fed them; simultaneously, crows' presence shaped which humans thrived in cities and how they moved through space. The recognition emerged from a two-way feedback loop, not one-way adaptation to us.\n\n**Reframing through general object-individuation cognition**: Face recognition likely isn't specialized for humans at all, but rather one expression of crows' broad capacity to individuate distinct entities across domains—specific trees, rivals, and food sources. Human faces become legible through the same neural machinery crows use to track anything worth remembering as distinct. We're not special in their cognitive landscape; we're just another persistently-varied entity their visual system treats as individuated.\n\nThe recognition feels less like deliberate memory and more like the neurological stickiness any repeated individual variation produces, regardless of whether it's human, corvid, or environmental.",
+        "axes": {
+          "frame_coverage": 0.3380458652973175,
+          "novelty": 0.18263167142868042,
+          "specificity": 1.0
+        },
+        "composite": 0.5068925122419993,
+        "n_chars": 1595,
+        "n_words": 214,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "oracle",
+          "commit_decision_revision": true,
+          "policy_features": {
+            "delta_F": 1.5677464111920045,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8915095925331116,
+            "budget_balance": 2.1208193635345496
+          },
+          "score_draft": 0.4958919882774353,
+          "score_revision": 0.5068925122419993,
+          "is_analysis_only": true
+        }
+      }
+    },
+    "s08": {
+      "item": {
+        "id": "s08",
+        "question": "Why does the placebo effect work even when patients know it's a placebo?",
+        "framings": [
+          "expectation conditioning",
+          "ritual and meaning-making"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "# Why Placebos Work Even When You Know They're Placebos\n\nThe mechanism involves **embodied ritual** operating independently from belief: your nervous system responds to the physical sequence of care-seeking—holding the pill, the tactile moment of ingestion, the temporal structure of waiting for relief—as a form of behavioral intervention that recalibrates your brain's predictive model of your symptoms, regardless of your conscious skepticism. A second framing is **narrative coherence**, where consciously choosing to participate in a treatment (even a known placebo) creates a coherent self-story—\"I'm someone actively managing my health\"—and the brain stabilizes physiology around this narrative, dampening the rumination loops that amplify pain signals. The third mechanism is **attentional decoupling**: the ritual redirects your focus from symptom-monitoring to care-engagement, and this shift alone reduces the neural amplification of discomfort, independent of whether you believe the treatment is real. Crucially, these systems operate through different neural pathways than conscious belief—your procedural memory, interoceptive predictions, and attention systems don't require you to be fooled to shift your physiology.",
+        "axes": {
+          "frame_coverage": 0.21015095710754395,
+          "novelty": 0.4099684953689575,
+          "specificity": 1.0
+        },
+        "composite": 0.5400398174921671,
+        "n_chars": 1233,
+        "n_words": 166,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 13.282121896743774,
+          "haiku_total_usd": 3.1573520000000004,
+          "haiku_n_calls": 219
+        }
+      },
+      "haiku_cascade": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', ' <!-- pce-seed:70888 -->\\nReframe in one alternative perspective. Why does the placebo effect work even when patients know it\\'s a placebo? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n\\nReviser brief: Surface the following aspects that the draft did not realize: expectation conditioning; ritual and meaning-making.\\n\\nPrevious draft:\\n# The Phantom Vibration Paradox\\n\\n**Concrete image:** That feeling of your phone buzzing in your pocket when it hasn\\'t—the phantom vibration that persists even though you rationally know your phone is silent.\\n\\nHere\\'s why open-label placebos work: your nervous system doesn\\'t distinguish between real and fake stimuli once a ritual primes it. When you swallow an open-label placebo, knowing it\\'s inert, genuine physiological shifts occur (pain suppression, immune changes, attention reallocation) because your body has been classically conditioned by thousands of prior medication experiences; conscious knowledge of the deception doesn\\'t reach these deeper neural pathways. Here\\'s another angle: pain is partly a prediction your brain constructs continuously; the ritual of taking a pill introduces a competing prediction (\"treatment started; recovery initiated\"), and your nervous system produces bodily changes aligned with that prediction. You\\'re not deceiving yourself—you and your body are simply operating on different levels of knowledge, like knowing a horror film is fake while your amygdala still floods your system with fear. The phantom buzz persists despite your rational knowledge for the same reason: conditioning operates independently of consciousness.\\n\\nThe trick isn\\'t ignorance. It\\'s parallel processing.\\n\\nNow produce the revised response.']' timed out after 120 seconds",
+          "elapsed_s": 432.08630990982056
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', \"   <!-- pce-seed:89796 -->\\nLean toward the literal interpretation. Why does the placebo effect work even when patients know it's a placebo? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n\"]' timed out after 120 seconds",
+          "elapsed_s": 120.1247410774231
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', \"   <!-- pce-seed:89796 -->\\nLean toward the literal interpretation. Why does the placebo effect work even when patients know it's a placebo? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n\"]' timed out after 120 seconds",
+          "elapsed_s": 120.13770127296448
+        }
+      }
+    },
+    "s09": {
+      "item": {
+        "id": "s09",
+        "question": "Why do some neural networks generalize beyond their training distribution?",
+        "framings": [
+          "implicit-bias of optimizer",
+          "feature-reuse across distributions"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '<!-- pce-seed:68572 -->\\nWhy do some neural networks generalize beyond their training distribution? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.03260207176208
+        }
+      },
+      "haiku_cascade": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '<!-- pce-seed:68572 -->\\nLean toward the figurative interpretation. Why do some neural networks generalize beyond their training distribution? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.16240000724792
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '<!-- pce-seed:68572 -->\\nLean toward the figurative interpretation. Why do some neural networks generalize beyond their training distribution? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.06073594093323
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '<!-- pce-seed:68572 -->\\nLean toward the figurative interpretation. Why do some neural networks generalize beyond their training distribution? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.12232089042664
+        }
+      }
+    },
+    "s10": {
+      "item": {
+        "id": "s10",
+        "question": "Why do octopuses appear to have intelligence so different from vertebrates?",
+        "framings": [
+          "distributed peripheral cognition",
+          "convergent vs divergent evolutionary architecture"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:35424 -->\\nWhy do octopuses appear to have intelligence so different from vertebrates? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.0329658985138
+        }
+      },
+      "haiku_cascade": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:35424 -->\\nForeground the unusual aspect of the prompt. Why do octopuses appear to have intelligence so different from vertebrates? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.18251609802246
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:35424 -->\\nForeground the unusual aspect of the prompt. Why do octopuses appear to have intelligence so different from vertebrates? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.06751012802124
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:35424 -->\\nForeground the unusual aspect of the prompt. Why do octopuses appear to have intelligence so different from vertebrates? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.09669303894043
+        }
+      }
+    },
+    "s11": {
+      "item": {
+        "id": "s11",
+        "question": "Why does the entropy of the universe seem to be increasing despite local pockets of order?",
+        "framings": [
+          "thermodynamic accounting",
+          "gravitational entropy",
+          "information-processing perspective"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:97205 -->\\nWhy does the entropy of the universe seem to be increasing despite local pockets of order? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.02851819992065
+        }
+      },
+      "haiku_cascade": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:97205 -->\\nForeground the conventional aspect of the prompt. Why does the entropy of the universe seem to be increasing despite local pockets of order? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.14114499092102
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:97205 -->\\nForeground the conventional aspect of the prompt. Why does the entropy of the universe seem to be increasing despite local pockets of order? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.06350779533386
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:97205 -->\\nForeground the conventional aspect of the prompt. Why does the entropy of the universe seem to be increasing despite local pockets of order? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.12084770202637
+        }
+      }
+    },
+    "s12": {
+      "item": {
+        "id": "s12",
+        "question": "Why do humans have such an enlarged prefrontal cortex compared to other primates?",
+        "framings": [
+          "social-brain hypothesis",
+          "tool-use feedback loop",
+          "language coevolution"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:46335 -->\\nWhy do humans have such an enlarged prefrontal cortex compared to other primates? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.0286750793457
+        }
+      },
+      "haiku_cascade": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:46335 -->\\nUse one specific concrete image. Why do humans have such an enlarged prefrontal cortex compared to other primates? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.15456509590149
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:46335 -->\\nUse one specific concrete image. Why do humans have such an enlarged prefrontal cortex compared to other primates? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.06436491012573
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:46335 -->\\nUse one specific concrete image. Why do humans have such an enlarged prefrontal cortex compared to other primates? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.09836196899414
+        }
+      }
+    },
+    "s13": {
+      "item": {
+        "id": "s13",
+        "question": "Why does antibiotic resistance evolve so quickly?",
+        "framings": [
+          "selection pressure intensity",
+          "horizontal gene transfer"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:35092 -->\\nWhy does antibiotic resistance evolve so quickly? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.02142524719238
+        }
+      },
+      "haiku_cascade": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:35092 -->\\nUse one abstract or universal frame. Why does antibiotic resistance evolve so quickly? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.12602186203003
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:35092 -->\\nUse one abstract or universal frame. Why does antibiotic resistance evolve so quickly? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.0647451877594
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:35092 -->\\nUse one abstract or universal frame. Why does antibiotic resistance evolve so quickly? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.09561324119568
+        }
+      }
+    },
+    "s14": {
+      "item": {
+        "id": "s14",
+        "question": "Why are prime numbers distributed irregularly?",
+        "framings": [
+          "zeta-function zeros",
+          "sieve heuristics"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', ' <!-- pce-seed:19191 -->\\nWhy are prime numbers distributed irregularly? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.02890515327454
+        }
+      },
+      "haiku_cascade": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', ' <!-- pce-seed:19191 -->\\nReframe in one alternative perspective. Why are prime numbers distributed irregularly? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.15090775489807
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', ' <!-- pce-seed:19191 -->\\nReframe in one alternative perspective. Why are prime numbers distributed irregularly? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.06369686126709
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', ' <!-- pce-seed:19191 -->\\nReframe in one alternative perspective. Why are prime numbers distributed irregularly? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.12379121780396
+        }
+      }
+    },
+    "s15": {
+      "item": {
+        "id": "s15",
+        "question": "Why does anesthesia produce loss of consciousness even though we don't fully understand consciousness?",
+        "framings": [
+          "integrated-information disruption",
+          "thalamocortical loop interruption"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', \" <!-- pce-seed:61270 -->\\nWhy does anesthesia produce loss of consciousness even though we don't fully understand consciousness? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n\"]' timed out after 120 seconds",
+          "elapsed_s": 120.03424906730652
+        }
+      },
+      "haiku_cascade": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', \" <!-- pce-seed:61270 -->\\nWhy does anesthesia produce loss of consciousness even though we don't fully understand consciousness? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n\"]' timed out after 120 seconds",
+          "elapsed_s": 120.12647581100464
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', \" <!-- pce-seed:61270 -->\\nWhy does anesthesia produce loss of consciousness even though we don't fully understand consciousness? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n\"]' timed out after 120 seconds",
+          "elapsed_s": 120.07600474357605
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', \" <!-- pce-seed:61270 -->\\nWhy does anesthesia produce loss of consciousness even though we don't fully understand consciousness? Give a non-obvious explanation in 4-6 sentences, naming at least two different framings. Avoid the textbook one-liner.\\n\"]' timed out after 120 seconds",
+          "elapsed_s": 120.06188416481018
+        }
+      }
+    }
+  }
+}
