@@ -1,11 +1,13 @@
 {
   "chandas": "anustubh",
-  "syllable_count": 32,
+  "syllable_count": 185,
   "expected_count": 32,
-  "pattern": "LGGLLGGGLGGLLGLLGGGGLGGGLGGLLGLG",
+  "pattern": "LGLLGGLGGGGLGLLGLLGGLLGLGLGLGLLLGLGGLGLGGLGLGLGLGLGGGGGGGGGLLGGLGGGGGLGLLGGLGGLGLGGGLGGLGGGGGGGGGLLLGLLGLGGGGLGGGGGLGGLGGLGGGLLGLLGGGGLGLGGLGGGLLGLLGGGLGLGGLGGGGGGLGGGGGLGGGGGGLLGLGLGGG",
   "pattern_ok": true,
-  "count_ok": true,
-  "ok": true,
-  "notes": [],
+  "count_ok": false,
+  "ok": false,
+  "notes": [
+    "expected 32 syllables (4 pādas × 8); found 185"
+  ],
   "validator": "tools.sanskrit_chandas"
 }

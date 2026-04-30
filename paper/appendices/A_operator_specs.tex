@@ -35,12 +35,7 @@ The reduced model concentrates the prior on $i^* = \arg\max_i \alpha_i$ via $\al
 computed using \texttt{scipy.special.gammaln} for numerical stability. We do not import \texttt{pymdp}'s JAX backend because we need exact CPU determinism for the audit log.
 
 \subsection{$\textsc{Kriy\=a}$}
-Three modes:
-\begin{itemize}
-\item \texttt{verbatim} returns the chosen candidate's surface unchanged.
-\item \texttt{polish} normalises whitespace and trims trailing assistant-style babble (\texttt{Human:}, \texttt{Assistant:}, etc.).
-\item \texttt{claude\_polish} (opt-in) sends the surface to Claude Code with a tight ``preserve content, polish surface'' prompt; not used in the headline benchmarks.
-\end{itemize}
+Three modes are supported. The \texttt{verbatim} mode returns the chosen candidate's surface unchanged. The \texttt{polish} mode normalises whitespace and trims trailing assistant-style babble (e.g.\ \texttt{Human:}, \texttt{Assistant:}). The \texttt{claude\_polish} mode (opt-in) sends the surface to Claude Code with a tight ``preserve content, polish surface'' prompt; it is not used in the headline benchmarks.
 
 \subsection{$\textsc{Vimar\'sa}$}
 \[

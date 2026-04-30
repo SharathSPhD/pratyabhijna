@@ -107,6 +107,13 @@ class JudgeRow:
     rationale: str
     quartile: int
     prompt_sha256: str
+    # v0.4.1 review fix #D: also record the sha256 of the *formatted*
+    # prompt — i.e. template + this pair's two surfaces, in their
+    # actual A/B positions for this row's `position_swap`. The legacy
+    # `prompt_sha256` only hashes the template, so the audit trail
+    # cannot detect substitution drift in the cascade outputs that
+    # were fed to the judge. The new field closes that gap.
+    formatted_prompt_sha256: str
     model: str
     input_tokens: int
     output_tokens: int
@@ -573,6 +580,7 @@ def main() -> int:
         for i, pair in enumerate(subset):
             swap = rng.random() < args.swap_rate
             prompt = _format_judge_prompt(template, pair=pair, swap=swap)
+            formatted_sha = hashlib.sha256(prompt.encode("utf-8")).hexdigest()
             api_error: int | None = None
             try:
                 if args.dry_run:
@@ -633,6 +641,7 @@ def main() -> int:
                 rationale=str(verdict.get("rationale", ""))[:500],
                 quartile=pair.quartile,
                 prompt_sha256=prompt_sha,
+                formatted_prompt_sha256=formatted_sha,
                 model=args.model if not args.dry_run else "fake-responder",
                 input_tokens=in_tok,
                 output_tokens=out_tok,

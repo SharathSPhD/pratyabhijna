@@ -6,6 +6,6 @@
   "constraint": "gāyatrī chandas; three pādas of 8 syllables each; addressed to a single ablative-case noun.",
   "style": null,
   "chandas": "gayatri",
-  "source": "curated_reference",
-  "notes": "Validated by tools/sanskrit_chandas.py against GAYATRI (24-syllable count)."
+  "source": "live_cascade_v0_4_1",
+  "notes": "Live cascade run for v0.4.1 (--mode live). Validator status is reported honestly; v0.4 has no chandas-aware scorer."
 }

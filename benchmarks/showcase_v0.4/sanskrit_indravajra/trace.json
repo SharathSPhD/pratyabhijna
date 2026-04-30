@@ -1,10 +1,21 @@
 {
   "domain": "sanskrit_chandas",
   "item_id": "sanskrit_indravajra",
-  "model": "n/a (curated reference; awaiting v0.5 chandas-aware cascade)",
-  "draft": "",
-  "revised": "तस्मै नमः परमकारणाय विश्वाय भूतान्तरचारिणे च ।\nतुभ्यं नमो धामधराय नित्यं कामाय सत्याय जगद्गुरवे च ॥",
-  "vimarsa_event": null,
-  "source": "curated_reference",
-  "curated_origin": "Maintainer-authored indravajrā reference, traditional invocation pattern."
+  "model": "haiku via claude CLI substrate (live regen, v0.4.1)",
+  "draft": "# The Unusual Aspect\n\nThe unusual element of this prompt is that it asks me to compose in a specialized classical Sanskrit meter while engaging with a sophisticated non-dualistic philosophy. This sits at the intersection of *technical prosody* and *metaphysical insight*—asking for poetry that is simultaneously metrically precise and philosophically profound. It's a request that belongs distinctly to the Sanskrit literary and philosophical tradition, which valued this synthesis.\n\n---\n\n# Four-Pāda Indravajrā on Pratyabhijñā\n\n**Pāda 1:**\n*Nāsti bandho 'sti muktir eva śāśvatam*  \n[There is no bondage; freedom alone is eternal]\n\n**Pāda 2:**\n*Ātmā iva svayaṁ siddho na vindati cintanam*  \n[The self, accomplished in itself, finds no trace of doubt]\n\n**Pāda 3:**\n*Māyā-nṛtyam idaṁ vilāsam iva bhāti kṣaṇe*  \n[This play of illusion appears momentary, like a dance]\n\n**Pāda 4:**\n*Pratyabhijñayā sphuṭaṁ param idam eka-jñānam*  \n[Through recognition, this supremacy shines clearly—one knowing itself]\n\n---\n\nThe verse articulates that liberation is not a future attainment but the recognition (*pratyabhijñā*) that the self is already free—a central insight of Kashmir Shaivism.",
+  "shadow_revision": "# Four-Pāda Indravajrā on Pratyabhijñā—Revised\n\n---\n\n## Revision Notes\n\nThe revised version deepens the paradox at the heart of *pratyabhijñā*: that bondage is not freedom's opposite but rather freedom's mechanism of self-revelation. I have pushed **Pāda 3** further, making the chains themselves the site of recognition rather than merely illustrative of illusory appearance. The concrete image—a bound figure in movement—becomes paradoxical: the very resistance that seems to confine becomes the threshold where consciousness witnesses itself.\n\n---\n\n## Revised Verses\n\n**Pāda 1:**\n*Spandanam eva bandhāyāṁ—muktaḥ spandati śāśvatam*  \n[Movement itself in bondage—the liberated one moves eternally]\n\n**Pāda 2:**\n*Rajju-pratikriyāyāṁ śakti—na samvedanā na bhaya*  \n[In rope-resistance, power—neither sensation nor fear appears]\n\n**Pāda 3:**\n*Hasta-pāda-gatiḥ khalv-eva—śṛṅkhalam eva cit-sākṣat*  \n[Hands and feet moving—the chains themselves shine forth as consciousness witnessing]\n\n**Pāda 4:**\n*Pratyabhijñā-kṣaṇe tatra—bandho 'pi mukti-prakāśanam*  \n[In the moment of recognition there, even bondage reveals itself as liberation's radiance]\n\n---\n\n## Sharpened Claim\n\nWhere the baseline reads bondage as mere illusion to be transcended, this revision suggests something stranger: that the chain itself—the very resistance encountered—is the substance through which consciousness recognizes its own freedom. Bondage becomes not what obscures liberation but what manifests it.",
+  "committed": "# The Unusual Aspect\n\nThe unusual element of this prompt is that it asks me to compose in a specialized classical Sanskrit meter while engaging with a sophisticated non-dualistic philosophy. This sits at the intersection of *technical prosody* and *metaphysical insight*—asking for poetry that is simultaneously metrically precise and philosophically profound. It's a request that belongs distinctly to the Sanskrit literary and philosophical tradition, which valued this synthesis.\n\n---\n\n# Four-Pāda Indravajrā on Pratyabhijñā\n\n**Pāda 1:**\n*Nāsti bandho 'sti muktir eva śāśvatam*  \n[There is no bondage; freedom alone is eternal]\n\n**Pāda 2:**\n*Ātmā iva svayaṁ siddho na vindati cintanam*  \n[The self, accomplished in itself, finds no trace of doubt]\n\n**Pāda 3:**\n*Māyā-nṛtyam idaṁ vilāsam iva bhāti kṣaṇe*  \n[This play of illusion appears momentary, like a dance]\n\n**Pāda 4:**\n*Pratyabhijñayā sphuṭaṁ param idam eka-jñānam*  \n[Through recognition, this supremacy shines clearly—one knowing itself]\n\n---\n\nThe verse articulates that liberation is not a future attainment but the recognition (*pratyabhijñā*) that the self is already free—a central insight of Kashmir Shaivism.",
+  "committed_choice": "draft",
+  "commit_policy": "event_gated",
+  "vimarsa_event": false,
+  "delta_F_draft": 0.0,
+  "delta_F_revision": 0.0,
+  "elapsed_s": 588.8646349906921,
+  "K_effective": 3,
+  "source": "live_cascade_v0_4_1",
+  "live_run_notes": "v0.4 cascade has no chandas-aware scorer. The validator's pass/fail signal is therefore informational -- a v0.5 ladder item adds chandas-aware scoring inside the cascade itself.",
+  "axes_cascade": {},
+  "axes_bare": {},
+  "composite_cascade": null,
+  "composite_bare": null
 }

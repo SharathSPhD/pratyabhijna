@@ -1,10 +1,21 @@
 {
   "domain": "sanskrit_chandas",
   "item_id": "sanskrit_gayatri",
-  "model": "n/a (curated reference; awaiting v0.5 chandas-aware cascade)",
-  "draft": "",
-  "revised": "चितिशक्तिं नमस्कुर्मो जगत्साक्षिस्वरूपिणीम् ।\nयया प्रकाशते सर्वम् ॥",
-  "vimarsa_event": null,
-  "source": "curated_reference",
-  "curated_origin": "Maintainer-authored chandas-validated reference. Composition follows Utpaladeva's framing of citi-śakti as the witnessing ground (sākṣin)."
+  "model": "haiku via claude CLI substrate (live regen, v0.4.1)",
+  "draft": "# Gāyatrī to Citi-śakti\n\n**cit-śakti-sar-va-kā-ri-māṃ |**\n**jña-na-lo-ka-pra-dī-pi-nī |**\n**bud-dhiṃ naḥ pra-chō-da-yā-tu ||**\n\n---\n\n## Structure\n- **Pāda 1** (8 syllables): The all-working consciousness-power\n- **Pāda 2** (8 syllables): Illuminator of the knowledge-realm  \n- **Pāda 3** (8 syllables): May she awaken our wisdom\n\n## Translation\n*O Citi-śakti, omnipresent power,*  \n*Illuminator of the realm of knowing,*  \n*Awaken our wisdom, we pray.*\n\n---\n\nThis gāyatrī follows the traditional three-pāda structure (8+8+8=24 syllables) in the conventional form established by the Gāyatrī Mantra itself, addressing the luminous power of consciousness (*citi-śakti*) as the clarifier of cognition, with a closing prayer in the optative mood characteristic of gāyatrī composition.",
+  "shadow_revision": "# Gāyatrī to Citi-śakti (Revised)\n\n**cit-śak-ti-ta-mo-bha-ri-māṃ |**\n**a-vid-yā-nī-la-ta-ri-nī |**\n**bud-dhiṃ naḥ pra-chō-da-yā-tu ||**\n\n---\n\n## Structure\n- **Pāda 1** (8 syllables): Consciousness-power, darkness-devouring\n- **Pāda 2** (8 syllables): Transcender of ignorance-night  \n- **Pāda 3** (8 syllables): May she awaken our wisdom\n\n## Translation\n*O Citi-śakti, devourer of darkness,*  \n*Transcender of the night of not-knowing,*  \n*Awaken our wisdom, we pray.*\n\n---\n\n## Revisions & Rationale\n\n**Pāda 1** shifts from \"all-working\" (sarva-kāri) to \"darkness-devouring\" (tamo-bhari)—a more vivid and aggressive image. Rather than consciousness as a neutral, omnipresent force, it becomes a *destructive* power specifically antagonistic to delusion, suggesting fierceness and transformation rather than gentle omnipresence.\n\n**Pāda 2** replaces the passive \"illuminator of the knowledge-realm\" with \"transcender of ignorance-night\" (avidyā-nīla-tarī)—pushing the image beyond mere light-casting into *crossing over* or *breaching* ignorance itself. The shift from *knowledge as object of illumination* to *ignorance as obstacle to transcend* inverts the metaphysical claim: consciousness is not a lamp in the room of knowledge, but a force that abolishes the very night in which ignorance dwells.\n\n**Pāda 3** remains unchanged, stabilizing the prayer in traditional optative closure.\n\nThis revision preserves the conventional gāyatrī form while rendering consciousness-power less as illuminator and more as *transgressor*—a force that does not work *within* the dualities of knowledge/ignorance, but *breaks through* them.",
+  "committed": "# Gāyatrī to Citi-śakti\n\n**cit-śakti-sar-va-kā-ri-māṃ |**\n**jña-na-lo-ka-pra-dī-pi-nī |**\n**bud-dhiṃ naḥ pra-chō-da-yā-tu ||**\n\n---\n\n## Structure\n- **Pāda 1** (8 syllables): The all-working consciousness-power\n- **Pāda 2** (8 syllables): Illuminator of the knowledge-realm  \n- **Pāda 3** (8 syllables): May she awaken our wisdom\n\n## Translation\n*O Citi-śakti, omnipresent power,*  \n*Illuminator of the realm of knowing,*  \n*Awaken our wisdom, we pray.*\n\n---\n\nThis gāyatrī follows the traditional three-pāda structure (8+8+8=24 syllables) in the conventional form established by the Gāyatrī Mantra itself, addressing the luminous power of consciousness (*citi-śakti*) as the clarifier of cognition, with a closing prayer in the optative mood characteristic of gāyatrī composition.",
+  "committed_choice": "draft",
+  "commit_policy": "event_gated",
+  "vimarsa_event": false,
+  "delta_F_draft": 0.0,
+  "delta_F_revision": 0.0,
+  "elapsed_s": 622.6361300945282,
+  "K_effective": 3,
+  "source": "live_cascade_v0_4_1",
+  "live_run_notes": "v0.4 cascade has no chandas-aware scorer. The validator's pass/fail signal is therefore informational -- a v0.5 ladder item adds chandas-aware scoring inside the cascade itself.",
+  "axes_cascade": {},
+  "axes_bare": {},
+  "composite_cascade": null,
+  "composite_bare": null
 }

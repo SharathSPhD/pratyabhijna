@@ -2,7 +2,7 @@
 
 A portable plugin (Cursor + Claude Code + standalone CLI) that operationalises Abhinavagupta's Pratyabhijñā five-*śakti* generative cascade as typed operators over an active-inference / Bayesian Model Reduction substrate, with a recursive *vimarśa* self-reflexivity layer.
 
-> **v0.4 — mechanism study of recursive self-reflexivity layers for LLM creative cognition.** Cascade-vs-bare null at the pilot's *n*; recursive revision pass robustly positive on its own (H8a, *g* = 0.65, *p* < 1e-4); learned commit gate beats the v0.3 event gate (H8b, F1 0.65 vs 0.52); proxy scorer disagrees with the Sonnet-4.5 LLM-judge at ρ = 0.0 (H9 — flagged as a metric-design problem, not a refutation). Total Bedrock cost $13.21. v0.3 paper preserved at `paper/v0.3/`; v0.4 frozen at `paper/v0.4/`.
+> **v0.4 — mechanism study of recursive self-reflexivity layers for LLM creative cognition.** Cascade-vs-bare null at the pilot's *n*; recursive revision pass robustly positive on its own (H8a, *g* = 0.65, *p* < 1e-4); learned commit gate beats the v0.3 event gate (H8b, F1 0.65 vs 0.52); proxy scorer disagrees with the Sonnet-4.5 LLM-judge at ρ = 0.0 (H9 — flagged as a metric-design problem, not a refutation). Cost ledger split honestly: Haiku cascade `$12.73 / 1,277` calls; Sonnet judge `$0.48 / 23` rows; combined pilot spend `$13.21`. v0.4 frozen at `paper/v0.4/`.
 >
 > **Live site:** **<https://sharathsphd.github.io/pratyabhijna/>** — Astro Pages site that reads `benchmarks/results_v0.4/stats.json` directly and animates all 9 [showcase demos](https://sharathsphd.github.io/pratyabhijna/showcase) with full cascade traces.
 >
@@ -22,9 +22,11 @@ This repository holds the engine, the dual plugin manifests (`plugin/.claude-plu
 # 1. Standalone CLI (works in any shell with `claude` on PATH)
 git clone https://github.com/SharathSPhD/pratyabhijna.git
 cd pratyabhijna
-uv pip install -e .
+uv pip install -e .                       # required: registers the `pce` console script
+                                          # and pulls numpy / sentence-transformers
 pce smoke                                 # verifies the CLI, OAuth substrate, and cascade module
-pce cascade --prompt "..." --K 4 --seed 4242
+pce cascade --prompt "Write a haiku about rain on a tin roof" \
+            --constraint "imagism" --k 4 --seed 4242
 
 # 2. Cursor plugin
 cursor --install-plugin .
@@ -35,7 +37,7 @@ claude plugin install https://github.com/SharathSPhD/pratyabhijna
 ln -s "$(pwd)" "$HOME/.claude/plugins/pce"
 ```
 
-See [`RUN_LOCAL.md`](RUN_LOCAL.md) for the full operator guide, including the model-override knobs (`~/.config/pce/config.toml` ▸ `pce.toml` ▸ env vars ▸ `--model` flag) and example configurations.
+See [`docs/RUN_LOCAL.md`](docs/RUN_LOCAL.md) for the full operator guide, including the precedence chain (defaults → repo `pce.toml` → user `~/.config/pce/config.toml` → env vars → CLI overrides) and example configurations.
 
 ## Reproduce v0.4 numbers
 
@@ -83,9 +85,9 @@ Statistical protocol: paired permutation (50 000 permutations), Hedges' *g* with
 
 Nine creative outputs with full cascade traces (3 Sanskrit chandas + 3 English poetry styles + 3 scientific creativity prompts):
 
-* Sanskrit: `sanskrit_anustubh`, `sanskrit_gayatri`, `sanskrit_indravajra` (curated reference verses validated by `tools.sanskrit_chandas`; v0.5 swaps in cascade-generated outputs once a chandas-aware scorer is wired).
-* English: `english_dickinson_slant`, `english_imagist_haiku`, `english_pastoral_traditional` (real Phase 7 cascade traces with draft + shadow revision).
-* Science: `science_galaxy_arms`, `science_ice_geometry`, `science_unreasonable_effectiveness` (real Phase 7 cascade traces).
+* Sanskrit (3, live cascade output as of v0.4.1): `sanskrit_anustubh`, `sanskrit_gayatri`, `sanskrit_indravajra`. v0.4 has no chandas-aware scorer, so the chandas validator's pass/fail is *informational* — a v0.5 ladder item adds chandas scoring inside the cascade itself.
+* English (3, real Phase 7 cascade traces): `english_dickinson_slant`, `english_imagist_haiku`, `english_pastoral_traditional` (draft + shadow revision).
+* Science (3, real Phase 7 cascade traces): `science_galaxy_arms`, `science_ice_geometry`, `science_unreasonable_effectiveness`.
 
 Browse the [showcase index](https://sharathsphd.github.io/pratyabhijna/showcase) — every demo page renders the cit → ānanda → icchā → apohana → jñāna → kriyā → vimarśa → revision pipeline with diff view and validator output.
 
@@ -108,7 +110,7 @@ The Hopfield-attractor *ālayavijñāna* (storehouse) is wired in v0.4 (`consoli
 * **Slash commands** (5): `/pce-compose`, `/pce-interpret`, `/pce-aut`, `/pce-bbh`, `/pce-trace` (mirrored across the Cursor and Claude Code manifests).
 * **Skills** (5): `pce-poetry-generation`, `pce-poetry-interpretation`, `pce-divergent-thinking`, `pce-scientific-creativity`, `pce-vimarsa-self-reflection`.
 * **Agents** (5): `pce-poet`, `pce-interpreter`, `pce-ideator`, `pce-scientist`, `pce-vimarsa-auditor`.
-* **MCP tools** (19+): the v0.3 set (cit, ānanda, icchā, apohana, jñāna, kriyā, vimarśa, cascade, embed, lm.generate, lm.entropy, store.add, store.recall, store.consolidate_sws, store.consolidate_rem, pce_cascade, haiku_bare, haiku_clean_substrate_probe, hopfield_state) plus v0.4's commit-policy multiplexer hooks. The standalone CLI exposes `pce cascade`, `pce judge-pair`, `pce smoke`, `pce config`, and `pce showcase generate`.
+* **MCP tools** (19+): the v0.3 set (cit, ānanda, icchā, apohana, jñāna, kriyā, vimarśa, cascade, embed, lm.generate, lm.entropy, store.add, store.recall, store.consolidate_sws, store.consolidate_rem, pce_cascade, haiku_bare, haiku_clean_substrate_probe, hopfield_state) plus v0.4's commit-policy multiplexer hooks. The standalone CLI exposes `pce config show`, `pce smoke`, `pce cascade`, `pce judge-pair --domain DOM --item-id ID --treatment-text PATH --control-text PATH`, and `pce showcase --regenerate SLUG`.
 * **Hooks** (3): `SessionStart`, `PreToolUse` (audit-stamp every PCE MCP call), `PostToolUse` (consolidation tick).
 
 ## Reproducibility

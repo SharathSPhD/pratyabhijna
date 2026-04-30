@@ -6,6 +6,6 @@
   "constraint": "anuṣṭubh chandas; 8 syllables per pāda × 4 pādas; the second hemistich must complete the first as recognition completes perception.",
   "style": null,
   "chandas": "anustubh",
-  "source": "curated_reference",
-  "notes": "Validated by tools/sanskrit_chandas.py against ANUSTUBH (32-syllable count). Theme draws on Utpaladeva's Īśvarapratyabhijñā-kārikā I.5."
+  "source": "live_cascade_v0_4_1",
+  "notes": "Live cascade run for v0.4.1 (--mode live). Validator status is reported honestly; v0.4 has no chandas-aware scorer."
 }

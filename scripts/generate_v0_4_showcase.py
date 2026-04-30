@@ -1,33 +1,44 @@
 #!/usr/bin/env python3
 """Generate the nine v0.4 showcase outputs from ``scripts/showcase_specs.toml``.
 
-The generator has two operating modes:
+The generator has three operating modes:
 
-1. **Curate from Phase 7** (default). For ``source = "phase7_cascade"``
-   entries it pulls the cascade output directly out of
-   ``benchmarks/results_v0.4/<domain>.json``. No API calls are made; the
-   ledger is untouched. This is the path used to produce the v0.4.0
-   release showcase.
+1. **Curate from Phase 7** (``--mode=curate``, default). For
+   ``source = "phase7_cascade"`` entries it pulls the cascade output
+   directly out of ``benchmarks/results_v0.4/<domain>.json``. No API
+   calls are made; the ledger is untouched. This is the path used to
+   produce the v0.4.0 release showcase for the English / science
+   strata.
 
 2. **Curated reference**. For ``source = "curated_reference"`` entries
-   (the three Sanskrit chandas) it embeds the verse text from the spec
-   file and runs the appropriate validator. This is also offline.
+   (the three Sanskrit chandas, when no live cascade has yet been run)
+   it embeds the verse text from the spec file and runs the appropriate
+   validator. This is also offline.
 
-3. **Live regeneration** (``--mode=live --slug=<slug>``). Future-facing:
-   re-runs the cascade against the spec's prompt + constraint via the
-   ``HaikuLM`` substrate. Costs OAuth quota; gated behind an explicit
-   ``--mode=live`` flag so accidental invocations cannot drain a budget.
+3. **Live regeneration** (``--mode=live``). Calls the v0.4 cascade via
+   the standalone ``HaikuLM`` substrate against the spec's prompt and
+   constraint, captures the full draft / shadow-revision / commit
+   trace, and writes the result to disk WHETHER OR NOT the chandas
+   validator passes. Used for the v0.4.1 patch to replace curated
+   Sanskrit references with real cascade output.
 
 Output layout per slug, under ``benchmarks/showcase_v0.4/<slug>/``:
 
-  prompt.json     — {prompt, constraint, source, spec_metadata}
-  trace.json      — full cascade trace (composite, draft, revision,
-                    vimarsa_event, score_draft/revision, K_effective,
-                    elapsed_s, validator output)
-  draft.txt       — human-readable draft surface
-  revised.txt     — human-readable revised surface (or '<no revision>')
-  scoring.json    — per-axis scoring breakdown
-  validator.json  — output of the appropriate tools/* validator
+  prompt.json          — {prompt, constraint, source, spec_metadata}
+  trace.json           — full cascade trace (composite, draft, revision,
+                         vimarsa_event, score_draft/revision, K_effective,
+                         elapsed_s, validator output)
+  draft.txt            — first-pass draft surface (always populated for
+                         live runs; may be '' for curated_reference)
+  shadow_revision.txt  — second-pass revision surface (the actual
+                         revision, regardless of commit decision)
+  committed.txt        — the surface the commit policy committed
+  revised.txt          — back-compat alias, equal to shadow_revision.txt
+                         (NOT to committed.txt — the v0.4.1 review fix)
+  scoring.json         — per-axis scoring breakdown
+  validator.json       — output of the appropriate tools/* validator;
+                         informational for Sanskrit (v0.4 has no
+                         chandas-aware scorer)
 """
 
 from __future__ import annotations
@@ -151,36 +162,125 @@ def _curated_reference(spec: dict[str, Any]) -> dict[str, Any]:
         "item_id": spec.get("slug"),
         "model": "n/a (curated reference; awaiting v0.5 chandas-aware cascade)",
         "draft": "",
-        "revised": text,
+        "shadow_revision": text,
+        "committed": text,
         "vimarsa_event": None,
         "source": "curated_reference",
         "curated_origin": spec.get("curated_origin", ""),
     }
 
 
-def generate_one(spec: dict[str, Any], showcase_root: Path) -> dict[str, Any]:
+def _live_cascade(spec: dict[str, Any]) -> dict[str, Any]:
+    """Run the v0.4 cascade against ``spec['prompt']`` and ``spec['constraint']``.
+
+    Returns whatever the cascade produces, even if the chandas validator
+    will reject it later -- v0.4 has no chandas-aware scorer, so honest
+    reporting is the contract here. Each call costs OAuth/CLI quota;
+    --mode live is therefore opt-in.
+    """
+    prompt = spec.get("prompt") or spec.get("prompt_summary")
+    if not prompt:
+        raise SystemExit(f"spec {spec.get('slug')!r} has no prompt for live cascade")
+    constraint_text = spec.get("constraint") or "well-crafted, on-topic, faithful to the brief"
+
+    from pce.cascade import run_cascade
+    from pce.config import PCEConfig
+    from pce.substrate.embed import Embedder
+    from pce.substrate.haiku_lm import HaikuConfig, HaikuLM
+    from pce.types import Constraint
+
+    cfg = PCEConfig.load()
+    hc = HaikuConfig(
+        model=cfg.resolved_cascade_model(),
+        cli_bin=cfg.cli_bin,
+        timeout_s=cfg.timeout_s,
+        use_sdk=False,
+        cost_cap_usd=cfg.cost_cap_usd,
+        cli_retry=cfg.cli_retry,
+        cli_backoff_s=cfg.cli_backoff_s,
+        clean_substrate=cfg.clean_substrate,
+        clean_home_root=cfg.clean_home_root,
+        system_prompt_override=cfg.system_prompt_override,
+    )
+    lm = HaikuLM(config=hc)
+    embedder = Embedder()
+    c = Constraint(text=constraint_text, embedding=embedder.encode(constraint_text))
+
+    state = run_cascade(
+        prompt=prompt,
+        constraint=c,
+        lm=lm,
+        embed=embedder,
+        K=3,
+        cit_temperature=1.0,
+        max_tokens=300,
+        base_seed=4242,
+        commit_policy="event_gated",
+    )
+
+    surface_draft = getattr(state, "surface_draft", None) or ""
+    surface_revision = getattr(state, "surface_revision", None) or ""
+    committed = state.surface or ""
+    audit = state.audit or {}
+
+    return {
+        "domain": spec.get("domain"),
+        "item_id": spec.get("slug"),
+        "model": f"{cfg.resolved_cascade_model()} via {cfg.cli_bin} CLI substrate (live regen, v0.4.1)",
+        "draft": surface_draft,
+        "shadow_revision": surface_revision,
+        "committed": committed,
+        "committed_choice": state.committed,
+        "commit_policy": state.commit_policy,
+        "vimarsa_event": bool(state.vimarsa_event),
+        "delta_F_draft": audit.get("delta_F_draft"),
+        "delta_F_revision": audit.get("delta_F_revision"),
+        "elapsed_s": audit.get("elapsed_s"),
+        "K_effective": 3,
+        "source": "live_cascade_v0_4_1",
+        "live_run_notes": (
+            "v0.4 cascade has no chandas-aware scorer. The validator's "
+            "pass/fail signal is therefore informational -- a v0.5 ladder "
+            "item adds chandas-aware scoring inside the cascade itself."
+        ),
+        "axes_cascade": {},
+        "axes_bare": {},
+        "composite_cascade": None,
+        "composite_bare": None,
+    }
+
+
+def generate_one(
+    spec: dict[str, Any],
+    showcase_root: Path,
+    *,
+    mode: str = "curate",
+    force_live_for: tuple[str, ...] = (),
+) -> dict[str, Any]:
     slug = spec.get("slug")
     if not slug:
         raise SystemExit(f"spec missing slug: {spec}")
     src = spec.get("source", "phase7_cascade")
 
-    if src == "phase7_cascade":
+    # In live mode, override curated_reference for the requested slugs so the
+    # cascade actually runs. Phase 7 cascade entries stay curated (the
+    # benchmarks have already paid for them).
+    if mode == "live" and (not force_live_for or slug in force_live_for):
+        if src == "curated_reference" or src == "phase7_cascade":
+            trace = _live_cascade(spec)
+        else:
+            raise SystemExit(f"unknown source for {slug!r}: {src}")
+    elif src == "phase7_cascade":
         trace = _curate_from_phase7(spec)
     elif src == "curated_reference":
         trace = _curated_reference(spec)
-    elif src == "live":
-        raise SystemExit(
-            f"spec {slug!r} source='live' is not implemented in this build; "
-            "use --mode live with the upcoming live regeneration runner once "
-            "OAuth quota is restored."
-        )
     else:
         raise SystemExit(f"unknown source for {slug!r}: {src}")
 
     # Validators run on the committed surface (what the user actually gets).
     surface_text = (
-        trace.get("committed") or trace.get("revised")
-        or trace.get("shadow_revision") or trace.get("draft") or ""
+        trace.get("committed") or trace.get("shadow_revision")
+        or trace.get("draft") or ""
     )
     validator = _validate_surface(spec, surface_text)
 
@@ -195,7 +295,7 @@ def generate_one(spec: dict[str, Any], showcase_root: Path) -> dict[str, Any]:
         "constraint": spec.get("constraint"),
         "style": spec.get("style"),
         "chandas": spec.get("chandas"),
-        "source": src,
+        "source": trace.get("source") or src,
         "notes": spec.get("notes"),
     }
     (out_dir / "prompt.json").write_text(
@@ -204,18 +304,19 @@ def generate_one(spec: dict[str, Any], showcase_root: Path) -> dict[str, Any]:
     (out_dir / "trace.json").write_text(
         json.dumps(trace, indent=2, ensure_ascii=False), encoding="utf-8",
     )
+    # File-writing contract (v0.4.1 review fix #9):
+    #   draft.txt           = first-pass surface
+    #   shadow_revision.txt = second-pass surface (the actual revision)
+    #   committed.txt       = whichever surface the commit policy picked
+    #   revised.txt         = back-compat alias for shadow_revision.txt
+    #                         (NOT committed.txt -- the prior aliasing
+    #                         silently masked event_gated draft commits)
+    shadow_text = trace.get("shadow_revision") or ""
+    committed_text = trace.get("committed") or shadow_text or trace.get("draft") or ""
     (out_dir / "draft.txt").write_text(trace.get("draft") or "", encoding="utf-8")
-    (out_dir / "shadow_revision.txt").write_text(
-        trace.get("shadow_revision") or trace.get("revised") or "", encoding="utf-8",
-    )
-    (out_dir / "committed.txt").write_text(
-        trace.get("committed") or trace.get("revised") or "", encoding="utf-8",
-    )
-    # Back-compat alias for tooling that already references revised.txt
-    (out_dir / "revised.txt").write_text(
-        trace.get("committed") or trace.get("revised") or trace.get("shadow_revision") or "",
-        encoding="utf-8",
-    )
+    (out_dir / "shadow_revision.txt").write_text(shadow_text, encoding="utf-8")
+    (out_dir / "committed.txt").write_text(committed_text, encoding="utf-8")
+    (out_dir / "revised.txt").write_text(shadow_text, encoding="utf-8")
     (out_dir / "scoring.json").write_text(
         json.dumps(
             {
@@ -258,17 +359,17 @@ def main(argv: list[str] | None = None) -> int:
             print(f"no spec matches slug={args.slug!r}", file=sys.stderr)
             return 2
 
-    if args.mode == "live":
-        print("live regeneration not implemented in this build", file=sys.stderr)
-        return 3
-
     args.showcase_root.mkdir(parents=True, exist_ok=True)
     written = []
     for spec in specs:
         if args.dry_run:
-            written.append({"slug": spec.get("slug"), "dry_run": True})
+            written.append({
+                "slug": spec.get("slug"),
+                "mode": args.mode,
+                "dry_run": True,
+            })
             continue
-        written.append(generate_one(spec, args.showcase_root))
+        written.append(generate_one(spec, args.showcase_root, mode=args.mode))
     print(json.dumps({"written": written, "showcase_root": str(args.showcase_root)},
                      indent=2, ensure_ascii=False))
     return 0

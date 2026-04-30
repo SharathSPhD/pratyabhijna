@@ -34,6 +34,10 @@ const colors: Record<string, string> = {
         r={3.5}
         fill={colors[p.domain] ?? 'var(--accent)'}
         opacity="0.85"
+        tabindex="0"
+        role="img"
+        aria-label={`Item ${p.item_id} (${p.domain}). Proxy delta ${fmt(p.proxy_delta, 3)}, judge delta ${fmt(p.judge_delta, 3)}. Sign agreement: ${p.agree ? 'yes' : 'no'}.`}
+        class="focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
       >
         <title>{p.item_id} · proxy={fmt(p.proxy_delta, 3)} · judge={fmt(p.judge_delta, 3)}</title>
       </circle>

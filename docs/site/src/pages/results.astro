@@ -6,6 +6,7 @@ import JudgeScorerScatter from '../components/JudgeScorerScatter.astro';
 import HypothesisCard from '../components/HypothesisCard.astro';
 import CostPanel from '../components/CostPanel.astro';
 import { stats, judgeAgreement, costLedger, fmt, fmtP } from '../lib/stats';
+import { withBase } from '../lib/nav';
 
 const primary = stats.primary;
 const h5 = stats.fixed_effects!.H5;
@@ -24,13 +25,25 @@ const forestRows = [
   <h2>9.1 Pilot coverage</h2>
 
   <p>
-    The Phase 7 pilot ran on AWS Bedrock with a deterministic seed regime and per-worker cost ledgers.
-    Total spend was <span class="font-mono">${fmt(costLedger.total_usd, 2)}</span> across
-    <span class="font-mono">{costLedger.n_calls.toLocaleString()}</span> calls. Per-domain pairs are
-    summarised below.
+    The Phase 7 pilot ran on AWS Bedrock with a deterministic seed regime and two
+    per-model cost ledgers. The Haiku cascade consumed
+    <span class="font-mono">${fmt(costLedger.total_usd, 2)}</span> across
+    <span class="font-mono">{costLedger.n_calls.toLocaleString()}</span> CLI calls;
+    the Sonnet judge consumed
+    <span class="font-mono">${fmt(costLedger.judge_usd ?? 0, 2)}</span> across
+    <span class="font-mono">{(costLedger.judge_calls ?? 0).toLocaleString()}</span> rows;
+    combined v0.4 spend was
+    <span class="font-mono">${fmt((costLedger.total_usd) + (costLedger.judge_usd ?? 0), 2)}</span>.
+    Per-domain Haiku-cascade pairs are summarised below.
   </p>
 
-  <CostPanel totalUsd={costLedger.total_usd} nCalls={costLedger.n_calls} perDomain={costLedger.per_domain} />
+  <CostPanel
+    totalUsd={costLedger.total_usd}
+    nCalls={costLedger.n_calls}
+    perDomain={costLedger.per_domain}
+    judgeUsd={costLedger.judge_usd ?? 0}
+    judgeCalls={costLedger.judge_calls ?? 0}
+  />
 
   <h2>9.2 Per-domain primary contrasts (H1.v4–H4.v4)</h2>
 
@@ -120,7 +133,7 @@ const forestRows = [
     sign-agreement is <span class="font-mono">{fmt(judgeAgreement.sign_agreement * 100, 1)}%</span> over
     n = <span class="font-mono">{judgeAgreement.n}</span> items. We treat this as a methodological flag:
     the proxy scorer (length × fluency × lexical diversity) is not picking up what a calibrated LLM-judge
-    rewards. The <a href="/discussion">discussion page</a> §10.4 unpacks the implications and the v0.5
+    rewards. The <a href={withBase('/discussion')}>discussion page</a> §10.4 unpacks the implications and the v0.5
     metric-design ladder.
   </p>
 

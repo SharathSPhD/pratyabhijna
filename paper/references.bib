@@ -1,19 +1,21 @@
-% PCE references.bib — v0.4 verified bibliography.
+% PCE references.bib --- v0.4.1 verified bibliography (paper/v0.4 freeze).
 %
 % Every \cite{key} in paper/main.tex must resolve to an entry below, and every
-% entry below must have its (title + year + first-author + DOI) checksum
-% recorded in paper/citations.checksum (Phase 11).
+% entry below has its verification record in audit/v0.4/lit_verification.jsonl
+% (auto-checked against Crossref, arXiv, and HTTP HEAD where applicable).
 %
-% v0.4 verification pass (audit/v0.4/lit_verification.jsonl):
-%   * 22 entries auto-verified via Crossref / arXiv / HTTP HEAD
-%   * 5 entries had their handles or fields corrected post-verification
-%     (Weber2025, Waldron2003, suzgun2023, abhinavagupta, MacGyver)
-%   * 6 unverifiable entries removed: vanDeMaele2024NeurIPS,
-%     Lawrence2021RewritingPratyabhijna, RatieFlamandLeavitt2025,
-%     NambhatraDahlquist2025, CONNECTOM2024, Suriya2025VimarsaConsciousness
-%     (recorded in audit/v0.4/lit_verification.jsonl with verdict=unverifiable)
-%   * 2 duplicate keys merged: Suzgun2022BBH → suzgun2023bbh,
-%     wittgenstein-pi-1953 → WittgensteinPI
+% v0.4.1 verification snapshot (audit/v0.4/lit_verification_summary.json):
+%   * 48 entries total, 46 verified, 2 not_verified_no_handle.
+%   * The 2 offline entries are pre-modern primary sources without DOI/arXiv:
+%       - abhinavagupta-isvarapratyabhijna (Abhinavagupta, IPV/IPVV)
+%       - WittgensteinPI (Wittgenstein, Philosophical Investigations, 1953)
+%     Both are cited from canonical critical editions (see entry-local notes).
+%   * Title-collision pairs are intentional and disambiguated by key:
+%       - "POEMetric ..." -> li2026poemetric (arXiv preprint),
+%                            Ye2025POEMetric (final version)
+%       - "CreativityPrism ..." -> hou2025creativityprism (arXiv preprint),
+%                                   CreativityPrism2025 (camera-ready)
+%   * No duplicate-key collisions; no recommended drops.
 
 @article{Heins2022pymdp,
   title={pymdp: A Python library for active inference in discrete state spaces},

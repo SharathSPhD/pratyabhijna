@@ -6,10 +6,8 @@ It is wired to the ``pce`` console script via ``pyproject.toml``::
     pip install -e .
     pce config show
     pce smoke
-    pce cascade --prompt "Write a haiku about rain on a tin roof" \\
-                --constraint "imagistic specificity"
-    pce judge-pair --domain poetry_gen --item p07 \\
-                   --treatment-text path/A.txt --control-text path/B.txt
+    pce cascade --prompt "Write a haiku about rain on a tin roof" --constraint "imagistic specificity"
+    pce judge-pair --domain poetry_gen --item-id p07 --treatment-text path/A.txt --control-text path/B.txt
     pce showcase --regenerate sanskrit_anustubh
 
 The CLI never depends on Cursor, Claude Code, or the plugin manifest. It
@@ -84,11 +82,37 @@ def _load_config(args: argparse.Namespace) -> PCEConfig:
     return PCEConfig.load(user_toml=user_toml, overrides=overrides)
 
 
+_RUNTIME_DEP_HINT = textwrap.dedent("""
+    ERROR: PCE's runtime dependencies are not importable.
+
+    The standalone `pce` CLI needs the editable install to register the
+    console script *and* pull its declared dependencies (numpy,
+    sentence-transformers, scipy, …). A bare clone with PYTHONPATH=src
+    is not enough on its own.
+
+    Fix it with one of:
+      uv pip install -e .          (recommended; uses your active venv)
+      pip install -e .             (works in any venv)
+
+    Then re-run the failing command. Underlying ImportError below.
+""").strip()
+
+
+def _emit_import_error(exc: ImportError) -> None:
+    """Print the runtime-deps hint plus the original ImportError on stderr."""
+    _err(_RUNTIME_DEP_HINT)
+    _err(f"\n  {type(exc).__name__}: {exc}")
+
+
 def _build_lm(cfg: PCEConfig):  # type: ignore[no-untyped-def]
     """Construct a ``HaikuLM`` from ``cfg``. Imported lazily so ``pce config``
     and ``pce --help`` work without importing the substrate (which loads
     sentence-transformers and is slow)."""
-    from pce.substrate.haiku_lm import HaikuConfig, HaikuLM
+    try:
+        from pce.substrate.haiku_lm import HaikuConfig, HaikuLM
+    except ImportError as exc:
+        _emit_import_error(exc)
+        raise SystemExit(3) from exc
 
     hc = HaikuConfig(
         model=cfg.resolved_cascade_model(),
@@ -141,16 +165,16 @@ def cmd_smoke(args: argparse.Namespace) -> int:
         }, indent=2))
         return 0
     lm = _build_lm(cfg)
-    result = lm.generate(
+    cand = lm.generate(
         "Reply with exactly the four characters: PONG",
-        n=1, max_tokens=8, seed=4242,
+        max_tokens=8,
+        seed=4242,
     )
-    cand = result[0]
     out = {
         "model": cfg.resolved_cascade_model(),
         "text": cand.text.strip(),
         "ok": "PONG" in cand.text.upper(),
-        "tokens_estimate": getattr(cand, "n_tokens", None),
+        "tokens_estimate": len(cand.tokens) if hasattr(cand, "tokens") else None,
     }
     _emit(json.dumps(out, indent=2))
     return 0 if out["ok"] else 1
@@ -179,13 +203,17 @@ def cmd_cascade(args: argparse.Namespace) -> int:
         }, indent=2))
         return 0
 
-    from pce.cascade import run_cascade
-    from pce.substrate.embed import Embedder
-    from pce.types import Constraint
+    try:
+        from pce.cascade import run_cascade
+        from pce.substrate.embed import Embedder
+        from pce.types import Constraint
+    except ImportError as exc:
+        _emit_import_error(exc)
+        return 3
 
     embedder = Embedder()
     constraint_text = args.constraint or "well-crafted, original, on-topic"
-    c = Constraint(text=constraint_text, embedding=embedder.embed(constraint_text))
+    c = Constraint(text=constraint_text, embedding=embedder.encode(constraint_text))
     lm = _build_lm(cfg)
     state = run_cascade(
         prompt=args.prompt,
@@ -293,9 +321,9 @@ def cmd_showcase(args: argparse.Namespace) -> int:
         if not gen_script.exists():
             _err(f"ERROR: generator script not found at {gen_script}")
             return 4
-        cmd = [sys.executable, str(gen_script), "--slug", args.regenerate]
-        if args.model:
-            cmd += ["--model", args.model]
+        cmd = [sys.executable, str(gen_script)]
+        if args.regenerate.lower() != "all":
+            cmd += ["--slug", args.regenerate]
         _emit(f"$ {' '.join(cmd)}")
         return os.spawnvp(os.P_WAIT, cmd[0], cmd)
     if not showcase_root.exists():
@@ -344,8 +372,7 @@ def build_parser() -> argparse.ArgumentParser:
               pce config show
               pce smoke --dry-run
               pce cascade --prompt "Haiku about rain" --constraint "imagism" --k 3
-              pce judge-pair --domain poetry_gen --item p07 \\
-                  --treatment-text out/treatment.txt --control-text out/control.txt
+              pce judge-pair --domain poetry_gen --item-id p07 --treatment-text out/treatment.txt --control-text out/control.txt
               pce showcase
               pce showcase --regenerate sanskrit_anustubh
         """).strip(),

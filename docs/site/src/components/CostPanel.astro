@@ -1,28 +1,45 @@
 ---
+// v0.4.1 review fix #C: split the Haiku cascade ledger from the
+// Sonnet judge ledger explicitly. The previous "$13.21 over 1,277
+// calls" line silently rolled the two together; the audit truth is
+// that the cost_ledger_merged.json records 1,277 Haiku calls at
+// $12.73 and the judge_agreement.json records 23 Sonnet rows at
+// $0.48. We surface both, and a combined total.
 interface Props {
   totalUsd: number;
   nCalls: number;
   perDomain: Record<string, { calls: number; cost_usd: number }>;
+  judgeUsd?: number;
+  judgeCalls?: number;
 }
-const { totalUsd, nCalls, perDomain } = Astro.props as Props;
+const { totalUsd, nCalls, perDomain, judgeUsd = 0, judgeCalls = 0 } = Astro.props as Props;
 const fmt = (x: number, d = 2) => Number.isFinite(x) ? x.toFixed(d) : '—';
 const rows = Object.entries(perDomain).sort((a, b) => b[1].cost_usd - a[1].cost_usd);
 const maxCost = Math.max(...rows.map(([, v]) => v.cost_usd), 0.01);
+const combinedUsd = totalUsd + judgeUsd;
+const combinedCalls = nCalls + judgeCalls;
 ---
 <div class="card not-prose font-sans my-4">
   <div class="flex items-baseline justify-between mb-3">
     <div class="font-semibold text-sm">Bedrock cost ledger (Phase 7)</div>
-    <div class="font-mono text-[0.78rem] text-[var(--fg-soft)]">${fmt(totalUsd, 2)} USD · {nCalls.toLocaleString()} calls</div>
+    <div class="font-mono text-[0.78rem] text-[var(--fg-soft)]">
+      Haiku ${fmt(totalUsd, 2)} · Sonnet ${fmt(judgeUsd, 2)} · combined ${fmt(combinedUsd, 2)} USD
+    </div>
   </div>
   <div class="space-y-2">
     {rows.map(([domain, v]) => (
       <div class="grid grid-cols-[150px_1fr_140px] gap-3 items-center text-sm">
         <div class="font-mono text-[0.78rem]">{domain}</div>
-        <div class="h-4 bg-[var(--bg)] border border-[var(--rule)] rounded">
+        <div class="h-4 bg-[var(--bg)] border border-[var(--rule)] rounded" aria-hidden="true">
           <div class="h-full bg-[var(--accent)]/70 rounded" style={`width:${(v.cost_usd / maxCost) * 100}%`}></div>
         </div>
         <div class="font-mono text-[0.78rem] text-right">${fmt(v.cost_usd, 2)} · {v.calls} calls</div>
       </div>
     ))}
+  </div>
+  <div class="mt-3 pt-3 border-t border-[var(--rule)] text-[0.78rem] font-mono text-[var(--fg-soft)]">
+    <div class="flex justify-between"><span>Haiku cascade (audit/v0.4/cost_ledger_merged.json)</span><span>${fmt(totalUsd, 2)} · {nCalls.toLocaleString()} calls</span></div>
+    <div class="flex justify-between"><span>Sonnet judge (benchmarks/results_v0.4/judge_agreement.json)</span><span>${fmt(judgeUsd, 2)} · {judgeCalls.toLocaleString()} rows</span></div>
+    <div class="flex justify-between font-semibold text-[var(--fg)]"><span>Combined v0.4 pilot spend</span><span>${fmt(combinedUsd, 2)} · {combinedCalls.toLocaleString()} CLI invocations</span></div>
   </div>
 </div>

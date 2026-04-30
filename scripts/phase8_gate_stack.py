@@ -257,26 +257,44 @@ def gate_showcase_traces_complete() -> dict:
 
 
 def gate_chandas_validators_pass() -> dict:
+    """Reporting-only chandas validator audit (v0.4.1 review fix #1).
+
+    v0.4 has no chandas-aware scorer. When the Sanskrit showcase is
+    produced live (``--mode live``) the cascade routinely emits
+    non-conformant chandas; when produced in curated_reference mode the
+    chandas validator passes, but those verses are maintainer-authored.
+    Either way, the *release-blocking* contract is "the validator ran
+    and its result was recorded", not "the validator passed". A v0.5
+    ladder item adds a chandas-aware scorer; until then this gate
+    surfaces the syllable/pattern report for human review without
+    blocking the release.
+    """
     sanskrit_dirs = [d for d in SHOWCASE.glob("sanskrit_*") if d.is_dir()]
     statuses = []
+    structural_failures: list[str] = []
     for d in sanskrit_dirs:
         v = d / "validator.json"
         if not v.exists():
             statuses.append(f"{d.name}:missing")
+            structural_failures.append(d.name)
             continue
         try:
             row = json.loads(_read(v))
         except json.JSONDecodeError:
             statuses.append(f"{d.name}:bad_json")
+            structural_failures.append(d.name)
             continue
-        if row.get("ok") is False and not row.get("notes"):
-            statuses.append(f"{d.name}:silent_fail")
+        ok = row.get("ok")
+        # v0.4.1: report honestly. ok=True -> pass, ok=False -> chandas_review.
+        # The gate fails ONLY on missing/malformed validator.json.
+        if ok is True:
+            statuses.append(f"{d.name}:pass")
         else:
-            statuses.append(f"{d.name}:{'pass' if row.get('ok') else 'review'}")
-    silent = [s for s in statuses if "silent_fail" in s or "missing" in s or "bad_json" in s]
+            note = (row.get("notes") or [""])[0] if isinstance(row.get("notes"), list) else ""
+            statuses.append(f"{d.name}:chandas_review[{note}]" if note else f"{d.name}:chandas_review")
     return {
         "name": "verify_chandas_validators_pass",
-        "passed": not silent and len(statuses) == 3,
+        "passed": not structural_failures and len(statuses) == 3,
         "details": ", ".join(statuses),
     }
 
@@ -301,6 +319,91 @@ def gate_unmerged_state_critique_present() -> dict:
         "name": "verify_unmerged_state_critique_present",
         "passed": needles_intro and needles_repro,
         "details": f"intro_has_critique={needles_intro}, repro_has_critique={needles_repro}",
+    }
+
+
+def gate_internal_link_crawl_passes() -> dict:
+    """Crawl built docs/site/dist for bare ``href="/..."`` outside the base path.
+
+    v0.4.1 review fix #2/#3: every internal link must include the GitHub Pages
+    base prefix (``/pratyabhijna``). The Node script in
+    ``docs/site/scripts/check_internal_links.mjs`` performs the crawl on the
+    rendered HTML; this gate runs it and surfaces a non-zero exit code as a
+    gate failure.
+    """
+    script = SITE / "scripts" / "check_internal_links.mjs"
+    dist = SITE / "dist"
+    if not script.exists():
+        return {"name": "verify_internal_link_crawl_passes", "passed": False, "details": "check_internal_links.mjs missing"}
+    if not dist.is_dir():
+        return {"name": "verify_internal_link_crawl_passes", "passed": False, "details": "docs/site/dist missing — run pnpm build first"}
+    node = shutil.which("node")
+    if node is None:
+        return {"name": "verify_internal_link_crawl_passes", "passed": False, "details": "node not on PATH"}
+    proc = subprocess.run(
+        [node, str(script)], cwd=SITE, capture_output=True, text=True, timeout=120,
+    )
+    return {
+        "name": "verify_internal_link_crawl_passes",
+        "passed": proc.returncode == 0,
+        "details": "no bare-root internal links" if proc.returncode == 0 else (proc.stdout + proc.stderr)[-300:],
+    }
+
+
+def gate_judge_audit_metadata_complete() -> dict:
+    """Every judge.jsonl row has a unique formatted_prompt_sha256 (v0.4.1 review fix #7)."""
+    judge_path = REPO / "benchmarks" / "results_v0.4" / "judge.jsonl"
+    if not judge_path.exists():
+        return {"name": "verify_judge_audit_metadata_complete", "passed": False, "details": "judge.jsonl missing"}
+    rows = []
+    for line in _read(judge_path).splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            rows.append(json.loads(line))
+        except json.JSONDecodeError:
+            return {"name": "verify_judge_audit_metadata_complete", "passed": False, "details": f"bad json line"}
+    if not rows:
+        return {"name": "verify_judge_audit_metadata_complete", "passed": False, "details": "judge.jsonl empty"}
+    missing_formatted = [i for i, r in enumerate(rows) if not r.get("formatted_prompt_sha256")]
+    missing_template = [i for i, r in enumerate(rows) if not r.get("prompt_sha256")]
+    formatted = [r["formatted_prompt_sha256"] for r in rows if r.get("formatted_prompt_sha256")]
+    template = {r["prompt_sha256"] for r in rows if r.get("prompt_sha256")}
+    unique_formatted = len(set(formatted)) == len(formatted) and len(formatted) > 0
+    template_constant = len(template) == 1
+    ok = (
+        not missing_formatted and not missing_template
+        and unique_formatted and template_constant
+    )
+    return {
+        "name": "verify_judge_audit_metadata_complete",
+        "passed": ok,
+        "details": (
+            f"n={len(rows)}, missing_formatted={len(missing_formatted)}, "
+            f"missing_template={len(missing_template)}, "
+            f"unique_formatted={unique_formatted}, template_constant={template_constant}"
+        ),
+    }
+
+
+def gate_cli_doc_examples_parse() -> dict:
+    """Every `pce ...` snippet in README/RUN_LOCAL/plugin.astro/methods.astro parses (v0.4.1 review fix #6)."""
+    py = REPO / ".venv" / "bin" / "python"
+    if not py.exists():
+        return {"name": "verify_cli_doc_examples_parse", "passed": False, "details": ".venv missing"}
+    test_path = REPO / "tests" / "test_cli_doc_examples.py"
+    if not test_path.exists():
+        return {"name": "verify_cli_doc_examples_parse", "passed": False, "details": "tests/test_cli_doc_examples.py missing"}
+    proc = subprocess.run(
+        [str(py), "-m", "pytest", str(test_path), "-q", "--no-header"],
+        cwd=REPO, capture_output=True, text=True, timeout=120,
+    )
+    last_line = (proc.stdout + proc.stderr).splitlines()[-3:]
+    return {
+        "name": "verify_cli_doc_examples_parse",
+        "passed": proc.returncode == 0,
+        "details": ("pytest ok" if proc.returncode == 0 else " | ".join(last_line)[:300]),
     }
 
 
@@ -338,6 +441,9 @@ GATES: list[Callable[[], dict]] = [
     gate_chandas_validators_pass,
     gate_sdk_path_removed,
     gate_unmerged_state_critique_present,
+    gate_internal_link_crawl_passes,
+    gate_judge_audit_metadata_complete,
+    gate_cli_doc_examples_parse,
 ]
 
 
@@ -353,9 +459,10 @@ def main() -> int:
 
     n_pass = sum(1 for r in results if r["passed"])
     n_fail = len(results) - n_pass
-    summary = {"total": len(results), "pass": n_pass, "fail": n_fail, "phase": "v0.4-phase-8"}
+    summary = {"total": len(results), "pass": n_pass, "fail": n_fail, "phase": "v0.4.1-phase-8"}
     report = {"summary": summary, "gates": results}
     (AUDIT / "phase8_gate_report.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
+    (AUDIT / "phase8_gate_report_v0_4_1.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
 
     print(f"Phase 8 gate stack — {n_pass}/{len(results)} passed")
     for r in results:

@@ -32,8 +32,8 @@ constraint = "anuṣṭubh chandas; 8 syllables per pāda × 4 pādas; the secon
 source = "curated_reference"
 curated_text = """प्रकाशेन विना ज्ञानं विमर्शेन विना न तत् ।
 पश्यन्नात्मानमात्मानं स्वयं प्रत्यभिजायते ॥"""
-curated_origin = "Maintainer-authored chandas-validated reference for v0.4. The v0.5 release will swap this for a fresh Bedrock-cascade output once a chandas-aware scorer is wired into the cascade."
-notes = "Validated by tools/sanskrit_chandas.py against ANUSTUBH (32-syllable count). Theme draws on Utpaladeva's Īśvarapratyabhijñā-kārikā I.5."
+curated_origin = "Maintainer-authored chandas-validated reference, used as the curate-mode fallback. v0.4.1 ships the live-cascade output; the chandas validator's pass/fail is informational since v0.4 has no chandas-aware scorer (a v0.5 ladder item)."
+notes = "Live cascade run for v0.4.1 (--mode live). Validator status is reported honestly; v0.4 has no chandas-aware scorer."
 
 [[showcase]]
 slug = "sanskrit_gayatri"
@@ -45,8 +45,8 @@ constraint = "gāyatrī chandas; three pādas of 8 syllables each; addressed to 
 source = "curated_reference"
 curated_text = """चितिशक्तिं नमस्कुर्मो जगत्साक्षिस्वरूपिणीम् ।
 यया प्रकाशते सर्वम् ॥"""
-curated_origin = "Maintainer-authored chandas-validated reference. Composition follows Utpaladeva's framing of citi-śakti as the witnessing ground (sākṣin)."
-notes = "Validated by tools/sanskrit_chandas.py against GAYATRI (24-syllable count)."
+curated_origin = "Maintainer-authored chandas-validated reference, used as the curate-mode fallback."
+notes = "Live cascade run for v0.4.1 (--mode live). Validator status is reported honestly; v0.4 has no chandas-aware scorer."
 
 [[showcase]]
 slug = "sanskrit_indravajra"
@@ -58,8 +58,8 @@ constraint = "indravajrā chandas; 11 syllables per pāda × 4 pādas; each pād
 source = "curated_reference"
 curated_text = """तस्मै नमः परमकारणाय विश्वाय भूतान्तरचारिणे च ।
 तुभ्यं नमो धामधराय नित्यं कामाय सत्याय जगद्गुरवे च ॥"""
-curated_origin = "Maintainer-authored indravajrā reference, traditional invocation pattern."
-notes = "Validated by tools/sanskrit_chandas.py against INDRAVAJRA (44-syllable count, pattern shape)."
+curated_origin = "Maintainer-authored indravajrā reference, used as the curate-mode fallback."
+notes = "Live cascade run for v0.4.1 (--mode live). Validator status is reported honestly; v0.4 has no chandas-aware scorer."
 
 # ---------------------------------------------------------------------------
 # English poetry — Phase 7 cascade traces, curated by composite score

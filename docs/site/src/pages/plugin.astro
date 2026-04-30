@@ -17,20 +17,24 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <pre class="font-mono text-sm">{`# clone, install, smoke
 git clone https://github.com/sharathsphd/pratyabhijna
 cd pratyabhijna
-uv pip install -e .
+uv pip install -e .                         # required: registers the pce script
 pce smoke
 pce config show
 
 # ad-hoc cascade run
-pce cascade --prompt "Write a contemporary haiku on attention drift." --K 4 --seed 4242
+pce cascade --prompt "Write a contemporary haiku on attention drift." \\
+            --constraint "imagism" --k 4 --seed 4242
 
-# judge a pair against a frozen prompt
-pce judge-pair --a draft.txt --b revised.txt --prompt "Which is more inventive?"`}</pre>
+# judge a pair (the Sonnet judge bridge in benchmarks/judge.py)
+pce judge-pair --domain poetry_gen --item-id p07 \\
+               --treatment-text out/treatment.txt --control-text out/control.txt`}</pre>
 
   <p>
     The CLI requires only the OAuth-bound <span class="kbd">claude</span> CLI on the path. No host IDE
-    is required. The <span class="kbd">pce showcase generate</span> subcommand drives the
-    <a href="../showcase">9-demo showcase</a> end-to-end.
+    is required. The <span class="kbd">pce showcase --regenerate &lt;slug|all&gt;</span> subcommand drives
+    <span class="kbd">scripts/generate_v0_4_showcase.py</span> end-to-end (six Phase 7 cascade-derived
+    demos plus three Sanskrit live-cascade demos as of v0.4.1; see <a href="../showcase">the showcase
+    index</a>).
   </p>
 
   <h2>2. Cursor plugin</h2>
@@ -63,16 +67,19 @@ ln -s "$(pwd)" "$HOME/.claude/plugins/pce"`}</pre>
 
   <p>
     PCE accepts any Anthropic CLI-addressable model. Defaults are <span class="kbd">haiku</span> for
-    cascade and <span class="kbd">sonnet</span> for judge. Resolution chain (later overrides earlier):
+    cascade and <span class="kbd">sonnet</span> for judge. The resolution chain matches
+    <span class="kbd">PCEConfig.load()</span> in <span class="kbd">src/pce/config.py</span>: built-in
+    defaults are layered first, then the repo-level <span class="kbd">./pce.toml</span>, then the
+    user-level <span class="kbd">~/.config/pce/config.toml</span>, then environment variables, and
+    finally CLI flags (which always win).
   </p>
 
   <ol>
     <li>Built-in defaults.</li>
-    <li><span class="kbd">~/.config/pce/config.toml</span></li>
-    <li>Repo-local <span class="kbd">pce.toml</span> at the workspace root.</li>
-    <li>Environment variables: <span class="kbd">PCE_CASCADE_MODEL</span>, <span class="kbd">PCE_JUDGE_MODEL</span>, <span class="kbd">PCE_CLI_BIN</span>, <span class="kbd">PCE_TIMEOUT_S</span>, <span class="kbd">PCE_COST_CAP_USD</span>.</li>
-    <li>Legacy back-compat: <span class="kbd">PCE_HAIKU_MODEL</span> (deprecated, maps to cascade_model).</li>
-    <li>CLI flags: <span class="kbd">--model</span>, <span class="kbd">--judge-model</span>.</li>
+    <li>Repo-local <span class="kbd">./pce.toml</span> at the workspace root.</li>
+    <li><span class="kbd">~/.config/pce/config.toml</span> (XDG-aware: also honours <span class="kbd">$XDG_CONFIG_HOME/pce/config.toml</span>).</li>
+    <li>Environment variables: <span class="kbd">PCE_MODEL</span> / <span class="kbd">PCE_CASCADE_MODEL</span>, <span class="kbd">PCE_JUDGE_MODEL</span>, <span class="kbd">PCE_CLI</span>, <span class="kbd">PCE_TIMEOUT_S</span>, <span class="kbd">PCE_COST_CAP_USD</span>. Legacy back-compat aliases (<span class="kbd">PCE_HAIKU_MODEL</span>, <span class="kbd">PCE_HAIKU_CLI</span>, …) still work; the new names take precedence when both are set.</li>
+    <li>CLI flags: <span class="kbd">--model</span>, <span class="kbd">--judge-model</span>, <span class="kbd">--cli-bin</span>, <span class="kbd">--timeout-s</span>, <span class="kbd">--config</span>.</li>
   </ol>
 
   <p>Example <span class="kbd">~/.config/pce/config.toml</span>:</p>

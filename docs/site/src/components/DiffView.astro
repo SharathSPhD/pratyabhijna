@@ -1,33 +1,57 @@
 ---
+// v0.4.1 review fix #7 (accessibility):
+// add +/- glyphs and sr-only spans so screen-reader users can tell
+// which lines are additions, removals, or changes — not relying on
+// background colour alone.
 interface Props { left: string; right: string; leftLabel?: string; rightLabel?: string; }
 const { left, right, leftLabel = 'Draft', rightLabel = 'Revised' } = Astro.props as Props;
 const leftLines = (left || '').split(/\r?\n/);
 const rightLines = (right || '').split(/\r?\n/);
-function diff(a: string, b: string) {
+function diff(a: string, b: string): 'same' | 'add' | 'rm' | 'change' {
   if (a === b) return 'same';
   if (!a) return 'add';
   if (!b) return 'rm';
   return 'change';
 }
+const SR_LABEL: Record<'same' | 'add' | 'rm' | 'change', string> = {
+  same: 'unchanged line',
+  add: 'added line',
+  rm: 'removed line',
+  change: 'changed line',
+};
 ---
 <div class="grid md:grid-cols-2 gap-3 not-prose font-sans">
   <div class="card">
-    <div class="font-semibold text-sm mb-2">{leftLabel}</div>
-    <pre class="font-serif whitespace-pre-wrap leading-relaxed m-0">
+    <div class="font-semibold text-sm mb-2" id="diff-left-label">{leftLabel}</div>
+    <pre class="font-serif whitespace-pre-wrap leading-relaxed m-0"
+         aria-labelledby="diff-left-label">
 {leftLines.map((line, i) => {
   const k = diff(line, rightLines[i] ?? '');
   const cls = k === 'change' || k === 'rm' ? 'bg-rose-100/60 dark:bg-rose-900/30' : '';
-  return <span class={`block px-1 ${cls}`}>{line || ' '}</span>;
+  const glyph = k === 'rm' ? '-' : k === 'change' ? '~' : ' ';
+  return (
+    <span class={`block px-1 ${cls}`}>
+      <span aria-hidden="true" class="select-none opacity-70">{glyph} </span>
+      <span class="sr-only">{SR_LABEL[k]}: </span>{line || ' '}
+    </span>
+  );
 })}
     </pre>
   </div>
   <div class="card">
-    <div class="font-semibold text-sm mb-2">{rightLabel}</div>
-    <pre class="font-serif whitespace-pre-wrap leading-relaxed m-0">
+    <div class="font-semibold text-sm mb-2" id="diff-right-label">{rightLabel}</div>
+    <pre class="font-serif whitespace-pre-wrap leading-relaxed m-0"
+         aria-labelledby="diff-right-label">
 {rightLines.map((line, i) => {
   const k = diff(leftLines[i] ?? '', line);
   const cls = k === 'change' || k === 'add' ? 'bg-emerald-100/60 dark:bg-emerald-900/30' : '';
-  return <span class={`block px-1 ${cls}`}>{line || ' '}</span>;
+  const glyph = k === 'add' ? '+' : k === 'change' ? '~' : ' ';
+  return (
+    <span class={`block px-1 ${cls}`}>
+      <span aria-hidden="true" class="select-none opacity-70">{glyph} </span>
+      <span class="sr-only">{SR_LABEL[k]}: </span>{line || ' '}
+    </span>
+  );
 })}
     </pre>
   </div>

@@ -63,9 +63,8 @@ paper/**/*.bbl
 paper/**/*.blg
 paper/**/*.synctex.gz
 paper/**/main.pdf
-# Allow frozen-version main.pdf snapshots (e.g. paper/v0.2/main.pdf, paper/v0.4/main.pdf)
-# so the GitHub Pages workflow can serve the canonical PDF without rebuilding LaTeX in CI.
-!paper/v0.2/main.pdf
+# Allow frozen-version main.pdf snapshots so the GitHub Pages workflow
+# can serve the canonical PDF without rebuilding LaTeX in CI.
 !paper/v0.4/main.pdf
 
 # Worktrees (not committed; created on demand)
@@ -73,13 +72,14 @@ wt-*/
 .worktrees/
 
 # Astro / Node toolchain artefacts (docs/site/)
+# v0.4.1: pnpm-lock.yaml is now TRACKED so CI builds are reproducible
+# (pnpm install --frozen-lockfile, see .github/workflows/pages.yml).
 node_modules/
 docs/site/.astro/
 docs/site/dist/
 docs/site/public/data/
 docs/site/public/benchmarks/
 docs/site/public/paper/main.pdf
-docs/site/pnpm-lock.yaml
 
 # Environment
 .env
