@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Plugin & CLI" active="/plugin">
+  <h1>Plugin &amp; CLI — three install paths</h1>
+
+  <p>
+    PCE v0.4 ships as a portable plugin with three first-class install paths: a Cursor plugin, a Claude
+    Code plugin, and a standalone <span class="kbd">pce</span> CLI. The cascade itself is host-agnostic;
+    only the manifest and the entry point change per host. A single configuration chain
+    (<span class="kbd">~/.config/pce/config.toml</span> &gt; repo <span class="kbd">pce.toml</span> &gt;
+    environment variables &gt; CLI flags) controls model selection across all three paths.
+  </p>
+
+  <h2>1. Standalone CLI (recommended for batch / CI use)</h2>
+
+  <pre class="font-mono text-sm">{`# clone, install, smoke
+git clone https://github.com/sharathsphd/pratyabhijna
+cd pratyabhijna
+uv pip install -e .
+pce smoke
+pce config show
+
+# ad-hoc cascade run
+pce cascade --prompt "Write a contemporary haiku on attention drift." --K 4 --seed 4242
+
+# judge a pair against a frozen prompt
+pce judge-pair --a draft.txt --b revised.txt --prompt "Which is more inventive?"`}</pre>
+
+  <p>
+    The CLI requires only the OAuth-bound <span class="kbd">claude</span> CLI on the path. No host IDE
+    is required. The <span class="kbd">pce showcase generate</span> subcommand drives the
+    <a href="../showcase">9-demo showcase</a> end-to-end.
+  </p>
+
+  <h2>2. Cursor plugin</h2>
+
+  <pre class="font-mono text-sm">{`# from a clone of the repo
+cursor --install-plugin .
+
+# or list, then enable in the Cursor settings UI
+cursor plugin list`}</pre>
+
+  <p>
+    The Cursor manifest at <span class="kbd">plugin/.cursor-plugin/plugin.json</span> mirrors the Claude
+    Code manifest: same MCP tools, same slash commands, same hooks. The plugin runtime is identical
+    because both hosts speak MCP. After install, the <span class="kbd">/pce-cascade</span> and
+    <span class="kbd">/pce-judge-pair</span> commands appear in the Cursor command palette.
+  </p>
+
+  <h2>3. Claude Code plugin</h2>
+
+  <pre class="font-mono text-sm">{`claude plugin install https://github.com/sharathsphd/pratyabhijna
+# or, for a local clone
+ln -s "$(pwd)" "$HOME/.claude/plugins/pce"`}</pre>
+
+  <p>
+    The Claude Code manifest at <span class="kbd">plugin/.claude-plugin/plugin.json</span> is the
+    canonical reference; the Cursor manifest is generated to match.
+  </p>
+
+  <h2>Configuring the cascade and judge models</h2>
+
+  <p>
+    PCE accepts any Anthropic CLI-addressable model. Defaults are <span class="kbd">haiku</span> for
+    cascade and <span class="kbd">sonnet</span> for judge. Resolution chain (later overrides earlier):
+  </p>
+
+  <ol>
+    <li>Built-in defaults.</li>
+    <li><span class="kbd">~/.config/pce/config.toml</span></li>
+    <li>Repo-local <span class="kbd">pce.toml</span> at the workspace root.</li>
+    <li>Environment variables: <span class="kbd">PCE_CASCADE_MODEL</span>, <span class="kbd">PCE_JUDGE_MODEL</span>, <span class="kbd">PCE_CLI_BIN</span>, <span class="kbd">PCE_TIMEOUT_S</span>, <span class="kbd">PCE_COST_CAP_USD</span>.</li>
+    <li>Legacy back-compat: <span class="kbd">PCE_HAIKU_MODEL</span> (deprecated, maps to cascade_model).</li>
+    <li>CLI flags: <span class="kbd">--model</span>, <span class="kbd">--judge-model</span>.</li>
+  </ol>
+
+  <p>Example <span class="kbd">~/.config/pce/config.toml</span>:</p>
+
+  <pre class="font-mono text-sm">{`[pce]
+cascade_model = "sonnet"          # use Sonnet-4.5 for cascade instead of Haiku
+judge_model = "opus"              # use Opus for the LLM-judge (when available on your CLI)
+cli_bin = "claude"                # binary on PATH
+timeout_s = 240
+cost_cap_usd = 50.0`}</pre>
+
+  <h2>Substrate boundary — OAuth CLI only</h2>
+
+  <p>
+    The Anthropic Python SDK code path was removed in Phase 8 (<span class="kbd">ADR-007</span>). PCE has
+    a single supported substrate: <span class="kbd">claude --print</span> over the OAuth-bound CLI.
+    Legacy users who set <span class="kbd">PCE_USE_SDK=1</span> will see a clear deprecation error with a
+    one-line remediation path. The Phase 7 mechanism pilot used Bedrock through the same CLI's profile
+    selector; ADR-006 records the deviation.
+  </p>
+</BaseLayout>

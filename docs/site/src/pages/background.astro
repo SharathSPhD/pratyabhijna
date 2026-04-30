@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../lib/nav';
+---
+<BaseLayout title="Background" active="/background">
+  <h1>Background</h1>
+
+  <h2>Pratyabhijñā — recognition as the engine of creativity</h2>
+
+  <p>
+    The Pratyabhijñā school of Kashmir Śaivism (10th–11th c.), brought to canonical form in Abhinavagupta's
+    <em>Īśvarapratyabhijñāvimarśinī</em>, treats creative cognition as a recognition (pratyabhijñā) event,
+    not a generation event. The classical sequence — cit (luminous awareness), ānanda (impulse), icchā
+    (volition), jñāna (selection), kriyā (rendering), and the reflexive vimarśa that closes the loop —
+    forms what later commentators call the five-śakti cascade. PCE adopts this sequence as engineering
+    vocabulary, not metaphor: each operator has a typed contract, an audit log, and a falsifiable
+    behavioural prediction.
+  </p>
+
+  <p>
+    The choice is unusually well-fitted to the mechanism question we want to ask. Vimarśa is precisely the
+    operation of reading one's own surface and deciding whether revision is warranted; that is the H8a/H8b
+    mechanism. Apohana — exclusion of competing alternatives — is precisely what an icchā stage that
+    operates as best-of-K with negation does; that is the ADR-001 substrate. The vocabulary discharges
+    obligations rather than decorating them.
+  </p>
+
+  <h2>Active inference and Bayesian Model Reduction</h2>
+
+  <p>
+    Active inference, in the Friston lineage, casts perception and action as the minimisation of variational
+    free energy. The framework supplies us with two specific primitives that v0.4 uses: a free-energy budget
+    that gates whether the recursive revision pass fires (ADR-003), and a Bayesian Model Reduction step that
+    prunes generative-model components when they no longer earn their complexity cost. We do <em>not</em>
+    claim full variational descent during inference — the OAuth Claude CLI does not expose the sampler, so
+    the cascade approximates Bayesian inversion through prompt-level best-of-K with composite scoring. The
+    paper's §4 is explicit about this constraint.
+  </p>
+
+  <h2>What the substrate is</h2>
+
+  <p>
+    PCE has a single supported substrate: <span class="kbd">claude --print</span> over the OAuth-bound
+    Claude CLI. The Anthropic Python SDK code path was removed in Phase 8 (<a href={withBase('/plugin')}>see
+    ADR-007 on the plugin page</a>). For the Phase 7 mechanism pilot, the same CLI was pointed at AWS
+    Bedrock so the experiment could parallelise across domains; this is documented as a deliberate
+    substrate-deviation event in §7 of the paper. Day-to-day operation, including the
+    <a href={withBase('/showcase')}>showcase</a> regeneration, runs against the OAuth substrate.
+  </p>
+
+  <h2>Companion work</h2>
+
+  <p>
+    PCE is the second project in an author program that grounds agent design in classical Indian darśana.
+    The first, <a href="https://zenodo.org/records/19680692" rel="noopener">Pratyākṣa</a>
+    (<em>direct perception</em> / context-discipline), addresses hallucination resistance in long-context
+    LLM agents and reports a strong positive Stouffer pooled signal across ten studies. PCE is the
+    recognition+creativity counterpart and reports a smaller, more decomposed effect; the
+    <a href={withBase('/compounding-work')}>compounding work page</a> contrasts the two empirical
+    signatures honestly.
+  </p>
+</BaseLayout>

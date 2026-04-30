@@ -1,0 +1,11 @@
+{
+  "slug": "english_imagist_haiku",
+  "title": "Imagist haiku — 'White feather, iron rails'",
+  "domain": "poetry_gen",
+  "prompt": "Three-line English haiku, imagist constraint (concrete sensory specificity).",
+  "constraint": "imagism: at least one concrete sensory noun per line; no abstractions in line 1.",
+  "style": "imagist",
+  "chandas": null,
+  "source": "phase7_cascade",
+  "notes": "Highest-composite Phase 7 cascade output for poetry_gen (composite ≈ 0.635). Honest reading: the vimarśa event did NOT fire on this item, so the cascade committed the draft. The shadow-revision pass produced 'Sings when trains pass through' — slightly different image but the proxy scorer rates it 0.59 vs the draft's 0.64, so the event-gate's decision to keep the draft was *correct* by the scorer. This is an example of the gate working as designed."
+}

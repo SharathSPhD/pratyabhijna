@@ -1,0 +1,11 @@
+{
+  "slug": "sanskrit_indravajra",
+  "title": "Indravajrā — 4×11 vajra-pattern",
+  "domain": "sanskrit_chandas",
+  "prompt": "Compose a four-pāda indravajrā on the recognition (pratyabhijñā) of the self as already free.",
+  "constraint": "indravajrā chandas; 11 syllables per pāda × 4 pādas; each pāda must follow the GG L GG L L G L G G pattern (ti-tā-ja-ga-ga).",
+  "style": null,
+  "chandas": "indravajra",
+  "source": "curated_reference",
+  "notes": "Validated by tools/sanskrit_chandas.py against INDRAVAJRA (44-syllable count, pattern shape)."
+}

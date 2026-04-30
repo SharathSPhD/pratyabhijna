@@ -1,0 +1,10 @@
+{
+  "domain": "sanskrit_chandas",
+  "item_id": "sanskrit_gayatri",
+  "model": "n/a (curated reference; awaiting v0.5 chandas-aware cascade)",
+  "draft": "",
+  "revised": "चितिशक्तिं नमस्कुर्मो जगत्साक्षिस्वरूपिणीम् ।\nयया प्रकाशते सर्वम् ॥",
+  "vimarsa_event": null,
+  "source": "curated_reference",
+  "curated_origin": "Maintainer-authored chandas-validated reference. Composition follows Utpaladeva's framing of citi-śakti as the witnessing ground (sākṣin)."
+}

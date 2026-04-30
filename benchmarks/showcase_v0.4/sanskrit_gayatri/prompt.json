@@ -1,0 +1,11 @@
+{
+  "slug": "sanskrit_gayatri",
+  "title": "Gāyatrī — 3×8 invocation",
+  "domain": "sanskrit_chandas",
+  "prompt": "Compose a single gāyatrī (24 syllables, three pādas of 8) addressed to citi-śakti as illuminator of cognition.",
+  "constraint": "gāyatrī chandas; three pādas of 8 syllables each; addressed to a single ablative-case noun.",
+  "style": null,
+  "chandas": "gayatri",
+  "source": "curated_reference",
+  "notes": "Validated by tools/sanskrit_chandas.py against GAYATRI (24-syllable count)."
+}

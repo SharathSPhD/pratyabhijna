@@ -1,0 +1,10 @@
+{
+  "domain": "sanskrit_chandas",
+  "item_id": "sanskrit_indravajra",
+  "model": "n/a (curated reference; awaiting v0.5 chandas-aware cascade)",
+  "draft": "",
+  "revised": "तस्मै नमः परमकारणाय विश्वाय भूतान्तरचारिणे च ।\nतुभ्यं नमो धामधराय नित्यं कामाय सत्याय जगद्गुरवे च ॥",
+  "vimarsa_event": null,
+  "source": "curated_reference",
+  "curated_origin": "Maintainer-authored indravajrā reference, traditional invocation pattern."
+}

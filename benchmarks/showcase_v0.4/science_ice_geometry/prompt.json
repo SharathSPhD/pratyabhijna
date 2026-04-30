@@ -1,0 +1,11 @@
+{
+  "slug": "science_ice_geometry",
+  "title": "Why ice floats — beyond the textbook (gate miss)",
+  "domain": "sci_creativity",
+  "prompt": "Explain why ice floats in a way that goes beyond 'hydrogen bonding makes ice less dense', surfacing the geometric and thermodynamic structure underneath.",
+  "constraint": "Mechanism prose; introduce one geometric concept (lattice, void, packing) and one thermodynamic concept (free energy, entropy).",
+  "style": "explainer",
+  "chandas": null,
+  "source": "phase7_cascade",
+  "notes": "Phase 7 cascade output for sci_creativity s02 — another teachable miss. Vimarśa did NOT fire, so the cascade committed the draft (composite 0.535), but the shadow revision scored higher (0.593). The revision changed the title from 'Beyond the Textbook' to 'Geometry and Thermodynamic Precarity', a sharper framing that matches the brief. Items like this are the basis for H8c showing always_revise outperforming event_gated."
+}

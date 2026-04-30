@@ -34,6 +34,11 @@ dependencies = [
   "PyYAML>=6.0",
 ]
 
+[project.scripts]
+# Standalone CLI surface (Phase 8 portability). Lets users run PCE
+# without Cursor or Claude Code by `pip install -e . && pce ...`.
+pce = "pce.cli:main"
+
 [project.optional-dependencies]
 dev = [
   "pytest>=8.0",

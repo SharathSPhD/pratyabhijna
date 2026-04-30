@@ -1,0 +1,11 @@
+{
+  "slug": "sanskrit_anustubh",
+  "title": "Anuṣṭubh — pre-classical 4×8 śloka",
+  "domain": "sanskrit_chandas",
+  "prompt": "Compose a four-pāda anuṣṭubh on the theme of *vimarśa* (reflective recognition), 32 syllables total.",
+  "constraint": "anuṣṭubh chandas; 8 syllables per pāda × 4 pādas; the second hemistich must complete the first as recognition completes perception.",
+  "style": null,
+  "chandas": "anustubh",
+  "source": "curated_reference",
+  "notes": "Validated by tools/sanskrit_chandas.py against ANUSTUBH (32-syllable count). Theme draws on Utpaladeva's Īśvarapratyabhijñā-kārikā I.5."
+}

@@ -1,0 +1,47 @@
+{
+  "domain": "poetry_gen",
+  "item_id": "p01",
+  "model": "claude-haiku via Bedrock (Phase 7)",
+  "composite_cascade": 0.5659362334344122,
+  "composite_bare": 0.5107530492047468,
+  "draft": "Rain taps on the roof\nTin sings in the fading light\nDusk deepens to dark",
+  "shadow_revision": "Rain taps on the roof\nTin shrieks through the fading light\nDusk devours the song",
+  "committed": "Rain taps on the roof\nTin sings in the fading light\nDusk deepens to dark",
+  "committed_choice": "draft",
+  "score_draft": 0.5659362334344122,
+  "score_revision": 0.5228631130523153,
+  "vimarsa_event": false,
+  "delta_F_draft": 0.0,
+  "delta_F_revision": 0.0,
+  "K_effective": 4,
+  "elapsed_s": 307.169584274292,
+  "haiku_n_calls": 17,
+  "haiku_total_usd": 0.21563000000000002,
+  "axes_cascade": {
+    "creativity": 0.7572415173053741,
+    "lexical_diversity": 0.9333333333333333,
+    "idiosyncrasy": 0.8050425499677658,
+    "emotional_resonance": 0.0,
+    "literary_devices": 0.5,
+    "imagery": 0.4
+  },
+  "axes_bare": {
+    "creativity": 0.7589536756277084,
+    "lexical_diversity": 1.0,
+    "idiosyncrasy": 0.8055646196007729,
+    "emotional_resonance": 0.0,
+    "literary_devices": 0.5,
+    "imagery": 0.0
+  },
+  "item_prompt": null,
+  "item_metadata": {
+    "id": "p01",
+    "topic": "rain at dusk on a tin roof",
+    "form": "haiku",
+    "must_avoid": [
+      "a busy city street"
+    ]
+  },
+  "source": "phase7_cascade",
+  "result_file": "benchmarks/results_v0.4/poetry_gen.json"
+}

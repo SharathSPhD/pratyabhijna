@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../lib/nav';
+
+const stages = [
+  { name: 'cit', sanskrit: 'चित्', role: 'Perception / illumination', detail: 'Generate K candidate continuations from the prompt. K is set by ADR-001 best-of-K with composite scoring; cit_temperature controls prompt-level perturbations rather than sampler temperature.' },
+  { name: 'ānanda', sanskrit: 'आनन्द', role: 'Novelty pulse', detail: 'Score candidates on a novelty axis (lexical / structural distance from the bare-arm reference). Drives K_runtime expansion when the pulse is strong.' },
+  { name: 'icchā', sanskrit: 'इच्छा', role: 'Volition · best-of-K', detail: 'Apply composite scoring (creativity, lexical diversity, idiosyncrasy, emotional resonance, literary devices, imagery) over the K candidates and take the argmax.' },
+  { name: 'apohana', sanskrit: 'अपोहन', role: 'Negation / exclusion', detail: 'Drop candidates that overlap too much with the bare reference or each other; keep only the apoha-distinct ones.' },
+  { name: 'jñāna', sanskrit: 'ज्ञान', role: 'Selection', detail: 'Lock in the chosen candidate and emit a structured ΔF score that the FreeEnergyBudget (ADR-003) can gate against.' },
+  { name: 'kriyā', sanskrit: 'क्रिया', role: 'Render', detail: 'Render the selected candidate to the surface (verbatim or templated) — the draft.' },
+  { name: 'vimarśa', sanskrit: 'विमर्श', role: 'Reflexive recognition', detail: 'Re-read the draft against the prompt and the constraint set; emit a diagnostic dict + an event flag that drives the commit policy.' },
+  { name: 'revision', sanskrit: '—', role: 'Commit policy', detail: 'Decide whether to commit the draft as-is, the shadow revision, or run the policy multiplexer (always_draft / always_revise / event_gated / learned_gate / oracle).' },
+];
+---
+<BaseLayout title="Architecture" active="/architecture">
+  <h1>Architecture</h1>
+
+  <p>
+    The recursive self-reflexivity layer in PCE is a typed, auditable composition of eight operators. The
+    first six follow the classical pratyabhijñā ordering; the seventh — vimarśa — closes the loop by
+    re-reading the draft against the original prompt; the eighth implements the commit policy multiplexer
+    that v0.4 introduces over v0.3. Every operator has a JSON-serialisable input/output contract, a
+    deterministic seed regime, and an audit log entry per call.
+  </p>
+
+  <h2>Operator-by-operator</h2>
+
+  <table class="not-prose font-sans w-full">
+    <thead>
+      <tr>
+        <th>Stage</th>
+        <th>Sanskrit</th>
+        <th>Role</th>
+        <th>What it actually does</th>
+      </tr>
+    </thead>
+    <tbody>
+      {stages.map(s => (
+        <tr>
+          <td class="font-mono text-sm">{s.name}</td>
+          <td class="font-serif">{s.sanskrit}</td>
+          <td class="text-sm">{s.role}</td>
+          <td class="text-sm">{s.detail}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+
+  <h2>The commit-policy multiplexer (v0.4)</h2>
+
+  <p>
+    v0.3 had a single commit policy: vimarśa fires an event, the revision is committed if and only if the
+    event flag is set (<em>event_gated</em>). v0.4 ships five policies — <em>always_draft</em>,
+    <em>always_revise</em>, <em>event_gated</em> (the v0.3 policy), <em>learned_gate</em> (ADR-002), and
+    an analysis-only <em>oracle</em> upper bound. H8c reports the leaderboard against a bare control;
+    H8b reports the gate calibration. <a href={withBase('/results')}>The results page</a> shows the
+    per-policy bars.
+  </p>
+
+  <h2>Substrate boundary</h2>
+
+  <p>
+    Everything above the operator boundary is portable: the cascade runs unchanged inside Cursor, Claude
+    Code, or a bare shell. Below the boundary lives the substrate adapter
+    (<span class="kbd">src/pce/substrate/haiku_lm.py</span>), which speaks <span class="kbd">claude --print</span>
+    over the OAuth-bound CLI. The <a href={withBase('/plugin')}>plugin page</a> documents the three
+    install paths and the model-override knobs.
+  </p>
+
+  <h2>What is wired but not exercised</h2>
+
+  <p>
+    The Hopfield <em>ālayavijñāna</em> (long-term store) operators ship in the v0.4 codebase but were not
+    exercised in the Phase 7 pilot — their multi-session dynamics require a longitudinal study that v0.4
+    does not run. The chandas-aware scorer for Sanskrit prosody is on the v0.5 ladder. Both are noted
+    honestly in the paper's §10 and on the <a href={withBase('/discussion')}>discussion page</a>.
+  </p>
+</BaseLayout>

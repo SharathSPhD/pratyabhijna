@@ -169,19 +169,26 @@ class HaikuConfig:
 
     @classmethod
     def from_env(cls) -> HaikuConfig:
+        """Resolve a HaikuConfig from the v0.4 ``PCEConfig`` chain.
+
+        Priority order: explicit overrides > ``PCE_*`` env > ``PCE_HAIKU_*``
+        env (back-compat) > user TOML > repo TOML > defaults. The SDK code
+        path (``PCE_USE_SDK=1``) is deprecated as of v0.4 and ignored at
+        substrate level — see ``docs/adr/v0.4/ADR-007-sdk-removal.md``.
+        """
+        from pce.config import PCEConfig
+        pce = PCEConfig.load()
         return cls(
-            model=os.environ.get("PCE_HAIKU_MODEL", "haiku"),
-            cli_bin=os.environ.get("PCE_HAIKU_CLI", "claude"),
-            timeout_s=int(os.environ.get("PCE_HAIKU_TIMEOUT_S", "120")),
-            use_sdk=os.environ.get("PCE_USE_SDK", "").strip() == "1",
-            cost_cap_usd=float(os.environ.get("PCE_HAIKU_COST_CAP_USD", "18.0")),
-            cli_retry=int(os.environ.get("PCE_HAIKU_CLI_RETRY", "2")),
-            cli_backoff_s=float(os.environ.get("PCE_HAIKU_CLI_BACKOFF_S", "1.0")),
-            clean_substrate=os.environ.get("PCE_HAIKU_CLEAN_SUBSTRATE", "1").strip() != "0",
-            clean_home_root=os.environ.get("PCE_HAIKU_CLEAN_HOME") or None,
-            system_prompt_override=os.environ.get(
-                "PCE_HAIKU_SYSTEM_PROMPT", DEFAULT_SYSTEM_PROMPT_OVERRIDE
-            ),
+            model=pce.resolved_cascade_model(),
+            cli_bin=pce.cli_bin,
+            timeout_s=pce.timeout_s,
+            use_sdk=False,
+            cost_cap_usd=pce.cost_cap_usd,
+            cli_retry=pce.cli_retry,
+            cli_backoff_s=pce.cli_backoff_s,
+            clean_substrate=pce.clean_substrate,
+            clean_home_root=pce.clean_home_root,
+            system_prompt_override=pce.system_prompt_override,
         )
 
 

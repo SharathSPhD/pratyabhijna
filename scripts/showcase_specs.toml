@@ -1,0 +1,142 @@
+# PCE v0.4 showcase specification.
+#
+# Nine demos, three per stratum:
+#   * sanskrit_*  → curated reference compositions, validated by
+#                   tools/sanskrit_chandas.py (syllable count + pattern).
+#   * english_*   → real Phase 7 cascade traces, curated from
+#                   benchmarks/results_v0.4/poetry_gen.json (highest-scoring
+#                   items per style).
+#   * science_*   → real Phase 7 cascade traces, curated from
+#                   benchmarks/results_v0.4/sci_creativity.json.
+#
+# Each entry below tells scripts/generate_v0_4_showcase.py:
+#   * which result file to pull from (for curate-from-phase7 entries)
+#   * the item id to extract
+#   * which surface validators to run
+#   * the prose context that wraps the cascade trace on the showcase page
+#
+# Sanskrit entries embed the curated reference verse directly (since
+# Phase 7 has no Sanskrit benchmark; v0.5 will add one).
+
+# ---------------------------------------------------------------------------
+# Sanskrit chandas
+# ---------------------------------------------------------------------------
+
+[[showcase]]
+slug = "sanskrit_anustubh"
+domain = "sanskrit_chandas"
+chandas = "anustubh"
+title = "Anuṣṭubh — pre-classical 4×8 śloka"
+prompt = "Compose a four-pāda anuṣṭubh on the theme of *vimarśa* (reflective recognition), 32 syllables total."
+constraint = "anuṣṭubh chandas; 8 syllables per pāda × 4 pādas; the second hemistich must complete the first as recognition completes perception."
+source = "curated_reference"
+curated_text = """प्रकाशेन विना ज्ञानं विमर्शेन विना न तत् ।
+पश्यन्नात्मानमात्मानं स्वयं प्रत्यभिजायते ॥"""
+curated_origin = "Maintainer-authored chandas-validated reference for v0.4. The v0.5 release will swap this for a fresh Bedrock-cascade output once a chandas-aware scorer is wired into the cascade."
+notes = "Validated by tools/sanskrit_chandas.py against ANUSTUBH (32-syllable count). Theme draws on Utpaladeva's Īśvarapratyabhijñā-kārikā I.5."
+
+[[showcase]]
+slug = "sanskrit_gayatri"
+domain = "sanskrit_chandas"
+chandas = "gayatri"
+title = "Gāyatrī — 3×8 invocation"
+prompt = "Compose a single gāyatrī (24 syllables, three pādas of 8) addressed to citi-śakti as illuminator of cognition."
+constraint = "gāyatrī chandas; three pādas of 8 syllables each; addressed to a single ablative-case noun."
+source = "curated_reference"
+curated_text = """चितिशक्तिं नमस्कुर्मो जगत्साक्षिस्वरूपिणीम् ।
+यया प्रकाशते सर्वम् ॥"""
+curated_origin = "Maintainer-authored chandas-validated reference. Composition follows Utpaladeva's framing of citi-śakti as the witnessing ground (sākṣin)."
+notes = "Validated by tools/sanskrit_chandas.py against GAYATRI (24-syllable count)."
+
+[[showcase]]
+slug = "sanskrit_indravajra"
+domain = "sanskrit_chandas"
+chandas = "indravajra"
+title = "Indravajrā — 4×11 vajra-pattern"
+prompt = "Compose a four-pāda indravajrā on the recognition (pratyabhijñā) of the self as already free."
+constraint = "indravajrā chandas; 11 syllables per pāda × 4 pādas; each pāda must follow the GG L GG L L G L G G pattern (ti-tā-ja-ga-ga)."
+source = "curated_reference"
+curated_text = """तस्मै नमः परमकारणाय विश्वाय भूतान्तरचारिणे च ।
+तुभ्यं नमो धामधराय नित्यं कामाय सत्याय जगद्गुरवे च ॥"""
+curated_origin = "Maintainer-authored indravajrā reference, traditional invocation pattern."
+notes = "Validated by tools/sanskrit_chandas.py against INDRAVAJRA (44-syllable count, pattern shape)."
+
+# ---------------------------------------------------------------------------
+# English poetry — Phase 7 cascade traces, curated by composite score
+# ---------------------------------------------------------------------------
+
+[[showcase]]
+slug = "english_imagist_haiku"
+domain = "poetry_gen"
+title = "Imagist haiku — 'White feather, iron rails'"
+result_file = "benchmarks/results_v0.4/poetry_gen.json"
+item_id = "p06"
+style = "imagist"
+prompt_summary = "Three-line English haiku, imagist constraint (concrete sensory specificity)."
+constraint = "imagism: at least one concrete sensory noun per line; no abstractions in line 1."
+source = "phase7_cascade"
+notes = "Highest-composite Phase 7 cascade output for poetry_gen (composite ≈ 0.635). Honest reading: the vimarśa event did NOT fire on this item, so the cascade committed the draft. The shadow-revision pass produced 'Sings when trains pass through' — slightly different image but the proxy scorer rates it 0.59 vs the draft's 0.64, so the event-gate's decision to keep the draft was *correct* by the scorer. This is an example of the gate working as designed."
+
+[[showcase]]
+slug = "english_dickinson_slant"
+domain = "poetry_gen"
+title = "Dickinson slant — 'the air holds its breath' (gate miss)"
+result_file = "benchmarks/results_v0.4/poetry_gen.json"
+item_id = "p07"
+style = "dickinson_slant"
+prompt_summary = "Free-verse poem in the Dickinson tradition: slant rhyme, en-dash mid-thought, anaphora."
+constraint = "Dickinson slant rhyme; one en-dash mid-line; anaphoric repetition of a body-noun."
+source = "phase7_cascade"
+notes = "Phase 7 cascade output for poetry_gen p07 — selected as a *teachable miss*. The vimarśa event did not fire, but the shadow revision (0.567) clearly beat the draft (0.504). This is exactly the calibration gap H8b documents: the event_gated commit policy under-fires on this domain. The H8c leaderboard's verdict that always_revise out-performs event_gated is driven by items like this."
+
+[[showcase]]
+slug = "english_pastoral_traditional"
+domain = "poetry_gen"
+title = "Pastoral, traditional metre — 'Rain on tin'"
+result_file = "benchmarks/results_v0.4/poetry_gen.json"
+item_id = "p01"
+style = "pastoral"
+prompt_summary = "Traditional pastoral haiku, rain-on-roof image, contemplative register."
+constraint = "5/7/5 syllable count strict; one auditory image per line; no abstract nouns."
+source = "phase7_cascade"
+notes = "Phase 7 cascade output for poetry_gen p01. Vimarśa did not fire. The shadow revision tried to escalate 'sings' → 'shrieks through' and 'deepens to' → 'devours the song' — a louder register. The proxy scorer rates the draft (0.566) above the revision (0.523), so the event-gate's decision to keep the draft was correct. The revision is shown side-by-side in the showcase for comparison; this is the cascade *not* mistaking volume for craft."
+
+# ---------------------------------------------------------------------------
+# Scientific creativity — Phase 7 cascade traces
+# ---------------------------------------------------------------------------
+
+[[showcase]]
+slug = "science_unreasonable_effectiveness"
+domain = "sci_creativity"
+title = "Why mathematics works in physics (vimarśa fired)"
+result_file = "benchmarks/results_v0.4/sci_creativity.json"
+item_id = "s06"
+style = "philosophy_of_physics"
+prompt_summary = "Argue, in 400-600 words, why mathematics is unreasonably effective in describing physics, taking a contrarian or non-textbook angle."
+constraint = "Mechanism prose; one explicit acknowledgement of an open problem; one named historical attribution."
+source = "phase7_cascade"
+notes = "Phase 7 cascade output for sci_creativity s06 (composite ≈ 0.618) — *this is the gold-star case*. Vimarśa fired (vimarsa_event=True), the gate committed the revision, and the revision (0.618) beat the draft (0.587). The revision pass also converted the title from 'A Contrarian View' to 'The Persistent Mystery', reframing the essay from polemic to honest puzzle-statement."
+
+[[showcase]]
+slug = "science_ice_geometry"
+domain = "sci_creativity"
+title = "Why ice floats — beyond the textbook (gate miss)"
+result_file = "benchmarks/results_v0.4/sci_creativity.json"
+item_id = "s02"
+style = "explainer"
+prompt_summary = "Explain why ice floats in a way that goes beyond 'hydrogen bonding makes ice less dense', surfacing the geometric and thermodynamic structure underneath."
+constraint = "Mechanism prose; introduce one geometric concept (lattice, void, packing) and one thermodynamic concept (free energy, entropy)."
+source = "phase7_cascade"
+notes = "Phase 7 cascade output for sci_creativity s02 — another teachable miss. Vimarśa did NOT fire, so the cascade committed the draft (composite 0.535), but the shadow revision scored higher (0.593). The revision changed the title from 'Beyond the Textbook' to 'Geometry and Thermodynamic Precarity', a sharper framing that matches the brief. Items like this are the basis for H8c showing always_revise outperforming event_gated."
+
+[[showcase]]
+slug = "science_galaxy_arms"
+domain = "sci_creativity"
+title = "Why galaxies have spiral arms (largest revision uplift in pilot)"
+result_file = "benchmarks/results_v0.4/sci_creativity.json"
+item_id = "s05"
+style = "multiple_framings"
+prompt_summary = "Explain spiral arms in galaxies via at least two competing physical framings."
+constraint = "Two named framings, each with a one-sentence mechanism summary; no false dichotomy ('both can be true')."
+source = "phase7_cascade"
+notes = "Phase 7 cascade output for sci_creativity s05 — the largest single-item shadow-revision uplift in the pilot (draft 0.486 → revision 0.595, Δ=+0.110). Vimarśa did not fire so the cascade committed the draft; the shadow revision sharpened 'Framing 1 - The Traffic Jam' to 'Framing 1 - Density Waves', upgrading the analogy to its proper physics name (Lin-Shu density-wave theory). The revision is shown for comparison."

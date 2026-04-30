@@ -1,0 +1,7 @@
+# Why Galaxies Have Spiral Arms
+
+**Framing 1 - The Traffic Jam Model:** Spiral arms aren't rigid structures rotating with the galaxy like spokes on a wheel. Instead, stars and gas continuously flow *through* the arms like cars passing through a traffic bottleneck—the arm pattern persists as a density wave even though individual particles keep moving and eventually exit the arm. This explains why the arms don't wind up into impossibly tight coils over billions of years.
+
+**Framing 2 - Resonance Amplification:** The arms may be sustained by orbital resonances: when a galaxy has any asymmetry (a bar, a satellite galaxy's tidal influence, or even internal perturbations), this sets up specific orbits where material naturally clusters. Stars at certain radii keep returning to the same angular positions as they orbit, amplifying small density variations into coherent spiral patterns through a "swing amplification" mechanism—the galaxy bootstraps its own spiral from tiny imbalances.
+
+The reality is likely both mechanisms work together, and spiral arms probably represent an ongoing conversation between the galaxy's internal geometry and external perturbations, rather than a single elegant explanation.

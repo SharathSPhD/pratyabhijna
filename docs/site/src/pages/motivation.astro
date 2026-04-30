@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../lib/nav';
+---
+<BaseLayout title="Motivation" active="/motivation">
+  <h1>Motivation</h1>
+
+  <p>
+    Creative writing benchmarks for large language models are now common, but the mechanisms by which an LLM
+    is supposed to <em>get more creative</em> when wrapped in an agent loop are seldom decomposed. v0.3 of
+    this project asked the holistic question — does the cascade beat the bare model? — and reported a
+    null result. v0.4 takes the next, more disciplined step: it treats the cascade as a stack of named
+    sub-mechanisms, each of which can be tested in isolation against either a bare control or a deliberately
+    weakened sibling. This is the difference between a feature evaluation and a mechanism study.
+  </p>
+
+  <p>
+    The vocabulary we use to name those sub-mechanisms comes from Abhinavagupta's recognition philosophy
+    (Pratyabhijñā). The choice is not metaphorical. <em>Vimarśa</em> — reflective self-recognition —
+    is exactly the operation we ask the cascade to do: re-read its own draft and decide whether revision
+    is warranted. <em>Apohana</em> — exclusion or negation — is exactly the operation that prunes the
+    candidate set inside the icchā stage. The classical Indian framework offers vocabulary that is
+    unusually well-fitted to a recursive self-reflexivity layer, and v0.4 is an attempt to discharge the
+    obligations of that vocabulary against measurable outcomes.
+  </p>
+
+  <p>
+    The second motivation is a pragmatic one. The early v0.4 protocol bound the experiment to the OAuth
+    Claude CLI substrate, which constrains which models can be addressed and from where. Phase 8 widens
+    the surface: PCE is now a portable plugin that runs unchanged inside Cursor, Claude Code, or a bare
+    shell with the <span class="kbd">claude</span> CLI on the path. The cascade model is configurable to
+    any Anthropic CLI-addressable model with sane defaults (haiku for cascade, sonnet for judge). The
+    <a href={withBase('/plugin')}>plugin page</a> documents the three install paths.
+  </p>
+
+  <p>
+    The third motivation is methodological transparency. v0.4 commits in advance to four primary hypotheses
+    (H1–H4 per domain), a fixed-effects meta-pool (H5), three mechanism-decomposition hypotheses (H8a/b/c),
+    and a judge-vs-scorer agreement check (H9). Every number on this site comes from a single
+    <a href={withBase('/benchmarks/results_v0.4/stats.json')}>stats.json</a> with the cost ledger, integrity
+    probes, and per-item judge verdicts published alongside.
+  </p>
+</BaseLayout>

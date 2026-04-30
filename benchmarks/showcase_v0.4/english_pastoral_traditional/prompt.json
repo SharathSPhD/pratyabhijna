@@ -1,0 +1,11 @@
+{
+  "slug": "english_pastoral_traditional",
+  "title": "Pastoral, traditional metre — 'Rain on tin'",
+  "domain": "poetry_gen",
+  "prompt": "Traditional pastoral haiku, rain-on-roof image, contemplative register.",
+  "constraint": "5/7/5 syllable count strict; one auditory image per line; no abstract nouns.",
+  "style": "pastoral",
+  "chandas": null,
+  "source": "phase7_cascade",
+  "notes": "Phase 7 cascade output for poetry_gen p01. Vimarśa did not fire. The shadow revision tried to escalate 'sings' → 'shrieks through' and 'deepens to' → 'devours the song' — a louder register. The proxy scorer rates the draft (0.566) above the revision (0.523), so the event-gate's decision to keep the draft was correct. The revision is shown side-by-side in the showcase for comparison; this is the cascade *not* mistaking volume for craft."
+}

@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CascadeTraceViewer from '../../components/CascadeTraceViewer.astro';
+import ChandasMeterDisplay from '../../components/ChandasMeterDisplay.astro';
+import DiffView from '../../components/DiffView.astro';
+import { showcaseIndex } from '../../lib/stats';
+import { withBase } from '../../lib/nav';
+
+const showcaseFiles = import.meta.glob('../../../public/data/showcase/*.json', { eager: true, import: 'default' });
+
+export async function getStaticPaths() {
+  const indexMod = await import('../../../public/data/showcase_index_v0.4.json');
+  return (indexMod.default.demos as any[]).map((d) => ({
+    params: { slug: d.slug },
+    props: { meta: d },
+  }));
+}
+
+const { meta } = Astro.props;
+const slug = Astro.params.slug;
+const dataKey = `../../../public/data/showcase/${slug}.json`;
+const data: any = showcaseFiles[dataKey] ?? {};
+
+const validator = data.validator || {};
+const trace = data.trace || {};
+const prompt = data.prompt || {};
+const scoring = data.scoring || {};
+
+const isSanskrit = meta.category === 'sanskrit';
+const draft = data.draft ?? trace.draft ?? '';
+const shadow = data.shadow_revision ?? trace.shadow_revision ?? trace.revised ?? '';
+const committed = data.committed ?? trace.committed ?? '';
+
+const categoryColor = meta.category === 'sanskrit'
+  ? 'text-amber-700 dark:text-amber-300'
+  : meta.category === 'english'
+    ? 'text-sky-700 dark:text-sky-300'
+    : 'text-emerald-700 dark:text-emerald-300';
+---
+<BaseLayout title={meta.title} active="/showcase">
+  <p class="text-sm"><a href={withBase('/showcase')}>← all 9 demos</a></p>
+  <h1>{meta.title}</h1>
+
+  <div class="font-sans not-prose flex flex-wrap items-center gap-3 mb-3 text-sm">
+    <span class={`uppercase font-mono text-[0.7rem] ${categoryColor}`}>{meta.category}</span>
+    <span class="font-mono text-[0.78rem] text-[var(--fg-soft)]">slug: {slug}</span>
+    <span class="font-mono text-[0.78rem] text-[var(--fg-soft)]">seed: {prompt.seed ?? meta.seed}</span>
+    <span class="font-mono text-[0.78rem] text-[var(--fg-soft)]">validator: {meta.validator_status}</span>
+  </div>
+
+  <h2>Prompt</h2>
+  <blockquote>{prompt.prompt}</blockquote>
+  {prompt.constraint && (
+    <p class="text-[0.93rem] text-[var(--fg-soft)]">
+      <strong>Constraint.</strong> {prompt.constraint}
+    </p>
+  )}
+  {prompt.style && (
+    <p class="text-[0.93rem] text-[var(--fg-soft)]">
+      <strong>Style.</strong> {prompt.style}
+    </p>
+  )}
+
+  {isSanskrit && validator?.chandas && (
+    <ChandasMeterDisplay
+      chandas={validator.chandas}
+      syllables={validator.syllable_count}
+      expected={validator.expected_count}
+      pattern={validator.pattern}
+      ok={validator.ok}
+    />
+  )}
+
+  <h2>Cascade trace</h2>
+  <CascadeTraceViewer trace={trace} validator={validator} />
+
+  {draft && shadow && (
+    <>
+      <h2>Draft vs revised</h2>
+      <DiffView left={draft} right={shadow} leftLabel="Draft (kriyā)" rightLabel="Shadow revision (vimarśa)" />
+    </>
+  )}
+
+  {scoring?.judge && (
+    <>
+      <h2>Judge verdict</h2>
+      <pre class="font-mono text-sm">{JSON.stringify(scoring.judge, null, 2)}</pre>
+    </>
+  )}
+
+  {prompt.notes && (
+    <p class="text-[0.9rem] text-[var(--fg-soft)] mt-6">{prompt.notes}</p>
+  )}
+</BaseLayout>

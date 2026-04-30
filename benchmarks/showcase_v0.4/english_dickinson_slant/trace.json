@@ -1,0 +1,47 @@
+{
+  "domain": "poetry_gen",
+  "item_id": "p07",
+  "model": "claude-haiku via Bedrock (Phase 7)",
+  "composite_cascade": 0.5035790978940723,
+  "composite_bare": 0.5548966856563793,
+  "draft": "Frost forms on the glass\nKitchen window marks the change\nSeason's turn begins",
+  "shadow_revision": "Frost eats the warm pane\nKitchen's breath turns crystalline\nCold wins the kitchen",
+  "committed": "Frost forms on the glass\nKitchen window marks the change\nSeason's turn begins",
+  "committed_choice": "draft",
+  "score_draft": 0.5035790978940723,
+  "score_revision": 0.5665064012842481,
+  "vimarsa_event": false,
+  "delta_F_draft": 0.0,
+  "delta_F_revision": 0.0,
+  "K_effective": 4,
+  "elapsed_s": 314.46992015838623,
+  "haiku_n_calls": 174,
+  "haiku_total_usd": 2.04477,
+  "axes_cascade": {
+    "creativity": 0.7672825861064827,
+    "lexical_diversity": 0.9230769230769231,
+    "idiosyncrasy": 0.8311150781810284,
+    "emotional_resonance": 0.0,
+    "literary_devices": 0.5,
+    "imagery": 0.0
+  },
+  "axes_bare": {
+    "creativity": 0.7699181507615482,
+    "lexical_diversity": 1.0,
+    "idiosyncrasy": 0.8594619631767273,
+    "emotional_resonance": 0.0,
+    "literary_devices": 0.5,
+    "imagery": 0.2
+  },
+  "item_prompt": null,
+  "item_metadata": {
+    "id": "p07",
+    "topic": "first frost on a kitchen window",
+    "form": "haiku",
+    "must_avoid": [
+      "holiday imagery"
+    ]
+  },
+  "source": "phase7_cascade",
+  "result_file": "benchmarks/results_v0.4/poetry_gen.json"
+}

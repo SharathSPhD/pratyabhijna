@@ -1,0 +1,29 @@
+{
+  "name": "pratyabhijna-creative-engine",
+  "displayName": "Pratyabhijna Creative Engine (PCE)",
+  "version": "0.4.0",
+  "description": "Pratyabhijna x Active Inference creative-cognition engine v0.4 (mechanism study). Builds on v0.3's clean Haiku CLI substrate (no API key, OAuth-only) and event-gated, always-shadow-revision cascade. v0.4 makes cit_temperature causal via best-of-K candidate width, makes the free-energy budget a hard gate inside run_cascade (HaikuRateLimitError on 429), adds a pluggable commit-policy stack (always_draft / always_revise / event_gated / learned_gate / oracle), and re-enables a stratified Sonnet LLM-judge bridge for construct validity. Ships 19 MCP tools, 5 skills, 5 agents, 5 slash commands, and 3 lifecycle hooks. Configurable model defaults via PCE_MODEL/PCE_JUDGE_MODEL or ~/.config/pce/config.toml.",
+  "author": {
+    "name": "Sharath Phaneendra",
+    "email": "sharath@users.noreply.github.com",
+    "url": "https://github.com/SharathSPhD"
+  },
+  "homepage": "https://github.com/SharathSPhD/pratyabhijna",
+  "repository": "https://github.com/SharathSPhD/pratyabhijna",
+  "license": "MIT",
+  "keywords": [
+    "cursor",
+    "plugin",
+    "ai-powered",
+    "creative-cognition",
+    "active-inference",
+    "pratyabhijna",
+    "bayesian-model-reduction",
+    "vimarsa",
+    "hopfield",
+    "free-energy",
+    "clean-substrate",
+    "poetry",
+    "research-tooling"
+  ]
+}

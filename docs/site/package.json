@@ -1,0 +1,21 @@
+{
+  "name": "pce-site",
+  "type": "module",
+  "version": "0.4.0",
+  "private": true,
+  "description": "Pratyabhijna Creative Engine v0.4 — Astro Pages site",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.3.7",
+    "@astrojs/tailwind": "^6.0.2",
+    "astro": "^5.15.2",
+    "chart.js": "^4.5.0",
+    "tailwindcss": "^3.4.18"
+  }
+}

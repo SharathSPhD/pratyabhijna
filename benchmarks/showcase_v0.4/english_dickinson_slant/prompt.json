@@ -1,0 +1,11 @@
+{
+  "slug": "english_dickinson_slant",
+  "title": "Dickinson slant — 'the air holds its breath' (gate miss)",
+  "domain": "poetry_gen",
+  "prompt": "Free-verse poem in the Dickinson tradition: slant rhyme, en-dash mid-thought, anaphora.",
+  "constraint": "Dickinson slant rhyme; one en-dash mid-line; anaphoric repetition of a body-noun.",
+  "style": "dickinson_slant",
+  "chandas": null,
+  "source": "phase7_cascade",
+  "notes": "Phase 7 cascade output for poetry_gen p07 — selected as a *teachable miss*. The vimarśa event did not fire, but the shadow revision (0.567) clearly beat the draft (0.504). This is exactly the calibration gap H8b documents: the event_gated commit policy under-fires on this domain. The H8c leaderboard's verdict that always_revise out-performs event_gated is driven by items like this."
+}

@@ -1,0 +1,11 @@
+{
+  "chandas": "anustubh",
+  "syllable_count": 32,
+  "expected_count": 32,
+  "pattern": "LGGLLGGGLGGLLGLLGGGGLGGGLGGLLGLG",
+  "pattern_ok": true,
+  "count_ok": true,
+  "ok": true,
+  "notes": [],
+  "validator": "tools.sanskrit_chandas"
+}
