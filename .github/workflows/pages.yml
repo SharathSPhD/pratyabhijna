@@ -52,9 +52,11 @@ jobs:
           mkdir -p docs/site/dist/benchmarks
           cp -R benchmarks/results_v0.4 docs/site/dist/benchmarks/
           cp -R benchmarks/showcase_v0.4 docs/site/dist/benchmarks/
+          mkdir -p docs/site/dist/paper
           if [ -f paper/main.pdf ]; then
-            mkdir -p docs/site/dist/paper
             cp paper/main.pdf docs/site/dist/paper/main.pdf
+          elif [ -f paper/v0.4/main.pdf ]; then
+            cp paper/v0.4/main.pdf docs/site/dist/paper/main.pdf
           fi
 
       - uses: actions/configure-pages@v5

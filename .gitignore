@@ -63,6 +63,10 @@ paper/**/*.bbl
 paper/**/*.blg
 paper/**/*.synctex.gz
 paper/**/main.pdf
+# Allow frozen-version main.pdf snapshots (e.g. paper/v0.2/main.pdf, paper/v0.4/main.pdf)
+# so the GitHub Pages workflow can serve the canonical PDF without rebuilding LaTeX in CI.
+!paper/v0.2/main.pdf
+!paper/v0.4/main.pdf
 
 # Worktrees (not committed; created on demand)
 wt-*/
