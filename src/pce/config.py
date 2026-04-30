@@ -2,27 +2,32 @@
 
 This module provides a single, IDE-agnostic configuration surface that
 collapses the v0.3 ad-hoc env-var chain (``PCE_HAIKU_MODEL``,
-``PCE_HAIKU_CLI``, ``PCE_HAIKU_TIMEOUT_S``, …) into one
-``PCEConfig`` dataclass with a deterministic four-tier resolution order:
+``PCE_HAIKU_CLI``, ``PCE_HAIKU_TIMEOUT_S``, …) into one ``PCEConfig``
+dataclass. ``PCEConfig.load()`` resolves a config from five layers; each
+later layer overrides the earlier ones (i.e. CLI flags win over env
+vars, env vars win over user TOML, etc.):
 
-1. **Explicit override** — values passed directly to ``PCEConfig.load(**overrides)``
-   (used by the standalone ``python -m pce`` CLI to thread ``--model`` /
-   ``--cli-bin`` / ``--config`` through).
-2. **Env vars** — ``PCE_*``, then the v0.3-era ``PCE_HAIKU_*`` aliases for
-   back-compat.
-3. **User TOML** — ``~/.config/pce/config.toml`` (XDG), or
-   ``$XDG_CONFIG_HOME/pce/config.toml`` if set.
-4. **Repo TOML** — ``./pce.toml`` next to the working dir; let projects pin
-   their own model defaults without editing user state.
-5. **Hard-coded defaults** — cascade=``haiku``, judge=``sonnet``, cli=``claude``.
+1. **Hard-coded defaults** — the dataclass field defaults
+   (``cascade_model="haiku"``, ``judge_model="sonnet"``, ``cli_bin="claude"``).
+2. **Repo TOML** — ``./pce.toml`` next to the working dir; lets projects
+   pin their own model defaults without editing user state.
+3. **User TOML** — ``~/.config/pce/config.toml`` (XDG; honours
+   ``$XDG_CONFIG_HOME/pce/config.toml`` if set).
+4. **Env vars** — ``PCE_*`` (e.g. ``PCE_MODEL``, ``PCE_JUDGE_MODEL``,
+   ``PCE_CLI``, ``PCE_TIMEOUT_S``, ``PCE_COST_CAP_USD``); the v0.3-era
+   ``PCE_HAIKU_*`` aliases are still honoured for back-compat.
+5. **Explicit override** — ``overrides`` passed to
+   ``PCEConfig.load(overrides=...)``; this is how the standalone
+   ``pce`` CLI threads ``--model`` / ``--cli-bin`` / ``--config`` /
+   ``--timeout-s`` through.
 
 The Anthropic Python SDK code path that v0.3 carried (opt-in via
 ``PCE_USE_SDK=1``) is deprecated in v0.4 and removed at substrate level
 ([docs/adr/v0.4/ADR-007-sdk-removal.md]). Setting ``PCE_USE_SDK=1`` now
-emits a ``DeprecationWarning`` and is ignored. The OAuth/CLI substrate is
-the only supported path; this is what makes the plugin portable across
-Cursor, Claude Code, Bedrock, Vertex, and direct API backends without
-changing the cascade code itself.
+emits a ``DeprecationWarning`` and is ignored. The OAuth/CLI substrate
+is the only supported path; this is what makes the plugin portable
+across Cursor, Claude Code, Bedrock, Vertex, and direct API backends
+without changing the cascade code itself.
 """
 
 from __future__ import annotations
@@ -131,12 +136,17 @@ class PCEConfig:
         env: dict[str, str] | None = None,
         overrides: dict[str, Any] | None = None,
     ) -> PCEConfig:
-        """Resolve a config from defaults + repo TOML + user TOML + env + overrides.
+        """Resolve a ``PCEConfig`` by layering five sources, later wins.
 
-        Each source is layered with the later sources winning. ``user_toml``
-        and ``repo_toml`` may point to non-existent paths; missing files are
-        skipped silently. ``env`` defaults to ``os.environ``; ``overrides``
-        defaults to empty.
+        The precedence chain is, low → high:
+        ``defaults → repo TOML (./pce.toml) → user TOML
+        (~/.config/pce/config.toml) → env vars (PCE_*) → explicit
+        overrides``. Each later source wins over the earlier ones.
+
+        ``user_toml`` and ``repo_toml`` may point to non-existent paths;
+        missing files are skipped silently. ``env`` defaults to
+        ``os.environ``; ``overrides`` defaults to ``{}``. Malformed TOML
+        emits a ``RuntimeWarning`` and is skipped.
         """
         if env is None:
             env = dict(os.environ)

@@ -41,11 +41,11 @@ jobs:
 
       - name: Install Astro deps
         working-directory: docs/site
-        run: pnpm install --frozen-lockfile=false
+        run: pnpm install --frozen-lockfile
 
-      - name: Build Astro site
+      - name: Build Astro site (incl. internal-link crawl)
         working-directory: docs/site
-        run: pnpm exec astro build
+        run: pnpm run build
 
       - name: Copy raw benchmark artefacts into dist (results + showcase)
         run: |

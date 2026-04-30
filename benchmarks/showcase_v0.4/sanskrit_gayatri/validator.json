@@ -1,11 +1,13 @@
 {
   "chandas": "gayatri",
-  "syllable_count": 24,
+  "syllable_count": 214,
   "expected_count": 24,
-  "pattern": "LLGGLGGGLGGGLGLGLGLGLGGL",
+  "pattern": "GGGGLLGLLGLLLGLGLLGLLGLGLGGLLGLGLGGLGGGGGGGLGGGGGGLGGGLLLGGGGGGGGGLGGLGLLGGLGGGLLGGLLGLGGGGGGGLLLGGGGGGGGLLGGLGGGLLGGGGGGLLLGLGGGLGLGGGLGGGLGLGGGGGGGGGGLGGGGGGLLGLGGGGLGGGLLGLLGLLLGGGLLGGLGGLGLGGLLGGGLGGGLGGGGGGLLG",
   "pattern_ok": true,
-  "count_ok": true,
-  "ok": true,
-  "notes": [],
+  "count_ok": false,
+  "ok": false,
+  "notes": [
+    "expected 24 syllables (3 pādas × 8); found 214"
+  ],
   "validator": "tools.sanskrit_chandas"
 }

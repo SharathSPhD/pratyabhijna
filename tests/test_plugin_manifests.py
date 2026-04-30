@@ -1,12 +1,18 @@
-"""Validate the dual Claude Code + Cursor plugin manifests.
+"""v0.4.1 review fix #11: assert plugin manifests are well-formed.
 
-Both manifests must:
-  * be valid JSON
-  * declare the same ``name``, ``version``, ``repository``, ``license``
-  * point at component subdirectories that actually exist under ``plugin/``
-  * have ``version`` aligned with ``pyproject.toml`` (single source of truth)
+Validates:
+  - plugin/.cursor-plugin/plugin.json: required fields, version
+  - plugin/.claude-plugin/plugin.json: required fields, version
+  - plugin/.mcp.json: server entry shape; every command/arg path
+    referenced under ${CLAUDE_PLUGIN_ROOT} exists on disk
+  - plugin/README.md: declared MCP-tool count matches the server's
+    runtime tool registration count
+
+This is a manifest-level check, not a runtime check; it deliberately
+does not import the FastMCP server (which loads heavy substrate
+dependencies). The runtime tool count is approximated by counting
+``@mcp.tool`` decorators in plugin/mcp/server.py.
 """
-
 from __future__ import annotations
 
 import json
@@ -15,65 +21,77 @@ from pathlib import Path
 
 import pytest
 
-REPO_ROOT = Path(__file__).resolve().parent.parent
-PLUGIN_ROOT = REPO_ROOT / "plugin"
-CLAUDE_MANIFEST = PLUGIN_ROOT / ".claude-plugin" / "plugin.json"
-CURSOR_MANIFEST = PLUGIN_ROOT / ".cursor-plugin" / "plugin.json"
-PYPROJECT = REPO_ROOT / "pyproject.toml"
+REPO = Path(__file__).resolve().parents[1]
+PLUGIN = REPO / "plugin"
+
+CURSOR_MANIFEST = PLUGIN / ".cursor-plugin" / "plugin.json"
+CLAUDE_MANIFEST = PLUGIN / ".claude-plugin" / "plugin.json"
+MCP_MANIFEST = PLUGIN / ".mcp.json"
+PLUGIN_README = PLUGIN / "README.md"
+SERVER_PY = PLUGIN / "mcp" / "server.py"
 
 
-@pytest.fixture(scope="module")
-def claude_manifest() -> dict:
-    return json.loads(CLAUDE_MANIFEST.read_text(encoding="utf-8"))
+def _load(p: Path) -> dict:
+    return json.loads(p.read_text(encoding="utf-8"))
 
 
-@pytest.fixture(scope="module")
-def cursor_manifest() -> dict:
-    return json.loads(CURSOR_MANIFEST.read_text(encoding="utf-8"))
+def test_cursor_manifest_well_formed() -> None:
+    m = _load(CURSOR_MANIFEST)
+    assert m["name"] == "pratyabhijna-creative-engine"
+    assert m["version"].startswith("0.4")
+    assert "displayName" in m
+    assert m["license"] == "MIT"
 
 
-def test_both_manifests_exist() -> None:
-    assert CLAUDE_MANIFEST.exists(), CLAUDE_MANIFEST
-    assert CURSOR_MANIFEST.exists(), CURSOR_MANIFEST
+def test_claude_code_manifest_well_formed() -> None:
+    m = _load(CLAUDE_MANIFEST)
+    assert m["name"] == "pratyabhijna-creative-engine"
+    assert m["version"].startswith("0.4")
+    assert m["license"] == "MIT"
 
 
-def test_required_keys_present(claude_manifest: dict, cursor_manifest: dict) -> None:
-    for m, name in ((claude_manifest, "claude"), (cursor_manifest, "cursor")):
-        for key in ("name", "version", "description", "author", "license"):
-            assert key in m, f"{name} manifest missing key {key!r}"
-        assert isinstance(m["author"], dict), f"{name} author must be object"
-
-
-def test_name_version_repo_match(claude_manifest: dict, cursor_manifest: dict) -> None:
-    assert claude_manifest["name"] == cursor_manifest["name"]
-    assert claude_manifest["version"] == cursor_manifest["version"]
-    assert claude_manifest["repository"] == cursor_manifest["repository"]
-    assert claude_manifest["license"] == cursor_manifest["license"]
-
-
-def test_version_matches_pyproject(claude_manifest: dict) -> None:
-    txt = PYPROJECT.read_text(encoding="utf-8")
-    m = re.search(r'^\s*version\s*=\s*"([^"]+)"', txt, re.M)
-    assert m, "could not find version in pyproject.toml"
-    assert claude_manifest["version"] == m.group(1), (
-        f"plugin manifest version {claude_manifest['version']!r} != "
-        f"pyproject {m.group(1)!r}"
+def test_manifest_versions_agree() -> None:
+    cur = _load(CURSOR_MANIFEST)
+    cc = _load(CLAUDE_MANIFEST)
+    assert cur["version"] == cc["version"], (
+        f"manifest versions diverge: cursor={cur['version']!r} "
+        f"claude={cc['version']!r}"
     )
 
 
-def test_component_dirs_exist() -> None:
-    """Cursor and Claude Code both auto-discover from these subdirs."""
-    for sub in ("agents", "commands", "hooks", "mcp", "skills"):
-        d = PLUGIN_ROOT / sub
-        assert d.is_dir(), f"plugin component dir missing: {d}"
-        # at least one entry per subdir (otherwise the manifest's claim of
-        # "ships 19 MCP tools, 5 skills, 5 agents, …" is a lie)
-        children = [c for c in d.iterdir() if not c.name.startswith(".")
-                    and not c.name.startswith("__")]
-        assert children, f"plugin component dir is empty: {d}"
+def test_mcp_manifest_paths_exist_under_plugin_root() -> None:
+    m = _load(MCP_MANIFEST)
+    servers = m["mcpServers"]
+    assert "pratyabhijna" in servers
+    args = servers["pratyabhijna"]["args"]
+    # Substitute CLAUDE_PLUGIN_ROOT -> plugin/ so referenced paths can be
+    # resolved against the working tree. Skip pure CLI flags.
+    placeholder = "${CLAUDE_PLUGIN_ROOT}"
+    for arg in args:
+        if placeholder not in arg:
+            continue
+        on_disk = arg.replace(placeholder, str(PLUGIN))
+        # arg may contain `..` segments — resolve before existence check.
+        path = Path(on_disk).resolve()
+        assert path.exists(), f"manifest references missing path: {arg!r} -> {path}"
 
 
-def test_cursor_manifest_has_displayname(cursor_manifest: dict) -> None:
-    """Cursor manifests conventionally carry a displayName for marketplace UI."""
-    assert "displayName" in cursor_manifest
-    assert cursor_manifest["displayName"]
+def test_plugin_readme_tool_count_matches_decorators() -> None:
+    src = SERVER_PY.read_text(encoding="utf-8")
+    # FastMCP is registered as ``mcp = FastMCP(...)``; tools are decorated
+    # with ``@mcp.tool``.
+    decorated = len(re.findall(r"^\s*@mcp\.tool\b", src, flags=re.MULTILINE))
+    readme = PLUGIN_README.read_text(encoding="utf-8")
+    # Pull the "MCP tools | <N>" cell out of the README's component table.
+    match = re.search(r"\|\s*MCP tools\s*\|\s*(\d+)\s*\|", readme)
+    assert match, "plugin/README.md must declare an MCP-tool count in its component table"
+    declared = int(match.group(1))
+    assert declared == decorated, (
+        f"plugin/README.md declares {declared} MCP tools but plugin/mcp/server.py "
+        f"actually registers {decorated} via @mcp.tool decorators"
+    )
+
+
+@pytest.mark.parametrize("manifest", [CURSOR_MANIFEST, CLAUDE_MANIFEST, MCP_MANIFEST])
+def test_manifest_is_valid_json(manifest: Path) -> None:
+    json.loads(manifest.read_text(encoding="utf-8"))

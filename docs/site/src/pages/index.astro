@@ -69,7 +69,13 @@ const forestRows = [
   <h2>Forest plot — primary contrasts and pooled effect</h2>
   <ForestPlot rows={forestRows} title="H1–H4 per-domain Hedges' g (BCa 95% CI) plus H5 fixed-effects pool" xMin={-1} xMax={1} />
 
-  <CostPanel totalUsd={costLedger.total_usd} nCalls={costLedger.n_calls} perDomain={costLedger.per_domain} />
+  <CostPanel
+    totalUsd={costLedger.total_usd}
+    nCalls={costLedger.n_calls}
+    perDomain={costLedger.per_domain}
+    judgeUsd={costLedger.judge_usd ?? 0}
+    judgeCalls={costLedger.judge_calls ?? 0}
+  />
 
   <h2>Where to read more</h2>
   <ul>

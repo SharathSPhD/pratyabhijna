@@ -19,8 +19,9 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{enumitem}
-\usepackage{authblk}
-\usepackage{tcolorbox}
+% v0.4.1: drop authblk; reference paper (docs/references/main.pdf) uses
+% a single inline author + affiliation block beneath the title.
+\usepackage[most]{tcolorbox}
 
 % IAST diacritics: lmodern + T1 fontenc handle most of what we need.
 % We additionally provide an `\iast{}` macro to mark IAST tokens.
@@ -30,26 +31,54 @@
 \newtheorem{proposition}{Proposition}
 \newtheorem{lemma}{Lemma}
 
+% ---------- IEEE-style title block (cf. docs/references/main.pdf) ----------
 \title{Pratyabhij\~n\=a $\times$ Active Inference, v0.4:\\
 A Mechanism Study of Recursive Self-Reflexivity Layers\\
 for LLM Creative Cognition}
-
-\author[1]{Sharath Sathish}
-\affil[1]{Independent Researcher}
-
+\author{
+  \normalsize
+  Sharath Sathish\\
+  \normalsize\textit{University of York, United Kingdom}\\[2pt]
+  \small\texttt{github.com/SharathSPhD/pratyabhijna}\;|\;\textit{Plugin marketplace:} \texttt{plugin/.cursor-plugin/plugin.json}\\
+  \small\textit{Reproducibility manifest:} \texttt{benchmarks/results\_v0.4/stats.json}, \texttt{audit/v0.4/cost\_ledger\_merged.json},\\[-2pt]
+  \small\hphantom{\textit{Reproducibility manifest:}}\;\texttt{paper/v0.4/main.pdf}
+}
 \date{\today}
 
 \begin{document}
 \maketitle
 
+\begin{tcolorbox}[
+  colback=yellow!8!white, colframe=yellow!50!black, arc=2pt,
+  left=8pt, right=8pt, top=4pt, bottom=4pt,
+  enhanced, sharp corners=southwest,
+  title={Reproducibility manifest},
+  fonttitle=\small\bfseries,
+]
+\small
+Every numerical claim, figure, and table in this paper is bound to
+machine-readable artefacts under
+\texttt{benchmarks/results\_v0.4/} and \texttt{audit/v0.4/} of
+\href{https://github.com/SharathSPhD/pratyabhijna}{\texttt{github.com/SharathSPhD/pratyabhijna}}
+(commit pinned in the v0.4.0 git tag). The Phase~7 Bedrock pilot's
+per-call cost ledger lives at \texttt{audit/v0.4/cost\_ledger\_merged.json};
+the H1--H9 statistics block at \texttt{benchmarks/results\_v0.4/stats.json};
+the 23-pair Sonnet judge bridge with replay-auditable
+\texttt{formatted\_prompt\_sha256} hashes at
+\texttt{benchmarks/results\_v0.4/judge.jsonl}; the 9-output showcase with
+full draft / shadow-revision / commit traces under
+\texttt{benchmarks/showcase\_v0.4/}; the live Astro-powered GitHub Pages
+mirror at
+\href{https://sharathsphd.github.io/pratyabhijna/}{\texttt{sharathsphd.github.io/pratyabhijna}}.
+\end{tcolorbox}
+
 \begin{abstract}
-We report v0.4 of the \emph{Pratyabhij\~n\=a Creative Engine} (PCE), a recognitional cascade that operationalises Abhinavagupta's five-\iast{\'sakti} architecture (\iast{cit}, \iast{\=ananda}, \iast{icch\=a}, \iast{j\~n\=ana}, \iast{kriy\=a}) as an executable layer over a Claude Haiku substrate, with a recursive \iast{vimar\'sa} loop that may revise the surface and a Bayesian-Model-Reduction step that prunes a candidate posterior via \iast{apohana-\'sakti} (contrastive exclusion).
-v0.4 is deliberately framed as a \emph{mechanism study}, not a horse race: at the available pilot $n$ (4 domains, 25 paired items in total) the headline cascade-vs-bare contrasts are statistically inconclusive, but several mechanism-level signals are robust. We make four contributions. \textbf{(i)~A four-arm Bedrock pilot} (Haiku as cascade scorer, Sonnet-4 as judge) under a bytewise-isolated CLI substrate yielded H5.v4 fixed-effects pooled $g=+\textbf{0.14}$ (95\% CI $[-0.26,\,+0.54]$, $n=25$) --- not significant, but with a directional pattern dominated by \texttt{poetry\_interp} and \texttt{sci\_creativity}.
-\textbf{(ii)~A within-cascade revision-quality test} (H8a, $n=27$) shows that the shadow revision strictly beats the draft on average, $g=+0.65$, $p\approx 1.2\!\cdot\! 10^{-4}$. The cascade reliably \emph{produces} a better surface; the question is whether it reliably \emph{commits} the better surface.
-\textbf{(iii)~A four-policy commit multiplexer} (H8c) ranks \texttt{always\_revise} ($g=+0.53$) above \texttt{learned\_gate} ($g=+0.39$) above \texttt{event\_gated} ($g=+0.21$) above \texttt{always\_draft} ($g=-0.07$); pairwise paired permutation rejects \texttt{always\_revise} $=$ \texttt{learned\_gate} ($p\approx 0.034$) and \texttt{event\_gated} $=$ \texttt{always\_draft} ($p\approx 0.0073$). The \iast{vimar\'sa} event gate as currently defined is mis-calibrated (H8b: F1$\,=\,$0.52 vs.\ a learned gate's F1$\,=\,$0.65); the cascade chooses to revise less often than it should.
-\textbf{(iv)~A judge-vs-scorer agreement test} (H9, $n=23$) finds Spearman $\rho=0.0$ with sign-agreement 56.5\%: the Sonnet judge and the Haiku composite-score head are \emph{not} measuring the same thing on the cascade items. We treat this not as a defect but as a load-bearing finding for any cascade architecture that uses a small-LM scorer to gate a large-LM commit.
-The pilot consumed \$12.73 over 1{,}277 Bedrock calls. We additionally release a 9-output \emph{showcase} (3 Sanskrit chandas $\cdot$ 3 English poetry styles $\cdot$ 3 scientific-creativity prompts) with full draft / shadow-revision / commit traces, an Astro-powered GitHub Pages site reproducing every figure and number from the underlying artefacts, and a Cursor-portable plugin manifest plus a standalone \texttt{python -m pce} CLI that exercise exactly the same OAuth-CLI substrate the Bedrock pilot used. We close with an honest limitations section that addresses the unmerged-state v0.3 critique directly: v0.3 results were never merged to \texttt{main} because the v0.3 SPEC had a closing "negative-result obligation" clause that the run met but the prose did not own; v0.4 owns the negative result, ships the mechanism findings, and makes the falsifiable next test (a chandas-aware scorer) explicit.
+We report v0.4 of the \emph{Pratyabhij\~n\=a Creative Engine} (PCE), a recognitional cascade that operationalises Abhinavagupta's five-\iast{\'sakti} architecture (\iast{cit}, \iast{\=ananda}, \iast{icch\=a}, \iast{j\~n\=ana}, \iast{kriy\=a}) as an executable layer over a Claude Haiku substrate, with a recursive \iast{vimar\'sa} loop that may revise the surface and a Bayesian-Model-Reduction step that prunes a candidate posterior via \iast{apohana-\'sakti} (contrastive exclusion). v0.4 is deliberately framed as a \emph{mechanism study}, not a horse race: at the available pilot $n$ (four domains, twenty-five paired items in total) the headline cascade-versus-bare contrasts are statistically inconclusive, but several mechanism-level signals are robust. The four-arm Bedrock pilot (Haiku as cascade scorer, Sonnet~4.5 as judge) under a bytewise-isolated CLI substrate yields an H5.v4 fixed-effects pool of $g=+0.14$ (BCa~95\% CI $[-0.26,+0.54]$, $n=25$) --- not significant, but with a directional pattern dominated by \texttt{poetry\_interp} and \texttt{sci\_creativity}. A within-cascade revision-quality test (H8a, $n=27$) shows that the shadow revision strictly beats the draft on average at $g=+0.65$ ($p\approx 1.2\!\cdot\! 10^{-4}$): the cascade reliably \emph{produces} a better surface, but the open question is whether it reliably \emph{commits} the better surface. A four-policy commit multiplexer (H8c) ranks \texttt{always\_revise} ($g=+0.53$) above \texttt{learned\_gate} ($g=+0.39$) above \texttt{event\_gated} ($g=+0.21$) above \texttt{always\_draft} ($g=-0.07$), with paired permutation rejecting \texttt{always\_revise} $=$ \texttt{learned\_gate} ($p\approx 0.034$) and \texttt{event\_gated} $=$ \texttt{always\_draft} ($p\approx 0.0073$); the \iast{vimar\'sa} event gate as currently defined is mis-calibrated (H8b: F1${}=0.52$ vs.\ a learned gate's F1${}=0.65$), so the cascade chooses to revise less often than it should. A judge-vs-scorer agreement test (H9, $n=23$) finds Spearman $\rho=0.0$ with sign-agreement 56.5\%: the Sonnet judge and the Haiku composite scorer are not measuring the same thing on the cascade items, which we treat not as a defect but as a load-bearing finding for any cascade architecture that uses a small-LM scorer to gate a large-LM commit. The pilot's cost ledger splits cleanly into two model lines: the Haiku cascade consumed \$12.73 over 1{,}277 Bedrock calls (\texttt{audit/v0.4/cost\_ledger\_merged.json}); the stratified Sonnet-judge bridge added \$0.48 over 23 paired judgements (\texttt{benchmarks/results\_v0.4/judge\_agreement.json}); combined v0.4 pilot spend is \$13.21 over 1{,}300 CLI invocations. We additionally release a nine-output showcase (three Sanskrit chandas, three English poetry styles, three scientific-creativity prompts) with full draft / shadow-revision / commit traces, an Astro-powered GitHub Pages site reproducing every figure and number from the underlying artefacts, and a Cursor-portable plugin manifest plus a standalone \texttt{pce} command-line interface that exercise the same OAuth-CLI substrate the Bedrock pilot used. We close with a limitations discussion that addresses the v0.3 unmerged-state critique directly: v0.3 results were never merged to \texttt{main} because the v0.3 SPEC carried a negative-result obligation the run met but the prose did not own; v0.4 owns the negative result, ships the mechanism findings, and makes the falsifiable next test --- a chandas-aware scorer --- explicit.
 \end{abstract}
+
+\medskip\noindent\textbf{Keywords:} active inference; Bayesian model reduction; classical Indian aesthetics; cognitive architectures; commit gating; creative cognition; free-energy principle; LLM agents; mechanism study; OAuth-only CLI substrate; Pratyabhij\~n\=a; recursive self-reflexivity; \iast{vimar\'sa}; Cursor and Claude Code plugins.
+
+\medskip\noindent\textbf{Plain-language summary.} Large language models can compose at speed but they rarely revise themselves the way a human writer does. Our system, the \emph{Pratyabhij\~n\=a Creative Engine}, makes the model run a five-stage cascade that ends with a recursive ``\iast{vimar\'sa}'' step in which the model rereads its own draft and decides whether to commit the draft or a shadow revision instead; the architecture is borrowed, by careful translation, from the Pratyabhij\~n\=a school of Kashmir Shaivism. We ran a four-arm pilot on AWS Bedrock against four creative-cognition domains (poetry generation, poetry interpretation, alternative-uses brainstorming, and scientific-creativity prompts), with a separate Anthropic Sonnet model acting as a paired judge. The headline cascade-versus-bare contrast is statistically inconclusive at this sample size, but two mechanism-level findings are robust: the recursive revision step does produce strictly better text on average, and a learned commit gate decisively beats the original \iast{vimar\'sa} event gate. The judge model and our internal scorer disagree on which output is better at chance rate, and we treat that disagreement as a load-bearing finding rather than a noisy nuisance. Every number we report is reproducible from the released JSON artefacts and the v0.4.0 git tag, the cascade ships as a Cursor and Claude Code plugin and as a standalone command-line tool, and a public website mirrors every figure in the paper.
 
 \input{sections/01_introduction}
 \input{sections/02_related_work}

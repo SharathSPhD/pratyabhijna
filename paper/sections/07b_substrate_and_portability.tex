@@ -14,15 +14,7 @@ PCE ships two plugin manifests that share their semantic content: \texttt{plugin
 
 \subsection{Standalone CLI}
 
-For environments without an IDE plugin runtime (CI, batch jobs, the Bedrock Phase 7 driver itself), the same cascade can be exercised through the \texttt{pce} console script (\texttt{src/pce/cli.py}), wired into \texttt{pyproject.toml}'s \texttt{[project.scripts]}. The CLI exposes five subcommands:
-
-\begin{itemize}[leftmargin=1.4em]
-\item \texttt{pce config show} -- print the resolved \texttt{PCEConfig}, including which tier each field came from. Useful for auditing portability deployments.
-\item \texttt{pce smoke} -- run a one-shot connectivity check against the configured cascade model. Verifies the \texttt{claude} binary is on \texttt{\$PATH} and the substrate is reachable. \texttt{--dry-run} skips the actual call.
-\item \texttt{pce cascade} -- run a single full cascade pass against an arbitrary prompt and constraint, dumping the full draft / shadow-revision / commit trace to \texttt{--out}. The same code path the Phase 7 pilot exercised.
-\item \texttt{pce judge-pair} -- invoke the Sonnet judge on a draft / revision pair and emit the per-axis judge-scoring breakdown.
-\item \texttt{pce showcase} -- list, regenerate, or inspect any of the nine v0.4 showcase outputs (\S\ref{sec:showcase}).
-\end{itemize}
+For environments without an IDE plugin runtime --- continuous integration, batch jobs, the Bedrock Phase~7 driver itself --- the same cascade can be exercised through the \texttt{pce} console script (\texttt{src/pce/cli.py}), wired into \texttt{pyproject.toml}'s \texttt{[project.scripts]}. The CLI exposes five subcommands. \texttt{pce config show} prints the resolved \texttt{PCEConfig} (including which tier each field came from), which is useful for auditing portability deployments. \texttt{pce smoke} runs a one-shot connectivity check against the configured cascade model, verifying that the \texttt{claude} binary is on \texttt{\$PATH} and that the substrate is reachable; \texttt{--dry-run} skips the actual call. \texttt{pce cascade} runs a single full cascade pass against an arbitrary prompt and constraint, dumping the full draft / shadow-revision / commit trace to \texttt{--out} via the same code path the Phase~7 pilot exercised. \texttt{pce judge-pair} invokes the Sonnet judge on a draft / revision pair and emits the per-axis judge-scoring breakdown. \texttt{pce showcase} lists, regenerates, or inspects any of the nine v0.4 showcase outputs (\S\ref{sec:showcase}).
 
 The \texttt{pce} CLI's exit codes follow the standard Unix convention (0 on success, $\geq 1$ on documented failure modes); a missing \texttt{claude} binary returns 2 with a one-line diagnostic that includes the exact \texttt{PATH} used at lookup time. This means the standalone CLI can be wrapped in a shell script and used as a substrate for any orchestration tooling without depending on Cursor or Claude Code's runtime semantics.
 

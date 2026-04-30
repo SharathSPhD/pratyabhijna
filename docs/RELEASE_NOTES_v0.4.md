@@ -23,7 +23,9 @@ This is the project's first portable release: PCE now ships as a Cursor plugin, 
 | H1.v4–H4.v4 — cascade vs bare per domain | **inconclusive** at this *n* | *g* ∈ [−0.32, +0.32]; retrospective power ≤ 0.24 |
 | H5.v4 — fixed-effects pool of H1–H4 | **not supported** | pooled *g* = 0.145, CI [−0.255, 0.544] |
 | H9.v4 — judge-vs-proxy agreement | **flagged** as a metric-design issue | ρ = 0.0; sign-agreement 56.5 %, *n* = 23 |
-| Pilot total cost | — | $13.21 across 1 277 Bedrock calls |
+| Pilot Haiku-cascade cost | — | $12.73 across 1 277 Bedrock calls (`audit/v0.4/cost_ledger_merged.json`) |
+| Pilot Sonnet-judge cost  | — | $0.48 across 23 judge rows (`benchmarks/results_v0.4/judge_agreement.json`) |
+| Combined v0.4 pilot spend | — | $13.21 across 1 300 CLI invocations |
 
 ## What changed since v0.3
 

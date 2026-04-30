@@ -59,7 +59,7 @@ const perDomain = stats.fixed_effects?.H5.per_domain_n ?? {};
   </p>
 
   <pre class="font-mono text-sm bg-[var(--bg-soft)] p-3 rounded border border-[var(--rule)]">{`pce smoke
-pce cascade --prompt-file prompts/anushtubh.txt --model haiku --K 4 --seed 4242
+pce cascade --prompt "$(cat prompts/anushtubh.txt)" --model haiku --k 4 --seed 4242
 python -m benchmarks.figures --version v0.4
 python -m benchmarks.autoreport --version v0.4 --strict`}</pre>
 

@@ -50,16 +50,7 @@ H8a.v4 is the load-bearing positive finding of the v0.4 pilot. Within \texttt{ha
 \label{fig:v04h8b}
 \end{figure}
 
-\paragraph{H8c: commit-policy leaderboard.} The four commit policies, ranked by paired delta vs.\ \texttt{haiku\_bare} on the common $n=25$ paired set:
-
-\begin{itemize}[leftmargin=2em,itemsep=2pt,topsep=2pt]
-\item \texttt{always\_revise}: $\Delta = +0.051$, $g = +0.53$, BCa CI $[+0.022,\,+0.096]$, perm $p = 0.0028$.
-\item \texttt{learned\_gate}: $\Delta = +0.039$, $g = +0.39$, BCa CI $[+0.008,\,+0.087]$, perm $p = 0.026$.
-\item \texttt{event\_gated}: $\Delta = +0.020$, $g = +0.21$, BCa CI $[-0.008,\,+0.066]$, perm $p = 0.158$.
-\item \texttt{always\_draft}: $\Delta = -0.007$, $g = -0.07$, BCa CI $[-0.039,\,+0.043]$, perm $p = 0.635$.
-\end{itemize}
-
-Pairwise paired-permutation $p$-values reject \texttt{always\_revise} = \texttt{learned\_gate} ($p\approx 0.034$) and \texttt{event\_gated} = \texttt{always\_draft} ($p\approx 0.0073$); the other four pairwise comparisons are not significant at $\alpha=0.05$. The headline reading is: \texttt{always\_revise} > \texttt{learned\_gate} > \texttt{event\_gated} > \texttt{always\_draft}, with the gap between the top two and the bottom two being where the cascade earns its keep. The learned gate would, in principle, be the cost-effective choice (it would skip the second pass on items it predicts would not benefit, halving the per-item Haiku spend on those items); but its recall is still well below the always-revise unconditional commit, so the cost-quality trade-off is what the v0.5 ladder targets.
+\paragraph{H8c: commit-policy leaderboard.} The four commit policies, ranked by paired delta versus \texttt{haiku\_bare} on the common $n=25$ paired set, run as follows. \texttt{always\_revise} sits at the top with $\Delta = +0.051$, $g=+0.53$, BCa~95\% CI $[+0.022,+0.096]$, and a paired-permutation $p=0.0028$. \texttt{learned\_gate} follows at $\Delta = +0.039$, $g=+0.39$, BCa~95\% CI $[+0.008,+0.087]$, $p=0.026$. \texttt{event\_gated} comes in at $\Delta = +0.020$, $g=+0.21$, BCa~95\% CI $[-0.008,+0.066]$, $p=0.158$ (i.e.\ inconclusive at $\alpha=0.05$). \texttt{always\_draft}, the degenerate baseline, sits at $\Delta = -0.007$, $g=-0.07$, BCa~95\% CI $[-0.039,+0.043]$, $p=0.635$. Pairwise paired-permutation tests reject \texttt{always\_revise}${}={}$\texttt{learned\_gate} ($p\approx 0.034$) and \texttt{event\_gated}${}={}$\texttt{always\_draft} ($p\approx 0.0073$); the other four pairwise comparisons are not significant at $\alpha=0.05$. The headline reading is therefore \texttt{always\_revise}${}>{}$\texttt{learned\_gate}${}>{}$\texttt{event\_gated}${}>{}$\texttt{always\_draft}, with the gap between the top two and the bottom two being where the cascade earns its keep. The learned gate would, in principle, be the cost-effective choice --- it would skip the second pass on items it predicts will not benefit, halving the per-item Haiku spend on those items --- but its recall is still well below the unconditional always-revise commit, so the cost-quality trade-off is what the v0.5 ladder targets.
 
 \begin{figure}[ht]
 \centering
@@ -81,7 +72,7 @@ H9.v4 measures the per-item agreement between two independent evaluators of the 
 
 \subsection{Cost ledger}\label{sec:results_cost}
 
-The Phase 7 Bedrock pilot consumed $\$12.73$ across $1{,}277$ Bedrock calls (Haiku scorer + Sonnet judge), over $\sim\!200$ minutes of wall-clock time across four parallel domain runs. Per-domain spend ranges from $\$2.71$ (\texttt{poetry\_interp}, 494 calls --- the largest domain) to $\$3.48$ (\texttt{poetry\_gen}, 296 calls). The cost-per-pair is dominated by the cascade's $K{=}3$ candidates plus the always-shadow revision; reducing $K$ to 2 would roughly cut the cascade arms' spend by a third. Figure~\ref{fig:v04cost} reports the per-domain breakdown.
+The v0.4 cost ledger separates the Haiku cascade and the Sonnet judge, because they are different models running different prompts and conflating them was an artefact of an earlier roll-up. The Haiku cascade arms (\texttt{haiku\_bare}, \texttt{haiku\_cascade}, \texttt{haiku\_bare\_2K\_scorer}, \texttt{haiku\_generic\_revise\_2pass}) consumed $\$12.73$ over $1{,}277$ Bedrock calls, recorded in \texttt{audit/v0.4/cost\_ledger\_merged.json}. The stratified Sonnet judge added $\$0.48$ over 23 paired judgements, recorded in the audit block of \texttt{benchmarks/results\_v0.4/judge\_agreement.json}. The combined v0.4 pilot spend was therefore $\$13.21$ over $1{,}300$ CLI invocations, and ran for roughly 200 minutes of wall-clock time across four parallel domain runs. Per-domain Haiku-cascade spend ranges from $\$2.71$ (\texttt{poetry\_interp}, 494 calls --- the largest domain) to $\$3.48$ (\texttt{poetry\_gen}, 296 calls). The cost-per-pair is dominated by the cascade's $K{=}3$ candidates plus the always-shadow revision; reducing $K$ to 2 would roughly cut the cascade arms' spend by a third. Figure~\ref{fig:v04cost} reports the per-domain Haiku-cascade breakdown; the Sonnet judge surcharge does not enter that figure because the judge runs out-of-band on a 23-pair stratified subset.
 
 \begin{figure}[ht]
 \centering

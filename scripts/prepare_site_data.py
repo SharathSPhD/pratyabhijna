@@ -22,7 +22,29 @@ def write_json(path: Path, payload: Any) -> None:
 
 
 def prepare_stats() -> None:
-    raw = json.loads((RESULTS / "stats.json").read_text(encoding="utf-8"))
+    stats_path = RESULTS / "stats.json"
+    if not stats_path.exists():
+        # v0.4.1 review fix #8: emit a structurally valid empty bundle
+        # so the Astro site builds even when the stats.json is missing
+        # (e.g. on a fresh clone before the pilot has been replayed).
+        # The Zod schema in docs/site/src/lib/stats.ts will surface this
+        # as a missing-data state, not a crash.
+        empty = {
+            "config": {"version": "v0.4", "framework": "PCE"},
+            "primary": {},
+            "fixed_effects": {},
+            "shadow_revision": {"g": 0.0, "n": 0, "p": 1.0, "ci": [0.0, 0.0], "supported": False},
+            "gate_calibration": {
+                "event_gated": {"precision": 0.0, "recall": 0.0, "f1": 0.0, "accuracy": 0.0},
+                "learned_gate": {"precision": 0.0, "recall": 0.0, "f1": 0.0, "accuracy": 0.0},
+                "supported": False,
+            },
+            "commit_policy": {"leader_board": [], "winner": "—"},
+        }
+        write_json(SITE_DATA / "stats_v0.4.json", empty)
+        print(f"WARN: {stats_path} missing; wrote empty stats bundle.")
+        return
+    raw = json.loads(stats_path.read_text(encoding="utf-8"))
 
     primary = {}
     for h in ("H1", "H2", "H3", "H4"):
@@ -121,10 +143,19 @@ def prepare_judge_agreement() -> None:
 
 
 def prepare_cost_ledger() -> None:
+    """Write cost_ledger_v0.4.json with the v0.4.1 split: Haiku cascade
+    ledger, Sonnet judge ledger, and a derived combined total."""
     src = AUDIT / "cost_ledger_merged.json"
+    judge_src = RESULTS / "judge_agreement.json"
+    judge = json.loads(judge_src.read_text(encoding="utf-8")) if judge_src.exists() else {}
+    judge_usd = float(judge.get("total_cost_usd") or 0.0)
+    judge_calls = int(judge.get("n") or 0)
+
     if not src.exists():
         write_json(SITE_DATA / "cost_ledger_v0.4.json", {
             "total_usd": 0.0, "n_calls": 0, "per_domain": {},
+            "judge_usd": judge_usd, "judge_calls": judge_calls,
+            "combined_usd": judge_usd, "combined_calls": judge_calls,
         })
         return
     raw = json.loads(src.read_text(encoding="utf-8"))
@@ -137,10 +168,16 @@ def prepare_cost_ledger() -> None:
                 "calls": int(d.get("n_calls", d.get("total_calls", 0))),
                 "cost_usd": float(d.get("total_usd", d.get("total_cost_usd", 0.0))),
             }
+    cascade_usd = float(raw.get("total_usd", raw.get("total_cost_usd", 0.0)))
+    cascade_calls = int(raw.get("n_calls", raw.get("total_calls", 0)))
     write_json(SITE_DATA / "cost_ledger_v0.4.json", {
-        "total_usd": float(raw.get("total_usd", raw.get("total_cost_usd", 0.0))),
-        "n_calls": int(raw.get("n_calls", raw.get("total_calls", 0))),
+        "total_usd": cascade_usd,
+        "n_calls": cascade_calls,
         "per_domain": per_domain,
+        "judge_usd": judge_usd,
+        "judge_calls": judge_calls,
+        "combined_usd": cascade_usd + judge_usd,
+        "combined_calls": cascade_calls + judge_calls,
     })
 
 
@@ -236,11 +273,26 @@ def copy_static_benchmarks() -> None:
 
 
 def copy_paper_pdf() -> None:
-    src = REPO_ROOT / "paper" / "main.pdf"
-    if src.exists():
-        dst = REPO_ROOT / "docs" / "site" / "public" / "paper" / "main.pdf"
-        dst.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(src, dst)
+    """Stage paper/main.pdf into docs/site/public/paper/main.pdf.
+
+    v0.4.1 review fix #8: paper/main.pdf is gitignored (it's a build
+    artefact) but paper/v0.4/main.pdf is the frozen snapshot we ship.
+    Try the freshly built one first, then fall back to the snapshot;
+    that keeps the live site working even if the LaTeX build hasn't
+    been re-run on this machine.
+    """
+    candidates = [
+        REPO_ROOT / "paper" / "main.pdf",
+        REPO_ROOT / "paper" / "v0.4" / "main.pdf",
+    ]
+    src = next((p for p in candidates if p.exists()), None)
+    if src is None:
+        print("WARN: no paper PDF found at paper/main.pdf or paper/v0.4/main.pdf; "
+              "the site will 404 on the Paper PDF link.")
+        return
+    dst = REPO_ROOT / "docs" / "site" / "public" / "paper" / "main.pdf"
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(src, dst)
 
 
 def copy_figures() -> None:

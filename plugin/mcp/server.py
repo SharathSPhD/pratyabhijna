@@ -1,41 +1,48 @@
-"""Pratyabhijna Creative Engine - MCP server (v0.3).
+"""Pratyabhijna Creative Engine — MCP server (v0.4).
 
-Exposes the seven cascade operators, the cascade orchestrator, consolidation
-routines, and a handful of audit/diagnostic utilities. v0.3 (ADR-001 .. ADR-005)
-adds:
+Exposes the seven cascade operators, the cascade orchestrator,
+consolidation routines, and a handful of audit/diagnostic utilities.
+The server registers 20 MCP tools (count is asserted by
+``tests/test_plugin_manifests.py``); ``mcp.list_tools`` is the
+runtime-of-record.
+
+v0.4 carries the v0.3 substrate posture forward and removes the SDK
+code path:
 
 * a clean Haiku CLI substrate (subprocess flag + scrubbed HOME isolation;
   see ``haiku_clean_substrate_probe`` for the live integrity probe);
-* event-gated, always-shadow-revision cascade (``pce_cascade`` now takes
+* event-gated, always-shadow-revision cascade (``pce_cascade`` takes
   ``commit_policy`` and ``cit_temperature``);
-* two new control arms in ``_resolve_arm`` -- ``haiku_bare_2K`` and
-  ``haiku_generic_revise`` -- for the four-arm benchmark fairness contrast;
-* a per-cascade Hopfield ālayavijñāna with introspection via the new
+* a learned commit gate alongside the v0.3 event gate (ADR-002);
+* two control arms in ``_resolve_arm`` -- ``haiku_bare_2K`` and
+  ``haiku_generic_revise`` -- for the four-arm fairness contrast;
+* a per-cascade Hopfield ālayavijñāna with introspection via the
   ``hopfield_state`` tool (the ``HopfieldStore`` from
-  ``pce.active_inference.hopfield``, distinct from the legacy
-  v0.1 store under ``pce.substrate.hopfield``).
+  ``pce.active_inference.hopfield``, distinct from the legacy v0.1
+  store under ``pce.substrate.hopfield``).
 
-All v0.1 / v0.2 tool names are preserved for backward compatibility.
+All v0.1 / v0.2 / v0.3 tool names are preserved for backward
+compatibility. Substrate singletons (LocalLM, HaikuLM, Embedder,
+HopfieldStore) are held as process-level state so each model is loaded
+only once per session.
 
-Substrate singletons (LocalLM, HaikuLM, Embedder, HopfieldStore) are held as
-process-level state so each model is loaded only once per session.
+Env vars (the plugin reads ``PCE_*`` via ``pce.config.PCEConfig`` —
+see ``docs/RUN_LOCAL.md`` for the full precedence chain):
 
-Env vars:
-
-* ``PCE_LM_MODEL``   - HF id for the local LM (default ``Qwen/Qwen2-1.5B-Instruct``).
-* ``PCE_LM_DEVICE``  - ``cpu``/``cuda``/``mps`` override; default autodetect.
-* ``PCE_LM_DTYPE``   - ``float32``/``float16`` override; default autodetect.
-* ``PCE_HAIKU_CLI``  - path to the ``claude`` binary (default ``claude``).
-* ``PCE_HAIKU_MODEL``- Haiku model alias (default ``haiku``).
-* ``PCE_HAIKU_COST_CAP_USD`` - per-process budget cap for Haiku calls.
-* ``PCE_USE_SDK=1``  - prefer the Anthropic SDK path when ``ANTHROPIC_API_KEY``
-  is set; otherwise the CLI is used.
+* ``PCE_LM_MODEL``   — HF id for the local LM (default ``Qwen/Qwen2-1.5B-Instruct``).
+* ``PCE_LM_DEVICE``  — ``cpu``/``cuda``/``mps`` override; default autodetect.
+* ``PCE_LM_DTYPE``   — ``float32``/``float16`` override; default autodetect.
+* ``PCE_CLI``        — path to the ``claude`` binary (default ``claude``);
+  the legacy ``PCE_HAIKU_CLI`` alias is still honoured.
+* ``PCE_CASCADE_MODEL`` / ``PCE_HAIKU_MODEL`` — Haiku model alias (default ``haiku``).
+* ``PCE_COST_CAP_USD`` / ``PCE_HAIKU_COST_CAP_USD`` — per-process budget cap.
 
 Run via::
 
     uv run python plugin/mcp/server.py
 
-Or via Claude Code's plugin loader (see plugin/.mcp.json).
+Or via Claude Code's plugin loader (see plugin/.mcp.json), which spawns
+this process with ``${CLAUDE_PLUGIN_ROOT}/plugin/mcp/server.py``.
 """
 from __future__ import annotations
 

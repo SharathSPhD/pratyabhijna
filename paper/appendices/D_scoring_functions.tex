@@ -3,37 +3,13 @@
 All four scoring functions live in \texttt{benchmarks/scoring.py} and are deterministic. Each returns a \texttt{Score(axes: dict[str, float], composite: float)}. The composite is the unweighted mean of the per-axis scores; we keep the per-axis breakdown in the audit log for the figures in \S\ref{sec:results}.
 
 \subsection{\texttt{score\_poetry\_gen}}
-Six axes (creativity, lexical diversity, idiosyncrasy, emotional resonance, literary devices, imagery), all computed from local statistics:
-\begin{itemize}
-\item \textbf{creativity}: $1 - \cos(\phi(\text{surface}), \phi(\text{topic}))$, normalised to $[0, 1]$.
-\item \textbf{lexical diversity}: type/token ratio.
-\item \textbf{idiosyncrasy}: 1 minus the maximum cosine to a corpus of 20 ``canonical'' poems on similar topics.
-\item \textbf{emotional resonance}: presence of any of $\{$love, fear, hope, grief, joy, longing$\}$ token-stems weighted by sentence count.
-\item \textbf{literary devices}: heuristic regex check for alliteration, anaphora, simile-cue (``like'', ``as''), enjambment.
-\item \textbf{imagery}: cosine to a small ``imagery vocabulary'' (\{light, shadow, sky, river, leaf, ...\}) cluster centroid.
-\end{itemize}
+\texttt{score\_poetry\_gen} returns six axes, all computed from local statistics. \emph{creativity} is $1 - \cos(\phi(\text{surface}), \phi(\text{topic}))$, normalised to $[0, 1]$. \emph{lexical diversity} is the type-token ratio. \emph{idiosyncrasy} is one minus the maximum cosine to a corpus of 20 ``canonical'' poems on similar topics. \emph{emotional resonance} fires on the presence of any of $\{$love, fear, hope, grief, joy, longing$\}$ token-stems and is weighted by sentence count. \emph{literary devices} is a heuristic regex check for alliteration, anaphora, simile cues (``like'', ``as''), and enjambment. \emph{imagery} is the cosine to a small imagery-vocabulary cluster centroid drawn from $\{$light, shadow, sky, river, leaf, ...$\}$.
 
 \subsection{\texttt{score\_poetry\_interp}}
-Three axes:
-\begin{itemize}
-\item \textbf{aspect\_count}: count of aspect targets whose cosine to the surface is $\geq 0.40$.
-\item \textbf{novelty}: 1 minus the maximum cosine to the retrieval set.
-\item \textbf{coverage}: mean cosine across all aspect targets.
-\end{itemize}
+\texttt{score\_poetry\_interp} returns three axes. \emph{aspect\_count} is the count of aspect targets whose cosine to the surface is at least $0.40$. \emph{novelty} is one minus the maximum cosine to the retrieval set. \emph{coverage} is the mean cosine across all aspect targets.
 
 \subsection{\texttt{score\_aut}}
-Three axes:
-\begin{itemize}
-\item \textbf{creativity}: 1 minus the cosine to the standard-use sentence.
-\item \textbf{lexical\_diversity}: type/token ratio.
-\item \textbf{feasibility}: presence of feasibility-cue tokens in the candidate set.
-\end{itemize}
+\texttt{score\_aut} returns three axes. \emph{creativity} is one minus the cosine to the standard-use sentence. \emph{lexical\_diversity} is the type-token ratio. \emph{feasibility} fires on the presence of feasibility-cue tokens in the candidate set.
 
 \subsection{\texttt{score\_sci\_creativity}}
-Four axes:
-\begin{itemize}
-\item \textbf{non\_textbook\_novelty}: 1 minus the cosine to the textbook one-liner.
-\item \textbf{framing\_coverage}: mean cosine across the framing targets.
-\item \textbf{depth}: log-length normalised to $[0,1]$.
-\item \textbf{multi\_framing}: count of framing targets with cosine $\geq 0.35$, divided by the total.
-\end{itemize}
+\texttt{score\_sci\_creativity} returns four axes. \emph{non\_textbook\_novelty} is one minus the cosine to the textbook one-liner. \emph{framing\_coverage} is the mean cosine across the framing targets. \emph{depth} is log-length normalised to $[0,1]$. \emph{multi\_framing} is the count of framing targets whose cosine is at least $0.35$, divided by the total number of framing targets.

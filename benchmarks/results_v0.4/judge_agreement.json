@@ -51,5 +51,197 @@
   "treatment_arm": "haiku_cascade",
   "control_arm": "haiku_bare",
   "model": "global.anthropic.claude-sonnet-4-5-20250929-v1:0",
-  "prompt_sha256": "5b39ee653b4aa4fe4d3c007f2f0237b9839975c3347679d8a73a56e16e4ac0d9"
+  "prompt_sha256": "5b39ee653b4aa4fe4d3c007f2f0237b9839975c3347679d8a73a56e16e4ac0d9",
+  "formatted_prompt_sha256_index": [
+    {
+      "domain": "poetry_gen",
+      "item_id": "p09",
+      "treatment_arm": "haiku_cascade",
+      "control_arm": "haiku_bare",
+      "position_swap": true,
+      "formatted_prompt_sha256": "24102e5d8bb013b6f96b75486f21a6b4ee28a37806c4f6ad1549b3b8683d4884"
+    },
+    {
+      "domain": "poetry_gen",
+      "item_id": "p07",
+      "treatment_arm": "haiku_cascade",
+      "control_arm": "haiku_bare",
+      "position_swap": true,
+      "formatted_prompt_sha256": "08d7cacba7183e5823d45985083f892db87a1416b6fbaa14f2f6c99ad759adac"
+    },
+    {
+      "domain": "poetry_gen",
+      "item_id": "p02",
+      "treatment_arm": "haiku_cascade",
+      "control_arm": "haiku_bare",
+      "position_swap": true,
+      "formatted_prompt_sha256": "4ad2e5b2242494f03ee6747e6aef30299b7e05aece10749a0fa20de8883b3160"
+    },
+    {
+      "domain": "poetry_gen",
+      "item_id": "p06",
+      "treatment_arm": "haiku_cascade",
+      "control_arm": "haiku_bare",
+      "position_swap": false,
+      "formatted_prompt_sha256": "ef722f6b92459e11ad70f1cbf98cecf6b6a4b5a8be1a1babb9f83d7eaeda61bc"
+    },
+    {
+      "domain": "poetry_gen",
+      "item_id": "p01",
+      "treatment_arm": "haiku_cascade",
+      "control_arm": "haiku_bare",
+      "position_swap": true,
+      "formatted_prompt_sha256": "faddb0e6b4719b8261e7ac4308acb212eee14c24b5a9a0fc49cc8416eaac696a"
+    },
+    {
+      "domain": "poetry_gen",
+      "item_id": "p08",
+      "treatment_arm": "haiku_cascade",
+      "control_arm": "haiku_bare",
+      "position_swap": true,
+      "formatted_prompt_sha256": "23f39f38af9e57ce6a62c7b1e7c85b429b7bb9c606c8387d6592c0f64468af47"
+    },
+    {
+      "domain": "poetry_interp",
+      "item_id": "i09",
+      "treatment_arm": "haiku_cascade",
+      "control_arm": "haiku_bare",
+      "position_swap": false,
+      "formatted_prompt_sha256": "25a734b8ea396e4b6a221b20481bfceae07ff120b51a8aa01986fdbafd856af4"
+    },
+    {
+      "domain": "poetry_interp",
+      "item_id": "i03",
+      "treatment_arm": "haiku_cascade",
+      "control_arm": "haiku_bare",
+      "position_swap": true,
+      "formatted_prompt_sha256": "3305dc586b5fbfe4966847a47b62efdb7de861b1a2a8d7865ea0bc322c942198"
+    },
+    {
+      "domain": "poetry_interp",
+      "item_id": "i10",
+      "treatment_arm": "haiku_cascade",
+      "control_arm": "haiku_bare",
+      "position_swap": true,
+      "formatted_prompt_sha256": "4997c7a5b8f51f09cc601b789ccd3d4350b2b1b0f55cbe06937a339152bfda1c"
+    },
+    {
+      "domain": "poetry_interp",
+      "item_id": "i04",
+      "treatment_arm": "haiku_cascade",
+      "control_arm": "haiku_bare",
+      "position_swap": false,
+      "formatted_prompt_sha256": "d2fb83b176c3410a48c3f429c7a528f6b438e060159d4d163a65763a8b777f09"
+    },
+    {
+      "domain": "poetry_interp",
+      "item_id": "i13",
+      "treatment_arm": "haiku_cascade",
+      "control_arm": "haiku_bare",
+      "position_swap": false,
+      "formatted_prompt_sha256": "d89c12d99d4b816bf20098a9898d7409b4fa7687ae77e3b32c90cca7cebc7408"
+    },
+    {
+      "domain": "poetry_interp",
+      "item_id": "i12",
+      "treatment_arm": "haiku_cascade",
+      "control_arm": "haiku_bare",
+      "position_swap": false,
+      "formatted_prompt_sha256": "5632216b7db54b277331fc69449c5e76443d9e175940fc90d28af3200748c1c2"
+    },
+    {
+      "domain": "poetry_interp",
+      "item_id": "i01",
+      "treatment_arm": "haiku_cascade",
+      "control_arm": "haiku_bare",
+      "position_swap": false,
+      "formatted_prompt_sha256": "119965e617778b633898a4144930b9762cae741091cc51afb37eca51d125427f"
+    },
+    {
+      "domain": "poetry_interp",
+      "item_id": "i08",
+      "treatment_arm": "haiku_cascade",
+      "control_arm": "haiku_bare",
+      "position_swap": false,
+      "formatted_prompt_sha256": "d1808346a6569d14353a95f597e100884a8e347a96825519f37a77ca6b435ee3"
+    },
+    {
+      "domain": "aut",
+      "item_id": "a01",
+      "treatment_arm": "haiku_cascade",
+      "control_arm": "haiku_bare",
+      "position_swap": true,
+      "formatted_prompt_sha256": "5525d87b91a10732d201294b9cc2b45cef3476636ed5c7b2186715a2417ae246"
+    },
+    {
+      "domain": "aut",
+      "item_id": "a07",
+      "treatment_arm": "haiku_cascade",
+      "control_arm": "haiku_bare",
+      "position_swap": true,
+      "formatted_prompt_sha256": "16c650ad9292319d345b7c407576d1ae5e3d8a5fc9837b93ea182aa8e6ecb243"
+    },
+    {
+      "domain": "aut",
+      "item_id": "a08",
+      "treatment_arm": "haiku_cascade",
+      "control_arm": "haiku_bare",
+      "position_swap": true,
+      "formatted_prompt_sha256": "f00d39fbaef40f7eb7f53e75c4f3a2c1e373a0ffc788c5ddbf60799707e107fa"
+    },
+    {
+      "domain": "aut",
+      "item_id": "a02",
+      "treatment_arm": "haiku_cascade",
+      "control_arm": "haiku_bare",
+      "position_swap": false,
+      "formatted_prompt_sha256": "b66d3466ff0c525a3fc3b7981d0383041362041d34618716bd27ca12f7fb3368"
+    },
+    {
+      "domain": "aut",
+      "item_id": "a06",
+      "treatment_arm": "haiku_cascade",
+      "control_arm": "haiku_bare",
+      "position_swap": false,
+      "formatted_prompt_sha256": "4e50665cb639f539e1e96f08dac35401f682b9f94f06647aec1c45def4c1b89b"
+    },
+    {
+      "domain": "sci_creativity",
+      "item_id": "s01",
+      "treatment_arm": "haiku_cascade",
+      "control_arm": "haiku_bare",
+      "position_swap": false,
+      "formatted_prompt_sha256": "ce97b15fb5b8f4a100430d955a89c04776f13590c18d9b2553ab0e9a5d332f95"
+    },
+    {
+      "domain": "sci_creativity",
+      "item_id": "s07",
+      "treatment_arm": "haiku_cascade",
+      "control_arm": "haiku_bare",
+      "position_swap": false,
+      "formatted_prompt_sha256": "4f821e45b81744c355da26c4828a6b04548070689cc8026836d036a8d2899992"
+    },
+    {
+      "domain": "sci_creativity",
+      "item_id": "s02",
+      "treatment_arm": "haiku_cascade",
+      "control_arm": "haiku_bare",
+      "position_swap": true,
+      "formatted_prompt_sha256": "9742034f5ca0c3342ef64a13ba6722c78d2d76c0b3412b7f1e16243ce86689c1"
+    },
+    {
+      "domain": "sci_creativity",
+      "item_id": "s06",
+      "treatment_arm": "haiku_cascade",
+      "control_arm": "haiku_bare",
+      "position_swap": false,
+      "formatted_prompt_sha256": "f7c3bcbbbd2d492a87df0095461cd1c25bec1d4d57125a0df861746161cf71e1"
+    }
+  ],
+  "formatted_prompt_recovery": {
+    "recovered": 23,
+    "already_present": 0,
+    "unrecoverable": 0,
+    "version": "v0.4.1"
+  }
 }

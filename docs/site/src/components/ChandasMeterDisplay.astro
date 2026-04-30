@@ -1,4 +1,8 @@
 ---
+// v0.4.1 review fix #7 (accessibility):
+// add aria-label and a visually-hidden text summary so screen readers
+// can describe the laghu/guru pattern instead of receiving 32 isolated
+// G/L tokens.
 interface Props {
   chandas: string | null | undefined;
   syllables: number | null | undefined;
@@ -8,17 +12,35 @@ interface Props {
 }
 const { chandas, syllables, expected, pattern, ok } = Astro.props as Props;
 const chars = (pattern ?? '').split('');
+const guruCount = chars.filter((c) => c === 'G').length;
+const laghuCount = chars.filter((c) => c === 'L').length;
+const summary = chars.length === 0
+  ? 'no chandas pattern available'
+  : `chandas pattern: ${chars.length} syllables, ${guruCount} guru (heavy), ${laghuCount} laghu (light)`;
+const statusLabel = ok ? 'pass' : 'review';
+const ariaLabel = `Chandas validator. ${chandas ?? 'unknown form'}. ${syllables ?? 'unknown'}${expected ? ` of ${expected}` : ''} syllables. Status: ${statusLabel}.`;
 ---
-<div class="card not-prose font-sans my-4">
+<section
+  class="card not-prose font-sans my-4"
+  role="region"
+  aria-label={ariaLabel}
+>
   <div class="flex items-baseline justify-between mb-2">
     <div>
       <div class="font-mono text-[0.7rem] uppercase tracking-widest text-[var(--fg-soft)]">chandas validator</div>
       <div class="font-semibold">{chandas ?? '—'} · {syllables ?? '—'}{expected ? ` / ${expected}` : ''} syllables</div>
     </div>
-    <span class={`text-[0.78rem] font-mono px-2 py-0.5 rounded-full ${ok ? 'bg-emerald-100 text-emerald-900 dark:bg-emerald-900/40 dark:text-emerald-100' : 'bg-amber-100 text-amber-900 dark:bg-amber-900/40 dark:text-amber-100'}`}>{ok ? 'pass' : 'review'}</span>
+    <span
+      class={`text-[0.78rem] font-mono px-2 py-0.5 rounded-full ${ok ? 'bg-emerald-100 text-emerald-900 dark:bg-emerald-900/40 dark:text-emerald-100' : 'bg-amber-100 text-amber-900 dark:bg-amber-900/40 dark:text-amber-100'}`}
+      aria-label={`Validator status: ${statusLabel}`}
+    >{statusLabel}</span>
   </div>
+  <p class="sr-only">{summary}.</p>
   {chars.length > 0 && (
-    <div class="flex flex-wrap gap-1 font-mono text-[0.78rem]">
+    <div
+      class="flex flex-wrap gap-1 font-mono text-[0.78rem]"
+      aria-hidden="true"
+    >
       {chars.map((c) => (
         <span
           class:list={[
@@ -32,4 +54,4 @@ const chars = (pattern ?? '').split('');
       ))}
     </div>
   )}
-</div>
+</section>

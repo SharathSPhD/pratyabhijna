@@ -1,10 +1,21 @@
 {
   "domain": "sanskrit_chandas",
   "item_id": "sanskrit_anustubh",
-  "model": "n/a (curated reference; awaiting v0.5 chandas-aware cascade)",
-  "draft": "",
-  "revised": "प्रकाशेन विना ज्ञानं विमर्शेन विना न तत् ।\nपश्यन्नात्मानमात्मानं स्वयं प्रत्यभिजायते ॥",
-  "vimarsa_event": null,
-  "source": "curated_reference",
-  "curated_origin": "Maintainer-authored chandas-validated reference for v0.4. The v0.5 release will swap this for a fresh Bedrock-cascade output once a chandas-aware scorer is wired into the cascade."
+  "model": "haiku via claude CLI substrate (live regen, v0.4.1)",
+  "draft": "# Vimarśa-Anuṣṭubh\n\nUsing the **mirror** as the universal frame:\n\n**Ātma-vimarśa-samvidaḥ**\nCid-ārṇava-samāśritaḥ\nYatra darppa-vibhāvanaḥ\nTad satya-rūpa-nityaśaḥ\n\n---\n\n## Syllable count: \n8 + 8 + 8 + 8 = **32 syllables** ✓\n\n## Approximate meaning:\n\nThe self-recognizing awareness,\nTaken refuge in the ocean of consciousness,\nWhere the mirror illuminates—\nThat is the true form eternal.\n\n---\n\n**Note:** The verse uses *darppa* (mirror) as the abstract universal frame through which *vimarśa* (reflective recognition) manifests. The four pāda follow anuṣṭubh meter, with consciousness itself as both the reflecting medium and that which is reflected.",
+  "shadow_revision": "# Vimarśa-Anuṣṭubh (Revised)\n\nUsing the **mirror** as the universal frame—*transcended*:\n\n**Vimarśa-dagdha-samvidaḥ**\nCid-ārṇava-samāśritaḥ\nYatra darppa-vyatikramaḥ\nTad brahma-rūpa-paramam\n\n---\n\n## Syllable count:\n8 + 8 + 8 + 8 = **32 syllables** ✓\n\n## Key revisions:\n\n| Element | Original | Revised | Why |\n|---------|----------|---------|-----|\n| **Pāda 1** | *Ātma-vimarśa-samvidaḥ* (recognition-awareness) | *Vimarśa-dagdha-samvidaḥ* (awareness **burned** by recognition) | \"Burned\" (*dagdha*) transforms recognition from passive to **transformative**—more vivid and less serene |\n| **Pāda 3** | *Yatra darppa-vibhāvanaḥ* (where mirror illuminates) | *Yatra darppa-vyatikramaḥ* (where the mirror is **transcended**) | **Surprise**: the mirror itself—our frame—is surpassed. True *vimarśa* goes beyond its own metaphor |\n| **Pāda 4** | *Tad satya-rūpa-nityaśaḥ* (true form eternal) | *Tad brahma-rūpa-paramam* (the supreme brahman-form) | Stronger closure: identifies directly with *brahman*, echoing the transcendence of pāda 3 |\n\n---\n\n## Approximate meaning:\n\nAwareness burned (transformed) by recognition,\nSheltered in the ocean of consciousness,\nWhere even the mirror itself is surpassed—\nThat is the supreme form of brahman.\n\n---\n\n**The push:** Rather than the mirror as *ultimate* reflective medium, it becomes a *threshold to be overcome*—making *vimarśa* not serene contemplation but radical, burning penetration into what lies beyond all frames.",
+  "committed": "# Vimarśa-Anuṣṭubh\n\nUsing the **mirror** as the universal frame:\n\n**Ātma-vimarśa-samvidaḥ**\nCid-ārṇava-samāśritaḥ\nYatra darppa-vibhāvanaḥ\nTad satya-rūpa-nityaśaḥ\n\n---\n\n## Syllable count: \n8 + 8 + 8 + 8 = **32 syllables** ✓\n\n## Approximate meaning:\n\nThe self-recognizing awareness,\nTaken refuge in the ocean of consciousness,\nWhere the mirror illuminates—\nThat is the true form eternal.\n\n---\n\n**Note:** The verse uses *darppa* (mirror) as the abstract universal frame through which *vimarśa* (reflective recognition) manifests. The four pāda follow anuṣṭubh meter, with consciousness itself as both the reflecting medium and that which is reflected.",
+  "committed_choice": "draft",
+  "commit_policy": "event_gated",
+  "vimarsa_event": false,
+  "delta_F_draft": 0.0,
+  "delta_F_revision": 0.0,
+  "elapsed_s": 672.8517589569092,
+  "K_effective": 3,
+  "source": "live_cascade_v0_4_1",
+  "live_run_notes": "v0.4 cascade has no chandas-aware scorer. The validator's pass/fail signal is therefore informational -- a v0.5 ladder item adds chandas-aware scoring inside the cascade itself.",
+  "axes_cascade": {},
+  "axes_bare": {},
+  "composite_cascade": null,
+  "composite_bare": null
 }

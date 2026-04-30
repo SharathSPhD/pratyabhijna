@@ -6,31 +6,13 @@ This section is a deliberate, dedicated audit of what the v0.4 evidence does and
 
 Throughout this paper, ``creative output'' is operationalised as the per-item composite score under the per-domain rubric documented in \S\ref{sec:benchmarks} and Appendix~\ref{app:scoring}. The composite is a weighted sum of axis scorers (creativity, lexical diversity, idiosyncrasy, emotional resonance, literary devices, imagery for poetry-gen; aspect-multiplicity for poetry-interp; novelty + framing-coverage + depth for sci-creativity; CreativityPrism Q$\cdot$N$\cdot$D for AUT). The composite is a learned proxy for human inter-rater quality, not a definition of creativity in any substantive sense. When we say ``the cascade produced a better surface'' we mean ``the composite scored the surface higher''; when we say ``the judge disagrees with the scorer'' we mean ``the Sonnet-4 judge's per-axis scoring on the same surfaces does not correlate with the Haiku composite''. The substantive question of whether a higher composite is the right notion of creativity is open and is not what this paper claims to settle.
 
-\subsection{What v0.4 does \emph{not} claim}
+\subsection{What v0.4 does not claim}
 
-v0.4 does not claim:
+v0.4 makes a small number of explicit non-claims, recorded so the prose cannot drift later. We do not claim that PCE makes Claude Haiku more creative in any human-judged sense (we have not yet run a human-evaluator study at scale; the v0.5 ladder includes one). We do not claim that the cascade beats bare Haiku at the headline cascade-versus-bare contrast (H1.v4--H4.v4 are inconclusive at the available $n$). We do not claim that the \iast{vimar\'sa} event gate is a working insight detector (H8b shows it is mis-calibrated). We do not claim that the small Haiku composite-score head agrees with the larger Sonnet-4 judge (H9 shows it does not, on the cascade items). We do not claim that the architecture has been ablated component-by-component (the Hopfield-warm-start signal alone, the BMR aspect-conditioning alone, and other one-at-a-time ablations are deferred to v0.5). And we do not claim that the v0.4 Sanskrit chandas showcase items are reliably chandas-conformant: v0.4 lacks a chandas-aware scorer, and the showcase ships the live-cascade output verbatim with the validator's status reported honestly.
 
-\begin{enumerate}[leftmargin=2em,itemsep=2pt,topsep=2pt]
-\item that PCE makes Claude Haiku more creative in any human-judged sense (we have not yet run a human-evaluator study at scale; the v0.5 ladder includes one);
-\item that the cascade beats bare Haiku at the headline cascade-vs-bare contrast (H1.v4--H4.v4 are inconclusive at the available $n$);
-\item that the \iast{vimar\'sa} event-gate is a working insight detector (H8b shows it is mis-calibrated);
-\item that the small Haiku composite-score head agrees with the larger Sonnet-4 judge (H9 shows it does not, on the cascade items);
-\item that the architecture has been ablated component-by-component (the Hopfield-warm-start signal alone, the BMR aspect-conditioning alone, etc., are deferred to v0.5);
-\item that the Sanskrit chandas showcase (\S\ref{sec:showcase}) is a cascade-generated artefact (it is maintainer-curated reference text validated by the chandas tool).
-\end{enumerate}
+\subsection{What v0.4 does claim}
 
-\subsection{What v0.4 \emph{does} claim}
-
-v0.4 does claim, and the evidence supports:
-
-\begin{enumerate}[leftmargin=2em,itemsep=2pt,topsep=2pt]
-\item the cascade's second pass reliably produces a higher-composite surface than the first ($g=+0.65$, $p\sim 10^{-4}$, $n=27$; H8a);
-\item among the four commit policies tested, \texttt{always\_revise} dominates \texttt{learned\_gate} dominates \texttt{event\_gated} dominates \texttt{always\_draft}, with statistically significant pairwise gaps at the extremes (H8c);
-\item a learned commit gate trained on the H8a paired-revision data improves over a hand-coded \iast{vimar\'sa} disjunctive event signature (F1 = 0.65 vs.\ 0.52; H8b);
-\item the Sonnet-4 judge and the Haiku composite scorer do not agree on the sign of the cascade-vs-bare delta on the v0.4 cascade items, at a rate (56.5\% sign-agreement) consistent with random ($\rho=0.0$, $p=1.0$; H9);
-\item the v0.4 cost ledger is internally consistent, externally reproducible (\$12.73 over 1{,}277 Bedrock calls), and traceable to the per-call accounting in \texttt{audit/v0.4/cost\_ledger\_merged.json};
-\item the v0.4 plugin and the standalone CLI are byte-for-byte the same substrate (\S\ref{sec:substrate}), so a third-party reproduction does not depend on an IDE plugin runtime.
-\end{enumerate}
+The mechanism findings v0.4 does claim, and that the evidence directly supports, are the following. The cascade's second pass reliably produces a higher-composite surface than the first ($g=+0.65$, $p\sim 10^{-4}$, $n=27$; H8a). Among the four commit policies tested, \texttt{always\_revise} dominates \texttt{learned\_gate}, which dominates \texttt{event\_gated}, which dominates \texttt{always\_draft}, with statistically significant pairwise gaps at the extremes (H8c). A learned commit gate trained on the H8a paired-revision data improves over a hand-coded \iast{vimar\'sa} disjunctive event signature (F1${}=0.65$ vs.\ $0.52$; H8b). The Sonnet 4.5 judge and the Haiku composite scorer do not agree on the sign of the cascade-versus-bare delta on the v0.4 cascade items, at a rate (56.5\% sign-agreement) consistent with random ($\rho=0.0$, $p=1.0$; H9). The v0.4 cost ledger is internally consistent, externally reproducible, and split honestly between models: the Haiku cascade consumed \$12.73 across 1{,}277 Bedrock calls (audited per-call in \texttt{audit/v0.4/cost\_ledger\_merged.json}); the stratified Sonnet judge added \$0.48 across 23 paired judgements (audited in \texttt{benchmarks/results\_v0.4/judge\_agreement.json}); the combined pilot spend was \$13.21 over 1{,}300 CLI invocations. Finally, the v0.4 plugin and the standalone CLI exercise byte-for-byte the same substrate (\S\ref{sec:substrate}), so a third-party reproduction does not depend on an IDE plugin runtime.
 
 \subsection{Why we keep the Pratyabhij\~n\=a framing}
 
