@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PlaceholderFigure from '../components/PlaceholderFigure.astro';
 import { withBase } from '../lib/nav';
 
 const stages = [
@@ -23,6 +24,23 @@ const stages = [
     that v0.4 introduces over v0.3. Every operator has a JSON-serialisable input/output contract, a
     deterministic seed regime, and an audit log entry per call.
   </p>
+
+  <h2>How the operators compose</h2>
+
+  <p>
+    The diagram below traces a single prompt through the cascade and the closing recognition loop. The
+    shaded backedge marks the BMR-annotated <em>vimarśa</em> → <em>icchā</em> recursion that ADR-003's
+    free-energy budget gates. The same flow is detailed step-by-step in the operator table below.
+  </p>
+
+  <PlaceholderFigure
+    src="/figures/v0.4/flowcharts/F1_panchashakti_cascade.png"
+    alt="Five-śakti cascade flowchart: prompt → cit (K candidates) → ānanda (novelty pulse) → icchā (best-of-K) → apohana (exclusion / BMR) → jñāna (selection + ΔF) → kriyā (render) → vimarśa (reflexive read) → commit-policy multiplexer → committed surface."
+    caption="F1 — The five-śakti cascade. The vimarśa → icchā loopback is annotated as Bayesian Model Reduction; ADR-003's free-energy budget gates whether revision fires. TikZ source: paper/sections/03_pratyabhijna_background.tex."
+    aspect="16 / 9"
+    slug="F1-cascade"
+    promptRef="docs/figures/PROMPTS.md#f1-five-shakti-cascade"
+  />
 
   <h2>Operator-by-operator</h2>
 
@@ -66,6 +84,34 @@ const stages = [
     (<span class="kbd">src/pce/substrate/haiku_lm.py</span>), which speaks <span class="kbd">claude --print</span>
     over the OAuth-bound CLI. The <a href={withBase('/plugin')}>plugin page</a> documents the three
     install paths and the model-override knobs.
+  </p>
+
+  <h2 id="what-computation-looks-like">What "computation" looks like in this cascade</h2>
+
+  <p>
+    Read in active-inference terms (see the
+    <a href={withBase('/background')}>background page</a> for the variational identities), every operator
+    is one bookkeeping step inside the same free-energy minimisation. <em>cit</em> seeds the candidate
+    posterior <em>q(z)</em> over <em>K</em> continuations, sampled from the prompt-conditioned generative
+    model. <em>ānanda</em> attaches a novelty signal that biases <em>q(z)</em> away from the bare-arm
+    reference, lowering the KL divergence between <em>q(z)</em> and a posterior that prefers
+    surface-divergent candidates. <em>icchā</em> performs the best-of-<em>K</em> reduction with composite
+    scoring, which is the discrete approximation to a KL-minimising step over the candidate set.
+    <em>apohana</em> is the cascade's Bayesian Model Reduction stage: it drops candidates whose evidence
+    ratio against the surviving set falls below the apoha threshold.
+  </p>
+
+  <p>
+    <em>jñāna</em> commits the selection and emits a structured ΔF score that the ADR-003 free-energy
+    budget reads. <em>kriyā</em> renders the surface verbatim — F is unchanged at this step, only the
+    representation changes. <em>vimarśa</em> is the second-pass operator that reads the draft against the
+    prompt and the constraint set; whether it fires another revision pass depends on whether the marginal
+    F-reduction in the previous pass crossed ADR-003's threshold. The commit-policy multiplexer below is
+    the final F-comparison: it decides between the draft, the shadow revision, and (in the analysis-only
+    oracle policy) the judge-pair maximum, picking the surface with the lowest residual F under the
+    selected policy. Empirically, the H8a revision-vs-draft contrast and the H8b learned-gate
+    improvement are both evidence that the cascade is moving in the F-minimising direction; the
+    <a href={withBase('/results')}>results page</a> shows the per-mechanism numbers.
   </p>
 
   <h2>What is wired but not exercised</h2>

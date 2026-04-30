@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PlaceholderFigure from '../components/PlaceholderFigure.astro';
 import { withBase } from '../lib/nav';
 ---
 <BaseLayout title="Background" active="/background">
@@ -25,7 +26,7 @@ import { withBase } from '../lib/nav';
     obligations rather than decorating them.
   </p>
 
-  <h2>Active inference and Bayesian Model Reduction</h2>
+  <h2 id="active-inference">Active inference and Bayesian Model Reduction</h2>
 
   <p>
     Active inference, in the Friston lineage, casts perception and action as the minimisation of variational
@@ -37,13 +38,61 @@ import { withBase } from '../lib/nav';
     paper's §4 is explicit about this constraint.
   </p>
 
+  <p>
+    The variational identity that holds the framework together is
+    <span class="kbd">F = E_q[log q(z) − log p(z, o)] = D_KL(q(z) || p(z|o)) − log p(o)</span>: a generative
+    surface <em>o</em> is "good" exactly when the cascade's approximate posterior <em>q(z)</em> over latent
+    candidate continuations is close to the true posterior <em>p(z|o)</em>, with low residual surprise
+    over <em>o</em> itself. Creative cognition is naturally cast as F-minimisation when the surface — a
+    quatrain, an interpretation, an alternative use — is what gets inferred. Each PCE operator is one
+    discrete bookkeeping step inside that F-minimisation: <em>cit</em> seeds the candidate posterior,
+    <em>icchā</em> reduces KL via best-of-K with composite scoring, <em>vimarśa</em> performs a second-pass
+    revision that lowers expected surprise on the committed surface.
+  </p>
+
+  <p>
+    Bayesian Model Reduction is the operator that prunes posterior components which no longer earn their
+    complexity cost — formally, drops a candidate <em>z_i</em> when its evidence ratio
+    <span class="kbd">p(o|z_i) / Σ_j p(o|z_j)</span> falls below a threshold scaled by the prior
+    complexity penalty. The cascade's <em>apohana</em> (negation / exclusion) stage <em>is</em> BMR
+    realised at the prompt level: candidates that share too much surface with the bare reference, or
+    duplicate other candidates, are dropped before <em>jñāna</em> selects. ADR-003's free-energy budget is
+    the meta-gate over the same machinery: it tracks the marginal F-reduction across the cascade and
+    stops <em>vimarśa</em> from firing another revision once that marginal reduction falls below
+    threshold. Together, BMR-as-apohana and the F-budget make the recursive revision pass principled
+    rather than open-ended — the cascade has a stopping criterion grounded in the same variational
+    bookkeeping that motivates the architecture in the first place.
+  </p>
+
+  <PlaceholderFigure
+    src="/figures/v0.4/flowcharts/F2_active_inference_loop.png"
+    alt="Active inference loop in PCE: prior over surfaces → cascade-as-likelihood (composite scoring) → posterior → vimarśa-as-BMR pruning → ADR-003 F-budget gate → commit decision."
+    caption="F2 — Active inference / Bayesian Model Reduction loop. Prior over candidate surfaces is updated by the cascade (which acts as the likelihood), pruned by vimarśa-as-BMR, and gated by the ADR-003 free-energy budget before commit. TikZ source: paper/sections/04_active_inference_background.tex."
+    aspect="16 / 9"
+    slug="F2-active-inference"
+    promptRef="docs/figures/PROMPTS.md#f2-active-inference"
+  />
+
+  <p>
+    Why this matters for creative cognition: pratyabhijñā is precisely the moment of F-minimisation when
+    the right candidate is identified — the moment when the posterior collapses onto a surface that the
+    cascade <em>recognises</em> as the right one, rather than generating one from scratch. The same
+    F-minimisation story explains why <em>vimarśa</em>'s revision pass measurably improves the surface
+    (H8a) and why a learned commit gate beats the v0.3 event gate (H8b): both findings are about getting
+    closer to argmin F. The
+    <a href={withBase('/architecture')}>architecture page</a> walks the F-minimisation interpretation
+    operator-by-operator under "What 'computation' looks like in this cascade", and the
+    <a href={withBase('/results')}>results page</a> shows the empirical signatures.
+  </p>
+
   <h2>What the substrate is</h2>
 
   <p>
     PCE has a single supported substrate: <span class="kbd">claude --print</span> over the OAuth-bound
     Claude CLI. The Anthropic Python SDK code path was removed in Phase 8 (<a href={withBase('/plugin')}>see
-    ADR-007 on the plugin page</a>). For the Phase 7 mechanism pilot, the same CLI was pointed at AWS
-    Bedrock so the experiment could parallelise across domains; this is documented as a deliberate
+    ADR-007 on the plugin page</a>). For the Phase 7 mechanism pilot, the same CLI was pointed at the
+    managed Anthropic-API substrate (parallel API calls under a quota envelope distinct from the OAuth
+    substrate) so the experiment could parallelise across domains; this is documented as a deliberate
     substrate-deviation event in §7 of the paper. Day-to-day operation, including the
     <a href={withBase('/showcase')}>showcase</a> regeneration, runs against the OAuth substrate.
   </p>

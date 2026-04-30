@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HypothesisCard from '../components/HypothesisCard.astro';
+import PlaceholderFigure from '../components/PlaceholderFigure.astro';
 import { stats, fmt } from '../lib/stats';
 import { withBase } from '../lib/nav';
 
@@ -20,6 +21,15 @@ const h8c = stats.commit_policy!;
     paper appendix. Click any card for the underlying definition; the
     <a href={withBase('/results')}>results page</a> renders these against the live stats.
   </p>
+
+  <PlaceholderFigure
+    src="/figures/v0.4/flowcharts/F5_hypothesis_tree.png"
+    alt="Hypothesis dependency tree: H1 / H2 / H3 / H4 → H5 (fixed-effects pool); H8a (within-arm paired revision-vs-draft); H8b (gate calibration F1); H8c (commit-policy leaderboard); H9 (judge sensitivity)."
+    caption="F5 — Hypothesis dependency tree. H1–H4 feed the H5 fixed-effects pool; H8a / H8b / H8c are the mechanism panel; H9 is the judge-vs-proxy sensitivity. H8a is the load-bearing positive finding. TikZ source: paper/sections/07_methods.tex."
+    aspect="16 / 9"
+    slug="F5-hypothesis-tree"
+    promptRef="docs/figures/PROMPTS.md#f5-hypothesis-tree"
+  />
 
   <h2>Primary cascade-vs-bare (H1–H4)</h2>
   <div class="not-prose grid grid-cols-1 md:grid-cols-2 gap-3">

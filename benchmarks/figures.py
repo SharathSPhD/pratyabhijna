@@ -625,6 +625,114 @@ def _figure_v04_cost_per_domain(audit_dir: Path, out_dir: Path) -> None:
     plt.close(fig)
 
 
+def _figure_v04_axes_breakdown(results_dir: Path, out_dir: Path) -> None:
+    """C1 — Per-axis paired Δ (cascade − bare) per (domain, axis) cell.
+
+    Domain axis vocabularies differ; we render four sub-axes (one per domain)
+    so each domain's axis schema is internally comparable.
+    """
+    fig, axes = plt.subplots(1, 4, figsize=(15, 4.4), sharey=False)
+    for ax, dom in zip(axes, DOMAINS, strict=True):
+        try:
+            data = json.loads((results_dir / f"{dom}.json").read_text(encoding="utf-8"))
+        except FileNotFoundError:
+            ax.set_visible(False)
+            continue
+        rows = data.get("rows", {})
+        # Discover axis schema from first arm with axes.
+        axis_keys: list[str] = []
+        for _, payload in sorted(rows.items()):
+            t = payload.get("haiku_cascade") or {}
+            if isinstance(t, dict) and isinstance(t.get("axes"), dict):
+                axis_keys = list(t["axes"].keys())
+                break
+        if not axis_keys:
+            ax.set_visible(False)
+            continue
+        means: list[float] = []
+        for ak in axis_keys:
+            deltas: list[float] = []
+            for _, payload in sorted(rows.items()):
+                t = payload.get("haiku_cascade") or {}
+                c = payload.get("haiku_bare") or {}
+                if not isinstance(t, dict) or not isinstance(c, dict):
+                    continue
+                t_axes = t.get("axes") or {}
+                c_axes = c.get("axes") or {}
+                if ak not in t_axes or ak not in c_axes:
+                    continue
+                try:
+                    deltas.append(float(t_axes[ak]) - float(c_axes[ak]))
+                except (TypeError, ValueError):
+                    continue
+            means.append(float(np.mean(deltas)) if deltas else 0.0)
+        x = np.arange(len(axis_keys))
+        colors = ["#5a8d5a" if m >= 0 else "#c87b7b" for m in means]
+        bars = ax.bar(x, means, color=colors, edgecolor="#234")
+        for i, m in enumerate(means):
+            ax.text(i, m + (0.005 if m >= 0 else -0.005), f"{m:+.3f}",
+                    ha="center", va="bottom" if m >= 0 else "top", fontsize=8)
+        ax.axhline(0, color="black", linewidth=0.8)
+        ax.set_xticks(x, [a.replace("_", "\n") for a in axis_keys], fontsize=8)
+        ax.set_title(DOMAIN_LABEL.get(dom, dom).replace("\n", " "), fontsize=9)
+        ax.grid(axis="y", linestyle=":", alpha=0.4)
+    fig.suptitle(
+        "C1 — Per-axis paired Δ (haiku_cascade − haiku_bare), v0.4 mechanism pilot",
+        fontsize=11,
+    )
+    fig.supylabel("paired mean Δ axis-score", fontsize=10)
+    fig.tight_layout()
+    fig.savefig(out_dir / "fig_v04_axes_breakdown.png", dpi=160, bbox_inches="tight")
+    plt.close(fig)
+
+
+def _figure_v04_power_vs_realised(stats_path: Path, out_dir: Path) -> None:
+    """C2 — Retrospective power vs realised Hedges' g for H1–H4.
+
+    Renders the "inconclusive, not null" framing visually: at the realised
+    effect sizes the per-domain contrasts are below 0.8 power; an a-priori
+    g=0.5 target is also below 0.8 at the available n.
+    """
+    stats = json.loads(stats_path.read_text(encoding="utf-8"))
+    primary = stats.get("primary", {})
+    keys = ["H1", "H2", "H3", "H4"]
+    domain_label = {"H1": "AUT", "H2": "Poetry-interp", "H3": "Poetry-gen", "H4": "Sci-creat"}
+    g = [float(primary[k].get("hedges_g", 0.0)) for k in keys]
+    pr = [float(primary[k].get("power_retrospective", 0.0)) for k in keys]
+    pa = [float(primary[k].get("power_apriori", 0.0)) for k in keys]
+    n = [int(primary[k].get("n", 0)) for k in keys]
+    fig, ax = plt.subplots(figsize=(8, 5.0))
+    sizes = [80 + 8 * ni for ni in n]
+    ax.scatter(g, pr, s=sizes, color="#3b6ea8", alpha=0.75, edgecolors="#234",
+               label="realised power (observed g)")
+    ax.scatter(g, pa, s=sizes, color="#bccdf0", alpha=0.65, edgecolors="#234",
+               label="a-priori power (g=0.5 assumption)")
+    for i, k in enumerate(keys):
+        ax.annotate(
+            f"{k} ({domain_label[k]}, n={n[i]})",
+            (g[i], pr[i]),
+            xytext=(7, 6),
+            textcoords="offset points",
+            fontsize=9,
+        )
+    ax.axhline(0.8, color="red", linestyle=":", linewidth=1, label="0.8 power threshold")
+    ax.axvline(0, color="black", linestyle="--", linewidth=0.6)
+    ax.set_xlim(-0.6, 0.7)
+    ax.set_ylim(-0.05, 1.05)
+    ax.set_xlabel("realised Hedges' $g$ (haiku_cascade − haiku_bare)")
+    ax.set_ylabel("statistical power")
+    ax.set_title(
+        "C2 — Retrospective power vs realised effect, H1–H4\n"
+        "every domain falls below 0.8: the headline contrasts are inconclusive at this $n$",
+        fontsize=10,
+    )
+    ax.legend(loc="upper left", fontsize=9)
+    ax.grid(linestyle=":", alpha=0.4)
+    fig.tight_layout()
+    fig.savefig(out_dir / "fig_v04_power_vs_realised.png", dpi=160, bbox_inches="tight")
+    plt.close(fig)
+
+
 def _emit_v04(args: argparse.Namespace, out_dir: Path) -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
     _figure_v04_h5_fixed_forest(args.stats, out_dir)
@@ -637,6 +745,8 @@ def _emit_v04(args: argparse.Namespace, out_dir: Path) -> None:
         out_dir,
     )
     _figure_v04_cost_per_domain(args.audit_dir, out_dir)
+    _figure_v04_axes_breakdown(args.results_dir, out_dir)
+    _figure_v04_power_vs_realised(args.stats, out_dir)
     print(f"v0.4 figures -> {out_dir}", flush=True)
 
 

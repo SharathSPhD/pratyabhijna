@@ -11,7 +11,7 @@ A portable plugin (Cursor + Claude Code + standalone CLI) that operationalises A
 This repository holds the engine, the dual plugin manifests (`plugin/.claude-plugin/plugin.json`, `plugin/.cursor-plugin/plugin.json`), the standalone `pce` CLI, the Phase 7 mechanism pilot's results and audit, the v0.4 paper, and the Astro v0.4 site.
 
 * Frozen scope: v0.4 [`docs/SPEC_v0.4.md`](docs/SPEC_v0.4.md), [`docs/PRD_v0.4.md`](docs/PRD_v0.4.md), [`docs/RELEASE_NOTES_v0.4.md`](docs/RELEASE_NOTES_v0.4.md), [`docs/COMPLETION_PROMISES_v0.4.md`](docs/COMPLETION_PROMISES_v0.4.md).
-* ADRs: v0.4 [`docs/adr/v0.4/`](docs/adr/v0.4/) (ADR-001 cit_temperature substrate, ADR-002 learned commit gate, ADR-003 free-energy budget, ADR-004 Bedrock fairness lattice, ADR-005 fixed-effects H5, ADR-006 typed Haiku errors, ADR-007 SDK code-path removal).
+* ADRs: v0.4 [`docs/adr/v0.4/`](docs/adr/v0.4/) (ADR-001 cit_temperature substrate, ADR-002 learned commit gate, ADR-003 free-energy budget, ADR-004 managed-API fairness lattice, ADR-005 fixed-effects H5, ADR-006 typed Haiku errors, ADR-007 SDK code-path removal).
 * TRIZ cards: v0.4 [`docs/triz/v0.4/`](docs/triz/v0.4/).
 * Plugin manifests: [`plugin/.claude-plugin/plugin.json`](plugin/.claude-plugin/plugin.json) and [`plugin/.cursor-plugin/plugin.json`](plugin/.cursor-plugin/plugin.json) (both at v0.4.0).
 * Hypotheses: H1.v4–H4.v4 (per-domain), H5.v4 (fixed-effects pool), H6.v4 / H7.v4 (fairness controls), H8a/b/c.v4 (mechanism decomposition), H9.v4 (judge agreement).

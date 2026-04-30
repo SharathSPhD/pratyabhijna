@@ -1,6 +1,6 @@
 \section{Results}\label{sec:results}
 
-This section reports the v0.4 Phase 7 Bedrock-pilot results across the five hypothesis families. All numbers below are bound by \texttt{benchmarks/autoreport.py --version v0.4} from \texttt{benchmarks/results\_v0.4/stats.json}; the table below renders the headline view (see Table~\ref{tab:v04headline}) and is regenerated automatically. The figure pack lives at \texttt{paper/figures/v0.4/} and is also regenerated from the same artefacts.
+This section reports the v0.4 Phase 7 managed-API pilot results across the five hypothesis families. All numbers below are bound by \texttt{benchmarks/autoreport.py --version v0.4} from \texttt{benchmarks/results\_v0.4/stats.json}; the table below renders the headline view (see Table~\ref{tab:v04headline}) and is regenerated automatically. The figure pack lives at \texttt{paper/figures/v0.4/} and is also regenerated from the same artefacts.
 
 \begin{table}[ht]
 \centering
@@ -13,9 +13,29 @@ This section reports the v0.4 Phase 7 Bedrock-pilot results across the five hypo
 
 The four primary contrasts (one per domain) are inconclusive at the v0.4 pilot $n$. H1.v4 (\texttt{aut}, $n=5$) is directionally negative ($g=-0.32$; BCa CI on paired mean $\Delta$ $[-0.06,\,+0.01]$): on the alternative-uses task, the cascade did not improve over bare Haiku, and at this small $n$ the BCa CI is consistent with a small negative paired mean delta. H2.v4 (\texttt{poetry\_interp}, $n=10$) is the largest positive effect ($g=+0.32$; BCa CI on paired mean $\Delta$ $[-0.014,\,+0.146]$) but the upper bound brushes the threshold rather than crossing it; the Wittgenstein aspect-shift items are where the cascade shows its best signal but the pilot $n$ is too small to make the BCa CI on paired mean $\Delta$ strictly positive. H3.v4 (\texttt{poetry\_gen}, $n=6$) is essentially null ($g=+0.14$, CI $[-0.05,\,+0.06]$), and H4.v4 (\texttt{sci\_creativity}, $n=4$) is positive ($g=+0.30$) with a CI $[-0.013,\,+0.061]$ that includes zero. Length-controlled effects are smaller in absolute value across all four domains, suggesting the cascade's slightly longer surfaces (a function of the second-pass revision) carry a small fraction of the un-controlled signal. None of H1.v4--H4.v4 is supported under the pre-registered ``Holm-adjusted $p<0.05$ \emph{and} BCa CI strictly positive'' criterion. We discharge the negative-result obligation: the v0.4 pilot does not show a positive cascade-vs-bare effect at the pilot's available sample.
 
-The retrospective power numbers are instructive about why we are inconclusive rather than convincingly null: H1.v4 retrospective power is 0.012, H2.v4 is 0.235, H3.v4 is 0.090, H4.v4 is 0.122. At an a-priori target $g=0.5$ the per-domain $n$ would have to roughly triple to get the per-domain power above 0.8. The v0.5 ladder targets exactly this scale-up; it is the principal driver of the v0.5 budget request.
+The retrospective power numbers are instructive about why we are inconclusive rather than convincingly null: H1.v4 retrospective power is 0.012, H2.v4 is 0.235, H3.v4 is 0.090, H4.v4 is 0.122. At an a-priori target $g=0.5$ the per-domain $n$ would have to roughly triple to get the per-domain power above 0.8. The v0.5 ladder targets exactly this scale-up; it is the principal driver of the v0.5 budget request. Figure~\ref{fig:v04power_vs_realised} renders the trade-off visually.
 
-See Figure~\ref{fig:v04h5} for a forest plot of H1--H4 alongside the H5.v4 fixed-effects pool.
+See Figure~\ref{fig:v04h5} for a forest plot of H1--H4 alongside the H5.v4 fixed-effects pool. Per-axis paired effects on the same four contrasts are reported in Table~\ref{tab:per_axis_effects} and Figure~\ref{fig:v04axes}; the table makes it clear that within each domain a single axis carries most of the directional signal (\texttt{aspect\_count} for H2, \texttt{imagery} and \texttt{emotional\_resonance} for H3, \texttt{frame\_coverage} for H4), with the remaining axes flat or against the architecture's hypothesis.
+
+\input{sections/_tables/tab_per_axis_effects}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/v0.4/fig_v04_axes_breakdown}
+\caption{C1 --- Per-axis paired $\Delta$ (haiku\_cascade $-$ haiku\_bare) per (domain, axis) cell. Green bars are positive (cascade ahead), red bars are negative. The visual summary of Table~\ref{tab:per_axis_effects}.}
+\label{fig:v04axes}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/v0.4/fig_v04_power_vs_realised}
+\caption{C2 --- Retrospective vs.\ a-priori power for H1--H4 plotted against realised Hedges' $g$. Every domain falls below the 0.8 threshold (red dotted line); the headline contrasts are inconclusive at the available $n$, not statistically null.}
+\label{fig:v04power_vs_realised}
+\end{figure}
+
+Per-domain raw composites (mean / median / sd / min / max) for both arms are reported in Table~\ref{tab:per_domain_raw}.
+
+\input{sections/_tables/tab_per_domain_raw}
 
 \begin{figure}[ht]
 \centering
@@ -72,7 +92,9 @@ H9.v4 measures the per-item agreement between two independent evaluators of the 
 
 \subsection{Cost ledger}\label{sec:results_cost}
 
-The v0.4 cost ledger separates the Haiku cascade and the Sonnet judge, because they are different models running different prompts and conflating them was an artefact of an earlier roll-up. The Haiku cascade arms (\texttt{haiku\_bare}, \texttt{haiku\_cascade}, \texttt{haiku\_bare\_2K\_scorer}, \texttt{haiku\_generic\_revise\_2pass}) consumed $\$12.73$ over $1{,}277$ Bedrock calls, recorded in \texttt{audit/v0.4/cost\_ledger\_merged.json}. The stratified Sonnet judge added $\$0.48$ over 23 paired judgements, recorded in the audit block of \texttt{benchmarks/results\_v0.4/judge\_agreement.json}. The combined v0.4 pilot spend was therefore $\$13.21$ over $1{,}300$ CLI invocations, and ran for roughly 200 minutes of wall-clock time across four parallel domain runs. Per-domain Haiku-cascade spend ranges from $\$2.71$ (\texttt{poetry\_interp}, 494 calls --- the largest domain) to $\$3.48$ (\texttt{poetry\_gen}, 296 calls). The cost-per-pair is dominated by the cascade's $K{=}3$ candidates plus the always-shadow revision; reducing $K$ to 2 would roughly cut the cascade arms' spend by a third. Figure~\ref{fig:v04cost} reports the per-domain Haiku-cascade breakdown; the Sonnet judge surcharge does not enter that figure because the judge runs out-of-band on a 23-pair stratified subset.
+The v0.4 cost ledger separates the Haiku cascade and the Sonnet judge, because they are different models running different prompts and conflating them was an artefact of an earlier roll-up. The Haiku cascade arms (\texttt{haiku\_bare}, \texttt{haiku\_cascade}, \texttt{haiku\_bare\_2K\_scorer}, \texttt{haiku\_generic\_revise\_2pass}) consumed $\$12.73$ over $1{,}277$ managed-API calls, recorded in \texttt{audit/v0.4/cost\_ledger\_merged.json}. The stratified Sonnet judge added $\$0.48$ over 23 paired judgements, recorded in the audit block of \texttt{benchmarks/results\_v0.4/judge\_agreement.json}. The combined v0.4 pilot spend was therefore $\$13.21$ over $1{,}300$ CLI invocations, and ran for roughly 200 minutes of wall-clock time across four parallel domain runs. Per-domain Haiku-cascade spend ranges from $\$2.71$ (\texttt{poetry\_interp}, 494 calls --- the largest domain) to $\$3.48$ (\texttt{poetry\_gen}, 296 calls). The cost-per-pair is dominated by the cascade's $K{=}3$ candidates plus the always-shadow revision; reducing $K$ to 2 would roughly cut the cascade arms' spend by a third. Figure~\ref{fig:v04cost} reports the per-domain Haiku-cascade breakdown; the Sonnet judge surcharge does not enter that figure because the judge runs out-of-band on a 23-pair stratified subset. Table~\ref{tab:cost_split} reports the same numbers split per model line.
+
+\input{sections/_tables/tab_cost_split}
 
 \begin{figure}[ht]
 \centering

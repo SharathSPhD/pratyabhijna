@@ -15,7 +15,7 @@ const perDomain = stats.fixed_effects?.H5.per_domain_n ?? {};
     uses, scientific creativity) with four base arms (haiku_bare, haiku_cascade, haiku_bare_2K_scorer for
     H6 fairness, haiku_generic_revise_2pass for H7 fairness) and a five-policy multiplex over the cascade
     arm (always_draft, always_revise, event_gated, learned_gate, oracle). Per-domain n is constrained by the
-    Bedrock cost envelope and the judge envelope; the table below summarises pooled per-domain pairs.
+    managed-API cost envelope and the judge envelope; the table below summarises pooled per-domain pairs.
   </p>
 
   <table class="not-prose font-sans">
@@ -30,13 +30,15 @@ const perDomain = stats.fixed_effects?.H5.per_domain_n ?? {};
   <h2>Substrate</h2>
 
   <p>
-    Both the cascade and the judge ran on AWS Bedrock during the Phase 7 pilot
+    Both the cascade and the judge ran via parallel API calls against the managed Anthropic-API substrate
+    during the Phase 7 pilot
     (<span class="kbd">global.anthropic.claude-haiku-4-5-20251001-v1:0</span> for cascade,
     <span class="kbd">global.anthropic.claude-sonnet-4-5-20250929-v1:0</span> for judge). The substrate
-    deviation from the OAuth Claude CLI was justified by quota — Bedrock can parallelise across domains
-    where the OAuth substrate cannot. Day-to-day operation, including showcase regeneration, runs against
-    the OAuth substrate. ADR-006 records the deviation and ADR-007 records the SDK code-path removal that
-    accompanies it. The <a href={withBase('/plugin')}>plugin page</a> is the operator-facing reference.
+    deviation from the OAuth Claude CLI was justified by quota — the managed-API substrate can
+    parallelise across domains where the OAuth substrate cannot. Day-to-day operation, including
+    showcase regeneration, runs against the OAuth substrate. ADR-006 records the deviation and ADR-007
+    records the SDK code-path removal that accompanies it. The
+    <a href={withBase('/plugin')}>plugin page</a> is the operator-facing reference.
   </p>
 
   <h2>Statistical protocol</h2>

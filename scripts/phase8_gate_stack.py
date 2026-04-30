@@ -456,6 +456,111 @@ def gate_cli_doc_examples_parse() -> dict:
     }
 
 
+def gate_no_bedrock_in_user_prose() -> dict:
+    """No "Bedrock" / "bedrock" in v0.4.2 user-facing prose surfaces.
+
+    v0.4.2 content-expansion gate. The user-facing prose surfaces (paper
+    sources, the Astro site sources, the top-level README, RUN_LOCAL, and
+    RELEASE_NOTES_v0.4) must not mention "Bedrock" by name — the v0.4.2
+    rewrite normalises every reference to "API calls" or "managed
+    Anthropic-API substrate".
+
+    Whitelist: ``docs/RUN_ON_BEDROCK.md`` (operator runbook for users
+    specifically running on AWS Bedrock; intentionally retains the term),
+    ``scripts/`` (code identifiers like ``run_v0_4_bedrock.py``),
+    ``audit/`` (raw audit JSON with substrate provenance fields),
+    ``docs/adr/`` (ADRs are append-only historical records),
+    ``docs/reviews/`` (adversarial-review records are immutable).
+    """
+    user_prose_targets: list[Path] = []
+    user_prose_targets.append(REPO / "README.md")
+    user_prose_targets.append(REPO / "docs" / "RUN_LOCAL.md")
+    user_prose_targets.append(REPO / "docs" / "RELEASE_NOTES_v0.4.md")
+    user_prose_targets.append(PAPER / "main.tex")
+    user_prose_targets.extend(PAPER_SECTIONS.glob("*.tex"))
+    appendices = PAPER / "appendices"
+    if appendices.is_dir():
+        user_prose_targets.extend(appendices.glob("*.tex"))
+    site_src = SITE / "src"
+    if site_src.is_dir():
+        user_prose_targets.extend(site_src.rglob("*.astro"))
+        user_prose_targets.extend(site_src.rglob("*.ts"))
+        user_prose_targets.extend(site_src.rglob("*.tsx"))
+    pattern = re.compile(r"[Bb]edrock")
+    hits: list[str] = []
+    for t in user_prose_targets:
+        if not t.exists() or not t.is_file():
+            continue
+        text = _read(t)
+        for i, line in enumerate(text.splitlines(), start=1):
+            if pattern.search(line):
+                hits.append(f"{t.relative_to(REPO)}:{i}")
+                if len(hits) >= 6:
+                    break
+        if len(hits) >= 6:
+            break
+    return {
+        "name": "verify_no_bedrock_in_user_prose",
+        "passed": not hits,
+        "details": (
+            "no Bedrock references in user-facing prose"
+            if not hits
+            else f"hits: {hits}"
+        ),
+    }
+
+
+def gate_image_prompts_md_present() -> dict:
+    """``docs/figures/PROMPTS.md`` exists with the required section headings.
+
+    v0.4.2 content-expansion gate. The image prompts file must ship with
+    the v0.4.2 release so that any maintainer can regenerate the hero
+    image and the per-figure stylised alternates without re-deriving the
+    design intent. Required sections: ``## How to use this file``,
+    ``## Hero image``, and ``## Figure prompts``.
+    """
+    p = REPO / "docs" / "figures" / "PROMPTS.md"
+    if not p.exists():
+        return {
+            "name": "verify_image_prompts_md_present",
+            "passed": False,
+            "details": "docs/figures/PROMPTS.md missing",
+        }
+    text = _read(p)
+    needed = ("## How to use this file", "## Hero image", "## Figure prompts")
+    missing = [n for n in needed if n not in text]
+    big_enough = len(text) > 2000
+    return {
+        "name": "verify_image_prompts_md_present",
+        "passed": not missing and big_enough,
+        "details": (
+            f"PROMPTS.md size={len(text)}b"
+            if not missing and big_enough
+            else f"missing sections={missing}, size={len(text)}"
+        ),
+    }
+
+
+def gate_section_10_8_removed() -> dict:
+    """The §10.8 unmerged-state subsection is removed from the discussion surfaces.
+
+    v0.4.2 content-expansion gate. The user picked option A (remove §10.8
+    from the discussion surfaces; keep the broader §0.5 root critique).
+    This gate confirms the paper discussion section no longer contains
+    the §10.8 subsection header and the site discussion page no longer
+    contains the corresponding ``<h2>`` block.
+    """
+    paper_disc = _read(PAPER_SECTIONS / "10_discussion.tex")
+    site_disc = _read(SITE / "src" / "pages" / "discussion.astro")
+    paper_clean = "Why the v0.3 results were never merged" not in paper_disc
+    site_clean = "10.8 The unmerged-state context" not in site_disc
+    return {
+        "name": "verify_section_10_8_removed",
+        "passed": paper_clean and site_clean,
+        "details": f"paper_clean={paper_clean}, site_clean={site_clean}",
+    }
+
+
 def gate_outer_host_loads_pce() -> dict:
     py = REPO / ".venv" / "bin" / "python"
     if not py.exists():
@@ -494,6 +599,9 @@ GATES: list[Callable[[], dict]] = [
     gate_judge_audit_metadata_complete,
     gate_cli_doc_examples_parse,
     gate_showcase_tests_pass,
+    gate_no_bedrock_in_user_prose,
+    gate_image_prompts_md_present,
+    gate_section_10_8_removed,
 ]
 
 
@@ -513,7 +621,7 @@ def main() -> int:
         "total": len(results),
         "pass": n_pass,
         "fail": n_fail,
-        "phase": "v0.4.2-phase-8",
+        "phase": "v0.4.2-phase-8-content-expansion",
         "report_kind": "artefact_audit",
         "report_kind_note": (
             "Phase 8 inspects committed artefacts (PDFs, JSON, docs/site/dist) "

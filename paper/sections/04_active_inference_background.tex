@@ -22,6 +22,46 @@ Practically, in PCE we use this in closed form for nested Dirichlet--multinomial
 
 \citet{Friston2017ActiveInferenceCuriosity} formalise insight as the BMR-driven re-organisation of $q(\theta)$ that yields a sudden drop in $F$. This is the active-inference correlate of \iast{vimar\'sa}: the recursive layer fires when the post-\iast{kriy\=a} state's $F$ has not yet stabilised, indicating an unrecognised aspect of the constraint manifold. In v0.4 the \iast{vimar\'sa} operator (Appendix~\ref{app:operator_specs}) conditions on three signals jointly: aspect-multiplicity in the surface (cosine to multiple aspect targets), novelty against the storehouse (Hopfield retrieval similarity), and the BMR $\Delta F$. The result of H8b in this paper is that the disjunctive event-gate as currently defined under-fires; an H8b-informed v0.5 will move to a \emph{learned} gate trained on the H8a paired-revision data (already supported by \texttt{commit\_policy="learned\_gate"}, \S\ref{sec:methods}, ADR-002).
 
+\begin{figure*}[ht]
+\centering
+\begin{tikzpicture}[
+  node distance=10mm and 8mm,
+  every node/.style={font=\small},
+  block/.style={
+    draw, rounded corners=2pt, align=center,
+    minimum width=24mm, minimum height=10mm, inner sep=3pt, fill=blue!4,
+  },
+  bmr/.style={
+    draw, rounded corners=2pt, align=center, fill=yellow!10,
+    minimum width=24mm, minimum height=10mm, inner sep=3pt,
+  },
+  gate/.style={
+    draw, diamond, aspect=1.6, align=center, fill=red!6,
+    minimum width=18mm, inner sep=1pt,
+  },
+  arrow/.style={-{Latex[length=2mm,width=2mm]}, thick},
+]
+\node[block] (prior) {prior $p(\theta\mid m)$\\\scriptsize over candidate surfaces};
+\node[block, right=of prior] (likeli) {cascade likelihood\\\scriptsize composite scorer};
+\node[block, right=of likeli] (post) {posterior $q(\theta)$\\\scriptsize ranking over $K$};
+\node[bmr, below=of post] (bmr) {BMR step\\\scriptsize \iast{apohana}: prune};
+\node[gate, left=of bmr] (fbudget) {ADR-003\\\scriptsize $\Delta F$ budget?};
+\node[block, left=of fbudget] (vimarsa) {\iast{vimar\'sa}\\\scriptsize revise surface};
+\node[block, below=of vimarsa] (commit) {commit decision\\\scriptsize draft / revision};
+
+\draw[arrow] (prior) -- (likeli);
+\draw[arrow] (likeli) -- (post);
+\draw[arrow] (post) -- (bmr);
+\draw[arrow] (bmr) -- node[above, font=\scriptsize]{$\Delta F$} (fbudget);
+\draw[arrow] (fbudget) -- node[above, font=\scriptsize]{fire} (vimarsa);
+\draw[arrow] (vimarsa) -- node[right, font=\scriptsize]{shadow revision} (commit);
+\draw[arrow] (fbudget.south) |- node[pos=0.25, right, font=\scriptsize]{exhausted}
+  ([yshift=-3mm]commit.east);
+\end{tikzpicture}
+\caption{F2 --- Active-inference / BMR loop in PCE. The composite-scorer head substitutes for a true variational likelihood (\S\ref{sec:active_inference_background}); $\Delta F$ is therefore a score-gap rather than a measured free-energy delta. The ADR-003 budget gate decides whether \iast{vimar\'sa} fires another revision pass.}
+\label{fig:flow_active_inference}
+\end{figure*}
+
 \subsection{What v0.4 implements honestly}
 
 The v0.4 cascade implements an \emph{LM-best-of-K composite-score} substitute for true variational free-energy minimisation. The composite is a weighted sum of axis scorers (see \S\ref{sec:benchmarks}); the per-candidate best-of-K is taken over $K$ samples from the \iast{icch\=a} fan-out. We treat the \emph{rank order} this composite produces as a stand-in for $q(\theta)$, and the per-candidate score gap as a stand-in for the $\Delta F$ that BMR would compute. This is a design choice with three honest costs: (i) the composite is \emph{learned} only insofar as the weights were tuned on a small held-out sample, not by minimising any tractable variational lower bound; (ii) what we call $\Delta F$ in the v0.4 traces is therefore a score-gap, not a true free-energy delta; (iii) the per-item \texttt{FreeEnergyBudget} (\texttt{audit/v0.3/} ledger; ADR-003 v0.4) gates the cascade's token spend on a \emph{token-cost} budget that is interpreted as a free-energy budget at the cost-accounting level only. None of this invalidates the architecture --- best-of-K is a well-studied surrogate for variational selection in the LM literature \citep{StiennonEtAl2020LearningToSummarizeFromHumanFeedback,MadaanEtAl2023SelfRefineNeurIPS} --- but the prose has to say so. The v0.5 ladder commits to lifting the substitute to a true variational scoring head against a discrete-state-space model in \texttt{pymdp v1.0}~\citep{Heins2022pymdp,pymdpRelease100}.

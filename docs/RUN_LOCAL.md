@@ -93,11 +93,11 @@ timeout_s     = 240
 cost_cap_usd  = 50.0
 ```
 
-PCE accepts any Anthropic CLI-addressable model name: bare aliases (`haiku`, `sonnet`, `opus`) and full Bedrock IDs (`global.anthropic.claude-haiku-4-5-20251001-v1:0`, etc.). PCE does not validate the model string — that's the CLI's job.
+PCE accepts any Anthropic CLI-addressable model name: bare aliases (`haiku`, `sonnet`, `opus`) and full managed-API model IDs (`global.anthropic.claude-haiku-4-5-20251001-v1:0`, etc.). PCE does not validate the model string — that's the CLI's job.
 
 ## Substrate boundary — OAuth CLI only (ADR-007)
 
-The Anthropic Python SDK code path was removed in Phase 8. PCE has a single supported substrate: `claude --print` over the OAuth-bound CLI. Legacy users who set `PCE_USE_SDK=1` will see a clear deprecation error with a one-line remediation path. The Phase 7 mechanism pilot used Bedrock through the same CLI's profile selector; this is documented as a deliberate substrate-deviation event in §7 of the paper (ADR-006).
+The Anthropic Python SDK code path was removed in Phase 8. PCE has a single supported substrate: `claude --print` over the OAuth-bound CLI. Legacy users who set `PCE_USE_SDK=1` will see a clear deprecation error with a one-line remediation path. The Phase 7 mechanism pilot used the managed Anthropic-API substrate through the same CLI's profile selector; this is documented as a deliberate substrate-deviation event in §7 of the paper (ADR-006).
 
 ## Building the paper
 

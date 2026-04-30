@@ -1,0 +1,19 @@
+\begin{table}[ht]
+\centering
+\caption{T3 --- v0.4 Phase 7 pilot cost ledger, split per model line. The Haiku rows aggregate the four cascade arms running through the managed-API substrate; the Sonnet judge row covers the 23-pair stratified bridge (H9 agreement). Numbers match \nolinkurl{audit/v0.4/cost_ledger_merged.json} and \nolinkurl{benchmarks/results_v0.4/judge_agreement.json}.}
+\label{tab:cost_split}
+\begin{tabular}{llrr}
+\toprule
+Domain & Model line & $n$ calls & Spend (USD) \\
+\midrule
+  AUT & Haiku cascade & 255 & \$3.17 \\
+  Poetry-interp & Haiku cascade & 494 & \$2.71 \\
+  Poetry-gen & Haiku cascade & 296 & \$3.48 \\
+  Sci-creativity & Haiku cascade & 232 & \$3.36 \\
+  \midrule
+  Cross-domain & Sonnet judge (H9) & 23 & \$0.48 \\
+  \midrule
+  Total & --- & 1300 & \$13.21 \\
+\bottomrule
+\end{tabular}
+\end{table}

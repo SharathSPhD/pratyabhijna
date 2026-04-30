@@ -10,6 +10,54 @@ We restate the Pratyabhij\~n\=a primitives we operationalise. We take the canoni
 
 The five \iast{\'sakti}s are functions, not stages: each describes a distinct kind of work the cascade performs on the same underlying \iast{prak\=a\'sa}. \iast{Cit} (consciousness, illumination) is the bare presentation of token-distributions, the substrate on which the cascade operates. \iast{\=Ananda} (bliss, coherence) is an aesthetic-coherence reward that scores a candidate against constraint-fit, novelty, and form-fidelity. \iast{Icch\=a} (will, directional intent) is the pre-cognitive directional sampling that produces $K$ candidate continuations under a constraint vector. \iast{J\~n\=ana} (knowing, discrimination) is posterior selection across candidates via Bayesian model reduction --- the formal seat of \iast{apohana}. \iast{Apohana-\'sakti} (contrastive exclusion) is not a separate stage but a geometric operator on the embedding space that scores ``how much is this not-the-other-readings''; we instantiate it as a contrastive embedding contrast. \iast{Kriy\=a} (action, enaction) is surface enaction --- the moment a candidate is materialised as concrete tokens. Above the five \iast{\'sakti}s sits the recursive layer of \iast{vimar\'sa} (self-reflexivity): after \iast{kriy\=a} produces a surface, the engine asks whether the surface witnesses aspect-multiplicity, and if it does not (or if the free-energy gradient is still negative), it re-enters the cascade with the surface itself as additional context, expanding the constraint manifold.
 
+\begin{figure*}[ht]
+\centering
+\begin{tikzpicture}[
+  node distance=11mm and 7mm,
+  every node/.style={font=\small},
+  stage/.style={
+    draw, rounded corners=2pt, align=center,
+    minimum width=20mm, minimum height=10mm,
+    inner sep=3pt, fill=blue!4,
+  },
+  io/.style={
+    draw, ellipse, align=center, inner sep=2pt, fill=gray!8,
+  },
+  reflex/.style={
+    draw, rounded corners=2pt, align=center, fill=yellow!10,
+    minimum width=20mm, minimum height=10mm, inner sep=3pt,
+  },
+  arrow/.style={-{Latex[length=2mm,width=2mm]}, thick},
+  loopback/.style={-{Latex[length=2mm]}, thick, dashed},
+]
+\node[io] (prompt) {prompt\\+ constraint};
+\node[stage, right=of prompt] (cit) {\iast{cit}\\\scriptsize $K$ candidates};
+\node[stage, right=of cit] (ananda) {\iast{\=ananda}\\\scriptsize novelty pulse};
+\node[stage, right=of ananda] (iccha) {\iast{icch\=a}\\\scriptsize best-of-$K$};
+\node[stage, below=of iccha] (apohana) {\iast{apohana}\\\scriptsize contrastive exclusion};
+\node[stage, left=of apohana] (jnana) {\iast{j\~n\=ana}\\\scriptsize BMR + $\Delta F$};
+\node[stage, left=of jnana] (kriya) {\iast{kriy\=a}\\\scriptsize render \emph{draft}};
+\node[reflex, left=of kriya] (vimarsa) {\iast{vimar\'sa}\\\scriptsize re-read draft};
+\node[stage, below=of vimarsa] (commit) {commit policy\\\scriptsize draft / revision};
+\node[io, right=of commit] (out) {committed\\surface};
+
+\draw[arrow] (prompt) -- (cit);
+\draw[arrow] (cit) -- (ananda);
+\draw[arrow] (ananda) -- (iccha);
+\draw[arrow] (iccha) -- (apohana);
+\draw[arrow] (apohana) -- (jnana);
+\draw[arrow] (jnana) -- (kriya);
+\draw[arrow] (kriya) -- (vimarsa);
+\draw[arrow] (vimarsa) -- (commit);
+\draw[arrow] (commit) -- (out);
+\draw[loopback] (vimarsa.south west) to[bend left=18]
+  node[midway, sloped, above, font=\scriptsize]{shadow revision (BMR re-fan-out)}
+  (iccha.north);
+\end{tikzpicture}
+\caption{F1 --- The five-\iast{\'sakti} cascade. The bottom-left dashed arrow is the recursive \iast{vimar\'sa} loopback that re-enters the cascade at \iast{icch\=a}, producing a shadow revision; the commit-policy multiplexer (Figure~\ref{fig:flow_commit_policy}, \S\ref{sec:methods}) chooses between draft and revision.}
+\label{fig:flow_5shakti}
+\end{figure*}
+
 \subsection{The \iast{\=alayavij\~n\=ana} (storehouse)}
 
 The Yog\=ac\=ara--\=alayavij\~n\=ana ``storehouse consciousness'' provides associative memory for the cascade. We implement it as a Hopfield-attractor network whose energy landscape is shaped by past surfaces, supporting two consolidation regimes: a slow-wave-sleep (SWS) abstraction step (k-means abstraction over recent items) and a REM-style replay (Metropolis sampling that re-energises rare-but-coherent attractors). Both cycles are explicit and inspectable.
