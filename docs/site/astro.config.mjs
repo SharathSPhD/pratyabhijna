@@ -9,8 +9,6 @@ export default defineConfig({
   trailingSlash: 'ignore',
   redirects: {
     '/presentation': '/',
-    '/presentation/': '/',
-    '/presentation/index.html': '/',
   },
   integrations: [
     mdx(),
