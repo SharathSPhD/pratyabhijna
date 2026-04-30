@@ -1,0 +1,47 @@
+{
+  "domain": "poetry_gen",
+  "item_id": "p06",
+  "model": "claude-haiku via Bedrock (Phase 7)",
+  "composite_cascade": 0.6350497771565821,
+  "composite_bare": 0.5541217234496977,
+  "draft": "White feather lies still\nCaught between the iron rails\nTrembling as trains pass",
+  "shadow_revision": "White feather lies still\nCaught between the iron rails\nSings when trains pass through",
+  "committed": "White feather lies still\nCaught between the iron rails\nTrembling as trains pass",
+  "committed_choice": "draft",
+  "score_draft": 0.6350497771565821,
+  "score_revision": 0.592173497554134,
+  "vimarsa_event": false,
+  "delta_F_draft": 0.0,
+  "delta_F_revision": 0.0,
+  "K_effective": 4,
+  "elapsed_s": 417.28238892555237,
+  "haiku_n_calls": 125,
+  "haiku_total_usd": 1.5295689999999997,
+  "axes_cascade": {
+    "creativity": 0.7761014509288704,
+    "lexical_diversity": 1.0,
+    "idiosyncrasy": 0.834197212010622,
+    "emotional_resonance": 0.5,
+    "literary_devices": 0.5,
+    "imagery": 0.2
+  },
+  "axes_bare": {
+    "creativity": 0.7803179356543457,
+    "lexical_diversity": 1.0,
+    "idiosyncrasy": 0.8444124050438404,
+    "emotional_resonance": 0.0,
+    "literary_devices": 0.5,
+    "imagery": 0.2
+  },
+  "item_prompt": null,
+  "item_metadata": {
+    "id": "p06",
+    "topic": "a single feather caught between train tracks",
+    "form": "haiku",
+    "must_avoid": [
+      "birds in flight"
+    ]
+  },
+  "source": "phase7_cascade",
+  "result_file": "benchmarks/results_v0.4/poetry_gen.json"
+}

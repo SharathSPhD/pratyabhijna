@@ -1,0 +1,14 @@
+---
+interface Citation { key: string; text: string; doi?: string | null; url?: string | null; }
+interface Props { citations: Citation[]; }
+const { citations } = Astro.props as Props;
+---
+<ol class="not-prose font-sans text-sm space-y-2 list-decimal pl-5">
+  {citations.map(c => (
+    <li id={`ref-${c.key}`}>
+      <span class="font-serif">{c.text}</span>
+      {c.doi && <a class="ml-2 text-[var(--link)] hover:underline font-mono text-[0.78rem]" href={`https://doi.org/${c.doi}`} rel="noopener" target="_blank">doi:{c.doi}</a>}
+      {!c.doi && c.url && <a class="ml-2 text-[var(--link)] hover:underline font-mono text-[0.78rem]" href={c.url} rel="noopener" target="_blank">↗ link</a>}
+    </li>
+  ))}
+</ol>

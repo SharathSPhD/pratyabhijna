@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HypothesisCard from '../components/HypothesisCard.astro';
+import { stats, fmt } from '../lib/stats';
+import { withBase } from '../lib/nav';
+
+const primary = stats.primary;
+const h5 = stats.fixed_effects!.H5;
+const h8a = stats.shadow_revision!;
+const h8b = stats.gate_calibration!;
+const h8c = stats.commit_policy!;
+---
+<BaseLayout title="Hypotheses" active="/hypotheses">
+  <h1>Hypotheses</h1>
+
+  <p>
+    v0.4 pre-registers four primary contrasts (H1–H4), a fixed-effects pool (H5), three mechanism
+    decompositions (H8a/b/c), and one judge agreement check (H9). Two fairness controls (H6 with a
+    2× scorer budget on the bare arm, H7 with a generic two-pass revision baseline) are reported in the
+    paper appendix. Click any card for the underlying definition; the
+    <a href={withBase('/results')}>results page</a> renders these against the live stats.
+  </p>
+
+  <h2>Primary cascade-vs-bare (H1–H4)</h2>
+  <div class="not-prose grid grid-cols-1 md:grid-cols-2 gap-3">
+    {Object.values(primary).map(p => (
+      <HypothesisCard
+        id={`H${p.hypothesis.replace('H', '')}.v4`}
+        domain={p.domain}
+        title="Cascade > bare on this domain"
+        g={p.g}
+        ci={p.ci as [number, number]}
+        p={p.p}
+        n={p.n}
+        supported={p.supported}
+      />
+    ))}
+  </div>
+
+  <h2>Pooled effect (H5)</h2>
+  <HypothesisCard
+    id="H5.v4"
+    title="Fixed-effects pool of cascade-vs-bare"
+    g={h5.pooled_g}
+    ci={h5.ci as [number, number]}
+    p={null}
+    n={Object.values(h5.per_domain_n).reduce((a, b) => a + b, 0)}
+    supported={h5.supported}
+    note={`ADR-005 inverse-variance fixed-effects meta-pool (${h5.method}).`}
+  />
+
+  <h2>Mechanism decomposition (H8a/b/c)</h2>
+  <div class="not-prose grid grid-cols-1 md:grid-cols-2 gap-3">
+    <HypothesisCard
+      id="H8a.v4"
+      title="Shadow revision > draft (paired)"
+      g={h8a.g}
+      ci={h8a.ci as [number, number]}
+      p={h8a.p}
+      n={h8a.n}
+      supported={h8a.supported}
+      note="Direct test of vimarśa: does the recursive revision pass produce a measurable surface lift?"
+    />
+    <HypothesisCard
+      id="H8b.v4"
+      title="Learned gate F1 > event-gated F1"
+      g={h8b.learned_gate.f1 - h8b.event_gated.f1}
+      ci={[0, 0]}
+      p={null}
+      n={h8b.learned_gate.n}
+      supported={h8b.supported}
+      note={`learned_gate F1 = ${fmt(h8b.learned_gate.f1, 3)} vs event_gated F1 = ${fmt(h8b.event_gated.f1, 3)}; F1 gain reported as a binary-classifier delta, not a Hedges' g.`}
+    />
+  </div>
+  <HypothesisCard
+    id="H8c.v4"
+    title={`Commit-policy leaderboard — winner: ${h8c.winner}`}
+    g={h8c.leader_board[0]?.g ?? 0}
+    ci={(h8c.leader_board[0]?.ci as [number, number]) ?? [0, 0]}
+    p={h8c.leader_board[0]?.p ?? null}
+    n={h8c.leader_board[0]?.n ?? 0}
+    supported={h8c.supported}
+    note="Pairwise paired permutations across always_draft / always_revise / event_gated / learned_gate; Holm-corrected."
+  />
+
+  <h2>Methodological flag (H9)</h2>
+  <p>
+    H9 reports Spearman ρ and sign-agreement between the proxy composite scorer and a calibrated Sonnet-4.5
+    LLM-judge over a held-out subset. Disagreement is treated as a flag against the proxy scorer's
+    construct validity rather than as a refutation of the cascade. The
+    <a href={withBase('/discussion')}>discussion page</a> §10.4 unpacks this.
+  </p>
+</BaseLayout>

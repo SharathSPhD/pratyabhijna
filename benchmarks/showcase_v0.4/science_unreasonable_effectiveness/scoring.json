@@ -1,0 +1,14 @@
+{
+  "axes_cascade": {
+    "frame_coverage": 0.3475874662399292,
+    "novelty": 0.5057646930217743,
+    "specificity": 1.0
+  },
+  "axes_bare": {
+    "frame_coverage": 0.2456807643175125,
+    "novelty": 0.3862112760543823,
+    "specificity": 1.0
+  },
+  "composite_cascade": 0.6177840530872345,
+  "composite_bare": 0.5439640134572983
+}

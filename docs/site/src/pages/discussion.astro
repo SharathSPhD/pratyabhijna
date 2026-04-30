@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../lib/nav';
+---
+<BaseLayout title="Discussion" active="/discussion">
+  <h1>Discussion</h1>
+
+  <h2>10.1 The mechanism reading</h2>
+
+  <p>
+    The single most important shift between v0.3 and v0.4 is conceptual: v0.3 asked <em>does the cascade
+    beat bare</em> and reported a null. v0.4 asks <em>which sub-mechanisms inside the cascade actually
+    do work</em>. The answer is layered. The recursive revision pass — pratyabhijñā's vimarśa, made
+    operationally concrete as a re-read of the draft against the prompt — is robustly positive on its
+    own (H8a). A learned commit gate (H8b) outperforms the v0.3 event gate at deciding when to commit
+    that revision. The wrapping cascade-vs-bare contrast does not move at this n because the cascade
+    arm runs the same revision step for every item, while the bare arm gets exactly one shot; H8a
+    explains <em>why</em> the cascade should help, and H8c explains <em>which policy</em> realises that
+    help most cleanly.
+  </p>
+
+  <h2>10.2 Per-operator dissection</h2>
+
+  <p>
+    Reading the audit logs operator-by-operator: cit alone is not distinguishable from a single
+    <span class="kbd">claude --print</span> call at the seeds we use; ānanda's novelty pulse correlates
+    weakly with downstream score gaps; icchā's best-of-K with composite scoring is responsible for the
+    bulk of the surface variation across the K candidates; jñāna's selection is dominated by the same
+    composite that the H9 finding flags as misaligned with the LLM-judge; kriyā is a verbatim render in
+    the v0.4 build; vimarśa carries the recursion. The finding is not subtle: the visible signal in
+    H8a is the vimarśa-driven revision step.
+  </p>
+
+  <h2>10.3 The H8b reading — the gate is the problem, not the cascade</h2>
+
+  <p>
+    The v0.3 event gate fires on a vimarśa diagnostic (event flag set if the reflexive read finds at
+    least one constraint violation). H8b shows it under-fires: precision is high (1.0) but recall is
+    low — the gate misses items where the revision would improve the surface but no constraint is
+    technically violated. The learned gate (ADR-002) trains a logistic head on the same diagnostics plus
+    the proxy score gap and recovers ~12 F1 points. H8b is a positive finding about gate design, not a
+    refutation of vimarśa: the cascade has the recognition signal; the v0.3 gate just under-uses it.
+  </p>
+
+  <h2>10.4 The H9 flag</h2>
+
+  <p>
+    The proxy composite scorer correlates with the Sonnet-4.5 judge at ρ = 0.0 over the per-item delta.
+    Position bias was checked (the judge's verdict does not flip when arms are swapped); by-quartile
+    breakdown shows the disagreement is not concentrated in any one domain. The honest reading is that
+    the proxy scorer (length × fluency × lexical diversity) and the LLM-judge are measuring different
+    things — the latter weighs thematic coherence and image freshness more heavily. This finding is
+    consistent with the LLM-as-judge calibration literature: an automated judge with a frozen prompt
+    captures dimensions that a feature-based composite cannot. v0.5's metric-design ladder treats
+    judge-aligned scoring as a first-class concern.
+  </p>
+
+  <h2>10.5 Pratyabhijñā as engineering vocabulary</h2>
+
+  <p>
+    Why does the recognition philosophy of Abhinavagupta keep earning its place across this study?
+    Because vimarśa is exactly the operation we ask the cascade to do, and apohana is exactly the move
+    that prunes the candidate set inside the icchā stage. The vocabulary is well-fitted, not decorative.
+    The mechanism reading above survives even if a reader strips the Sanskrit names and reads the
+    operators as "step 1 through step 8." What the names buy is a pre-existing literature on what each
+    operator is for, which sharpens the engineering choices: vimarśa names the obligation to read one's
+    own surface, and the H8a/H8b results are the empirical discharge of that obligation.
+  </p>
+
+  <h2>10.6 Compounding context-engineering work</h2>
+
+  <p>
+    PCE is the second project in an author program that grounds agent design in classical Indian darśana.
+    The first, <a href="https://zenodo.org/records/19680692" rel="noopener">Pratyākṣa</a>, addresses the
+    direct-perception axis (context-discipline / hallucination resistance) and reports a strong Stouffer
+    pooled signal. PCE addresses the recognition axis (creativity through reflexive self-recognition) and
+    reports a smaller, more decomposed effect. The contrast is not embarrassing; it is informative.
+    Creativity is harder to move with this kind of mechanism than hallucination is, and the per-mechanism
+    decomposition is the right way to find what does move.
+  </p>
+
+  <h2>10.7 Threats to validity</h2>
+
+  <p>
+    The pilot ran on Bedrock with a single judge model (Sonnet-4.5). Per-domain n is in the single digits
+    for the cascade arm, which gives retrospective power below 0.25 on H1–H4. The proxy composite is
+    misaligned with the LLM-judge at ρ = 0.0 (H9), so the H8a finding is conditional on the proxy as a
+    proxy; the v0.5 ladder includes a judge-aligned scorer. Integrity probes and the cost ledger are
+    published alongside this site for forensic audit. Seed regime is deterministic; the per-worker ledger
+    separation is documented in the orchestrator design.
+  </p>
+
+  <h2>10.8 The unmerged-state context</h2>
+
+  <p>
+    Phase 7 of the v0.4 mechanism study completed on Bedrock on April 30 2026 with the result tree pushed
+    to <span class="kbd">origin/v0.4-mechanism-study</span>. Until Phase 8 (this site, the paper, the
+    showcase, and this release) landed, the public Pages surface still told the v0.3 story; a reader
+    arriving on May 1 2026 would have seen the v0.3 negative-result summary at the headline level. The
+    branch-only stance was a defensible choice — the v0.4 paper, Astro site, and release notes were not
+    ready, and a premature merge would have surfaced raw stats without their academic interpretation —
+    but it was not costless. The Phase 8 mitigation is not a defensive squash but an explicit
+    acknowledgement: the merge happens at the end of Phase 8 in lockstep with the paper, the site, the
+    showcase, the release notes, and the v0.4.0 tag. We do not pretend the gap was costless; we record
+    what it cost and why we accepted the cost. v0.5 introduces a "preliminary results" PR window that
+    lands within 48 hours of pilot completion to prevent the same gap from recurring. See the
+    <a href={withBase('/reproducibility')}>reproducibility page</a> for the full statement.
+  </p>
+</BaseLayout>

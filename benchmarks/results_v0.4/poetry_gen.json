@@ -1,0 +1,2807 @@
+{
+  "domain": "poetry_gen",
+  "version": "v0.4",
+  "rows": {
+    "p01": {
+      "item": {
+        "id": "p01",
+        "topic": "rain at dusk on a tin roof",
+        "form": "haiku",
+        "must_avoid": [
+          "a busy city street"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "Raindrops on the tin\nSinging out to dusk below\nNight falls gently down",
+        "axes": {
+          "creativity": 0.7589536756277084,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.8055646196007729,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.0
+        },
+        "composite": 0.5107530492047468,
+        "n_chars": 70,
+        "n_words": 13,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 8.519742012023926,
+          "haiku_total_usd": 0.0044599999999999996,
+          "haiku_n_calls": 1
+        }
+      },
+      "haiku_cascade": {
+        "text": "Rain taps on the roof\nTin sings in the fading light\nDusk deepens to dark",
+        "axes": {
+          "creativity": 0.7572415173053741,
+          "lexical_diversity": 0.9333333333333333,
+          "idiosyncrasy": 0.8050425499677658,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.4
+        },
+        "composite": 0.5659362334344122,
+        "n_chars": 72,
+        "n_words": 15,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 307.169584274292,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 7,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "Rain taps on the roof\nTin sings in the fading light\nDusk deepens to dark",
+          "surface_revision": "Rain taps on the roof\nTin shrieks through the fading light\nDusk devours the song",
+          "aspect_count": 0.0,
+          "ananda": 0.9043979644775391,
+          "budget_balance": 3.7,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.9043979644775391,
+            "budget_balance": 3.7
+          },
+          "revision_skipped_reason": null,
+          "haiku_total_usd": 0.21563000000000002,
+          "haiku_n_calls": 17
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "Dusk rain tapping down\nTin roof sings its gentle song\nQuiet falls with dark",
+        "axes": {
+          "creativity": 0.7506030272035038,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.8070543110370636,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.4
+        },
+        "composite": 0.5762762230400945,
+        "n_chars": 75,
+        "n_words": 14,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 165.22591423988342,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": null,
+          "selected_idx": 10,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "Dusk rain tapping down\nTin roof sings its gentle song\nQuiet falls with dark",
+          "surface_revision": "",
+          "aspect_count": 0.0,
+          "ananda": 0.8870974183082581,
+          "budget_balance": 3.86,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8870974183082581,
+            "budget_balance": 3.86
+          },
+          "revision_skipped_reason": "commit_policy=always_draft",
+          "haiku_total_usd": 0.326595,
+          "haiku_n_calls": 33
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "Tin transforms to song\nRain drums each drop like a word\nNight begins to speak",
+        "axes": {
+          "creativity": 0.7498472179560101,
+          "lexical_diversity": 0.9333333333333333,
+          "idiosyncrasy": 0.8116821125149727,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.75,
+          "imagery": 0.0
+        },
+        "composite": 0.540810443967386,
+        "n_chars": 77,
+        "n_words": 15,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 294.4085669517517,
+          "K_effective": 4,
+          "commit_policy_effective": "always_revise",
+          "brief_override_used": true,
+          "committed": "revision",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 7,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "Tin roof catches rain\nEach drop rings through fading dusk\nWater streams downward",
+          "surface_revision": "Tin transforms to song\nRain drums each drop like a word\nNight begins to speak",
+          "aspect_count": 0.0,
+          "ananda": 0.8963200449943542,
+          "budget_balance": 3.7199999999999998,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8963200449943542,
+            "budget_balance": 3.7199999999999998
+          },
+          "revision_skipped_reason": null,
+          "haiku_total_usd": 0.517742,
+          "haiku_n_calls": 49
+        }
+      },
+      "haiku_cascade_event_gated": {
+        "text": "Rain taps on the roof\nTin sings in the fading light\nDusk deepens to dark",
+        "axes": {
+          "creativity": 0.7572415173053741,
+          "lexical_diversity": 0.9333333333333333,
+          "idiosyncrasy": 0.8050425499677658,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.4
+        },
+        "composite": 0.5659362334344122,
+        "n_chars": 72,
+        "n_words": 15,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "event_gated",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.9043979644775391,
+            "budget_balance": 3.7
+          },
+          "score_draft": 0.5659362334344122,
+          "score_revision": 0.5228631130523153
+        }
+      },
+      "haiku_cascade_always_draft": {
+        "text": "Rain taps on the roof\nTin sings in the fading light\nDusk deepens to dark",
+        "axes": {
+          "creativity": 0.7572415173053741,
+          "lexical_diversity": 0.9333333333333333,
+          "idiosyncrasy": 0.8050425499677658,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.4
+        },
+        "composite": 0.5659362334344122,
+        "n_chars": 72,
+        "n_words": 15,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_draft",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.9043979644775391,
+            "budget_balance": 3.7
+          },
+          "score_draft": 0.5659362334344122,
+          "score_revision": 0.5228631130523153
+        }
+      },
+      "haiku_cascade_always_revise": {
+        "text": "Rain taps on the roof\nTin shrieks through the fading light\nDusk devours the song",
+        "axes": {
+          "creativity": 0.7630042880773544,
+          "lexical_diversity": 0.8666666666666667,
+          "idiosyncrasy": 0.80750772356987,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.2
+        },
+        "composite": 0.5228631130523153,
+        "n_chars": 80,
+        "n_words": 15,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_revise",
+          "commit_decision_revision": true,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.9043979644775391,
+            "budget_balance": 3.7
+          },
+          "score_draft": 0.5659362334344122,
+          "score_revision": 0.5228631130523153
+        }
+      },
+      "haiku_cascade_learned_gate": {
+        "text": "Rain taps on the roof\nTin sings in the fading light\nDusk deepens to dark",
+        "axes": {
+          "creativity": 0.7572415173053741,
+          "lexical_diversity": 0.9333333333333333,
+          "idiosyncrasy": 0.8050425499677658,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.4
+        },
+        "composite": 0.5659362334344122,
+        "n_chars": 72,
+        "n_words": 15,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "learned_gate",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.9043979644775391,
+            "budget_balance": 3.7
+          },
+          "score_draft": 0.5659362334344122,
+          "score_revision": 0.5228631130523153
+        }
+      },
+      "haiku_cascade_oracle": {
+        "text": "Rain taps on the roof\nTin sings in the fading light\nDusk deepens to dark",
+        "axes": {
+          "creativity": 0.7572415173053741,
+          "lexical_diversity": 0.9333333333333333,
+          "idiosyncrasy": 0.8050425499677658,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.4
+        },
+        "composite": 0.5659362334344122,
+        "n_chars": 72,
+        "n_words": 15,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "oracle",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.9043979644775391,
+            "budget_balance": 3.7
+          },
+          "score_draft": 0.5659362334344122,
+          "score_revision": 0.5228631130523153,
+          "is_analysis_only": true
+        }
+      }
+    },
+    "p02": {
+      "item": {
+        "id": "p02",
+        "topic": "an autumn leaf settling on a still pond",
+        "form": "haiku",
+        "must_avoid": [
+          "spring blossoms"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "Golden leaf descends\nSettling on the still water\nMoment of pure peace",
+        "axes": {
+          "creativity": 0.7665431118186783,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.8518819101154804,
+          "emotional_resonance": 0.25,
+          "literary_devices": 0.5,
+          "imagery": 0.0
+        },
+        "composite": 0.5614041703223598,
+        "n_chars": 69,
+        "n_words": 12,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 15.042752027511597,
+          "haiku_total_usd": 0.529732,
+          "haiku_n_calls": 50
+        }
+      },
+      "haiku_cascade": {
+        "text": "Autumn leaf falls slow\nGently settles on still pond\nRests in calm water",
+        "axes": {
+          "creativity": 0.7859445363283157,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.8275166749954224,
+          "emotional_resonance": 0.25,
+          "literary_devices": 0.5,
+          "imagery": 0.0
+        },
+        "composite": 0.5605768685539564,
+        "n_chars": 71,
+        "n_words": 13,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 361.19422483444214,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 6,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "Autumn leaf falls slow\nGently settles on still pond\nRests in calm water",
+          "surface_revision": "Red leaf strikes the pond\nDrowns the mirror in autumn\nWater forgets sky",
+          "aspect_count": 0.0,
+          "ananda": 0.9168556928634644,
+          "budget_balance": 3.74,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.9168556928634644,
+            "budget_balance": 3.74
+          },
+          "revision_skipped_reason": null,
+          "haiku_total_usd": 0.7710170000000001,
+          "haiku_n_calls": 66
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "Red leaf surrenders\nSettling in the dark glass\nSelf becomes the pond",
+        "axes": {
+          "creativity": 0.7806873098015785,
+          "lexical_diversity": 0.9166666666666666,
+          "idiosyncrasy": 0.8346198871731758,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.4
+        },
+        "composite": 0.5719956439402368,
+        "n_chars": 68,
+        "n_words": 12,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 188.13545298576355,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": null,
+          "selected_idx": 15,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "Red leaf surrenders\nSettling in the dark glass\nSelf becomes the pond",
+          "surface_revision": "",
+          "aspect_count": 0.0,
+          "ananda": 0.8921348452568054,
+          "budget_balance": 3.88,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8921348452568054,
+            "budget_balance": 3.88
+          },
+          "revision_skipped_reason": "commit_policy=always_draft",
+          "haiku_total_usd": 0.898097,
+          "haiku_n_calls": 82
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "Rust-colored leaf falls\nSettles like a held exhale—\nThe pond stays intact",
+        "axes": {
+          "creativity": 0.761244463350843,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.8405472673475742,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.75,
+          "imagery": 0.0
+        },
+        "composite": 0.5586319551164028,
+        "n_chars": 73,
+        "n_words": 12,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 323.74297404289246,
+          "K_effective": 4,
+          "commit_policy_effective": "always_revise",
+          "brief_override_used": true,
+          "committed": "revision",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 1,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "Autumn leaf descends\nLanding soft upon still pond\nRipples slowly spread",
+          "surface_revision": "Rust-colored leaf falls\nSettles like a held exhale—\nThe pond stays intact",
+          "aspect_count": 0.0,
+          "ananda": 0.9006217122077942,
+          "budget_balance": 3.77,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.9006217122077942,
+            "budget_balance": 3.77
+          },
+          "revision_skipped_reason": null,
+          "haiku_total_usd": 1.1041320000000001,
+          "haiku_n_calls": 98
+        }
+      },
+      "haiku_cascade_event_gated": {
+        "text": "Autumn leaf falls slow\nGently settles on still pond\nRests in calm water",
+        "axes": {
+          "creativity": 0.7859445363283157,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.8275166749954224,
+          "emotional_resonance": 0.25,
+          "literary_devices": 0.5,
+          "imagery": 0.0
+        },
+        "composite": 0.5605768685539564,
+        "n_chars": 71,
+        "n_words": 13,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "event_gated",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.9168556928634644,
+            "budget_balance": 3.74
+          },
+          "score_draft": 0.5605768685539564,
+          "score_revision": 0.5397415334058203
+        }
+      },
+      "haiku_cascade_always_draft": {
+        "text": "Autumn leaf falls slow\nGently settles on still pond\nRests in calm water",
+        "axes": {
+          "creativity": 0.7859445363283157,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.8275166749954224,
+          "emotional_resonance": 0.25,
+          "literary_devices": 0.5,
+          "imagery": 0.0
+        },
+        "composite": 0.5605768685539564,
+        "n_chars": 71,
+        "n_words": 13,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_draft",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.9168556928634644,
+            "budget_balance": 3.74
+          },
+          "score_draft": 0.5605768685539564,
+          "score_revision": 0.5397415334058203
+        }
+      },
+      "haiku_cascade_always_revise": {
+        "text": "Red leaf strikes the pond\nDrowns the mirror in autumn\nWater forgets sky",
+        "axes": {
+          "creativity": 0.7776969443349278,
+          "lexical_diversity": 0.9230769230769231,
+          "idiosyncrasy": 0.8376753330230713,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.2
+        },
+        "composite": 0.5397415334058203,
+        "n_chars": 71,
+        "n_words": 13,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_revise",
+          "commit_decision_revision": true,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.9168556928634644,
+            "budget_balance": 3.74
+          },
+          "score_draft": 0.5605768685539564,
+          "score_revision": 0.5397415334058203
+        }
+      },
+      "haiku_cascade_learned_gate": {
+        "text": "Autumn leaf falls slow\nGently settles on still pond\nRests in calm water",
+        "axes": {
+          "creativity": 0.7859445363283157,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.8275166749954224,
+          "emotional_resonance": 0.25,
+          "literary_devices": 0.5,
+          "imagery": 0.0
+        },
+        "composite": 0.5605768685539564,
+        "n_chars": 71,
+        "n_words": 13,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "learned_gate",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.9168556928634644,
+            "budget_balance": 3.74
+          },
+          "score_draft": 0.5605768685539564,
+          "score_revision": 0.5397415334058203
+        }
+      },
+      "haiku_cascade_oracle": {
+        "text": "Autumn leaf falls slow\nGently settles on still pond\nRests in calm water",
+        "axes": {
+          "creativity": 0.7859445363283157,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.8275166749954224,
+          "emotional_resonance": 0.25,
+          "literary_devices": 0.5,
+          "imagery": 0.0
+        },
+        "composite": 0.5605768685539564,
+        "n_chars": 71,
+        "n_words": 13,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "oracle",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.9168556928634644,
+            "budget_balance": 3.74
+          },
+          "score_draft": 0.5605768685539564,
+          "score_revision": 0.5397415334058203,
+          "is_analysis_only": true
+        }
+      }
+    },
+    "p03": {
+      "item": {
+        "id": "p03",
+        "topic": "the silence after a long argument",
+        "form": "free verse",
+        "must_avoid": [
+          "vague metaphors"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "After a long argument.\n\nYour back turned to the stove.\nMy hands grip the edge of the kitchen table—\nthe one with the burn mark from two summers ago,\nthe match we forgot about.\n\nThe refrigerator hums.\nOutside, a car alarm lasts nine seconds.\n\nYou said: I don't know who you are anymore.\nI said: I know.\n\nYour silence now is not empty, but full:\nfull of the things you didn't say,\nthe ways you could have fought harder,\nthe apologies we won't make.\n\nTwenty minutes have passed.\nMy coffee has cooled to room temperature.\nA thin skin forms on its surface.\n\nI could reach across the table.\nThe distance is the length of two forearms.\nYour back. My watching.\nThe fan circulates warm air that solves nothing.\n\nThis is what remains:\nthe hum of the refrigerator,\nthe street below,\nanything but our voices.",
+        "axes": {
+          "creativity": 0.7376635589955987,
+          "lexical_diversity": 0.6875,
+          "idiosyncrasy": 0.8443701004127522,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.4444444444444444,
+          "imagery": 0.4
+        },
+        "composite": 0.5189963506421326,
+        "n_chars": 796,
+        "n_words": 144,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 21.549973964691162,
+          "haiku_total_usd": 1.1169550000000001,
+          "haiku_n_calls": 99
+        }
+      },
+      "haiku_cascade": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', \" <!-- pce-seed:91940 -->\\nUse one abstract or universal frame. Compose a free verse about: the silence after a long argument.\\nAvoid: vague metaphors.\\nOutput only the poem.\\n\\nReviser brief: Refine the previous draft for novelty, vividness, and surprise. Push at least one image or claim further than a baseline reading would. Keep the same form and length.\\n\\nPrevious draft:\\nSilence after an argument settles like ash—\\nnot weightless, not transparent,\\nbut the specific dust of everything we burned.\\n\\nYour hands rest on the table.\\nMine too, palms down,\\ntesting whether the surface still holds us.\\n\\nThe air isn't empty.\\nIt's crowded with words we left unfinished,\\nsentences that became accusations,\\napologies stuck like fishbones in our throats.\\n\\nOutside: a dog barks, a door slams.\\nLife continues, indifferent to the ceasefire\\nhappening here, in this room,\\nwhere we sit like pieces of a game\\nsomeone abandoned mid-move.\\n\\nI watch your fingers.\\nThey don't reach for mine.\\nI watch your face.\\nIt doesn't soften.\\n\\nThis silence isn't peace.\\nIt's the thin space between a beating heart\\nand a heart that's learned to hold itself still,\\nthe way hunted animals learn\\nto barely breathe,\\nto become invisible,\\nto hope the footsteps pass.\\n\\nNow produce the revised response.\"]' timed out after 120 seconds",
+          "elapsed_s": 324.039165019989
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:13481 -->\\nForeground the conventional aspect of the prompt. Compose a free verse about: the silence after a long argument.\\nAvoid: vague metaphors.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.10137915611267
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:13481 -->\\nForeground the conventional aspect of the prompt. Compose a free verse about: the silence after a long argument.\\nAvoid: vague metaphors.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.10429406166077
+        }
+      }
+    },
+    "p04": {
+      "item": {
+        "id": "p04",
+        "topic": "a child watching a candle gutter out",
+        "form": "haiku",
+        "must_avoid": [
+          "birthday cakes"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:46755 -->\\nCompose a haiku about: a child watching a candle gutter out.\\nAvoid: birthday cakes.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.01859998703003
+        }
+      },
+      "haiku_cascade": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:46755 -->\\nUse one specific concrete image. Compose a haiku about: a child watching a candle gutter out.\\nAvoid: birthday cakes.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.1575710773468
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:46755 -->\\nUse one specific concrete image. Compose a haiku about: a child watching a candle gutter out.\\nAvoid: birthday cakes.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.07446122169495
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:46755 -->\\nUse one specific concrete image. Compose a haiku about: a child watching a candle gutter out.\\nAvoid: birthday cakes.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.03602719306946
+        }
+      }
+    },
+    "p05": {
+      "item": {
+        "id": "p05",
+        "topic": "the smell of old books in a closed library",
+        "form": "free verse",
+        "must_avoid": [
+          "dusty stereotypes"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:8161 -->\\nCompose a free verse about: the smell of old books in a closed library.\\nAvoid: dusty stereotypes.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.02370285987854
+        }
+      },
+      "haiku_cascade": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:8161 -->\\nUse one abstract or universal frame. Compose a free verse about: the smell of old books in a closed library.\\nAvoid: dusty stereotypes.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.13739609718323
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:8161 -->\\nUse one abstract or universal frame. Compose a free verse about: the smell of old books in a closed library.\\nAvoid: dusty stereotypes.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.09606003761292
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:8161 -->\\nUse one abstract or universal frame. Compose a free verse about: the smell of old books in a closed library.\\nAvoid: dusty stereotypes.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.0467848777771
+        }
+      }
+    },
+    "p06": {
+      "item": {
+        "id": "p06",
+        "topic": "a single feather caught between train tracks",
+        "form": "haiku",
+        "must_avoid": [
+          "birds in flight"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "Feather caught between\nRails of iron and silence\nWaiting for the rush",
+        "axes": {
+          "creativity": 0.7803179356543457,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.8444124050438404,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.2
+        },
+        "composite": 0.5541217234496977,
+        "n_chars": 69,
+        "n_words": 12,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 7.593356132507324,
+          "haiku_total_usd": 1.2494500000000002,
+          "haiku_n_calls": 109
+        }
+      },
+      "haiku_cascade": {
+        "text": "White feather lies still\nCaught between the iron rails\nTrembling as trains pass",
+        "axes": {
+          "creativity": 0.7761014509288704,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.834197212010622,
+          "emotional_resonance": 0.5,
+          "literary_devices": 0.5,
+          "imagery": 0.2
+        },
+        "composite": 0.6350497771565821,
+        "n_chars": 79,
+        "n_words": 13,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 417.28238892555237,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 5,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "White feather lies still\nCaught between the iron rails\nTrembling as trains pass",
+          "surface_revision": "White feather lies still\nCaught between the iron rails\nSings when trains pass through",
+          "aspect_count": 0.0,
+          "ananda": 0.8838084936141968,
+          "budget_balance": 3.73,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8838084936141968,
+            "budget_balance": 3.73
+          },
+          "revision_skipped_reason": null,
+          "haiku_total_usd": 1.5295689999999997,
+          "haiku_n_calls": 125
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "A single feather\nCaught between the iron rails\nWaiting for the train",
+        "axes": {
+          "creativity": 0.783383846282959,
+          "lexical_diversity": 0.9166666666666666,
+          "idiosyncrasy": 0.8197012692689896,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.0
+        },
+        "composite": 0.5032919637031025,
+        "n_chars": 68,
+        "n_words": 12,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 180.20582032203674,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": null,
+          "selected_idx": 1,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "A single feather\nCaught between the iron rails\nWaiting for the train",
+          "surface_revision": "",
+          "aspect_count": 0.0,
+          "ananda": 0.9273651838302612,
+          "budget_balance": 3.88,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.9273651838302612,
+            "budget_balance": 3.88
+          },
+          "revision_skipped_reason": "commit_policy=always_draft",
+          "haiku_total_usd": 1.6426729999999996,
+          "haiku_n_calls": 141
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "Between humming steel\nThe feather becomes prayer\nUnheard by the wheels",
+        "axes": {
+          "creativity": 0.7830958142876625,
+          "lexical_diversity": 0.9090909090909091,
+          "idiosyncrasy": 0.841700553894043,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.0
+        },
+        "composite": 0.5056478795454358,
+        "n_chars": 70,
+        "n_words": 11,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 309.18776774406433,
+          "K_effective": 4,
+          "commit_policy_effective": "always_revise",
+          "brief_override_used": true,
+          "committed": "revision",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 2,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "A feather lying\nCaught between metal rail tracks\nWaiting for the train",
+          "surface_revision": "Between humming steel\nThe feather becomes prayer\nUnheard by the wheels",
+          "aspect_count": 0.0,
+          "ananda": 0.9082676768302917,
+          "budget_balance": 3.77,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.9082676768302917,
+            "budget_balance": 3.77
+          },
+          "revision_skipped_reason": null,
+          "haiku_total_usd": 1.833933,
+          "haiku_n_calls": 157
+        }
+      },
+      "haiku_cascade_event_gated": {
+        "text": "White feather lies still\nCaught between the iron rails\nTrembling as trains pass",
+        "axes": {
+          "creativity": 0.7761014509288704,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.834197212010622,
+          "emotional_resonance": 0.5,
+          "literary_devices": 0.5,
+          "imagery": 0.2
+        },
+        "composite": 0.6350497771565821,
+        "n_chars": 79,
+        "n_words": 13,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "event_gated",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8838084936141968,
+            "budget_balance": 3.73
+          },
+          "score_draft": 0.6350497771565821,
+          "score_revision": 0.592173497554134
+        }
+      },
+      "haiku_cascade_always_draft": {
+        "text": "White feather lies still\nCaught between the iron rails\nTrembling as trains pass",
+        "axes": {
+          "creativity": 0.7761014509288704,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.834197212010622,
+          "emotional_resonance": 0.5,
+          "literary_devices": 0.5,
+          "imagery": 0.2
+        },
+        "composite": 0.6350497771565821,
+        "n_chars": 79,
+        "n_words": 13,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_draft",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8838084936141968,
+            "budget_balance": 3.73
+          },
+          "score_draft": 0.6350497771565821,
+          "score_revision": 0.592173497554134
+        }
+      },
+      "haiku_cascade_always_revise": {
+        "text": "White feather lies still\nCaught between the iron rails\nSings when trains pass through",
+        "axes": {
+          "creativity": 0.7740514348534977,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.8289895504713058,
+          "emotional_resonance": 0.25,
+          "literary_devices": 0.5,
+          "imagery": 0.2
+        },
+        "composite": 0.592173497554134,
+        "n_chars": 85,
+        "n_words": 14,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_revise",
+          "commit_decision_revision": true,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8838084936141968,
+            "budget_balance": 3.73
+          },
+          "score_draft": 0.6350497771565821,
+          "score_revision": 0.592173497554134
+        }
+      },
+      "haiku_cascade_learned_gate": {
+        "text": "White feather lies still\nCaught between the iron rails\nTrembling as trains pass",
+        "axes": {
+          "creativity": 0.7761014509288704,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.834197212010622,
+          "emotional_resonance": 0.5,
+          "literary_devices": 0.5,
+          "imagery": 0.2
+        },
+        "composite": 0.6350497771565821,
+        "n_chars": 79,
+        "n_words": 13,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "learned_gate",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8838084936141968,
+            "budget_balance": 3.73
+          },
+          "score_draft": 0.6350497771565821,
+          "score_revision": 0.592173497554134
+        }
+      },
+      "haiku_cascade_oracle": {
+        "text": "White feather lies still\nCaught between the iron rails\nTrembling as trains pass",
+        "axes": {
+          "creativity": 0.7761014509288704,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.834197212010622,
+          "emotional_resonance": 0.5,
+          "literary_devices": 0.5,
+          "imagery": 0.2
+        },
+        "composite": 0.6350497771565821,
+        "n_chars": 79,
+        "n_words": 13,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "oracle",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8838084936141968,
+            "budget_balance": 3.73
+          },
+          "score_draft": 0.6350497771565821,
+          "score_revision": 0.592173497554134,
+          "is_analysis_only": true
+        }
+      }
+    },
+    "p07": {
+      "item": {
+        "id": "p07",
+        "topic": "first frost on a kitchen window",
+        "form": "haiku",
+        "must_avoid": [
+          "holiday imagery"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "Crystals on the glass\nMorning's first cold breath appears\nSummer's warmth recedes",
+        "axes": {
+          "creativity": 0.7699181507615482,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.8594619631767273,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.2
+        },
+        "composite": 0.5548966856563793,
+        "n_chars": 81,
+        "n_words": 12,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 4.18524694442749,
+          "haiku_total_usd": 1.836089,
+          "haiku_n_calls": 158
+        }
+      },
+      "haiku_cascade": {
+        "text": "Frost forms on the glass\nKitchen window marks the change\nSeason's turn begins",
+        "axes": {
+          "creativity": 0.7672825861064827,
+          "lexical_diversity": 0.9230769230769231,
+          "idiosyncrasy": 0.8311150781810284,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.0
+        },
+        "composite": 0.5035790978940723,
+        "n_chars": 77,
+        "n_words": 13,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 314.46992015838623,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 4,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "Frost forms on the glass\nKitchen window marks the change\nSeason's turn begins",
+          "surface_revision": "Frost eats the warm pane\nKitchen's breath turns crystalline\nCold wins the kitchen",
+          "aspect_count": 0.0,
+          "ananda": 0.8723350167274475,
+          "budget_balance": 3.74,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8723350167274475,
+            "budget_balance": 3.74
+          },
+          "revision_skipped_reason": null,
+          "haiku_total_usd": 2.04477,
+          "haiku_n_calls": 174
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "Frost etches the glass\nKitchen window's sudden white\nFirst chill has arrived",
+        "axes": {
+          "creativity": 0.7582949502941441,
+          "lexical_diversity": 1.0,
+          "idiosyncrasy": 0.8235157392919064,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.2
+        },
+        "composite": 0.5469684482643418,
+        "n_chars": 76,
+        "n_words": 12,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 190.39829206466675,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": null,
+          "selected_idx": 9,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "Frost etches the glass\nKitchen window's sudden white\nFirst chill has arrived",
+          "surface_revision": "",
+          "aspect_count": 0.0,
+          "ananda": 0.8695583939552307,
+          "budget_balance": 3.88,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8695583939552307,
+            "budget_balance": 3.88
+          },
+          "revision_skipped_reason": "commit_policy=always_draft",
+          "haiku_total_usd": 2.172840999999999,
+          "haiku_n_calls": 190
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "The first frost writes ferns\non the kitchen window's glass—\nsecrets iced, now shown",
+        "axes": {
+          "creativity": 0.7528247228440117,
+          "lexical_diversity": 0.9285714285714286,
+          "idiosyncrasy": 0.8230106756091118,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.0
+        },
+        "composite": 0.5007344711707588,
+        "n_chars": 83,
+        "n_words": 14,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 362.33157086372375,
+          "K_effective": 4,
+          "commit_policy_effective": "always_revise",
+          "brief_override_used": true,
+          "committed": "revision",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 6,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "Ice crystals on glass\nKitchen window holds the cold\nMorning's first white frost",
+          "surface_revision": "The first frost writes ferns\non the kitchen window's glass—\nsecrets iced, now shown",
+          "aspect_count": 0.0,
+          "ananda": 0.8609398603439331,
+          "budget_balance": 3.73,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8609398603439331,
+            "budget_balance": 3.73
+          },
+          "revision_skipped_reason": null,
+          "haiku_total_usd": 2.411334,
+          "haiku_n_calls": 206
+        }
+      },
+      "haiku_cascade_event_gated": {
+        "text": "Frost forms on the glass\nKitchen window marks the change\nSeason's turn begins",
+        "axes": {
+          "creativity": 0.7672825861064827,
+          "lexical_diversity": 0.9230769230769231,
+          "idiosyncrasy": 0.8311150781810284,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.0
+        },
+        "composite": 0.5035790978940723,
+        "n_chars": 77,
+        "n_words": 13,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "event_gated",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8723350167274475,
+            "budget_balance": 3.74
+          },
+          "score_draft": 0.5035790978940723,
+          "score_revision": 0.5665064012842481
+        }
+      },
+      "haiku_cascade_always_draft": {
+        "text": "Frost forms on the glass\nKitchen window marks the change\nSeason's turn begins",
+        "axes": {
+          "creativity": 0.7672825861064827,
+          "lexical_diversity": 0.9230769230769231,
+          "idiosyncrasy": 0.8311150781810284,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.0
+        },
+        "composite": 0.5035790978940723,
+        "n_chars": 77,
+        "n_words": 13,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_draft",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8723350167274475,
+            "budget_balance": 3.74
+          },
+          "score_draft": 0.5035790978940723,
+          "score_revision": 0.5665064012842481
+        }
+      },
+      "haiku_cascade_always_revise": {
+        "text": "Frost eats the warm pane\nKitchen's breath turns crystalline\nCold wins the kitchen",
+        "axes": {
+          "creativity": 0.7517559594091248,
+          "lexical_diversity": 0.9230769230769231,
+          "idiosyncrasy": 0.8242055252194405,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.4
+        },
+        "composite": 0.5665064012842481,
+        "n_chars": 81,
+        "n_words": 13,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_revise",
+          "commit_decision_revision": true,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8723350167274475,
+            "budget_balance": 3.74
+          },
+          "score_draft": 0.5035790978940723,
+          "score_revision": 0.5665064012842481
+        }
+      },
+      "haiku_cascade_learned_gate": {
+        "text": "Frost forms on the glass\nKitchen window marks the change\nSeason's turn begins",
+        "axes": {
+          "creativity": 0.7672825861064827,
+          "lexical_diversity": 0.9230769230769231,
+          "idiosyncrasy": 0.8311150781810284,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.0
+        },
+        "composite": 0.5035790978940723,
+        "n_chars": 77,
+        "n_words": 13,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "learned_gate",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8723350167274475,
+            "budget_balance": 3.74
+          },
+          "score_draft": 0.5035790978940723,
+          "score_revision": 0.5665064012842481
+        }
+      },
+      "haiku_cascade_oracle": {
+        "text": "Frost eats the warm pane\nKitchen's breath turns crystalline\nCold wins the kitchen",
+        "axes": {
+          "creativity": 0.7517559594091248,
+          "lexical_diversity": 0.9230769230769231,
+          "idiosyncrasy": 0.8242055252194405,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.5,
+          "imagery": 0.4
+        },
+        "composite": 0.5665064012842481,
+        "n_chars": 81,
+        "n_words": 13,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "oracle",
+          "commit_decision_revision": true,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8723350167274475,
+            "budget_balance": 3.74
+          },
+          "score_draft": 0.5035790978940723,
+          "score_revision": 0.5665064012842481,
+          "is_analysis_only": true
+        }
+      }
+    },
+    "p08": {
+      "item": {
+        "id": "p08",
+        "topic": "an elderly couple eating soup in silence",
+        "form": "free verse",
+        "must_avoid": [
+          "sentimentality"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "The spoons click against ceramic.\nSteam rises, then nothing.\nTheir hands move without thinking—\nlift, blow, sip.\nShe salts her portion.\nHe doesn't glance over.\nThe soup cools.\nThey don't hurry.\nOutside: traffic, a siren, neighbors' voices.\nInside: the small sounds of eating.\nHis jaw works methodically.\nHer bread dips once into the bowl.\nTen thousand meals like this.\nMaybe more.\nMaybe less.\nNeither of them counting.",
+        "axes": {
+          "creativity": 0.7328107297420502,
+          "lexical_diversity": 0.9104477611940298,
+          "idiosyncrasy": 0.8351009786128998,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.6547619047619048,
+          "imagery": 0.0
+        },
+        "composite": 0.5221868957184808,
+        "n_chars": 418,
+        "n_words": 67,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 9.736024141311646,
+          "haiku_total_usd": 2.415832,
+          "haiku_n_calls": 207
+        }
+      },
+      "haiku_cascade": {
+        "text": "Spoon meets bowl meets mouth.\nNo music. No soft lighting in memory.\nJust the mechanics of swallowing,\nher hand trembling slightly,\nhis spoon scraping the bottom.\n\nSixty years and they haven't learned\nto call it communion.\nThe steam rises. Falls.\nThe silence is not profound—\nit's the silence of a parking lot,\nfull of separate objects.\n\nShe calculates the thermostat.\nHe's already forgotten what he meant to say.\n\nThe soup cools.\nTheir shoulders don't touch.\nThe bowl reflects nothing back.",
+        "axes": {
+          "creativity": 0.7343276865780354,
+          "lexical_diversity": 0.8125,
+          "idiosyncrasy": 0.8218458235924002,
+          "emotional_resonance": 0.25,
+          "literary_devices": 0.4722222222222222,
+          "imagery": 0.6
+        },
+        "composite": 0.6151492887321096,
+        "n_chars": 490,
+        "n_words": 80,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 403.8790578842163,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 2,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "Spoon meets bowl meets mouth.\nNo music. No soft lighting in memory.\nJust the mechanics of swallowing,\nher hand trembling slightly,\nhis spoon scraping the bottom.\n\nSixty years and they haven't learned\nto call it communion.\nThe steam rises. Falls.\nThe silence is not profound—\nit's the silence of a parking lot,\nfull of separate objects.\n\nShe calculates the thermostat.\nHe's already forgotten what he meant to say.\n\nThe soup cools.\nTheir shoulders don't touch.\nThe bowl reflects nothing back.",
+          "surface_revision": "Spoon meets bowl meets mouth.\nNo music. No soft lighting in memory.\nJust the mechanics of swallowing,\nher hand trembling at half-second intervals,\nhis spoon scraping the bottom.\n\nSixty years and they haven't learned\nto call it communion.\nThe steam rises. Falls.\nThe silence is not profound—\nit's the silence of a parking lot,\nfull of separate objects.\n\nShe calculates the thermostat.\nHe's already forgotten what he meant to say.\n\nThe soup reaches a temperature neither of them will acknowledge.\nTheir shoulders don't touch.\nThe bowl reflects nothing back.",
+          "aspect_count": 0.0,
+          "ananda": 0.8123055100440979,
+          "budget_balance": 2.31,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8123055100440979,
+            "budget_balance": 2.31
+          },
+          "revision_skipped_reason": null,
+          "haiku_total_usd": 2.690488,
+          "haiku_n_calls": 223
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "They have synchronized their spoons\nto the half-second, their swallows\nto a shared silence that isn't silence\nbut its perfect opposite—\na language of throat and bowl.\n\nThirty years of not looking.\nThirty years of this.\n\nThe soup cools. They eat it anyway.\nThe sound of their eating fills the room\nlike weather—unavoidable, specific, unnamed.\n\nWhen her hand trembles, his does not.\nWhen his does not, hers continues steadily.\n\nThey have learned to be two\npeople eating soup\nwithout the fiction of togetherness.\n\nNo touch. No glance.\nJust the small violence of spoons,\nthe betrayal of hunger\nstill present, still insisting\nin their aging mouths.",
+        "axes": {
+          "creativity": 0.7375279637772794,
+          "lexical_diversity": 0.6822429906542056,
+          "idiosyncrasy": 0.8006990667221681,
+          "emotional_resonance": 0.5,
+          "literary_devices": 0.75,
+          "imagery": 0.8
+        },
+        "composite": 0.7117450035256088,
+        "n_chars": 643,
+        "n_words": 105,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 161.30082392692566,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": null,
+          "selected_idx": 10,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "They have synchronized their spoons\nto the half-second, their swallows\nto a shared silence that isn't silence\nbut its perfect opposite—\na language of throat and bowl.\n\nThirty years of not looking.\nThirty years of this.\n\nThe soup cools. They eat it anyway.\nThe sound of their eating fills the room\nlike weather—unavoidable, specific, unnamed.\n\nWhen her hand trembles, his does not.\nWhen his does not, hers continues steadily.\n\nThey have learned to be two\npeople eating soup\nwithout the fiction of togetherness.\n\nNo touch. No glance.\nJust the small violence of spoons,\nthe betrayal of hunger\nstill present, still insisting\nin their aging mouths.",
+          "surface_revision": "",
+          "aspect_count": 0.0,
+          "ananda": 0.8264879584312439,
+          "budget_balance": 2.95,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8264879584312439,
+            "budget_balance": 2.95
+          },
+          "revision_skipped_reason": "commit_policy=always_draft",
+          "haiku_total_usd": 2.769491,
+          "haiku_n_calls": 239
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "She adds salt. He doesn't.\nThe radio talks about cold. Neither listens.\nHis spoon scrapes the bowl's bottom before hers is half-gone.\nHe continues anyway. The small sound of his swallow\nas the spoon moves through cooling broth.\nHer hand, spotted, lies on the table.\nHis hand, shaking, lies on the table's edge.\nShe sets her spoon flat. He leaves an inch.\nPossibly Tuesdays are always like this.\nPossibly it doesn't matter what day it is.\nThe light above them is steady now.\nShe's stopped noticing when it's not.\nBy next week, the soup will be forgotten.\nThe tremor in his hand will continue.",
+        "axes": {
+          "creativity": 0.7207601804499703,
+          "lexical_diversity": 0.7428571428571429,
+          "idiosyncrasy": 0.8211513674603059,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.7282608695652174,
+          "imagery": 0.6
+        },
+        "composite": 0.6021715933887727,
+        "n_chars": 591,
+        "n_words": 104,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 507.78484892845154,
+          "K_effective": 4,
+          "commit_policy_effective": "always_revise",
+          "brief_override_used": true,
+          "committed": "revision",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 3,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "Soup steams. Two bowls on the table.\nThey lift spoons. The metal scrapes ceramic.\nShe adds salt to hers. He doesn't.\nEach sip audible—the small sound of swallowing.\nBetween them, the radio talks about weather.\nNeither listens.\nHis hand rests on the table's edge.\nHer spoon moves from bowl to mouth.\nThe soup cools. They eat anyway.\nWhen she finishes, she sets her spoon down flat across the bowl.\nHe continues. There is no rush.\nThe kitchen light flickers slightly.\nNeither mentions it.\nHer hands are spotted. His shake a little.\nSoup—just soup—\nthe thing they do on a Tuesday or any day.\nNothing more. Nothing less.",
+          "surface_revision": "She adds salt. He doesn't.\nThe radio talks about cold. Neither listens.\nHis spoon scrapes the bowl's bottom before hers is half-gone.\nHe continues anyway. The small sound of his swallow\nas the spoon moves through cooling broth.\nHer hand, spotted, lies on the table.\nHis hand, shaking, lies on the table's edge.\nShe sets her spoon flat. He leaves an inch.\nPossibly Tuesdays are always like this.\nPossibly it doesn't matter what day it is.\nThe light above them is steady now.\nShe's stopped noticing when it's not.\nBy next week, the soup will be forgotten.\nThe tremor in his hand will continue.",
+          "aspect_count": 0.0,
+          "ananda": 0.8091614246368408,
+          "budget_balance": 1.8899999999999997,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8091614246368408,
+            "budget_balance": 1.8899999999999997
+          },
+          "revision_skipped_reason": null,
+          "haiku_total_usd": 3.0806790000000013,
+          "haiku_n_calls": 255
+        }
+      },
+      "haiku_cascade_event_gated": {
+        "text": "Spoon meets bowl meets mouth.\nNo music. No soft lighting in memory.\nJust the mechanics of swallowing,\nher hand trembling slightly,\nhis spoon scraping the bottom.\n\nSixty years and they haven't learned\nto call it communion.\nThe steam rises. Falls.\nThe silence is not profound—\nit's the silence of a parking lot,\nfull of separate objects.\n\nShe calculates the thermostat.\nHe's already forgotten what he meant to say.\n\nThe soup cools.\nTheir shoulders don't touch.\nThe bowl reflects nothing back.",
+        "axes": {
+          "creativity": 0.7343276865780354,
+          "lexical_diversity": 0.8125,
+          "idiosyncrasy": 0.8218458235924002,
+          "emotional_resonance": 0.25,
+          "literary_devices": 0.4722222222222222,
+          "imagery": 0.6
+        },
+        "composite": 0.6151492887321096,
+        "n_chars": 490,
+        "n_words": 80,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "event_gated",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8123055100440979,
+            "budget_balance": 2.31
+          },
+          "score_draft": 0.6151492887321096,
+          "score_revision": 0.6143315497623029
+        }
+      },
+      "haiku_cascade_always_draft": {
+        "text": "Spoon meets bowl meets mouth.\nNo music. No soft lighting in memory.\nJust the mechanics of swallowing,\nher hand trembling slightly,\nhis spoon scraping the bottom.\n\nSixty years and they haven't learned\nto call it communion.\nThe steam rises. Falls.\nThe silence is not profound—\nit's the silence of a parking lot,\nfull of separate objects.\n\nShe calculates the thermostat.\nHe's already forgotten what he meant to say.\n\nThe soup cools.\nTheir shoulders don't touch.\nThe bowl reflects nothing back.",
+        "axes": {
+          "creativity": 0.7343276865780354,
+          "lexical_diversity": 0.8125,
+          "idiosyncrasy": 0.8218458235924002,
+          "emotional_resonance": 0.25,
+          "literary_devices": 0.4722222222222222,
+          "imagery": 0.6
+        },
+        "composite": 0.6151492887321096,
+        "n_chars": 490,
+        "n_words": 80,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_draft",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8123055100440979,
+            "budget_balance": 2.31
+          },
+          "score_draft": 0.6151492887321096,
+          "score_revision": 0.6143315497623029
+        }
+      },
+      "haiku_cascade_always_revise": {
+        "text": "Spoon meets bowl meets mouth.\nNo music. No soft lighting in memory.\nJust the mechanics of swallowing,\nher hand trembling at half-second intervals,\nhis spoon scraping the bottom.\n\nSixty years and they haven't learned\nto call it communion.\nThe steam rises. Falls.\nThe silence is not profound—\nit's the silence of a parking lot,\nfull of separate objects.\n\nShe calculates the thermostat.\nHe's already forgotten what he meant to say.\n\nThe soup reaches a temperature neither of them will acknowledge.\nTheir shoulders don't touch.\nThe bowl reflects nothing back.",
+        "axes": {
+          "creativity": 0.7332533724606037,
+          "lexical_diversity": 0.8111111111111111,
+          "idiosyncrasy": 0.8194025927798801,
+          "emotional_resonance": 0.25,
+          "literary_devices": 0.4722222222222222,
+          "imagery": 0.6
+        },
+        "composite": 0.6143315497623029,
+        "n_chars": 555,
+        "n_words": 89,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_revise",
+          "commit_decision_revision": true,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8123055100440979,
+            "budget_balance": 2.31
+          },
+          "score_draft": 0.6151492887321096,
+          "score_revision": 0.6143315497623029
+        }
+      },
+      "haiku_cascade_learned_gate": {
+        "text": "Spoon meets bowl meets mouth.\nNo music. No soft lighting in memory.\nJust the mechanics of swallowing,\nher hand trembling slightly,\nhis spoon scraping the bottom.\n\nSixty years and they haven't learned\nto call it communion.\nThe steam rises. Falls.\nThe silence is not profound—\nit's the silence of a parking lot,\nfull of separate objects.\n\nShe calculates the thermostat.\nHe's already forgotten what he meant to say.\n\nThe soup cools.\nTheir shoulders don't touch.\nThe bowl reflects nothing back.",
+        "axes": {
+          "creativity": 0.7343276865780354,
+          "lexical_diversity": 0.8125,
+          "idiosyncrasy": 0.8218458235924002,
+          "emotional_resonance": 0.25,
+          "literary_devices": 0.4722222222222222,
+          "imagery": 0.6
+        },
+        "composite": 0.6151492887321096,
+        "n_chars": 490,
+        "n_words": 80,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "learned_gate",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8123055100440979,
+            "budget_balance": 2.31
+          },
+          "score_draft": 0.6151492887321096,
+          "score_revision": 0.6143315497623029
+        }
+      },
+      "haiku_cascade_oracle": {
+        "text": "Spoon meets bowl meets mouth.\nNo music. No soft lighting in memory.\nJust the mechanics of swallowing,\nher hand trembling slightly,\nhis spoon scraping the bottom.\n\nSixty years and they haven't learned\nto call it communion.\nThe steam rises. Falls.\nThe silence is not profound—\nit's the silence of a parking lot,\nfull of separate objects.\n\nShe calculates the thermostat.\nHe's already forgotten what he meant to say.\n\nThe soup cools.\nTheir shoulders don't touch.\nThe bowl reflects nothing back.",
+        "axes": {
+          "creativity": 0.7343276865780354,
+          "lexical_diversity": 0.8125,
+          "idiosyncrasy": 0.8218458235924002,
+          "emotional_resonance": 0.25,
+          "literary_devices": 0.4722222222222222,
+          "imagery": 0.6
+        },
+        "composite": 0.6151492887321096,
+        "n_chars": 490,
+        "n_words": 80,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "oracle",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8123055100440979,
+            "budget_balance": 2.31
+          },
+          "score_draft": 0.6151492887321096,
+          "score_revision": 0.6143315497623029,
+          "is_analysis_only": true
+        }
+      }
+    },
+    "p09": {
+      "item": {
+        "id": "p09",
+        "topic": "the moment before a phone call answers",
+        "form": "free verse",
+        "must_avoid": [
+          "explicit anxiety"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "# Before the Answer\n\nThe ringing holds its breath.\nI hold mine.\n\nThere is a space between intention and arrival—\nwhere my words wait, arranged like furniture\nin a room no one's entered yet.\n\nThe line pulses, a heartbeat in the wires.\nI listen to what hasn't been said.\n\nIn this threshold,\nI am still becoming\nthe version of myself\nyour voice will meet.\n\nThe silence is not empty.\nIt is full of all the versions of this conversation\nbefore one of them happens.\n\nAnd then—",
+        "axes": {
+          "creativity": 0.735340891033411,
+          "lexical_diversity": 0.7647058823529411,
+          "idiosyncrasy": 0.8447170220315456,
+          "emotional_resonance": 0.5,
+          "literary_devices": 0.75,
+          "imagery": 0.2
+        },
+        "composite": 0.6324606325696497,
+        "n_chars": 470,
+        "n_words": 86,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 5.9213738441467285,
+          "haiku_total_usd": 3.0830850000000014,
+          "haiku_n_calls": 256
+        }
+      },
+      "haiku_cascade": {
+        "text": "the air holds its breath\nbefore the voice arrives—\nthis ribbon of sound\nsuspended between\ndial and answer,\nbetween what I meant to say\nand what will actually fall out.\n\nmy finger still on the phone.\nthe line hums,\npatient as a held note,\nas a door left partly open\nwaiting for someone to walk through.\n\nI live in these rings,\ntemporary citizen of maybe,\nof almost,\nof all the ways this could begin.\n\nthe ringing is its own country.\nI am waiting at the border.\n\nand then: the world shifts.\nsomeone breathes on the other end.\nthe threshold is crossed.\nthe held thing is released.",
+        "axes": {
+          "creativity": 0.7214242643898442,
+          "lexical_diversity": 0.7169811320754716,
+          "idiosyncrasy": 0.8163133220658416,
+          "emotional_resonance": 0.25,
+          "literary_devices": 0.5,
+          "imagery": 0.2
+        },
+        "composite": 0.5341197864218596,
+        "n_chars": 577,
+        "n_words": 106,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 395.2780749797821,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 6,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "the air holds its breath\nbefore the voice arrives—\nthis ribbon of sound\nsuspended between\ndial and answer,\nbetween what I meant to say\nand what will actually fall out.\n\nmy finger still on the phone.\nthe line hums,\npatient as a held note,\nas a door left partly open\nwaiting for someone to walk through.\n\nI live in these rings,\ntemporary citizen of maybe,\nof almost,\nof all the ways this could begin.\n\nthe ringing is its own country.\nI am waiting at the border.\n\nand then: the world shifts.\nsomeone breathes on the other end.\nthe threshold is crossed.\nthe held thing is released.",
+          "surface_revision": "the air holds its breath\nbefore the voice arrives—\nthis ribbon of sound\nsuspended between\ndial and answer,\nbetween what I meant to say\nand what will actually spill out.\n\nmy finger still on the phone.\nthe line hums,\npatient as a held note,\nas a door left partly open\nwaiting for someone to walk through.\n\nI live in these rings,\npermanent resident of maybe,\nnative speaker of almost,\nfluent in every way this could begin.\n\nthe ringing is its own country.\nI am waiting at the border.\n\nand then: the world shifts.\nsomeone breathes on the other end.\nthe threshold is crossed.\nthe held thing becomes voice.",
+          "aspect_count": 0.0,
+          "ananda": 0.7911742925643921,
+          "budget_balance": 1.8599999999999999,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.7911742925643921,
+            "budget_balance": 1.8599999999999999
+          },
+          "revision_skipped_reason": null,
+          "haiku_total_usd": 3.3549350000000016,
+          "haiku_n_calls": 272
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "Before the voice arrives—\nthat threshold where the phone hums its single note\nand you have already made the choice to call.\n\nIt is the most ordinary suspension,\nhappening in cars and kitchens,\nin waiting rooms and offices,\na thousand times each hour\nin a thousand rooms.\n\nThree rings. Four.\nThe mechanical patience of the sound,\nneither eager nor reluctant,\njust the plain machinery of connection\nattempting itself.\n\nYou stand or sit.\nThe phone warm against your ear\nor glowing in your palm.\n\nWhat will they say?\nWhat will happen next?\n\nBut these questions live elsewhere.\nHere there is only the interval,\nthis common threshold,\nthe most familiar gap\nbetween the intention and the answer,\nthe instant before the world\ntakes any particular shape.",
+        "axes": {
+          "creativity": 0.724717587268934,
+          "lexical_diversity": 0.7338709677419355,
+          "idiosyncrasy": 0.7915074780462235,
+          "emotional_resonance": 0.0,
+          "literary_devices": 0.4807692307692308,
+          "imagery": 0.4
+        },
+        "composite": 0.5218108773043874,
+        "n_chars": 745,
+        "n_words": 124,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 180.75047492980957,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": null,
+          "selected_idx": 10,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "Before the voice arrives—\nthat threshold where the phone hums its single note\nand you have already made the choice to call.\n\nIt is the most ordinary suspension,\nhappening in cars and kitchens,\nin waiting rooms and offices,\na thousand times each hour\nin a thousand rooms.\n\nThree rings. Four.\nThe mechanical patience of the sound,\nneither eager nor reluctant,\njust the plain machinery of connection\nattempting itself.\n\nYou stand or sit.\nThe phone warm against your ear\nor glowing in your palm.\n\nWhat will they say?\nWhat will happen next?\n\nBut these questions live elsewhere.\nHere there is only the interval,\nthis common threshold,\nthe most familiar gap\nbetween the intention and the answer,\nthe instant before the world\ntakes any particular shape.",
+          "surface_revision": "",
+          "aspect_count": 0.0,
+          "ananda": 0.82576984167099,
+          "budget_balance": 2.76,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.82576984167099,
+            "budget_balance": 2.76
+          },
+          "revision_skipped_reason": "commit_policy=always_draft",
+          "haiku_total_usd": 3.4380120000000023,
+          "haiku_n_calls": 288
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', \"  <!-- pce-seed:69123 -->\\nForeground the unusual aspect of the prompt. Compose a free verse about: the moment before a phone call answers.\\nAvoid: explicit anxiety.\\nOutput only the poem.\\n\\nReviser brief: Revise the previous draft to be more creative, specific, and surprising. Add concrete sensory detail, remove cliches, and strengthen the most interesting move you can find.\\n\\nPrevious draft:\\nBefore the voice arrives,\\nthere is this—\\nthe space between lightning and thunder,\\nbetween the thrown stone and the splash.\\n\\nYour hand is a small temple\\naround the phone's warmth,\\na thing held sacred or questioned.\\n\\nTime moves differently here:\\nthick as honey, bright as glass.\\nThe ringing continues its prayer,\\nand you are the gathered congregation,\\npoised at the threshold of answer.\\n\\nAll possible words live in this breath,\\nhover like wings against your silence—\\nwaiting for the door to open,\\nfor sound to become echo,\\nfor distance to collapse\\ninto this thin silver line\\nthey say connects us.\\n\\nNow produce the revised response.\"]' timed out after 120 seconds",
+          "elapsed_s": 200.02234315872192
+        }
+      },
+      "haiku_cascade_event_gated": {
+        "text": "the air holds its breath\nbefore the voice arrives—\nthis ribbon of sound\nsuspended between\ndial and answer,\nbetween what I meant to say\nand what will actually fall out.\n\nmy finger still on the phone.\nthe line hums,\npatient as a held note,\nas a door left partly open\nwaiting for someone to walk through.\n\nI live in these rings,\ntemporary citizen of maybe,\nof almost,\nof all the ways this could begin.\n\nthe ringing is its own country.\nI am waiting at the border.\n\nand then: the world shifts.\nsomeone breathes on the other end.\nthe threshold is crossed.\nthe held thing is released.",
+        "axes": {
+          "creativity": 0.7214242643898442,
+          "lexical_diversity": 0.7169811320754716,
+          "idiosyncrasy": 0.8163133220658416,
+          "emotional_resonance": 0.25,
+          "literary_devices": 0.5,
+          "imagery": 0.2
+        },
+        "composite": 0.5341197864218596,
+        "n_chars": 577,
+        "n_words": 106,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "event_gated",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.7911742925643921,
+            "budget_balance": 1.8599999999999999
+          },
+          "score_draft": 0.5341197864218596,
+          "score_revision": 0.5361280778020421
+        }
+      },
+      "haiku_cascade_always_draft": {
+        "text": "the air holds its breath\nbefore the voice arrives—\nthis ribbon of sound\nsuspended between\ndial and answer,\nbetween what I meant to say\nand what will actually fall out.\n\nmy finger still on the phone.\nthe line hums,\npatient as a held note,\nas a door left partly open\nwaiting for someone to walk through.\n\nI live in these rings,\ntemporary citizen of maybe,\nof almost,\nof all the ways this could begin.\n\nthe ringing is its own country.\nI am waiting at the border.\n\nand then: the world shifts.\nsomeone breathes on the other end.\nthe threshold is crossed.\nthe held thing is released.",
+        "axes": {
+          "creativity": 0.7214242643898442,
+          "lexical_diversity": 0.7169811320754716,
+          "idiosyncrasy": 0.8163133220658416,
+          "emotional_resonance": 0.25,
+          "literary_devices": 0.5,
+          "imagery": 0.2
+        },
+        "composite": 0.5341197864218596,
+        "n_chars": 577,
+        "n_words": 106,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_draft",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.7911742925643921,
+            "budget_balance": 1.8599999999999999
+          },
+          "score_draft": 0.5341197864218596,
+          "score_revision": 0.5361280778020421
+        }
+      },
+      "haiku_cascade_always_revise": {
+        "text": "the air holds its breath\nbefore the voice arrives—\nthis ribbon of sound\nsuspended between\ndial and answer,\nbetween what I meant to say\nand what will actually spill out.\n\nmy finger still on the phone.\nthe line hums,\npatient as a held note,\nas a door left partly open\nwaiting for someone to walk through.\n\nI live in these rings,\npermanent resident of maybe,\nnative speaker of almost,\nfluent in every way this could begin.\n\nthe ringing is its own country.\nI am waiting at the border.\n\nand then: the world shifts.\nsomeone breathes on the other end.\nthe threshold is crossed.\nthe held thing becomes voice.",
+        "axes": {
+          "creativity": 0.7209569162784892,
+          "lexical_diversity": 0.7314814814814815,
+          "idiosyncrasy": 0.8143300690522818,
+          "emotional_resonance": 0.25,
+          "literary_devices": 0.5,
+          "imagery": 0.2
+        },
+        "composite": 0.5361280778020421,
+        "n_chars": 600,
+        "n_words": 108,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_revise",
+          "commit_decision_revision": true,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.7911742925643921,
+            "budget_balance": 1.8599999999999999
+          },
+          "score_draft": 0.5341197864218596,
+          "score_revision": 0.5361280778020421
+        }
+      },
+      "haiku_cascade_learned_gate": {
+        "text": "the air holds its breath\nbefore the voice arrives—\nthis ribbon of sound\nsuspended between\ndial and answer,\nbetween what I meant to say\nand what will actually fall out.\n\nmy finger still on the phone.\nthe line hums,\npatient as a held note,\nas a door left partly open\nwaiting for someone to walk through.\n\nI live in these rings,\ntemporary citizen of maybe,\nof almost,\nof all the ways this could begin.\n\nthe ringing is its own country.\nI am waiting at the border.\n\nand then: the world shifts.\nsomeone breathes on the other end.\nthe threshold is crossed.\nthe held thing is released.",
+        "axes": {
+          "creativity": 0.7214242643898442,
+          "lexical_diversity": 0.7169811320754716,
+          "idiosyncrasy": 0.8163133220658416,
+          "emotional_resonance": 0.25,
+          "literary_devices": 0.5,
+          "imagery": 0.2
+        },
+        "composite": 0.5341197864218596,
+        "n_chars": 577,
+        "n_words": 106,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "learned_gate",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.7911742925643921,
+            "budget_balance": 1.8599999999999999
+          },
+          "score_draft": 0.5341197864218596,
+          "score_revision": 0.5361280778020421
+        }
+      },
+      "haiku_cascade_oracle": {
+        "text": "the air holds its breath\nbefore the voice arrives—\nthis ribbon of sound\nsuspended between\ndial and answer,\nbetween what I meant to say\nand what will actually spill out.\n\nmy finger still on the phone.\nthe line hums,\npatient as a held note,\nas a door left partly open\nwaiting for someone to walk through.\n\nI live in these rings,\npermanent resident of maybe,\nnative speaker of almost,\nfluent in every way this could begin.\n\nthe ringing is its own country.\nI am waiting at the border.\n\nand then: the world shifts.\nsomeone breathes on the other end.\nthe threshold is crossed.\nthe held thing becomes voice.",
+        "axes": {
+          "creativity": 0.7209569162784892,
+          "lexical_diversity": 0.7314814814814815,
+          "idiosyncrasy": 0.8143300690522818,
+          "emotional_resonance": 0.25,
+          "literary_devices": 0.5,
+          "imagery": 0.2
+        },
+        "composite": 0.5361280778020421,
+        "n_chars": 600,
+        "n_words": 108,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "oracle",
+          "commit_decision_revision": true,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.7911742925643921,
+            "budget_balance": 1.8599999999999999
+          },
+          "score_draft": 0.5341197864218596,
+          "score_revision": 0.5361280778020421,
+          "is_analysis_only": true
+        }
+      }
+    },
+    "p10": {
+      "item": {
+        "id": "p10",
+        "topic": "an empty playground at midnight",
+        "form": "haiku",
+        "must_avoid": [
+          "children laughing"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:35424 -->\\nCompose a haiku about: an empty playground at midnight.\\nAvoid: children laughing.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.02372908592224
+        }
+      },
+      "haiku_cascade": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:35424 -->\\nForeground the unusual aspect of the prompt. Compose a haiku about: an empty playground at midnight.\\nAvoid: children laughing.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.39988398551941
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:35424 -->\\nForeground the unusual aspect of the prompt. Compose a haiku about: an empty playground at midnight.\\nAvoid: children laughing.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.14376783370972
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:35424 -->\\nForeground the unusual aspect of the prompt. Compose a haiku about: an empty playground at midnight.\\nAvoid: children laughing.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.08123803138733
+        }
+      }
+    },
+    "p11": {
+      "item": {
+        "id": "p11",
+        "topic": "a moth circling a porch light",
+        "form": "haiku",
+        "must_avoid": [
+          "death imagery"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:97205 -->\\nCompose a haiku about: a moth circling a porch light.\\nAvoid: death imagery.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.03150916099548
+        }
+      },
+      "haiku_cascade": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:97205 -->\\nForeground the conventional aspect of the prompt. Compose a haiku about: a moth circling a porch light.\\nAvoid: death imagery.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.17272090911865
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:97205 -->\\nForeground the conventional aspect of the prompt. Compose a haiku about: a moth circling a porch light.\\nAvoid: death imagery.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.12473201751709
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:97205 -->\\nForeground the conventional aspect of the prompt. Compose a haiku about: a moth circling a porch light.\\nAvoid: death imagery.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.08471822738647
+        }
+      }
+    },
+    "p12": {
+      "item": {
+        "id": "p12",
+        "topic": "footprints disappearing in fresh snow",
+        "form": "free verse",
+        "must_avoid": [
+          "solitary walker cliché"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:46335 -->\\nCompose a free verse about: footprints disappearing in fresh snow.\\nAvoid: solitary walker cliché.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.03008103370667
+        }
+      },
+      "haiku_cascade": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:46335 -->\\nUse one specific concrete image. Compose a free verse about: footprints disappearing in fresh snow.\\nAvoid: solitary walker cliché.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.12340474128723
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:46335 -->\\nUse one specific concrete image. Compose a free verse about: footprints disappearing in fresh snow.\\nAvoid: solitary walker cliché.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.11140489578247
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:46335 -->\\nUse one specific concrete image. Compose a free verse about: footprints disappearing in fresh snow.\\nAvoid: solitary walker cliché.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.13489580154419
+        }
+      }
+    },
+    "p13": {
+      "item": {
+        "id": "p13",
+        "topic": "a clock ticking in a hospital waiting room",
+        "form": "free verse",
+        "must_avoid": [
+          "overt grief"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:35092 -->\\nCompose a free verse about: a clock ticking in a hospital waiting room.\\nAvoid: overt grief.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.02256679534912
+        }
+      },
+      "haiku_cascade": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:35092 -->\\nUse one abstract or universal frame. Compose a free verse about: a clock ticking in a hospital waiting room.\\nAvoid: overt grief.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.13060116767883
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:35092 -->\\nUse one abstract or universal frame. Compose a free verse about: a clock ticking in a hospital waiting room.\\nAvoid: overt grief.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.13346290588379
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:35092 -->\\nUse one abstract or universal frame. Compose a free verse about: a clock ticking in a hospital waiting room.\\nAvoid: overt grief.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.0771951675415
+        }
+      }
+    },
+    "p14": {
+      "item": {
+        "id": "p14",
+        "topic": "tide pulling stones across a beach",
+        "form": "haiku",
+        "must_avoid": [
+          "seagulls",
+          "sunset"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', ' <!-- pce-seed:19191 -->\\nCompose a haiku about: tide pulling stones across a beach.\\nAvoid: seagulls, sunset.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.02736711502075
+        }
+      },
+      "haiku_cascade": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', ' <!-- pce-seed:19191 -->\\nReframe in one alternative perspective. Compose a haiku about: tide pulling stones across a beach.\\nAvoid: seagulls, sunset.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.13197684288025
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', ' <!-- pce-seed:19191 -->\\nReframe in one alternative perspective. Compose a haiku about: tide pulling stones across a beach.\\nAvoid: seagulls, sunset.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.09763932228088
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', ' <!-- pce-seed:19191 -->\\nReframe in one alternative perspective. Compose a haiku about: tide pulling stones across a beach.\\nAvoid: seagulls, sunset.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.11714386940002
+        }
+      }
+    },
+    "p15": {
+      "item": {
+        "id": "p15",
+        "topic": "an unread letter on a kitchen table",
+        "form": "free verse",
+        "must_avoid": [
+          "love letter cliché"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', ' <!-- pce-seed:61270 -->\\nCompose a free verse about: an unread letter on a kitchen table.\\nAvoid: love letter cliché.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.03027725219727
+        }
+      },
+      "haiku_cascade": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', ' <!-- pce-seed:61270 -->\\nCompose a free verse about: an unread letter on a kitchen table.\\nAvoid: love letter cliché.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.15158891677856
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', ' <!-- pce-seed:61270 -->\\nCompose a free verse about: an unread letter on a kitchen table.\\nAvoid: love letter cliché.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.134446144104
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', ' <!-- pce-seed:61270 -->\\nCompose a free verse about: an unread letter on a kitchen table.\\nAvoid: love letter cliché.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.09596800804138
+        }
+      }
+    },
+    "p16": {
+      "item": {
+        "id": "p16",
+        "topic": "the first cicada of summer at 4 a.m.",
+        "form": "haiku",
+        "must_avoid": [
+          "cliché summer scenes"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:20308 -->\\nCompose a haiku about: the first cicada of summer at 4 a.m..\\nAvoid: cliché summer scenes.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.03488993644714
+        }
+      },
+      "haiku_cascade": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:20308 -->\\nLean toward the literal interpretation. Compose a haiku about: the first cicada of summer at 4 a.m..\\nAvoid: cliché summer scenes.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.16214394569397
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:20308 -->\\nLean toward the literal interpretation. Compose a haiku about: the first cicada of summer at 4 a.m..\\nAvoid: cliché summer scenes.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.0665009021759
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:20308 -->\\nLean toward the literal interpretation. Compose a haiku about: the first cicada of summer at 4 a.m..\\nAvoid: cliché summer scenes.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.08554697036743
+        }
+      }
+    },
+    "p17": {
+      "item": {
+        "id": "p17",
+        "topic": "a dog watching its owner pack a suitcase",
+        "form": "free verse",
+        "must_avoid": [
+          "explicit sadness"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:7616 -->\\nCompose a free verse about: a dog watching its owner pack a suitcase.\\nAvoid: explicit sadness.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.03004884719849
+        }
+      },
+      "haiku_cascade": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:7616 -->\\nLean toward the figurative interpretation. Compose a free verse about: a dog watching its owner pack a suitcase.\\nAvoid: explicit sadness.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.0855462551117
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:7616 -->\\nLean toward the figurative interpretation. Compose a free verse about: a dog watching its owner pack a suitcase.\\nAvoid: explicit sadness.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.06119513511658
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:7616 -->\\nLean toward the figurative interpretation. Compose a free verse about: a dog watching its owner pack a suitcase.\\nAvoid: explicit sadness.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.06294894218445
+        }
+      }
+    },
+    "p18": {
+      "item": {
+        "id": "p18",
+        "topic": "a dropped pencil rolling under a desk",
+        "form": "haiku",
+        "must_avoid": [
+          "school imagery"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:40619 -->\\nCompose a haiku about: a dropped pencil rolling under a desk.\\nAvoid: school imagery.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.02761030197144
+        }
+      },
+      "haiku_cascade": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:40619 -->\\nForeground the unusual aspect of the prompt. Compose a haiku about: a dropped pencil rolling under a desk.\\nAvoid: school imagery.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.05963397026062
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:40619 -->\\nForeground the unusual aspect of the prompt. Compose a haiku about: a dropped pencil rolling under a desk.\\nAvoid: school imagery.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.0681562423706
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:40619 -->\\nForeground the unusual aspect of the prompt. Compose a haiku about: a dropped pencil rolling under a desk.\\nAvoid: school imagery.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.06734991073608
+        }
+      }
+    },
+    "p19": {
+      "item": {
+        "id": "p19",
+        "topic": "sunlight on the back of a stranger's neck",
+        "form": "free verse",
+        "must_avoid": [
+          "romantic longing"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', \"  <!-- pce-seed:66572 -->\\nCompose a free verse about: sunlight on the back of a stranger's neck.\\nAvoid: romantic longing.\\nOutput only the poem.\\n\"]' timed out after 120 seconds",
+          "elapsed_s": 120.04948210716248
+        }
+      },
+      "haiku_cascade": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', \"  <!-- pce-seed:66572 -->\\nForeground the conventional aspect of the prompt. Compose a free verse about: sunlight on the back of a stranger's neck.\\nAvoid: romantic longing.\\nOutput only the poem.\\n\"]' timed out after 120 seconds",
+          "elapsed_s": 120.07443618774414
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', \"  <!-- pce-seed:66572 -->\\nForeground the conventional aspect of the prompt. Compose a free verse about: sunlight on the back of a stranger's neck.\\nAvoid: romantic longing.\\nOutput only the poem.\\n\"]' timed out after 120 seconds",
+          "elapsed_s": 120.05826497077942
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', \"  <!-- pce-seed:66572 -->\\nForeground the conventional aspect of the prompt. Compose a free verse about: sunlight on the back of a stranger's neck.\\nAvoid: romantic longing.\\nOutput only the poem.\\n\"]' timed out after 120 seconds",
+          "elapsed_s": 120.07830595970154
+        }
+      }
+    },
+    "p20": {
+      "item": {
+        "id": "p20",
+        "topic": "a coffee cup forgotten on a windowsill",
+        "form": "haiku",
+        "must_avoid": [
+          "morning routines"
+        ]
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:15864 -->\\nCompose a haiku about: a coffee cup forgotten on a windowsill.\\nAvoid: morning routines.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.05996608734131
+        }
+      },
+      "haiku_cascade": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:15864 -->\\nUse one specific concrete image. Compose a haiku about: a coffee cup forgotten on a windowsill.\\nAvoid: morning routines.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.0642340183258
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:15864 -->\\nUse one specific concrete image. Compose a haiku about: a coffee cup forgotten on a windowsill.\\nAvoid: morning routines.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.06793689727783
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:15864 -->\\nUse one specific concrete image. Compose a haiku about: a coffee cup forgotten on a windowsill.\\nAvoid: morning routines.\\nOutput only the poem.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.07374596595764
+        }
+      }
+    }
+  }
+}

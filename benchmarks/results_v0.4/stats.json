@@ -1,0 +1,671 @@
+{
+  "config": {
+    "version": "v0.4",
+    "status": "real",
+    "treatment_arm": "haiku_cascade",
+    "control_arm_primary": "haiku_bare",
+    "control_arm_h6": "haiku_bare_2K_scorer",
+    "control_arm_h7": "haiku_generic_revise_2pass",
+    "seed": 4242,
+    "n_permutations": 50000,
+    "n_bootstrap": 10000,
+    "alpha": 0.05,
+    "hypotheses": [
+      "H1.v4",
+      "H2.v4",
+      "H3.v4",
+      "H4.v4",
+      "H5.v4",
+      "H6.v4",
+      "H7.v4",
+      "H8a.v4",
+      "H8b.v4",
+      "H8c.v4",
+      "H9.v4"
+    ]
+  },
+  "primary": {
+    "H1": {
+      "name": "H1",
+      "domain": "aut",
+      "n": 5,
+      "estimate": -0.01797887727066323,
+      "estimate_length_controlled": -0.01715972359418334,
+      "hedges_g": -0.32365881700138965,
+      "hedges_g_length_controlled": -0.31308902499870733,
+      "bca_ci_95": [
+        -0.059155889793678584,
+        0.011482068785914689
+      ],
+      "permutation_p_one_sided": 0.8125,
+      "wilcoxon_p_one_sided": 0.78125,
+      "holm_p": 0.9375,
+      "power_apriori": 0.23899517090352962,
+      "power_retrospective": 0.011805002297524014,
+      "supported": false,
+      "treatment": "haiku_cascade",
+      "control": "haiku_bare"
+    },
+    "H2": {
+      "name": "H2",
+      "domain": "poetry_interp",
+      "n": 10,
+      "estimate": 0.044436381260554006,
+      "estimate_length_controlled": 0.006082983212001025,
+      "hedges_g": 0.31548873338353656,
+      "hedges_g_length_controlled": 0.0388641860338672,
+      "bca_ci_95": [
+        -0.014469588043450513,
+        0.1455337493389394
+      ],
+      "permutation_p_one_sided": 0.1572265625,
+      "wilcoxon_p_one_sided": 0.1611328125,
+      "holm_p": 0.62890625,
+      "power_apriori": 0.42728982677117866,
+      "power_retrospective": 0.23534141758479676,
+      "supported": false,
+      "treatment": "haiku_cascade",
+      "control": "haiku_bare"
+    },
+    "H3": {
+      "name": "H3",
+      "domain": "poetry_gen",
+      "n": 6,
+      "estimate": 0.0130979825452797,
+      "estimate_length_controlled": 0.011430640771026937,
+      "hedges_g": 0.14356688353144556,
+      "hedges_g_length_controlled": 0.12401335483592968,
+      "bca_ci_95": [
+        -0.04952952079049371,
+        0.06289855989760064
+      ],
+      "permutation_p_one_sided": 0.375,
+      "wilcoxon_p_one_sided": 0.421875,
+      "holm_p": 0.9375,
+      "power_apriori": 0.27994273621384114,
+      "power_retrospective": 0.09045983613810182,
+      "supported": false,
+      "treatment": "haiku_cascade",
+      "control": "haiku_bare"
+    },
+    "H4": {
+      "name": "H4",
+      "domain": "sci_creativity",
+      "n": 4,
+      "estimate": 0.017348609864711734,
+      "estimate_length_controlled": -0.007555413422948215,
+      "hedges_g": 0.30301393096804957,
+      "hedges_g_length_controlled": -0.15363584727387425,
+      "bca_ci_95": [
+        -0.012794014066457776,
+        0.061248318602641405
+      ],
+      "permutation_p_one_sided": 0.3125,
+      "wilcoxon_p_one_sided": 0.3125,
+      "holm_p": 0.9375,
+      "power_apriori": 0.19613361551857056,
+      "power_retrospective": 0.1224980428862864,
+      "supported": false,
+      "treatment": "haiku_cascade",
+      "control": "haiku_bare"
+    }
+  },
+  "H5": {
+    "name": "H5.v4",
+    "pooled_g": 0.14471705780965063,
+    "method": "fixed_effects_inverse_variance",
+    "ci_95": [
+      -0.25503081988806975,
+      0.544464935507371
+    ],
+    "n_studies": 4,
+    "weights": [
+      0.1976326229915869,
+      0.396248336543892,
+      0.24703507878604303,
+      0.15908396167847794
+    ],
+    "per_domain_g": {
+      "H1": -0.32365881700138965,
+      "H2": 0.31548873338353656,
+      "H3": 0.14356688353144556,
+      "H4": 0.30301393096804957
+    },
+    "per_domain_n": {
+      "H1": 5,
+      "H2": 10,
+      "H3": 6,
+      "H4": 4
+    },
+    "note": "ADR-005 fixed-effects meta-pool of H1.v4-H4.v4 Hedges' g",
+    "supported": false
+  },
+  "H6_v4_extra_compute": {
+    "H1": {
+      "name": "H1",
+      "domain": "aut",
+      "n": 5,
+      "estimate": 0.0035620005410394564,
+      "estimate_length_controlled": -0.011538876261634435,
+      "hedges_g": 0.045559165335106,
+      "hedges_g_length_controlled": -0.13446941596456247,
+      "bca_ci_95": [
+        -0.0423309216896693,
+        0.056271924023275036
+      ],
+      "permutation_p_one_sided": 0.46875,
+      "wilcoxon_p_one_sided": 0.5,
+      "holm_p": 1.0,
+      "power_apriori": 0.23899517090352962,
+      "power_retrospective": 0.05954529331102687,
+      "supported": false,
+      "treatment": "haiku_cascade",
+      "control": "haiku_bare_2K_scorer"
+    },
+    "H2": {
+      "name": "H2",
+      "domain": "poetry_interp",
+      "n": 9,
+      "estimate": 0.05629504499612031,
+      "estimate_length_controlled": 0.058545792214020356,
+      "hedges_g": 0.5913893650493249,
+      "hedges_g_length_controlled": 0.6196776243366604,
+      "bca_ci_95": [
+        0.01702955756712993,
+        0.13408535256294934
+      ],
+      "permutation_p_one_sided": 0.017578125,
+      "wilcoxon_p_one_sided": 0.01953125,
+      "holm_p": 0.0703125,
+      "power_apriori": 0.3927738690303253,
+      "power_retrospective": 0.49102103837404765,
+      "supported": false,
+      "treatment": "haiku_cascade",
+      "control": "haiku_bare_2K_scorer"
+    },
+    "H3": {
+      "name": "H3",
+      "domain": "poetry_gen",
+      "n": 6,
+      "estimate": -0.0029461845974632452,
+      "estimate_length_controlled": -0.0008874540483174339,
+      "hedges_g": -0.03262763709210771,
+      "hedges_g_length_controlled": -0.010054785250289907,
+      "bca_ci_95": [
+        -0.04633353513595787,
+        0.06825854483161685
+      ],
+      "permutation_p_one_sided": 0.5625,
+      "wilcoxon_p_one_sided": 0.65625,
+      "holm_p": 1.0,
+      "power_apriori": 0.27994273621384114,
+      "power_retrospective": 0.043187813971809264,
+      "supported": false,
+      "treatment": "haiku_cascade",
+      "control": "haiku_bare_2K_scorer"
+    },
+    "H4": {
+      "name": "H4",
+      "domain": "sci_creativity",
+      "n": 4,
+      "estimate": -0.006201997399330153,
+      "estimate_length_controlled": -0.01364026372600595,
+      "hedges_g": -0.315857199282925,
+      "hedges_g_length_controlled": -0.49840486409199586,
+      "bca_ci_95": [
+        -0.017713648577531216,
+        0.00530965377887091
+      ],
+      "permutation_p_one_sided": 0.8125,
+      "wilcoxon_p_one_sided": 0.8125,
+      "holm_p": 1.0,
+      "power_apriori": 0.19613361551857056,
+      "power_retrospective": 0.015382979464980018,
+      "supported": false,
+      "treatment": "haiku_cascade",
+      "control": "haiku_bare_2K_scorer"
+    }
+  },
+  "H6_v4_extra_compute_meta": {
+    "name": "H5",
+    "pooled_g": 0.14953205828989344,
+    "tau2": 0.0,
+    "ci_95": [
+      -0.2640216801815607,
+      0.5630857967613475
+    ],
+    "n_studies": 4,
+    "weights_re": [
+      0.22236748217635918,
+      0.34103912031077444,
+      0.26697580494647427,
+      0.1696175925663921
+    ],
+    "note": "random-effects DerSimonian-Laird meta-analysis of per-domain Hedges' g (replaces the v0.2 z-blend per phase 7 ADR)",
+    "per_domain_g": {
+      "H1": 0.045559165335106,
+      "H2": 0.5913893650493249,
+      "H3": -0.03262763709210771,
+      "H4": -0.315857199282925
+    },
+    "per_domain_n": {
+      "H1": 5,
+      "H2": 9,
+      "H3": 6,
+      "H4": 4
+    },
+    "supported": false
+  },
+  "H7_v4_generic_revise": {
+    "H1": {
+      "name": "H1",
+      "domain": "aut",
+      "n": 3,
+      "estimate": 0.02311130843044799,
+      "estimate_length_controlled": 0.010889345221085756,
+      "hedges_g": 0.18894657913505472,
+      "hedges_g_length_controlled": 0.08901425473250706,
+      "bca_ci_95": [
+        -0.044337259398566364,
+        0.09521995429639463
+      ],
+      "permutation_p_one_sided": 0.375,
+      "wilcoxon_p_one_sided": 0.375,
+      "holm_p": 0.75,
+      "power_apriori": 0.1512500074283254,
+      "power_retrospective": 0.07963286867124064,
+      "supported": false,
+      "treatment": "haiku_cascade",
+      "control": "haiku_generic_revise_2pass"
+    },
+    "H2": {
+      "name": "H2",
+      "domain": "poetry_interp",
+      "n": 9,
+      "estimate": 0.10160482702431856,
+      "estimate_length_controlled": 0.08452152588035,
+      "hedges_g": 0.5200813801327165,
+      "hedges_g_length_controlled": 0.4092831015287855,
+      "bca_ci_95": [
+        -0.014588935233993816,
+        0.2023916594956245
+      ],
+      "permutation_p_one_sided": 0.052734375,
+      "wilcoxon_p_one_sided": 0.048828125,
+      "holm_p": 0.158203125,
+      "power_apriori": 0.3927738690303253,
+      "power_retrospective": 0.4140189395699815,
+      "supported": false,
+      "treatment": "haiku_cascade",
+      "control": "haiku_generic_revise_2pass"
+    },
+    "H3": {
+      "name": "H3",
+      "domain": "poetry_gen",
+      "n": 5,
+      "estimate": 0.03445898451647531,
+      "estimate_length_controlled": 0.03779182774144492,
+      "hedges_g": 0.5114835398968992,
+      "hedges_g_length_controlled": 0.5810259601262932,
+      "bca_ci_95": [
+        0.006940973957752084,
+        0.10409044343357973
+      ],
+      "permutation_p_one_sided": 0.03125,
+      "wilcoxon_p_one_sided": 0.03125,
+      "holm_p": 0.125,
+      "power_apriori": 0.23899517090352962,
+      "power_retrospective": 0.24561659622899445,
+      "supported": false,
+      "treatment": "haiku_cascade",
+      "control": "haiku_generic_revise_2pass"
+    },
+    "H4": {
+      "name": "H4",
+      "domain": "sci_creativity",
+      "n": 4,
+      "estimate": -0.032221605380376175,
+      "estimate_length_controlled": -0.04943584912389214,
+      "hedges_g": -0.5101337675583353,
+      "hedges_g_length_controlled": -0.6642672284285818,
+      "bca_ci_95": [
+        -0.07170480489730832,
+        0.007261594136555971
+      ],
+      "permutation_p_one_sided": 0.8125,
+      "wilcoxon_p_one_sided": 0.8125,
+      "holm_p": 0.8125,
+      "power_apriori": 0.19613361551857056,
+      "power_retrospective": 0.0065126266884818484,
+      "supported": false,
+      "treatment": "haiku_cascade",
+      "control": "haiku_generic_revise_2pass"
+    }
+  },
+  "H7_v4_generic_revise_meta": {
+    "name": "H5",
+    "pooled_g": 0.27266541336802436,
+    "tau2": 0.0,
+    "ci_95": [
+      -0.17893931753484665,
+      0.7242701442708954
+    ],
+    "n_studies": 4,
+    "weights_re": [
+      0.15647397810543565,
+      0.4208804561588139,
+      0.23473944207087183,
+      0.1879061236648787
+    ],
+    "note": "random-effects DerSimonian-Laird meta-analysis of per-domain Hedges' g (replaces the v0.2 z-blend per phase 7 ADR)",
+    "per_domain_g": {
+      "H1": 0.18894657913505472,
+      "H2": 0.5200813801327165,
+      "H3": 0.5114835398968992,
+      "H4": -0.5101337675583353
+    },
+    "per_domain_n": {
+      "H1": 3,
+      "H2": 9,
+      "H3": 5,
+      "H4": 4
+    },
+    "supported": false
+  },
+  "H8a_v4_shadow_revision_vs_draft": {
+    "name": "H8a.v4",
+    "cascade_arm": "haiku_cascade",
+    "n": 27,
+    "estimate": 0.05802294036192258,
+    "hedges_g": 0.6491240387336045,
+    "bca_ci_95": [
+      0.030781638701403335,
+      0.0950722929188804
+    ],
+    "permutation_p_one_sided": 0.00011999760004799904,
+    "supported": true,
+    "note": "paired score(revision) - score(draft) over all cascade items"
+  },
+  "H8b_v4_gate_calibration": {
+    "name": "H8b.v4",
+    "event_gated": {
+      "n": 27,
+      "accuracy": 0.4444444444444444,
+      "precision": 1.0,
+      "recall": 0.34782608695652173,
+      "f1": 0.5161290322580645,
+      "support_pos": 23,
+      "support_neg": 4
+    },
+    "learned_gate": {
+      "n": 27,
+      "accuracy": 0.5555555555555556,
+      "precision": 1.0,
+      "recall": 0.4782608695652174,
+      "f1": 0.6470588235294118,
+      "support_pos": 23,
+      "support_neg": 4
+    },
+    "supported": true,
+    "note": "binary classifier metrics: predict 'revision better than draft'"
+  },
+  "H8c_v4_commit_policy_comparison": {
+    "name": "H8c.v4",
+    "leader_board": [
+      {
+        "policy": "haiku_cascade_always_revise",
+        "n": 25,
+        "estimate": 0.05088499156374805,
+        "hedges_g": 0.5330133735039122,
+        "bca_ci_95": [
+          0.02237789254260405,
+          0.09626611594618871
+        ],
+        "permutation_p_one_sided": 0.0027599448011039777
+      },
+      {
+        "policy": "haiku_cascade_learned_gate",
+        "n": 25,
+        "estimate": 0.03887822840274482,
+        "hedges_g": 0.385759410689489,
+        "bca_ci_95": [
+          0.008092148063822116,
+          0.08718156183737923
+        ],
+        "permutation_p_one_sided": 0.025619487610247797
+      },
+      {
+        "policy": "haiku_cascade_event_gated",
+        "n": 25,
+        "estimate": 0.02009807043930996,
+        "hedges_g": 0.2104096160728543,
+        "bca_ci_95": [
+          -0.00830329818633429,
+          0.06570300179309463
+        ],
+        "permutation_p_one_sided": 0.15843683126337474
+      },
+      {
+        "policy": "haiku_cascade_always_draft",
+        "n": 25,
+        "estimate": -0.007191297077525574,
+        "hedges_g": -0.0697981395114023,
+        "bca_ci_95": [
+          -0.03863574465350423,
+          0.04250590014253473
+        ],
+        "permutation_p_one_sided": 0.6350872982540349
+      }
+    ],
+    "pairwise_p": {
+      "haiku_cascade_event_gated__vs__haiku_cascade_always_draft": 0.007319853602927941,
+      "haiku_cascade_event_gated__vs__haiku_cascade_always_revise": 0.991660166796664,
+      "haiku_cascade_event_gated__vs__haiku_cascade_learned_gate": 0.874822503549929,
+      "haiku_cascade_always_draft__vs__haiku_cascade_always_revise": 0.999480010399792,
+      "haiku_cascade_always_draft__vs__haiku_cascade_learned_gate": 1.0,
+      "haiku_cascade_always_revise__vs__haiku_cascade_learned_gate": 0.034399312013759724
+    },
+    "supported": false,
+    "note": "paired delta vs haiku_bare per policy; pairwise paired permutation across policies"
+  },
+  "H9_v4_judge_proxy_agreement": {
+    "name": "H9.v4",
+    "status": "ok",
+    "n": 23,
+    "spearman_rho": 0.0,
+    "spearman_p": 1.0,
+    "sign_agreement_rate": 0.5652173913043478,
+    "supported": false,
+    "note": "Spearman rho + sign-agreement between proxy composite delta and Sonnet judge delta"
+  },
+  "arm_means_per_domain": {
+    "poetry_gen": {
+      "haiku_bare": {
+        "n": 7,
+        "mean": 0.5506885010804924,
+        "std": 0.04131702053024828
+      },
+      "haiku_bare_2K_scorer": {
+        "n": 6,
+        "mean": 0.5720146932962953,
+        "std": 0.0740449480903384
+      },
+      "haiku_cascade": {
+        "n": 6,
+        "mean": 0.569068508698832,
+        "std": 0.049130766924196656
+      },
+      "haiku_cascade_always_draft": {
+        "n": 6,
+        "mean": 0.569068508698832,
+        "std": 0.049130766924196656
+      },
+      "haiku_cascade_always_revise": {
+        "n": 6,
+        "mean": 0.561957362143477,
+        "std": 0.035681422093534296
+      },
+      "haiku_cascade_event_gated": {
+        "n": 6,
+        "mean": 0.569068508698832,
+        "std": 0.049130766924196656
+      },
+      "haiku_cascade_learned_gate": {
+        "n": 6,
+        "mean": 0.569068508698832,
+        "std": 0.049130766924196656
+      },
+      "haiku_cascade_oracle": {
+        "n": 6,
+        "mean": 0.579891107827225,
+        "std": 0.03727666735951015
+      },
+      "haiku_generic_revise_2pass": {
+        "n": 5,
+        "mean": 0.5415992686377512,
+        "std": 0.04159980537355072
+      }
+    },
+    "poetry_interp": {
+      "haiku_bare": {
+        "n": 10,
+        "mean": 0.5716802775859833,
+        "std": 0.1594057924015664
+      },
+      "haiku_bare_2K_scorer": {
+        "n": 9,
+        "mean": 0.5501273649710197,
+        "std": 0.14885886011418462
+      },
+      "haiku_cascade": {
+        "n": 11,
+        "mean": 0.620978756384416,
+        "std": 0.14562620159331882
+      },
+      "haiku_cascade_always_draft": {
+        "n": 11,
+        "mean": 0.5613443607633765,
+        "std": 0.14786726265688727
+      },
+      "haiku_cascade_always_revise": {
+        "n": 11,
+        "mean": 0.6665015310952157,
+        "std": 0.060423455890998984
+      },
+      "haiku_cascade_event_gated": {
+        "n": 11,
+        "mean": 0.620978756384416,
+        "std": 0.14562620159331882
+      },
+      "haiku_cascade_learned_gate": {
+        "n": 11,
+        "mean": 0.6665015310952157,
+        "std": 0.060423455890998984
+      },
+      "haiku_cascade_oracle": {
+        "n": 11,
+        "mean": 0.6665015310952157,
+        "std": 0.060423455890998984
+      },
+      "haiku_generic_revise_2pass": {
+        "n": 9,
+        "mean": 0.5048175829428214,
+        "std": 0.13286326323853387
+      }
+    },
+    "aut": {
+      "haiku_bare": {
+        "n": 5,
+        "mean": 0.9108620478047265,
+        "std": 0.04831214742226976
+      },
+      "haiku_bare_2K_scorer": {
+        "n": 6,
+        "mean": 0.9005939296059647,
+        "std": 0.06207088910714023
+      },
+      "haiku_cascade": {
+        "n": 5,
+        "mean": 0.8928831705340633,
+        "std": 0.04584179391240814
+      },
+      "haiku_cascade_always_draft": {
+        "n": 5,
+        "mean": 0.8928831705340633,
+        "std": 0.04584179391240814
+      },
+      "haiku_cascade_always_revise": {
+        "n": 5,
+        "mean": 0.9223503798246384,
+        "std": 0.031105612187184804
+      },
+      "haiku_cascade_event_gated": {
+        "n": 5,
+        "mean": 0.8928831705340633,
+        "std": 0.04584179391240814
+      },
+      "haiku_cascade_learned_gate": {
+        "n": 5,
+        "mean": 0.8928831705340633,
+        "std": 0.04584179391240814
+      },
+      "haiku_cascade_oracle": {
+        "n": 5,
+        "mean": 0.9223503798246384,
+        "std": 0.031105612187184804
+      },
+      "haiku_generic_revise_2pass": {
+        "n": 4,
+        "mean": 0.8550464519196086,
+        "std": 0.06276211592710802
+      }
+    },
+    "sci_creativity": {
+      "haiku_bare": {
+        "n": 5,
+        "mean": 0.5218962083260219,
+        "std": 0.018518911913054978
+      },
+      "haiku_bare_2K_scorer": {
+        "n": 4,
+        "mean": 0.5285110200444858,
+        "std": 0.05448727058125558
+      },
+      "haiku_cascade": {
+        "n": 5,
+        "mean": 0.5249021510283152,
+        "std": 0.05554545961695755
+      },
+      "haiku_cascade_always_draft": {
+        "n": 5,
+        "mean": 0.5186528364817301,
+        "std": 0.0427720374946252
+      },
+      "haiku_cascade_always_revise": {
+        "n": 5,
+        "mean": 0.5796971062819163,
+        "std": 0.04243001187097778
+      },
+      "haiku_cascade_event_gated": {
+        "n": 5,
+        "mean": 0.5249021510283152,
+        "std": 0.05554545961695755
+      },
+      "haiku_cascade_learned_gate": {
+        "n": 5,
+        "mean": 0.5186528364817301,
+        "std": 0.0427720374946252
+      },
+      "haiku_cascade_oracle": {
+        "n": 5,
+        "mean": 0.5796971062819163,
+        "std": 0.04243001187097778
+      },
+      "haiku_generic_revise_2pass": {
+        "n": 4,
+        "mean": 0.5545306280255318,
+        "std": 0.04497731774823943
+      }
+    }
+  }
+}

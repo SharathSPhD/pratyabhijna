@@ -1,0 +1,10 @@
+{
+  "domain": "sanskrit_chandas",
+  "item_id": "sanskrit_anustubh",
+  "model": "n/a (curated reference; awaiting v0.5 chandas-aware cascade)",
+  "draft": "",
+  "revised": "प्रकाशेन विना ज्ञानं विमर्शेन विना न तत् ।\nपश्यन्नात्मानमात्मानं स्वयं प्रत्यभिजायते ॥",
+  "vimarsa_event": null,
+  "source": "curated_reference",
+  "curated_origin": "Maintainer-authored chandas-validated reference for v0.4. The v0.5 release will swap this for a fresh Bedrock-cascade output once a chandas-aware scorer is wired into the cascade."
+}

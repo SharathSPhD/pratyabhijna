@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { stats } from '../lib/stats';
+import { withBase } from '../lib/nav';
+
+const perDomain = stats.fixed_effects?.H5.per_domain_n ?? {};
+---
+<BaseLayout title="Methods" active="/methods">
+  <h1>Methods</h1>
+
+  <h2>Pilot design</h2>
+
+  <p>
+    The Phase 7 mechanism pilot crossed four domains (poetry generation, poetry interpretation, alternative
+    uses, scientific creativity) with four base arms (haiku_bare, haiku_cascade, haiku_bare_2K_scorer for
+    H6 fairness, haiku_generic_revise_2pass for H7 fairness) and a five-policy multiplex over the cascade
+    arm (always_draft, always_revise, event_gated, learned_gate, oracle). Per-domain n is constrained by the
+    Bedrock cost envelope and the judge envelope; the table below summarises pooled per-domain pairs.
+  </p>
+
+  <table class="not-prose font-sans">
+    <thead><tr><th>Domain</th><th>n_pairs (H5)</th></tr></thead>
+    <tbody>
+      {Object.entries(perDomain).map(([k, v]) => (
+        <tr><td class="font-mono">{k}</td><td class="font-mono">{v}</td></tr>
+      ))}
+    </tbody>
+  </table>
+
+  <h2>Substrate</h2>
+
+  <p>
+    Both the cascade and the judge ran on AWS Bedrock during the Phase 7 pilot
+    (<span class="kbd">global.anthropic.claude-haiku-4-5-20251001-v1:0</span> for cascade,
+    <span class="kbd">global.anthropic.claude-sonnet-4-5-20250929-v1:0</span> for judge). The substrate
+    deviation from the OAuth Claude CLI was justified by quota — Bedrock can parallelise across domains
+    where the OAuth substrate cannot. Day-to-day operation, including showcase regeneration, runs against
+    the OAuth substrate. ADR-006 records the deviation and ADR-007 records the SDK code-path removal that
+    accompanies it. The <a href={withBase('/plugin')}>plugin page</a> is the operator-facing reference.
+  </p>
+
+  <h2>Statistical protocol</h2>
+
+  <p>
+    Per-domain primary contrasts use paired permutation tests (50 000 permutations) and Wilcoxon signed-rank
+    as a non-parametric backup. Effect sizes are Hedges' g; intervals are BCa 95% from 10 000 bootstraps.
+    H5 pools H1–H4 via inverse-variance fixed-effects (ADR-005); the pre-registered alternative
+    random-effects DerSimonian–Laird pool is reported alongside as a sensitivity check. Multi-hypothesis
+    correction is Holm. H8a is a paired permutation test on score(revision) − score(draft) over all
+    cascade items; H8b reports binary classifier metrics for each commit gate at the same threshold; H8c
+    pairs each policy against the bare control with Holm correction across the six pairwise contrasts.
+    H9 reports Spearman ρ and sign-agreement between the proxy composite delta and the Sonnet judge delta.
+  </p>
+
+  <h2>Reproducibility</h2>
+
+  <p>
+    Every primary number on this site is regenerable from a single command:
+  </p>
+
+  <pre class="font-mono text-sm bg-[var(--bg-soft)] p-3 rounded border border-[var(--rule)]">{`pce smoke
+pce cascade --prompt-file prompts/anushtubh.txt --model haiku --K 4 --seed 4242
+python -m benchmarks.figures --version v0.4
+python -m benchmarks.autoreport --version v0.4 --strict`}</pre>
+
+  <p>
+    See the <a href={withBase('/reproducibility')}>reproducibility page</a> for the full repro recipe,
+    including the cost ledger, integrity probes, and the §0.5 unmerged-state critique.
+  </p>
+</BaseLayout>

@@ -1,0 +1,31 @@
+\section{Substrate and Portability}\label{sec:substrate}
+
+The v0.4 release decouples PCE's substrate from any single IDE plugin runtime. The same cascade code path is exercised in three contexts: (a) inside Cursor as a Cursor plugin, (b) inside Claude Code as a Claude Code plugin, and (c) standalone through the \texttt{python -m pce} CLI. All three contexts route through identical code; the only difference is the plugin manifest and the discovery surface.
+
+\subsection{Single source of truth for the substrate}
+
+The substrate is the \texttt{claude --print} CLI binary. The Bedrock Phase 7 pilot, the Cursor plugin invocation, the Claude Code plugin invocation, and the standalone CLI all spawn the same binary as a subprocess against the same \texttt{HaikuLM} adapter (\texttt{src/pce/substrate/haiku\_lm.py}); the routing target (Anthropic API vs.\ Bedrock vs.\ a different Anthropic-CLI-compatible model) is a configuration detail resolved by the \texttt{PCEConfig} loader (\texttt{src/pce/config.py}) at run time. The configuration resolution order is: explicit CLI overrides $>$ environment variables ($\mathtt{PCE\_*}$, then legacy $\mathtt{PCE\_HAIKU\_*}$ aliases) $>$ user TOML at \texttt{\textasciitilde/.config/pce/config.toml} $>$ repository TOML at \texttt{pce.toml} $>$ hardcoded defaults. The defaults are \texttt{cascade\_model="haiku"}, \texttt{judge\_model="sonnet"}, \texttt{cli\_bin="claude"}; any Anthropic-CLI-compatible model identifier may be substituted at any tier.
+
+The substrate change in v0.4 made the v0.2 / v0.3 SDK code path obsolete: the SDK was a second auth chain that ran outside the CLI's keychain integration, and shipping both made the contamination-isolation discipline (\texttt{IntegrityProbe}, \texttt{LEAKAGE\_REGEX}) materially harder to audit. ADR-007 (\texttt{docs/adr/v0.4/ADR-007-sdk-removal.md}) records the removal: the field \texttt{use\_sdk} on \texttt{HaikuConfig} is preserved for reversibility but is now ignored, and a \texttt{DeprecationWarning} is issued if the user sets \texttt{PCE\_USE\_SDK=1}.
+
+\subsection{Cursor and Claude Code plugin manifests}
+
+PCE ships two plugin manifests that share their semantic content: \texttt{plugin/.claude-plugin/plugin.json} (Claude Code) and \texttt{plugin/.cursor-plugin/plugin.json} (Cursor). The two manifests share \texttt{name}, \texttt{version}, \texttt{description}, \texttt{author}, \texttt{repository}, \texttt{license}, and the keyword set; the Cursor manifest additionally has a \texttt{displayName} and a \texttt{cursor} keyword. Both manifests rely on the host runtime's auto-discovery of \texttt{plugin/agents/}, \texttt{plugin/commands/}, \texttt{plugin/hooks/}, \texttt{plugin/mcp/}, and \texttt{plugin/skills/} subdirectories, so the plugin's component surface is identical across hosts. A unit test (\texttt{tests/test\_plugin\_manifests.py}) enforces that the two manifests are always synchronised on the shared fields and that their version matches \texttt{pyproject.toml}'s.
+
+\subsection{Standalone CLI}
+
+For environments without an IDE plugin runtime (CI, batch jobs, the Bedrock Phase 7 driver itself), the same cascade can be exercised through the \texttt{pce} console script (\texttt{src/pce/cli.py}), wired into \texttt{pyproject.toml}'s \texttt{[project.scripts]}. The CLI exposes five subcommands:
+
+\begin{itemize}[leftmargin=1.4em]
+\item \texttt{pce config show} -- print the resolved \texttt{PCEConfig}, including which tier each field came from. Useful for auditing portability deployments.
+\item \texttt{pce smoke} -- run a one-shot connectivity check against the configured cascade model. Verifies the \texttt{claude} binary is on \texttt{\$PATH} and the substrate is reachable. \texttt{--dry-run} skips the actual call.
+\item \texttt{pce cascade} -- run a single full cascade pass against an arbitrary prompt and constraint, dumping the full draft / shadow-revision / commit trace to \texttt{--out}. The same code path the Phase 7 pilot exercised.
+\item \texttt{pce judge-pair} -- invoke the Sonnet judge on a draft / revision pair and emit the per-axis judge-scoring breakdown.
+\item \texttt{pce showcase} -- list, regenerate, or inspect any of the nine v0.4 showcase outputs (\S\ref{sec:showcase}).
+\end{itemize}
+
+The \texttt{pce} CLI's exit codes follow the standard Unix convention (0 on success, $\geq 1$ on documented failure modes); a missing \texttt{claude} binary returns 2 with a one-line diagnostic that includes the exact \texttt{PATH} used at lookup time. This means the standalone CLI can be wrapped in a shell script and used as a substrate for any orchestration tooling without depending on Cursor or Claude Code's runtime semantics.
+
+\subsection{Why portability is load-bearing}
+
+The Phase 7 pilot reported in this paper used $\sim$200 minutes of wall-clock time and $\sim$\$13 of Bedrock budget across 1,277 calls. Reproducing it requires being able to run the \emph{exact same cascade code} against an arbitrary Anthropic-CLI-compatible substrate, on demand, from any context the reader has handy. The plugin-portability work that this section documents is what makes that reproducibility realistic. A reader with an Anthropic API key and the \texttt{claude} CLI installed can reproduce H1.v4--H4.v4 with \texttt{pce cascade} on any of the items in \texttt{benchmarks/items.json}; a reader with AWS Bedrock credentials and a configured \texttt{claude} binary can reproduce the entire pilot with one command (\texttt{python benchmarks/driver.py --version v0.4}). Neither path requires the reader to be running Cursor, Claude Code, or any other IDE.

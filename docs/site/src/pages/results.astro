@@ -1,0 +1,133 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ForestPlot from '../components/ForestPlot.astro';
+import CommitPolicyBar from '../components/CommitPolicyBar.astro';
+import JudgeScorerScatter from '../components/JudgeScorerScatter.astro';
+import HypothesisCard from '../components/HypothesisCard.astro';
+import CostPanel from '../components/CostPanel.astro';
+import { stats, judgeAgreement, costLedger, fmt, fmtP } from '../lib/stats';
+
+const primary = stats.primary;
+const h5 = stats.fixed_effects!.H5;
+const h8a = stats.shadow_revision!;
+const h8b = stats.gate_calibration!;
+const h8c = stats.commit_policy!;
+
+const forestRows = [
+  ...Object.values(primary).map(p => ({ label: `${p.hypothesis} · ${p.domain}`, g: p.g, ci: p.ci as [number, number] })),
+  { label: 'H5 pooled', g: h5.pooled_g, ci: h5.ci as [number, number], isPooled: true },
+];
+---
+<BaseLayout title="Results" active="/results">
+  <h1>Results</h1>
+
+  <h2>9.1 Pilot coverage</h2>
+
+  <p>
+    The Phase 7 pilot ran on AWS Bedrock with a deterministic seed regime and per-worker cost ledgers.
+    Total spend was <span class="font-mono">${fmt(costLedger.total_usd, 2)}</span> across
+    <span class="font-mono">{costLedger.n_calls.toLocaleString()}</span> calls. Per-domain pairs are
+    summarised below.
+  </p>
+
+  <CostPanel totalUsd={costLedger.total_usd} nCalls={costLedger.n_calls} perDomain={costLedger.per_domain} />
+
+  <h2>9.2 Per-domain primary contrasts (H1.v4–H4.v4)</h2>
+
+  <p>
+    None of the four per-domain primary contrasts cross the supported threshold. Effect sizes range from
+    <span class="font-mono">g = {fmt(Math.min(...Object.values(primary).map(p => p.g)), 2)}</span> to
+    <span class="font-mono">g = {fmt(Math.max(...Object.values(primary).map(p => p.g)), 2)}</span>. With
+    per-domain n in the single digits, retrospective power is below 0.25 across the board; this is the
+    underpowered-pilot reading rather than a strong null. The forest plot below shows per-domain g and
+    the H5 fixed-effects pool.
+  </p>
+
+  <ForestPlot rows={forestRows} title="H1–H4 cascade-vs-bare with H5 fixed-effects pool" xMin={-1} xMax={1} />
+
+  <h2>9.3 Fixed-effects meta-pool (H5.v4)</h2>
+
+  <HypothesisCard
+    id="H5.v4"
+    title="Inverse-variance fixed-effects pool of cascade-vs-bare"
+    g={h5.pooled_g}
+    ci={h5.ci as [number, number]}
+    p={null}
+    n={Object.values(h5.per_domain_n).reduce((a, b) => a + b, 0)}
+    supported={h5.supported}
+    note="ADR-005: fixed-effects chosen over random-effects given the small number of domain studies and homogeneity of the substrate."
+  />
+
+  <h2>9.4 Mechanism panel (H8a / H8b / H8c)</h2>
+
+  <p>
+    The mechanism panel is where v0.4's positive findings live. H8a tests the shadow revision pass
+    directly: pair (score(revision), score(draft)) for every cascade item and ask whether the revision
+    is reliably better. The answer is yes —
+    <span class="font-mono">g = {fmt(h8a.g, 2)}</span>,
+    <span class="font-mono">p = {fmtP(h8a.p)}</span>,
+    n = <span class="font-mono">{h8a.n}</span>. This is the pratyabhijñā mechanism doing its job.
+  </p>
+
+  <HypothesisCard
+    id="H8a.v4"
+    title="Shadow revision > draft (paired)"
+    g={h8a.g}
+    ci={h8a.ci as [number, number]}
+    p={h8a.p}
+    n={h8a.n}
+    supported={h8a.supported}
+    note="Paired score(revision) − score(draft) over all cascade items."
+  />
+
+  <p>
+    H8b asks the calibration question: given that the revision is usually better, can we predict
+    <em>which</em> items will benefit? The v0.3 event-driven gate fires on internal vimarśa diagnostics
+    and yields F1 = <span class="font-mono">{fmt(h8b.event_gated.f1, 2)}</span>. The v0.4 learned gate
+    (ADR-002) trains a small logistic head on the same diagnostics plus the proxy score gap and yields
+    F1 = <span class="font-mono">{fmt(h8b.learned_gate.f1, 2)}</span> — a real improvement.
+  </p>
+
+  <HypothesisCard
+    id="H8b.v4"
+    title="Learned gate F1 > event-gated F1"
+    g={h8b.learned_gate.f1 - h8b.event_gated.f1}
+    ci={[0, 0]}
+    p={null}
+    n={h8b.learned_gate.n}
+    supported={h8b.supported}
+    note={`learned_gate F1 = ${fmt(h8b.learned_gate.f1, 3)} vs event_gated F1 = ${fmt(h8b.event_gated.f1, 3)}.`}
+  />
+
+  <p>
+    H8c places the policies on a single leaderboard against the bare control. <em>always_revise</em>
+    leads, followed by <em>learned_gate</em>; <em>event_gated</em> sits with a CI that crosses zero;
+    <em>always_draft</em> is at the floor. The pairwise gaps between the top two are not significant
+    after Holm correction, which we read as: revision is the right default, and a smarter gate gets
+    closer to the always-revise upper bound.
+  </p>
+
+  <CommitPolicyBar
+    rows={h8c.leader_board.map(r => ({ policy: r.policy, g: r.g, ci: r.ci as [number, number] }))}
+    title="H8c · commit-policy leaderboard (Hedges' g vs haiku_bare)"
+  />
+
+  <h2>9.5 Judge-vs-proxy agreement (H9.v4)</h2>
+
+  <p>
+    H9 stress-tests the proxy composite scorer against a Sonnet-4.5 LLM-judge with a frozen prompt.
+    Spearman ρ on the per-item delta is <span class="font-mono">{fmt(judgeAgreement.rho, 2)}</span>;
+    sign-agreement is <span class="font-mono">{fmt(judgeAgreement.sign_agreement * 100, 1)}%</span> over
+    n = <span class="font-mono">{judgeAgreement.n}</span> items. We treat this as a methodological flag:
+    the proxy scorer (length × fluency × lexical diversity) is not picking up what a calibrated LLM-judge
+    rewards. The <a href="/discussion">discussion page</a> §10.4 unpacks the implications and the v0.5
+    metric-design ladder.
+  </p>
+
+  <JudgeScorerScatter
+    pairs={judgeAgreement.pairs}
+    rho={judgeAgreement.rho}
+    signAgreement={judgeAgreement.sign_agreement}
+    n={judgeAgreement.n}
+  />
+</BaseLayout>

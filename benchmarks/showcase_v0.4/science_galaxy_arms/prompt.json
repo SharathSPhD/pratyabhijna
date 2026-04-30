@@ -1,0 +1,11 @@
+{
+  "slug": "science_galaxy_arms",
+  "title": "Why galaxies have spiral arms (largest revision uplift in pilot)",
+  "domain": "sci_creativity",
+  "prompt": "Explain spiral arms in galaxies via at least two competing physical framings.",
+  "constraint": "Two named framings, each with a one-sentence mechanism summary; no false dichotomy ('both can be true').",
+  "style": "multiple_framings",
+  "chandas": null,
+  "source": "phase7_cascade",
+  "notes": "Phase 7 cascade output for sci_creativity s05 — the largest single-item shadow-revision uplift in the pilot (draft 0.486 → revision 0.595, Δ=+0.110). Vimarśa did not fire so the cascade committed the draft; the shadow revision sharpened 'Framing 1 - The Traffic Jam' to 'Framing 1 - Density Waves', upgrading the analogy to its proper physics name (Lin-Shu density-wave theory). The revision is shown for comparison."
+}

@@ -49,11 +49,30 @@ from typing import Any
 import numpy as np
 
 from pce.substrate.embed import Embedder
+from pce.substrate.errors import (
+    HaikuApiError,
+    HaikuCLIError,
+    HaikuError,
+    HaikuRateLimitError,
+)
 from pce.types import Candidate
 
+__all__ = [
+    "HaikuLM",
+    "HaikuConfig",
+    "HaikuBudgetExceededError",
+    "CleanSubstrateAuthError",
+    "HaikuError",
+    "HaikuRateLimitError",
+    "HaikuApiError",
+    "HaikuCLIError",
+]
+
 REPO_ROOT = Path(__file__).resolve().parents[3]
-AUDIT_DIR = REPO_ROOT / "audit" / "haiku"
-COST_LEDGER = REPO_ROOT / "audit" / "cost_ledger.json"
+AUDIT_DIR = Path(os.environ.get("PCE_HAIKU_AUDIT_DIR") or (REPO_ROOT / "audit" / "haiku"))
+COST_LEDGER = Path(
+    os.environ.get("PCE_HAIKU_COST_LEDGER") or (REPO_ROOT / "audit" / "cost_ledger.json")
+)
 
 # Frozen system prompt override. Replaces the default Claude Code system prompt
 # (which carries plugin / skill / framing context). Value is the same neutral
@@ -84,6 +103,11 @@ DEFAULT_ISOLATION_FLAGS: tuple[str, ...] = (
 
 # Allow-list of env vars carried into the inner subprocess. Everything else is
 # dropped. We never `os.environ.copy()`; clean_env is built explicitly.
+#
+# v0.4: extended to include AWS / Bedrock auth so the Phase-7 powered pilot
+# can run via `CLAUDE_CODE_USE_BEDROCK=1` on AWS Bedrock with no OAuth quota
+# ceiling. These do NOT carry Claude Code session state; they only describe
+# how the inner `claude` CLI should authenticate to a backend.
 ENV_ALLOWLIST: tuple[str, ...] = (
     "PATH",
     "LANG",
@@ -96,6 +120,30 @@ ENV_ALLOWLIST: tuple[str, ...] = (
     "SHELL",
     "TMPDIR",
     "__CF_USER_TEXT_ENCODING",  # macOS-specific; harmless if absent on Linux
+    # --- Claude Code backend selection (v0.4 Bedrock pilot) ---
+    "CLAUDE_CODE_USE_BEDROCK",
+    "CLAUDE_CODE_USE_VERTEX",
+    "ANTHROPIC_MODEL",
+    "ANTHROPIC_SMALL_FAST_MODEL",
+    "ANTHROPIC_BEDROCK_BASE_URL",
+    "ANTHROPIC_VERTEX_PROJECT_ID",
+    "ANTHROPIC_API_KEY",  # only present if user opted into SDK / direct API
+    # --- AWS auth chain (Bedrock) ---
+    "AWS_REGION",
+    "AWS_DEFAULT_REGION",
+    "AWS_PROFILE",
+    "AWS_DEFAULT_PROFILE",
+    "AWS_ACCESS_KEY_ID",
+    "AWS_SECRET_ACCESS_KEY",
+    "AWS_SESSION_TOKEN",
+    "AWS_BEARER_TOKEN_BEDROCK",
+    "AWS_CONFIG_FILE",
+    "AWS_SHARED_CREDENTIALS_FILE",
+    "AWS_ROLE_ARN",
+    "AWS_WEB_IDENTITY_TOKEN_FILE",
+    # --- GCP auth chain (Vertex) — kept for parity, unused by v0.4 pilot ---
+    "GOOGLE_APPLICATION_CREDENTIALS",
+    "CLOUD_ML_REGION",
 )
 
 # Env vars that, if present in the parent, indicate the parent is itself a
@@ -121,19 +169,26 @@ class HaikuConfig:
 
     @classmethod
     def from_env(cls) -> HaikuConfig:
+        """Resolve a HaikuConfig from the v0.4 ``PCEConfig`` chain.
+
+        Priority order: explicit overrides > ``PCE_*`` env > ``PCE_HAIKU_*``
+        env (back-compat) > user TOML > repo TOML > defaults. The SDK code
+        path (``PCE_USE_SDK=1``) is deprecated as of v0.4 and ignored at
+        substrate level — see ``docs/adr/v0.4/ADR-007-sdk-removal.md``.
+        """
+        from pce.config import PCEConfig
+        pce = PCEConfig.load()
         return cls(
-            model=os.environ.get("PCE_HAIKU_MODEL", "haiku"),
-            cli_bin=os.environ.get("PCE_HAIKU_CLI", "claude"),
-            timeout_s=int(os.environ.get("PCE_HAIKU_TIMEOUT_S", "120")),
-            use_sdk=os.environ.get("PCE_USE_SDK", "").strip() == "1",
-            cost_cap_usd=float(os.environ.get("PCE_HAIKU_COST_CAP_USD", "18.0")),
-            cli_retry=int(os.environ.get("PCE_HAIKU_CLI_RETRY", "2")),
-            cli_backoff_s=float(os.environ.get("PCE_HAIKU_CLI_BACKOFF_S", "1.0")),
-            clean_substrate=os.environ.get("PCE_HAIKU_CLEAN_SUBSTRATE", "1").strip() != "0",
-            clean_home_root=os.environ.get("PCE_HAIKU_CLEAN_HOME") or None,
-            system_prompt_override=os.environ.get(
-                "PCE_HAIKU_SYSTEM_PROMPT", DEFAULT_SYSTEM_PROMPT_OVERRIDE
-            ),
+            model=pce.resolved_cascade_model(),
+            cli_bin=pce.cli_bin,
+            timeout_s=pce.timeout_s,
+            use_sdk=False,
+            cost_cap_usd=pce.cost_cap_usd,
+            cli_retry=pce.cli_retry,
+            cli_backoff_s=pce.cli_backoff_s,
+            clean_substrate=pce.clean_substrate,
+            clean_home_root=pce.clean_home_root,
+            system_prompt_override=pce.system_prompt_override,
         )
 
 
@@ -206,15 +261,23 @@ def _setup_clean_home(pid: int, root: str | None = None) -> Path:
     Layout (macOS):
       /tmp/pce_home_<pid>/
         Library/Keychains -> ~/Library/Keychains       (symlink, OAuth)
+        .aws              -> ~/.aws                    (symlink, Bedrock; v0.4)
 
     Layout (Linux):
       /tmp/pce_home_<pid>/
         .config/claude    -> ~/.config/claude          (symlink, OAuth, if exists)
+        .aws              -> ~/.aws                    (symlink, Bedrock; v0.4)
 
     Crucially we do NOT symlink:
       ~/.claude/                  (plugins, skills, settings, agents, sessions, CLAUDE.md auto-memory)
       ~/.config/claude/plugins/   (if claude grows a Linux plugin dir there)
       project CLAUDE.md           (avoided by also setting cwd to a temp dir outside the repo)
+
+    v0.4 (Bedrock pilot): when ``CLAUDE_CODE_USE_BEDROCK=1`` is set in the
+    parent env, we additionally symlink ``~/.aws`` into ``clean_home`` so the
+    inner subprocess can resolve ``AWS_PROFILE`` against the user's existing
+    AWS config/credentials. The env-allowlist already carries the
+    ``AWS_*`` / ``CLAUDE_CODE_USE_BEDROCK`` / ``ANTHROPIC_*`` vars through.
     """
     base = Path(root) if root else Path(tempfile.gettempdir())
     clean_home = base / f"pce_home_{pid}"
@@ -251,6 +314,16 @@ def _setup_clean_home(pid: int, root: str | None = None) -> Path:
         # We prefer to be conservative here and only handle the .config path;
         # if credentials live elsewhere on a Linux box, set PCE_HAIKU_CLEAN_HOME
         # to a manually-prepared dir.
+
+    # v0.4: AWS config / credentials for Bedrock auth.
+    aws_src = real_home / ".aws"
+    if aws_src.exists():
+        aws_link = clean_home / ".aws"
+        if not aws_link.exists():
+            try:
+                os.symlink(aws_src, aws_link)
+            except OSError:  # pragma: no cover — best-effort
+                pass
 
     _CREATED_CLEAN_HOMES.append(clean_home)
     return clean_home
@@ -413,10 +486,41 @@ class HaikuLM:
         started = time.time()
         proc = subprocess.run(cmd, **run_kwargs)  # noqa: S603 — CLI is trusted user-installed binary
         latency_ms = int((time.time() - started) * 1000)
+
+        # v0.4 (ADR-006): parse stdout JSON even when rc != 0. Claude CLI returns
+        # the useful error body on stdout (e.g. is_error=True, api_error_status=429
+        # for quota exhaustion) while still exiting non-zero. The v0.3 path
+        # discarded that body via `stderr_tail` and raised a generic RuntimeError;
+        # v0.4 raises a typed HaikuRateLimitError / HaikuApiError so the driver
+        # and smoke harness can distinguish externally-caused failures from
+        # implementation bugs.
+        stdout_text = proc.stdout.decode("utf-8", errors="replace")
+        stderr_tail = proc.stderr.decode("utf-8", errors="replace")[-500:]
+        payload: dict[str, Any] | None
+        try:
+            payload = json.loads(stdout_text) if stdout_text.strip() else None
+        except json.JSONDecodeError:
+            payload = None
+
+        if payload is not None and payload.get("is_error", False):
+            api_status = payload.get("api_error_status")
+            if api_status == 429:
+                raise HaikuRateLimitError(
+                    payload.get("result", "rate-limited") or "rate-limited",
+                    parsed=payload,
+                )
+            raise HaikuApiError(
+                payload.get("result", f"api error (status={api_status})") or
+                f"api error (status={api_status})",
+                parsed=payload,
+            )
         if proc.returncode != 0:
-            stderr_tail = proc.stderr.decode("utf-8", errors="replace")[-500:]
             # Heuristic: detect 401/auth failures up front so we surface the right error.
-            if "401" in stderr_tail or "auth" in stderr_tail.lower() or "credential" in stderr_tail.lower():
+            if (
+                "401" in stderr_tail
+                or "auth" in stderr_tail.lower()
+                or "credential" in stderr_tail.lower()
+            ):
                 raise CleanSubstrateAuthError(
                     f"Clean inner subprocess failed to authenticate (rc={proc.returncode}). "
                     f"OAuth credential may not be reachable from the scrubbed HOME. "
@@ -424,16 +528,14 @@ class HaikuLM:
                     f"Remedy: run `claude /login` to refresh, or set "
                     f"PCE_HAIKU_CLEAN_SUBSTRATE=0 to disable isolation (leaks Claude Code context)."
                 )
-            raise RuntimeError(
-                f"HaikuLM CLI rc={proc.returncode}: {stderr_tail}"
+            raise HaikuCLIError(
+                f"rc={proc.returncode}: {stderr_tail}",
+                parsed={"stderr": stderr_tail, "stdout": stdout_text[:1000]},
             )
-        try:
-            payload = json.loads(proc.stdout.decode("utf-8", errors="replace"))
-        except json.JSONDecodeError as exc:
-            raise RuntimeError(f"HaikuLM CLI returned non-JSON: {exc}") from exc
-        if payload.get("is_error", False):
-            raise RuntimeError(
-                f"HaikuLM CLI is_error=True: {payload.get('result', '')[:500]}"
+        if payload is None:
+            raise HaikuCLIError(
+                "CLI returned no parseable JSON body on stdout",
+                parsed={"stderr": stderr_tail, "stdout": stdout_text[:1000]},
             )
         text = str(payload.get("result", "") or "")
         meta = {
@@ -450,11 +552,25 @@ class HaikuLM:
         return text, meta
 
     def _call_cli(self, prompt: str) -> tuple[str, dict[str, Any]]:
-        """Wrapper around _call_cli_once with retry-on-empty."""
+        """Wrapper around _call_cli_once with retry-on-empty.
+
+        v0.4: ``HaikuRateLimitError`` and ``HaikuApiError`` propagate immediately
+        without retry — those are externally caused and retrying inside the
+        same call burns more quota / cost. Only ``HaikuCLIError`` (generic
+        non-zero rc with no JSON body) and empty-but-OK responses are retried.
+        """
         last_text = ""
         last_meta: dict[str, Any] = {}
         for attempt in range(self.config.cli_retry + 1):
-            text, meta = self._call_cli_once(prompt)
+            try:
+                text, meta = self._call_cli_once(prompt)
+            except (HaikuRateLimitError, HaikuApiError):
+                raise
+            except HaikuCLIError:
+                if attempt >= self.config.cli_retry:
+                    raise
+                time.sleep(self.config.cli_backoff_s * (attempt + 1))
+                continue
             last_text, last_meta = text, meta
             if text.strip():
                 meta["attempt"] = attempt

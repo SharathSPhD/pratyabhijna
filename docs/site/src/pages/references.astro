@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CitationsList from '../components/CitationsList.astro';
+import { REFERENCES } from '../lib/references';
+
+const groups = REFERENCES.reduce<Record<string, typeof REFERENCES>>((acc, r) => {
+  (acc[r.area] = acc[r.area] ?? []).push(r);
+  return acc;
+}, {});
+---
+<BaseLayout title="References" active="/references">
+  <h1>References</h1>
+
+  <p>
+    Bibliography for the v0.4 paper. Every entry is verified against Crossref, arXiv, or the official
+    publisher record. The verification log lives at <span class="kbd">audit/v0.4/lit_verification.jsonl</span>;
+    new entries added during Phase 8 are recorded in <span class="kbd">audit/v0.4/lit_new_entries.jsonl</span>.
+  </p>
+
+  {Object.entries(groups).map(([area, refs]) => (
+    <section>
+      <h2>{area}</h2>
+      <CitationsList citations={refs} />
+    </section>
+  ))}
+</BaseLayout>

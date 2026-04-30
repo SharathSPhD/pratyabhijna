@@ -1,0 +1,73 @@
+{
+  "schema_version": "v0.4-learned-gate-1",
+  "feature_order": [
+    "delta_F",
+    "novelty",
+    "aspect_count",
+    "ananda",
+    "budget_balance"
+  ],
+  "coefficients": {
+    "delta_F": -0.0843200716481754,
+    "novelty": -0.3035393399614422,
+    "aspect_count": 0.0,
+    "ananda": 0.0,
+    "budget_balance": 0.0
+  },
+  "intercept": 0.014529037652161769,
+  "scaler_mean": [
+    0.32113518336753105,
+    0.9109495744109154,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "scaler_scale": [
+    0.5572854326261021,
+    0.16334743927859652,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "fold_aurocs": {
+    "aut": 0.5,
+    "poetry_gen": 0.5,
+    "poetry_interp": 0.5,
+    "sci_creativity": 0.375
+  },
+  "mean_auroc": 0.46875,
+  "n_total": 20,
+  "n_per_domain": {
+    "aut": 5,
+    "poetry_gen": 5,
+    "poetry_interp": 5,
+    "sci_creativity": 5
+  },
+  "label_balance": {
+    "aut": {
+      "revision_better": 3,
+      "draft_better": 2
+    },
+    "poetry_gen": {
+      "revision_better": 4,
+      "draft_better": 1
+    },
+    "poetry_interp": {
+      "revision_better": 4,
+      "draft_better": 1
+    },
+    "sci_creativity": {
+      "revision_better": 4,
+      "draft_better": 1
+    }
+  },
+  "auroc_floor": 0.55,
+  "auroc_floor_passed": false,
+  "training_data_sha256": {
+    "benchmarks/results_v0.3/aut.json": "1874a2e4a0db0fea6fe1e8a05ab3bd7bf9a7909ad79ca65e86db5cdc5d026bb6",
+    "benchmarks/results_v0.3/poetry_gen.json": "caad7edc21381d2a852a6efc307289852e9ca03d739ca45717842a5c2dfe1e67",
+    "benchmarks/results_v0.3/poetry_interp.json": "d5c86c0f798dcdefeb7b2563caf408c77a4df0ebfc4fbac547fd47a792d58ece",
+    "benchmarks/results_v0.3/sci_creativity.json": "c5529f5d98d45308d7b6fcd75b263e5d0f97234175804526082d8fc480e089e3"
+  },
+  "model_path": "artifacts/learned_gate_v0_4.joblib"
+}

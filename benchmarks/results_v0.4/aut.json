@@ -1,0 +1,2101 @@
+{
+  "domain": "aut",
+  "version": "v0.4",
+  "rows": {
+    "a01": {
+      "item": {
+        "id": "a01",
+        "object": "brick"
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "1. Submerge vegetables during fermentation—place on top of produce in crocks to keep kimchi or sauerkraut below the brine\n2. Passive solar thermal mass—stack in south-facing windows to absorb daytime heat and slowly release it at night\n3. Shim uneven furniture—stack under table or shelf legs on sloped floors to achieve level surfaces\n4. Archery target backstop—arrange bricks behind targets as a safe impact barrier to stop arrows\n5. Knife honing stone—use the rough surface to maintain and sharpen kitchen knife edges between formal sharpenings\n6. Garden pathway edging—arrange in geometric patterns to define raised beds and create stepping stone routes\n7. Wheel chock for safety—wedge under vehicle tires on inclines to prevent rolling during long-term parking\n8. Emergency window breaker—carry as a safety tool in vehicles to break glass quickly during accidents or entrapment situations",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.8529589176177979,
+          "elaboration": 0.8888888888888888,
+          "flexibility": 1.0
+        },
+        "composite": 0.9354619516266717,
+        "n_chars": 893,
+        "n_words": 136,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 16.25193190574646,
+          "haiku_total_usd": 0.0068319999999999995,
+          "haiku_n_calls": 1
+        }
+      },
+      "haiku_cascade": {
+        "text": "# 8 Unusual Uses for a Brick\n\n1. A clay brick heated in an oven for 30 minutes, wrapped in canvas, and placed at the foot of a sleeping bag to provide warmth during cold-weather camping.\n\n2. A rough-textured brick used as a grinding stone to crush dried chili peppers into powder for homemade hot sauce.\n\n3. A brick placed as a weight on top of cloth covering a fermentation jar to maintain pressure and anaerobic conditions for kimchi or sauerkraut.\n\n4. A brick rubbed against muddy boot soles to scrape off caked soil before entering a house, replacing a traditional boot scraper.\n\n5. A brick inserted into the frame of a passive solar shower bag to absorb daytime heat and gradually release it for warmer evening showers.\n\n6. A brick positioned slightly protruding at the base of a buried time capsule to mark its location as a permanent underground reference point for future excavation.\n\n7. A wet brick used as a stropping surface to gently hone and maintain the edge of woodworking chisels or kitchen knives through light abrasion.\n\n8. A brick placed beneath seedling flats in a garden bed to create an elevated air gap that deters slugs and cutworms from climbing the plant stems.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.5063918232917786,
+          "elaboration": 1.0,
+          "flexibility": 0.8888888888888888
+        },
+        "composite": 0.8488201780451669,
+        "n_chars": 1187,
+        "n_words": 207,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 487.44885301589966,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 3,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# 8 Unusual Uses for a Brick\n\n1. A clay brick heated in an oven for 30 minutes, wrapped in canvas, and placed at the foot of a sleeping bag to provide warmth during cold-weather camping.\n\n2. A rough-textured brick used as a grinding stone to crush dried chili peppers into powder for homemade hot sauce.\n\n3. A brick placed as a weight on top of cloth covering a fermentation jar to maintain pressure and anaerobic conditions for kimchi or sauerkraut.\n\n4. A brick rubbed against muddy boot soles to scrape off caked soil before entering a house, replacing a traditional boot scraper.\n\n5. A brick inserted into the frame of a passive solar shower bag to absorb daytime heat and gradually release it for warmer evening showers.\n\n6. A brick positioned slightly protruding at the base of a buried time capsule to mark its location as a permanent underground reference point for future excavation.\n\n7. A wet brick used as a stropping surface to gently hone and maintain the edge of woodworking chisels or kitchen knives through light abrasion.\n\n8. A brick placed beneath seedling flats in a garden bed to create an elevated air gap that deters slugs and cutworms from climbing the plant stems.",
+          "surface_revision": "# 8 Unusual Uses for a Brick\n\n1. A clay brick heated to 400°F in an oven, wrapped in canvas, and inserted into wool-lined winter boots before bed—its residual heat creates a sustained radiant core that warms feet throughout the night without drawing body heat from the sleeper.\n\n2. A rough-textured brick used as a grinding surface to crush dried chili peppers, where the porous clay matrix traps vibrant pigments and pepper oils, producing a noticeably deeper red color and more complex flavor than conventional grinding methods.\n\n3. A brick placed atop cloth covering a fermentation jar, its weight excluding oxygen from the brine while functioning as a subtle pressure indicator—the brick's position shifts imperceptibly as bacterial fermentation produces gas, allowing monitoring without opening the jar.\n\n4. A canvas-wrapped brick cradled in a cloth sling and used to cast seeds or compost into inaccessible garden areas—the weighted projectile achieves distances and accuracy far beyond hand-scattering alone, enabling precise distributed planting across wild or steep terrain.\n\n5. A brick inserted into a passive solar shower bag's frame to absorb afternoon sunlight and gradually release thermal energy through evening hours, maintaining warm water temperatures without electrical heating for extended summer showering seasons.\n\n6. Two bricks positioned at predetermined distances from a buried time capsule and aligned toward magnetic north, creating an underground survey marker—their iron oxide composition registers on magnetometer and ground-penetrating radar scans, acting as subsurface beacons for future archaeologists to locate the capsule without excavation.\n\n7. A clay brick whose top surface has been inscribed with permanent micro-grooves from years of blade-honing at consistent angles, becoming a calibrated edge-maintenance tool—woodworkers restore tool sharpness by following the grooved pathways without measuring or calculating precise honing angles.\n\n8. A brick positioned beneath seedling flats to create an air gap repelling slugs and cutworms, while its thermal mass absorbs morning sunshine and gently warms soil, accelerating early-season germination by 3-5 days and establishing optimal microclimate conditions.",
+          "aspect_count": 0.0,
+          "ananda": 0.8457518815994263,
+          "budget_balance": -1.2999999999999998,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8457518815994263,
+            "budget_balance": -1.2999999999999998
+          },
+          "revision_skipped_reason": null,
+          "haiku_total_usd": 0.30486899999999995,
+          "haiku_n_calls": 17
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "# 8 Unusual Uses for a Brick\n\n1. A thermal mass for passive heating—kiln-heated and placed under bedding to release warmth slowly through the night without electricity.\n\n2. A percussion instrument in experimental music, struck with mallets or stones to produce deep, resonant tones of varying pitch.\n\n3. A rubbing block for printmaking—place paper over its textured surface and rub with graphite to transfer the brick's pattern onto art.\n\n4. A grinding platform for crushing seeds, spices, and pigments—using a second brick or stone as the grinding tool.\n\n5. A fulcrum in a lever system to lift or move heavy objects by positioning it under a wooden plank as a pivot point.\n\n6. A mold for shaping clay or leather—brick's weight and hard surface used to press and form malleable materials into new shapes.\n\n7. A portable fire brick for building temporary outdoor ovens—stacked without mortar to create functional baking structures.\n\n8. A symbol of tangible resistance—held or carried during meditation as a concrete representation of immovable obstacles one must accept rather than overcome.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.6624683737754822,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9156170934438705,
+        "n_chars": 1090,
+        "n_words": 174,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 211.7089810371399,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": null,
+          "selected_idx": 8,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "# 8 Unusual Uses for a Brick\n\n1. A thermal mass for passive heating—kiln-heated and placed under bedding to release warmth slowly through the night without electricity.\n\n2. A percussion instrument in experimental music, struck with mallets or stones to produce deep, resonant tones of varying pitch.\n\n3. A rubbing block for printmaking—place paper over its textured surface and rub with graphite to transfer the brick's pattern onto art.\n\n4. A grinding platform for crushing seeds, spices, and pigments—using a second brick or stone as the grinding tool.\n\n5. A fulcrum in a lever system to lift or move heavy objects by positioning it under a wooden plank as a pivot point.\n\n6. A mold for shaping clay or leather—brick's weight and hard surface used to press and form malleable materials into new shapes.\n\n7. A portable fire brick for building temporary outdoor ovens—stacked without mortar to create functional baking structures.\n\n8. A symbol of tangible resistance—held or carried during meditation as a concrete representation of immovable obstacles one must accept rather than overcome.",
+          "surface_revision": "",
+          "aspect_count": 0.0,
+          "ananda": 0.839162290096283,
+          "budget_balance": 2.26,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.839162290096283,
+            "budget_balance": 2.26
+          },
+          "revision_skipped_reason": "commit_policy=always_draft",
+          "haiku_total_usd": 0.40950599999999987,
+          "haiku_n_calls": 33
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "# 8 Unusual Uses for a Brick\n\nA brick wrapped in hemp cloth and heated in dying campfire coals, then slipped into the foot of a sleeping bag where its warmth radiates until dawn, releasing a faint iron-mineral smell as the clay cools.\n\nA brick suspended from knotted cord positioned above a gallery wall, its shadow bisecting crooked paintings and forcing each frame into perfect vertical alignment.\n\nA brick crushed to rust-red powder and worked back into concrete repair, the destroyed material becoming the structural foundation that makes the new surface stronger.\n\nA brick's weathered face pressed repeatedly into wet clay, its thousands of pores creating an imprinted grid of craters that no sculpting tool can achieve.\n\nA brick placed on flowering stems pressed flat between paper and stored in darkness for weeks, the steady weight crushing petals into permanent, tissue-thin fragility.\n\nA brick with a name carved deep into its mortar joints, weighted and sunk into dark water where it settles on the river bottom, becoming just another stone—unmarked, permanent, unseen.\n\nA brick clamped in a workshop vise, its rough face used as a grater to crush spices, seeds, and garlic into paste, the friction releasing essential oils into the air.\n\nA brick angled and stacked beneath a canvas in a studio, tilted at exactly 15 degrees through stacked supports, allowing an artist to preview how light will strike the painting when hung on gallery walls.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.5436980128288269,
+          "elaboration": 1.0,
+          "flexibility": 0.7777777777777778
+        },
+        "composite": 0.8303689476516511,
+        "n_chars": 1454,
+        "n_words": 237,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 480.0251920223236,
+          "K_effective": 4,
+          "commit_policy_effective": "always_revise",
+          "brief_override_used": true,
+          "committed": "revision",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 3,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# 8 Unusual Uses for a Brick\n\nA heated brick wrapped in cloth, placed in sleeping bags as a reusable foot warmer for winter backpacking trips.\n\nA brick with a child's handprint pressed into it before firing, buried as a permanent marker for a family time capsule ceremony.\n\nA brick serving as a metaphorical anchor you physically hold during therapy while discussing what keeps you emotionally grounded.\n\nA brick soaked in water and frozen, then used as a cooling compress for swelling injuries when ice packs aren't available.\n\nA brick suspended from string to create a plumb line for hanging an entire gallery wall of photos in perfect vertical alignment.\n\nA brick crushed to powder and mixed into concrete patch repairs, the original material becoming stronger through return.\n\nA brick with a loved one's name carved into it, thrown into a river or ocean as a ceremonial release ritual.\n\nA brick held in your palm during meditation as a grounding tool—the weight pulling your attention from spiraling thoughts into present physicality.",
+          "surface_revision": "# 8 Unusual Uses for a Brick\n\nA brick wrapped in hemp cloth and heated in dying campfire coals, then slipped into the foot of a sleeping bag where its warmth radiates until dawn, releasing a faint iron-mineral smell as the clay cools.\n\nA brick suspended from knotted cord positioned above a gallery wall, its shadow bisecting crooked paintings and forcing each frame into perfect vertical alignment.\n\nA brick crushed to rust-red powder and worked back into concrete repair, the destroyed material becoming the structural foundation that makes the new surface stronger.\n\nA brick's weathered face pressed repeatedly into wet clay, its thousands of pores creating an imprinted grid of craters that no sculpting tool can achieve.\n\nA brick placed on flowering stems pressed flat between paper and stored in darkness for weeks, the steady weight crushing petals into permanent, tissue-thin fragility.\n\nA brick with a name carved deep into its mortar joints, weighted and sunk into dark water where it settles on the river bottom, becoming just another stone—unmarked, permanent, unseen.\n\nA brick clamped in a workshop vise, its rough face used as a grater to crush spices, seeds, and garlic into paste, the friction releasing essential oils into the air.\n\nA brick angled and stacked beneath a canvas in a studio, tilted at exactly 15 degrees through stacked supports, allowing an artist to preview how light will strike the painting when hung on gallery walls.",
+          "aspect_count": 0.0,
+          "ananda": 0.8436311483383179,
+          "budget_balance": -0.08000000000000007,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8436311483383179,
+            "budget_balance": -0.08000000000000007
+          },
+          "revision_skipped_reason": null,
+          "haiku_total_usd": 0.6870109999999998,
+          "haiku_n_calls": 49
+        }
+      },
+      "haiku_cascade_event_gated": {
+        "text": "# 8 Unusual Uses for a Brick\n\n1. A clay brick heated in an oven for 30 minutes, wrapped in canvas, and placed at the foot of a sleeping bag to provide warmth during cold-weather camping.\n\n2. A rough-textured brick used as a grinding stone to crush dried chili peppers into powder for homemade hot sauce.\n\n3. A brick placed as a weight on top of cloth covering a fermentation jar to maintain pressure and anaerobic conditions for kimchi or sauerkraut.\n\n4. A brick rubbed against muddy boot soles to scrape off caked soil before entering a house, replacing a traditional boot scraper.\n\n5. A brick inserted into the frame of a passive solar shower bag to absorb daytime heat and gradually release it for warmer evening showers.\n\n6. A brick positioned slightly protruding at the base of a buried time capsule to mark its location as a permanent underground reference point for future excavation.\n\n7. A wet brick used as a stropping surface to gently hone and maintain the edge of woodworking chisels or kitchen knives through light abrasion.\n\n8. A brick placed beneath seedling flats in a garden bed to create an elevated air gap that deters slugs and cutworms from climbing the plant stems.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.5063918232917786,
+          "elaboration": 1.0,
+          "flexibility": 0.8888888888888888
+        },
+        "composite": 0.8488201780451669,
+        "n_chars": 1187,
+        "n_words": 207,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "event_gated",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8457518815994263,
+            "budget_balance": -1.2999999999999998
+          },
+          "score_draft": 0.8488201780451669,
+          "score_revision": 0.8859280943870544
+        }
+      },
+      "haiku_cascade_always_draft": {
+        "text": "# 8 Unusual Uses for a Brick\n\n1. A clay brick heated in an oven for 30 minutes, wrapped in canvas, and placed at the foot of a sleeping bag to provide warmth during cold-weather camping.\n\n2. A rough-textured brick used as a grinding stone to crush dried chili peppers into powder for homemade hot sauce.\n\n3. A brick placed as a weight on top of cloth covering a fermentation jar to maintain pressure and anaerobic conditions for kimchi or sauerkraut.\n\n4. A brick rubbed against muddy boot soles to scrape off caked soil before entering a house, replacing a traditional boot scraper.\n\n5. A brick inserted into the frame of a passive solar shower bag to absorb daytime heat and gradually release it for warmer evening showers.\n\n6. A brick positioned slightly protruding at the base of a buried time capsule to mark its location as a permanent underground reference point for future excavation.\n\n7. A wet brick used as a stropping surface to gently hone and maintain the edge of woodworking chisels or kitchen knives through light abrasion.\n\n8. A brick placed beneath seedling flats in a garden bed to create an elevated air gap that deters slugs and cutworms from climbing the plant stems.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.5063918232917786,
+          "elaboration": 1.0,
+          "flexibility": 0.8888888888888888
+        },
+        "composite": 0.8488201780451669,
+        "n_chars": 1187,
+        "n_words": 207,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_draft",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8457518815994263,
+            "budget_balance": -1.2999999999999998
+          },
+          "score_draft": 0.8488201780451669,
+          "score_revision": 0.8859280943870544
+        }
+      },
+      "haiku_cascade_always_revise": {
+        "text": "# 8 Unusual Uses for a Brick\n\n1. A clay brick heated to 400°F in an oven, wrapped in canvas, and inserted into wool-lined winter boots before bed—its residual heat creates a sustained radiant core that warms feet throughout the night without drawing body heat from the sleeper.\n\n2. A rough-textured brick used as a grinding surface to crush dried chili peppers, where the porous clay matrix traps vibrant pigments and pepper oils, producing a noticeably deeper red color and more complex flavor than conventional grinding methods.\n\n3. A brick placed atop cloth covering a fermentation jar, its weight excluding oxygen from the brine while functioning as a subtle pressure indicator—the brick's position shifts imperceptibly as bacterial fermentation produces gas, allowing monitoring without opening the jar.\n\n4. A canvas-wrapped brick cradled in a cloth sling and used to cast seeds or compost into inaccessible garden areas—the weighted projectile achieves distances and accuracy far beyond hand-scattering alone, enabling precise distributed planting across wild or steep terrain.\n\n5. A brick inserted into a passive solar shower bag's frame to absorb afternoon sunlight and gradually release thermal energy through evening hours, maintaining warm water temperatures without electrical heating for extended summer showering seasons.\n\n6. Two bricks positioned at predetermined distances from a buried time capsule and aligned toward magnetic north, creating an underground survey marker—their iron oxide composition registers on magnetometer and ground-penetrating radar scans, acting as subsurface beacons for future archaeologists to locate the capsule without excavation.\n\n7. A clay brick whose top surface has been inscribed with permanent micro-grooves from years of blade-honing at consistent angles, becoming a calibrated edge-maintenance tool—woodworkers restore tool sharpness by following the grooved pathways without measuring or calculating precise honing angles.\n\n8. A brick positioned beneath seedling flats to create an air gap repelling slugs and cutworms, while its thermal mass absorbs morning sunshine and gently warms soil, accelerating early-season germination by 3-5 days and establishing optimal microclimate conditions.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.5437123775482178,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.8859280943870544,
+        "n_chars": 2245,
+        "n_words": 323,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_revise",
+          "commit_decision_revision": true,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8457518815994263,
+            "budget_balance": -1.2999999999999998
+          },
+          "score_draft": 0.8488201780451669,
+          "score_revision": 0.8859280943870544
+        }
+      },
+      "haiku_cascade_learned_gate": {
+        "text": "# 8 Unusual Uses for a Brick\n\n1. A clay brick heated in an oven for 30 minutes, wrapped in canvas, and placed at the foot of a sleeping bag to provide warmth during cold-weather camping.\n\n2. A rough-textured brick used as a grinding stone to crush dried chili peppers into powder for homemade hot sauce.\n\n3. A brick placed as a weight on top of cloth covering a fermentation jar to maintain pressure and anaerobic conditions for kimchi or sauerkraut.\n\n4. A brick rubbed against muddy boot soles to scrape off caked soil before entering a house, replacing a traditional boot scraper.\n\n5. A brick inserted into the frame of a passive solar shower bag to absorb daytime heat and gradually release it for warmer evening showers.\n\n6. A brick positioned slightly protruding at the base of a buried time capsule to mark its location as a permanent underground reference point for future excavation.\n\n7. A wet brick used as a stropping surface to gently hone and maintain the edge of woodworking chisels or kitchen knives through light abrasion.\n\n8. A brick placed beneath seedling flats in a garden bed to create an elevated air gap that deters slugs and cutworms from climbing the plant stems.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.5063918232917786,
+          "elaboration": 1.0,
+          "flexibility": 0.8888888888888888
+        },
+        "composite": 0.8488201780451669,
+        "n_chars": 1187,
+        "n_words": 207,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "learned_gate",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8457518815994263,
+            "budget_balance": -1.2999999999999998
+          },
+          "score_draft": 0.8488201780451669,
+          "score_revision": 0.8859280943870544
+        }
+      },
+      "haiku_cascade_oracle": {
+        "text": "# 8 Unusual Uses for a Brick\n\n1. A clay brick heated to 400°F in an oven, wrapped in canvas, and inserted into wool-lined winter boots before bed—its residual heat creates a sustained radiant core that warms feet throughout the night without drawing body heat from the sleeper.\n\n2. A rough-textured brick used as a grinding surface to crush dried chili peppers, where the porous clay matrix traps vibrant pigments and pepper oils, producing a noticeably deeper red color and more complex flavor than conventional grinding methods.\n\n3. A brick placed atop cloth covering a fermentation jar, its weight excluding oxygen from the brine while functioning as a subtle pressure indicator—the brick's position shifts imperceptibly as bacterial fermentation produces gas, allowing monitoring without opening the jar.\n\n4. A canvas-wrapped brick cradled in a cloth sling and used to cast seeds or compost into inaccessible garden areas—the weighted projectile achieves distances and accuracy far beyond hand-scattering alone, enabling precise distributed planting across wild or steep terrain.\n\n5. A brick inserted into a passive solar shower bag's frame to absorb afternoon sunlight and gradually release thermal energy through evening hours, maintaining warm water temperatures without electrical heating for extended summer showering seasons.\n\n6. Two bricks positioned at predetermined distances from a buried time capsule and aligned toward magnetic north, creating an underground survey marker—their iron oxide composition registers on magnetometer and ground-penetrating radar scans, acting as subsurface beacons for future archaeologists to locate the capsule without excavation.\n\n7. A clay brick whose top surface has been inscribed with permanent micro-grooves from years of blade-honing at consistent angles, becoming a calibrated edge-maintenance tool—woodworkers restore tool sharpness by following the grooved pathways without measuring or calculating precise honing angles.\n\n8. A brick positioned beneath seedling flats to create an air gap repelling slugs and cutworms, while its thermal mass absorbs morning sunshine and gently warms soil, accelerating early-season germination by 3-5 days and establishing optimal microclimate conditions.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.5437123775482178,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.8859280943870544,
+        "n_chars": 2245,
+        "n_words": 323,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "oracle",
+          "commit_decision_revision": true,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8457518815994263,
+            "budget_balance": -1.2999999999999998
+          },
+          "score_draft": 0.8488201780451669,
+          "score_revision": 0.8859280943870544,
+          "is_analysis_only": true
+        }
+      }
+    },
+    "a02": {
+      "item": {
+        "id": "a02",
+        "object": "paperclip"
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "# 8 Unusual Paperclip Uses\n\n1. Straighten it and form a hook at one end to fish out hair clogs from sink and shower drains.\n\n2. Bend into a U-shaped bracket to support drooping plant stems or prop up seedlings that can't stand upright.\n\n3. Sharpen one end and bend into a fishing hook for emergency survival situations.\n\n4. Unfold into a zigzag stand to prop your smartphone at a 45-degree viewing angle for video calls or recipe-reading in the kitchen.\n\n5. Thread through the teeth of a broken zipper slider to create a makeshift pull tab for jackets or bags.\n\n6. Bend into a holder to keep candle wicks centered and vertical while you pour melted wax to make hand-poured candles.\n\n7. Wrap around bundled cables with a labeled tag inserted through the loop to identify which cord is which behind your desk.\n\n8. Loop through the tiny hinge of eyeglasses to temporarily secure a loose lens until you can get professional repair.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.7479050159454346,
+          "elaboration": 0.9629629629629629,
+          "flexibility": 1.0
+        },
+        "composite": 0.9277169947270993,
+        "n_chars": 927,
+        "n_words": 164,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 11.101428031921387,
+          "haiku_total_usd": 0.6924049999999998,
+          "haiku_n_calls": 50
+        }
+      },
+      "haiku_cascade": {
+        "text": "# 8 Unusual Uses of a Paperclip\n\n1. SIM card tray ejector—straighten one end and insert into the pinhole on smartphones to manually eject the SIM card slot when the device won't respond to software commands.\n\n2. Dental plaque scraper—bend into an L-shape to manually remove stubborn plaque and debris between teeth when dental floss is unavailable.\n\n3. Recessed light bulb extractor—curve into a hook shape to safely grip and remove burned-out incandescent bulbs from hard-to-reach ceiling fixtures.\n\n4. Plant training structure—twist multiple paperclips together to create a miniature trellis that guides climbing seedlings upward along a specific path.\n\n5. Emergency zipper repair—loop the end through a broken zipper slider to create a temporary pull handle for jackets or bags.\n\n6. Fishing fly component—bend, loop, and combine with beads and thread to hand-craft improvised fly fishing lures.\n\n7. Breadboard component holder—position delicate resistor or capacitor leads in the correct holes during electronics prototyping without them shifting.\n\n8. Window screen corner catch—straighten and fashion into a hook to mechanically re-engage torn corner fabric of window screens back onto the frame.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.7231746912002563,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9307936728000641,
+        "n_chars": 1200,
+        "n_words": 179,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 446.8196280002594,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 1,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# 8 Unusual Uses of a Paperclip\n\n1. SIM card tray ejector—straighten one end and insert into the pinhole on smartphones to manually eject the SIM card slot when the device won't respond to software commands.\n\n2. Dental plaque scraper—bend into an L-shape to manually remove stubborn plaque and debris between teeth when dental floss is unavailable.\n\n3. Recessed light bulb extractor—curve into a hook shape to safely grip and remove burned-out incandescent bulbs from hard-to-reach ceiling fixtures.\n\n4. Plant training structure—twist multiple paperclips together to create a miniature trellis that guides climbing seedlings upward along a specific path.\n\n5. Emergency zipper repair—loop the end through a broken zipper slider to create a temporary pull handle for jackets or bags.\n\n6. Fishing fly component—bend, loop, and combine with beads and thread to hand-craft improvised fly fishing lures.\n\n7. Breadboard component holder—position delicate resistor or capacitor leads in the correct holes during electronics prototyping without them shifting.\n\n8. Window screen corner catch—straighten and fashion into a hook to mechanically re-engage torn corner fabric of window screens back onto the frame.",
+          "surface_revision": "# 8 Unusual Uses of a Paperclip\n\n1. SIM card tray ejector—straighten one end into a precision probe that triggers the hidden pinhole release, popping open a smartphone's SIM chamber when the device goes silent and unresponsive.\n\n2. Dental plaque scraper—bend into a curved curette to methodically excavate fossilized tartar buildup from gumlines and tooth surfaces, working with precise angled scraping motions before mineral deposits calcify permanently.\n\n3. Recessed light bulb extractor—curve into a delicate hook to snare and withdraw hot incandescent bulbs from hard-to-reach ceiling fixtures, maneuvering around electrical conduit in complete darkness.\n\n4. Plant training armature—chain multiple clips into a three-dimensional lattice that choreographs climbing vines into spirals and geometric patterns, sculpting biological growth into your predetermined architectural vision.\n\n5. Emergency zipper resurrector—loop through a damaged slider to fashion a temporary pull handle that breathes function back into stuck or torn zippers on winter coats and backpacks mid-journey.\n\n6. Artisanal fishing fly—bend, loop, wrap tightly with thread, attach beads and feathers, and hand-engineer elaborate lures that convincingly mimic insect prey, duping actual trout into reflexive strikes with objects forged from a single bent wire.\n\n7. Breadboard component anchor—position delicate resistor and capacitor leads in exact grid slots to hold them rock-steady during circuit prototyping, where one misaligned connection collapses the entire prototype.\n\n8. Window screen corner catch—straighten and reshape into a spring-tensioned hook that mechanically re-engages torn mesh back onto aluminum frame edges, indefinitely extending screen life across seasons.",
+          "aspect_count": 0.0,
+          "ananda": 0.7900135517120361,
+          "budget_balance": -0.20000000000000018,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.7900135517120361,
+            "budget_balance": -0.20000000000000018
+          },
+          "revision_skipped_reason": null,
+          "haiku_total_usd": 0.9812179999999997,
+          "haiku_n_calls": 66
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "# Eight Unusual Paperclip Uses\n\n1. A tension wrench paired with another paperclip to manipulate simple locks, teaching the mechanics of security vulnerabilities.\n\n2. A makeshift plectrum for a guitar or ukulele, producing thin, bright, percussive tones in experimental music-making.\n\n3. A bookmark that measures emotional progress—moved incrementally down pages as a physical metaphor for distance traveled through self-help texts.\n\n4. A suture tool for mending torn pages in found-object art or creating altered books with intentional stitching patterns.\n\n5. A zipper resurrector—hooked through teeth to realign a stuck slider and restore clothing to function.\n\n6. A spring component in handmade percussion instruments, struck or plucked to generate metallic chiming sounds for kinetic sculptures.\n\n7. A calibration pointer for amateur astronomy—marking specific angles when sketching constellations or creating personal sky maps.\n\n8. A connector in miniature Rube Goldberg machines, linking wooden blocks or balls to trigger sequential mechanical reactions across a tabletop.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.6989195346832275,
+          "elaboration": 0.8888888888888888,
+          "flexibility": 1.0
+        },
+        "composite": 0.8969521058930291,
+        "n_chars": 1077,
+        "n_words": 152,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 182.97916722297668,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": null,
+          "selected_idx": 7,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "# Eight Unusual Paperclip Uses\n\n1. A tension wrench paired with another paperclip to manipulate simple locks, teaching the mechanics of security vulnerabilities.\n\n2. A makeshift plectrum for a guitar or ukulele, producing thin, bright, percussive tones in experimental music-making.\n\n3. A bookmark that measures emotional progress—moved incrementally down pages as a physical metaphor for distance traveled through self-help texts.\n\n4. A suture tool for mending torn pages in found-object art or creating altered books with intentional stitching patterns.\n\n5. A zipper resurrector—hooked through teeth to realign a stuck slider and restore clothing to function.\n\n6. A spring component in handmade percussion instruments, struck or plucked to generate metallic chiming sounds for kinetic sculptures.\n\n7. A calibration pointer for amateur astronomy—marking specific angles when sketching constellations or creating personal sky maps.\n\n8. A connector in miniature Rube Goldberg machines, linking wooden blocks or balls to trigger sequential mechanical reactions across a tabletop.",
+          "surface_revision": "",
+          "aspect_count": 0.0,
+          "ananda": 0.8430948853492737,
+          "budget_balance": 2.48,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8430948853492737,
+            "budget_balance": 2.48
+          },
+          "revision_skipped_reason": "commit_policy=always_draft",
+          "haiku_total_usd": 1.0698669999999997,
+          "haiku_n_calls": 82
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '<!-- pce-seed:44211 -->\\nReframe in one alternative perspective. List 8 unusual, non-obvious uses of a paperclip. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 159.9281129837036
+        }
+      },
+      "haiku_cascade_event_gated": {
+        "text": "# 8 Unusual Uses of a Paperclip\n\n1. SIM card tray ejector—straighten one end and insert into the pinhole on smartphones to manually eject the SIM card slot when the device won't respond to software commands.\n\n2. Dental plaque scraper—bend into an L-shape to manually remove stubborn plaque and debris between teeth when dental floss is unavailable.\n\n3. Recessed light bulb extractor—curve into a hook shape to safely grip and remove burned-out incandescent bulbs from hard-to-reach ceiling fixtures.\n\n4. Plant training structure—twist multiple paperclips together to create a miniature trellis that guides climbing seedlings upward along a specific path.\n\n5. Emergency zipper repair—loop the end through a broken zipper slider to create a temporary pull handle for jackets or bags.\n\n6. Fishing fly component—bend, loop, and combine with beads and thread to hand-craft improvised fly fishing lures.\n\n7. Breadboard component holder—position delicate resistor or capacitor leads in the correct holes during electronics prototyping without them shifting.\n\n8. Window screen corner catch—straighten and fashion into a hook to mechanically re-engage torn corner fabric of window screens back onto the frame.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.7231746912002563,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9307936728000641,
+        "n_chars": 1200,
+        "n_words": 179,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "event_gated",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.7900135517120361,
+            "budget_balance": -0.20000000000000018
+          },
+          "score_draft": 0.9307936728000641,
+          "score_revision": 0.9385952055454254
+        }
+      },
+      "haiku_cascade_always_draft": {
+        "text": "# 8 Unusual Uses of a Paperclip\n\n1. SIM card tray ejector—straighten one end and insert into the pinhole on smartphones to manually eject the SIM card slot when the device won't respond to software commands.\n\n2. Dental plaque scraper—bend into an L-shape to manually remove stubborn plaque and debris between teeth when dental floss is unavailable.\n\n3. Recessed light bulb extractor—curve into a hook shape to safely grip and remove burned-out incandescent bulbs from hard-to-reach ceiling fixtures.\n\n4. Plant training structure—twist multiple paperclips together to create a miniature trellis that guides climbing seedlings upward along a specific path.\n\n5. Emergency zipper repair—loop the end through a broken zipper slider to create a temporary pull handle for jackets or bags.\n\n6. Fishing fly component—bend, loop, and combine with beads and thread to hand-craft improvised fly fishing lures.\n\n7. Breadboard component holder—position delicate resistor or capacitor leads in the correct holes during electronics prototyping without them shifting.\n\n8. Window screen corner catch—straighten and fashion into a hook to mechanically re-engage torn corner fabric of window screens back onto the frame.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.7231746912002563,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9307936728000641,
+        "n_chars": 1200,
+        "n_words": 179,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_draft",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.7900135517120361,
+            "budget_balance": -0.20000000000000018
+          },
+          "score_draft": 0.9307936728000641,
+          "score_revision": 0.9385952055454254
+        }
+      },
+      "haiku_cascade_always_revise": {
+        "text": "# 8 Unusual Uses of a Paperclip\n\n1. SIM card tray ejector—straighten one end into a precision probe that triggers the hidden pinhole release, popping open a smartphone's SIM chamber when the device goes silent and unresponsive.\n\n2. Dental plaque scraper—bend into a curved curette to methodically excavate fossilized tartar buildup from gumlines and tooth surfaces, working with precise angled scraping motions before mineral deposits calcify permanently.\n\n3. Recessed light bulb extractor—curve into a delicate hook to snare and withdraw hot incandescent bulbs from hard-to-reach ceiling fixtures, maneuvering around electrical conduit in complete darkness.\n\n4. Plant training armature—chain multiple clips into a three-dimensional lattice that choreographs climbing vines into spirals and geometric patterns, sculpting biological growth into your predetermined architectural vision.\n\n5. Emergency zipper resurrector—loop through a damaged slider to fashion a temporary pull handle that breathes function back into stuck or torn zippers on winter coats and backpacks mid-journey.\n\n6. Artisanal fishing fly—bend, loop, wrap tightly with thread, attach beads and feathers, and hand-engineer elaborate lures that convincingly mimic insect prey, duping actual trout into reflexive strikes with objects forged from a single bent wire.\n\n7. Breadboard component anchor—position delicate resistor and capacitor leads in exact grid slots to hold them rock-steady during circuit prototyping, where one misaligned connection collapses the entire prototype.\n\n8. Window screen corner catch—straighten and reshape into a spring-tensioned hook that mechanically re-engages torn mesh back onto aluminum frame edges, indefinitely extending screen life across seasons.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.7543808221817017,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9385952055454254,
+        "n_chars": 1751,
+        "n_words": 241,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_revise",
+          "commit_decision_revision": true,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.7900135517120361,
+            "budget_balance": -0.20000000000000018
+          },
+          "score_draft": 0.9307936728000641,
+          "score_revision": 0.9385952055454254
+        }
+      },
+      "haiku_cascade_learned_gate": {
+        "text": "# 8 Unusual Uses of a Paperclip\n\n1. SIM card tray ejector—straighten one end and insert into the pinhole on smartphones to manually eject the SIM card slot when the device won't respond to software commands.\n\n2. Dental plaque scraper—bend into an L-shape to manually remove stubborn plaque and debris between teeth when dental floss is unavailable.\n\n3. Recessed light bulb extractor—curve into a hook shape to safely grip and remove burned-out incandescent bulbs from hard-to-reach ceiling fixtures.\n\n4. Plant training structure—twist multiple paperclips together to create a miniature trellis that guides climbing seedlings upward along a specific path.\n\n5. Emergency zipper repair—loop the end through a broken zipper slider to create a temporary pull handle for jackets or bags.\n\n6. Fishing fly component—bend, loop, and combine with beads and thread to hand-craft improvised fly fishing lures.\n\n7. Breadboard component holder—position delicate resistor or capacitor leads in the correct holes during electronics prototyping without them shifting.\n\n8. Window screen corner catch—straighten and fashion into a hook to mechanically re-engage torn corner fabric of window screens back onto the frame.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.7231746912002563,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9307936728000641,
+        "n_chars": 1200,
+        "n_words": 179,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "learned_gate",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.7900135517120361,
+            "budget_balance": -0.20000000000000018
+          },
+          "score_draft": 0.9307936728000641,
+          "score_revision": 0.9385952055454254
+        }
+      },
+      "haiku_cascade_oracle": {
+        "text": "# 8 Unusual Uses of a Paperclip\n\n1. SIM card tray ejector—straighten one end into a precision probe that triggers the hidden pinhole release, popping open a smartphone's SIM chamber when the device goes silent and unresponsive.\n\n2. Dental plaque scraper—bend into a curved curette to methodically excavate fossilized tartar buildup from gumlines and tooth surfaces, working with precise angled scraping motions before mineral deposits calcify permanently.\n\n3. Recessed light bulb extractor—curve into a delicate hook to snare and withdraw hot incandescent bulbs from hard-to-reach ceiling fixtures, maneuvering around electrical conduit in complete darkness.\n\n4. Plant training armature—chain multiple clips into a three-dimensional lattice that choreographs climbing vines into spirals and geometric patterns, sculpting biological growth into your predetermined architectural vision.\n\n5. Emergency zipper resurrector—loop through a damaged slider to fashion a temporary pull handle that breathes function back into stuck or torn zippers on winter coats and backpacks mid-journey.\n\n6. Artisanal fishing fly—bend, loop, wrap tightly with thread, attach beads and feathers, and hand-engineer elaborate lures that convincingly mimic insect prey, duping actual trout into reflexive strikes with objects forged from a single bent wire.\n\n7. Breadboard component anchor—position delicate resistor and capacitor leads in exact grid slots to hold them rock-steady during circuit prototyping, where one misaligned connection collapses the entire prototype.\n\n8. Window screen corner catch—straighten and reshape into a spring-tensioned hook that mechanically re-engages torn mesh back onto aluminum frame edges, indefinitely extending screen life across seasons.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.7543808221817017,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9385952055454254,
+        "n_chars": 1751,
+        "n_words": 241,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "oracle",
+          "commit_decision_revision": true,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.7900135517120361,
+            "budget_balance": -0.20000000000000018
+          },
+          "score_draft": 0.9307936728000641,
+          "score_revision": 0.9385952055454254,
+          "is_analysis_only": true
+        }
+      }
+    },
+    "a03": {
+      "item": {
+        "id": "a03",
+        "object": "rubber band"
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:13481 -->\\nList 8 unusual, non-obvious uses of a rubber band. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.02583909034729
+        }
+      },
+      "haiku_cascade": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:13481 -->\\nForeground the conventional aspect of the prompt. List 8 unusual, non-obvious uses of a rubber band. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.42840194702148
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:13481 -->\\nForeground the conventional aspect of the prompt. List 8 unusual, non-obvious uses of a rubber band. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.10349416732788
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:13481 -->\\nForeground the conventional aspect of the prompt. List 8 unusual, non-obvious uses of a rubber band. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.09571409225464
+        }
+      }
+    },
+    "a04": {
+      "item": {
+        "id": "a04",
+        "object": "shoebox"
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:46755 -->\\nList 8 unusual, non-obvious uses of a shoebox. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.02332711219788
+        }
+      },
+      "haiku_cascade": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:46755 -->\\nUse one specific concrete image. List 8 unusual, non-obvious uses of a shoebox. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.08412289619446
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:46755 -->\\nUse one specific concrete image. List 8 unusual, non-obvious uses of a shoebox. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.19187998771667
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:46755 -->\\nUse one specific concrete image. List 8 unusual, non-obvious uses of a shoebox. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.09881329536438
+        }
+      }
+    },
+    "a05": {
+      "item": {
+        "id": "a05",
+        "object": "wire coat hanger"
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:8161 -->\\nList 8 unusual, non-obvious uses of a wire coat hanger. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.01759123802185
+        }
+      },
+      "haiku_cascade": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:8161 -->\\nUse one abstract or universal frame. List 8 unusual, non-obvious uses of a wire coat hanger. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.41316199302673
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "# 8 Unusual Uses of a Wire Coat Hanger\n\n1. Twisted into deliberate knots as a meditation sculpture representing the visualization and untangling of mental anxiety or obsessive thought patterns.\n\n2. Bent and balanced horizontally as a kinetic teaching model demonstrating leverage, equilibrium, and the physics of weight distribution.\n\n3. Welded into an interconnected web installation representing neural pathways, social networks, or ecosystem relationships made visible.\n\n4. Spiraled into a continuous coil serving as a tactile fidget object for grounding exercises and embodied mindfulness practice.\n\n5. Fashioned into nested frames of decreasing sizes to demonstrate how context and framing fundamentally alter the meaning of what's inside.\n\n6. Constructed as a mobile where each arm hangs at deliberately different angles, representing how diverse perspectives perceive the same reality differently.\n\n7. Formed into a miniature cage-like diorama as a metaphor for examining how constraints and boundaries paradoxically contain and define freedom.\n\n8. Arranged into a perpetual-motion kinetic sculpture balancing precariously, embodying the philosophy that stability exists only through constant dynamic tension and adjustment.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.8278309106826782,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9569577276706696,
+        "n_chars": 1231,
+        "n_words": 171,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 246.37811303138733,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": null,
+          "selected_idx": 4,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "# 8 Unusual Uses of a Wire Coat Hanger\n\n1. Twisted into deliberate knots as a meditation sculpture representing the visualization and untangling of mental anxiety or obsessive thought patterns.\n\n2. Bent and balanced horizontally as a kinetic teaching model demonstrating leverage, equilibrium, and the physics of weight distribution.\n\n3. Welded into an interconnected web installation representing neural pathways, social networks, or ecosystem relationships made visible.\n\n4. Spiraled into a continuous coil serving as a tactile fidget object for grounding exercises and embodied mindfulness practice.\n\n5. Fashioned into nested frames of decreasing sizes to demonstrate how context and framing fundamentally alter the meaning of what's inside.\n\n6. Constructed as a mobile where each arm hangs at deliberately different angles, representing how diverse perspectives perceive the same reality differently.\n\n7. Formed into a miniature cage-like diorama as a metaphor for examining how constraints and boundaries paradoxically contain and define freedom.\n\n8. Arranged into a perpetual-motion kinetic sculpture balancing precariously, embodying the philosophy that stability exists only through constant dynamic tension and adjustment.",
+          "surface_revision": "",
+          "aspect_count": 0.0,
+          "ananda": 0.7801598310470581,
+          "budget_balance": 2.29,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.7801598310470581,
+            "budget_balance": 2.29
+          },
+          "revision_skipped_reason": "commit_policy=always_draft",
+          "haiku_total_usd": 1.2108809999999997,
+          "haiku_n_calls": 102
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "# Eight Unusual Uses for a Wire Coat Hanger—Revised\n\n1. Unwind completely and secure between two eye bolts in a wooden frame; adjust tension with turnbuckles and pluck at different points to produce bell-like tones—plucking near the anchors generates deep, lingering hums that fade slowly, while plucking the center yields bright, crystalline pings that dissipate almost instantly.\n\n2. Bend into a rectangular frame, clamp stretched watercolor paper to it with clips, soak the paper thoroughly, and let it dry under tension; the paper emerges drum-tight and taut as fabric, resistant to the buckling and rippling that normally occurs when wet brushes load it with pigment and water.\n\n3. Heat the tip with a propane torch until glowing cherry-red, then use it to burn freehand pyrography into wooden surfaces—the scorched lines release acrid smoke and the smell of charred wood as you guide the wire across cutting boards, furniture, or leather journal covers, leaving fine burnt lines with crisp, dark edges.\n\n4. Coil tightly into a compact spring and attach to a wooden platform with a trigger mechanism to create a launching apparatus capable of firing penny-weight projectiles across a room with surprising velocity—useful for toy catapult prototyping, homemade games, or scientific trajectory experiments.\n\n5. Bend into nested geometric frames (concentric squares, spiraling circles, or radial patterns) and arrange on a flat surface; fill the enclosed spaces with colored sand, salt, or pigmented powder, then lift the frame away to reveal patterns with mathematically precise edges—geometric designs with crispness impossible to achieve freehand.\n\n6. Form into an arching support structure and lash it to plant stakes alongside tomato plants or climbing roses; as vegetation grows, deliberately guide vines into sculptural topiary shapes—by mid-summer the wire structure becomes completely invisible beneath engulfing foliage, leaving only the living sculpture standing autonomous.\n\n7. Straighten completely and use as a flexible curve-transfer tool; bend it precisely to match complex organic curves, angles, or contours, then place it on a new surface and trace along its shape—perfect for transferring architectural details or intricate profiles between different materials with flawless fidelity.\n\n8. Form into nested squares of decreasing size and suspend each at different heights with fishing line to create a 3D kinetic mobile; as air currents rotate it slowly, the wire frames catch and fragment light across walls, casting intricate geometric shadows that dissolve and reform in different configurations throughout the day.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.7436983585357666,
+          "elaboration": 1.0,
+          "flexibility": 0.8888888888888888
+        },
+        "composite": 0.9081468118561639,
+        "n_chars": 2639,
+        "n_words": 396,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 544.0188777446747,
+          "K_effective": 4,
+          "commit_policy_effective": "always_revise",
+          "brief_override_used": true,
+          "committed": "revision",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 4,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# Eight Unusual Uses for a Wire Coat Hanger\n\n1. Unwind completely and secure between two eye bolts in a wooden frame; adjust tension with turnbuckles and pluck at different points to create a single-string musical instrument with variable tones.\n\n2. Bend into a rectangular frame, clamp stretched watercolor paper to it with clips, soak the paper thoroughly, and allow it to dry under tension to create professionally pre-stretched paper that won't buckle when wet.\n\n3. Heat the tip with a propane torch until glowing and use it to burn intricate pyrography designs—mandalas, borders, portraits—into wooden cutting boards, furniture, or leather journal covers.\n\n4. Coil tightly into a compact spring and attach to a wooden platform with a trigger mechanism to create the launching apparatus for a homemade mousetrap or penny catapult toy.\n\n5. Bend into precise stencil shapes (geometric patterns, stars, lettering) and tape flat against a wall; use spray paint around the cutout to create clean-edged mural art on concrete or wood.\n\n6. Form into a curved arch support structure and lash it to plant stakes alongside tomato plants or climbing roses; guide the growing vines into sculptural topiary shapes as they develop.\n\n7. Straighten completely and drive stakes into garden soil in a straight line to create a highly visible temporary boundary marker for garden beds, tree saplings, or property lines.\n\n8. Form into nested squares of decreasing size and suspend each at a different height with fishing line to create a 3D kinetic mobile sculpture that casts geometric shadow patterns on walls.",
+          "surface_revision": "# Eight Unusual Uses for a Wire Coat Hanger—Revised\n\n1. Unwind completely and secure between two eye bolts in a wooden frame; adjust tension with turnbuckles and pluck at different points to produce bell-like tones—plucking near the anchors generates deep, lingering hums that fade slowly, while plucking the center yields bright, crystalline pings that dissipate almost instantly.\n\n2. Bend into a rectangular frame, clamp stretched watercolor paper to it with clips, soak the paper thoroughly, and let it dry under tension; the paper emerges drum-tight and taut as fabric, resistant to the buckling and rippling that normally occurs when wet brushes load it with pigment and water.\n\n3. Heat the tip with a propane torch until glowing cherry-red, then use it to burn freehand pyrography into wooden surfaces—the scorched lines release acrid smoke and the smell of charred wood as you guide the wire across cutting boards, furniture, or leather journal covers, leaving fine burnt lines with crisp, dark edges.\n\n4. Coil tightly into a compact spring and attach to a wooden platform with a trigger mechanism to create a launching apparatus capable of firing penny-weight projectiles across a room with surprising velocity—useful for toy catapult prototyping, homemade games, or scientific trajectory experiments.\n\n5. Bend into nested geometric frames (concentric squares, spiraling circles, or radial patterns) and arrange on a flat surface; fill the enclosed spaces with colored sand, salt, or pigmented powder, then lift the frame away to reveal patterns with mathematically precise edges—geometric designs with crispness impossible to achieve freehand.\n\n6. Form into an arching support structure and lash it to plant stakes alongside tomato plants or climbing roses; as vegetation grows, deliberately guide vines into sculptural topiary shapes—by mid-summer the wire structure becomes completely invisible beneath engulfing foliage, leaving only the living sculpture standing autonomous.\n\n7. Straighten completely and use as a flexible curve-transfer tool; bend it precisely to match complex organic curves, angles, or contours, then place it on a new surface and trace along its shape—perfect for transferring architectural details or intricate profiles between different materials with flawless fidelity.\n\n8. Form into nested squares of decreasing size and suspend each at different heights with fishing line to create a 3D kinetic mobile; as air currents rotate it slowly, the wire frames catch and fragment light across walls, casting intricate geometric shadows that dissolve and reform in different configurations throughout the day.",
+          "aspect_count": 0.0,
+          "ananda": 0.7880709171295166,
+          "budget_balance": -2.5199999999999996,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.7880709171295166,
+            "budget_balance": -2.5199999999999996
+          },
+          "revision_skipped_reason": null,
+          "haiku_total_usd": 1.523432,
+          "haiku_n_calls": 118
+        }
+      }
+    },
+    "a06": {
+      "item": {
+        "id": "a06",
+        "object": "candle"
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "# 8 Unusual Uses for Candles\n\n1. Rubbing candle wax on sticky wooden drawer slides or furniture joints to create smooth lubrication without accumulating dust\n\n2. Dipping the cut ends of fresh flower stems in melted candle wax to seal them and extend the vase life by several days\n\n3. Pressing a warm candle stub against small dents or gouges in wood furniture, then sanding smooth to fill the imperfection\n\n4. Coating embroidery thread or fishing line in melted candle wax to prevent fraying and add water resistance\n\n5. Creating a protective waterproof seal on canvas or fabric by ironing the material with wax sandwiched between two layers\n\n6. Rubbing candle wax on the soles of smooth shoes or socks to create friction and prevent slipping on hardwood floors\n\n7. Using hardened candle wax as a temporary mold material for casting small lead or pewter craft pieces\n\n8. Placing lit candles around tender garden plants on frost-prone nights to radiate enough heat to prevent light frost damage",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.5613725185394287,
+          "elaboration": 0.9814814814814815,
+          "flexibility": 0.7777777777777778
+        },
+        "composite": 0.830157944449672,
+        "n_chars": 993,
+        "n_words": 167,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 10.703418970108032,
+          "haiku_total_usd": 1.529154,
+          "haiku_n_calls": 119
+        }
+      },
+      "haiku_cascade": {
+        "text": "# 8 Unusual Uses for a Candle\n\n1. Lost-wax casting: Carving detailed candle-wax sculptures that are surrounded by clay, then melted out to leave cavities for pouring molten metal into.\n\n2. Drawer lubricant: Rubbing candle wax directly on wooden drawer runners and sliding surfaces to reduce friction and smooth movement.\n\n3. Waterproofing fabric: Melting candle wax into cotton canvas to create water-resistant covers, tarps, or pack linings.\n\n4. Cold smoking: Burning candles in a closed chamber to generate smoke for curing and flavoring oysters, cheese, or fish without heat.\n\n5. Temporary sealant: Pressing softened candle wax into wall cracks, pipe joints, or gaps as an emergency temporary seal.\n\n6. Precision soldering: Heating the tip of a needle or thin wire in a candle flame to join or seal delicate plastic components or small electronics.\n\n7. Extended seed storage: Dipping dried seeds in melted wax to create an oxygen-barrier coating that preserves germination viability for years longer.\n\n8. Emergency signaling: Placing lit candles in a perforated metal container to produce visible smoke plumes for wilderness rescue or distress signaling.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.5498422384262085,
+          "elaboration": 1.0,
+          "flexibility": 0.8888888888888888
+        },
+        "composite": 0.8596827818287743,
+        "n_chars": 1157,
+        "n_words": 178,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 434.32018399238586,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 2,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# 8 Unusual Uses for a Candle\n\n1. Lost-wax casting: Carving detailed candle-wax sculptures that are surrounded by clay, then melted out to leave cavities for pouring molten metal into.\n\n2. Drawer lubricant: Rubbing candle wax directly on wooden drawer runners and sliding surfaces to reduce friction and smooth movement.\n\n3. Waterproofing fabric: Melting candle wax into cotton canvas to create water-resistant covers, tarps, or pack linings.\n\n4. Cold smoking: Burning candles in a closed chamber to generate smoke for curing and flavoring oysters, cheese, or fish without heat.\n\n5. Temporary sealant: Pressing softened candle wax into wall cracks, pipe joints, or gaps as an emergency temporary seal.\n\n6. Precision soldering: Heating the tip of a needle or thin wire in a candle flame to join or seal delicate plastic components or small electronics.\n\n7. Extended seed storage: Dipping dried seeds in melted wax to create an oxygen-barrier coating that preserves germination viability for years longer.\n\n8. Emergency signaling: Placing lit candles in a perforated metal container to produce visible smoke plumes for wilderness rescue or distress signaling.",
+          "surface_revision": "# 8 Unusual Uses for a Candle\n\n1. Lost-wax casting: Carving intricate candle-wax sculptures, encasing them in clay, then heating until the wax liquefies and drains—leaving negative cavities ready to receive molten bronze that hardens into precise metal replicas.\n\n2. Precision machinery lubricant: Coating the ball-bearing runners on aerospace tools and vintage mechanical calculators with candle wax to eliminate stiction and maintain smooth movement in components too delicate for liquid oils.\n\n3. Rigid waterproofing: Saturating canvas with melted beeswax to create breathable, durable sail cloth and expedition tarps capable of shedding water while remaining flexible—materials that last decades in field conditions.\n\n4. Cold smoking: Burning candles in sealed chambers to generate smoke that cures oysters, cheese, and fish at ambient temperature—infusing delicate proteins with wood smoke flavors without the heat-drying that destroys their texture.\n\n5. Emergency sealant: Pressing softened candle wax deep into burst pipes, compromised gaskets, or cracked walls during plumbing emergencies to hold pressure temporarily while awaiting professional repairs.\n\n6. Precision soldering: Heating a candle-flame-warmed needle's tip to join cracked plastic lens housings, fuse broken circuit-board traces, or weld micro-components too delicate for standard irons.\n\n7. Multigenerational seed storage: Dipping harvested seeds in melted wax to create an oxygen-impermeable seal that preserves germination viability for 20-50 years—enabling heirloom varieties to survive agricultural emergencies across decades.\n\n8. Distinctive beacon signaling: Placing lit candles in a steel perforated container to project patterned flame-shadows visible from miles away during night rescues—creating a distinctive human distress beacon rather than random firelight.",
+          "aspect_count": 0.0,
+          "ananda": 0.8413782119750977,
+          "budget_balance": -0.27000000000000046,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8413782119750977,
+            "budget_balance": -0.27000000000000046
+          },
+          "revision_skipped_reason": null,
+          "haiku_total_usd": 1.8193270000000001,
+          "haiku_n_calls": 135
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "# 8 Unusual Uses of a Candle\n\n1. Burning written secrets on paper as a ritualistic release—the physical incineration transforms emotional burdens into ash and absence.\n\n2. Mapping air currents in a room by lighting multiple candles and observing flame deflection patterns to locate hidden drafts and ventilation problems.\n\n3. Creating a project timeline tracker by placing unlit candles representing each milestone, then lighting one per week to visually monitor progress toward completion.\n\n4. Demonstrating entropy through comparative burning—light identical candles in controlled conditions and document how each burns at different rates despite identical setup.\n\n5. Casting hand-shadow puppets on a wall as the sole light source for silent storytelling or children's theater performances.\n\n6. Sculpting temporary art installations where the changing wax formations and dripping patterns are the artwork itself, creating time-lapse documentation.\n\n7. Arranging candles in constellation patterns as an outdoor celestial navigation teaching tool or memorial to map the night sky.\n\n8. Testing material water resistance by systematically dripping hot wax onto different surfaces (fabrics, papers, metals) to observe adhesion and absorption properties.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.619152843952179,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9047882109880447,
+        "n_chars": 1250,
+        "n_words": 176,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 200.67310118675232,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": null,
+          "selected_idx": 11,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "# 8 Unusual Uses of a Candle\n\n1. Burning written secrets on paper as a ritualistic release—the physical incineration transforms emotional burdens into ash and absence.\n\n2. Mapping air currents in a room by lighting multiple candles and observing flame deflection patterns to locate hidden drafts and ventilation problems.\n\n3. Creating a project timeline tracker by placing unlit candles representing each milestone, then lighting one per week to visually monitor progress toward completion.\n\n4. Demonstrating entropy through comparative burning—light identical candles in controlled conditions and document how each burns at different rates despite identical setup.\n\n5. Casting hand-shadow puppets on a wall as the sole light source for silent storytelling or children's theater performances.\n\n6. Sculpting temporary art installations where the changing wax formations and dripping patterns are the artwork itself, creating time-lapse documentation.\n\n7. Arranging candles in constellation patterns as an outdoor celestial navigation teaching tool or memorial to map the night sky.\n\n8. Testing material water resistance by systematically dripping hot wax onto different surfaces (fabrics, papers, metals) to observe adhesion and absorption properties.",
+          "surface_revision": "",
+          "aspect_count": 0.0,
+          "ananda": 0.836477518081665,
+          "budget_balance": 2.24,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.836477518081665,
+            "budget_balance": 2.24
+          },
+          "revision_skipped_reason": "commit_policy=always_draft",
+          "haiku_total_usd": 1.9258049999999998,
+          "haiku_n_calls": 151
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "# Eight Unusual Uses for Candles (Revised)\n\n1. **Thermal mass heater for survival shelters** — A lit candle trapped in an upturned terra cotta pot surrounded by bricks glows a contained amber, its heat radiating outward through ceramic; the wax surface softens into a slow, viscous crater as it surrenders chemical energy, raising a sealed 4x4 foot space by 10-15°F—enough to stop hypothermia's creeping paralysis.\n\n2. **Batik fabric dye-resist medium** — Hot candle wax applied in controlled patterns creates a permanent seal; when submerged in indigo or madder, the waxed areas remain bone-white while surrounding fabric darkens to deep jewel tones, producing photonegative patterns impossible to achieve freehand or with traditional batik tools.\n\n3. **Waterproofing documents and gear** — Melted candle wax pooled across paper maps creates a translucent laminate thin enough to read through; the wax cools to a slightly tacky surface that repels water yet allows creases, keeping ammunition logs and expedition routes legible through river crossings.\n\n4. **Airflow visualization tool** — Candle smoke coils and eddies reveal invisible convection currents; architects hold lit candles to walls, ceilings, and doorways, watching how the smoke stream bends, stalls, or rushes—exposing dead zones where HVAC systems leak efficiency or moisture accumulates.\n\n5. **Insect monitoring trap** — A burning candle suspended above soapy water attracts thousands of nocturnal insects—moths, beetles, midges—which immolate or drown; pest specialists photograph the daily catch to track population spikes of invasive species or disease vectors.\n\n6. **Emergency caloric source** — High-fat tallow candles possess subtle, waxy resistance when chewed; the wax slowly softens on the tongue before being swallowed, coating the throat with 8-10 calories per gram—dense energy when metabolic survival overrides disgust.\n\n7. **Frost protection for crops** — Rows of lit candles positioned below tender grape buds form an orange constellation on freezing nights, maintaining the critical 2-3°F differential that prevents ice crystal formation at the precise moment buds are most vulnerable.\n\n8. **Archaeological evidence mapper** — Charred candle residue and wax drips on cave walls form a topographic record of early human light-source positioning; archaeologists map these patterns to trace underground navigation routes—a fossilized record revealing which passages were repeatedly explored versus abandoned, encoding fear and curiosity in ash.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.6160801649093628,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9040200412273407,
+        "n_chars": 2525,
+        "n_words": 365,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 443.63598370552063,
+          "K_effective": 4,
+          "commit_policy_effective": "always_revise",
+          "brief_override_used": true,
+          "committed": "revision",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 7,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# Eight Unusual Uses for Candles\n\n1. **Thermal mass heater for survival shelters** — A lit candle placed inside a terra cotta pot surrounded by bricks will radiate enough ambient heat to raise the temperature in a small enclosed space by 10-15°F, a principle used in emergency warming situations.\n\n2. **Batik fabric dye-resist medium** — Melted candle wax applied to cloth before submersion in dye creates waxy barriers that repel color, producing intricate patterned textiles when the wax is later melted away.\n\n3. **Waterproofing documents and gear** — Rubbing melted candle wax across paper maps, ammunition storage, or fabric creates a water-resistant barrier that preserves critical items during expeditions without compromising readability.\n\n4. **Airflow visualization tool** — Observing how candle smoke moves reveals invisible air currents, convection patterns, and temperature differentials in a room—used by engineers and architects to diagnose HVAC inefficiencies.\n\n5. **Insect monitoring trap** — Placing a burning candle over a bowl of soapy water attracts nocturnal insects which fall and drown; pest management specialists use this to track invasive species populations.\n\n6. **Emergency caloric source** — In survival scenarios, high-fat candle wax (from tallow or soy) can be chewed and swallowed to provide concentrated fat calories when food sources are depleted.\n\n7. **Frost protection for crops** — Lighting candles near budding plants on freezing nights produces enough radiant heat to prevent destructive ice crystal formation on vulnerable flowers and new growth.\n\n8. **Archaeological evidence mapper** — Ancient candle residue patterns on cave walls show where early humans positioned light sources, revealing navigation routes and behavioral patterns in underground exploration.",
+          "surface_revision": "# Eight Unusual Uses for Candles (Revised)\n\n1. **Thermal mass heater for survival shelters** — A lit candle trapped in an upturned terra cotta pot surrounded by bricks glows a contained amber, its heat radiating outward through ceramic; the wax surface softens into a slow, viscous crater as it surrenders chemical energy, raising a sealed 4x4 foot space by 10-15°F—enough to stop hypothermia's creeping paralysis.\n\n2. **Batik fabric dye-resist medium** — Hot candle wax applied in controlled patterns creates a permanent seal; when submerged in indigo or madder, the waxed areas remain bone-white while surrounding fabric darkens to deep jewel tones, producing photonegative patterns impossible to achieve freehand or with traditional batik tools.\n\n3. **Waterproofing documents and gear** — Melted candle wax pooled across paper maps creates a translucent laminate thin enough to read through; the wax cools to a slightly tacky surface that repels water yet allows creases, keeping ammunition logs and expedition routes legible through river crossings.\n\n4. **Airflow visualization tool** — Candle smoke coils and eddies reveal invisible convection currents; architects hold lit candles to walls, ceilings, and doorways, watching how the smoke stream bends, stalls, or rushes—exposing dead zones where HVAC systems leak efficiency or moisture accumulates.\n\n5. **Insect monitoring trap** — A burning candle suspended above soapy water attracts thousands of nocturnal insects—moths, beetles, midges—which immolate or drown; pest specialists photograph the daily catch to track population spikes of invasive species or disease vectors.\n\n6. **Emergency caloric source** — High-fat tallow candles possess subtle, waxy resistance when chewed; the wax slowly softens on the tongue before being swallowed, coating the throat with 8-10 calories per gram—dense energy when metabolic survival overrides disgust.\n\n7. **Frost protection for crops** — Rows of lit candles positioned below tender grape buds form an orange constellation on freezing nights, maintaining the critical 2-3°F differential that prevents ice crystal formation at the precise moment buds are most vulnerable.\n\n8. **Archaeological evidence mapper** — Charred candle residue and wax drips on cave walls form a topographic record of early human light-source positioning; archaeologists map these patterns to trace underground navigation routes—a fossilized record revealing which passages were repeatedly explored versus abandoned, encoding fear and curiosity in ash.",
+          "aspect_count": 0.0,
+          "ananda": 0.8387048840522766,
+          "budget_balance": -2.2699999999999996,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8387048840522766,
+            "budget_balance": -2.2699999999999996
+          },
+          "revision_skipped_reason": null,
+          "haiku_total_usd": 2.2074120000000006,
+          "haiku_n_calls": 167
+        }
+      },
+      "haiku_cascade_event_gated": {
+        "text": "# 8 Unusual Uses for a Candle\n\n1. Lost-wax casting: Carving detailed candle-wax sculptures that are surrounded by clay, then melted out to leave cavities for pouring molten metal into.\n\n2. Drawer lubricant: Rubbing candle wax directly on wooden drawer runners and sliding surfaces to reduce friction and smooth movement.\n\n3. Waterproofing fabric: Melting candle wax into cotton canvas to create water-resistant covers, tarps, or pack linings.\n\n4. Cold smoking: Burning candles in a closed chamber to generate smoke for curing and flavoring oysters, cheese, or fish without heat.\n\n5. Temporary sealant: Pressing softened candle wax into wall cracks, pipe joints, or gaps as an emergency temporary seal.\n\n6. Precision soldering: Heating the tip of a needle or thin wire in a candle flame to join or seal delicate plastic components or small electronics.\n\n7. Extended seed storage: Dipping dried seeds in melted wax to create an oxygen-barrier coating that preserves germination viability for years longer.\n\n8. Emergency signaling: Placing lit candles in a perforated metal container to produce visible smoke plumes for wilderness rescue or distress signaling.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.5498422384262085,
+          "elaboration": 1.0,
+          "flexibility": 0.8888888888888888
+        },
+        "composite": 0.8596827818287743,
+        "n_chars": 1157,
+        "n_words": 178,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "event_gated",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8413782119750977,
+            "budget_balance": -0.27000000000000046
+          },
+          "score_draft": 0.8596827818287743,
+          "score_revision": 0.9016763716936111
+        }
+      },
+      "haiku_cascade_always_draft": {
+        "text": "# 8 Unusual Uses for a Candle\n\n1. Lost-wax casting: Carving detailed candle-wax sculptures that are surrounded by clay, then melted out to leave cavities for pouring molten metal into.\n\n2. Drawer lubricant: Rubbing candle wax directly on wooden drawer runners and sliding surfaces to reduce friction and smooth movement.\n\n3. Waterproofing fabric: Melting candle wax into cotton canvas to create water-resistant covers, tarps, or pack linings.\n\n4. Cold smoking: Burning candles in a closed chamber to generate smoke for curing and flavoring oysters, cheese, or fish without heat.\n\n5. Temporary sealant: Pressing softened candle wax into wall cracks, pipe joints, or gaps as an emergency temporary seal.\n\n6. Precision soldering: Heating the tip of a needle or thin wire in a candle flame to join or seal delicate plastic components or small electronics.\n\n7. Extended seed storage: Dipping dried seeds in melted wax to create an oxygen-barrier coating that preserves germination viability for years longer.\n\n8. Emergency signaling: Placing lit candles in a perforated metal container to produce visible smoke plumes for wilderness rescue or distress signaling.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.5498422384262085,
+          "elaboration": 1.0,
+          "flexibility": 0.8888888888888888
+        },
+        "composite": 0.8596827818287743,
+        "n_chars": 1157,
+        "n_words": 178,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_draft",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8413782119750977,
+            "budget_balance": -0.27000000000000046
+          },
+          "score_draft": 0.8596827818287743,
+          "score_revision": 0.9016763716936111
+        }
+      },
+      "haiku_cascade_always_revise": {
+        "text": "# 8 Unusual Uses for a Candle\n\n1. Lost-wax casting: Carving intricate candle-wax sculptures, encasing them in clay, then heating until the wax liquefies and drains—leaving negative cavities ready to receive molten bronze that hardens into precise metal replicas.\n\n2. Precision machinery lubricant: Coating the ball-bearing runners on aerospace tools and vintage mechanical calculators with candle wax to eliminate stiction and maintain smooth movement in components too delicate for liquid oils.\n\n3. Rigid waterproofing: Saturating canvas with melted beeswax to create breathable, durable sail cloth and expedition tarps capable of shedding water while remaining flexible—materials that last decades in field conditions.\n\n4. Cold smoking: Burning candles in sealed chambers to generate smoke that cures oysters, cheese, and fish at ambient temperature—infusing delicate proteins with wood smoke flavors without the heat-drying that destroys their texture.\n\n5. Emergency sealant: Pressing softened candle wax deep into burst pipes, compromised gaskets, or cracked walls during plumbing emergencies to hold pressure temporarily while awaiting professional repairs.\n\n6. Precision soldering: Heating a candle-flame-warmed needle's tip to join cracked plastic lens housings, fuse broken circuit-board traces, or weld micro-components too delicate for standard irons.\n\n7. Multigenerational seed storage: Dipping harvested seeds in melted wax to create an oxygen-impermeable seal that preserves germination viability for 20-50 years—enabling heirloom varieties to survive agricultural emergencies across decades.\n\n8. Distinctive beacon signaling: Placing lit candles in a steel perforated container to project patterned flame-shadows visible from miles away during night rescues—creating a distinctive human distress beacon rather than random firelight.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.6067054867744446,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9016763716936111,
+        "n_chars": 1846,
+        "n_words": 249,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_revise",
+          "commit_decision_revision": true,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8413782119750977,
+            "budget_balance": -0.27000000000000046
+          },
+          "score_draft": 0.8596827818287743,
+          "score_revision": 0.9016763716936111
+        }
+      },
+      "haiku_cascade_learned_gate": {
+        "text": "# 8 Unusual Uses for a Candle\n\n1. Lost-wax casting: Carving detailed candle-wax sculptures that are surrounded by clay, then melted out to leave cavities for pouring molten metal into.\n\n2. Drawer lubricant: Rubbing candle wax directly on wooden drawer runners and sliding surfaces to reduce friction and smooth movement.\n\n3. Waterproofing fabric: Melting candle wax into cotton canvas to create water-resistant covers, tarps, or pack linings.\n\n4. Cold smoking: Burning candles in a closed chamber to generate smoke for curing and flavoring oysters, cheese, or fish without heat.\n\n5. Temporary sealant: Pressing softened candle wax into wall cracks, pipe joints, or gaps as an emergency temporary seal.\n\n6. Precision soldering: Heating the tip of a needle or thin wire in a candle flame to join or seal delicate plastic components or small electronics.\n\n7. Extended seed storage: Dipping dried seeds in melted wax to create an oxygen-barrier coating that preserves germination viability for years longer.\n\n8. Emergency signaling: Placing lit candles in a perforated metal container to produce visible smoke plumes for wilderness rescue or distress signaling.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.5498422384262085,
+          "elaboration": 1.0,
+          "flexibility": 0.8888888888888888
+        },
+        "composite": 0.8596827818287743,
+        "n_chars": 1157,
+        "n_words": 178,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "learned_gate",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8413782119750977,
+            "budget_balance": -0.27000000000000046
+          },
+          "score_draft": 0.8596827818287743,
+          "score_revision": 0.9016763716936111
+        }
+      },
+      "haiku_cascade_oracle": {
+        "text": "# 8 Unusual Uses for a Candle\n\n1. Lost-wax casting: Carving intricate candle-wax sculptures, encasing them in clay, then heating until the wax liquefies and drains—leaving negative cavities ready to receive molten bronze that hardens into precise metal replicas.\n\n2. Precision machinery lubricant: Coating the ball-bearing runners on aerospace tools and vintage mechanical calculators with candle wax to eliminate stiction and maintain smooth movement in components too delicate for liquid oils.\n\n3. Rigid waterproofing: Saturating canvas with melted beeswax to create breathable, durable sail cloth and expedition tarps capable of shedding water while remaining flexible—materials that last decades in field conditions.\n\n4. Cold smoking: Burning candles in sealed chambers to generate smoke that cures oysters, cheese, and fish at ambient temperature—infusing delicate proteins with wood smoke flavors without the heat-drying that destroys their texture.\n\n5. Emergency sealant: Pressing softened candle wax deep into burst pipes, compromised gaskets, or cracked walls during plumbing emergencies to hold pressure temporarily while awaiting professional repairs.\n\n6. Precision soldering: Heating a candle-flame-warmed needle's tip to join cracked plastic lens housings, fuse broken circuit-board traces, or weld micro-components too delicate for standard irons.\n\n7. Multigenerational seed storage: Dipping harvested seeds in melted wax to create an oxygen-impermeable seal that preserves germination viability for 20-50 years—enabling heirloom varieties to survive agricultural emergencies across decades.\n\n8. Distinctive beacon signaling: Placing lit candles in a steel perforated container to project patterned flame-shadows visible from miles away during night rescues—creating a distinctive human distress beacon rather than random firelight.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.6067054867744446,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9016763716936111,
+        "n_chars": 1846,
+        "n_words": 249,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "oracle",
+          "commit_decision_revision": true,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8413782119750977,
+            "budget_balance": -0.27000000000000046
+          },
+          "score_draft": 0.8596827818287743,
+          "score_revision": 0.9016763716936111,
+          "is_analysis_only": true
+        }
+      }
+    },
+    "a07": {
+      "item": {
+        "id": "a07",
+        "object": "newspaper"
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "# 8 Unusual Uses for Newspaper\n\n1. Shredded and layered as mulch around garden plants to suppress weeds, retain soil moisture, and break down into organic matter over time.\n\n2. Rolled tightly and bound to create DIY firelogs that burn longer than kindling for fireplaces or camping.\n\n3. Crumpled and stuffed inside wet shoes or damp boots to absorb moisture while maintaining their shape during drying.\n\n4. Mixed with water and flour to create papier-mâché for constructing theatrical props, masks, or decorative sculptures.\n\n5. Placed at the bottom of potted plants before adding soil to prevent soil from washing out drainage holes during watering.\n\n6. Soaked in diluted starch and molded around cardboard tubes to create biodegradable seedling pots for starting vegetables indoors.\n\n7. Layered on top of soil around tree saplings as insulation to moderate soil temperature and regulate moisture during dormant seasons.\n\n8. Shredded and mixed into outdoor compost bins to balance carbon content, speed decomposition, and reduce odors.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.7921310067176819,
+          "elaboration": 0.9444444444444444,
+          "flexibility": 0.8888888888888888
+        },
+        "composite": 0.9063660850127538,
+        "n_chars": 1036,
+        "n_words": 161,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 8.420840978622437,
+          "haiku_total_usd": 2.2116190000000007,
+          "haiku_n_calls": 168
+        }
+      },
+      "haiku_cascade": {
+        "text": "# Eight Unusual Uses of a Newspaper\n\n1. Papier-mâché casting medium—layer wet strips over molds to create lightweight sculptural forms without firing clay\n\n2. Fire starter briquettes—compress shredded newspaper with natural binders to create dense fuel logs for heating or camping\n\n3. Datable evidence artifact—photograph a front page to legally document the exact date and context of an event for verification purposes\n\n4. Composite clay reinforcement—layer torn newspaper with slip to strengthen large ceramic sculptures and reduce cracking during drying\n\n5. Acoustic dampening—stack and affix newspapers to walls of recording studios and rehearsal spaces to absorb sound frequencies\n\n6. Stencil for street art—cut intricate shapes from newspaper, adhere to walls or surfaces, then spray paint through them to create sharp-edged murals\n\n7. Biodegradable seed starters—saturate newspaper sheets with seeds and plant nutrients, then plant directly into soil where they decompose naturally\n\n8. Sculptural weight reduction—crumple newspaper tightly to fill internal voids in large clay pieces before firing, significantly reducing kiln time and material cost",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.639627993106842,
+          "elaboration": 0.9629629629629629,
+          "flexibility": 0.8888888888888888
+        },
+        "composite": 0.8728699612396734,
+        "n_chars": 1156,
+        "n_words": 164,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 327.9728510379791,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 2,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# Eight Unusual Uses of a Newspaper\n\n1. Papier-mâché casting medium—layer wet strips over molds to create lightweight sculptural forms without firing clay\n\n2. Fire starter briquettes—compress shredded newspaper with natural binders to create dense fuel logs for heating or camping\n\n3. Datable evidence artifact—photograph a front page to legally document the exact date and context of an event for verification purposes\n\n4. Composite clay reinforcement—layer torn newspaper with slip to strengthen large ceramic sculptures and reduce cracking during drying\n\n5. Acoustic dampening—stack and affix newspapers to walls of recording studios and rehearsal spaces to absorb sound frequencies\n\n6. Stencil for street art—cut intricate shapes from newspaper, adhere to walls or surfaces, then spray paint through them to create sharp-edged murals\n\n7. Biodegradable seed starters—saturate newspaper sheets with seeds and plant nutrients, then plant directly into soil where they decompose naturally\n\n8. Sculptural weight reduction—crumple newspaper tightly to fill internal voids in large clay pieces before firing, significantly reducing kiln time and material cost",
+          "surface_revision": "# Eight Unusual Uses of a Newspaper\n\n1. Papier-mâché casting medium—layer wet strips over molds to create ultra-lightweight sculptural forms; Japanese theater companies produce 8-foot decorative set pieces weighing under 6 pounds for rapid scene changes between acts\n\n2. Fire starter briquettes—compress shredded newspaper with wax into dense fuel logs burning 3+ hours in sub-zero temperatures; arctic research stations stock these as primary emergency heating when aircraft resupply is impossible for months\n\n3. Datable evidence artifact—photograph front pages with visible headlines, creating legally admissible proof of exact timing for custody disputes, insurance fraud investigations, and courtroom documentation of events\n\n4. Composite clay reinforcement—layer torn newspaper with slip to build internal armatures, enabling sculptors to construct hollow ceramic forms 9+ feet tall that stand independently without internal bracing\n\n5. Acoustic dampening—layer newspapers 4 inches deep in cross-hatched patterns on studio and rehearsal walls, absorbing mid-range frequencies that commercial foam cannot, at 1/35th the cost per square foot\n\n6. Stencil for hyperrealistic street art—cut intricate dot-gradient patterns that when spray-painted produce photorealistic images; galleries now exhibit these as legitimate art despite ongoing debate about whether they constitute visual forgery\n\n7. Biodegradable seed starters—roll newspapers into cylinders filled with potting mix, then transplant directly into soil; Vietnamese rice farmers report 35% reduced water consumption and 12% higher crop yields versus plastic containers\n\n8. Sculptural weight reduction—pack crumpled newspaper tightly into hollow cavities before firing, cutting kiln time from 18 hours to 6 hours, reducing shrinkage cracks by 65%, and eliminating need for multiple firing sessions",
+          "aspect_count": 0.0,
+          "ananda": 0.8154717683792114,
+          "budget_balance": -0.16000000000000014,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8154717683792114,
+            "budget_balance": -0.16000000000000014
+          },
+          "revision_skipped_reason": null,
+          "haiku_total_usd": 2.4146520000000007,
+          "haiku_n_calls": 184
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "# 8 Unusual Uses of Newspaper\n\n1. Layering and compressing wet newspaper under weights to create hardened, sculptural serving vessels that reflect the stratification of historical information.\n\n2. Assembling a wall collage of headlines from competing publications about a single event to visually expose contradictions and bias in media narratives.\n\n3. Rolling tightly twisted newspapers into fire logs for extended-burn camping or emergency use.\n\n4. Weaving shredded newspaper strips on a loom to create textured wall hangings that echo the rhythm and linearity of journalistic columns.\n\n5. Wrapping newspaper around sculptural forms then carefully removing it to preserve translucent paper shells—creating ghostly impressions of hidden objects.\n\n6. Threading newspaper through a manual paper shredder, then collecting the strips to stuff into musical instruments or create resonant percussion tools.\n\n7. Saturating newspaper with plant-based dyes and pressing wildflowers between pages to create one-of-a-kind illustrated papers for bookbinding.\n\n8. Suspending crumpled newspaper structures from ceiling beams as both acoustic dampening panels and abstract commentary on information overload.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.49720513820648193,
+          "elaboration": 0.9691358024691357,
+          "flexibility": 0.6666666666666666
+        },
+        "composite": 0.783251901835571,
+        "n_chars": 1194,
+        "n_words": 165,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 194.39641284942627,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": null,
+          "selected_idx": 2,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "# 8 Unusual Uses of Newspaper\n\n1. Layering and compressing wet newspaper under weights to create hardened, sculptural serving vessels that reflect the stratification of historical information.\n\n2. Assembling a wall collage of headlines from competing publications about a single event to visually expose contradictions and bias in media narratives.\n\n3. Rolling tightly twisted newspapers into fire logs for extended-burn camping or emergency use.\n\n4. Weaving shredded newspaper strips on a loom to create textured wall hangings that echo the rhythm and linearity of journalistic columns.\n\n5. Wrapping newspaper around sculptural forms then carefully removing it to preserve translucent paper shells—creating ghostly impressions of hidden objects.\n\n6. Threading newspaper through a manual paper shredder, then collecting the strips to stuff into musical instruments or create resonant percussion tools.\n\n7. Saturating newspaper with plant-based dyes and pressing wildflowers between pages to create one-of-a-kind illustrated papers for bookbinding.\n\n8. Suspending crumpled newspaper structures from ceiling beams as both acoustic dampening panels and abstract commentary on information overload.",
+          "surface_revision": "",
+          "aspect_count": 0.0,
+          "ananda": 0.8538603782653809,
+          "budget_balance": 2.3499999999999996,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8538603782653809,
+            "budget_balance": 2.3499999999999996
+          },
+          "revision_skipped_reason": "commit_policy=always_draft",
+          "haiku_total_usd": 2.510904000000002,
+          "haiku_n_calls": 200
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "# 8 Unusual Uses for Newspaper (Revised)\n\n1. **Journal of accumulated weight**: Glue one front-page photograph into a blank journal each day for 365 days until the spine fails under layered pressure. Reading backward becomes physically difficult—your thumb naturally breaks the journal open at the heaviest months, creating a tactile chronology where disasters have literal mass.\n\n2. **Embossed pulp with phantom headlines**: Shred old newspapers into slurry and repress into sheets where typography remains as tactile ridge-lines. Run your finger across the surface and feel where \"HOUSING CRISIS\" becomes a landscape of bumps and valleys, the news made legible only through touch.\n\n3. **Epoxy tabletop with accelerated archaeology**: Layer newspapers under clear resin, then sand the surface weekly so wear patterns gradually reveal headlines from buried months—the table shows you what journalism you've literally worn away through daily use.\n\n4. **Soil fruiting from decomposed text**: Shred newspapers into garden beds where ink bleeds into earth through seasons. By spring, mushrooms fruit from soil that was February's headlines, returning pixels and paper to the mycorrhizal network—the news literally becomes food.\n\n5. **Language constraint from today's text**: Cut only letters visible on today's front page into Scrabble tiles. Players discover which words possible (CRISIS, DEFICIT) and which forbidden (PEACE, ABUNDANCE) based entirely on what journalists chose to write about—speech literally rationed by current events.\n\n6. **Ash portraiture on specific dates**: Burn a newspaper from a chosen date completely to ash, then mix into acrylic paint to render someone's portrait in that day's atomized particles—painting your mother's face with the words printed the day she was born.\n\n7. **Topographic rubric from printing relief**: Crumple newspaper and use as a rubbing surface under charcoal to capture the embossed ghost-marks of printing press pressure. The result is an abstract topographic map where mountain ranges are deepest ink and valleys are where paper lifted—technology becomes terrain.\n\n8. **Backlit illegibility as pure emotion**: Backlight newspaper behind frosted glass so headlines glow as shape and light rather than readable words. The news appears as intensity (spike of brightness, flood of luminescence) before cognition—forcing recognition of dread through sensation alone.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.5550444722175598,
+          "elaboration": 1.0,
+          "flexibility": 0.5555555555555556
+        },
+        "composite": 0.7776500069432788,
+        "n_chars": 2411,
+        "n_words": 351,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 423.67565393447876,
+          "K_effective": 4,
+          "commit_policy_effective": "always_revise",
+          "brief_override_used": true,
+          "committed": "revision",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 5,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# 8 Unusual Uses for Newspaper\n\n1. A year-long visual autobiography: glue one front-page photograph into a blank journal each day for 365 days, creating a tangible record of what the world deemed important enough to photograph.\n\n2. Handmade paper pulp ingredient: shred old papers and reconstitute them into new sheets where previous headlines become visible as shadow-fibers and texture embedded in the background.\n\n3. Geological strata tabletop: layer newspapers under clear epoxy resin so the surface gradually wears away through use, revealing older papers beneath like archaeological layers of time.\n\n4. Thermal decomposition art: crumple and layer newspapers in garden beds as insulation where the paper slowly breaks down into soil while the printed words fade into earth.\n\n5. Constrained language game: cut headlines into custom Scrabble tiles so players can only form words from available letters in today's news cycle, making speech literally dependent on events.\n\n6. Incinerator portraiture: burn newspapers completely into ash, then mix the ash into acrylic paint to create portraits where a person's face is painted with the atomized particles of a specific historical date.\n\n7. Charcoal rubbing art: use crumpled newsprint as a rubbing surface under charcoal to capture the embossed texture of collective anxiety made tactile and abstract.\n\n8. Illuminated text installation: backlight newspaper behind frosted glass panels so headlines glow as light sources rather than readible words—the news as illumination instead of information.",
+          "surface_revision": "# 8 Unusual Uses for Newspaper (Revised)\n\n1. **Journal of accumulated weight**: Glue one front-page photograph into a blank journal each day for 365 days until the spine fails under layered pressure. Reading backward becomes physically difficult—your thumb naturally breaks the journal open at the heaviest months, creating a tactile chronology where disasters have literal mass.\n\n2. **Embossed pulp with phantom headlines**: Shred old newspapers into slurry and repress into sheets where typography remains as tactile ridge-lines. Run your finger across the surface and feel where \"HOUSING CRISIS\" becomes a landscape of bumps and valleys, the news made legible only through touch.\n\n3. **Epoxy tabletop with accelerated archaeology**: Layer newspapers under clear resin, then sand the surface weekly so wear patterns gradually reveal headlines from buried months—the table shows you what journalism you've literally worn away through daily use.\n\n4. **Soil fruiting from decomposed text**: Shred newspapers into garden beds where ink bleeds into earth through seasons. By spring, mushrooms fruit from soil that was February's headlines, returning pixels and paper to the mycorrhizal network—the news literally becomes food.\n\n5. **Language constraint from today's text**: Cut only letters visible on today's front page into Scrabble tiles. Players discover which words possible (CRISIS, DEFICIT) and which forbidden (PEACE, ABUNDANCE) based entirely on what journalists chose to write about—speech literally rationed by current events.\n\n6. **Ash portraiture on specific dates**: Burn a newspaper from a chosen date completely to ash, then mix into acrylic paint to render someone's portrait in that day's atomized particles—painting your mother's face with the words printed the day she was born.\n\n7. **Topographic rubric from printing relief**: Crumple newspaper and use as a rubbing surface under charcoal to capture the embossed ghost-marks of printing press pressure. The result is an abstract topographic map where mountain ranges are deepest ink and valleys are where paper lifted—technology becomes terrain.\n\n8. **Backlit illegibility as pure emotion**: Backlight newspaper behind frosted glass so headlines glow as shape and light rather than readable words. The news appears as intensity (spike of brightness, flood of luminescence) before cognition—forcing recognition of dread through sensation alone.",
+          "aspect_count": 0.0,
+          "ananda": 0.8405278921127319,
+          "budget_balance": -1.83,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8405278921127319,
+            "budget_balance": -1.83
+          },
+          "revision_skipped_reason": null,
+          "haiku_total_usd": 2.765716000000002,
+          "haiku_n_calls": 216
+        }
+      },
+      "haiku_cascade_event_gated": {
+        "text": "# Eight Unusual Uses of a Newspaper\n\n1. Papier-mâché casting medium—layer wet strips over molds to create lightweight sculptural forms without firing clay\n\n2. Fire starter briquettes—compress shredded newspaper with natural binders to create dense fuel logs for heating or camping\n\n3. Datable evidence artifact—photograph a front page to legally document the exact date and context of an event for verification purposes\n\n4. Composite clay reinforcement—layer torn newspaper with slip to strengthen large ceramic sculptures and reduce cracking during drying\n\n5. Acoustic dampening—stack and affix newspapers to walls of recording studios and rehearsal spaces to absorb sound frequencies\n\n6. Stencil for street art—cut intricate shapes from newspaper, adhere to walls or surfaces, then spray paint through them to create sharp-edged murals\n\n7. Biodegradable seed starters—saturate newspaper sheets with seeds and plant nutrients, then plant directly into soil where they decompose naturally\n\n8. Sculptural weight reduction—crumple newspaper tightly to fill internal voids in large clay pieces before firing, significantly reducing kiln time and material cost",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.639627993106842,
+          "elaboration": 0.9629629629629629,
+          "flexibility": 0.8888888888888888
+        },
+        "composite": 0.8728699612396734,
+        "n_chars": 1156,
+        "n_words": 164,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "event_gated",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8154717683792114,
+            "budget_balance": -0.16000000000000014
+          },
+          "score_draft": 0.8728699612396734,
+          "score_revision": 0.9202159345149994
+        }
+      },
+      "haiku_cascade_always_draft": {
+        "text": "# Eight Unusual Uses of a Newspaper\n\n1. Papier-mâché casting medium—layer wet strips over molds to create lightweight sculptural forms without firing clay\n\n2. Fire starter briquettes—compress shredded newspaper with natural binders to create dense fuel logs for heating or camping\n\n3. Datable evidence artifact—photograph a front page to legally document the exact date and context of an event for verification purposes\n\n4. Composite clay reinforcement—layer torn newspaper with slip to strengthen large ceramic sculptures and reduce cracking during drying\n\n5. Acoustic dampening—stack and affix newspapers to walls of recording studios and rehearsal spaces to absorb sound frequencies\n\n6. Stencil for street art—cut intricate shapes from newspaper, adhere to walls or surfaces, then spray paint through them to create sharp-edged murals\n\n7. Biodegradable seed starters—saturate newspaper sheets with seeds and plant nutrients, then plant directly into soil where they decompose naturally\n\n8. Sculptural weight reduction—crumple newspaper tightly to fill internal voids in large clay pieces before firing, significantly reducing kiln time and material cost",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.639627993106842,
+          "elaboration": 0.9629629629629629,
+          "flexibility": 0.8888888888888888
+        },
+        "composite": 0.8728699612396734,
+        "n_chars": 1156,
+        "n_words": 164,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_draft",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8154717683792114,
+            "budget_balance": -0.16000000000000014
+          },
+          "score_draft": 0.8728699612396734,
+          "score_revision": 0.9202159345149994
+        }
+      },
+      "haiku_cascade_always_revise": {
+        "text": "# Eight Unusual Uses of a Newspaper\n\n1. Papier-mâché casting medium—layer wet strips over molds to create ultra-lightweight sculptural forms; Japanese theater companies produce 8-foot decorative set pieces weighing under 6 pounds for rapid scene changes between acts\n\n2. Fire starter briquettes—compress shredded newspaper with wax into dense fuel logs burning 3+ hours in sub-zero temperatures; arctic research stations stock these as primary emergency heating when aircraft resupply is impossible for months\n\n3. Datable evidence artifact—photograph front pages with visible headlines, creating legally admissible proof of exact timing for custody disputes, insurance fraud investigations, and courtroom documentation of events\n\n4. Composite clay reinforcement—layer torn newspaper with slip to build internal armatures, enabling sculptors to construct hollow ceramic forms 9+ feet tall that stand independently without internal bracing\n\n5. Acoustic dampening—layer newspapers 4 inches deep in cross-hatched patterns on studio and rehearsal walls, absorbing mid-range frequencies that commercial foam cannot, at 1/35th the cost per square foot\n\n6. Stencil for hyperrealistic street art—cut intricate dot-gradient patterns that when spray-painted produce photorealistic images; galleries now exhibit these as legitimate art despite ongoing debate about whether they constitute visual forgery\n\n7. Biodegradable seed starters—roll newspapers into cylinders filled with potting mix, then transplant directly into soil; Vietnamese rice farmers report 35% reduced water consumption and 12% higher crop yields versus plastic containers\n\n8. Sculptural weight reduction—pack crumpled newspaper tightly into hollow cavities before firing, cutting kiln time from 18 hours to 6 hours, reducing shrinkage cracks by 65%, and eliminating need for multiple firing sessions",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.6808637380599976,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9202159345149994,
+        "n_chars": 1857,
+        "n_words": 252,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_revise",
+          "commit_decision_revision": true,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8154717683792114,
+            "budget_balance": -0.16000000000000014
+          },
+          "score_draft": 0.8728699612396734,
+          "score_revision": 0.9202159345149994
+        }
+      },
+      "haiku_cascade_learned_gate": {
+        "text": "# Eight Unusual Uses of a Newspaper\n\n1. Papier-mâché casting medium—layer wet strips over molds to create lightweight sculptural forms without firing clay\n\n2. Fire starter briquettes—compress shredded newspaper with natural binders to create dense fuel logs for heating or camping\n\n3. Datable evidence artifact—photograph a front page to legally document the exact date and context of an event for verification purposes\n\n4. Composite clay reinforcement—layer torn newspaper with slip to strengthen large ceramic sculptures and reduce cracking during drying\n\n5. Acoustic dampening—stack and affix newspapers to walls of recording studios and rehearsal spaces to absorb sound frequencies\n\n6. Stencil for street art—cut intricate shapes from newspaper, adhere to walls or surfaces, then spray paint through them to create sharp-edged murals\n\n7. Biodegradable seed starters—saturate newspaper sheets with seeds and plant nutrients, then plant directly into soil where they decompose naturally\n\n8. Sculptural weight reduction—crumple newspaper tightly to fill internal voids in large clay pieces before firing, significantly reducing kiln time and material cost",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.639627993106842,
+          "elaboration": 0.9629629629629629,
+          "flexibility": 0.8888888888888888
+        },
+        "composite": 0.8728699612396734,
+        "n_chars": 1156,
+        "n_words": 164,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "learned_gate",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8154717683792114,
+            "budget_balance": -0.16000000000000014
+          },
+          "score_draft": 0.8728699612396734,
+          "score_revision": 0.9202159345149994
+        }
+      },
+      "haiku_cascade_oracle": {
+        "text": "# Eight Unusual Uses of a Newspaper\n\n1. Papier-mâché casting medium—layer wet strips over molds to create ultra-lightweight sculptural forms; Japanese theater companies produce 8-foot decorative set pieces weighing under 6 pounds for rapid scene changes between acts\n\n2. Fire starter briquettes—compress shredded newspaper with wax into dense fuel logs burning 3+ hours in sub-zero temperatures; arctic research stations stock these as primary emergency heating when aircraft resupply is impossible for months\n\n3. Datable evidence artifact—photograph front pages with visible headlines, creating legally admissible proof of exact timing for custody disputes, insurance fraud investigations, and courtroom documentation of events\n\n4. Composite clay reinforcement—layer torn newspaper with slip to build internal armatures, enabling sculptors to construct hollow ceramic forms 9+ feet tall that stand independently without internal bracing\n\n5. Acoustic dampening—layer newspapers 4 inches deep in cross-hatched patterns on studio and rehearsal walls, absorbing mid-range frequencies that commercial foam cannot, at 1/35th the cost per square foot\n\n6. Stencil for hyperrealistic street art—cut intricate dot-gradient patterns that when spray-painted produce photorealistic images; galleries now exhibit these as legitimate art despite ongoing debate about whether they constitute visual forgery\n\n7. Biodegradable seed starters—roll newspapers into cylinders filled with potting mix, then transplant directly into soil; Vietnamese rice farmers report 35% reduced water consumption and 12% higher crop yields versus plastic containers\n\n8. Sculptural weight reduction—pack crumpled newspaper tightly into hollow cavities before firing, cutting kiln time from 18 hours to 6 hours, reducing shrinkage cracks by 65%, and eliminating need for multiple firing sessions",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.6808637380599976,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9202159345149994,
+        "n_chars": 1857,
+        "n_words": 252,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "oracle",
+          "commit_decision_revision": true,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8154717683792114,
+            "budget_balance": -0.16000000000000014
+          },
+          "score_draft": 0.8728699612396734,
+          "score_revision": 0.9202159345149994,
+          "is_analysis_only": true
+        }
+      }
+    },
+    "a08": {
+      "item": {
+        "id": "a08",
+        "object": "tennis ball"
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "# 8 Unusual Uses for a Tennis Ball\n\n1. Cut in half and mount on interior wall corners as bumpers to prevent furniture damage when moving large items\n\n2. Slice horizontally and use as a cable organizer—thread electrical cords or headphone wires through the slit to keep them bundled and tidy\n\n3. Drill drainage holes and convert into a small planter pot for succulents or herbs on a shelf or windowsill\n\n4. Thread onto a wooden dowel or PVC pipe to create a high-shelf retrieval tool for grabbing items in closets or cabinets\n\n5. Place under furniture legs as gliders to easily slide heavy couches, beds, or appliances across floors without scuffing\n\n6. Fill a sock with tennis balls and hang it in a closet to absorb moisture and odors naturally\n\n7. Cut a small X into the surface and insert it over a door latch to create a soft, quiet door closer that prevents slamming\n\n8. Drill a hole through the center and thread onto a hiking stick as a noise-maker to alert wildlife on trails, reducing surprise encounters",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.8184290528297424,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9546072632074356,
+        "n_chars": 1013,
+        "n_words": 180,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 10.949437141418457,
+          "haiku_total_usd": 2.770114000000002,
+          "haiku_n_calls": 217
+        }
+      },
+      "haiku_cascade": {
+        "text": "# Concrete Image: A worn yellow tennis ball with fuzzy surface and visible scuff marks\n\n1. Hardwood floor furniture slider — Glue a halved tennis ball (fuzzy side down) to each bed leg to enable silent, scratch-free movement across wood floors\n\n2. Drywall corner texture applicator — Mount a halved ball on a pole extension to create uniform dimpled patterns in ceiling corners during painting\n\n3. Shower foot massager — Place in the bottom of a tub and roll your foot back and forth over it to release plantar fasciitis pressure\n\n4. Patio furniture rust preventer — Wedge under metal table legs to create a barrier between aluminum and stone, reducing oxidation and staining\n\n5. Pond aerator location marker — Tie to the cord of a submerged air pump to mark its position and prevent accidental fishing hook snags\n\n6. Door handle impact guard — Mount on a garage wall at the exact height a car door handle hits to prevent damage in confined spaces\n\n7. Hose coil kink preventer — Thread tennis balls onto a garden hose before storing it coiled to prevent rubber cracking and permanent creasing\n\n8. Bass frequency room absorber — Place one in each corner of a drum practice space or home theater to dampen low-frequency vibrations and reduce neighbor complaints",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.8089970350265503,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9522492587566376,
+        "n_chars": 1259,
+        "n_words": 216,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 408.2012457847595,
+          "K_effective": 4,
+          "commit_policy_effective": "event_gated",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": 0.0,
+          "selected_idx": 4,
+          "two_pass": true,
+          "revision_differs_from_draft": true,
+          "surface_draft": "# Concrete Image: A worn yellow tennis ball with fuzzy surface and visible scuff marks\n\n1. Hardwood floor furniture slider — Glue a halved tennis ball (fuzzy side down) to each bed leg to enable silent, scratch-free movement across wood floors\n\n2. Drywall corner texture applicator — Mount a halved ball on a pole extension to create uniform dimpled patterns in ceiling corners during painting\n\n3. Shower foot massager — Place in the bottom of a tub and roll your foot back and forth over it to release plantar fasciitis pressure\n\n4. Patio furniture rust preventer — Wedge under metal table legs to create a barrier between aluminum and stone, reducing oxidation and staining\n\n5. Pond aerator location marker — Tie to the cord of a submerged air pump to mark its position and prevent accidental fishing hook snags\n\n6. Door handle impact guard — Mount on a garage wall at the exact height a car door handle hits to prevent damage in confined spaces\n\n7. Hose coil kink preventer — Thread tennis balls onto a garden hose before storing it coiled to prevent rubber cracking and permanent creasing\n\n8. Bass frequency room absorber — Place one in each corner of a drum practice space or home theater to dampen low-frequency vibrations and reduce neighbor complaints",
+          "surface_revision": "1. Hardwood floor furniture slider — Glue halved tennis balls to bed and dresser legs to create silent dancers, allowing heavy furniture to glide effortlessly across hardwood floors without leaving a whisper of sound or scratch\n\n2. Drywall corner texture applicator — Mount a halved ball on a telescoping pole to become a crater-maker, imprinting deep dimpled impressions into wet compound as if miniature asteroids had struck your ceiling\n\n3. Shower foot massager — Place in your tub and trap it under your sole to use it as a grinding stone, crushing arch tightness with productive pressure that transforms pain into a pleasant acupuncture-like sensation\n\n4. Patio furniture rust preventer — Wedge under metal table legs to create an air gap above stone, starving oxidation and preventing the slow creep of rust blooms across your deck\n\n5. Pond aerator location marker — Tie to the submerged air pump's cord as a glowing sentinel, warning fishing lines and nets away from the circulation site like a fierce protector of sacred underwater machinery\n\n6. Door handle impact guard — Mount on garage walls at the exact height where car doors strike to stand as a fuzzy sacrificial barrier, absorbing the violent impacts of your own carelessness with silent, forgiving compliance\n\n7. Hose coil kink preventer — Thread tennis balls onto coiled hose sections like beads on a string, protecting rubber from the permanent wrinkles that develop during winter storage, preserving its memory of straightness\n\n8. Bass frequency room absorber — Position one in each corner of a drum practice space where low frequencies accumulate, transforming fuzzy spheres into acoustic traps that capture vibrations before they escape through walls, essentially creating an invisible soundproof barrier",
+          "aspect_count": 0.0,
+          "ananda": 0.7536561489105225,
+          "budget_balance": -0.9800000000000004,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.7536561489105225,
+            "budget_balance": -0.9800000000000004
+          },
+          "revision_skipped_reason": null,
+          "haiku_total_usd": 3.022635000000002,
+          "haiku_n_calls": 233
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "# 8 Unusual Uses for a Tennis Ball\n\n1. A percussion instrument in experimental music that produces hollow, resonant thuds and can be manipulated to create unpredictable rhythmic textures.\n\n2. A myofascial release tool for athletes to apply precise pressure to trigger points in calf muscles, shoulders, and glutes during physical therapy.\n\n3. A drain unclogger that navigates through S-bends in plumbing to dislodge accumulated hair and soap buildup without harsh chemicals.\n\n4. A neurological rehabilitation device for stroke patients to track bouncing movements, retraining the brain's visual-motor pathways and hand-eye coordination.\n\n5. An acoustic diffuser hung at strategic points on walls to scatter sound waves and reduce echo in practice rooms or small home studios.\n\n6. A physics demonstration object for teaching elastic collisions, rotational momentum, and aerodynamic spin through controlled experiments.\n\n7. A precision cleaning tool for reaching the interiors of narrow-necked glass bottles, vases, and vintage decanters that brush attachments cannot access.\n\n8. A biofeedback breathing regulator where patients bounce or squeeze it in rhythm with guided inhale-exhale cycles for anxiety management and panic attack prevention.",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.7839861512184143,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9459965378046036,
+        "n_chars": 1242,
+        "n_words": 179,
+        "meta": {
+          "ok": true,
+          "elapsed_s": 218.74489903450012,
+          "K_effective": 8,
+          "commit_policy_effective": "always_draft",
+          "brief_override_used": false,
+          "committed": "draft",
+          "vimarsa_event": false,
+          "vimarsa_event_draft": false,
+          "novelty": 1.0,
+          "delta_F": 0.0,
+          "delta_F_draft": 0.0,
+          "delta_F_revision": null,
+          "selected_idx": 9,
+          "two_pass": false,
+          "revision_differs_from_draft": false,
+          "surface_draft": "# 8 Unusual Uses for a Tennis Ball\n\n1. A percussion instrument in experimental music that produces hollow, resonant thuds and can be manipulated to create unpredictable rhythmic textures.\n\n2. A myofascial release tool for athletes to apply precise pressure to trigger points in calf muscles, shoulders, and glutes during physical therapy.\n\n3. A drain unclogger that navigates through S-bends in plumbing to dislodge accumulated hair and soap buildup without harsh chemicals.\n\n4. A neurological rehabilitation device for stroke patients to track bouncing movements, retraining the brain's visual-motor pathways and hand-eye coordination.\n\n5. An acoustic diffuser hung at strategic points on walls to scatter sound waves and reduce echo in practice rooms or small home studios.\n\n6. A physics demonstration object for teaching elastic collisions, rotational momentum, and aerodynamic spin through controlled experiments.\n\n7. A precision cleaning tool for reaching the interiors of narrow-necked glass bottles, vases, and vintage decanters that brush attachments cannot access.\n\n8. A biofeedback breathing regulator where patients bounce or squeeze it in rhythm with guided inhale-exhale cycles for anxiety management and panic attack prevention.",
+          "surface_revision": "",
+          "aspect_count": 0.0,
+          "ananda": 0.8119509816169739,
+          "budget_balance": 2.21,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.8119509816169739,
+            "budget_balance": 2.21
+          },
+          "revision_skipped_reason": "commit_policy=always_draft",
+          "haiku_total_usd": 3.130678000000002,
+          "haiku_n_calls": 249
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', ' <!-- pce-seed:19191 -->\\nReframe in one alternative perspective. List 8 unusual, non-obvious uses of a tennis ball. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 200.1548662185669
+        }
+      },
+      "haiku_cascade_event_gated": {
+        "text": "# Concrete Image: A worn yellow tennis ball with fuzzy surface and visible scuff marks\n\n1. Hardwood floor furniture slider — Glue a halved tennis ball (fuzzy side down) to each bed leg to enable silent, scratch-free movement across wood floors\n\n2. Drywall corner texture applicator — Mount a halved ball on a pole extension to create uniform dimpled patterns in ceiling corners during painting\n\n3. Shower foot massager — Place in the bottom of a tub and roll your foot back and forth over it to release plantar fasciitis pressure\n\n4. Patio furniture rust preventer — Wedge under metal table legs to create a barrier between aluminum and stone, reducing oxidation and staining\n\n5. Pond aerator location marker — Tie to the cord of a submerged air pump to mark its position and prevent accidental fishing hook snags\n\n6. Door handle impact guard — Mount on a garage wall at the exact height a car door handle hits to prevent damage in confined spaces\n\n7. Hose coil kink preventer — Thread tennis balls onto a garden hose before storing it coiled to prevent rubber cracking and permanent creasing\n\n8. Bass frequency room absorber — Place one in each corner of a drum practice space or home theater to dampen low-frequency vibrations and reduce neighbor complaints",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.8089970350265503,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9522492587566376,
+        "n_chars": 1259,
+        "n_words": 216,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "event_gated",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.7536561489105225,
+            "budget_balance": -0.9800000000000004
+          },
+          "score_draft": 0.9522492587566376,
+          "score_revision": 0.9653362929821014
+        }
+      },
+      "haiku_cascade_always_draft": {
+        "text": "# Concrete Image: A worn yellow tennis ball with fuzzy surface and visible scuff marks\n\n1. Hardwood floor furniture slider — Glue a halved tennis ball (fuzzy side down) to each bed leg to enable silent, scratch-free movement across wood floors\n\n2. Drywall corner texture applicator — Mount a halved ball on a pole extension to create uniform dimpled patterns in ceiling corners during painting\n\n3. Shower foot massager — Place in the bottom of a tub and roll your foot back and forth over it to release plantar fasciitis pressure\n\n4. Patio furniture rust preventer — Wedge under metal table legs to create a barrier between aluminum and stone, reducing oxidation and staining\n\n5. Pond aerator location marker — Tie to the cord of a submerged air pump to mark its position and prevent accidental fishing hook snags\n\n6. Door handle impact guard — Mount on a garage wall at the exact height a car door handle hits to prevent damage in confined spaces\n\n7. Hose coil kink preventer — Thread tennis balls onto a garden hose before storing it coiled to prevent rubber cracking and permanent creasing\n\n8. Bass frequency room absorber — Place one in each corner of a drum practice space or home theater to dampen low-frequency vibrations and reduce neighbor complaints",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.8089970350265503,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9522492587566376,
+        "n_chars": 1259,
+        "n_words": 216,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_draft",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.7536561489105225,
+            "budget_balance": -0.9800000000000004
+          },
+          "score_draft": 0.9522492587566376,
+          "score_revision": 0.9653362929821014
+        }
+      },
+      "haiku_cascade_always_revise": {
+        "text": "1. Hardwood floor furniture slider — Glue halved tennis balls to bed and dresser legs to create silent dancers, allowing heavy furniture to glide effortlessly across hardwood floors without leaving a whisper of sound or scratch\n\n2. Drywall corner texture applicator — Mount a halved ball on a telescoping pole to become a crater-maker, imprinting deep dimpled impressions into wet compound as if miniature asteroids had struck your ceiling\n\n3. Shower foot massager — Place in your tub and trap it under your sole to use it as a grinding stone, crushing arch tightness with productive pressure that transforms pain into a pleasant acupuncture-like sensation\n\n4. Patio furniture rust preventer — Wedge under metal table legs to create an air gap above stone, starving oxidation and preventing the slow creep of rust blooms across your deck\n\n5. Pond aerator location marker — Tie to the submerged air pump's cord as a glowing sentinel, warning fishing lines and nets away from the circulation site like a fierce protector of sacred underwater machinery\n\n6. Door handle impact guard — Mount on garage walls at the exact height where car doors strike to stand as a fuzzy sacrificial barrier, absorbing the violent impacts of your own carelessness with silent, forgiving compliance\n\n7. Hose coil kink preventer — Thread tennis balls onto coiled hose sections like beads on a string, protecting rubber from the permanent wrinkles that develop during winter storage, preserving its memory of straightness\n\n8. Bass frequency room absorber — Position one in each corner of a drum practice space where low frequencies accumulate, transforming fuzzy spheres into acoustic traps that capture vibrations before they escape through walls, essentially creating an invisible soundproof barrier",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.8613451719284058,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9653362929821014,
+        "n_chars": 1776,
+        "n_words": 282,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "always_revise",
+          "commit_decision_revision": true,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.7536561489105225,
+            "budget_balance": -0.9800000000000004
+          },
+          "score_draft": 0.9522492587566376,
+          "score_revision": 0.9653362929821014
+        }
+      },
+      "haiku_cascade_learned_gate": {
+        "text": "# Concrete Image: A worn yellow tennis ball with fuzzy surface and visible scuff marks\n\n1. Hardwood floor furniture slider — Glue a halved tennis ball (fuzzy side down) to each bed leg to enable silent, scratch-free movement across wood floors\n\n2. Drywall corner texture applicator — Mount a halved ball on a pole extension to create uniform dimpled patterns in ceiling corners during painting\n\n3. Shower foot massager — Place in the bottom of a tub and roll your foot back and forth over it to release plantar fasciitis pressure\n\n4. Patio furniture rust preventer — Wedge under metal table legs to create a barrier between aluminum and stone, reducing oxidation and staining\n\n5. Pond aerator location marker — Tie to the cord of a submerged air pump to mark its position and prevent accidental fishing hook snags\n\n6. Door handle impact guard — Mount on a garage wall at the exact height a car door handle hits to prevent damage in confined spaces\n\n7. Hose coil kink preventer — Thread tennis balls onto a garden hose before storing it coiled to prevent rubber cracking and permanent creasing\n\n8. Bass frequency room absorber — Place one in each corner of a drum practice space or home theater to dampen low-frequency vibrations and reduce neighbor complaints",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.8089970350265503,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9522492587566376,
+        "n_chars": 1259,
+        "n_words": 216,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "learned_gate",
+          "commit_decision_revision": false,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.7536561489105225,
+            "budget_balance": -0.9800000000000004
+          },
+          "score_draft": 0.9522492587566376,
+          "score_revision": 0.9653362929821014
+        }
+      },
+      "haiku_cascade_oracle": {
+        "text": "1. Hardwood floor furniture slider — Glue halved tennis balls to bed and dresser legs to create silent dancers, allowing heavy furniture to glide effortlessly across hardwood floors without leaving a whisper of sound or scratch\n\n2. Drywall corner texture applicator — Mount a halved ball on a telescoping pole to become a crater-maker, imprinting deep dimpled impressions into wet compound as if miniature asteroids had struck your ceiling\n\n3. Shower foot massager — Place in your tub and trap it under your sole to use it as a grinding stone, crushing arch tightness with productive pressure that transforms pain into a pleasant acupuncture-like sensation\n\n4. Patio furniture rust preventer — Wedge under metal table legs to create an air gap above stone, starving oxidation and preventing the slow creep of rust blooms across your deck\n\n5. Pond aerator location marker — Tie to the submerged air pump's cord as a glowing sentinel, warning fishing lines and nets away from the circulation site like a fierce protector of sacred underwater machinery\n\n6. Door handle impact guard — Mount on garage walls at the exact height where car doors strike to stand as a fuzzy sacrificial barrier, absorbing the violent impacts of your own carelessness with silent, forgiving compliance\n\n7. Hose coil kink preventer — Thread tennis balls onto coiled hose sections like beads on a string, protecting rubber from the permanent wrinkles that develop during winter storage, preserving its memory of straightness\n\n8. Bass frequency room absorber — Position one in each corner of a drum practice space where low frequencies accumulate, transforming fuzzy spheres into acoustic traps that capture vibrations before they escape through walls, essentially creating an invisible soundproof barrier",
+        "axes": {
+          "fluency": 1.0,
+          "originality": 0.8613451719284058,
+          "elaboration": 1.0,
+          "flexibility": 1.0
+        },
+        "composite": 0.9653362929821014,
+        "n_chars": 1776,
+        "n_words": 282,
+        "meta": {
+          "synthesized_from": "haiku_cascade",
+          "commit_policy": "oracle",
+          "commit_decision_revision": true,
+          "policy_features": {
+            "delta_F": 0.0,
+            "novelty": 1.0,
+            "aspect_count": 0.0,
+            "ananda": 0.7536561489105225,
+            "budget_balance": -0.9800000000000004
+          },
+          "score_draft": 0.9522492587566376,
+          "score_revision": 0.9653362929821014,
+          "is_analysis_only": true
+        }
+      }
+    },
+    "a09": {
+      "item": {
+        "id": "a09",
+        "object": "spoon"
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '<!-- pce-seed:68572 -->\\nList 8 unusual, non-obvious uses of a spoon. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.02485704421997
+        }
+      },
+      "haiku_cascade": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '<!-- pce-seed:68572 -->\\nLean toward the figurative interpretation. List 8 unusual, non-obvious uses of a spoon. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.14115881919861
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '<!-- pce-seed:68572 -->\\nLean toward the figurative interpretation. List 8 unusual, non-obvious uses of a spoon. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.14739894866943
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '<!-- pce-seed:68572 -->\\nLean toward the figurative interpretation. List 8 unusual, non-obvious uses of a spoon. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.09505891799927
+        }
+      }
+    },
+    "a10": {
+      "item": {
+        "id": "a10",
+        "object": "umbrella"
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:35424 -->\\nList 8 unusual, non-obvious uses of a umbrella. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.03983688354492
+        }
+      },
+      "haiku_cascade": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:35424 -->\\nForeground the unusual aspect of the prompt. List 8 unusual, non-obvious uses of a umbrella. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.1499810218811
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:35424 -->\\nForeground the unusual aspect of the prompt. List 8 unusual, non-obvious uses of a umbrella. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.15252995491028
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:35424 -->\\nForeground the unusual aspect of the prompt. List 8 unusual, non-obvious uses of a umbrella. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.0634868144989
+        }
+      }
+    },
+    "a11": {
+      "item": {
+        "id": "a11",
+        "object": "rope"
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:97205 -->\\nList 8 unusual, non-obvious uses of a rope. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.02809882164001
+        }
+      },
+      "haiku_cascade": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:97205 -->\\nForeground the conventional aspect of the prompt. List 8 unusual, non-obvious uses of a rope. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.15398979187012
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:97205 -->\\nForeground the conventional aspect of the prompt. List 8 unusual, non-obvious uses of a rope. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.14937782287598
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:97205 -->\\nForeground the conventional aspect of the prompt. List 8 unusual, non-obvious uses of a rope. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.08768200874329
+        }
+      }
+    },
+    "a12": {
+      "item": {
+        "id": "a12",
+        "object": "pillowcase"
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:46335 -->\\nList 8 unusual, non-obvious uses of a pillowcase. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.02592992782593
+        }
+      },
+      "haiku_cascade": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:46335 -->\\nUse one specific concrete image. List 8 unusual, non-obvious uses of a pillowcase. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.1908209323883
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:46335 -->\\nUse one specific concrete image. List 8 unusual, non-obvious uses of a pillowcase. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.14639115333557
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '   <!-- pce-seed:46335 -->\\nUse one specific concrete image. List 8 unusual, non-obvious uses of a pillowcase. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.06144714355469
+        }
+      }
+    },
+    "a13": {
+      "item": {
+        "id": "a13",
+        "object": "broken mirror shard"
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:35092 -->\\nList 8 unusual, non-obvious uses of a broken mirror shard. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.0282130241394
+        }
+      },
+      "haiku_cascade": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:35092 -->\\nUse one abstract or universal frame. List 8 unusual, non-obvious uses of a broken mirror shard. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.13967204093933
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:35092 -->\\nUse one abstract or universal frame. List 8 unusual, non-obvious uses of a broken mirror shard. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.14111804962158
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', '  <!-- pce-seed:35092 -->\\nUse one abstract or universal frame. List 8 unusual, non-obvious uses of a broken mirror shard. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.10684990882874
+        }
+      }
+    },
+    "a14": {
+      "item": {
+        "id": "a14",
+        "object": "shoelace"
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', ' <!-- pce-seed:19191 -->\\nList 8 unusual, non-obvious uses of a shoelace. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.03125715255737
+        }
+      },
+      "haiku_cascade": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', ' <!-- pce-seed:19191 -->\\nReframe in one alternative perspective. List 8 unusual, non-obvious uses of a shoelace. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.14207601547241
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', ' <!-- pce-seed:19191 -->\\nReframe in one alternative perspective. List 8 unusual, non-obvious uses of a shoelace. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.11517000198364
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', ' <!-- pce-seed:19191 -->\\nReframe in one alternative perspective. List 8 unusual, non-obvious uses of a shoelace. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.08319473266602
+        }
+      }
+    },
+    "a15": {
+      "item": {
+        "id": "a15",
+        "object": "ice cube tray"
+      },
+      "_integrity_probes": [
+        {
+          "passed": true,
+          "leak_matches": [],
+          "env_hash": "0f5f827817dae8f6",
+          "flags_hash": "8b0cb162606b994f"
+        }
+      ],
+      "haiku_bare": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', ' <!-- pce-seed:61270 -->\\nList 8 unusual, non-obvious uses of a ice cube tray. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.02589821815491
+        }
+      },
+      "haiku_cascade": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', ' <!-- pce-seed:61270 -->\\nList 8 unusual, non-obvious uses of a ice cube tray. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.14165210723877
+        }
+      },
+      "haiku_bare_2K_scorer": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', ' <!-- pce-seed:61270 -->\\nList 8 unusual, non-obvious uses of a ice cube tray. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.15256786346436
+        }
+      },
+      "haiku_generic_revise_2pass": {
+        "text": "",
+        "axes": {},
+        "composite": null,
+        "n_chars": 0,
+        "n_words": 0,
+        "meta": {
+          "ok": false,
+          "error": "TimeoutExpired: Command '['claude', '--print', '--output-format', 'json', '--model', 'global.anthropic.claude-haiku-4-5-20251001-v1:0', '--system-prompt', 'You are a helpful assistant.', '--tools', '', '--strict-mcp-config', '--disable-slash-commands', '--setting-sources', '', '--permission-mode', 'bypassPermissions', '--no-session-persistence', ' <!-- pce-seed:61270 -->\\nList 8 unusual, non-obvious uses of a ice cube tray. Be concrete and specific. Avoid the standard everyday use. Format: one use per line.\\n']' timed out after 120 seconds",
+          "elapsed_s": 120.07192492485046
+        }
+      }
+    }
+  }
+}

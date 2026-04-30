@@ -46,7 +46,15 @@ def test_iccha_grid_mode_returns_distinct_samplers(
 def test_iccha_parity_mode_returns_identical_samplers(
     lm: LocalLM, embed: Embedder
 ) -> None:
-    """In parity mode (v0.2 default) all K samplers equal the bare baseline."""
+    """In parity mode all K samplers equal the bare baseline.
+
+    v0.4 (ADR-001): under the default ``best_of_k`` mechanism, parity mode's
+    ``K_runtime`` is a function of ``cit_temperature``. We pin
+    ``cit_temperature_mechanism="off"`` here so this v0.2-compat invariant
+    test still exercises the ``K_runtime == K_eff`` path. The new v0.4
+    width-expansion behavior is covered by the dedicated K_runtime / entropy
+    probe tests.
+    """
     q = embed.encode("a haiku about autumn leaves")
     constraint = Constraint(text="a haiku about autumn leaves", embedding=q)
     cands = iccha(
@@ -56,6 +64,7 @@ def test_iccha_parity_mode_returns_identical_samplers(
         K=4,
         max_tokens=24,
         base_seed=11,
+        cit_temperature_mechanism="off",
     )
     assert len(cands) == 4
     taus = {c.sampler["tau"] for c in cands}

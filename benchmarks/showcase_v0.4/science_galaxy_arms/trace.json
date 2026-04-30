@@ -1,0 +1,37 @@
+{
+  "domain": "sci_creativity",
+  "item_id": "s05",
+  "model": "claude-haiku via Bedrock (Phase 7)",
+  "composite_cascade": 0.4856750915447871,
+  "composite_bare": null,
+  "draft": "# Why Galaxies Have Spiral Arms\n\n**Framing 1 - The Traffic Jam Model:** Spiral arms aren't rigid structures rotating with the galaxy like spokes on a wheel. Instead, stars and gas continuously flow *through* the arms like cars passing through a traffic bottleneck—the arm pattern persists as a density wave even though individual particles keep moving and eventually exit the arm. This explains why the arms don't wind up into impossibly tight coils over billions of years.\n\n**Framing 2 - Resonance Amplification:** The arms may be sustained by orbital resonances: when a galaxy has any asymmetry (a bar, a satellite galaxy's tidal influence, or even internal perturbations), this sets up specific orbits where material naturally clusters. Stars at certain radii keep returning to the same angular positions as they orbit, amplifying small density variations into coherent spiral patterns through a \"swing amplification\" mechanism—the galaxy bootstraps its own spiral from tiny imbalances.\n\nThe reality is likely both mechanisms work together, and spiral arms probably represent an ongoing conversation between the galaxy's internal geometry and external perturbations, rather than a single elegant explanation.",
+  "shadow_revision": "# Why Galaxies Have Spiral Arms\n\n**Framing 1 - Density Waves Sustained by Self-Propagating Star Formation:** Spiral arms are **density waves**—compression patterns that rotate more slowly than the stars and gas streaming through them, like a persistent traffic bottleneck. The pattern regenerates itself through a feedback cycle: massive stars born in compressed regions explode violently within millions of years, their shockwaves compress downstream gas and trigger the next generation of star formation, which compresses gas further—this self-propagating mechanism continuously rebuilds the density wave and prevents it from winding into impossibly tight coils over time.\n\n**Framing 2 - Resonance Amplification:** The spiral structure likely originates from orbital resonances (galactic bars, satellite tidal effects, or internal asymmetries) that cause material to cluster at specific angular positions as it orbits. Differential rotation stretches these perturbations while gravity re-concentrates them—a \"swing amplification\" process that dramatically amplifies small asymmetries into organized spiral overdensities.\n\nThe key insight: density waves alone don't persist; they require stellar feedback—supernovae detonating within the wave sustain the self-perpetuating compression-birth-explosion cycle. Spiral arms are thus dynamic equilibria maintained by feedback between the galaxy's resonant structure and violent stellar outbursts, neither rigid geometries nor transient accidents.",
+  "committed": "# Why Galaxies Have Spiral Arms\n\n**Framing 1 - The Traffic Jam Model:** Spiral arms aren't rigid structures rotating with the galaxy like spokes on a wheel. Instead, stars and gas continuously flow *through* the arms like cars passing through a traffic bottleneck—the arm pattern persists as a density wave even though individual particles keep moving and eventually exit the arm. This explains why the arms don't wind up into impossibly tight coils over billions of years.\n\n**Framing 2 - Resonance Amplification:** The arms may be sustained by orbital resonances: when a galaxy has any asymmetry (a bar, a satellite galaxy's tidal influence, or even internal perturbations), this sets up specific orbits where material naturally clusters. Stars at certain radii keep returning to the same angular positions as they orbit, amplifying small density variations into coherent spiral patterns through a \"swing amplification\" mechanism—the galaxy bootstraps its own spiral from tiny imbalances.\n\nThe reality is likely both mechanisms work together, and spiral arms probably represent an ongoing conversation between the galaxy's internal geometry and external perturbations, rather than a single elegant explanation.",
+  "committed_choice": "draft",
+  "score_draft": 0.4856750915447871,
+  "score_revision": 0.5953965286413828,
+  "vimarsa_event": false,
+  "delta_F_draft": 0.0,
+  "delta_F_revision": 3.2432016869061755,
+  "K_effective": 4,
+  "elapsed_s": 386.9306182861328,
+  "haiku_n_calls": 88,
+  "haiku_total_usd": 1.3936740000000003,
+  "axes_cascade": {
+    "frame_coverage": 0.18907146155834198,
+    "novelty": 0.2679538130760193,
+    "specificity": 1.0
+  },
+  "axes_bare": {},
+  "item_prompt": null,
+  "item_metadata": {
+    "id": "s05",
+    "question": "Why do galaxies have spiral arms?",
+    "framings": [
+      "density-wave theory",
+      "self-propagating star formation"
+    ]
+  },
+  "source": "phase7_cascade",
+  "result_file": "benchmarks/results_v0.4/sci_creativity.json"
+}

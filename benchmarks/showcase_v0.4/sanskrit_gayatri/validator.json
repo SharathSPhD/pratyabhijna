@@ -1,0 +1,11 @@
+{
+  "chandas": "gayatri",
+  "syllable_count": 24,
+  "expected_count": 24,
+  "pattern": "LLGGLGGGLGGGLGLGLGLGLGGL",
+  "pattern_ok": true,
+  "count_ok": true,
+  "ok": true,
+  "notes": [],
+  "validator": "tools.sanskrit_chandas"
+}

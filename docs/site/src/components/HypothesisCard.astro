@@ -1,0 +1,55 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  domain?: string;
+  g: number;
+  ci: [number, number];
+  p?: number | null;
+  n: number;
+  supported: boolean | null;
+  note?: string;
+}
+const { id, title, domain, g, ci, p, n, supported, note } = Astro.props as Props;
+const fmt = (x: number, d = 2) => Number.isFinite(x) ? x.toFixed(d) : '—';
+const fmtP = (x?: number | null) =>
+  x === null || x === undefined
+    ? '—'
+    : x < 0.0001
+      ? '< 1e-4'
+      : x < 0.001
+        ? x.toExponential(1)
+        : x.toFixed(3);
+const stateLabel = supported === true ? 'supported' : supported === false ? 'not supported' : 'inconclusive';
+const stateClass =
+  supported === true
+    ? 'bg-emerald-100 text-emerald-900 dark:bg-emerald-900/40 dark:text-emerald-100'
+    : supported === false
+      ? 'bg-rose-100 text-rose-900 dark:bg-rose-900/40 dark:text-rose-100'
+      : 'bg-amber-100 text-amber-900 dark:bg-amber-900/40 dark:text-amber-100';
+---
+<div class="card not-prose font-sans">
+  <div class="flex justify-between items-start gap-3 mb-1">
+    <div>
+      <div class="font-mono text-xs text-[var(--fg-soft)] uppercase tracking-wider">{id}{domain ? ` · ${domain}` : ''}</div>
+      <h3 class="text-base font-semibold m-0 leading-snug">{title}</h3>
+    </div>
+    <span class={`text-[0.72rem] px-2 py-0.5 rounded-full font-semibold ${stateClass}`}>{stateLabel}</span>
+  </div>
+
+  <div class="grid grid-cols-3 gap-3 mt-2 text-sm">
+    <div>
+      <div class="text-[0.7rem] uppercase text-[var(--fg-soft)] tracking-widest">Hedges' g</div>
+      <div class="font-mono font-semibold text-base">{fmt(g, 3)}</div>
+    </div>
+    <div>
+      <div class="text-[0.7rem] uppercase text-[var(--fg-soft)] tracking-widest">95% CI</div>
+      <div class="font-mono">[{fmt(ci[0], 2)}, {fmt(ci[1], 2)}]</div>
+    </div>
+    <div>
+      <div class="text-[0.7rem] uppercase text-[var(--fg-soft)] tracking-widest">{`p · n`}</div>
+      <div class="font-mono">{fmtP(p)} · n={n}</div>
+    </div>
+  </div>
+  {note && <p class="mt-2 text-[0.85rem] text-[var(--fg-soft)] mb-0">{note}</p>}
+</div>

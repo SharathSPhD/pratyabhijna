@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Compounding work" active="/compounding-work">
+  <h1>Compounding work</h1>
+
+  <h2>The author program</h2>
+
+  <p>
+    PCE is the second project in an ongoing program that grounds agent design in classical Indian darśana.
+    The program treats traditional epistemology not as decoration but as engineering vocabulary that
+    discharges obligations against measurable outcomes. Two axes have been studied so far.
+  </p>
+
+  <h2>Pratyākṣa — direct perception, context-discipline</h2>
+
+  <p>
+    The first project, <em>Pratyākṣa</em> (direct perception), addresses hallucination resistance and
+    context-discipline in long-context LLM agents. It reports a strong Stouffer pooled signal (Z = 9.114)
+    across ten studies on RULER, HELMET, NoCha, HaluEval, TruthfulQA, FACTS-Grounding, and
+    SWE-bench Verified. The sister Claude-Code/Cursor plugin is published and reproducible:
+  </p>
+
+  <ul>
+    <li><a href="https://open.substack.com/pub/technektar/p/when-the-context-window-is-big-and" rel="noopener">Substack exposition (2026)</a> — accessible writeup.</li>
+    <li><a href="https://zenodo.org/records/19680692" rel="noopener">Zenodo record (v2)</a> — peer-reviewable archive of the harness + numbers.</li>
+    <li><a href="https://sharathsphd.github.io/context-engineering-harness/" rel="noopener">Pratyākṣa Pages site</a> — interactive surface for the harness's results.</li>
+  </ul>
+
+  <h2>Pratyabhijñā — recognition, creativity</h2>
+
+  <p>
+    PCE is the recognition+creativity counterpart. Where Pratyākṣa asks <em>can the agent perceive its
+    context faithfully?</em>, Pratyabhijñā asks <em>can the agent recognise its own draft and improve it?</em>
+    The empirical signature is smaller and more decomposed than Pratyākṣa's, but the framing is the same:
+    classical vocabulary chosen for fit, mechanism-level decomposition, pre-registered hypotheses, public
+    audit artefacts.
+  </p>
+
+  <h2>Why the two effect sizes differ</h2>
+
+  <p>
+    Pratyākṣa's pooled signal is large because hallucination resistance has a clean ground-truth target:
+    either the agent hallucinates an entity or it doesn't. PCE's pooled signal is small because creativity
+    has no ground-truth target — the proxy scorer is a composite, the LLM-judge has its own biases (per
+    H9), and small-n pilots have wide CIs. The decomposition (H8a / H8b / H8c) finds the moving parts that
+    a holistic cascade-vs-bare contrast washes out. The smaller effect is not a refutation of the program
+    but a calibration data point: creativity is harder to move with this kind of mechanism than
+    hallucination is.
+  </p>
+
+  <h2>Cross-citing</h2>
+
+  <p>
+    The PCE paper cites Pratyākṣa in the related-work section as the companion piece on the
+    direct-perception axis. The Pratyākṣa paper (linked above) cites PCE as the recognition-axis
+    counterpart. Both projects share the same author voice on substrate choice (OAuth Claude CLI),
+    audit conventions, and the discipline of pre-registration.
+  </p>
+</BaseLayout>

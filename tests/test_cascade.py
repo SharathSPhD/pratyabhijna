@@ -4,6 +4,7 @@ from __future__ import annotations
 import pytest
 
 from pce.cascade import run_cascade
+from pce.operators.iccha import k_runtime_for
 from pce.substrate.embed import Embedder
 from pce.substrate.lm import LocalLM
 from pce.types import Constraint
@@ -41,7 +42,8 @@ def test_cascade_end_to_end(lm: LocalLM, embed: Embedder) -> None:
     )
     assert state.surface is not None and state.surface != ""
     assert state.selected is not None
-    assert len(state.candidates) == 4
-    assert state.posterior.shape == (4,)
+    K_rt = k_runtime_for(K_eff=4, cit_temperature=1.0)
+    assert len(state.candidates) == K_rt
+    assert state.posterior.shape == (K_rt,)
     assert "delta_F" in state.audit
     assert "ananda_scores" in state.audit

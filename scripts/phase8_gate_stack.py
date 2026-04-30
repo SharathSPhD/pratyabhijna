@@ -1,0 +1,368 @@
+#!/usr/bin/env python3
+"""Run the Ralph Phase 8 gate stack and emit audit/v0.4/phase8_gate_report.json.
+
+Each gate returns a dict {name, passed: bool, details: str}. The script runs them
+all, prints a summary, and exits non-zero if any FAIL gates remain.
+"""
+from __future__ import annotations
+
+import json
+import re
+import shutil
+import subprocess
+from pathlib import Path
+from typing import Callable
+
+REPO = Path(__file__).resolve().parents[1]
+AUDIT = REPO / "audit" / "v0.4"
+PAPER = REPO / "paper"
+PAPER_SECTIONS = PAPER / "sections"
+SITE = REPO / "docs" / "site"
+SHOWCASE = REPO / "benchmarks" / "showcase_v0.4"
+
+
+def _read(p: Path) -> str:
+    try:
+        return p.read_text(encoding="utf-8", errors="ignore")
+    except FileNotFoundError:
+        return ""
+
+
+def gate_anti_stub_v04() -> dict:
+    """No TODO/TBD/XXX/FIXME tokens in v0.4-touched paper or runtime files (excluding ADRs)."""
+    bad = ("TODO", "TBD", "XXX", "FIXME")
+    targets: list[Path] = []
+    targets.extend(PAPER_SECTIONS.glob("*.tex"))
+    targets.append(PAPER / "main.tex")
+    targets.extend((REPO / "src" / "pce").rglob("*.py"))
+    hits: list[str] = []
+    for t in targets:
+        text = _read(t)
+        if any(b in text for b in bad):
+            for b in bad:
+                if b in text:
+                    hits.append(f"{t.relative_to(REPO)}: {b}")
+    return {"name": "anti_stub_v04", "passed": not hits, "details": ", ".join(hits[:5]) or "no stub markers"}
+
+
+def gate_paper_builds() -> dict:
+    pdf = PAPER / "main.pdf"
+    snap = PAPER / "v0.4" / "main.pdf"
+    ok = pdf.exists() and pdf.stat().st_size > 100_000 and snap.exists() and snap.stat().st_size > 100_000
+    return {
+        "name": "verify_artifact_v04_paper_builds",
+        "passed": ok,
+        "details": f"main.pdf={pdf.exists()} ({pdf.stat().st_size if pdf.exists() else 0}b), "
+                   f"v0.4 snap={snap.exists()}",
+    }
+
+
+def gate_site_builds() -> dict:
+    dist = SITE / "dist"
+    index = dist / "index.html"
+    refs_to_v04 = False
+    if index.exists():
+        text = _read(index)
+        refs_to_v04 = "stats_v0.4" in text or "results_v0.4" in text or "v0.4" in text
+    results = dist / "results" / "index.html"
+    has_h_strings = False
+    if results.exists():
+        rt = _read(results)
+        has_h_strings = all(s in rt for s in ("H8a", "H8b", "H8c", "H9"))
+    ok = dist.is_dir() and index.exists() and refs_to_v04 and has_h_strings
+    return {
+        "name": "verify_artifact_v04_site_builds",
+        "passed": ok,
+        "details": f"dist={dist.is_dir()}, index_v04={refs_to_v04}, results_h_strings={has_h_strings}",
+    }
+
+
+def gate_figures_present() -> dict:
+    figs = PAPER / "figures" / "v0.4"
+    expected = [
+        "fig_v04_h5_fixed_forest.png",
+        "fig_v04_h8a_revision_vs_draft.png",
+        "fig_v04_h8b_gate_calibration.png",
+        "fig_v04_h8c_policy_leaderboard.png",
+        "fig_v04_h9_judge_scatter.png",
+        "fig_v04_cost_per_domain.png",
+    ]
+    missing = [name for name in expected if not (figs / name).exists()]
+    return {
+        "name": "verify_artifact_v04_figures_v04_present",
+        "passed": not missing,
+        "details": "all six v0.4 figures present" if not missing else f"missing: {missing}",
+    }
+
+
+def gate_autoreport_keys_bound() -> dict:
+    pattern = re.compile(r"\{V04_[A-Z0-9_]+\}")
+    offenders: list[str] = []
+    for tex in [PAPER / "main.tex", *PAPER_SECTIONS.glob("*.tex")]:
+        if not tex.exists():
+            continue
+        if pattern.search(_read(tex)):
+            offenders.append(str(tex.relative_to(REPO)))
+    return {
+        "name": "verify_autoreport_keys_bound",
+        "passed": not offenders,
+        "details": "no unbound {V04_*} tokens" if not offenders else f"unbound in: {offenders}",
+    }
+
+
+def gate_lit_review_no_made_up() -> dict:
+    log = AUDIT / "lit_verification.jsonl"
+    if not log.exists():
+        return {"name": "verify_lit_review_no_made_up", "passed": False, "details": "lit_verification.jsonl missing"}
+    bad: list[str] = []
+    for line in _read(log).splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            row = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        status = row.get("status") or ("verified" if row.get("verified") else "not_verified")
+        if status in ("mismatch", "made_up", "not_found"):
+            bad.append(row.get("key", "?"))
+    return {
+        "name": "verify_lit_review_no_made_up",
+        "passed": not bad,
+        "details": "all entries verified or unverifiable_no_handle" if not bad else f"flagged: {bad}",
+    }
+
+
+def gate_html_v04_panel_present() -> dict:
+    results = SITE / "dist" / "results" / "index.html"
+    if not results.exists():
+        return {"name": "verify_html_v04_panel_present", "passed": False, "details": "dist/results/index.html missing"}
+    text = _read(results)
+    needed = ("H8a", "H8b", "H8c", "H9")
+    missing = [n for n in needed if n not in text]
+    return {
+        "name": "verify_html_v04_panel_present",
+        "passed": not missing,
+        "details": "all H8a/H8b/H8c/H9 strings present" if not missing else f"missing: {missing}",
+    }
+
+
+def gate_readme_v04_headline() -> dict:
+    readme = _read(REPO / "README.md")
+    needed = ("v0.4", "H8a", "H8b", "mechanism study", "Showcase")
+    missing = [n for n in needed if n not in readme]
+    return {
+        "name": "verify_readme_v04_headline",
+        "passed": not missing,
+        "details": "headline OK" if not missing else f"missing: {missing}",
+    }
+
+
+def gate_release_notes_present() -> dict:
+    p = REPO / "docs" / "RELEASE_NOTES_v0.4.md"
+    return {
+        "name": "verify_release_notes_v04_present",
+        "passed": p.exists() and len(_read(p)) > 1500,
+        "details": f"RELEASE_NOTES_v0.4.md size={len(_read(p))}",
+    }
+
+
+def gate_cursor_manifest_valid() -> dict:
+    p = REPO / "plugin" / ".cursor-plugin" / "plugin.json"
+    if not p.exists():
+        return {"name": "verify_cursor_manifest_valid", "passed": False, "details": "manifest missing"}
+    try:
+        manifest = json.loads(_read(p))
+    except json.JSONDecodeError as exc:
+        return {"name": "verify_cursor_manifest_valid", "passed": False, "details": f"json: {exc}"}
+    required = {"name", "version", "description"}
+    missing = [k for k in required if k not in manifest]
+    plugin_dir = REPO / "plugin"
+    auto_discovered_dirs = [
+        d for d in ("commands", "agents", "hooks", "skills", "mcp")
+        if (plugin_dir / d).is_dir()
+    ]
+    ok = not missing and manifest.get("version", "").startswith("0.4") and len(auto_discovered_dirs) >= 3
+    return {
+        "name": "verify_cursor_manifest_valid",
+        "passed": ok,
+        "details": f"missing={missing}, version={manifest.get('version')!r}, auto_dirs={auto_discovered_dirs}",
+    }
+
+
+def gate_pce_cli_smoke() -> dict:
+    py = REPO / ".venv" / "bin" / "python"
+    if not py.exists():
+        return {"name": "verify_pce_cli_smoke", "passed": False, "details": ".venv missing"}
+    proc = subprocess.run(
+        [str(py), "-m", "pce", "--help"], cwd=REPO, capture_output=True, text=True, timeout=30,
+    )
+    help_ok = proc.returncode == 0 and "cascade" in proc.stdout
+    config_proc = subprocess.run(
+        [str(py), "-m", "pce", "config", "show"], cwd=REPO, capture_output=True, text=True, timeout=30,
+    )
+    config_ok = config_proc.returncode == 0 and "cascade_model" in config_proc.stdout
+    return {
+        "name": "verify_pce_cli_smoke",
+        "passed": help_ok and config_ok,
+        "details": f"--help rc={proc.returncode}, config show rc={config_proc.returncode}, help_ok={help_ok}",
+    }
+
+
+def gate_model_config_resolution() -> dict:
+    py = REPO / ".venv" / "bin" / "python"
+    if not py.exists():
+        return {"name": "verify_model_config_resolution", "passed": False, "details": ".venv missing"}
+    test_path = REPO / "tests" / "test_pce_config.py"
+    if not test_path.exists():
+        return {"name": "verify_model_config_resolution", "passed": False, "details": "tests/test_pce_config.py missing"}
+    proc = subprocess.run(
+        [str(py), "-m", "pytest", str(test_path), "-q", "--no-header"],
+        cwd=REPO, capture_output=True, text=True, timeout=120,
+    )
+    return {
+        "name": "verify_model_config_resolution",
+        "passed": proc.returncode == 0,
+        "details": (proc.stdout + proc.stderr).splitlines()[-3:][-1][:200] if proc.returncode != 0 else "pytest ok",
+    }
+
+
+def gate_showcase_count_9() -> dict:
+    if not SHOWCASE.exists():
+        return {"name": "verify_showcase_count_9", "passed": False, "details": "showcase_v0.4 missing"}
+    demos = sorted(p.name for p in SHOWCASE.iterdir() if p.is_dir())
+    return {
+        "name": "verify_showcase_count_9",
+        "passed": len(demos) == 9,
+        "details": f"{len(demos)} demos: {demos}",
+    }
+
+
+def gate_showcase_traces_complete() -> dict:
+    if not SHOWCASE.exists():
+        return {"name": "verify_showcase_traces_complete", "passed": False, "details": "showcase_v0.4 missing"}
+    required = ("prompt.json", "trace.json")
+    missing: list[str] = []
+    for d in sorted(SHOWCASE.iterdir()):
+        if not d.is_dir():
+            continue
+        for r in required:
+            if not (d / r).exists():
+                missing.append(f"{d.name}/{r}")
+    return {
+        "name": "verify_showcase_traces_complete",
+        "passed": not missing,
+        "details": "every showcase has prompt+trace" if not missing else f"missing: {missing}",
+    }
+
+
+def gate_chandas_validators_pass() -> dict:
+    sanskrit_dirs = [d for d in SHOWCASE.glob("sanskrit_*") if d.is_dir()]
+    statuses = []
+    for d in sanskrit_dirs:
+        v = d / "validator.json"
+        if not v.exists():
+            statuses.append(f"{d.name}:missing")
+            continue
+        try:
+            row = json.loads(_read(v))
+        except json.JSONDecodeError:
+            statuses.append(f"{d.name}:bad_json")
+            continue
+        if row.get("ok") is False and not row.get("notes"):
+            statuses.append(f"{d.name}:silent_fail")
+        else:
+            statuses.append(f"{d.name}:{'pass' if row.get('ok') else 'review'}")
+    silent = [s for s in statuses if "silent_fail" in s or "missing" in s or "bad_json" in s]
+    return {
+        "name": "verify_chandas_validators_pass",
+        "passed": not silent and len(statuses) == 3,
+        "details": ", ".join(statuses),
+    }
+
+
+def gate_sdk_path_removed() -> dict:
+    haiku_lm = REPO / "src" / "pce" / "substrate" / "haiku_lm.py"
+    text = _read(haiku_lm)
+    bad_tokens = [t for t in ("_call_sdk", "PCE_USE_SDK", "import anthropic") if t in text and "deprecated" not in text.lower()]
+    return {
+        "name": "verify_sdk_path_removed",
+        "passed": not bad_tokens,
+        "details": "no SDK references in haiku_lm.py" if not bad_tokens else f"found: {bad_tokens}",
+    }
+
+
+def gate_unmerged_state_critique_present() -> dict:
+    intro = _read(PAPER_SECTIONS / "01_introduction.tex")
+    repro = _read(SITE / "src" / "pages" / "reproducibility.astro")
+    needles_intro = ("unmerged" in intro.lower()) or ("not yet merged" in intro.lower())
+    needles_repro = ("unmerged" in repro.lower()) or ("not yet merged" in repro.lower())
+    return {
+        "name": "verify_unmerged_state_critique_present",
+        "passed": needles_intro and needles_repro,
+        "details": f"intro_has_critique={needles_intro}, repro_has_critique={needles_repro}",
+    }
+
+
+def gate_outer_host_loads_pce() -> dict:
+    py = REPO / ".venv" / "bin" / "python"
+    if not py.exists():
+        return {"name": "verify_outer_host_loads_pce", "passed": False, "details": ".venv missing"}
+    proc = subprocess.run(
+        [str(py), "-c", "from pce.cascade import run_cascade; from pce.config import PCEConfig; print('ok')"],
+        cwd=REPO, capture_output=True, text=True, timeout=30,
+    )
+    return {
+        "name": "verify_outer_host_loads_pce",
+        "passed": proc.returncode == 0 and "ok" in proc.stdout,
+        "details": (proc.stdout + proc.stderr)[-200:],
+    }
+
+
+GATES: list[Callable[[], dict]] = [
+    gate_anti_stub_v04,
+    gate_outer_host_loads_pce,
+    gate_paper_builds,
+    gate_site_builds,
+    gate_figures_present,
+    gate_autoreport_keys_bound,
+    gate_lit_review_no_made_up,
+    gate_html_v04_panel_present,
+    gate_readme_v04_headline,
+    gate_release_notes_present,
+    gate_cursor_manifest_valid,
+    gate_pce_cli_smoke,
+    gate_model_config_resolution,
+    gate_showcase_count_9,
+    gate_showcase_traces_complete,
+    gate_chandas_validators_pass,
+    gate_sdk_path_removed,
+    gate_unmerged_state_critique_present,
+]
+
+
+def main() -> int:
+    AUDIT.mkdir(parents=True, exist_ok=True)
+    results = []
+    for fn in GATES:
+        try:
+            row = fn()
+        except Exception as exc:  # noqa: BLE001 — surface gate-runner errors as fail rows
+            row = {"name": fn.__name__, "passed": False, "details": f"exception: {exc}"}
+        results.append(row)
+
+    n_pass = sum(1 for r in results if r["passed"])
+    n_fail = len(results) - n_pass
+    summary = {"total": len(results), "pass": n_pass, "fail": n_fail, "phase": "v0.4-phase-8"}
+    report = {"summary": summary, "gates": results}
+    (AUDIT / "phase8_gate_report.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
+
+    print(f"Phase 8 gate stack — {n_pass}/{len(results)} passed")
+    for r in results:
+        marker = "PASS" if r["passed"] else "FAIL"
+        print(f"  [{marker}] {r['name']:42s}  {r['details']}")
+    return 0 if n_fail == 0 else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

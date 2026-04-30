@@ -1,0 +1,45 @@
+---
+interface Row { label: string; g: number; ci: [number, number]; n?: number; isPooled?: boolean; }
+interface Props { rows: Row[]; title?: string; xMin?: number; xMax?: number; }
+const { rows, title, xMin = -1.0, xMax = 1.0 } = Astro.props as Props;
+const span = xMax - xMin;
+const fmt = (x: number, d = 2) => Number.isFinite(x) ? x.toFixed(d) : '—';
+const ticks = [-1.0, -0.5, 0, 0.5, 1.0].filter(t => t >= xMin && t <= xMax);
+function pct(x: number): string {
+  return `${(((x - xMin) / span) * 100).toFixed(1)}%`;
+}
+---
+<div class="card not-prose font-sans my-4">
+  {title && <div class="font-semibold mb-3 text-sm">{title}</div>}
+  <div class="space-y-2">
+    {rows.map(r => (
+      <div class="grid grid-cols-[110px_1fr_120px] gap-3 items-center text-sm">
+        <div class="font-mono text-[0.78rem] truncate" title={r.label}>{r.label}</div>
+        <div class="relative h-6 bg-[var(--bg)] border border-[var(--rule)] rounded">
+          {ticks.map(t => (
+            <div class="absolute top-0 bottom-0 w-px bg-[var(--rule)]" style={`left:${pct(t)}`} />
+          ))}
+          <div class="absolute top-0 bottom-0 w-px bg-[var(--fg)]" style={`left:${pct(0)}`} />
+          <div
+            class:list={[
+              'absolute top-1/2 -translate-y-1/2 h-2 rounded',
+              r.isPooled ? 'bg-[var(--accent)]' : 'bg-[var(--accent)]/40',
+            ]}
+            style={`left:${pct(r.ci[0])}; width:calc(${pct(r.ci[1])} - ${pct(r.ci[0])})`}
+          />
+          <div
+            class:list={['absolute top-1/2 -translate-y-1/2 -translate-x-1/2 rounded-full', r.isPooled ? 'w-3 h-3 bg-[var(--accent)]' : 'w-2.5 h-2.5 bg-[var(--accent)]']}
+            style={`left:${pct(r.g)}`}
+            title={`g=${fmt(r.g, 3)}`}
+          />
+        </div>
+        <div class="font-mono text-[0.78rem] text-right">
+          {fmt(r.g, 2)} [{fmt(r.ci[0], 2)}, {fmt(r.ci[1], 2)}]
+        </div>
+      </div>
+    ))}
+  </div>
+  <div class="mt-2 flex justify-between text-[0.7rem] text-[var(--fg-soft)] font-mono">
+    {ticks.map(t => <span>{t.toFixed(1)}</span>)}
+  </div>
+</div>

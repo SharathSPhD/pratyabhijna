@@ -1,0 +1,55 @@
+{
+  "name": "H9.v4",
+  "status": "ok",
+  "n": 23,
+  "n_eligible_for_sign_agreement": 23,
+  "sign_agreement_rate": 0.5652173913043478,
+  "spearman_rho": 0.0,
+  "spearman_p": 1.0,
+  "supported": false,
+  "position_bias": {
+    "no_swap_mean": 0.3333333333333333,
+    "swapped_mean": -0.09090909090909091,
+    "n_no_swap": 12,
+    "n_swapped": 11
+  },
+  "by_quartile": {
+    "0": {
+      "n": 7,
+      "mean_proxy_delta": -0.04581764546719443,
+      "mean_judge_delta": 0.14285714285714285,
+      "judge_treatment_wins": 4,
+      "judge_control_wins": 3,
+      "judge_ties": 0
+    },
+    "1": {
+      "n": 5,
+      "mean_proxy_delta": -0.0024745731011909912,
+      "mean_judge_delta": -0.2,
+      "judge_treatment_wins": 2,
+      "judge_control_wins": 3,
+      "judge_ties": 0
+    },
+    "2": {
+      "n": 6,
+      "mean_proxy_delta": 0.03625039986254258,
+      "mean_judge_delta": 0.6666666666666666,
+      "judge_treatment_wins": 5,
+      "judge_control_wins": 1,
+      "judge_ties": 0
+    },
+    "3": {
+      "n": 5,
+      "mean_proxy_delta": 0.14538040524570883,
+      "mean_judge_delta": -0.2,
+      "judge_treatment_wins": 2,
+      "judge_control_wins": 3,
+      "judge_ties": 0
+    }
+  },
+  "total_cost_usd": 0.483636,
+  "treatment_arm": "haiku_cascade",
+  "control_arm": "haiku_bare",
+  "model": "global.anthropic.claude-sonnet-4-5-20250929-v1:0",
+  "prompt_sha256": "5b39ee653b4aa4fe4d3c007f2f0237b9839975c3347679d8a73a56e16e4ac0d9"
+}

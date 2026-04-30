@@ -82,6 +82,24 @@ class IntegrityResult:
         return asdict(self)
 
 
+@dataclass
+class BudgetAbortProbeResult:
+    """v0.4 (ADR-003) probe outcome: did the synthetic budget-starved fixture abort?"""
+
+    passed: bool
+    revision_skipped: bool
+    revision_skipped_reason: str
+    fe_budget_underwater: bool
+    committed: str
+    surface_revision_was_none: bool
+    n_lm_calls: int
+    notes: str = ""
+    probe_at_iso: str = ""
+
+    def to_json(self) -> dict[str, Any]:
+        return asdict(self)
+
+
 def _hash_dict(d: dict[str, Any]) -> str:
     blob = json.dumps(d, sort_keys=True, ensure_ascii=False).encode("utf-8")
     return hashlib.sha256(blob).hexdigest()[:16]
@@ -160,6 +178,99 @@ class IntegrityProbe:
 
     def invalidate(self) -> None:
         self._cache.clear()
+
+    def probe_budget_abort(self) -> BudgetAbortProbeResult:
+        """v0.4 (ADR-003) gate probe: a synthetic budget-starved cascade aborts.
+
+        Runs ``run_cascade`` with a deterministic in-memory ``LMProtocol`` and
+        a ``FreeEnergyBudget`` whose ``initial_bits`` is below ``abort_threshold``.
+        The contract is:
+
+        * ``state.audit["revision_skipped"] == True``
+        * ``state.audit["revision_skipped_reason"] == "fe_budget_underwater"``
+        * ``state.audit["fe_budget_underwater"] == True``
+        * ``state.committed == "draft"``
+        * ``state.surface_revision is None``
+        * ``len(lm.calls) == K_runtime`` (one pass only)
+
+        This is what the prove-gate v0.4-α invokes to prove that the v0.4
+        FE-budget hard gate (``ledger.should_continue_revision()``) is
+        causally wired into ``run_cascade``. The probe runs entirely on a
+        fake LM so it costs $0 and does not depend on Haiku availability.
+        """
+        # Imported inside the method so the leakage-only probe path stays
+        # importable in environments that lack the cascade dependencies.
+        from pce.active_inference.budget import FreeEnergyBudget
+        from pce.cascade import run_cascade
+        from pce.substrate.embed import Embedder
+        from pce.substrate.integrity_fakes import (
+            ProbeFakeEmbed,
+            ProbeFakeLM,
+            probe_fake_constraint,
+        )
+
+        embed: Embedder = ProbeFakeEmbed()
+        fake_lm = ProbeFakeLM()
+        starved = FreeEnergyBudget(initial_bits=-5.0, abort_threshold=-2.0)
+        notes_parts: list[str] = []
+        try:
+            state = run_cascade(
+                prompt="Compose a short response.",
+                constraint=probe_fake_constraint(embed),
+                lm=fake_lm,
+                embed=embed,
+                K=3,
+                max_tokens=24,
+                base_seed=0,
+                aspects=["aspect one", "aspect two"],
+                commit_policy="event_gated",
+                budget=starved,
+            )
+        except Exception as exc:  # pragma: no cover — defensive
+            return BudgetAbortProbeResult(
+                passed=False,
+                revision_skipped=False,
+                revision_skipped_reason="<probe-error>",
+                fe_budget_underwater=False,
+                committed="<unknown>",
+                surface_revision_was_none=False,
+                n_lm_calls=len(fake_lm.calls),
+                notes=f"probe raised {type(exc).__name__}: {exc}",
+                probe_at_iso=datetime.now(UTC).isoformat(),
+            )
+        revision_skipped = bool(state.audit.get("revision_skipped", False))
+        reason = str(state.audit.get("revision_skipped_reason", "") or "")
+        fe_underwater = bool(state.audit.get("fe_budget_underwater", False))
+        committed = str(state.committed)
+        surface_rev_none = state.surface_revision is None
+        passed = (
+            revision_skipped
+            and reason == "fe_budget_underwater"
+            and fe_underwater
+            and committed == "draft"
+            and surface_rev_none
+        )
+        if not revision_skipped:
+            notes_parts.append("revision_skipped was False")
+        if reason != "fe_budget_underwater":
+            notes_parts.append(f"reason={reason!r} (expected 'fe_budget_underwater')")
+        if not fe_underwater:
+            notes_parts.append("fe_budget_underwater was False")
+        if committed != "draft":
+            notes_parts.append(f"committed={committed!r} (expected 'draft')")
+        if not surface_rev_none:
+            notes_parts.append("surface_revision was not None")
+        return BudgetAbortProbeResult(
+            passed=passed,
+            revision_skipped=revision_skipped,
+            revision_skipped_reason=reason,
+            fe_budget_underwater=fe_underwater,
+            committed=committed,
+            surface_revision_was_none=surface_rev_none,
+            n_lm_calls=len(fake_lm.calls),
+            notes="; ".join(notes_parts),
+            probe_at_iso=datetime.now(UTC).isoformat(),
+        )
 
     @staticmethod
     def _fingerprint(haiku_lm: HaikuLM) -> tuple[str, str]:

@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HypothesisCard from '../components/HypothesisCard.astro';
+import ForestPlot from '../components/ForestPlot.astro';
+import CostPanel from '../components/CostPanel.astro';
+import { stats, costLedger, fmt, fmtP } from '../lib/stats';
+import { withBase } from '../lib/nav';
+
+const h8a = stats.shadow_revision!;
+const h8b = stats.gate_calibration!;
+const h8c = stats.commit_policy!;
+const h5 = stats.fixed_effects!.H5;
+const primary = stats.primary;
+
+const forestRows = [
+  ...Object.values(primary).map(p => ({ label: `${p.hypothesis} · ${p.domain}`, g: p.g, ci: p.ci as [number, number], n: p.n })),
+  { label: 'H5 pooled (FE)', g: h5.pooled_g, ci: h5.ci as [number, number], isPooled: true },
+];
+---
+<BaseLayout title="Overview" active="/">
+  <h1>Pratyabhijñā Creative Engine v0.4</h1>
+  <p class="text-[var(--fg-soft)] text-[1.1rem]"><em>A mechanism study of recursive self-reflexivity layers for LLM creative cognition.</em></p>
+
+  <p>
+    PCE v0.4 is a pre-registered, mechanism-level study of a recursive self-reflexivity layer for large
+    language models built on the Pratyabhijñā philosophy of Abhinavagupta and a deliberately small subset
+    of active inference. We do not claim to have re-engineered creativity; we claim to have isolated which
+    sub-mechanisms inside a five-śakti cascade carry the load and which do not, with all numbers visible on
+    this page and reproducible from the open repository.
+  </p>
+
+  <p>
+    The headline is mixed and honest. The cascade-vs-bare contrasts (H1 through H4, pooled in H5) do not
+    move at <span class="font-mono text-sm">n = {Object.values(primary).reduce((s, p) => s + p.n, 0)}</span>
+    paired items per protocol; the pooled effect is <span class="font-mono">g = {fmt(h5.pooled_g, 2)}</span>
+    with a 95% CI that crosses zero. The recursive revision pass is, however, robustly positive on its own
+    (<span class="font-mono">H8a: g = {fmt(h8a.g, 2)}, p = {fmtP(h8a.p)}</span>), and a learned commit gate
+    outperforms the v0.3 event-driven gate at predicting <em>when</em> a revision is worth committing
+    (<span class="font-mono">F1 = {fmt(h8b.learned_gate.f1, 2)}</span> vs
+    <span class="font-mono">{fmt(h8b.event_gated.f1, 2)}</span>). The proxy scorer disagrees with a calibrated
+    Sonnet-4.5 LLM-judge at <span class="font-mono">ρ = 0.0</span>, which we treat as a methodological
+    flag rather than a refutation.
+  </p>
+
+  <h2>Headline numbers</h2>
+  <div class="not-prose grid grid-cols-1 md:grid-cols-2 gap-3 my-4">
+    <HypothesisCard
+      id="H8a"
+      title="Shadow revision improves the surface"
+      g={h8a.g}
+      ci={h8a.ci as [number, number]}
+      p={h8a.p}
+      n={h8a.n}
+      supported={true}
+      note="Paired score(revision) − score(draft), pooled across all cascade items."
+    />
+    <HypothesisCard
+      id="H5"
+      title="Fixed-effects pool of cascade-vs-bare"
+      g={h5.pooled_g}
+      ci={h5.ci as [number, number]}
+      p={null}
+      n={Object.values(h5.per_domain_n).reduce((a, b) => a + b, 0)}
+      supported={false}
+      note="Inverse-variance fixed-effects meta-pool of H1–H4 (ADR-005)."
+    />
+  </div>
+
+  <h2>Forest plot — primary contrasts and pooled effect</h2>
+  <ForestPlot rows={forestRows} title="H1–H4 per-domain Hedges' g (BCa 95% CI) plus H5 fixed-effects pool" xMin={-1} xMax={1} />
+
+  <CostPanel totalUsd={costLedger.total_usd} nCalls={costLedger.n_calls} perDomain={costLedger.per_domain} />
+
+  <h2>Where to read more</h2>
+  <ul>
+    <li><a href={withBase('/results')}>Results</a> — every hypothesis with prose, charts, and per-item drill-downs.</li>
+    <li><a href={withBase('/discussion')}>Discussion</a> — the eight-subsection mechanism reading, including the H9 flag and the v0.3 unmerged-state context.</li>
+    <li><a href={withBase('/showcase')}>Showcase</a> — nine creative outputs (Sanskrit chandas, English poetry, scientific creativity) with the full five-śakti trace animated.</li>
+    <li><a href={withBase('/plugin')}>Plugin &amp; CLI</a> — install paths for Cursor, Claude Code, and the standalone <span class="kbd">pce</span> CLI.</li>
+    <li><a href={withBase('/paper/main.pdf')}>Paper PDF</a> — the v0.4 mechanism-study paper.</li>
+  </ul>
+
+  <p class="text-[0.9rem] text-[var(--fg-soft)]">
+    This site is the second project in an ongoing program that grounds agent design in classical Indian
+    darśana. The first, <a href="https://open.substack.com/pub/technektar/p/when-the-context-window-is-big-and" rel="noopener">Pratyākṣa</a>,
+    is a context-discipline plugin. PCE is the recognition+creativity counterpart.
+  </p>
+</BaseLayout>

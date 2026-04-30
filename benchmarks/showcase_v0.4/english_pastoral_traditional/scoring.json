@@ -1,0 +1,20 @@
+{
+  "axes_cascade": {
+    "creativity": 0.7572415173053741,
+    "lexical_diversity": 0.9333333333333333,
+    "idiosyncrasy": 0.8050425499677658,
+    "emotional_resonance": 0.0,
+    "literary_devices": 0.5,
+    "imagery": 0.4
+  },
+  "axes_bare": {
+    "creativity": 0.7589536756277084,
+    "lexical_diversity": 1.0,
+    "idiosyncrasy": 0.8055646196007729,
+    "emotional_resonance": 0.0,
+    "literary_devices": 0.5,
+    "imagery": 0.0
+  },
+  "composite_cascade": 0.5659362334344122,
+  "composite_bare": 0.5107530492047468
+}

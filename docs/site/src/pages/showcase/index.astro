@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ShowcaseCard from '../../components/ShowcaseCard.astro';
+import { showcaseIndex } from '../../lib/stats';
+
+const sanskrit = showcaseIndex.demos.filter(d => d.category === 'sanskrit');
+const english = showcaseIndex.demos.filter(d => d.category === 'english');
+const science = showcaseIndex.demos.filter(d => d.category === 'science');
+---
+<BaseLayout title="Showcase" active="/showcase">
+  <h1>Showcase — {showcaseIndex.total} demos with full cascade traces</h1>
+
+  <p>
+    Nine creative outputs covering three Sanskrit chandas, three English poetry styles, and three
+    scientific creativity prompts. Sanskrit demos use curated reference verses validated by
+    <span class="kbd">tools.sanskrit_chandas</span>; the v0.5 ladder swaps in a fresh Bedrock cascade
+    output once a chandas-aware scorer is wired into the cascade. English and scientific demos are real
+    Phase 7 cascade traces with draft, shadow revision, and judge data preserved.
+  </p>
+
+  <h2>Sanskrit chandas</h2>
+  <div class="not-prose grid grid-cols-1 md:grid-cols-3 gap-3">
+    {sanskrit.map(d => <ShowcaseCard {...d} />)}
+  </div>
+
+  <h2>English poetry</h2>
+  <div class="not-prose grid grid-cols-1 md:grid-cols-3 gap-3">
+    {english.map(d => <ShowcaseCard {...d} />)}
+  </div>
+
+  <h2>Scientific creativity</h2>
+  <div class="not-prose grid grid-cols-1 md:grid-cols-3 gap-3">
+    {science.map(d => <ShowcaseCard {...d} />)}
+  </div>
+</BaseLayout>

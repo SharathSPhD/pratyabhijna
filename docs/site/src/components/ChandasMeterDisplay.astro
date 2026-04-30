@@ -1,0 +1,35 @@
+---
+interface Props {
+  chandas: string | null | undefined;
+  syllables: number | null | undefined;
+  expected: number | null | undefined;
+  pattern: string | null | undefined;
+  ok: boolean | null | undefined;
+}
+const { chandas, syllables, expected, pattern, ok } = Astro.props as Props;
+const chars = (pattern ?? '').split('');
+---
+<div class="card not-prose font-sans my-4">
+  <div class="flex items-baseline justify-between mb-2">
+    <div>
+      <div class="font-mono text-[0.7rem] uppercase tracking-widest text-[var(--fg-soft)]">chandas validator</div>
+      <div class="font-semibold">{chandas ?? '—'} · {syllables ?? '—'}{expected ? ` / ${expected}` : ''} syllables</div>
+    </div>
+    <span class={`text-[0.78rem] font-mono px-2 py-0.5 rounded-full ${ok ? 'bg-emerald-100 text-emerald-900 dark:bg-emerald-900/40 dark:text-emerald-100' : 'bg-amber-100 text-amber-900 dark:bg-amber-900/40 dark:text-amber-100'}`}>{ok ? 'pass' : 'review'}</span>
+  </div>
+  {chars.length > 0 && (
+    <div class="flex flex-wrap gap-1 font-mono text-[0.78rem]">
+      {chars.map((c) => (
+        <span
+          class:list={[
+            'inline-flex items-center justify-center w-7 h-7 rounded border',
+            c === 'G'
+              ? 'bg-[var(--accent-soft)] text-[var(--accent)] border-[var(--accent)]/40'
+              : 'bg-[var(--bg)] text-[var(--fg-soft)] border-[var(--rule)]',
+          ]}
+          title={c === 'G' ? 'guru (heavy)' : 'laghu (light)'}
+        >{c}</span>
+      ))}
+    </div>
+  )}
+</div>

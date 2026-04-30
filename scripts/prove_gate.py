@@ -35,6 +35,13 @@ For ``haiku_cascade`` it additionally asserts (ADR-002 / ADR-003):
 * When commit policy committed *revision*, ``revision_differs_from_draft``
   is true (the revision pass actually changed the surface).
 
+v0.4 prove-gate v0.4-α additions (ADR-001 / ADR-003 / ADR-006):
+
+* ``IntegrityProbe.probe_budget_abort()`` runs a synthetic FE-budget-starved
+  cascade against an in-memory fake LM and asserts ``revision_skipped=True``,
+  ``revision_skipped_reason="fe_budget_underwater"``, and the draft was
+  committed. This proves the FE budget is causally wired into ``run_cascade``.
+
 Per-arm payload is written to ``audit/prove_gate/<case>/<arm>/result.json``;
 overall summary lands at ``audit/prove_gate/overall.json``.
 
@@ -443,6 +450,23 @@ def main() -> int:
         encoding="utf-8",
     )
 
+    # v0.4 prove-gate v0.4-α: FE-budget abort probe (ADR-003). $0; uses the
+    # in-memory fake LM, so it runs even when the Haiku quota is exhausted.
+    print("[gate] running budget-abort probe (v0.4-α) ...", flush=True)
+    budget_probe = probe.probe_budget_abort()
+    print(
+        f"[gate]   budget_abort.passed={budget_probe.passed} "
+        f"reason={budget_probe.revision_skipped_reason!r} "
+        f"committed={budget_probe.committed!r} "
+        f"n_lm_calls={budget_probe.n_lm_calls}",
+        flush=True,
+    )
+    budget_payload = budget_probe.to_json()
+    (AUDIT_DIR / "budget_abort_probe.json").write_text(
+        json.dumps(budget_payload, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+
     all_passed = True
     summaries: list[dict[str, Any]] = []
     for case in args.cases:
@@ -459,11 +483,15 @@ def main() -> int:
         summaries.append(summary)
         all_passed = all_passed and passed
     cost_report = haiku_lm.report()
+    # v0.4-α: the budget-abort probe is a hard gate too.
+    if not budget_probe.passed:
+        all_passed = False
     overall: dict[str, Any] = {
         "passed": bool(all_passed),
         "case_summaries": summaries,
         "haiku_cost_report": cost_report,
         "integrity_probe": integrity_payload,
+        "budget_abort_probe": budget_payload,
     }
     overall_path = AUDIT_DIR / "overall.json"
     overall_path.write_text(
@@ -478,6 +506,11 @@ def main() -> int:
         for s in summaries:
             if s["failures"]:
                 print(f"  - {s['case']}: {s['failures']}", file=sys.stderr)
+        if not budget_probe.passed:
+            print(
+                f"  - budget_abort_probe: {budget_probe.notes}",
+                file=sys.stderr,
+            )
         if args.strict:
             return 1
     return 0

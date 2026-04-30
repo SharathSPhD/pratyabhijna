@@ -1,0 +1,28 @@
+---
+interface Props {
+  totalUsd: number;
+  nCalls: number;
+  perDomain: Record<string, { calls: number; cost_usd: number }>;
+}
+const { totalUsd, nCalls, perDomain } = Astro.props as Props;
+const fmt = (x: number, d = 2) => Number.isFinite(x) ? x.toFixed(d) : '—';
+const rows = Object.entries(perDomain).sort((a, b) => b[1].cost_usd - a[1].cost_usd);
+const maxCost = Math.max(...rows.map(([, v]) => v.cost_usd), 0.01);
+---
+<div class="card not-prose font-sans my-4">
+  <div class="flex items-baseline justify-between mb-3">
+    <div class="font-semibold text-sm">Bedrock cost ledger (Phase 7)</div>
+    <div class="font-mono text-[0.78rem] text-[var(--fg-soft)]">${fmt(totalUsd, 2)} USD · {nCalls.toLocaleString()} calls</div>
+  </div>
+  <div class="space-y-2">
+    {rows.map(([domain, v]) => (
+      <div class="grid grid-cols-[150px_1fr_140px] gap-3 items-center text-sm">
+        <div class="font-mono text-[0.78rem]">{domain}</div>
+        <div class="h-4 bg-[var(--bg)] border border-[var(--rule)] rounded">
+          <div class="h-full bg-[var(--accent)]/70 rounded" style={`width:${(v.cost_usd / maxCost) * 100}%`}></div>
+        </div>
+        <div class="font-mono text-[0.78rem] text-right">${fmt(v.cost_usd, 2)} · {v.calls} calls</div>
+      </div>
+    ))}
+  </div>
+</div>

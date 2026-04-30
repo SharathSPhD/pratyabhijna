@@ -1,0 +1,30 @@
+{
+  "haiku": {
+    "name": "claude-haiku",
+    "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+    "backend": "cli",
+    "cli_bin": "claude",
+    "timeout_s": 120,
+    "cost_cap_usd": 1000000.0,
+    "ledger_total_usd": 3.4761780000000018,
+    "ledger_n_calls": 296,
+    "clean_substrate": true,
+    "isolation_flags": [
+      "--tools",
+      "",
+      "--strict-mcp-config",
+      "--disable-slash-commands",
+      "--setting-sources",
+      "",
+      "--permission-mode",
+      "bypassPermissions",
+      "--no-session-persistence"
+    ],
+    "clean_home": "/var/folders/cg/hs78lpqs79g_w632nbt6nvb00000gn/T/pce_home_9508",
+    "clean_cwd": "/var/folders/cg/hs78lpqs79g_w632nbt6nvb00000gn/T/pce_clean_9508",
+    "supports_logprobs": false,
+    "supports_score": false,
+    "supports_entropy": false
+  },
+  "ts": 1777507907.9538062
+}

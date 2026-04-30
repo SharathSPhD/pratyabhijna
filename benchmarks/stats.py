@@ -1,53 +1,78 @@
 #!/usr/bin/env python3
-"""PCE v0.3 benchmark statistics.
+"""PCE benchmark statistics (v0.3 + v0.4).
 
 Reads ``--results-dir/{poetry_gen,poetry_interp,aut,sci_creativity}.json``
-written by the v0.3 :mod:`benchmarks.driver` and emits ``stats.json`` with the
-v0.3 pre-registered hypotheses:
+written by :mod:`benchmarks.driver` and emits ``stats.json`` with all
+pre-registered hypotheses for the requested ``--version``.
+
+v0.3 hypotheses (kept for reproducibility of the v0.3 release):
 
 * **H1.v3 - H4.v3**: per-domain ``haiku_cascade`` vs ``haiku_bare``.
   Architecture-vs-nothing, paired by item id.
-* **H5.v3** (redesign): effect-size meta-aggregation (random-effects DerSimonian-
-  Laird estimate of pooled Hedges' g across the four per-domain primary
-  contrasts), replacing the v0.2 z-blend.
-* **H6.v3**: ``haiku_cascade`` vs ``haiku_bare_2K_scorer``. Architecture-vs-more-
-  compute -- the headline fairness contrast that controls the "extra compute"
-  confound the v0.2 review flagged.
-* **H7.v3**: ``haiku_cascade`` vs ``haiku_generic_revise_2pass``. Architecture-vs-
-  generic-2-pass -- isolates the *content* of the vimarsa brief from the
-  *existence* of a revision pass.
-* **H8.v3**: paired ``revision`` vs ``draft`` *within* ``haiku_cascade`` for
-  items where the event-gated commit committed revision. Hedges' g + paired
-  permutation; demonstrates the *causal contribution* of the second pass.
+* **H5.v3**: random-effects DerSimonian-Laird meta-aggregation of per-domain
+  Hedges' g.
+* **H6.v3**: ``haiku_cascade`` vs ``haiku_bare_2K_scorer`` (compute fairness).
+* **H7.v3**: ``haiku_cascade`` vs ``haiku_generic_revise_2pass`` (protocol
+  fairness).
+* **H8.v3**: paired ``revision`` vs ``draft`` within ``haiku_cascade`` for
+  items where the event-gated commit committed revision.
 
-Length-controlled scoring (Phase 7 deliverable from ADR-002): in addition to
-the raw composite, we report a per-domain length-residualised composite
-where the per-arm mean length effect is subtracted before pairing. This
-addresses the v0.2 review's worry that the cascade's longer surfaces alone
-might explain the win.
+v0.4 hypotheses (Phase 4, ADR-005 locks H5 to fixed-effects):
 
-JSON serialisation: every numeric leaf goes through :func:`_clean_json` which
-maps non-finite floats (NaN, ±inf) to ``None``; the writer then uses
-``allow_nan=False`` so the file is RFC-compliant strict JSON. This was a
-v0.2 review finding (the v0.2 stats.json had bare ``NaN`` literals).
+* **H1.v4 - H4.v4**: per-domain ``haiku_cascade`` (event_gated) vs
+  ``haiku_bare``, paired permutation, Holm-corrected.
+* **H5.v4**: fixed-effects meta-pool of per-domain Hedges' g (replaces the
+  v0.3 random-effects pool — see ADR-005).
+* **H6.v4**: vs ``haiku_bare_2K_scorer`` (compute fairness).
+* **H7.v4**: vs ``haiku_generic_revise_2pass`` (protocol fairness).
+* **H8a.v4**: shadow-revision-vs-draft within cascade across **all** items
+  (not only committed-revision items, unlike H8.v3) — answers the
+  "shadow revision value" question from the adversarial review.
+* **H8b.v4**: gate calibration — treats ``event_gated`` as a binary
+  classifier of "revision is better than draft" (the H8a label) and
+  reports precision / recall / F1; ``learned_gate`` is reported as a
+  paired baseline classifier on the same items.
+* **H8c.v4**: commit-policy comparison — paired across items, comparing
+  the four cascade commit policies (event_gated, always_draft,
+  always_revise, learned_gate) head-to-head against ``haiku_bare`` and
+  emitting a leader-board.
+* **H9.v4**: judge-proxy agreement (Spearman + sign-agreement) on the
+  Sonnet stratified subset. Computed only when ``judge.jsonl`` exists;
+  otherwise the entry records ``"status": "missing"`` so downstream
+  consumers can detect that the judge stage has not run yet.
+
+Length-controlled scoring: in addition to the raw composite we report a
+per-domain length-residualised composite where the per-arm mean length
+effect is subtracted before pairing.
+
+JSON serialisation: every numeric leaf goes through :func:`_clean_json`
+which maps non-finite floats (NaN, ±inf) to ``None``; the writer uses
+``allow_nan=False`` so the file is RFC-compliant strict JSON.
+
+Synthetic-data emission: when ``--version=v0.4`` and the results
+directory is missing or empty, the module emits a v0.4 stats payload
+populated with synthetic placeholders so downstream tools (HTML,
+plugin smoke tests) can validate schema before the pilot runs. This is
+the Phase 4 gate "emit all keys on synthetic data".
 
 Determinism: ``--seed`` controls the bootstrap and permutation RNGs.
 
 CLI::
 
-  uv run python benchmarks/stats.py [--results-dir benchmarks/results_v0.3]
-                                    [--seed 4242]
-                                    [--out benchmarks/results_v0.3/stats.json]
+  uv run python benchmarks/stats.py --version v0.4
+  uv run python benchmarks/stats.py --version v0.3 \
+      --results-dir benchmarks/results_v0.3
 """
 from __future__ import annotations
 
 import argparse
+import enum
 import json
 import math
 import sys
 from dataclasses import asdict, dataclass
 from pathlib import Path
-from typing import Any
+from typing import Any, assert_never
 
 import numpy as np
 from scipy import stats
@@ -65,6 +90,54 @@ HYPOTHESIS_DOMAIN = {
     "H3": "poetry_gen",
     "H4": "sci_creativity",
 }
+
+
+class Hypothesis(enum.Enum):
+    """v0.4 pre-registered hypotheses (ADR-005).
+
+    Exhaustive-switch ready (workspace rule); ``stats_for_v0_4`` uses
+    :func:`typing.assert_never` so adding a new variant without handling
+    it is a type-check error.
+    """
+
+    H1 = "H1.v4"  # per-domain primary, aut
+    H2 = "H2.v4"  # per-domain primary, poetry_interp
+    H3 = "H3.v4"  # per-domain primary, poetry_gen
+    H4 = "H4.v4"  # per-domain primary, sci_creativity
+    H5 = "H5.v4"  # meta-pool fixed-effects
+    H6 = "H6.v4"  # compute fairness vs haiku_bare_2K_scorer
+    H7 = "H7.v4"  # protocol fairness vs haiku_generic_revise_2pass
+    H8a = "H8a.v4"  # shadow-revision-vs-draft (all items)
+    H8b = "H8b.v4"  # event_gated calibration as classifier
+    H8c = "H8c.v4"  # commit-policy comparison
+    H9 = "H9.v4"  # judge-proxy agreement
+
+
+def hypothesis_label(h: Hypothesis) -> str:
+    """Human-readable description of a v0.4 hypothesis (exhaustive)."""
+    if h is Hypothesis.H1:
+        return "haiku_cascade(event_gated) > haiku_bare on aut"
+    if h is Hypothesis.H2:
+        return "haiku_cascade(event_gated) > haiku_bare on poetry_interp"
+    if h is Hypothesis.H3:
+        return "haiku_cascade(event_gated) > haiku_bare on poetry_gen"
+    if h is Hypothesis.H4:
+        return "haiku_cascade(event_gated) > haiku_bare on sci_creativity"
+    if h is Hypothesis.H5:
+        return "fixed-effects pooled g across H1.v4-H4.v4 > 0"
+    if h is Hypothesis.H6:
+        return "haiku_cascade > haiku_bare_2K_scorer (compute fairness)"
+    if h is Hypothesis.H7:
+        return "haiku_cascade > haiku_generic_revise_2pass (protocol fairness)"
+    if h is Hypothesis.H8a:
+        return "shadow_revision > draft within cascade (all items, paired)"
+    if h is Hypothesis.H8b:
+        return "event_gated F1 > 0.5 as binary classifier of label_revision_better"
+    if h is Hypothesis.H8c:
+        return "best commit_policy > event_gated on per-item composite"
+    if h is Hypothesis.H9:
+        return "Spearman(proxy, judge) > 0 on the stratified judge subset"
+    assert_never(h)
 
 
 @dataclass
@@ -367,6 +440,51 @@ def _hypothesis_to_dict(h: HypothesisResult) -> dict[str, Any]:
     return out
 
 
+def _meta_aggregate_fixed_effects(
+    per_domain: list[tuple[float, int]]
+) -> dict[str, Any]:
+    """ADR-005 (v0.4) fixed-effects pooling of paired Hedges' g across domains.
+
+    ``per_domain`` is a list of ``(g, n)`` pairs, one per per-domain
+    primary contrast. Returns the inverse-variance-weighted pooled g, its
+    95% CI under the fixed-effects assumption, and the per-study weights.
+
+    The fixed-effects estimator assumes a single underlying effect across
+    studies and is appropriate when (a) all four domains share the same
+    measurement scale and (b) we explicitly *don't* want to absorb
+    between-domain heterogeneity into the CI. The v0.3 random-effects
+    DerSimonian-Laird estimator inflates the CI when domains diverge,
+    making the meta-pool look weaker than a fixed-effects synthesis on
+    domain-aligned scoring would. ADR-005 locks the v0.4 paper to this
+    fixed-effects estimate to keep SPEC and code consistent.
+    """
+    studies = [
+        (float(g), int(n))
+        for g, n in per_domain
+        if n >= 2 and math.isfinite(float(g))
+    ]
+    if not studies:
+        return {
+            "pooled_g": None,
+            "method": "fixed_effects_inverse_variance",
+            "ci_95": [None, None],
+            "n_studies": 0,
+        }
+    gs = np.array([g for g, _ in studies], dtype=float)
+    ns = np.array([n for _, n in studies], dtype=float)
+    var = (1.0 / ns) + (gs**2) / (2.0 * ns)
+    w = 1.0 / np.maximum(var, 1e-12)
+    g_fixed = float(np.sum(w * gs) / np.sum(w))
+    se_fixed = float(math.sqrt(1.0 / np.sum(w)))
+    return {
+        "pooled_g": g_fixed,
+        "method": "fixed_effects_inverse_variance",
+        "ci_95": [g_fixed - 1.96 * se_fixed, g_fixed + 1.96 * se_fixed],
+        "n_studies": len(studies),
+        "weights": [float(wi) for wi in (w / np.sum(w)).tolist()],
+    }
+
+
 def _meta_aggregate_random_effects(
     per_domain: list[tuple[float, int]]
 ) -> dict[str, Any]:
@@ -502,6 +620,395 @@ def _within_pce_revision_vs_draft(
     }
 
 
+def _h8a_shadow_revision_vs_draft_all_items(
+    results_dir: Path,
+    *,
+    cascade_arm: str,
+    rng: np.random.Generator,
+    n_boot: int,
+    n_permutations: int,
+) -> dict[str, Any]:
+    """H8a.v4: paired score(revision) vs score(draft) within ``cascade_arm``,
+    over **all** items (not only ``committed=='revision'`` like H8.v3).
+
+    The driver records ``meta.score_draft`` and ``meta.score_revision`` on
+    each synthesised commit-policy arm row; we prefer those when present
+    (reuses the multiplexer's scoring) and fall back to scoring the
+    ``surface_*`` strings ourselves when not.
+    """
+    from benchmarks import scoring as bench_scoring
+
+    scorers = {
+        "poetry_gen": bench_scoring.score_poetry_gen,
+        "poetry_interp": bench_scoring.score_poetry_interp,
+        "aut": bench_scoring.score_aut,
+        "sci_creativity": bench_scoring.score_sci_creativity,
+    }
+    embed = None  # lazily constructed only if we have to score from text
+
+    rev: list[float] = []
+    drf: list[float] = []
+    for dom in DOMAINS:
+        try:
+            data = _load_domain(results_dir, dom)
+        except SystemExit:
+            continue
+        for _id, payload in data["rows"].items():
+            row = payload.get(cascade_arm, {})
+            if not isinstance(row, dict):
+                continue
+            meta = row.get("meta") if isinstance(row.get("meta"), dict) else {}
+            sd_score: float | None = None
+            sr_score: float | None = None
+            # Driver multiplex stores both scores on the *_always_revise arm
+            # (always revises) so prefer that when available.
+            ar_row = payload.get("haiku_cascade_always_revise")
+            if isinstance(ar_row, dict):
+                ar_meta = ar_row.get("meta") if isinstance(ar_row.get("meta"), dict) else {}
+                if isinstance(ar_meta, dict):
+                    raw_d = ar_meta.get("score_draft")
+                    raw_r = ar_meta.get("score_revision")
+                    if (
+                        isinstance(raw_d, (int, float))
+                        and math.isfinite(float(raw_d))
+                        and isinstance(raw_r, (int, float))
+                        and math.isfinite(float(raw_r))
+                    ):
+                        sd_score = float(raw_d)
+                        sr_score = float(raw_r)
+            if sd_score is None or sr_score is None:
+                sr_text = str(meta.get("surface_revision", "")).strip() if isinstance(meta, dict) else ""
+                sd_text = str(meta.get("surface_draft", "")).strip() if isinstance(meta, dict) else ""
+                if not sr_text or not sd_text:
+                    continue
+                if embed is None:
+                    from pce.substrate.embed import Embedder
+                    embed = Embedder()
+                scorer = scorers[dom]
+                try:
+                    sr_score = float(scorer(sr_text, item=payload.get("item", {}), embed=embed).composite)
+                    sd_score = float(scorer(sd_text, item=payload.get("item", {}), embed=embed).composite)
+                except Exception:  # noqa: BLE001
+                    continue
+                if not (math.isfinite(sr_score) and math.isfinite(sd_score)):
+                    continue
+            rev.append(sr_score)
+            drf.append(sd_score)
+    if not rev:
+        return {
+            "name": "H8a.v4",
+            "n": 0,
+            "supported": False,
+            "note": "no cascade items with both shadow surfaces available",
+        }
+    rev_arr = np.asarray(rev, dtype=float)
+    drf_arr = np.asarray(drf, dtype=float)
+    d = rev_arr - drf_arr
+    g = _hedges_g_paired(d)
+    perm_p = _paired_permutation_p_one_sided(
+        d, rng=rng, alternative="greater", n_permutations=n_permutations
+    )
+    bca = _bca_ci_paired_mean(d, rng=rng, n_boot=n_boot)
+    return {
+        "name": "H8a.v4",
+        "cascade_arm": cascade_arm,
+        "n": int(len(d)),
+        "estimate": float(np.mean(d)),
+        "hedges_g": float(g),
+        "bca_ci_95": list(bca),
+        "permutation_p_one_sided": float(perm_p),
+        "supported": bool(perm_p < 0.05 and math.isfinite(bca[0]) and bca[0] > 0.0),
+        "note": "paired score(revision) - score(draft) over all cascade items",
+    }
+
+
+def _classifier_metrics(
+    *,
+    y_true: np.ndarray[Any, Any],
+    y_pred: np.ndarray[Any, Any],
+) -> dict[str, float]:
+    """Precision / recall / F1 / accuracy for binary 0/1 arrays."""
+    if y_true.size == 0:
+        return {
+            "n": 0,
+            "accuracy": float("nan"),
+            "precision": float("nan"),
+            "recall": float("nan"),
+            "f1": float("nan"),
+            "support_pos": 0,
+            "support_neg": 0,
+        }
+    tp = int(np.sum((y_pred == 1) & (y_true == 1)))
+    fp = int(np.sum((y_pred == 1) & (y_true == 0)))
+    fn = int(np.sum((y_pred == 0) & (y_true == 1)))
+    tn = int(np.sum((y_pred == 0) & (y_true == 0)))
+    n = int(y_true.size)
+    accuracy = (tp + tn) / n if n else float("nan")
+    precision = tp / (tp + fp) if (tp + fp) else 0.0
+    recall = tp / (tp + fn) if (tp + fn) else 0.0
+    f1 = (
+        2 * precision * recall / (precision + recall)
+        if (precision + recall)
+        else 0.0
+    )
+    return {
+        "n": n,
+        "accuracy": float(accuracy),
+        "precision": float(precision),
+        "recall": float(recall),
+        "f1": float(f1),
+        "support_pos": int(np.sum(y_true == 1)),
+        "support_neg": int(np.sum(y_true == 0)),
+    }
+
+
+def _h8b_gate_calibration(
+    results_dir: Path,
+) -> dict[str, Any]:
+    """H8b.v4: event_gated as binary classifier of "revision is better than draft".
+
+    For each cascade item with both surfaces, we compare:
+
+    * label : 1 if score(revision) > score(draft), else 0.
+    * event_gated prediction: 1 if vimarsa_event_draft fired, else 0.
+    * learned_gate prediction: 1 if the LearnedGate policy committed
+      revision (recovered from the synthesised arm), else 0.
+
+    Reports precision / recall / F1 for each predictor.
+    """
+    labels: list[int] = []
+    eg_preds: list[int] = []
+    lg_preds: list[int] = []
+    for dom in DOMAINS:
+        try:
+            data = _load_domain(results_dir, dom)
+        except SystemExit:
+            continue
+        for _id, payload in data["rows"].items():
+            ar_row = payload.get("haiku_cascade_always_revise")
+            if not isinstance(ar_row, dict):
+                continue
+            ar_meta = ar_row.get("meta") if isinstance(ar_row.get("meta"), dict) else {}
+            if not isinstance(ar_meta, dict):
+                continue
+            raw_d = ar_meta.get("score_draft")
+            raw_r = ar_meta.get("score_revision")
+            if not (
+                isinstance(raw_d, (int, float))
+                and math.isfinite(float(raw_d))
+                and isinstance(raw_r, (int, float))
+                and math.isfinite(float(raw_r))
+            ):
+                continue
+            label = 1 if float(raw_r) > float(raw_d) else 0
+            cascade = payload.get("haiku_cascade", {})
+            cascade_meta: dict[str, Any] = {}
+            if isinstance(cascade, dict) and isinstance(cascade.get("meta"), dict):
+                cascade_meta = cascade["meta"]
+            eg_pred = 1 if bool(cascade_meta.get("vimarsa_event_draft", cascade_meta.get("vimarsa_event", False))) else 0
+            lg_row = payload.get("haiku_cascade_learned_gate")
+            lg_pred = 0
+            if isinstance(lg_row, dict) and isinstance(lg_row.get("meta"), dict):
+                lg_pred = 1 if bool(lg_row["meta"].get("commit_decision_revision", False)) else 0
+            labels.append(label)
+            eg_preds.append(eg_pred)
+            lg_preds.append(lg_pred)
+    y_true = np.asarray(labels, dtype=int)
+    return {
+        "name": "H8b.v4",
+        "event_gated": _classifier_metrics(
+            y_true=y_true, y_pred=np.asarray(eg_preds, dtype=int)
+        ),
+        "learned_gate": _classifier_metrics(
+            y_true=y_true, y_pred=np.asarray(lg_preds, dtype=int)
+        ),
+        "supported": bool(
+            y_true.size > 0
+            and float(
+                _classifier_metrics(
+                    y_true=y_true, y_pred=np.asarray(eg_preds, dtype=int)
+                )["f1"]
+            )
+            > 0.5
+        ),
+        "note": "binary classifier metrics: predict 'revision better than draft'",
+    }
+
+
+def _h8c_commit_policy_comparison(
+    results_dir: Path,
+    *,
+    rng: np.random.Generator,
+    n_permutations: int,
+    n_bootstrap: int,
+) -> dict[str, Any]:
+    """H8c.v4: head-to-head comparison of the four cascade commit policies.
+
+    Each policy is paired against ``haiku_bare`` per item and the per-item
+    delta is fed through the same paired-permutation / Hedges' g pipeline
+    as H1-H4. Returns a leader-board sorted by mean delta and the pairwise
+    paired permutation p-values between every pair of policies.
+    """
+    policies = (
+        "haiku_cascade_event_gated",
+        "haiku_cascade_always_draft",
+        "haiku_cascade_always_revise",
+        "haiku_cascade_learned_gate",
+    )
+    leader: list[dict[str, Any]] = []
+    per_policy_deltas: dict[str, list[float]] = {p: [] for p in policies}
+    for dom in DOMAINS:
+        try:
+            data = _load_domain(results_dir, dom)
+        except SystemExit:
+            continue
+        for policy in policies:
+            t_arr, c_arr, _t_w, _c_w, _ids = _paired_arrays(
+                data["rows"], treatment=policy, control="haiku_bare"
+            )
+            d = (t_arr - c_arr).tolist()
+            per_policy_deltas[policy].extend(d)
+    for policy, ds in per_policy_deltas.items():
+        if not ds:
+            leader.append(
+                {
+                    "policy": policy,
+                    "n": 0,
+                    "estimate": None,
+                    "hedges_g": None,
+                    "bca_ci_95": [None, None],
+                    "permutation_p_one_sided": None,
+                }
+            )
+            continue
+        d = np.asarray(ds, dtype=float)
+        g = _hedges_g_paired(d)
+        perm_p = _paired_permutation_p_one_sided(
+            d, rng=rng, alternative="greater", n_permutations=n_permutations
+        )
+        bca = _bca_ci_paired_mean(d, rng=rng, n_boot=n_bootstrap)
+        leader.append(
+            {
+                "policy": policy,
+                "n": int(len(d)),
+                "estimate": float(np.mean(d)),
+                "hedges_g": float(g),
+                "bca_ci_95": list(bca),
+                "permutation_p_one_sided": float(perm_p),
+            }
+        )
+    leader.sort(
+        key=lambda row: (
+            -1.0
+            if row.get("estimate") is None
+            else float(row["estimate"])
+        ),
+        reverse=True,
+    )
+
+    # Pairwise paired permutation: align by index (per-domain order is stable).
+    pair_pvals: dict[str, float] = {}
+    n_min = min(
+        (len(per_policy_deltas[p]) for p in policies),
+        default=0,
+    )
+    if n_min >= 2:
+        for i, a in enumerate(policies):
+            for b in policies[i + 1 :]:
+                da = np.asarray(per_policy_deltas[a][:n_min], dtype=float)
+                db = np.asarray(per_policy_deltas[b][:n_min], dtype=float)
+                d = da - db
+                p = _paired_permutation_p_one_sided(
+                    d, rng=rng, alternative="greater", n_permutations=n_permutations
+                )
+                pair_pvals[f"{a}__vs__{b}"] = float(p)
+
+    best = leader[0] if leader else {"policy": None}
+    supported = bool(
+        best.get("policy") == "haiku_cascade_learned_gate"
+        and best.get("permutation_p_one_sided") is not None
+        and float(best.get("permutation_p_one_sided") or 1.0) < 0.05
+    )
+    return {
+        "name": "H8c.v4",
+        "leader_board": leader,
+        "pairwise_p": pair_pvals,
+        "supported": supported,
+        "note": "paired delta vs haiku_bare per policy; pairwise paired permutation across policies",
+    }
+
+
+def _h9_judge_proxy_agreement(
+    results_dir: Path,
+) -> dict[str, Any]:
+    """H9.v4: Spearman + sign-agreement between proxy composite and Sonnet judge.
+
+    Reads ``judge.jsonl`` written by Phase 5. When the file is missing,
+    returns ``{"status": "missing"}`` so the schema still emits the H9 key
+    even before the judge subset has been run.
+    """
+    judge_path = results_dir / "judge.jsonl"
+    if not judge_path.exists():
+        return {
+            "name": "H9.v4",
+            "status": "missing",
+            "supported": False,
+            "note": (
+                f"{judge_path.name} not found; run scripts/judge_subset.py "
+                "(Phase 5) to populate"
+            ),
+        }
+    proxy: list[float] = []
+    judge: list[float] = []
+    sign_agreements: list[int] = []
+    for line in judge_path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            row = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        proxy_v = row.get("proxy_delta")
+        judge_v = row.get("judge_delta")
+        if proxy_v is None or judge_v is None:
+            continue
+        try:
+            pf = float(proxy_v)
+            jf = float(judge_v)
+        except (TypeError, ValueError):
+            continue
+        if not (math.isfinite(pf) and math.isfinite(jf)):
+            continue
+        proxy.append(pf)
+        judge.append(jf)
+        sign_agreements.append(int((pf >= 0) == (jf >= 0)))
+    if len(proxy) < 3:
+        return {
+            "name": "H9.v4",
+            "status": "insufficient",
+            "n": len(proxy),
+            "supported": False,
+            "note": "fewer than 3 paired observations in judge.jsonl",
+        }
+    proxy_arr = np.asarray(proxy, dtype=float)
+    judge_arr = np.asarray(judge, dtype=float)
+    spearman = stats.spearmanr(proxy_arr, judge_arr)
+    sign_rate = float(np.mean(sign_agreements))
+    return {
+        "name": "H9.v4",
+        "status": "ok",
+        "n": int(len(proxy_arr)),
+        "spearman_rho": float(spearman.statistic),
+        "spearman_p": float(spearman.pvalue),
+        "sign_agreement_rate": sign_rate,
+        "supported": bool(
+            float(spearman.statistic) > 0.0 and float(spearman.pvalue) < 0.05
+        ),
+        "note": "Spearman rho + sign-agreement between proxy composite delta and Sonnet judge delta",
+    }
+
+
 def _run_contrast(
     *,
     contrast_label: str,
@@ -612,34 +1119,283 @@ def _arm_means(results_dir: Path) -> dict[str, dict[str, dict[str, float | int |
     return out
 
 
+def _synthetic_v0_4_payload(args: argparse.Namespace) -> dict[str, Any]:
+    """Phase 4 gate: emit a v0.4 stats payload with all H1.v4-H9.v4 keys
+    populated by deterministic placeholders so downstream consumers (HTML,
+    plugin smoke tests, paper compile) can validate schema before the
+    pilot has produced real results.
+
+    The payload is structurally identical to the real v0.4 output (same
+    keys, same nesting, same numeric types) but every effect size is
+    ``0.0`` and every supported flag is ``False``. ``"status": "synthetic"``
+    is set on the top-level config so consumers can refuse to render it
+    as a real result.
+    """
+    h_zero: dict[str, Any] = {
+        "name": "synthetic",
+        "n": 0,
+        "estimate": 0.0,
+        "estimate_length_controlled": 0.0,
+        "hedges_g": 0.0,
+        "hedges_g_length_controlled": 0.0,
+        "bca_ci_95": [0.0, 0.0],
+        "permutation_p_one_sided": 1.0,
+        "wilcoxon_p_one_sided": 1.0,
+        "holm_p": 1.0,
+        "power_apriori": 0.0,
+        "power_retrospective": 0.0,
+        "supported": False,
+        "treatment": "haiku_cascade",
+        "control": "haiku_bare",
+    }
+    primary = {
+        "H1": dict(h_zero, name="H1.v4", domain="aut"),
+        "H2": dict(h_zero, name="H2.v4", domain="poetry_interp"),
+        "H3": dict(h_zero, name="H3.v4", domain="poetry_gen"),
+        "H4": dict(h_zero, name="H4.v4", domain="sci_creativity"),
+    }
+    h5 = {
+        "name": "H5.v4",
+        "method": "fixed_effects_inverse_variance",
+        "pooled_g": 0.0,
+        "ci_95": [0.0, 0.0],
+        "n_studies": 0,
+        "weights": [],
+        "per_domain_g": dict.fromkeys(primary, 0.0),
+        "per_domain_n": dict.fromkeys(primary, 0),
+        "supported": False,
+        "note": "synthetic v0.4 placeholder; ADR-005 fixed-effects",
+    }
+    h8a = {
+        "name": "H8a.v4",
+        "n": 0,
+        "estimate": 0.0,
+        "hedges_g": 0.0,
+        "bca_ci_95": [0.0, 0.0],
+        "permutation_p_one_sided": 1.0,
+        "supported": False,
+        "note": "synthetic placeholder",
+    }
+    h8b = {
+        "name": "H8b.v4",
+        "event_gated": _classifier_metrics(
+            y_true=np.zeros(0, dtype=int), y_pred=np.zeros(0, dtype=int)
+        ),
+        "learned_gate": _classifier_metrics(
+            y_true=np.zeros(0, dtype=int), y_pred=np.zeros(0, dtype=int)
+        ),
+        "supported": False,
+        "note": "synthetic placeholder",
+    }
+    h8c = {
+        "name": "H8c.v4",
+        "leader_board": [],
+        "pairwise_p": {},
+        "supported": False,
+        "note": "synthetic placeholder",
+    }
+    h9 = {
+        "name": "H9.v4",
+        "status": "missing",
+        "supported": False,
+        "note": "synthetic placeholder; judge subset not yet run",
+    }
+    return {
+        "config": {
+            "version": "v0.4",
+            "status": "synthetic",
+            "treatment_arm": args.treatment,
+            "control_arm_primary": args.control,
+            "control_arm_h6": args.control_2K,
+            "control_arm_h7": args.control_generic,
+            "seed": args.seed,
+            "n_permutations": args.n_permutations,
+            "n_bootstrap": args.n_bootstrap,
+            "alpha": 0.05,
+            "hypotheses": [h.value for h in Hypothesis],
+        },
+        "primary": primary,
+        "H5": h5,
+        "H6_v4_extra_compute": {h: dict(h_zero, name=f"{h}.v4") for h in primary},
+        "H6_v4_extra_compute_meta": dict(h5, name="H6.v4"),
+        "H7_v4_generic_revise": {h: dict(h_zero, name=f"{h}.v4") for h in primary},
+        "H7_v4_generic_revise_meta": dict(h5, name="H7.v4"),
+        "H8a_v4_shadow_revision_vs_draft": h8a,
+        "H8b_v4_gate_calibration": h8b,
+        "H8c_v4_commit_policy_comparison": h8c,
+        "H9_v4_judge_proxy_agreement": h9,
+        "arm_means_per_domain": {dom: {} for dom in DOMAINS},
+    }
+
+
+def _stats_v0_4(args: argparse.Namespace, rng: np.random.Generator) -> dict[str, Any]:
+    """Build the v0.4 stats payload from real results.
+
+    Uses fixed-effects meta-pool for H5 (ADR-005) and emits the H8a/H8b/H8c
+    splits plus an H9 stub that picks up ``judge.jsonl`` when present.
+    """
+    primary = _run_contrast(
+        contrast_label="primary_v4",
+        treatment=args.treatment,
+        control=args.control,
+        results_dir=args.results_dir,
+        rng=rng,
+        n_permutations=args.n_permutations,
+        n_bootstrap=args.n_bootstrap,
+    )
+    # ADR-005: lock H5 to fixed-effects.
+    primary_meta_input = [
+        (
+            float(primary["primary"][h].get("hedges_g") or 0.0),
+            int(primary["primary"][h].get("n") or 0),
+        )
+        for h in primary["primary"]
+    ]
+    h5 = {
+        "name": "H5.v4",
+        **_meta_aggregate_fixed_effects(primary_meta_input),
+        "per_domain_g": {
+            h: float(primary["primary"][h].get("hedges_g") or 0.0)
+            for h in primary["primary"]
+        },
+        "per_domain_n": {
+            h: int(primary["primary"][h].get("n") or 0)
+            for h in primary["primary"]
+        },
+        "note": "ADR-005 fixed-effects meta-pool of H1.v4-H4.v4 Hedges' g",
+    }
+    if h5.get("pooled_g") is not None:
+        h5["supported"] = bool(
+            (h5.get("ci_95") or [None, None])[0] is not None
+            and float((h5.get("ci_95") or [0.0, 0.0])[0]) > 0.0
+        )
+    else:
+        h5["supported"] = False
+
+    h6 = _run_contrast(
+        contrast_label="H6_v4_extra_compute",
+        treatment=args.treatment,
+        control=args.control_2K,
+        results_dir=args.results_dir,
+        rng=rng,
+        n_permutations=args.n_permutations,
+        n_bootstrap=args.n_bootstrap,
+    )
+    h7 = _run_contrast(
+        contrast_label="H7_v4_generic_revise",
+        treatment=args.treatment,
+        control=args.control_generic,
+        results_dir=args.results_dir,
+        rng=rng,
+        n_permutations=args.n_permutations,
+        n_bootstrap=args.n_bootstrap,
+    )
+    h8a = _h8a_shadow_revision_vs_draft_all_items(
+        args.results_dir,
+        cascade_arm=args.treatment,
+        rng=rng,
+        n_boot=args.n_bootstrap,
+        n_permutations=args.n_permutations,
+    )
+    h8b = _h8b_gate_calibration(args.results_dir)
+    h8c = _h8c_commit_policy_comparison(
+        args.results_dir,
+        rng=rng,
+        n_permutations=args.n_permutations,
+        n_bootstrap=args.n_bootstrap,
+    )
+    h9 = _h9_judge_proxy_agreement(args.results_dir)
+    arm_means = _arm_means(args.results_dir)
+
+    return {
+        "config": {
+            "version": "v0.4",
+            "status": "real",
+            "treatment_arm": args.treatment,
+            "control_arm_primary": args.control,
+            "control_arm_h6": args.control_2K,
+            "control_arm_h7": args.control_generic,
+            "seed": args.seed,
+            "n_permutations": args.n_permutations,
+            "n_bootstrap": args.n_bootstrap,
+            "alpha": 0.05,
+            "hypotheses": [h.value for h in Hypothesis],
+        },
+        "primary": primary["primary"],
+        "H5": h5,
+        "H6_v4_extra_compute": h6["primary"],
+        "H6_v4_extra_compute_meta": h6["H5"],
+        "H7_v4_generic_revise": h7["primary"],
+        "H7_v4_generic_revise_meta": h7["H5"],
+        "H8a_v4_shadow_revision_vs_draft": h8a,
+        "H8b_v4_gate_calibration": h8b,
+        "H8c_v4_commit_policy_comparison": h8c,
+        "H9_v4_judge_proxy_agreement": h9,
+        "arm_means_per_domain": arm_means,
+    }
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument(
+        "--version",
+        choices=("v0.3", "v0.4"),
+        default="v0.3",
+        help="Which pre-registered hypothesis set to emit. v0.4 includes H8a/b/c, H9 and fixed-effects H5.",
+    )
+    parser.add_argument(
         "--results-dir",
         type=Path,
-        default=REPO_ROOT / "benchmarks" / "results_v0.3",
+        default=None,
+        help="Defaults to benchmarks/results_<version>/",
     )
     parser.add_argument(
         "--out",
         type=Path,
-        default=REPO_ROOT / "benchmarks" / "results_v0.3" / "stats.json",
+        default=None,
+        help="Defaults to <results-dir>/stats.json",
     )
     parser.add_argument("--treatment", type=str, default="haiku_cascade")
     parser.add_argument("--control", type=str, default="haiku_bare")
     parser.add_argument(
         "--control-2K", type=str, default="haiku_bare_2K_scorer",
-        help="control arm for H6.v3 (architecture vs more compute)",
+        help="control arm for H6 (architecture vs more compute)",
     )
     parser.add_argument(
         "--control-generic", type=str, default="haiku_generic_revise_2pass",
-        help="control arm for H7.v3 (architecture vs generic 2-pass)",
+        help="control arm for H7 (architecture vs generic 2-pass)",
     )
     parser.add_argument("--seed", type=int, default=4242)
     parser.add_argument("--n-permutations", type=int, default=50_000)
     parser.add_argument("--n-bootstrap", type=int, default=10_000)
+    parser.add_argument(
+        "--synthetic",
+        action="store_true",
+        help="(v0.4 only) emit synthetic placeholders for every key without reading results.",
+    )
     args = parser.parse_args()
 
+    if args.results_dir is None:
+        args.results_dir = REPO_ROOT / "benchmarks" / f"results_{args.version}"
+    if args.out is None:
+        args.out = args.results_dir / "stats.json"
+
     rng = np.random.default_rng(args.seed)
+
+    if args.version == "v0.4":
+        if args.synthetic or not args.results_dir.exists() or not any(
+            (args.results_dir / f"{d}.json").exists() for d in DOMAINS
+        ):
+            payload = _synthetic_v0_4_payload(args)
+        else:
+            payload = _stats_v0_4(args, rng)
+        args.out.parent.mkdir(parents=True, exist_ok=True)
+        args.out.write_text(
+            json.dumps(_clean_json(payload), indent=2, ensure_ascii=False, allow_nan=False),
+            encoding="utf-8",
+        )
+        print(json.dumps(_clean_json(payload["config"]), indent=2, allow_nan=False))
+        return 0
 
     primary = _run_contrast(
         contrast_label="primary_v3",

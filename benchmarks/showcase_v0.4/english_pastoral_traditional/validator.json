@@ -1,0 +1,36 @@
+{
+  "validator": "tools.english_meter",
+  "syllables_per_line": [
+    5,
+    7,
+    5
+  ],
+  "meter_pattern_per_line": [
+    "/////",
+    "////u//",
+    "/u///"
+  ],
+  "imagism": {
+    "density": 0.4167,
+    "n_content": 12,
+    "n_imagistic": 5
+  },
+  "haiku_5_7_5": {
+    "counts": [
+      5,
+      7,
+      5
+    ],
+    "first_three": [
+      5,
+      7,
+      5
+    ],
+    "ok": true,
+    "target": [
+      5,
+      7,
+      5
+    ]
+  }
+}

@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
-"""PCE v0.3 benchmark driver: four-arm Haiku matrix with per-item integrity probe.
+"""PCE v0.4 benchmark driver: four-arm Haiku matrix with per-item integrity probe.
 
-Per the v0.3 plan ("no local LLM arm or Sonnet ... same benchmark sample as
-v0.2"), the driver now defaults to a *Haiku-only* four-arm matrix on the
-v0.2 sample (n=20-30 paired). Local arms are kept callable for backward
-compatibility with v0.2 audits but are no longer in the default arm set.
+v0.4 = v0.3 + commit-policy multiplex (ADR-002). The four base Haiku
+arms below are unchanged; on top of every ``haiku_cascade`` row we
+synthesise four extra "commit-policy arms" (always_draft /
+always_revise / event_gated / learned_gate) plus a post-hoc
+``oracle`` analysis arm — at *zero extra Haiku cost* — by re-scoring
+the draft / shadow-revision pair under each policy's decision rule
+(``_multiplex_commit_policies``).
 
-The four v0.3 arms are:
+The four v0.4 base arms are unchanged from v0.3:
 
 * ``haiku_bare``                - 1 Haiku call with the parity sampler.
                                   Architecture-free baseline.
@@ -22,20 +25,20 @@ The four v0.3 arms are:
                                   *content* of the brief from the *existence*
                                   of a revision pass (H7).
 
-Per-item integrity probe (ADR-001 / Phase 5): before processing every item
-we run :class:`pce.substrate.integrity.IntegrityProbe` and assert
+Per-item integrity probe (ADR-001 / Phase 5 v0.3): before processing every
+item we run :class:`pce.substrate.integrity.IntegrityProbe` and assert
 ``passed=True``. Probe results are cached per-(env_hash, flags_hash) so the
 real-time cost is negligible after the first call. Per-item probe rows are
-written to ``audit/v0.3/integrity_probes.jsonl`` for forensics; if any
+written to ``audit/v0.4/integrity_probes.jsonl`` for forensics; if any
 probe fails the driver halts unless ``--allow-leakage`` is set.
 
 Each call's response is scored locally with ``benchmarks.scoring.*`` and
 the raw text + axis dict + composite score is appended to a per-domain
-JSON file under ``--out-dir`` (default ``benchmarks/results_v0.3``).
+JSON file under ``--out-dir`` (default ``benchmarks/results_v0.4``).
 
 Cost telemetry: HaikuLM owns a shared cost ledger that is snapshotted to
-``audit/v0.3/cost_snapshot.json`` after every Haiku-touching call so the
-run can be budget-capped.
+``audit/v0.4/cost_snapshot.json`` after every Haiku-touching call so the
+run can be budget-capped at the $30 v0.4 envelope.
 
 Robustness:
 * Per-call timeout. If a call fails (rate limit, network), the row is recorded
@@ -47,8 +50,10 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 import time
+from collections.abc import Callable
 from pathlib import Path
 from typing import Any, Literal
 
@@ -63,7 +68,14 @@ import numpy as np  # noqa: E402
 from benchmarks import items as bench_items  # noqa: E402
 from benchmarks import scoring as bench_scoring  # noqa: E402
 from pce.cascade import run_cascade  # noqa: E402
+from pce.policies import (  # noqa: E402
+    OracleCommit,
+    PolicyFeatures,
+    extract_features_from_audit,
+    policy_for_name,
+)
 from pce.substrate.embed import Embedder  # noqa: E402
+from pce.substrate.errors import HaikuRateLimitError  # noqa: E402
 from pce.substrate.haiku_lm import HaikuBudgetExceededError, HaikuLM  # noqa: E402
 from pce.substrate.integrity import IntegrityProbe  # noqa: E402
 from pce.substrate.lm import LocalLM  # noqa: E402
@@ -77,6 +89,17 @@ ARMS_V3 = (
     "haiku_bare_2K_scorer",
     "haiku_generic_revise_2pass",
 )
+
+# v0.4 commit-policy multiplex (ADR-002): each entry is a synthetic arm
+# computed *post-hoc* from the haiku_cascade draft/revision pair, so the
+# four cascade-policy arms cost zero extra Haiku calls.
+COMMIT_POLICY_ARMS_V4 = (
+    "haiku_cascade_event_gated",
+    "haiku_cascade_always_draft",
+    "haiku_cascade_always_revise",
+    "haiku_cascade_learned_gate",
+)
+ORACLE_ANALYSIS_ARM = "haiku_cascade_oracle"  # post-hoc upper bound, never an evaluation arm
 # v0.2 / v0.1 arm aliases retained for backward compatibility.
 ARMS_LEGACY = ("local_bare", "local_cascade")
 ARM_ALIASES = {
@@ -87,9 +110,19 @@ ARM_ALIASES = {
 }
 
 DEFAULT_DOMAINS = ("poetry_gen", "poetry_interp", "aut", "sci_creativity")
-DEFAULT_OUT_DIR = REPO_ROOT / "benchmarks" / "results_v0.3"
-COST_SNAPSHOT_PATH = REPO_ROOT / "audit" / "v0.3" / "cost_snapshot.json"
-INTEGRITY_LOG_PATH = REPO_ROOT / "audit" / "v0.3" / "integrity_probes.jsonl"
+# v0.4 default output dir (Phase 7 powered pilot lands here). Override via
+# --out-dir for backward-compat v0.3 runs targeting benchmarks/results_v0.3.
+DEFAULT_OUT_DIR = REPO_ROOT / "benchmarks" / "results_v0.4"
+# Telemetry sinks. Overridable via env so parallel per-domain workers can
+# point at non-conflicting paths (Bedrock orchestrator, v0.4 Phase 7).
+COST_SNAPSHOT_PATH = Path(
+    os.environ.get("PCE_COST_SNAPSHOT_PATH")
+    or (REPO_ROOT / "audit" / "v0.4" / "cost_snapshot.json")
+)
+INTEGRITY_LOG_PATH = Path(
+    os.environ.get("PCE_INTEGRITY_LOG_PATH")
+    or (REPO_ROOT / "audit" / "v0.4" / "integrity_probes.jsonl")
+)
 
 PARITY_SAMPLER: dict[str, float] = {"tau": 0.9, "top_p": 0.95, "top_k": 50.0}
 
@@ -205,6 +238,8 @@ def _call_haiku_bare(
         out = haiku_lm.generate(
             prompt, max_tokens=max_tokens, sampler=PARITY_SAMPLER, seed=seed
         )
+    except HaikuRateLimitError:
+        raise
     except HaikuBudgetExceededError as e:
         return "", {
             "ok": False,
@@ -263,6 +298,8 @@ def _call_cascade_arm(
             commit_policy=commit_policy,
             brief_override=brief_override,
         )
+    except HaikuRateLimitError:
+        raise
     except HaikuBudgetExceededError as e:
         return "", {
             "ok": False,
@@ -276,6 +313,15 @@ def _call_cascade_arm(
             "elapsed_s": time.time() - started,
         }
     aud = state.audit
+    diag_draft = aud.get("vimarsa_diag_draft") or aud.get("vimarsa_diag") or {}
+    if not isinstance(diag_draft, dict):
+        diag_draft = {}
+    ledger_audit = aud.get("budget_ledger") or {}
+    if not isinstance(ledger_audit, dict):
+        ledger_audit = {}
+    policy_features_audit = aud.get("policy_features") or {}
+    if not isinstance(policy_features_audit, dict):
+        policy_features_audit = {}
     meta: dict[str, Any] = {
         "ok": True,
         "elapsed_s": time.time() - started,
@@ -296,6 +342,18 @@ def _call_cascade_arm(
         ),
         "surface_draft": str(state.surface_draft or ""),
         "surface_revision": str(state.surface_revision or ""),
+        # v0.4 feature plumbing for the commit-policy multiplex (ADR-002).
+        "aspect_count": _coerce_float_or_none(
+            aud.get("aspect_count", diag_draft.get("aspect_count"))
+        ),
+        "ananda": _coerce_float_or_none(
+            aud.get("ananda", diag_draft.get("ananda"))
+        ),
+        "budget_balance": _coerce_float_or_none(
+            aud.get("budget_balance", ledger_audit.get("balance_bits"))
+        ),
+        "policy_features": policy_features_audit,
+        "revision_skipped_reason": aud.get("revision_skipped_reason"),
     }
     if haiku_lm is not None:
         rep = haiku_lm.report()
@@ -352,11 +410,131 @@ def _load_existing(out_path: Path) -> dict[str, dict[str, Any]]:
 
 def _save(out_path: Path, rows: dict[str, dict[str, Any]], domain: str) -> None:
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    payload = {"domain": domain, "version": "v0.3", "rows": rows}
+    payload = {"domain": domain, "version": "v0.4", "rows": rows}
     out_path.write_text(
         json.dumps(payload, indent=2, ensure_ascii=False, allow_nan=False),
         encoding="utf-8",
     )
+
+
+def _features_from_cascade_meta(
+    meta: dict[str, Any],
+) -> PolicyFeatures:
+    """Extract :class:`PolicyFeatures` from a cascade arm's audit `meta`.
+
+    Falls back to the v0.3-compatible top-level fields when the explicit
+    ``policy_features`` block (added in v0.4) is missing — keeps replay over
+    older traces working.
+    """
+    return extract_features_from_audit(meta)
+
+
+def _multiplex_commit_policies(
+    *,
+    domain: str,
+    item: dict[str, Any],
+    item_rows: dict[str, Any],
+    embed: Embedder,
+    scorer: Callable[..., bench_scoring.ItemScore],
+) -> None:
+    """Synthesize per-commit-policy rows from the existing ``haiku_cascade`` row.
+
+    No extra LM calls are issued — both ``surface_draft`` and ``surface_revision``
+    are already present in the cascade audit. We re-score both surfaces, then
+    let each :class:`CommitPolicy` pick which one to commit.
+    """
+    cascade_row = item_rows.get("haiku_cascade")
+    if not isinstance(cascade_row, dict) or cascade_row.get("skipped"):
+        return
+    meta = cascade_row.get("meta") or {}
+    if not isinstance(meta, dict):
+        return
+    audit = meta.get("audit") or {}
+    if not isinstance(audit, dict):
+        audit = {}
+    surface_draft = meta.get("surface_draft") or audit.get("surface_draft")
+    surface_revision = meta.get("surface_revision") or audit.get("surface_revision")
+    if not isinstance(surface_draft, str) or not surface_draft:
+        return
+
+    score_draft = scorer(surface_draft, item=item, embed=embed)
+    score_revision = (
+        scorer(surface_revision, item=item, embed=embed)
+        if isinstance(surface_revision, str) and surface_revision
+        else None
+    )
+
+    features = _features_from_cascade_meta(meta)
+    vimarsa_event = bool(meta.get("vimarsa_event_draft", meta.get("vimarsa_event", False)))
+
+    def _commit(decision_revision: bool) -> tuple[str, bench_scoring.ItemScore]:
+        if decision_revision and score_revision is not None:
+            assert isinstance(surface_revision, str)
+            return surface_revision, score_revision
+        return surface_draft, score_draft
+
+    for arm_name in COMMIT_POLICY_ARMS_V4:
+        if arm_name in item_rows:
+            continue
+        policy_name = arm_name.removeprefix("haiku_cascade_")
+        policy = policy_for_name(policy_name)
+        decision = policy.decide(features, vimarsa_event)
+        text, score = _commit(decision)
+        composite = (
+            float(score.composite) if not np.isnan(score.composite) else None
+        )
+        item_rows[arm_name] = {
+            "text": text,
+            "axes": dict(score.axes),
+            "composite": composite,
+            "n_chars": len(text),
+            "n_words": len(text.split()) if text else 0,
+            "meta": {
+                "synthesized_from": "haiku_cascade",
+                "commit_policy": policy_name,
+                "commit_decision_revision": bool(decision),
+                "policy_features": features.to_audit(),
+                "score_draft": (
+                    float(score_draft.composite)
+                    if not np.isnan(score_draft.composite)
+                    else None
+                ),
+                "score_revision": (
+                    float(score_revision.composite)
+                    if score_revision is not None
+                    and not np.isnan(score_revision.composite)
+                    else None
+                ),
+            },
+        }
+
+    if ORACLE_ANALYSIS_ARM not in item_rows and score_revision is not None:
+        oracle = OracleCommit()
+        oracle.set_scores(
+            float(score_draft.composite),
+            float(score_revision.composite),
+        )
+        decision = oracle.decide(features, vimarsa_event)
+        text, score = _commit(decision)
+        composite = (
+            float(score.composite) if not np.isnan(score.composite) else None
+        )
+        item_rows[ORACLE_ANALYSIS_ARM] = {
+            "text": text,
+            "axes": dict(score.axes),
+            "composite": composite,
+            "n_chars": len(text),
+            "n_words": len(text.split()) if text else 0,
+            "meta": {
+                "synthesized_from": "haiku_cascade",
+                "commit_policy": "oracle",
+                "commit_decision_revision": bool(decision),
+                "policy_features": features.to_audit(),
+                "score_draft": float(score_draft.composite),
+                "score_revision": float(score_revision.composite),
+                "is_analysis_only": True,
+            },
+        }
 
 
 def _per_item_integrity_probe(
@@ -393,6 +571,22 @@ def _per_item_integrity_probe(
     return record
 
 
+def _row_is_failed(row: Any) -> bool:
+    """A row is 'failed' iff it exists but produced no scoreable text.
+
+    We use this to support ``--retry-failed`` after a Haiku subscription
+    switch: a row recorded as ``"skipped": true`` (cost-cap halt) or with
+    ``meta.ok=False`` (rate-limit / CLI error) gets treated as "needs to
+    be retried" rather than "already complete".
+    """
+    if not isinstance(row, dict):
+        return False
+    if row.get("skipped") is True:
+        return True
+    meta = row.get("meta")
+    return isinstance(meta, dict) and meta.get("ok") is False
+
+
 def run_domain(
     *,
     domain: str,
@@ -408,6 +602,7 @@ def run_domain(
     cost_cap_usd: float | None,
     integrity_probe: IntegrityProbe | None,
     allow_leakage: bool,
+    retry_failed: bool = False,
 ) -> int:
     items = _domain_items(domain, n=n)
     rows = _load_existing(out_path)
@@ -443,7 +638,14 @@ def run_domain(
         for raw_arm in arms:
             arm = _normalise_arm(raw_arm)
             if arm in item_rows:
-                continue
+                if retry_failed and _row_is_failed(item_rows[arm]):
+                    print(
+                        f"  [{domain}] {item_id} :: {arm} retrying previously-failed row",
+                        flush=True,
+                    )
+                    item_rows.pop(arm, None)
+                else:
+                    continue
             if (
                 cost_cap_usd is not None
                 and haiku_lm is not None
@@ -460,59 +662,78 @@ def run_domain(
             print(f"  [{domain}] {item_id} :: {arm} ...", flush=True)
             text = ""
             meta: dict[str, Any] = {}
-            if arm == "local_bare":
-                assert lm is not None
-                text, meta = _call_local_bare(
-                    prompt, lm=lm, max_tokens=max_tokens, seed=seed + i
+            try:
+                if arm == "local_bare":
+                    assert lm is not None
+                    text, meta = _call_local_bare(
+                        prompt, lm=lm, max_tokens=max_tokens, seed=seed + i
+                    )
+                elif arm == "local_cascade":
+                    assert lm is not None
+                    text, meta = _call_cascade_arm(
+                        prompt=prompt,
+                        arm=arm,
+                        lm=lm,
+                        embed=embed,
+                        constraint_text=constraint_text,
+                        must_avoid=must_avoid,
+                        aspects=aspects,
+                        retrieval_set=retrieval,
+                        K=K,
+                        max_tokens=max_tokens,
+                        seed=seed + i,
+                        haiku_lm=None,
+                    )
+                elif arm == "haiku_bare":
+                    assert haiku_lm is not None
+                    text, meta = _call_haiku_bare(
+                        prompt,
+                        haiku_lm=haiku_lm,
+                        max_tokens=max_tokens,
+                        seed=seed + i,
+                    )
+                    _snapshot_cost_ledger(haiku_lm)
+                elif arm in {
+                    "haiku_cascade",
+                    "haiku_bare_2K_scorer",
+                    "haiku_generic_revise_2pass",
+                }:
+                    assert haiku_lm is not None
+                    text, meta = _call_cascade_arm(
+                        prompt=prompt,
+                        arm=arm,
+                        lm=haiku_lm,
+                        embed=embed,
+                        constraint_text=constraint_text,
+                        must_avoid=must_avoid,
+                        aspects=aspects,
+                        retrieval_set=retrieval,
+                        K=K,
+                        max_tokens=max_tokens,
+                        seed=seed + i,
+                        haiku_lm=haiku_lm,
+                    )
+                    _snapshot_cost_ledger(haiku_lm)
+                else:
+                    raise ValueError(arm)
+            except HaikuRateLimitError as exc:
+                # OAuth subscription / quota exhaustion is not an
+                # implementation bug — checkpoint and bail cleanly so
+                # the operator can switch the subscription and rerun
+                # with `--retry-failed`. We do NOT record a partial
+                # row for this arm so the resume can fill it in.
+                _save(out_path, rows, domain)
+                if haiku_lm is not None:
+                    _snapshot_cost_ledger(haiku_lm)
+                status = exc.api_error_status()
+                msg = (
+                    f"[bench] HALT: HaikuRateLimitError on {domain}/{item_id}/{arm} "
+                    f"(api_error_status={status}); switch your Claude subscription "
+                    f"and re-run with --retry-failed to fill in the gaps. "
+                    f"Partial state saved to {out_path}."
                 )
-            elif arm == "local_cascade":
-                assert lm is not None
-                text, meta = _call_cascade_arm(
-                    prompt=prompt,
-                    arm=arm,
-                    lm=lm,
-                    embed=embed,
-                    constraint_text=constraint_text,
-                    must_avoid=must_avoid,
-                    aspects=aspects,
-                    retrieval_set=retrieval,
-                    K=K,
-                    max_tokens=max_tokens,
-                    seed=seed + i,
-                    haiku_lm=None,
-                )
-            elif arm == "haiku_bare":
-                assert haiku_lm is not None
-                text, meta = _call_haiku_bare(
-                    prompt,
-                    haiku_lm=haiku_lm,
-                    max_tokens=max_tokens,
-                    seed=seed + i,
-                )
-                _snapshot_cost_ledger(haiku_lm)
-            elif arm in {
-                "haiku_cascade",
-                "haiku_bare_2K_scorer",
-                "haiku_generic_revise_2pass",
-            }:
-                assert haiku_lm is not None
-                text, meta = _call_cascade_arm(
-                    prompt=prompt,
-                    arm=arm,
-                    lm=haiku_lm,
-                    embed=embed,
-                    constraint_text=constraint_text,
-                    must_avoid=must_avoid,
-                    aspects=aspects,
-                    retrieval_set=retrieval,
-                    K=K,
-                    max_tokens=max_tokens,
-                    seed=seed + i,
-                    haiku_lm=haiku_lm,
-                )
-                _snapshot_cost_ledger(haiku_lm)
-            else:
-                raise ValueError(arm)
+                print(msg, flush=True)
+                raise SystemExit(msg) from exc
             if text:
                 score = scorer(text, item=item, embed=embed)
                 composite = (
@@ -530,6 +751,18 @@ def run_domain(
                 "n_words": len(text.split()) if text else 0,
                 "meta": meta,
             }
+            _save(out_path, rows, domain)
+        if (
+            "haiku_cascade" in item_rows
+            and not item_rows["haiku_cascade"].get("skipped")
+        ):
+            _multiplex_commit_policies(
+                domain=domain,
+                item=item,
+                item_rows=item_rows,
+                embed=embed,
+                scorer=scorer,
+            )
             _save(out_path, rows, domain)
     print(f"[bench] domain={domain} complete -> {out_path}", flush=True)
     return 0
@@ -560,13 +793,23 @@ def main() -> int:
     parser.add_argument(
         "--cost-cap-usd",
         type=float,
-        default=20.0,
-        help="Hard stop on Haiku-arms when ledger exceeds this. 0 disables.",
+        default=30.0,
+        help="Hard stop on Haiku-arms when ledger exceeds this. 0 disables. "
+        "Default 30 = v0.4 powered-pilot cap.",
     )
     parser.add_argument(
         "--pilot",
         action="store_true",
-        help="Pilot preset: n=5/domain, K=3, all four v0.3 arms, $20 cost cap.",
+        help="v0.3 pilot preset: n=5/domain, K=3, all four v0.3 arms, $20 cap.",
+    )
+    parser.add_argument(
+        "--v04-pilot",
+        action="store_true",
+        help="v0.4 powered-pilot preset (Phase 7): n=20/domain × 4 domains, "
+        "all four base arms, K=4, $30 cost cap. The cascade arm's commit-"
+        "policy multiplex (always_draft / always_revise / event_gated / "
+        "learned_gate + oracle) is computed post-hoc at zero extra Haiku "
+        "cost via _multiplex_commit_policies.",
     )
     parser.add_argument(
         "--no-integrity-probe",
@@ -577,6 +820,13 @@ def main() -> int:
         "--allow-leakage",
         action="store_true",
         help="Continue even if IntegrityProbe detects leakage; default halts.",
+    )
+    parser.add_argument(
+        "--retry-failed",
+        action="store_true",
+        help="On resume, re-run any arm whose row was previously skipped or "
+        "failed (e.g. cost-cap halt or rate-limit). Use after a Claude "
+        "subscription switch to fill in the gaps from an earlier run.",
     )
     args = parser.parse_args()
 
@@ -595,6 +845,16 @@ def main() -> int:
             "sci_creativity": 5,
         }
         arms = ARMS_V3
+    if args.v04_pilot:
+        n_map = {
+            "poetry_gen": 20,
+            "poetry_interp": 20,
+            "aut": 20,
+            "sci_creativity": 20,
+        }
+        arms = ARMS_V3
+        if args.K == 4:  # respect explicit user override
+            args.K = 4
 
     embed = Embedder()
     need_local = any(a in arms for a in ARMS_LEGACY)
@@ -637,6 +897,7 @@ def main() -> int:
             cost_cap_usd=cost_cap,
             integrity_probe=integrity_probe,
             allow_leakage=args.allow_leakage,
+            retry_failed=args.retry_failed,
         )
     if haiku_lm is not None:
         _snapshot_cost_ledger(haiku_lm)

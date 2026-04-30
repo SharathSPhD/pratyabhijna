@@ -111,23 +111,30 @@ def test_budget_cap_raises_before_call() -> None:
 
 
 def test_cli_nonzero_rc_raises() -> None:
+    """v0.4 (ADR-006): rc != 0 with no JSON body raises HaikuCLIError."""
+    from pce.substrate.errors import HaikuCLIError
+
     lm = HaikuLM(config=HaikuConfig(cli_bin="claude"), embedder=_FakeEmbed())
     bad = mock.MagicMock(spec=subprocess.CompletedProcess)
     bad.returncode = 2
     bad.stdout = b""
-    bad.stderr = b"rate-limited"
+    bad.stderr = b"unexpected cli failure"
     with mock.patch("subprocess.run", return_value=bad), \
-         pytest.raises(RuntimeError, match="rc=2"):
+         pytest.raises(HaikuCLIError, match="rc=2"):
         lm.generate("x", max_tokens=4, sampler={"tau": 0.9}, seed=0)
 
 
 def test_cli_is_error_payload_raises() -> None:
+    """v0.4 (ADR-006): is_error=True with non-429 status raises HaikuApiError."""
+    from pce.substrate.errors import HaikuApiError
+
     lm = HaikuLM(config=HaikuConfig(cli_bin="claude"), embedder=_FakeEmbed())
     bad_payload = _payload()
     bad_payload["is_error"] = True
-    bad_payload["result"] = "rate limit hit"
-    with mock.patch("subprocess.run", return_value=_fake_proc(bad_payload)), \
-         pytest.raises(RuntimeError, match="is_error=True"):
+    bad_payload["api_error_status"] = 500
+    bad_payload["result"] = "internal server error"
+    with mock.patch("subprocess.run", return_value=_fake_proc(bad_payload, rc=1)), \
+         pytest.raises(HaikuApiError):
         lm.generate("x", max_tokens=4, sampler={"tau": 0.9}, seed=0)
 
 

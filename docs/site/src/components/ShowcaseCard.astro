@@ -1,0 +1,36 @@
+---
+import { withBase } from '../lib/nav';
+
+interface Props {
+  slug: string;
+  category: 'sanskrit' | 'english' | 'science';
+  title: string;
+  prompt_summary: string;
+  validator_status: 'pass' | 'review' | 'fail';
+  has_revision: boolean;
+}
+const { slug, category, title, prompt_summary, validator_status, has_revision } = Astro.props as Props;
+const tagColor =
+  category === 'sanskrit'
+    ? 'bg-amber-100 text-amber-900 dark:bg-amber-900/40 dark:text-amber-100'
+    : category === 'english'
+      ? 'bg-sky-100 text-sky-900 dark:bg-sky-900/40 dark:text-sky-100'
+      : 'bg-emerald-100 text-emerald-900 dark:bg-emerald-900/40 dark:text-emerald-100';
+const validatorClass = validator_status === 'pass'
+  ? 'text-emerald-700 dark:text-emerald-300'
+  : validator_status === 'review'
+    ? 'text-amber-700 dark:text-amber-300'
+    : 'text-rose-700 dark:text-rose-300';
+---
+<a href={withBase(`/showcase/${slug}`)} class="card block hover:border-[var(--accent)] transition-colors no-underline not-prose font-sans">
+  <div class="flex items-center justify-between mb-2 gap-2">
+    <span class={`text-[0.7rem] px-2 py-0.5 rounded-full font-semibold ${tagColor}`}>{category}</span>
+    <span class={`text-[0.7rem] font-mono ${validatorClass}`}>validator: {validator_status}</span>
+  </div>
+  <h3 class="text-base font-semibold mb-1 leading-snug">{title}</h3>
+  <p class="text-[0.88rem] text-[var(--fg-soft)] m-0 line-clamp-3">{prompt_summary}</p>
+  <div class="mt-3 text-[0.75rem] font-mono text-[var(--fg-soft)] flex justify-between">
+    <span>{slug}</span>
+    {has_revision ? <span class="tag">revision</span> : <span class="tag" style="background:var(--bg);color:var(--fg-soft);">draft only</span>}
+  </div>
+</a>

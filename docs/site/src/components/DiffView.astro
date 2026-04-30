@@ -1,0 +1,34 @@
+---
+interface Props { left: string; right: string; leftLabel?: string; rightLabel?: string; }
+const { left, right, leftLabel = 'Draft', rightLabel = 'Revised' } = Astro.props as Props;
+const leftLines = (left || '').split(/\r?\n/);
+const rightLines = (right || '').split(/\r?\n/);
+function diff(a: string, b: string) {
+  if (a === b) return 'same';
+  if (!a) return 'add';
+  if (!b) return 'rm';
+  return 'change';
+}
+---
+<div class="grid md:grid-cols-2 gap-3 not-prose font-sans">
+  <div class="card">
+    <div class="font-semibold text-sm mb-2">{leftLabel}</div>
+    <pre class="font-serif whitespace-pre-wrap leading-relaxed m-0">
+{leftLines.map((line, i) => {
+  const k = diff(line, rightLines[i] ?? '');
+  const cls = k === 'change' || k === 'rm' ? 'bg-rose-100/60 dark:bg-rose-900/30' : '';
+  return <span class={`block px-1 ${cls}`}>{line || ' '}</span>;
+})}
+    </pre>
+  </div>
+  <div class="card">
+    <div class="font-semibold text-sm mb-2">{rightLabel}</div>
+    <pre class="font-serif whitespace-pre-wrap leading-relaxed m-0">
+{rightLines.map((line, i) => {
+  const k = diff(leftLines[i] ?? '', line);
+  const cls = k === 'change' || k === 'add' ? 'bg-emerald-100/60 dark:bg-emerald-900/30' : '';
+  return <span class={`block px-1 ${cls}`}>{line || ' '}</span>;
+})}
+    </pre>
+  </div>
+</div>

@@ -176,14 +176,26 @@ def test_event_gated_default_runs_both_passes_for_h8(
 def test_two_pass_uses_distinct_seeds_for_revision(
     fake_lm: _FakeLM, fake_embed: Embedder
 ) -> None:
-    K = 3
+    """Both passes draw disjoint seed ranges, sized to v0.4 K_runtime.
+
+    v0.4 (ADR-001): under ``cit_temperature_mechanism="best_of_k"`` (default),
+    ``K_runtime = k_runtime_for(K_eff, cit_temperature)``. The cascade's
+    default ``cit_temperature=1.0`` doubles the runtime width to ``2*K_eff``.
+    The seed-disjointness invariant survives that change.
+    """
+    from pce.operators.iccha import k_runtime_for
+
+    K_eff = 3
+    cit_temperature = 1.0  # run_cascade default
+    K_rt = k_runtime_for(K_eff, cit_temperature)
     base_seed = 100
     run_cascade(
         prompt="Compose a short response.",
         constraint=_constraint(fake_embed),
         lm=_make_lm_protocol_compliant(fake_lm),
         embed=fake_embed,
-        K=K,
+        K=K_eff,
+        cit_temperature=cit_temperature,
         max_tokens=32,
         base_seed=base_seed,
         retrieval_set=[],
@@ -191,11 +203,11 @@ def test_two_pass_uses_distinct_seeds_for_revision(
         commit_policy="always_revise",
     )
     seeds = [c["seed"] for c in fake_lm.calls]
-    assert len(seeds) == 2 * K
-    draft_seeds = sorted(seeds[:K])
-    rev_seeds = sorted(seeds[K:])
-    assert draft_seeds == [base_seed + k for k in range(K)]
-    assert rev_seeds == [base_seed + _REVISION_SEED_OFFSET + k for k in range(K)]
+    assert len(seeds) == 2 * K_rt
+    draft_seeds = sorted(seeds[:K_rt])
+    rev_seeds = sorted(seeds[K_rt:])
+    assert draft_seeds == [base_seed + k for k in range(K_rt)]
+    assert rev_seeds == [base_seed + _REVISION_SEED_OFFSET + k for k in range(K_rt)]
     # Disjoint so the revision pass explores a different sampler subspace.
     assert set(draft_seeds).isdisjoint(set(rev_seeds))
 
@@ -226,36 +238,55 @@ def test_bypass_vimarsa_returns_draft_as_surface(
 def test_always_draft_skips_revision_pass(
     fake_lm: _FakeLM, fake_embed: Embedder
 ) -> None:
-    """v0.3 explicit: ``commit_policy='always_draft'`` skips the revision pass."""
-    K = 4
+    """v0.3 explicit: ``commit_policy='always_draft'`` skips the revision pass.
+
+    v0.4 (ADR-001): the call count is ``K_runtime`` (not the nominal
+    ``K_eff``) because best-of-K width is the new ``cit_temperature``
+    mechanism.
+    """
+    from pce.operators.iccha import k_runtime_for
+
+    K_eff = 4
+    cit_temperature = 1.0  # run_cascade default
+    K_rt = k_runtime_for(K_eff, cit_temperature)
     run_cascade(
         prompt="Compose.",
         constraint=_constraint(fake_embed),
         lm=_make_lm_protocol_compliant(fake_lm),
         embed=fake_embed,
-        K=K,
+        K=K_eff,
+        cit_temperature=cit_temperature,
         max_tokens=16,
         base_seed=42,
         commit_policy="always_draft",
     )
-    assert len(fake_lm.calls) == K  # only one pass
+    assert len(fake_lm.calls) == K_rt  # only one pass
 
 
 def test_event_gated_runs_2K_calls(
     fake_lm: _FakeLM, fake_embed: Embedder
 ) -> None:
-    """v0.3 default: event_gated still calls LM 2K times (always-shadow-revision)."""
-    K = 4
+    """v0.3 default: event_gated still runs both passes (always-shadow-revision).
+
+    v0.4 (ADR-001): each pass spawns ``K_runtime`` candidates (not the
+    nominal ``K_eff``), so the total LM call count is ``2 * K_runtime``.
+    """
+    from pce.operators.iccha import k_runtime_for
+
+    K_eff = 4
+    cit_temperature = 1.0
+    K_rt = k_runtime_for(K_eff, cit_temperature)
     run_cascade(
         prompt="Compose.",
         constraint=_constraint(fake_embed),
         lm=_make_lm_protocol_compliant(fake_lm),
         embed=fake_embed,
-        K=K,
+        K=K_eff,
+        cit_temperature=cit_temperature,
         max_tokens=16,
         base_seed=42,
     )
-    assert len(fake_lm.calls) == 2 * K
+    assert len(fake_lm.calls) == 2 * K_rt
 
 
 def test_bypass_with_conflicting_commit_policy_raises(

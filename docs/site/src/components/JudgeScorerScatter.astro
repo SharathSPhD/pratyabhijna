@@ -1,0 +1,52 @@
+---
+interface Pair { item_id: string; domain: string; proxy_delta: number; judge_delta: number; agree: boolean; }
+interface Props { pairs: Pair[]; rho: number; signAgreement: number; n: number; }
+const { pairs, rho, signAgreement, n } = Astro.props as Props;
+const fmt = (x: number, d = 2) => Number.isFinite(x) ? x.toFixed(d) : '—';
+
+const W = 320;
+const H = 280;
+const pad = 28;
+const valid = pairs.filter(p => Number.isFinite(p.proxy_delta) && Number.isFinite(p.judge_delta));
+const maxX = Math.max(0.05, ...valid.map(p => Math.abs(p.proxy_delta)));
+const maxY = Math.max(0.05, ...valid.map(p => Math.abs(p.judge_delta)));
+const sx = (x: number) => pad + ((x + maxX) / (2 * maxX)) * (W - 2 * pad);
+const sy = (y: number) => H - pad - ((y + maxY) / (2 * maxY)) * (H - 2 * pad);
+const colors: Record<string, string> = {
+  poetry_gen: '#7c3aed',
+  poetry_interp: '#0ea5e9',
+  aut: '#f59e0b',
+  sci_creativity: '#10b981',
+};
+---
+<div class="card not-prose font-sans my-4">
+  <div class="flex items-baseline justify-between mb-2">
+    <div class="font-semibold text-sm">Judge vs proxy scorer (per-item delta)</div>
+    <div class="font-mono text-[0.78rem] text-[var(--fg-soft)]">ρ={fmt(rho, 2)} · sign-agree {fmt(signAgreement * 100, 1)}% · n={n}</div>
+  </div>
+  <svg width="100%" viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Scatter of proxy delta vs judge delta">
+    <line x1={pad} y1={H / 2} x2={W - pad} y2={H / 2} stroke="var(--rule)" stroke-width="1" />
+    <line x1={W / 2} y1={pad} x2={W / 2} y2={H - pad} stroke="var(--rule)" stroke-width="1" />
+    {valid.map(p => (
+      <circle
+        cx={sx(p.proxy_delta)}
+        cy={sy(p.judge_delta)}
+        r={3.5}
+        fill={colors[p.domain] ?? 'var(--accent)'}
+        opacity="0.85"
+      >
+        <title>{p.item_id} · proxy={fmt(p.proxy_delta, 3)} · judge={fmt(p.judge_delta, 3)}</title>
+      </circle>
+    ))}
+    <text x={W / 2} y={H - 6} text-anchor="middle" fill="var(--fg-soft)" font-size="11" font-family="monospace">proxy Δ →</text>
+    <text x={6} y={H / 2} text-anchor="middle" fill="var(--fg-soft)" font-size="11" font-family="monospace" transform={`rotate(-90 6 ${H / 2})`}>judge Δ →</text>
+  </svg>
+  <div class="flex flex-wrap gap-3 text-[0.75rem] font-mono mt-2">
+    {Object.entries(colors).map(([k, c]) => (
+      <span class="inline-flex items-center gap-1.5">
+        <span class="inline-block w-2.5 h-2.5 rounded-full" style={`background:${c}`}></span>
+        {k}
+      </span>
+    ))}
+  </div>
+</div>

@@ -1,0 +1,15 @@
+\section{Benchmark Items}\label{app:benchmark_items}
+
+The full item lists live in \texttt{benchmarks/items.py} as Python literals; we include the headline IDs and topics here. The literal text of each item, the must-avoid set, and the aspect targets are loaded \emph{verbatim} into the benchmark driver, which writes the active set to \texttt{benchmarks/results/<domain>.json} alongside the model outputs.
+
+\subsection{Poetry generation}
+A stratified set across the four canonical English forms (haiku, tanka, sonnet, free-verse) plus a small ghazal slice. Each item carries (topic, form, must-avoid). Topics deliberately span sensory, emotional, abstract, and metalinguistic categories so the POEMetric axes are exercised independently.
+
+\subsection{Poetry interpretation (Wittgenstein aspect-shift)}
+Each item is a single line of poetry with two pre-registered candidate readings. Sources include Eliot, Dickinson, Bash\=o, Plath, and selected fragments of Heraclitus and Cavafy. The aspect targets are author-supplied phrases describing each reading (e.g., for \emph{``I have measured out my life with coffee spoons''}: \emph{a life of small repetitive rituals} vs \emph{a quiet despair at unlived possibilities}). The retrieval set contains intentionally banal continuations (\emph{coffee in the morning is essential}) so the novelty axis can punish high-similarity surfaces.
+
+\subsection{Alternative-uses task (CreativityPrism slice)}
+Eight common objects (brick, paperclip, sock, blanket, etc.). The scorer rewards (a) cosine novelty against the standard everyday use, (b) lexical diversity, (c) presence of feasibility-cue tokens (``portable'', ``reusable'', ``scalable'', etc.).
+
+\subsection{Scientific creativity (BBH/MacGyver-style)}
+Each item is a single open-ended scientific question with 2--3 ``framings'' (analogical, mechanistic, mathematical). The question stems span evolutionary biology, statistical mechanics, computational neuroscience, and theoretical physics. The composite weights non-textbook novelty, framing-coverage, and depth-via-length.

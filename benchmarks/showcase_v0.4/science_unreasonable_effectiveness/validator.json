@@ -1,0 +1,8 @@
+{
+  "density": 0.0,
+  "n_hedges": 0,
+  "n_sentences": 4,
+  "n_mechanism_terms": 2,
+  "n_citations_or_attributions": 0,
+  "validator": "tools.scientific_lint"
+}

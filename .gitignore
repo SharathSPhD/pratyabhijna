@@ -68,9 +68,21 @@ paper/**/main.pdf
 wt-*/
 .worktrees/
 
+# Astro / Node toolchain artefacts (docs/site/)
+node_modules/
+docs/site/.astro/
+docs/site/dist/
+docs/site/public/data/
+docs/site/public/benchmarks/
+docs/site/public/paper/main.pdf
+docs/site/pnpm-lock.yaml
+
 # Environment
 .env
 .envrc
 
 # Runtime audit logs (haiku call records, cost ledger, prove-gate, etc.)
 audit/
+
+# Per-machine pilot stdout/stderr capture (orchestrator + per-domain workers).
+logs/

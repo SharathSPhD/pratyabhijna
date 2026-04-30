@@ -1,0 +1,104 @@
+---
+interface Props {
+  trace: any;
+  validator?: any;
+}
+const { trace, validator } = Astro.props as Props;
+
+const fmt = (x: any, d = 3) =>
+  typeof x === 'number' && Number.isFinite(x) ? x.toFixed(d) : '—';
+
+const stages = [
+  { key: 'cit', label: 'Cit · perceive', glyph: '①' },
+  { key: 'ananda', label: 'Ānanda · novelty pulse', glyph: '②' },
+  { key: 'iccha', label: 'Icchā · best-of-K', glyph: '③' },
+  { key: 'apohana', label: 'Apohana · negation', glyph: '④' },
+  { key: 'jnana', label: 'Jñāna · select', glyph: '⑤' },
+  { key: 'kriya', label: 'Kriyā · render draft', glyph: '⑥' },
+  { key: 'vimarsa', label: 'Vimarśa · reflect', glyph: '⑦' },
+  { key: 'revision', label: 'Revision · commit', glyph: '⑧' },
+];
+
+const draft = trace.draft ?? '';
+const revision = trace.shadow_revision ?? trace.revised ?? '';
+const committed = trace.committed ?? trace.committed_text ?? '';
+const choice = trace.committed_choice ?? (revision && committed === revision ? 'revision' : 'draft');
+const event = trace.vimarsa_event;
+const policy = trace.commit_policy ?? 'event_gated';
+const scoreDraft = trace.score_draft ?? trace.composite_cascade ?? null;
+const scoreRevision = trace.score_revision ?? null;
+const deltaScore =
+  typeof scoreDraft === 'number' && typeof scoreRevision === 'number'
+    ? scoreRevision - scoreDraft
+    : null;
+const kEffective = trace.K_effective ?? trace.K_runtime ?? null;
+---
+
+<div class="not-prose font-sans my-6 space-y-3">
+  <ol class="grid grid-cols-2 sm:grid-cols-4 gap-2 list-none p-0 m-0">
+    {stages.map((s, idx) => (
+      <li class="card text-sm flex flex-col gap-0.5">
+        <span class="font-mono text-[0.7rem] text-[var(--fg-soft)] tracking-widest uppercase">{s.glyph} stage {idx + 1}</span>
+        <span class="font-semibold">{s.label}</span>
+        {s.key === 'iccha' && kEffective !== null && (
+          <span class="font-mono text-[0.78rem] text-[var(--accent)]">K_effective = {kEffective}</span>
+        )}
+        {s.key === 'vimarsa' && (
+          <span class="font-mono text-[0.78rem]">event={String(event)} · policy={policy}</span>
+        )}
+        {s.key === 'kriya' && draft && (
+          <span class="font-mono text-[0.78rem] text-[var(--fg-soft)]">{draft.length} chars</span>
+        )}
+        {s.key === 'revision' && committed && (
+          <span class="font-mono text-[0.78rem] text-[var(--fg-soft)]">committed: {choice}</span>
+        )}
+      </li>
+    ))}
+  </ol>
+
+  {validator && (
+    <div class="card text-sm font-sans">
+      <div class="font-semibold mb-1">Validator</div>
+      <div class="font-mono text-[0.85rem]">
+        chandas={validator.chandas ?? '—'} ·
+        syllables={validator.syllable_count ?? '—'}
+        {validator.expected_count !== undefined && <span> / {validator.expected_count}</span>}
+        · ok={String(validator.ok)}
+      </div>
+      {validator.notes?.length > 0 && (
+        <ul class="mt-1 list-disc pl-4 text-[0.85rem] text-[var(--fg-soft)]">
+          {validator.notes.map((note: string) => <li>{note}</li>)}
+        </ul>
+      )}
+    </div>
+  )}
+
+  <div class="grid md:grid-cols-2 gap-3">
+    <div class="card">
+      <div class="flex items-baseline justify-between mb-1">
+        <div class="font-semibold text-sm">Draft (kriyā)</div>
+        {scoreDraft !== null && <div class="font-mono text-[0.78rem] text-[var(--fg-soft)]">score = {fmt(scoreDraft, 3)}</div>}
+      </div>
+      <pre class="font-serif whitespace-pre-wrap text-[0.95rem] m-0 leading-relaxed">{draft || <em class="text-[var(--fg-soft)]">—</em>}</pre>
+    </div>
+    <div class="card">
+      <div class="flex items-baseline justify-between mb-1">
+        <div class="font-semibold text-sm">Shadow revision (vimarśa)</div>
+        {scoreRevision !== null && <div class="font-mono text-[0.78rem] text-[var(--fg-soft)]">score = {fmt(scoreRevision, 3)}</div>}
+      </div>
+      <pre class="font-serif whitespace-pre-wrap text-[0.95rem] m-0 leading-relaxed">{revision || <em class="text-[var(--fg-soft)]">—</em>}</pre>
+    </div>
+  </div>
+
+  {committed && (
+    <div class="card">
+      <div class="flex items-baseline justify-between mb-1">
+        <div class="font-semibold text-sm">Committed surface ({choice})</div>
+        {deltaScore !== null && (
+          <div class="font-mono text-[0.78rem] text-[var(--fg-soft)]">Δscore = {fmt(deltaScore, 3)}</div>
+        )}
+      </div>
+      <pre class="font-serif whitespace-pre-wrap text-[0.95rem] m-0 leading-relaxed">{committed}</pre>
+    </div>
+  )}
+</div>

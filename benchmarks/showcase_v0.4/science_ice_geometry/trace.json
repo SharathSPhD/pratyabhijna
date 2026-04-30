@@ -1,0 +1,41 @@
+{
+  "domain": "sci_creativity",
+  "item_id": "s02",
+  "model": "claude-haiku via Bedrock (Phase 7)",
+  "composite_cascade": 0.5352746645609537,
+  "composite_bare": 0.5117415090401968,
+  "draft": "# Why Ice Floats: Beyond the Textbook\n\nIce floats because liquid water maintains an unexpectedly sophisticated hydrogen-bonded network that actually packs *more* densely than ice's rigid crystal structure. **From a geometry angle:** while ice locks molecules into perfect tetrahedral arrangements—highly ordered and energetically stable—these angles inevitably create wasted space. In contrast, liquid water's bonds constantly break and reform on millisecond timescales, allowing molecules to occasionally shift into tighter packings than any static geometry would permit. **From a frustration angle:** liquid water exists in dynamic tension between two competing goals: forming optimal hydrogen bonds (which would create ice's spacious lattice) and achieving maximum density (which requires breaking some bonds to permit closer packing). The liquid state effectively \"wins\" this competition by accepting imperfect bonding to achieve denser packing—a counterintuitive trade-off where disorder, paradoxically, produces better density than the highly ordered crystalline state.\n\nThe deeper puzzle is that water almost uniquely violates the rule that solids are denser than liquids, suggesting that ice's crystallinity isn't a feature that packs efficiently—it's actually a constraint that forces molecules apart.",
+  "shadow_revision": "# Why Ice Floats: Geometry and Thermodynamic Precarity\n\nIce floats because water's rigid tetrahedral hydrogen-bond geometry—four bonds per molecule locked at ~109.5° angles—fundamentally enforces a spacious lattice that liquid water exceeds by selectively breaking and reorienting some bonds into denser packing. **From a geometric perspective:** the tetrahedral constraint isn't a flaw; it emerges from water's orbital structure as the energetically optimal bonding angle, yet this very \"perfection\" creates spatial inefficiency—like a building designed for angular harmony rather than usable space. **From a thermodynamic perspective:** ice at 0°C barely maintains its advantage; liquid water exists in near-parity on the free energy scale, separated only by a thin ΔG margin that entropy aggressively erodes as temperature rises. This knife-edge thermodynamic balance exposes the real anomaly: ice floats not from intrinsic instability but from geometric rigidity that can barely overcome liquid water's entropic advantage. Liquid water achieves superior density by embracing variable, imperfectly-angled hydrogen bonding—sacrificing local bonding \"purity\" for global molecular crowding. The anomaly ultimately reveals that water's phases occupy an unusual landscape where crystalline order, paradoxically, enforces lower density.\n\nThe deeper insight: water's crystallinity doesn't fail from weakness—it succeeds brilliantly at bonding, which is precisely the problem. That success creates a geometric straitjacket that only barely survives thermodynamic competition with disorder.",
+  "committed": "# Why Ice Floats: Beyond the Textbook\n\nIce floats because liquid water maintains an unexpectedly sophisticated hydrogen-bonded network that actually packs *more* densely than ice's rigid crystal structure. **From a geometry angle:** while ice locks molecules into perfect tetrahedral arrangements—highly ordered and energetically stable—these angles inevitably create wasted space. In contrast, liquid water's bonds constantly break and reform on millisecond timescales, allowing molecules to occasionally shift into tighter packings than any static geometry would permit. **From a frustration angle:** liquid water exists in dynamic tension between two competing goals: forming optimal hydrogen bonds (which would create ice's spacious lattice) and achieving maximum density (which requires breaking some bonds to permit closer packing). The liquid state effectively \"wins\" this competition by accepting imperfect bonding to achieve denser packing—a counterintuitive trade-off where disorder, paradoxically, produces better density than the highly ordered crystalline state.\n\nThe deeper puzzle is that water almost uniquely violates the rule that solids are denser than liquids, suggesting that ice's crystallinity isn't a feature that packs efficiently—it's actually a constraint that forces molecules apart.",
+  "committed_choice": "draft",
+  "score_draft": 0.5352746645609537,
+  "score_revision": 0.5925811926523844,
+  "vimarsa_event": false,
+  "delta_F_draft": 0.0,
+  "delta_F_revision": 2.973519089056097,
+  "K_effective": 4,
+  "elapsed_s": 482.8038809299469,
+  "haiku_n_calls": 66,
+  "haiku_total_usd": 1.1055600000000005,
+  "axes_cascade": {
+    "frame_coverage": 0.218336820602417,
+    "novelty": 0.38748717308044434,
+    "specificity": 1.0
+  },
+  "axes_bare": {
+    "frame_coverage": 0.20231959223747253,
+    "novelty": 0.3329049348831177,
+    "specificity": 1.0
+  },
+  "item_prompt": null,
+  "item_metadata": {
+    "id": "s02",
+    "question": "Why does ice float on water?",
+    "framings": [
+      "hydrogen-bond geometry",
+      "thermodynamic stability"
+    ]
+  },
+  "source": "phase7_cascade",
+  "result_file": "benchmarks/results_v0.4/sci_creativity.json"
+}

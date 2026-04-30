@@ -1,0 +1,7 @@
+# Why Galaxies Have Spiral Arms
+
+**Framing 1 - Density Waves Sustained by Self-Propagating Star Formation:** Spiral arms are **density waves**—compression patterns that rotate more slowly than the stars and gas streaming through them, like a persistent traffic bottleneck. The pattern regenerates itself through a feedback cycle: massive stars born in compressed regions explode violently within millions of years, their shockwaves compress downstream gas and trigger the next generation of star formation, which compresses gas further—this self-propagating mechanism continuously rebuilds the density wave and prevents it from winding into impossibly tight coils over time.
+
+**Framing 2 - Resonance Amplification:** The spiral structure likely originates from orbital resonances (galactic bars, satellite tidal effects, or internal asymmetries) that cause material to cluster at specific angular positions as it orbits. Differential rotation stretches these perturbations while gravity re-concentrates them—a "swing amplification" process that dramatically amplifies small asymmetries into organized spiral overdensities.
+
+The key insight: density waves alone don't persist; they require stellar feedback—supernovae detonating within the wave sustain the self-perpetuating compression-birth-explosion cycle. Spiral arms are thus dynamic equilibria maintained by feedback between the galaxy's resonant structure and violent stellar outbursts, neither rigid geometries nor transient accidents.

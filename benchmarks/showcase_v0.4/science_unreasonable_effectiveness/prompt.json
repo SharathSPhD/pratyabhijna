@@ -1,0 +1,11 @@
+{
+  "slug": "science_unreasonable_effectiveness",
+  "title": "Why mathematics works in physics (vimarśa fired)",
+  "domain": "sci_creativity",
+  "prompt": "Argue, in 400-600 words, why mathematics is unreasonably effective in describing physics, taking a contrarian or non-textbook angle.",
+  "constraint": "Mechanism prose; one explicit acknowledgement of an open problem; one named historical attribution.",
+  "style": "philosophy_of_physics",
+  "chandas": null,
+  "source": "phase7_cascade",
+  "notes": "Phase 7 cascade output for sci_creativity s06 (composite ≈ 0.618) — *this is the gold-star case*. Vimarśa fired (vimarsa_event=True), the gate committed the revision, and the revision (0.618) beat the draft (0.587). The revision pass also converted the title from 'A Contrarian View' to 'The Persistent Mystery', reframing the essay from polemic to honest puzzle-statement."
+}
