@@ -89,4 +89,12 @@ docs/site/public/paper/main.pdf
 audit/
 
 # Per-machine pilot stdout/stderr capture (orchestrator + per-domain workers).
-logs/
+# Anchored to the repo root so nested `logs/` dirs (e.g. `.remember/logs/`)
+# can keep their own targeted rules below.
+/logs/
+
+# User-global SessionStart hook log directory: track the dir via the
+# `.gitkeep` placeholder so the redirect target exists, but ignore the
+# actual log content so per-machine runtime noise stays local.
+.remember/logs/*
+!.remember/logs/.gitkeep

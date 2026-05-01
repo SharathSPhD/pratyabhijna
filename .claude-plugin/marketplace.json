@@ -1,0 +1,31 @@
+{
+  "name": "pratyabhijna-creative-engine",
+  "owner": {
+    "name": "Sharath Phaneendra",
+    "email": "sharath@users.noreply.github.com",
+    "url": "https://github.com/SharathSPhD"
+  },
+  "metadata": {
+    "description": "Pratyabhijna Creative Engine (PCE) marketplace: a mechanism study of recursive self-reflexivity layers for LLM creative cognition. The plugin ships a five-shakti cascade (cit, ananda, iccha, jnana, kriya) with vimarsa shadow-revision and apohana negative-space refactoring, exposed through MCP tools, skills, agents, slash commands, and lifecycle hooks."
+  },
+  "plugins": [
+    {
+      "name": "pratyabhijna-creative-engine",
+      "source": "./plugin",
+      "description": "Run the cit -> ananda -> iccha -> apohana -> jnana -> kriya -> vimarsa cascade through MCP tools, skills, and agents. Targets poetry generation, poetry interpretation, divergent thinking, aspect-shift creativity, and free-energy-budget-gated cascade studies. Configurable model defaults via PCE_MODEL / PCE_JUDGE_MODEL or ~/.config/pce/config.toml.",
+      "category": "research",
+      "keywords": [
+        "creative-cognition",
+        "active-inference",
+        "pratyabhijna",
+        "bayesian-model-reduction",
+        "vimarsa",
+        "hopfield",
+        "free-energy",
+        "clean-substrate",
+        "poetry",
+        "research-tooling"
+      ]
+    }
+  ]
+}
