@@ -4,7 +4,9 @@
 Loads the plugin manifest, the .mcp.json, the MCP server module, and walks the
 plugin tree to confirm:
 
-* `plugin.json` and `marketplace.json` exist and parse;
+* `plugin/.claude-plugin/plugin.json` exists and parses;
+* `.claude-plugin/marketplace.json` (at the **repo root**, where Claude
+  Code's marketplace loader looks) exists and parses;
 * `.mcp.json` has the expected server stanza;
 * MCP server registers exactly 15 tools;
 * `skills/`, `agents/`, `commands/`, `hooks/` each have the right count;
@@ -76,7 +78,10 @@ def main() -> int:
     issues: list[str] = []
 
     plugin_json = PLUGIN_ROOT / ".claude-plugin" / "plugin.json"
-    marketplace_json = PLUGIN_ROOT / ".claude-plugin" / "marketplace.json"
+    # Per Claude Code docs, the marketplace manifest must live at the
+    # repository root (`.claude-plugin/marketplace.json`); the plugin
+    # entry's `source: "./plugin"` points back at PLUGIN_ROOT.
+    marketplace_json = REPO_ROOT / ".claude-plugin" / "marketplace.json"
     mcp_json = PLUGIN_ROOT / ".mcp.json"
 
     for label, p in (

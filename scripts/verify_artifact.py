@@ -93,7 +93,7 @@ PHASE_ARTIFACTS: dict[int, list[str]] = {
     7: [
         "plugin/.claude-plugin/plugin.json",
         "plugin/.mcp.json",
-        "plugin/marketplace.json",
+        ".claude-plugin/marketplace.json",
         "plugin/mcp/server.py",
     ],
     8: [

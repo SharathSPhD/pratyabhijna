@@ -1,0 +1,11 @@
+# Placeholder so the directory exists in fresh checkouts.
+#
+# A user-global Claude Code SessionStart hook redirects errors into
+# `.remember/logs/hook-errors.log` under the project root. The redirect
+# fails noisily (`/bin/sh: ...: No such file or directory`) when the
+# parent directory is absent on a fresh clone. Tracking the directory
+# via this `.gitkeep` is the smallest fix that makes the redirect
+# succeed without committing any actual log content.
+#
+# `.remember/logs/*` is git-ignored except for this file (see the
+# repo-root `.gitignore`), so logs stay local-only.
