@@ -3,9 +3,10 @@
     "pratyabhijna": {
       "command": "uv",
       "args": [
-        "--directory",
-        "${CLAUDE_PLUGIN_ROOT}/..",
         "run",
+        "--no-project",
+        "--with",
+        "pratyabhijna-creative-engine @ git+https://github.com/SharathSPhD/pratyabhijna.git@main",
         "python",
         "${CLAUDE_PLUGIN_ROOT}/mcp/server.py"
       ],
