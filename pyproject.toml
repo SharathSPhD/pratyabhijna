@@ -23,7 +23,7 @@ dependencies = [
   # Active inference (pypi name is `inferactively-pymdp`; v1.0 introduces JAX backend, legacy numpy still available)
   "inferactively-pymdp>=0.0.7.1",
   # MCP
-  "mcp>=1.0",
+  "mcp>=1.0,<2.0",
   "pydantic>=2.7",
   "tiktoken>=0.7",
   # Stats
